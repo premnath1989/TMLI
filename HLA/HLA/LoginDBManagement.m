@@ -20,7 +20,7 @@
     NSString *docsDir = [dirPaths objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"hladb.sqlite"]];
     RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"BCA_Rates.sqlite"]];
-    UL_RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"UL_Rates.sqlite"]];
+  //  UL_RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"UL_Rates.sqlite"]];
     RefDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"DataReferral.sqlite"]];
     CommDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"Rates.json"]];
     
@@ -57,12 +57,7 @@
     
     if([fileManager fileExistsAtPath:UL_RatesDatabasePath] == FALSE ){
         
-        NSString *ULRatesPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"UL_Rates.sqlite"];
-        success = [fileManager copyItemAtPath:ULRatesPath toPath:UL_RatesDatabasePath error:&DBerror];
-        if (!success) {
-            NSAssert1(0, @"Failed to create UL Rates file with message '%@'.", [DBerror localizedDescription]);
-        }
-        ULRatesPath= Nil;
+
     }
     
     if([fileManager fileExistsAtPath:RatesDatabasePath] == FALSE ){

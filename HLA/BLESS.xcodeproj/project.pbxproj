@@ -90,6 +90,7 @@
 		174DD2551C9A54C400D56274 /* Pembelianke.m in Sources */ = {isa = PBXBuildFile; fileRef = 174DD2541C9A54C400D56274 /* Pembelianke.m */; };
 		175E3A561C7BFE4A000EC161 /* MasaPembayaran.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E3A551C7BFE4A000EC161 /* MasaPembayaran.m */; };
 		175E3A5A1C7C243B000EC161 /* Frekeunsi.m in Sources */ = {isa = PBXBuildFile; fileRef = 175E3A581C7C243B000EC161 /* Frekeunsi.m */; };
+		175F83DA1DAC82E300658668 /* hladb.sqlite.sql in Resources */ = {isa = PBXBuildFile; fileRef = 175F83D91DAC82E300658668 /* hladb.sqlite.sql */; };
 		178765D91C7409F00036F31A /* menu_selectoption.png in Resources */ = {isa = PBXBuildFile; fileRef = 178765D81C7409F00036F31A /* menu_selectoption.png */; };
 		178765DB1C74C25D0036F31A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 178765DA1C74C25D0036F31A /* Images.xcassets */; };
 		178765DF1C75C04C0036F31A /* ProspectProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 178765DE1C75C04C0036F31A /* ProspectProfileStoryboard.storyboard */; };
@@ -1097,6 +1098,7 @@
 		175E3A571C7C243B000EC161 /* Frekeunsi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Frekeunsi.h; sourceTree = "<group>"; };
 		175E3A581C7C243B000EC161 /* Frekeunsi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Frekeunsi.m; sourceTree = "<group>"; };
 		175E3A591C7C243B000EC161 /* MasaPembayaran.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasaPembayaran.h; sourceTree = "<group>"; };
+		175F83D91DAC82E300658668 /* hladb.sqlite.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hladb.sqlite.sql; sourceTree = "<group>"; };
 		178765D81C7409F00036F31A /* menu_selectoption.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_selectoption.png; sourceTree = "<group>"; };
 		178765DA1C74C25D0036F31A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BLESS/Images.xcassets; sourceTree = "<group>"; };
 		178765DE1C75C04C0036F31A /* ProspectProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProspectProfileStoryboard.storyboard; sourceTree = "<group>"; };
@@ -5342,6 +5344,7 @@
 			children = (
 				162C3C0E1BBBD7270022CAF0 /* dbupdates */,
 				162C3C0C1BBBD6430022CAF0 /* dbupdates-sample.json */,
+				175F83D91DAC82E300658668 /* hladb.sqlite.sql */,
 				FA49F2871B9EE4E500B20169 /* DBUpdater.h */,
 				FA49F2881B9EE4E500B20169 /* DBUpdater.m */,
 				DE06BE311CF2DD910091DE47 /* bca_rates.sqlite.sql */,
@@ -6008,6 +6011,7 @@
 				EF1F6C7C16A7C1CC001EDC81 /* pdfData.plist in Resources */,
 				439B0B7D1D54743F00C28F19 /* SPAJEAppListStoryBoard.storyboard in Resources */,
 				046735971C23A61300DEE400 /* CFFStoryboard.storyboard in Resources */,
+				175F83DA1DAC82E300658668 /* hladb.sqlite.sql in Resources */,
 				C4E1B9471714091000D7F83B /* SI in Resources */,
 				C4E643801724E821001DF8F8 /* PDS in Resources */,
 				C4E643821724F175001DF8F8 /* Rates.json in Resources */,
@@ -6959,7 +6963,7 @@
 					"-lc++",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcalife.bless;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMLI.app;
 				PRODUCT_NAME = BLESS;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -7018,7 +7022,7 @@
 					"-lc++",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcalife.bless;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMLI.app;
 				PRODUCT_NAME = BLESS;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -7118,7 +7122,7 @@
 					"-lc++",
 					"-lxml2",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bcalife.bless;
+				PRODUCT_BUNDLE_IDENTIFIER = com.TMLI.app;
 				PRODUCT_NAME = BLESS;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
