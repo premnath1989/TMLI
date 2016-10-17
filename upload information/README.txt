@@ -1,1 +1,0 @@
-/Users/tsueyshanho/Downloads/Tools/BetaBuilder.app/Contents/Resources/README
