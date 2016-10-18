@@ -86,7 +86,7 @@
     
     //set the background color to a texture
     NSArray *colors = [NSArray arrayWithObjects:(id)[UIColor whiteColor].CGColor,(id)[UIColor lightGrayColor].CGColor, nil];
-    self.tabBar.backgroundColor = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
+    self.tabBar.backgroundColor = [UIColor grayColor];//[UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     
     if (self.IndexTab) {
         clickIndex = IndexTab;
