@@ -75,8 +75,11 @@
     
     [self saveBasicPlan];
     
+    [quickQuoteFlag isOn];
+    
     outletDone.enabled=TRUE;
     btnProspect.enabled = NO;
+    LANameField.enabled = YES;
     
     NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
 
@@ -177,7 +180,10 @@
 }
 
 //- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
-   // return [quickQuoteFlag isOn];
+//    
+//    
+//    
+//    return [quickQuoteFlag isOn];
 //}
 
 - (void)setUIElementsEditable{
@@ -227,7 +233,7 @@
         LAAgeField.enabled = FALSE;
         LAAgeField.text =@"";
         LANameField.text =@"";
-        LANameField.enabled = NO;
+        LANameField.enabled = YES;
         btnDOB.enabled = NO;
         sexSegment.enabled = NO;
         btnOccp.enabled = NO;
@@ -493,6 +499,7 @@
 {    
     self.view.frame = CGRectMake(-5, 0, 778, 1004);
     [super viewWillAppear:animated];
+    [quickQuoteFlag isOn];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -507,6 +514,7 @@
     }
     //test disable the fields
     [self checkEditingMode];
+    [quickQuoteFlag isOn];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -2654,29 +2662,9 @@
     
     int LAAGEint = [[LAAgeField text] intValue];
     
-    if ([NamaProduk.titleLabel.text isEqualToString:@"(null)"] ||[NamaProduk.titleLabel.text isEqualToString:@"--Please Select--"] || NamaProduk.titleLabel.text.length == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Produk harus diisi."
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-        return NO;
-        
-    }
-    else if ([TanggalIllustrasi.titleLabel.text isEqualToString:@"(null)"] ||[TanggalIllustrasi.titleLabel.text isEqualToString:@"--Please Select--"] || TanggalIllustrasi.titleLabel.text.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Tanggal Ilustrasi harus diisi "
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-        return NO;
-        
-    }
-    else if (AgeExceed189Days == true) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Tanggal lahir yang dimasukkan tidak boleh lebih dari 180 hari yang lalu"
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert setTag:1005];
-        [alert show];
-        return NO;
-    }
-    else if (LANameField.text.length <= 0) {
+ 
+
+    if (LANameField.text.length <= 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Nama Pemegang harus diisi."
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
@@ -2724,14 +2712,14 @@
         return NO;
     }
     
-    else if ([btnOccp.titleLabel.text isEqualToString:@"(null)"]||[btnOccp.titleLabel.text isEqualToString:@" - SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"- SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] || btnOccp.titleLabel.text.length == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Pekerjaan Pemegang Polis harus diisi."
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-        return NO;
-    }
-    
+//    else if ([btnOccp.titleLabel.text isEqualToString:@"(null)"]||[btnOccp.titleLabel.text isEqualToString:@" - SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"- SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] || btnOccp.titleLabel.text.length == 0)
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Pekerjaan Pemegang Polis harus diisi."
+//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+//        [alert show];
+//        return NO;
+//    }
+//    
     else if ([_BtnHubungan.titleLabel.text isEqualToString:@"(null)"] ||[_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] ||[_BtnHubungan.titleLabel.text isEqualToString:@"- SELECT -"] || _BtnHubungan.titleLabel.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Hubungan Dengan Tertannggung harus diisi"

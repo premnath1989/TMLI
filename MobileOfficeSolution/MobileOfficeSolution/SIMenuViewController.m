@@ -101,11 +101,10 @@ BOOL isFirstLoad;
     //--for table view
     //self.myTableView.backgroundColor = [UIColor darkGrayColor];
     
-    arrayIntValidate = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0", nil];
+    arrayIntValidate = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0",@"0",@"0", nil];
 
-    _NumberListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"1", @"2", @"3", @"4",@"0",@"0", nil];
-    ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Asuransi Dasar\nAsuransi Tambahan\nPremi", @"Ilustrasi ",@"Produk Brosur",@"Simpan sebagai Baru", nil];
-    //ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"1   Pemegang Polis", @"2   Tertanggung", @"3  Ansurasi Dasar \n Asuransi Tambahan \n Premi", @"4   Ilustrasi ",@"Produk Brosur",@"Simpan sebagai Baru", nil];
+    _NumberListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"1", @"2", @"3", @"4",@"5",@"6",@"7",@"8", nil];
+    ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Asuransi Dasar", @"Asuransi Tambahan ",@"Jenis Investasi",@"Penambahan /\nPenarikan Tunggal",@"Illustrasi",@"Email Illustrasi",nil];
     
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
     
@@ -731,7 +730,8 @@ BOOL isFirstLoad;
         PlanEmpty = YES;
         added = NO;
         arrayIntValidate = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0", nil];
-		ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Ansurasi Dasar \n Asuransi Tambahan \n Premi", @"Ilustrasi ",@"Produk Brosur",@"Simpan sebagai Baru", nil];
+        ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Asuransi Dasar", @"Asuransi Tambahan ",@"Jenis Investasi",@"Penambahan /\nPenarikan Tunggal",@"Illustrasi",@"Email Illustrasi",nil];
+
 //		ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Life Assured", @"   2nd Life Assured", @"   Payor", @"Basic Plan", nil];
         
         [self RemovePDS];
@@ -2796,7 +2796,7 @@ BOOL isFirstLoad;
 
 - (NSInteger)tableView:(UITableView *)myTableView numberOfRowsInSection:(NSInteger)section
 {
-    return ListOfSubMenu.count-2;
+    return ListOfSubMenu.count;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
