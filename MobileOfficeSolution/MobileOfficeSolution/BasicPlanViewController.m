@@ -68,6 +68,7 @@
 @synthesize requestOccpClass,OccpClass,SavedMOP,yearlyIncomeHLAIB,cashDividendHLAIB,cashDividendHLACP;
 @synthesize advanceYearlyIncomeHLAIB,advanceYearlyIncomeHLACP,maxAge,occLoad,LSDRate,LUnits,occCPA_PA;
 @synthesize planList = _planList;
+@synthesize currencyList = _CurrencyList;
 @synthesize Pembelianke = _Pembelianke;
 @synthesize _masaPembayaran = _masaPembayaran;
 @synthesize planPopover = _planPopover;
@@ -925,8 +926,10 @@ bool WPTPD30RisDeleted = FALSE;
     CGRect rect = [sender frame];
     rect.origin.y = [sender frame].origin.y + 30;
     
-    [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+    [self.planPopover setPopoverContentSize:CGSizeMake(450.0f, 300.0f)];
     [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+
 
 }
 
@@ -943,110 +946,33 @@ bool WPTPD30RisDeleted = FALSE;
     }
     return localPremiType;
 }
+- (IBAction)actionMataUang:(id)sender
+{
+    
+    self.currencyList = [[Currency alloc] init];
+    _CurrencyList.delegate = self;
+    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_CurrencyList];
+    
+    
+    CGRect rect = [sender frame];
+    rect.origin.y = [sender frame].origin.y + 30;
+    
+    [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+    [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];}
+
 
 -(IBAction)actionFrekuensiPembayaran:(id)sender
 {
-    if ([FrekuensiPembayaranChecking isEqualToString:@"Premi Tunggal"])
-    {
-        [self resignFirstResponder];
-        [self.view endEditing:YES];
-        
-        Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
-        id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
-        [activeInstance performSelector:@selector(dismissKeyboard)];
-        
-        if (_frekuensi == nil) {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"Premi Tunggal";
-            _frekuensi.delegate = self;
-            premiType = @"S";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
-        }
-        else
-        {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"Premi Tunggal";
-            _frekuensi.delegate = self;
-            premiType = @"S";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
-        }
-        
-        CGRect rect = [sender frame];
-        rect.origin.y = [sender frame].origin.y + 30;
-        
-        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
-        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        
-        //_frekuensiPembayaranButton.enabled =TRUE;
-    }
-    else if ([FrekuensiPembayaranChecking isEqualToString:@"Premi 5 Tahun"])
-    {
-        
-        [self resignFirstResponder];
-        [self.view endEditing:YES];
-        
-        Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
-        id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
-        [activeInstance performSelector:@selector(dismissKeyboard)];
-        
-        if (_frekuensi == nil) {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"Premi 5 Tahun";
-            _frekuensi.delegate = self;
-            premiType = @"R";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
-        }
-        else
-        {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"Premi 5 Tahun";
-            _frekuensi.delegate = self;
-            premiType = @"R";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
 
-        }
-        CGRect rect = [sender frame];
-        rect.origin.y = [sender frame].origin.y + 30;
-        
-        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
-        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-       // _frekuensiPembayaranButton.enabled =TRUE;
-    }
-    else if ([FrekuensiPembayaranChecking isEqualToString:@"10 Tahun"])
-    {
-        
-        [self resignFirstResponder];
-        [self.view endEditing:YES];
-        
-        Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
-        id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
-        [activeInstance performSelector:@selector(dismissKeyboard)];
-        
-        if (_frekuensi == nil) {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"10 Tahun";
-            _frekuensi.delegate = self;
-            premiType = @"S";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
-        }
-        else
-        {
-            _frekuensi = [[Frekeunsi alloc] init];
-            _frekuensi.Frekuensi = @"10 Tahun";
-            _frekuensi.delegate = self;
-            premiType = @"S";
-            self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
-            
-        }
-        CGRect rect = [sender frame];
-        rect.origin.y = [sender frame].origin.y + 30;
-        
-        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
-        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        // _frekuensiPembayaranButton.enabled =TRUE;
-
-    }
     
+    _frekuensi = [[Frekeunsi alloc] init];
+    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
+    
+        CGRect rect = [sender frame];
+        rect.origin.y = [sender frame].origin.y + 30;
+    
+        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)PaymentDasarMDBKK: (NSString *)PaymentDesc
@@ -5866,9 +5792,18 @@ bool WPTPD30RisDeleted = FALSE;
     
     FrekuensiPembayaranChecking = aaDesc;
     
+    _ProductTittle.text = aaDesc;
+    
     [_basicPremiField setText:[NSString stringWithFormat:@"%@",@"0"]];
     
     //[self PremiDasarAct];
+    
+}
+
+-(void)Currencylisting:(Currency *)inController didSelectCode:(NSString *)aaDesc;
+{
+    [_MataUangPembayaran setTitle:aaDesc forState:normal];
+    [self.planPopover dismissPopoverAnimated:YES];
     
 }
 

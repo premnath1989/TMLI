@@ -230,10 +230,10 @@ id dobtemp;
         //nameField.text = @"TestDisable";
         //[nameField setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0]];
         [nameField setBackgroundColor:[CustomColor colorWithHexString:@"EEEEEE"]];
-        nameField.enabled = NO;
-        _BtnTanggalLahir.enabled = false;
+        nameField.enabled = YES;
+        _BtnTanggalLahir.enabled = YES;
         ageField.enabled = false;
-        sexSegment.enabled = false;
+        sexSegment.enabled = YES;
         btnOccp.enabled = false;
         outletProspect.enabled = YES;
     }
@@ -1620,11 +1620,11 @@ id dobtemp;
         return false;
     }
     
-    else if ([validationSet containsObject:occupation]||occupation==NULL){
-        [self createAlertViewAndShow:validationPekerjaan tag:0];
-        //[btnOccp setBackgroundColor:[UIColor redColor]];
-        return false;
-    }
+//    else if ([validationSet containsObject:occupation]||occupation==NULL){
+//        [self createAlertViewAndShow:validationPekerjaan tag:0];
+//        //[btnOccp setBackgroundColor:[UIColor redColor]];
+//        return false;
+//    }
     else if ([validationSet containsObject:occupation]||occupation==NULL)
     {
         

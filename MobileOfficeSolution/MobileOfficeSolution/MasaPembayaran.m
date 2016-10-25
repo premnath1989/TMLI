@@ -29,7 +29,7 @@
 	if([TradOrEver isEqualToString:@"TRAD"]){
 		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Secure100", @"HLA Wealth Plan", nil ];
 		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"S100", @"HLAWP", nil ];
-        ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Premi Tunggal",@"Premi 5 Tahun",nil];
+        ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"TM Link Investasiku",@"TM Link ProteksiKu",@"TM MAximum Investment Plan(MIP & MIP Plus)",@"TM Link Wealth Accumulation",@"TM Link Wealth Accumulation",@"TM Peace of Mind Accident",nil];
         ListOfCode = [[NSMutableArray alloc] initWithObjects:@"BCALH",@"BCAKK", nil ];
         
 //		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"HLA Wealth Plan", nil ];

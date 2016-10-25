@@ -1,0 +1,96 @@
+//
+//  Currency.m
+//  HLA Ipad
+//
+//  Created by Premnath on 10/16/12.
+//  Copyright (c) 2012 InfoConnect Sdn Bhd. All rights reserved.
+//
+
+#import "Currency.h"
+
+@interface Currency ()
+
+@end
+
+@implementation Currency
+@synthesize ListOfCurrency;
+@synthesize delegate;
+
+-(id)init {
+    self = [super init];
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+	
+		ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+    
+
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+	return YES;
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [ListOfCurrency count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+	cell.textLabel.text = [ListOfCurrency objectAtIndex:indexPath.row];
+    
+	if (indexPath.row == selectedIndex) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	}
+	else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
+    
+    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16 ];
+    return cell;
+}
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedIndex = indexPath.row;
+    [delegate Currencylisting:self didSelectCode:self.selectedDesc];
+    
+    [tableView reloadData];
+}
+
+
+-(NSString *)selectedDesc
+{
+    return [ListOfCurrency objectAtIndex:selectedIndex];
+}
+
+- (void)viewDidUnload
+{
+    [self setDelegate:nil];
+    [super viewDidUnload];
+}
+
+@end

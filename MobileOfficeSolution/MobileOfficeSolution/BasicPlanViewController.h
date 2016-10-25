@@ -10,6 +10,7 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 #import "PlanList.h"
+#import "Currency.h"
 #import "MasaPembayaran.h"
 #import "Frekeunsi.h"
 #import "Pembelianke.h"
@@ -42,7 +43,7 @@
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan;
 @end
 
-@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate>{
+@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate>{
     Formatter* classFormatter;
     HeritageCalculation* heritageCalculation;
     
@@ -56,6 +57,7 @@
     Model_SI_Premium *_modelSIPremium;
     RiderCalculation *riderCalculation;
     PlanList *_planList;
+    Currency *_CurrencyList;
     MasaPembayaran*_masaPembayaran;
     Frekeunsi*_frekuensi;
     PembeliaKe*_Pembelianke;
@@ -111,6 +113,7 @@
 
 @property (nonatomic, retain) UIPopoverController *planPopover;
 @property (nonatomic, retain) PlanList *planList;
+@property (nonatomic, retain) Currency *currencyList;
 @property (nonatomic, retain) MasaPembayaran *_masaPembayaran;
 @property (nonatomic, retain) Frekeunsi*_frekuensi;
 @property (nonatomic, retain) PembeliaKe*Pembelianke;
@@ -231,7 +234,10 @@
 @property (strong, nonatomic) IBOutlet UITextField *totalPremiWithLoadingField;
 @property (strong, nonatomic) IBOutlet UIButton *masaPembayaranButton;
 @property (strong, nonatomic) IBOutlet UIButton *frekuensiPembayaranButton;
+@property (weak, nonatomic) IBOutlet UIButton *MataUangPembayaran;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (weak, nonatomic) IBOutlet UILabel *MInBasicPremi;
+@property (weak, nonatomic) IBOutlet UILabel *PremiTopUp;
 
 -(NSMutableDictionary *)setDataBasicPlan;
 - (IBAction)tempNext:(id)sender;
@@ -246,6 +252,7 @@
 - (bool)validationDataBasicPlan;
 -(void)setPODictionaryFromRoot:(NSMutableDictionary *)dictionaryRootPO;
 -(void)calculateValue;
+- (IBAction)actionMataUang:(id)sender;
 //end of added by faiz
 
 //for SINo
@@ -382,6 +389,8 @@
 - (IBAction)cashDivSgmntCPPressed:(id)sender;
 - (IBAction)quotationLangSegmentPressed:(id)sender;
 - (IBAction)KKLKPembelianKe:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *ProductTittle;
+
 
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *policyTermSeg;

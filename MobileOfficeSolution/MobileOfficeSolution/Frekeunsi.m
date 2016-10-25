@@ -25,25 +25,25 @@
 {
     [super viewDidLoad];
     
-    if ([Frekuensi isEqualToString:@"Premi Tunggal"])
-    {
-        ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Pembayaran Sekaligus", nil ];
-        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", nil ];
-
-    }
-    if ([Frekuensi isEqualToString:@"Premi 5 Tahun"])
-    {
-        ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Bulanan", nil ];
-        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", @"", nil ];
-
-    }
-    
-    if ([Frekuensi isEqualToString:@"10 Tahun"])
-    {
+//    if ([Frekuensi isEqualToString:@"Premi Tunggal"])
+//    {
+//        ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Pembayaran Sekaligus", nil ];
+//        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", nil ];
+//
+//    }
+//    if ([Frekuensi isEqualToString:@"Premi 5 Tahun"])
+//    {
+//        ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Bulanan", nil ];
+//        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", @"", nil ];
+//
+//    }
+//    
+//    if ([Frekuensi isEqualToString:@"10 Tahun"])
+//    {
         ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
         ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", @"",@"", @"" ,nil ];
-        
-    }
+//        
+//    }
 
 
 //	if([TradOrEver isEqualToString:@"TRAD"]){
