@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -512,6 +513,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17F7585C1DBDDD6E0003DFCA /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
+		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -2271,6 +2274,8 @@
 				DEDC5E891DAE46B60033FE37 /* PasswordTips.m */,
 				DEDC5E851DAE46A90033FE37 /* PlanList.h */,
 				DEDC5E861DAE46A90033FE37 /* PlanList.m */,
+				17F7585C1DBDDD6E0003DFCA /* Currency.h */,
+				17F7585D1DBDDD6E0003DFCA /* Currency.m */,
 				DEDC5E821DAE469D0033FE37 /* SIDate.h */,
 				DEDC5E831DAE469D0033FE37 /* SIDate.m */,
 				DEDC5E7F1DAE468F0033FE37 /* JobListTbViewController.h */,
@@ -3298,6 +3303,7 @@
 				DEDC5D981DAE3FBB0033FE37 /* SpinnerUtilities.m in Sources */,
 				DEDC5F6B1DAE49AE0033FE37 /* ReaderThumbQueue.m in Sources */,
 				DEDC5DF81DAE41B30033FE37 /* Pembelianke.m in Sources */,
+				17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */,
 				DEDC5E4A1DAE44C60033FE37 /* RateModel.m in Sources */,
 				DEDC5DB21DAE40880033FE37 /* FSVerticalTabBarButton.m in Sources */,
 				DEDC5E991DAE46F30033FE37 /* Nationality.m in Sources */,
