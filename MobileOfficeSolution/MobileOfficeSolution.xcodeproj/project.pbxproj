@@ -11,6 +11,7 @@
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
+		DE49AD751DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE49AD731DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld */; };
 		DE5F7AE41DB08ED2006DC32F /* database in Resources */ = {isa = PBXBuildFile; fileRef = DE5F7AE31DB08ED2006DC32F /* database */; };
 		DE5F7AE61DB090B1006DC32F /* MOSDB.sqlite.sql in Resources */ = {isa = PBXBuildFile; fileRef = DE5F7AE51DB090B1006DC32F /* MOSDB.sqlite.sql */; };
 		DE5F7AE81DB0A04F006DC32F /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DE5F7AE71DB0A04F006DC32F /* libstdc++.tbd */; };
@@ -428,7 +429,6 @@
 		DEDC613F1DAF797E0033FE37 /* SPAJIDCapturedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEDC612B1DAF797E0033FE37 /* SPAJIDCapturedViewController.xib */; };
 		DEDC61401DAF797E0033FE37 /* FormTenagaPenjualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEDC612C1DAF797E0033FE37 /* FormTenagaPenjualViewController.xib */; };
 		DEDC61411DAF797E0033FE37 /* SPAJThirdParty.xib in Resources */ = {isa = PBXBuildFile; fileRef = DEDC612D1DAF797E0033FE37 /* SPAJThirdParty.xib */; };
-		DEDC61471DAF799B0033FE37 /* Bless_SPAJ.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = DEDC61421DAF799B0033FE37 /* Bless_SPAJ.xcdatamodel */; };
 		DEDC61481DAF799B0033FE37 /* Query SPAJ Header.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC61441DAF799B0033FE37 /* Query SPAJ Header.m */; };
 		DEDC61491DAF799B0033FE37 /* Insert Initialization.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC61461DAF799B0033FE37 /* Insert Initialization.m */; };
 		DEDC614B1DAF79A40033FE37 /* Image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDC614A1DAF79A40033FE37 /* Image.xcassets */; };
@@ -520,6 +520,7 @@
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
 		DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDisclaimer.m; sourceTree = "<group>"; };
 		DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppDisclaimer.xib; sourceTree = "<group>"; };
+		DE49AD741DC09B7D00018B9C /* Bless_SPAJ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bless_SPAJ.xcdatamodel; sourceTree = "<group>"; };
 		DE5F7AE31DB08ED2006DC32F /* database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = database; sourceTree = "<group>"; };
 		DE5F7AE51DB090B1006DC32F /* MOSDB.sqlite.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MOSDB.sqlite.sql; path = database/query/MOSDB.sqlite.sql; sourceTree = "<group>"; };
 		DE5F7AE71DB0A04F006DC32F /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
@@ -1174,7 +1175,6 @@
 		DEDC612B1DAF797E0033FE37 /* SPAJIDCapturedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAJIDCapturedViewController.xib; sourceTree = "<group>"; };
 		DEDC612C1DAF797E0033FE37 /* FormTenagaPenjualViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTenagaPenjualViewController.xib; sourceTree = "<group>"; };
 		DEDC612D1DAF797E0033FE37 /* SPAJThirdParty.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SPAJThirdParty.xib; sourceTree = "<group>"; };
-		DEDC61421DAF799B0033FE37 /* Bless_SPAJ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bless_SPAJ.xcdatamodel; sourceTree = "<group>"; };
 		DEDC61431DAF799B0033FE37 /* Query SPAJ Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Query SPAJ Header.h"; sourceTree = "<group>"; };
 		DEDC61441DAF799B0033FE37 /* Query SPAJ Header.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Query SPAJ Header.m"; sourceTree = "<group>"; };
 		DEDC61451DAF799B0033FE37 /* Insert Initialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Insert Initialization.h"; sourceTree = "<group>"; };
@@ -2056,11 +2056,11 @@
 		DEDC5E171DAE42950033FE37 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				DEDC61421DAF799B0033FE37 /* Bless_SPAJ.xcdatamodel */,
 				DEDC61431DAF799B0033FE37 /* Query SPAJ Header.h */,
 				DEDC61441DAF799B0033FE37 /* Query SPAJ Header.m */,
 				DEDC61451DAF799B0033FE37 /* Insert Initialization.h */,
 				DEDC61461DAF799B0033FE37 /* Insert Initialization.m */,
+				DE49AD731DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld */,
 			);
 			name = Database;
 			sourceTree = "<group>";
@@ -3021,7 +3021,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2YT8E2D9X6;
+						DevelopmentTeam = 25W8386326;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3343,7 +3343,6 @@
 				DEDC61B21DAF7D9D0033FE37 /* IDTypePicker.m in Sources */,
 				DEDC61651DAF7BDC0033FE37 /* SPAJPDFAutopopulateData.m in Sources */,
 				DEDC615B1DAF7BD00033FE37 /* Dimension.m in Sources */,
-				DEDC61471DAF799B0033FE37 /* Bless_SPAJ.xcdatamodel in Sources */,
 				DEDC5E551DAE455B0033FE37 /* ClientTabBarButton.m in Sources */,
 				DEDC61D21DAF80A60033FE37 /* myLable.m in Sources */,
 				DEDC60011DAE57440033FE37 /* UIButton+Property.m in Sources */,
@@ -3465,6 +3464,7 @@
 				DEDC5F681DAE49AE0033FE37 /* ReaderMainToolbar.m in Sources */,
 				DEDC5CC51DAE382F0033FE37 /* FMDatabaseAdditions.m in Sources */,
 				DEDC5DB11DAE40880033FE37 /* FSVerticalTabBar.m in Sources */,
+				DE49AD751DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld in Sources */,
 				DEDC61F31DAF81860033FE37 /* PDFDocument.m in Sources */,
 				DEDC5E8D1DAE46BF0033FE37 /* IDTypeViewController.m in Sources */,
 				DEDC5FDB1DAE537F0033FE37 /* SPAJSubmissionFiles.m in Sources */,
@@ -3705,7 +3705,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3737,7 +3737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3850,6 +3850,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DE49AD731DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DE49AD741DC09B7D00018B9C /* Bless_SPAJ.xcdatamodel */,
+			);
+			currentVersion = DE49AD741DC09B7D00018B9C /* Bless_SPAJ.xcdatamodel */;
+			path = Bless_SPAJ.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = DEDC5C4E1DAE347E0033FE37 /* Project object */;
 }
