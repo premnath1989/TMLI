@@ -88,12 +88,30 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnSortBy;
 @property (nonatomic, copy) NSString *OrderBy;
 
+
+//NEW UI
+@property (strong, nonatomic) IBOutlet UITextField *txtFrontName;
+@property (strong, nonatomic) IBOutlet UITextField *txtLastName;
+@property (strong, nonatomic) IBOutlet UITextField *txtTanggalLahir;
+@property (strong, nonatomic) IBOutlet UITextField *TxtPhoneNo;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnSearch;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancel;
+@property (strong, nonatomic) IBOutlet UIButton *btnDelete;
+
+
+//
+
+
+
 @property (strong, nonatomic) IBOutlet UIButton *btnSortFullName;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortDOB;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortBranchName;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortDateCreated;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortDateModified;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortTimeRemaining;
+
+
 
 - (IBAction)ActionGroup:(id)sender;
 - (IBAction)searchPressed:(id)sender;
