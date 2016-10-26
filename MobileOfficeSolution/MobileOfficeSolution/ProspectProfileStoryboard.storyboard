@@ -2473,21 +2473,21 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="wQ9-ff-g6u" userLabel="DataPribadiCV">
-                                <frame key="frameInset" height="632"/>
+                                <frame key="frameInset" height="632" maxX="1" maxY="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="wW1-uM-Ie5" kind="embed" id="h5r-8o-KiN"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="PMn-jJ-YiH" userLabel="AlamatCV">
-                                <frame key="frameInset" height="632"/>
+                                <frame key="frameInset" height="632" maxX="1" maxY="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="sZa-h5-Q7u" kind="embed" id="dzg-58-SIi"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" misplaced="YES" id="b32-xv-hso" userLabel="PekerjaanCV">
-                                <frame key="frameInset" height="632"/>
+                                <frame key="frameInset" height="632" maxX="1" maxY="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="aeh-DS-Njm" kind="embed" id="ra6-ic-mbX"/>
@@ -2535,12 +2535,12 @@
                                 <frame key="frameInset" minX="11" minY="64" width="947" height="193"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="coZ-N9-Goc">
-                                        <frame key="frameInset" minX="857" minY="148" width="75" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="coZ-N9-Goc">
+                                        <frame key="frameInset" minX="778" minY="147" width="75" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Hapus">
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Batal">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -2587,11 +2587,24 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mwh-8u-Y2r">
-                                        <frame key="frameInset" minX="774" minY="148" width="75" height="37"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tIJ-d4-dqo">
+                                        <frame key="frameInset" minX="857" minY="147" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Hapus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchPressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="7D2-c5-Cab"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mwh-8u-Y2r">
+                                        <frame key="frameInset" minX="695" minY="147" width="75" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.78823529411764703" green="0.83137254901960789" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
                                         <state key="normal" title="Cari">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" red="0.78823529411764703" green="0.83137254901960789" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2641,29 +2654,22 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nama                            [Tanggal Lahir]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WDC-D9-jQf">
-                                                <frame key="frameInset" minX="58" width="137" height="50"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nama                            [Tanggal Lahir]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WDC-D9-jQf">
+                                                <frame key="frameInset" minX="50" width="216" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nomor HP Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WwL-bf-bJV">
-                                                <frame key="frameInset" minX="196" minY="1" width="151" height="50"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nomor HP Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WwL-bf-bJV">
+                                                <frame key="frameInset" minX="265" width="127" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Kualitas Nasabah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dn9-am-8cP">
-                                                <frame key="frameInset" minX="354" minY="1" width="151" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tanggal Pembuatan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Ee5-bw-1wA">
-                                                <frame key="frameInset" minX="508" minY="1" width="151" height="50"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Kualitas Nasabah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dn9-am-8cP">
+                                                <frame key="frameInset" minX="391" minY="1" width="114" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2683,6 +2689,13 @@
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Tanggal Pembuatan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Ee5-bw-1wA">
+                                                <frame key="frameInset" minX="507" width="155" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.28235294117647058" green="0.3843137254901961" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
@@ -2693,11 +2706,6 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="yh2-Jj-DQA">
-                        <barButtonItem key="leftBarButtonItem" title="Menu" id="6eH-Cy-zp6">
-                            <connections>
-                                <action selector="MenuPopoverPress:" destination="R2U-dm-XLx" id="El6-Qr-9Yc"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="XLt-X2-hM4">
                             <color key="tintColor" red="0.98039215690000003" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -2707,14 +2715,20 @@
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="MenuPopoverBtn" destination="6eH-Cy-zp6" id="XpP-hF-ZXX"/>
+                        <outlet property="TxtPhoneNo" destination="cJc-Cl-S1W" id="Ozc-mo-iab"/>
+                        <outlet property="btnCancel" destination="coZ-N9-Goc" id="vVf-9h-o1f"/>
+                        <outlet property="btnDelete" destination="tIJ-d4-dqo" id="7pl-hb-3uo"/>
+                        <outlet property="btnSearch" destination="mwh-8u-Y2r" id="kvJ-95-dWd"/>
                         <outlet property="groupLabel" destination="e6i-Lm-FA2" id="OT0-1V-fcQ"/>
                         <outlet property="myTableView" destination="rxJ-zx-Wdo" id="Vxo-3N-c0c"/>
+                        <outlet property="txtFrontName" destination="7J9-gn-ppM" id="tGc-c0-TnI"/>
+                        <outlet property="txtLastName" destination="oua-NP-QG3" id="RJo-9q-CzX"/>
+                        <outlet property="txtTanggalLahir" destination="8Ti-dp-skb" id="CF2-pP-43b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ijo-ij-8sy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3.3733528550512446" y="-236.00000000000003"/>
+            <point key="canvasLocation" x="3" y="-236"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="01J-bd-7Pd">
@@ -5244,7 +5258,7 @@
             <objects>
                 <viewController title="DataPribadiVC" id="wW1-uM-Ie5" sceneMemberID="viewController">
                     <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="F3X-Gz-7YC">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="632"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1023" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ojb-Mm-9Oe">
@@ -5510,7 +5524,7 @@
             <objects>
                 <viewController id="sZa-h5-Q7u" userLabel="AlamatVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sHc-w0-cbZ">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="632"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1023" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Korespondensi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tRU-Wz-gNi">
@@ -5694,7 +5708,7 @@
             <objects>
                 <viewController id="aeh-DS-Njm" userLabel="PekerjaanVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rbj-aA-sdm">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="632"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1023" height="632"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pM8-mM-Gly">
