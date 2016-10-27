@@ -81,6 +81,7 @@
     NSString* OfficeProvicne;
     NSString* SourceIncome;
     NSString* ClientSegmentation;
+    NSString* Score;
     
     //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     //NSString *docsPath = [paths objectAtIndex:0];
@@ -171,6 +172,8 @@
         SourceIncome = [s stringForColumn:@"SourceIncome"];
         ClientSegmentation = [s stringForColumn:@"ClientSegmentation"];
         
+        Score = [NSString stringWithFormat:@"%d",[s intForColumn:@"Score"]];
+        
         [ProspectTableData addObject:[[ProspectProfile alloc] initWithName:NickName AndProspectID:ProspectID AndProspectName:ProspectName
                                                           AndProspecGender:ProspectGender AndResidenceAddress1:ResidenceAddress1
                                                       AndResidenceAddress2:ResidenceAddress2 AndResidenceAddress3:ResidenceAddress3
@@ -180,7 +183,9 @@
                                                      AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
-                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation]];
+                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
+                                                                AndScore:(NSString *)Score
+                                      ]];
     }
     [results close];
     [database close];
@@ -252,7 +257,8 @@
     return MobileNo;
 }
 
--(NSMutableArray *)searchProspectProfileByName:(NSString *)searchName BranchName:(NSString *)branchName DOB:(NSString *)dateOfBirth Order:(NSString *)orderBy Method:(NSString *)method ID:(NSString *)IDNumber{
+-(NSMutableArray *)searchProspectProfileByName:(NSString *)searchName LastName:(NSString *)LastName DOB:(NSString *)dateOfBirth HPNo:(NSString *)HPNo Order:(NSString *)orderBy Method:(NSString *)method ID:(NSString *)IDNumber{
+    
     NSString *ProspectID = @"";
     NSString *NickName = @"";
     NSString *ProspectName = @"";
@@ -336,20 +342,20 @@
     //results = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by LOWER(ProspectName) ASC LIMIT 20)", Nil];
     FMResultSet *s;
     if ([dateOfBirth length]>0){
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\"  and BranchName like \"%%%@%%\" and ProspectDOB = \"%@\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName, IDNumber,branchName,dateOfBirth,orderBy,method]];
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\"  and ProspectDOB = \"%@\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName, IDNumber,dateOfBirth,orderBy,method]];
 
-        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and BranchName like \"%%%@%%\" and ProspectDOB = \"%@\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName, IDNumber, branchName,dateOfBirth,orderBy,method]);
+        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and ProspectDOB = \"%@\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName, IDNumber,dateOfBirth,orderBy,method]);
     }
     else if ([orderBy isEqualToString:@"ProspectDOB"]){
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.*, (select substr(ProspectDOB,7,4)||'-'||substr(ProspectDOB,4,2)||'-'||substr(ProspectDOB,1,2)) as properDB FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and BranchName like \"%%%@%%\" and QQFlag = 'false'  order by date(properDB) %@",searchName, IDNumber,branchName,method]];
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.*, (select substr(ProspectDOB,7,4)||'-'||substr(ProspectDOB,4,2)||'-'||substr(ProspectDOB,1,2)) as properDB FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and QQFlag = 'false'  order by date(properDB) %@",searchName, IDNumber,method]];
     }
     else if ([orderBy isEqualToString:@"DateCreated"]||[orderBy isEqualToString:@"DateModified"]){
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and BranchName like \"%%%@%%\" and QQFlag = 'false'  order by datetime(%@) %@",searchName, IDNumber,branchName,orderBy,method]];
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\"  and QQFlag = 'false'  order by datetime(%@) %@",searchName, IDNumber,orderBy,method]];
     }
     else{
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT * FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and BranchName like \"%%%@%%\" and QQFlag = 'false'  order by %@ %@",searchName, IDNumber,branchName,orderBy,method]];
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT * FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier WHERE ProspectName like \"%%%@%%\" and QQFlag = 'false'  order by %@ %@",searchName, orderBy,method]];
 
-        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT * FROM prospect_profile WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and BranchName like \"%%%@%%\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName,IDNumber, branchName,orderBy,method]);
+        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT * FROM prospect_profile WHERE ProspectName like \"%%%@%%\" and OtherIDTypeNo like \"%%%@%%\" and QQFlag = 'false'  order by LOWER(\"%@\") %@",searchName,IDNumber,orderBy,method]);
     }
     
     while ([s next]) {
@@ -427,6 +433,8 @@
         OfficeVillage = [s stringForColumn:@"OfficeProvince"];
         SourceIncome = [s stringForColumn:@"SourceIncome"];
         ClientSegmentation = [s stringForColumn:@"ClientSegmentation"];
+        NSString* Score;
+        Score = [s stringForColumn:@"Score"];
         
 
         [ProspectTableData addObject:[[ProspectProfile alloc] initWithName:NickName AndProspectID:ProspectID AndProspectName:ProspectName
@@ -438,7 +446,9 @@
                                                      AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
-                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation]];
+                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
+                                                                AndScore:(NSString *)Score
+                                      ]];
     }
     [results close];
     [database close];
@@ -623,6 +633,10 @@
         SourceIncome = [s stringForColumn:@"SourceIncome"];
         ClientSegmentation = [s stringForColumn:@"ClientSegmentation"];
         
+        NSString* Score;
+        Score = [s stringForColumn:@"Score"];
+
+        
         
         [ProspectTableData addObject:[[ProspectProfile alloc] initWithName:NickName AndProspectID:ProspectID AndProspectName:ProspectName
                                                           AndProspecGender:ProspectGender AndResidenceAddress1:ResidenceAddress1
@@ -633,7 +647,9 @@
                                                      AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
-                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation]];
+                                                            AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
+                                                                AndScore:(NSString *)Score
+                                                                ]];
     }
     [results close];
     [database close];

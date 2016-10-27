@@ -111,7 +111,7 @@ MBProgressHUD *HUD;
     deleteBtn.enabled = FALSE;
     ItemToBeDeleted = [[NSMutableArray alloc] init];
     indexPaths = [[NSMutableArray alloc] init];
-    
+     
     [self getMobileNo];
     
     OrderBy = @"ASC";
@@ -342,9 +342,12 @@ MBProgressHUD *HUD;
             }
             
             [cell1.labelName setText:pp.ProspectName];
-            [cell1.labelidNum setText:identity];
+//            [cell1.labelidNum setText:identity];
+            cell1.labelidNum.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
             [cell1.labelDOB setText:pp.ProspectDOB];
-            [cell1.labelBranchName setText:pp.BranchName];
+//            [cell1.labelBranchName [indexPath.row] + 1];
+//            cell1.labelBranchName.text = @"0";
+            [cell1.labelBranchName setText:pp.Score];
             //[cell1.labelPhone1 setText:@""];
             if ([dataPrefix count]>indexPath.row){
                 cell1.labelPhone1.text= [NSString stringWithFormat:@"%@ - %@",[dataPrefix objectAtIndex:indexPath.row],[dataMobile objectAtIndex:indexPath.row]];
@@ -355,7 +358,8 @@ MBProgressHUD *HUD;
             
             [cell1.labelDateCreated setText:pp.DateCreated];
             [cell1.labelDateModified setText:pp.DateModified];
-            [cell1.labelTimeRemaining setText:DateRemaining];
+//            [cell1.labelTimeRemaining setText:DateRemaining];
+            cell1.labelTimeRemaining.text = @"NEW";
             //cell=cell1;
             return cell1;
             
@@ -1008,7 +1012,7 @@ MBProgressHUD *HUD;
                                                                  AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
                                                              AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                            AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@""]];
+                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndScore:@""]];
             }
             sqlite3_finalize(statement);
             
@@ -1143,55 +1147,22 @@ MBProgressHUD *HUD;
     dataMobile = [[NSMutableArray alloc] initWithArray:[modelProspectProfile getDataMobileAndPrefix:@"ContactNo" ProspectTableData:ProspectTableData]];
     dataPrefix = [[NSMutableArray alloc] initWithArray:[modelProspectProfile getDataMobileAndPrefix:@"Prefix" ProspectTableData:ProspectTableData]];
     
-    /*for (int a=0; a<ProspectTableData.count; a++) {
-     
-     ProspectProfile *pp = [ProspectTableData objectAtIndex:a];
-     const char *dbpath = [databasePath UTF8String];
-     sqlite3_stmt *statement;
-     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-     NSString *querySQL = [NSString stringWithFormat:@"SELECT ContactCode, ContactNo, Prefix FROM contact_input where indexNo = %@ AND ContactCode = 'CONT008'", pp.ProspectID];
-     
-     const char *query_stmt = [querySQL UTF8String];
-     if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-     {
-     if (sqlite3_step(statement) == SQLITE_ROW){
-     NSString *ContactNo = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-     NSString *Prefix = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-     
-     [dataMobile addObject:ContactNo];
-     [dataPrefix addObject:Prefix];
-     }
-     sqlite3_finalize(statement);
-     }
-     sqlite3_close(contactDB);
-     }
-     }*/
+
 }
 
 - (IBAction)btnAddNew:(id)sender//premnathvj
 {
     
-    /*UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"NewStoryboard" bundle:nil];
-     CustomAlertBox * agree = (CustomAlertBox *)[storyboard instantiateViewControllerWithIdentifier:@"CustomAlertBox"];
-     agree.AlertProspect=YES;
-     
-     agree.delegate=self;
-     
-     agree.modalPresentationStyle = UIModalPresentationFormSheet;
-     agree.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-     
-     [self presentViewController:agree animated:NO completion:nil];
-     agree.preferredContentSize = CGSizeMake(600, 450);
-     agree.view.superview.frame = CGRectMake(120, 200, 450, 600);*/
-    
+
     
     //UIStoryboard* clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Prospect"];
+    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddNewProspect"];
     self.ProspectViewController.delegate = self;
     [self.navigationController pushViewController:_ProspectViewController animated:YES];
     //Cheged by faiz due to language translation
     /*_ProspectViewController.navigationItem.title = @"Add Client Profile";*/
-    _ProspectViewController.navigationItem.title = @"Add";
+    _ProspectViewController.navigationItem.title = @"Add New Data Nasabah";
+    
 }
 
 -(void) ReloadTableData
@@ -1314,7 +1285,8 @@ MBProgressHUD *HUD;
         sortedBy=@"DateModified";
     }
     
-    ProspectTableData=[modelProspectProfile searchProspectProfileByName:nametxt.text BranchName:_txtBranchName.text DOB:outletDOB.titleLabel.text Order:sortedBy Method:sortMethod ID:txtIDNumber.text];
+    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:@"ProspectName" Method:@"ASC" ID:txtIDNumber.text];
+    
     [self getMobileNo];
     TotalData = ProspectTableData.count;
     [self.myTableView reloadData];
@@ -1339,7 +1311,7 @@ MBProgressHUD *HUD;
     NSString *trim_group = [btnGroup.titleLabel.text stringByTrimmingCharactersInSet:
                             [NSCharacterSet whitespaceCharacterSet]];
     
-    if(nametxt.text.length ==0 && txtIDTypeNo.text.length ==0 &&  [trim_group isEqualToString:@"- SELECT -"])
+    if(_txtFrontName.text.length ==0 && _txtLastName.text.length ==0 && _TxtPhoneNo.text.length ==0 && _txtTanggalLahir.text.length ==0)
     {
         
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Kriteria pencarian diperlukan . Silahkan memasukkan salah satu kriteria." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -1349,248 +1321,12 @@ MBProgressHUD *HUD;
     }
     else
     {
-        /*if (sqlite3_open([databasePath UTF8String], &contactDB) == SQLITE_OK) {
-         querySQL = @"SELECT * FROM prospect_profile";
-         
-         if (![txtIDTypeNo.text isEqualToString:@""] && ![nametxt.text isEqualToString:@""] && (![trim_group isEqualToString:@""] && ![trim_group isEqualToString:@"- SELECT -"])) {
-         trim_group = [self getGroupID:trim_group];
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE ProspectName like \"%%%@%%\" and (IDTypeNo like \"%%%@%%\" OR OtherIDTypeNo like \"%%%@%%\") and QQFlag = 'false' and ProspectGroup like \"%%%@%%\"",nametxt.text, txtIDTypeNo.text, txtIDTypeNo.text, trim_group];
-         }
-         else if (![txtIDTypeNo.text isEqualToString:@""] && ![nametxt.text isEqualToString:@""]) {
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE ProspectName like \"%%%@%%\" and (IDTypeNo like \"%%%@%%\" OR OtherIDTypeNo like \"%%%@%%\") and QQFlag = 'false'",nametxt.text, txtIDTypeNo.text, txtIDTypeNo.text];
-         }
-         else  if (![nametxt.text isEqualToString:@""] && (![trim_group isEqualToString:@""] && ![trim_group isEqualToString:@"- SELECT -"])) {
-         trim_group = [self getGroupID:trim_group];
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE ProspectName like \"%%%@%%\" and QQFlag = 'false' and ProspectGroup like \"%%%@%%\"", nametxt.text, trim_group];
-         }
-         else  if (![nametxt.text isEqualToString:@""]) {
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE ProspectName like \"%%%@%%\" and QQFlag = 'false'", nametxt.text ];
-         }
-         else if (![txtIDTypeNo.text isEqualToString:@""] && (![trim_group isEqualToString:@""] && ![trim_group isEqualToString:@"- SELECT -"])) {
-         trim_group = [self getGroupID:trim_group];
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE (IDTypeNo like \"%%%@%%\" OR OtherIDTypeNo like \"%%%@%%\") and QQFlag = 'false' and ProspectGroup like \"%%%@%%\"",txtIDTypeNo.text, txtIDTypeNo.text, trim_group];
-         }
-         else if (![txtIDTypeNo.text isEqualToString:@""]) {
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE (IDTypeNo like \"%%%@%%\" OR OtherIDTypeNo like \"%%%@%%\") and QQFlag = 'false'",txtIDTypeNo.text, txtIDTypeNo.text ];
-         }
-         else if ((![trim_group isEqualToString:@""] && ![trim_group isEqualToString:@"- SELECT -"])) {
-         trim_group = [self getGroupID:trim_group];
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE ProspectGroup like \"%%%@%%\" and QQFlag = 'false'", trim_group ];
-         }
-         else
-         {
-         querySQL = [querySQL stringByAppendingFormat:@" WHERE QQFlag = 'false'" ];
-         }
-         
-         //SORTING START
-         
-         NSString *Sorting = [[NSString alloc] init ];
-         Sorting = @"";
-         NSString *group = @"";
-         
-         if (idTypeLabel.highlighted == TRUE) {
-         Sorting = @"ProspectName";
-         }
-         
-         if (groupLabel.highlighted == TRUE) {
-         group = @"ProspectGroup";
-         }
-         
-         if (![Sorting isEqualToString:@""] && ![group isEqualToString:@""]) {
-         
-         querySQL = [querySQL stringByAppendingFormat:@" order by %@, %@ %@ ", Sorting, group,  OrderBy ];
-         }
-         else if (![Sorting isEqualToString:@""]) {
-         
-         querySQL = [querySQL stringByAppendingFormat:@" order by %@ %@ ", Sorting, OrderBy ];
-         }
-         else if (![group isEqualToString:@""]) {
-         
-         querySQL = [querySQL stringByAppendingFormat:@" order by %@ %@ ", group, OrderBy ];
-         }
-         else
-         {
-         querySQL = [querySQL stringByAppendingFormat:@" order by LOWER(ProspectName) ASC"];
-         }
-         
-         //SORTING END
-         
-         const char *SelectSI = [querySQL UTF8String];
-         if (sqlite3_prepare_v2(contactDB, SelectSI, -1, &statement, NULL) == SQLITE_OK)
-         {
-         ProspectTableData = [[NSMutableArray alloc] init];
-         while (sqlite3_step(statement) == SQLITE_ROW)
-         {
-         NSString *ProspectID = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-         
-         const char *name = (const char*)sqlite3_column_text(statement, 1);
-         NSString *NickName = name == NULL ? nil : [[NSString alloc] initWithUTF8String:name];
-         
-         NSString *ProspectName = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-         NSString *ProspectDOB = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 3)];
-         NSString *ProspectGender = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 4)];
-         
-         const char *Address1 = (const char*)sqlite3_column_text(statement, 5);
-         NSString *ResidenceAddress1 = Address1 == NULL ? nil : [[NSString alloc] initWithUTF8String:Address1];
-         
-         const char *Address2 = (const char*)sqlite3_column_text(statement, 6);
-         NSString *ResidenceAddress2 = Address2 == NULL ? nil : [[NSString alloc] initWithUTF8String:Address2];
-         
-         const char *Address3 = (const char*)sqlite3_column_text(statement, 7);
-         NSString *ResidenceAddress3 = Address3 == NULL ? nil : [[NSString alloc] initWithUTF8String:Address3];
-         
-         const char *AddressTown = (const char*)sqlite3_column_text(statement, 8);
-         NSString *ResidenceAddressTown = AddressTown == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressTown];
-         
-         const char *AddressState = (const char*)sqlite3_column_text(statement, 9);
-         NSString *ResidenceAddressState = AddressState == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressState];
-         
-         const char *AddressPostCode = (const char*)sqlite3_column_text(statement, 10);
-         NSString *ResidenceAddressPostCode = AddressPostCode == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressPostCode];
-         
-         const char *AddressCountry = (const char*)sqlite3_column_text(statement, 11);
-         NSString *ResidenceAddressCountry = AddressCountry == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressCountry];
-         
-         const char *AddressOff1 = (const char*)sqlite3_column_text(statement, 12);
-         NSString *OfficeAddress1 = AddressOff1 == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOff1];
-         
-         const char *AddressOff2 = (const char*)sqlite3_column_text(statement, 13);
-         NSString *OfficeAddress2 = AddressOff2 == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOff2];
-         
-         const char *AddressOff3 = (const char*)sqlite3_column_text(statement, 14);
-         NSString *OfficeAddress3 = AddressOff3 == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOff3];
-         
-         const char *AddressOffTown = (const char*)sqlite3_column_text(statement, 15);
-         NSString *OfficeAddressTown = AddressOffTown == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOffTown];
-         
-         const char *AddressOffState = (const char*)sqlite3_column_text(statement, 16);
-         NSString *OfficeAddressState = AddressOffState == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOffState];
-         
-         const char *AddressOffPostCode = (const char*)sqlite3_column_text(statement, 17);
-         NSString *OfficeAddressPostCode = AddressOffPostCode == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOffPostCode];
-         
-         const char *AddressOffCountry = (const char*)sqlite3_column_text(statement, 18);
-         NSString *OfficeAddressCountry = AddressOffCountry == NULL ? nil : [[NSString alloc] initWithUTF8String:AddressOffCountry];
-         
-         const char *Email = (const char*)sqlite3_column_text(statement, 19);
-         NSString *ProspectEmail = Email == NULL ? nil : [[NSString alloc] initWithUTF8String:Email];
-         
-         NSString *ProspectOccupationCode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 20)];
-         
-         const char *Duties = (const char*)sqlite3_column_text(statement, 21);
-         NSString *ExactDuties = Duties == NULL ? nil : [[NSString alloc] initWithUTF8String:Duties];
-         
-         const char *Remark = (const char*)sqlite3_column_text(statement, 22);
-         NSString *ProspectRemark = Remark == NULL ? nil : [[NSString alloc] initWithUTF8String:Remark];
-         //basvi added
-         const char *DateCr = (const char*)sqlite3_column_text(statement, 23);
-         NSString *DateCreated = DateCr == NULL ? nil : [[NSString alloc] initWithUTF8String:DateCr];
-         
-         const char *CrBy = (const char*)sqlite3_column_text(statement, 24);
-         NSString *CreatedBy = CrBy == NULL ? nil : [[NSString alloc] initWithUTF8String:CrBy];
-         
-         const char *DateMod = (const char*)sqlite3_column_text(statement, 25);
-         NSString *DateModified = DateMod == NULL ? nil : [[NSString alloc] initWithUTF8String:DateMod];
-         
-         const char *ModBy = (const char*)sqlite3_column_text(statement, 26);
-         NSString *ModifiedBy = ModBy == NULL ? nil : [[NSString alloc] initWithUTF8String:ModBy];
-         //
-         
-         const char *Group = (const char*)sqlite3_column_text(statement, 27);
-         NSString *ProspectGroup = Group == NULL ? nil : [[NSString alloc] initWithUTF8String:Group];
-         
-         const char *Title = (const char*)sqlite3_column_text(statement, 28);
-         NSString *ProspectTitle = Title == NULL ? nil : [[NSString alloc] initWithUTF8String:Title];
-         
-         const char *typeNo = (const char*)sqlite3_column_text(statement, 29);
-         NSString *IDTypeNo = typeNo == NULL ? nil : [[NSString alloc] initWithUTF8String:typeNo];
-         
-         const char *OtherType = (const char*)sqlite3_column_text(statement, 30);
-         NSString *OtherIDType = OtherType == NULL ? nil : [[NSString alloc] initWithUTF8String:OtherType];
-         if ([OtherIDType isEqualToString:@"(NULL)"] || [OtherIDType isEqualToString:@"(null)"]) {
-         OtherIDType = @"";
-         }
-         
-         const char *OtherTypeNo = (const char*)sqlite3_column_text(statement, 31);
-         NSString *OtherIDTypeNo = OtherTypeNo == NULL ? nil : [[NSString alloc] initWithUTF8String:OtherTypeNo];
-         
-         const char *smok = (const char*)sqlite3_column_text(statement, 32);
-         NSString *Smoker = smok == NULL ? nil : [[NSString alloc] initWithUTF8String:smok];
-         
-         const char *ann = (const char*)sqlite3_column_text(statement, 33);
-         NSString *AnnIncome = ann == NULL ? nil : [[NSString alloc] initWithUTF8String:ann];
-         
-         const char *buss = (const char*)sqlite3_column_text(statement, 34);
-         NSString *BussinessType = buss == NULL ? nil : [[NSString alloc] initWithUTF8String:buss];
-         
-         const char *rac = (const char*)sqlite3_column_text(statement, 35);
-         NSString *Race = rac == NULL ? nil : [[NSString alloc] initWithUTF8String:rac];
-         
-         const char *marstat = (const char*)sqlite3_column_text(statement, 36);
-         NSString *MaritalStatus = marstat == NULL ? nil : [[NSString alloc] initWithUTF8String:marstat];
-         
-         const char *rel = (const char*)sqlite3_column_text(statement, 41);
-         NSString *Religion = rel == NULL ? nil : [[NSString alloc] initWithUTF8String:rel];
-         
-         const char *nat = (const char*)sqlite3_column_text(statement, 38);
-         NSString *Nationality = nat == NULL ? nil : [[NSString alloc] initWithUTF8String:nat];
-         
-         const char *reg = (const char*)sqlite3_column_text(statement, 41);
-         NSString *registrationNo = reg == NULL ? nil : [[NSString alloc] initWithUTF8String:reg];
-         
-         const char *isreg = (const char*)sqlite3_column_text(statement, 40);
-         NSString *registration = isreg == NULL ? nil : [[NSString alloc] initWithUTF8String:isreg];
-         
-         const char *regdate = (const char*)sqlite3_column_text(statement, 42);
-         NSString *registrationDate = regdate == NULL ? nil : [[NSString alloc] initWithUTF8String:regdate];
-         
-         const char *exempted = (const char*)sqlite3_column_text(statement, 43);
-         NSString *regExempted = exempted == NULL ? nil : [[NSString alloc] initWithUTF8String:exempted];
-         
-         const char *isGrouping = (const char*)sqlite3_column_text(statement, 45);
-         NSString *isGroup = isGrouping == NULL ? nil : [[NSString alloc] initWithUTF8String:isGrouping];
-         
-         const char *CountryOfBirth = (const char*)sqlite3_column_text(statement, 46);
-         NSString *COB = CountryOfBirth == NULL ? nil : [[NSString alloc] initWithUTF8String:CountryOfBirth];
-         
-         [ProspectTableData addObject:[[ProspectProfile alloc] initWithName:NickName AndProspectID:ProspectID AndProspectName:ProspectName AndProspecGender:ProspectGender AndResidenceAddress1:ResidenceAddress1 AndResidenceAddress2:ResidenceAddress2 AndResidenceAddress3:ResidenceAddress3 AndResidenceAddressTown:ResidenceAddressTown AndResidenceAddressState:ResidenceAddressState AndResidenceAddressPostCode:ResidenceAddressPostCode AndResidenceAddressCountry:ResidenceAddressCountry AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGroup AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@""]];
-         
-         ProspectID = Nil;
-         NickName = Nil;
-         ProspectName = Nil ;
-         ProspectDOB = Nil  ;
-         ProspectGender = Nil;
-         ResidenceAddress1 = Nil;
-         ResidenceAddress2 = Nil;
-         ResidenceAddress3 = Nil;
-         ResidenceAddressTown = Nil;
-         ResidenceAddressState = Nil;
-         ResidenceAddressPostCode = Nil;
-         ResidenceAddressCountry = Nil;
-         OfficeAddress1 = Nil;
-         OfficeAddress2 = Nil;
-         OfficeAddress3 = Nil;
-         OfficeAddressTown = Nil;
-         OfficeAddressState = Nil;
-         OfficeAddressPostCode = Nil;
-         OfficeAddressCountry = Nil;
-         ProspectEmail = Nil;
-         ProspectOccupationCode = Nil;
-         ExactDuties = Nil;
-         ProspectRemark = Nil, querySQL = Nil;
-         ProspectTitle = Nil, ProspectGroup = Nil, IDTypeNo = Nil, OtherIDType = Nil, OtherIDTypeNo = Nil, Smoker = Nil;
-         
-         }
-         sqlite3_finalize(statement);
-         
-         }
-         sqlite3_close(contactDB);
-         querySQL = Nil;
-         }*/
         [ProspectTableData removeAllObjects];
         [self.myTableView reloadData];
         
-        ProspectTableData=[modelProspectProfile searchProspectProfileByName:nametxt.text BranchName:_txtBranchName.text DOB:outletDOB.titleLabel.text Order:@"ProspectName" Method:@"ASC" ID:txtIDNumber.text];
+//        ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text BranchName:_txtBranchName.text DOB:outletDOB.titleLabel.text Order:@"ProspectName" Method:@"ASC" ID:txtIDNumber.text];
+        
+        ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:@"ProspectName" Method:@"ASC" ID:txtIDNumber.text];
     }
     [self getMobileNo];
     

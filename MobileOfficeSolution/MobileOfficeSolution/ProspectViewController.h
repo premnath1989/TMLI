@@ -249,6 +249,19 @@
 - (IBAction)actionKotaInfo:(UIButton *)sender;
 /*end of added by faiz*/
 
+@property (strong, nonatomic) IBOutlet UIButton *btnData;
+@property (strong, nonatomic) IBOutlet UIButton *btnAlamat;
+@property (strong, nonatomic) IBOutlet UIButton *btnOcc;
+
+- (IBAction)BtnDataPressed:(id)sender;
+- (IBAction)BtnAlamatPressed:(id)sender;
+- (IBAction)btnOccPressed:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIView *DataPcv;
+@property (strong, nonatomic) IBOutlet UIView *Alamatcv;
+@property (strong, nonatomic) IBOutlet UIView *Occcv;
+
+
 - (IBAction)ActionforRigdate:(id)sender;
 
 - (IBAction)ActionIsGrouping:(id)sender;
