@@ -19,7 +19,6 @@
 #import "DataTable.h"
 #import "FMDatabase.h"
 #import "textFields.h"
-#import "ProspectOccCV.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -1115,7 +1114,7 @@ bool RegDatehandling;
     if(txtOfficeCountry.text== NULL)
         txtOfficeCountry.text = @"";
     
-    if([navgtitle isEqualToString:@"Add"]) {
+    if([navgtitle isEqualToString:@"Add New Data Nasabah"]) {
         [txtOtherIDType removeTarget:self action:@selector(OtheriDDidChange:) forControlEvents:UIControlEventEditingDidEnd];
         [txtIDType removeTarget:self action:@selector(NewICDidChange:) forControlEvents:UIControlEventEditingDidEnd];
         
@@ -3207,7 +3206,7 @@ bool RegDatehandling;
 	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
 	[UDGroup setObject:@"00" forKey:@"ProspectID"];
 	[UDGroup setObject:txtFullName.text forKey:@"ProspectName"];
-	[UDGroup setObject:@"Add" forKey:@"Mode"];
+	[UDGroup setObject:@"Add New Data Nasabah" forKey:@"Mode"];
 	
     [self presentViewController:groupPage animated:YES completion:nil];
 }
@@ -3219,7 +3218,7 @@ bool RegDatehandling;
 	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
 	[UDGroup setObject:@"00" forKey:@"ProspectID"];
 	[UDGroup setObject:txtFullName.text forKey:@"ProspectName"];
-	[UDGroup setObject:@"Add" forKey:@"Mode"];
+	[UDGroup setObject:@"Add New Data Nasabah" forKey:@"Mode"];
 	
     [self presentViewController:groupPage animated:YES completion:nil];
 }
