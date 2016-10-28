@@ -19,6 +19,7 @@
 #import "DataTable.h"
 #import "FMDatabase.h"
 #import "textFields.h"
+#import "ProspectOccCV.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -378,6 +379,18 @@ bool RegDatehandling;
     
     dictAgentData=[[NSDictionary alloc]initWithDictionary:[modelAgentProfil getAgentData]];
     [_txtChannelName setText:[NSString stringWithFormat:@"%@ - %@",[dictAgentData valueForKey:@"ChannelCode"],[dictAgentData valueForKey:@"ChannelName"]]];
+    
+    
+    //TMLI additional code
+    
+    _DataPcv.backgroundColor = [UIColor whiteColor];
+    _Alamatcv.backgroundColor = [UIColor whiteColor];
+    _Occcv.backgroundColor = [UIColor whiteColor];
+    self.TBRemarks.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.TBRemarks.layer.borderWidth = 1.0;
+    self.TBRemarks.layer.cornerRadius = 8;
+    
+    
 }
 
 #pragma mark - added by faiz
@@ -9446,4 +9459,9 @@ bool RegDatehandling;
 }
 
 
+- (IBAction)ActionCallStart:(id)sender {
+}
+
+- (IBAction)ActionCallEnd:(id)sender {
+}
 @end

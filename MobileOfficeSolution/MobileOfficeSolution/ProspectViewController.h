@@ -166,7 +166,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;
 @property (weak, nonatomic) IBOutlet UITextView *txtRemark;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
+
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segSmoker;
 @property (weak, nonatomic) IBOutlet UIButton *outletOccup;
 @property (strong, nonatomic) IBOutlet UITextView *txtExactDuties;
@@ -249,6 +249,10 @@
 - (IBAction)actionKotaInfo:(UIButton *)sender;
 /*end of added by faiz*/
 
+
+// TMLI
+
+//Main
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;
 @property (strong, nonatomic) IBOutlet UIButton *btnOcc;
@@ -260,6 +264,35 @@
 @property (strong, nonatomic) IBOutlet UIView *DataPcv;
 @property (strong, nonatomic) IBOutlet UIView *Alamatcv;
 @property (strong, nonatomic) IBOutlet UIView *Occcv;
+
+//data pribadi CV
+@property (strong, nonatomic) IBOutlet UITextField *txtSumberData;
+@property (strong, nonatomic) IBOutlet UIButton *btnSumberData;
+@property (strong, nonatomic) IBOutlet UITextField *txtNamaDepan;
+@property (strong, nonatomic) IBOutlet UITextField *txtNamaBelakang;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtIdNumber;
+@property (strong, nonatomic) IBOutlet UITextField *txtHPNo;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnCallstart;
+@property (strong, nonatomic) IBOutlet UIButton *btnCallEnd;
+- (IBAction)ActionCallStart:(id)sender;
+- (IBAction)ActionCallEnd:(id)sender;
+
+
+//Alamat CV
+
+//Occ Cv
+
+@property (strong, nonatomic) IBOutlet UITextView *TBRemarks;
+
+
+
+
+
+//end of TMLI
 
 
 - (IBAction)ActionforRigdate:(id)sender;
