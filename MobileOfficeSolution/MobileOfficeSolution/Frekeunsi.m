@@ -13,7 +13,7 @@
 @end
 
 @implementation Frekeunsi
-@synthesize ListOfPlan,ListOfCode,selectedCode,selectedDesc, TradOrEver, Frekuensi;
+@synthesize ListOfPlan,ListOfCode,selectedCode,ListOfMOP,selectedDesc, TradOrEver, Frekuensi;
 @synthesize delegate;
 
 -(id)init {
@@ -41,8 +41,9 @@
 //    if ([Frekuensi isEqualToString:@"10 Tahun"])
 //    {
         ListOfPlan = [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
-        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"", @"",@"", @"" ,nil ];
-//        
+        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"IDR 18,000,000", @"IDR 9,000,000",@"IDR 4,500,000",@"IDR 1,500,000", @"" ,nil ];
+    ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+//
 //    }
 
 
@@ -117,6 +118,8 @@
   //  [delegate Planlisting:self didSelectCode:self.selectedCode andDesc:self.selectedDesc];
     [delegate PlanFrekuensi:self didSelectCode:self.selectedCode andDesc:self.selectedDesc];
     
+    [delegate FrekuensiListing:self didSelectCode:self.selectedCode andDesc:self.selectedDesc];
+    
     [tableView reloadData];
 }
 
@@ -128,6 +131,11 @@
 -(NSString *)selectedDesc
 {
     return [ListOfPlan objectAtIndex:selectedIndex];
+}
+
+-(NSString *)selectedMOP
+{
+    return [ListOfMOP objectAtIndex:selectedIndex];
 }
 
 - (void)viewDidUnload

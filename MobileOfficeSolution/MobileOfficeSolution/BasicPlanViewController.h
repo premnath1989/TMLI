@@ -13,6 +13,7 @@
 #import "Currency.h"
 #import "MasaPembayaran.h"
 #import "Frekeunsi.h"
+#import "FrekuensiTwo.h"
 #import "Pembelianke.h"
 #import "BasicPlanHandler.h"
 #import "PayorHandler.h"
@@ -43,7 +44,7 @@
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan;
 @end
 
-@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate>{
+@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate,FrekuensiListDelegate>{
     Formatter* classFormatter;
     HeritageCalculation* heritageCalculation;
     
@@ -59,7 +60,8 @@
     PlanList *_planList;
     Currency *_CurrencyList;
     MasaPembayaran*_masaPembayaran;
-    Frekeunsi*_frekuensi;
+    Frekeunsi*_frekuensiList;
+    FrekuensiTwo*_frekuensiTwoList;
     PembeliaKe*_Pembelianke;
     NSString *MBKKPremium;
     BOOL showHL;
@@ -114,8 +116,9 @@
 @property (nonatomic, retain) UIPopoverController *planPopover;
 @property (nonatomic, retain) PlanList *planList;
 @property (nonatomic, retain) Currency *currencyList;
+@property (nonatomic, retain) FrekuensiTwo *frekuensiTwoList;
 @property (nonatomic, retain) MasaPembayaran *_masaPembayaran;
-@property (nonatomic, retain) Frekeunsi*_frekuensi;
+@property (nonatomic, retain) Frekeunsi*frekuensiList;
 @property (nonatomic, retain) PembeliaKe*Pembelianke;
 @property (nonatomic,strong) id <BasicPlanViewControllerDelegate> delegate;
 @property (nonatomic,strong) BasicPlanHandler *basicBH;
@@ -222,6 +225,8 @@
 
 
 @property (weak, nonatomic) IBOutlet UILabel *KKLKDiskaunLbl;
+- (IBAction)BasicPremiAction:(id)sender;
+- (IBAction)PremiTopUpRegularAction:(id)sender;
 
 //Added by faiz
 @property (retain, nonatomic) NSMutableDictionary* dictionaryPOForInsert;
@@ -238,6 +243,10 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (weak, nonatomic) IBOutlet UILabel *MInBasicPremi;
 @property (weak, nonatomic) IBOutlet UILabel *PremiTopUp;
+@property (weak, nonatomic) IBOutlet UILabel *SumAssLbl;
+@property (weak, nonatomic) IBOutlet UITextField *BasicPremiiField;
+@property (weak, nonatomic) IBOutlet UITextField *PremiTopUpRegularField;
+@property (strong, nonatomic) IBOutlet UITextField *TotalPremiField;
 
 -(NSMutableDictionary *)setDataBasicPlan;
 - (IBAction)tempNext:(id)sender;
@@ -251,6 +260,7 @@
 -(IBAction)validationExtraPremiField:(UITextField *)sender;
 - (bool)validationDataBasicPlan;
 -(void)setPODictionaryFromRoot:(NSMutableDictionary *)dictionaryRootPO;
+-(void)FrekuensiListing:(Frekeunsi *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
 -(void)calculateValue;
 - (IBAction)actionMataUang:(id)sender;
 //end of added by faiz
@@ -260,7 +270,7 @@
 @property (nonatomic, assign,readwrite) int CustLastNo;
 @property (nonatomic, copy) NSString *SalesIlustrationDate;
 @property (nonatomic, copy) NSString *CustDate;
-
+@property (nonatomic, assign) NSString *MOPString;
 @property (nonatomic, copy) NSString *LACustCode;
 @property (nonatomic, copy) NSString *PYCustCode;
 @property (nonatomic, copy) NSString *secondLACustCode;

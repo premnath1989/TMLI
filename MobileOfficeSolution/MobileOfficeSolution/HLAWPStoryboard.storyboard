@@ -3125,7 +3125,7 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
-                                            <action selector="MasaExtraPremiTextFieldDidEnd:" destination="Bg9-Wf-jjW" eventType="editingDidEnd" id="vix-5A-AYS"/>
+                                            <action selector="BasicPremiAction:" destination="Bg9-Wf-jjW" eventType="editingDidEnd" id="5ff-4P-w9V"/>
                                             <outlet property="delegate" destination="Bg9-Wf-jjW" id="3pg-D8-Np1"/>
                                         </connections>
                                     </textField>
@@ -3147,7 +3147,7 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
-                                            <action selector="MasaExtraPremiTextFieldDidEnd:" destination="Bg9-Wf-jjW" eventType="editingDidEnd" id="wY4-0g-i7g"/>
+                                            <action selector="PremiTopUpRegularAction:" destination="Bg9-Wf-jjW" eventType="editingDidEnd" id="te1-9n-1FT"/>
                                             <outlet property="delegate" destination="Bg9-Wf-jjW" id="72I-jH-V1i"/>
                                         </connections>
                                     </textField>
@@ -3261,7 +3261,7 @@
                                         <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="&lt;Min Value SumAss Change&gt;" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="5q4-yZ-qBq">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="5q4-yZ-qBq">
                                         <rect key="frame" x="252" y="517" width="234" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3397,7 +3397,6 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                         <connections>
-                                            <action selector="MasaExtraPremiTextFieldDidEnd:" destination="Bg9-Wf-jjW" eventType="editingDidEnd" id="prA-O1-IgG"/>
                                             <outlet property="delegate" destination="Bg9-Wf-jjW" id="WN8-10-Ree"/>
                                         </connections>
                                     </textField>
@@ -3445,6 +3444,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
+                        <outlet property="BasicPremiiField" destination="uet-cI-gsU" id="af5-LW-Hye"/>
                         <outlet property="HLField" destination="MP2-VJ-6Vx" id="5Yc-71-K50"/>
                         <outlet property="HLTermField" destination="dXx-JY-TjJ" id="cOH-9s-VqA"/>
                         <outlet property="KKLKDiskaunLbl" destination="E47-z2-5PL" id="1sA-Uq-Umm"/>
@@ -3452,7 +3452,10 @@
                         <outlet property="MasaExtraPremiLBL" destination="EVg-jp-kZt" id="Pzp-Tr-zfi"/>
                         <outlet property="MataUangPembayaran" destination="gFr-Sx-w08" id="QeM-p0-x8P"/>
                         <outlet property="PremiTopUp" destination="8fd-ti-IBN" id="lBx-Mg-Rjg"/>
+                        <outlet property="PremiTopUpRegularField" destination="D88-J6-3g2" id="9SH-H3-MYb"/>
                         <outlet property="ProductTittle" destination="b5L-Ze-a2d" id="C1B-AP-THv"/>
+                        <outlet property="SumAssLbl" destination="5q4-yZ-qBq" id="pXi-mj-Ite"/>
+                        <outlet property="TotalPremiField" destination="PeQ-fv-bUK" id="Mo2-4m-DjI"/>
                         <outlet property="extraBasicPremiField" destination="eiw-Lr-JdY" id="pug-AR-ydH"/>
                         <outlet property="frekuensiPembayaranButton" destination="JO8-Pc-igK" id="Oiy-dh-w0U"/>
                         <outlet property="healthLoadingView" destination="4pu-gc-5r2" id="XzO-kv-5f5"/>
