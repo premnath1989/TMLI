@@ -1156,7 +1156,7 @@ MBProgressHUD *HUD;
 
     
     //UIStoryboard* clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddNewProspect"];
+    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Prospect"];
     self.ProspectViewController.delegate = self;
     [self.navigationController pushViewController:_ProspectViewController animated:YES];
     //Cheged by faiz due to language translation
