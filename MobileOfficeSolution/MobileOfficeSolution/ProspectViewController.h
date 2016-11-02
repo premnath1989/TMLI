@@ -111,7 +111,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (nonatomic, strong) TitleViewController *TitlePicker;
 @property (strong, nonatomic) IBOutlet UIButton *btnTitle;
-@property (strong, nonatomic) IBOutlet UIButton *btnOtherIdType;
+
 
 @property (nonatomic, strong) Race *raceList;
 @property (nonatomic, strong) Country *CountryList;
@@ -141,36 +141,21 @@
 @property (strong, nonatomic) ProspectProfile* pp;
 
 @property (strong, nonatomic) IBOutlet UIButton *outletGroup;
-@property (weak, nonatomic) IBOutlet UIButton *outletProvinsi;
-@property (weak, nonatomic) IBOutlet UIButton *outletKota;
-@property (weak, nonatomic) IBOutlet UIButton *outletProvinsiOffice;
-@property (weak, nonatomic) IBOutlet UIButton *outletKotaOffice;
+
 
 
 @property (weak, nonatomic) IBOutlet UIButton *outletTitle;
-@property (weak, nonatomic) IBOutlet UIButton *outletRace;
-@property (weak, nonatomic) IBOutlet UIButton *outletMaritalStatus;
-@property (weak, nonatomic) IBOutlet UIButton *outletReligion;
-@property (weak, nonatomic) IBOutlet UIButton *outletNationality;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtFullName;
-@property (weak, nonatomic) IBOutlet UIButton *outletDOB;
-@property (strong, nonatomic) IBOutlet UITextField *txtDOB;
+
 @property (strong, nonatomic) IBOutlet UIButton *OtherIDType;
-@property (strong, nonatomic) IBOutlet UITextField *txtOtherIDType;
-@property (strong, nonatomic) IBOutlet UITextField *txtIDType;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr1;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr2;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr3;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomePostCode;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeTown;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;
-@property (weak, nonatomic) IBOutlet UITextView *txtRemark;
+
+
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segSmoker;
-@property (weak, nonatomic) IBOutlet UIButton *outletOccup;
+
 @property (strong, nonatomic) IBOutlet UITextView *txtExactDuties;
-@property (strong, nonatomic) IBOutlet UITextField *txtAnnIncome;
+
 @property (strong, nonatomic) IBOutlet UITextField *txtBussinessType;
 @property (weak, nonatomic) IBOutlet UILabel *lblOfficeAddr;
 @property (weak, nonatomic) IBOutlet UILabel *lblPostCode;
@@ -189,10 +174,10 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtContact2;
 @property (weak, nonatomic) IBOutlet UITextField *txtContact3;
 @property (weak, nonatomic) IBOutlet UITextField *txtContact4;
-@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtCountryOfBirth;
 @property (strong, nonatomic) IBOutlet UITextField *txtClass;
-@property (strong, nonatomic) IBOutlet UIButton *btnForeignHome;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnForeignOffice;
 @property (strong, nonatomic) IBOutlet UIButton *btnOfficeCountry;
 @property (strong, nonatomic) IBOutlet UIButton *btnHomeCountry;
@@ -224,33 +209,32 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtKanwil;
 @property (weak, nonatomic) IBOutlet UITextField *txtKcu;
 @property (weak, nonatomic) IBOutlet UITextField *txtChannelName;
-@property (weak, nonatomic) IBOutlet UITextField *txtReferralName;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeVillage;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeDistrict;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeProvince;
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeVillage;
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeDistrict;
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeProvince;
-@property (weak, nonatomic) IBOutlet UIButton *outletReferralSource;
+
 @property (weak, nonatomic) IBOutlet UIButton *outletExpiryDate;
-@property (weak, nonatomic) IBOutlet UIButton *outletSourceIncome;
+
 @property (weak, nonatomic) IBOutlet UIButton *outletVIPClass;
 @property (weak, nonatomic) IBOutlet UIButton *outletBranchCode;
 @property (weak, nonatomic) IBOutlet UIButton *outletBranchName;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *segReferralType;
 @property (weak, nonatomic) IBOutlet UITextField *txtNPWPNo;
-@property (weak, nonatomic) IBOutlet UISwitch *switchCountryHome;
+
 @property (weak, nonatomic) IBOutlet UISwitch *switchCountryOffice;
 
 -(IBAction)textFieldDidChangeEditing:(UITextField *)sender;
 -(IBAction)textFieldNIPDidEndEditing:(UITextField *)sender;
 
-- (IBAction)actionProvinsiInfo:(id)sender;
-- (IBAction)actionKotaInfo:(UIButton *)sender;
+
 /*end of added by faiz*/
 
 
-// TMLI
+// TMLI - Add By Emi
 
 //Main
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
@@ -265,31 +249,85 @@
 @property (strong, nonatomic) IBOutlet UIView *Alamatcv;
 @property (strong, nonatomic) IBOutlet UIView *Occcv;
 
-//data pribadi CV
-@property (strong, nonatomic) IBOutlet UITextField *txtSumberData;
-@property (strong, nonatomic) IBOutlet UIButton *btnSumberData;
+//data pribadi View
+@property (weak, nonatomic) IBOutlet UITextField *txtReferralName;
+@property (weak, nonatomic) IBOutlet UIButton *outletReferralSource;
+
 @property (strong, nonatomic) IBOutlet UITextField *txtNamaDepan;
 @property (strong, nonatomic) IBOutlet UITextField *txtNamaBelakang;
-
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnOtherIdType;
+@property (weak, nonatomic) IBOutlet UIButton *outletRace;
+@property (weak, nonatomic) IBOutlet UIButton *outletMaritalStatus;
+@property (weak, nonatomic) IBOutlet UIButton *outletReligion;
+@property (weak, nonatomic) IBOutlet UIButton *outletNationality;
+
+@property (weak, nonatomic) IBOutlet UIButton *outletDOB;
+@property (strong, nonatomic) IBOutlet UITextField *txtDOB;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtOtherIDType;
+@property (strong, nonatomic) IBOutlet UITextField *txtIDType;
 
 @property (strong, nonatomic) IBOutlet UITextField *txtIdNumber;
 @property (strong, nonatomic) IBOutlet UITextField *txtHPNo;
 
+@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnCallstart;
 @property (strong, nonatomic) IBOutlet UIButton *btnCallEnd;
+
+
 - (IBAction)ActionCallStart:(id)sender;
 - (IBAction)ActionCallEnd:(id)sender;
+- (IBAction)ActionGender:(id)sender;
+- (IBAction)btnDOB:(id)sender;
+- (IBAction)btnOccup:(id)sender;
+- (IBAction)actionNationality:(id)sender;
+- (IBAction)actionRace:(id)sender;
+- (IBAction)actionMaritalStatus:(id)sender;
+- (IBAction)actionReligion:(id)sender;
+- (IBAction)btnOtherIDType:(id)sender;
+
+//Alamat View
+
+@property (strong, nonatomic) IBOutlet UIButton *btnForeignHome;
+@property (weak, nonatomic) IBOutlet UISwitch *switchCountryHome;
+
+@property (strong, nonatomic) IBOutlet UITextField *TxtKecamatan;
+@property (strong, nonatomic) IBOutlet UITextField *txtKelurahan;
+@property (strong, nonatomic) IBOutlet UITextField *txtKota;
+@property (strong, nonatomic) IBOutlet UITextField *txtHPRumah;
+
+@property (weak, nonatomic) IBOutlet UIButton *outletProvinsi;
+@property (weak, nonatomic) IBOutlet UIButton *outletKota;
+@property (weak, nonatomic) IBOutlet UIButton *outletProvinsiOffice;
+@property (weak, nonatomic) IBOutlet UIButton *outletKotaOffice;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr1;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr2;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr3;
+@property (strong, nonatomic) IBOutlet UITextField *txtAddress4;
+
+@property (weak, nonatomic) IBOutlet UITextField *txtHomePostCode;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeTown;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;
+
+- (IBAction)actionProvinsiInfo:(id)sender;
+- (IBAction)actionKotaInfo:(UIButton *)sender;
 
 
-//Alamat CV
+//Occupation View
 
-//Occ Cv
+@property (weak, nonatomic) IBOutlet UIButton *outletOccup;
 
+@property (weak, nonatomic) IBOutlet UIButton *outletSourceIncome;
 @property (strong, nonatomic) IBOutlet UITextView *TBRemarks;
+@property (weak, nonatomic) IBOutlet UITextView *txtRemark;
 
-
-
+@property (strong, nonatomic) IBOutlet UITextField *txtAnnIncome;
+@property (strong, nonatomic) IBOutlet UIButton *btnSourceIncome;
 
 
 //end of TMLI
@@ -303,19 +341,11 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnregDare;
 
 - (IBAction)actionHomeCountry:(id)sender;
-- (IBAction)actionNationality:(id)sender;
-- (IBAction)actionRace:(id)sender;
-- (IBAction)actionMaritalStatus:(id)sender;
-- (IBAction)actionReligion:(id)sender;
-
 - (IBAction)actionOfficeCountry:(id)sender;
 - (IBAction)btnGroup:(id)sender;
 - (IBAction)btnTitle:(id)sender;
-- (IBAction)btnDOB:(id)sender;
-- (IBAction)btnOtherIDType:(id)sender;
-- (IBAction)ActionGender:(id)sender;
 - (IBAction)ActionSmoker:(id)sender;
-- (IBAction)btnOccup:(id)sender;
+
 - (IBAction)isForeign:(id)sender;
 - (IBAction)ActionRigperson:(id)sender;
 - (IBAction)ActionExempted:(id)sender;
