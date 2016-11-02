@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
+		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -515,6 +516,8 @@
 /* Begin PBXFileReference section */
 		17F7585C1DBDDD6E0003DFCA /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
+		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
+		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -1725,6 +1728,8 @@
 				DEDC5DE51DAE41B30033FE37 /* MasaPembayaran.m */,
 				DEDC5DE61DAE41B30033FE37 /* Frekeunsi.h */,
 				DEDC5DE71DAE41B30033FE37 /* Frekeunsi.m */,
+				17F758621DC99E140003DFCA /* FrekuensiTwo.h */,
+				17F758631DC99E140003DFCA /* FrekuensiTwo.m */,
 				DEDC5DE81DAE41B30033FE37 /* Pembelianke.h */,
 				DEDC5DE91DAE41B30033FE37 /* Pembelianke.m */,
 				DEDC5DEA1DAE41B30033FE37 /* MasaPembayaran.h */,
@@ -3021,7 +3026,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 25W8386326;
+						DevelopmentTeam = 2YT8E2D9X6;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3430,6 +3435,7 @@
 				DEDC5D781DAE3CDD0033FE37 /* AgentWS.m in Sources */,
 				DEDC5EA71DAE47200033FE37 /* Country.m in Sources */,
 				DEDC5F601DAE49AE0033FE37 /* CGPDFDocument.m in Sources */,
+				17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */,
 				DEDC5CB51DAE37C90033FE37 /* ClearData.m in Sources */,
 				DEDC5D2D1DAE39420033FE37 /* ModelProspectChild.m in Sources */,
 				DEDC5E8A1DAE46B60033FE37 /* PasswordTips.m in Sources */,
@@ -3705,7 +3711,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3737,7 +3743,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",

@@ -5911,9 +5911,6 @@ bool WPTPD30RisDeleted = FALSE;
     //_BasicPremiField
 }
 
-900000000000
-
-
 
 #pragma mark - Heritage Calculation
 -(void)loadHeritageCalculation{
