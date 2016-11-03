@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
+		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -518,6 +519,8 @@
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
+		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
+		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -2255,6 +2258,8 @@
 			children = (
 				DEDC5EA91DAE472F0033FE37 /* SourceIncome.h */,
 				DEDC5EAA1DAE472F0033FE37 /* SourceIncome.m */,
+				C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */,
+				C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */,
 				DEDC5EA31DAE47200033FE37 /* Country.h */,
 				DEDC5EA41DAE47200033FE37 /* Country.m */,
 				DEDC5EA51DAE47200033FE37 /* Country2.h */,
@@ -3437,6 +3442,7 @@
 				DEDC5F601DAE49AE0033FE37 /* CGPDFDocument.m in Sources */,
 				17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */,
 				DEDC5CB51DAE37C90033FE37 /* ClearData.m in Sources */,
+				C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */,
 				DEDC5D2D1DAE39420033FE37 /* ModelProspectChild.m in Sources */,
 				DEDC5E8A1DAE46B60033FE37 /* PasswordTips.m in Sources */,
 				DEDC5E721DAE46460033FE37 /* PagesController.m in Sources */,

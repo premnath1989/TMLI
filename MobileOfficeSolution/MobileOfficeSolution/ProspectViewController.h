@@ -32,6 +32,7 @@
 #import "KodePosInfo.h"
 #import "NIPInfo.h"
 #import "Formatter.h"
+#import "AnnualIncomeTableViewController.h"
 
 @class DataTable,DBController;
 @protocol ProspectViewControllerDelegate
@@ -39,7 +40,7 @@
 - (void)selectDataForEdit:(NSString *)indexNo;
 @end
 
-@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate>{
+@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate>{
     
     NSString *databasePath;
     sqlite3 *contactDB;
@@ -60,6 +61,7 @@
     ModelDataReferral* modelDataReferral;
     ModelAgentProfile* modelAgentProfil;
     SourceIncome *_sourceIncome;
+    AnnualIncomeTableViewController *_annualIncome;
     BranchInfo *_branchInfo;
     KodePosInfo *_kodePosInfo;
     NIPInfo *_nipInfo;
@@ -85,6 +87,7 @@
     UIPopoverController *_nipInfoPopover;
     UIPopoverController *_vipClassPopover;
     UIPopoverController *_referralSourcePopover;
+    UIPopoverController *_AnnualIncomePopover;
     //end of added by faiz
     UIPopoverController *_nationalityPopover2;
     id<ProspectViewControllerDelegate> _delegate;
@@ -276,6 +279,8 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *btnCallstart;
 @property (strong, nonatomic) IBOutlet UIButton *btnCallEnd;
+@property (strong, nonatomic) IBOutlet UITextField *txtCallStart;
+@property (strong, nonatomic) IBOutlet UITextField *txtCallEnd;
 
 
 - (IBAction)ActionCallStart:(id)sender;
@@ -321,12 +326,23 @@
 //Occupation View
 
 @property (weak, nonatomic) IBOutlet UIButton *outletOccup;
+@property (strong, nonatomic) IBOutlet UITextField *txtOccupation;
 
 @property (weak, nonatomic) IBOutlet UIButton *outletSourceIncome;
-@property (strong, nonatomic) IBOutlet UITextView *TBRemarks;
-@property (weak, nonatomic) IBOutlet UITextView *txtRemark;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtSourceIncome;
 
 @property (strong, nonatomic) IBOutlet UITextField *txtAnnIncome;
+@property (strong, nonatomic) IBOutlet UIButton *BtnAnnualIncome;
+
+@property (weak, nonatomic) IBOutlet UITextView *txtRemark;
+
+
+- (IBAction)ActionAnnualIncome:(id)sender;
+
+
+
+
 @property (strong, nonatomic) IBOutlet UIButton *btnSourceIncome;
 
 

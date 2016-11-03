@@ -377,9 +377,10 @@ bool RegDatehandling;
     _DataPcv.backgroundColor = [UIColor whiteColor];
     _Alamatcv.backgroundColor = [UIColor whiteColor];
     _Occcv.backgroundColor = [UIColor whiteColor];
-    self.TBRemarks.layer.borderColor = [[UIColor grayColor] CGColor];
-    self.TBRemarks.layer.borderWidth = 1.0;
-    self.TBRemarks.layer.cornerRadius = 8;
+    self.txtRemark.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.txtRemark.layer.borderWidth = 1.0;
+    self.txtRemark.layer.cornerRadius = 8;
+
     
     
 }
@@ -771,25 +772,25 @@ bool RegDatehandling;
     
     if ([validationSet containsObject:SumberData]||SumberData==NULL){
         [self createAlertViewAndShow:validateSumberData tag:0];
-        [outletReferralSource setBackgroundColor:[UIColor redColor]];
+        [outletReferralSource setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
         return false;
     }
     else if ([validationSet containsObject:NamaDepan]||NamaDepan==NULL){
         [self createAlertViewAndShow:validateNamaDepan tag:0];
-        [txtNamaDepan setBackgroundColor:[UIColor redColor]];
+        [txtNamaDepan setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
         return false;
     }
     else if ([validationSet containsObject:NamaBelakang]||NamaBelakang==NULL){
         [self createAlertViewAndShow:validationNamaBelakang tag:0];
-        [txtNamaBelakang setBackgroundColor:[UIColor redColor]];
+        [txtNamaBelakang setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
         return false;
     }
     else if ([validationSet containsObject:HPno]||HPno==NULL){
         [self createAlertViewAndShow:validationNoHP tag:0];
-        [_txtHPNo setBackgroundColor:[UIColor redColor]];
+        [_txtHPNo setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
         return false;
     }
@@ -3125,11 +3126,14 @@ bool RegDatehandling;
                     
                 } else {
                     
+                    NSString *isForeign = @"NO";
+                    NSString *PStatus = @"Complete";
+                    
                     insertSQL = [NSString stringWithFormat:
-                                 @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceDistrict\", \"ResidenceVillage\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ExactDuties\", \"ProspectRemark\", \"ClientSegmentation\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\") "
-                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\")",
-                                 txtNamaBelakang.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,txtHomeTown.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry,txtHomeDistrict.text,txtHomeVillage.text, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, _outletVIPClass.titleLabel.text,
-                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, _outletSourceIncome.titleLabel.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaDepan.text];
+                                 @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\") "
+                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")",
+                                 txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
+                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus];
                     
                 }
                 
@@ -3659,10 +3663,10 @@ bool RegDatehandling;
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
     //if (_branchInfo == nil) {
-    _kodePosInfo = [[KodePosInfo alloc] initWithStyle:UITableViewStylePlain];
-    _kodePosInfo.delegate = self;
-    [_kodePosInfo setData:[NSNumber numberWithInt:btn.tag]];
-    [_kodePosInfo.tableView reloadData];
+//    _kodePosInfo = [[KodePosInfo alloc] initWithStyle:UITableViewStylePlain];
+//    _kodePosInfo.delegate = self;
+//    [_kodePosInfo setData:[NSNumber numberWithInt:btn.tag]];
+//    [_kodePosInfo.tableView reloadData];
     
     _kodePosPopover = [[UIPopoverController alloc] initWithContentViewController:_kodePosInfo];
     //}
@@ -5743,7 +5747,7 @@ bool RegDatehandling;
         outletReferralSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [outletReferralSource setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",referralSource]forState:UIControlStateNormal];
-    [outletReferralSource setBackgroundColor:[UIColor clearColor]];
+//    [outletReferralSource setBackgroundColor:[UIColor clearColor]];
     [_referralSourcePopover dismissPopoverAnimated:YES];
 }
 
@@ -5755,7 +5759,8 @@ bool RegDatehandling;
         _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [_outletSourceIncome setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",sourceIncome]forState:UIControlStateNormal];
-    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
+    _txtSourceIncome.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",sourceIncome];
+//    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
     [_sourceIncomePopover dismissPopoverAnimated:YES];
 }
 
@@ -5888,7 +5893,7 @@ bool RegDatehandling;
             outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             //[outletExpiryDate setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
             [outletExpiryDate setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
-            [outletExpiryDate setBackgroundColor:[UIColor clearColor]];
+//            [outletExpiryDate setBackgroundColor:[UIColor clearColor]];
         }
     }
 
@@ -5922,17 +5927,17 @@ bool RegDatehandling;
 		}
     }*/
     
-    if((segRigPerson.selectedSegmentIndex == 0) && [d compare:d2] == NSOrderedAscending) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"GST Registration date cannot be greater than today’s date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-        [alert show];
-        
-        txtRigDate.textColor = [UIColor redColor];
-        [outletRigDate setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletRigDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletRigDate.titleLabel.textColor = [UIColor redColor];
-        txtRigDate.text = @"";
-    }
+//    if((segRigPerson.selectedSegmentIndex == 0) && [d compare:d2] == NSOrderedAscending) {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
+//                                                        message:@"GST Registration date cannot be greater than today’s date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
+//        [alert show];
+//        
+//        txtRigDate.textColor = [UIColor redColor];
+//        [outletRigDate setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//        outletRigDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        outletRigDate.titleLabel.textColor = [UIColor redColor];
+//        txtRigDate.text = @"";
+//    }
     
     isDOBDate = NO;
 	isGSTDate = NO;
@@ -5942,644 +5947,7 @@ bool RegDatehandling;
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
 {
-    /*ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
-	
-	if (outletOccup.enabled == FALSE) {
-		outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletOccup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        txtClass.text = @"";
-	}
-    txtOtherIDType.text = @"";
-	
-    //default start
-    //TITLE
     
-    txtBussinessType.enabled = true;
-    txtBussinessType.backgroundColor = [UIColor whiteColor];
-    
-    txtRemark.editable = true;
-    txtRemark.backgroundColor = [UIColor whiteColor];
-    
-    outletTitle.enabled = YES;
-    
-	//RACE
-    btnCoutryOfBirth.enabled = YES;
-    btnCoutryOfBirth.titleLabel.textColor = [UIColor blackColor];
-    
-    //RACE
-    outletRace.enabled = YES;
-    outletRace.titleLabel.textColor = [UIColor blackColor];
-    
-    //NATIONALITY
-    outletNationality.enabled = YES;
-    outletNationality.titleLabel.textColor = [UIColor blackColor];
-    
-    //RELIGION
-    outletReligion.enabled = YES;
-    
-    outletReligion.titleLabel.textColor = [UIColor blackColor];
-    
-    //MARITAL
-    outletMaritalStatus.enabled = YES;
-    outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-    
-    //OCCUPATION
-    outletOccup.enabled = YES;
-    outletOccup.titleLabel.textColor = [UIColor blackColor];
-    
-    //group
-    outletGroup.enabled = YES;
-    outletGroup.titleLabel.textColor = [UIColor blackColor];
-    
-    txtEmail.enabled = true;
-    segSmoker.enabled = true;
-    
-    txtPrefix1.enabled = true;
-    txtPrefix2.enabled = true;
-    txtPrefix3.enabled = true;
-    txtPrefix4.enabled = true;
-    
-    txtPrefix1.backgroundColor = [UIColor whiteColor];
-    txtPrefix2.backgroundColor = [UIColor whiteColor];
-    txtPrefix3.backgroundColor = [UIColor whiteColor];
-    txtPrefix4.backgroundColor = [UIColor whiteColor];
-    
-    txtContact1.enabled = true;
-    txtContact2.enabled = true;
-    txtContact3.enabled = true;
-    txtContact4.enabled = true;
-    
-    txtContact1.backgroundColor = [UIColor whiteColor];
-    txtContact2.backgroundColor = [UIColor whiteColor];
-    txtContact3.backgroundColor = [UIColor whiteColor];
-    txtContact4.backgroundColor = [UIColor whiteColor];
-    
-    btnForeignHome.enabled = true;
-    btnForeignOffice.enabled = true;
-    btnHomeCountry.enabled = true;
-    btnOfficeCountry.enabled = true;
-    
-    txtAnnIncome.backgroundColor =[UIColor whiteColor];
-    txtAnnIncome.enabled =true;
-    
-    txtExactDuties.editable = YES;
-    txtExactDuties.backgroundColor = [UIColor whiteColor];
-    
-    txtHomeAddr1.enabled = YES;
-    txtHomeAddr1.backgroundColor  = [UIColor whiteColor];
-    
-    txtHomeAddr2.backgroundColor  = [UIColor whiteColor];
-    txtHomeAddr2.enabled = YES;
-    
-    txtHomeAddr3.backgroundColor  = [UIColor whiteColor];
-    txtHomeAddr3.enabled = YES;
-    
-    txtHomePostCode.backgroundColor  = [UIColor whiteColor];
-    txtHomePostCode.enabled = YES;
-    
-    txtOfficeAddr1.backgroundColor  = [UIColor whiteColor];
-    txtOfficeAddr1.enabled = YES;
-    
-    txtOfficeAddr2.backgroundColor  = [UIColor whiteColor];
-    txtOfficeAddr2.enabled = YES;
-    
-    txtOfficeAddr3.backgroundColor  = [UIColor whiteColor];
-    txtOfficeAddr3.enabled = YES;
-    
-    txtOfficePostcode.backgroundColor  = [UIColor whiteColor];
-    txtOfficePostcode.enabled = YES;
-    
-    //default end
-    
-    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType]forState:UIControlStateNormal];
-    
-    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    OtherIDType.titleLabel.text = selectedIDType;
-    
-    NSString *occupation = [outletOccup.titleLabel.text stringByTrimmingCharactersInSet:
-                            [NSCharacterSet whitespaceCharacterSet]];
-    
-    if ([selectedIDType isEqualToString:@"- SELECT -"]) {
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        if(txtIDType.text.length!=0) {
-            segGender.enabled = NO;
-            
-            outletDOB.enabled = NO;
-            outletDOB.hidden = TRUE;
-            
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            txtDOB.hidden = NO;
-            
-            txtOtherIDType.enabled = NO;
-            txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            
-        } else {
-            segGender.enabled = YES;
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            outletDOB.enabled = YES;
-            outletDOB.hidden = TRUE;
-            outletDOB.titleLabel.text = @"";
-            txtDOB.enabled = YES;
-            txtDOB.backgroundColor = [UIColor whiteColor];
-            txtDOB.hidden = NO;
-            
-            txtOtherIDType.enabled = YES;
-            txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        }
-		
-		if ([selectedIDType isEqualToString:@"- SELECT -"]) {
-			txtOtherIDType.enabled = false;
-			txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-		}
-		
-        segSmoker.enabled = YES;
-        companyCase = NO;
-        
-        txtIDType.backgroundColor = [UIColor whiteColor];
-        txtIDType.enabled = YES;
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletRace.enabled = YES;
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    } else  if ([selectedIDType isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-        //TITLE
-        outletTitle.enabled = NO;
-        outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletTitle setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        [_TitlePicker setTitle:@"- SELECT -"];
-        
-        outletTitle.titleLabel.textColor = [UIColor grayColor];
-        
-		//BIRTH COUNTRY
-        btnCoutryOfBirth.enabled = NO;
-        btnCoutryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [btnCoutryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        btnCoutryOfBirth.titleLabel.textColor = [UIColor grayColor];
-        
-        //RACE
-        outletRace.enabled = NO;
-        outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletRace setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletRace.titleLabel.textColor = [UIColor grayColor];
-        [_raceList setTitle:@"- SELECT -"];
-        
-        //NATIONALITY
-        outletNationality.enabled = NO;
-        outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletNationality setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletNationality.titleLabel.textColor = [UIColor grayColor];
-        [_nationalityList setTitle:@"- SELECT -"];
-        
-        //RELIGION
-        outletReligion.enabled = NO;
-        outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletReligion setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletReligion.titleLabel.textColor = [UIColor grayColor];
-        [_ReligionList setTitle:@"- SELECT -"];
-        
-        //MARITAL
-        outletMaritalStatus.enabled = NO;
-        outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletMaritalStatus setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-        [_MaritalStatusList setTitle:@"- SELECT -"];
-        
-        //OCCUPATION
-        outletOccup.enabled = NO;
-		outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"MINOR"]forState:UIControlStateNormal];
-		outletOccup.titleLabel.textColor = [UIColor grayColor];
-		txtClass.text = @"2";
-		OccupCodeSelected = @"OCC01360";
-		[_OccupationList setTitle:@"MINOR"];
-        
-        //group
-        outletGroup.enabled = NO;
-        outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletGroup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletGroup.titleLabel.textColor = [UIColor grayColor];
-        [_GroupList setTitle:@"- SELECT -"];
-        
-        txtBussinessType.text = @"";
-        txtBussinessType.enabled = false;
-        txtBussinessType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtRemark.text = @"";
-        txtRemark.editable = false;
-        txtRemark.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtEmail.text = @"";
-        txtEmail.enabled = false;
-        txtEmail.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtPrefix1.text = @"";
-        txtPrefix2.text = @"";
-        txtPrefix3.text = @"";
-        txtPrefix4.text = @"";
-        
-        txtPrefix1.enabled = false;
-        txtPrefix2.enabled = false;
-        txtPrefix3.enabled = false;
-        txtPrefix4.enabled = false;
-        
-        txtPrefix1.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtPrefix2.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtPrefix3.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtPrefix4.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtContact1.text = @"";
-        txtContact2.text = @"";
-        txtContact3.text = @"";
-        txtContact4.text = @"";
-        
-        txtContact1.enabled = false;
-        txtContact2.enabled = false;
-        txtContact3.enabled = false;
-        txtContact4.enabled = false;
-        
-        txtContact1.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtContact2.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtContact3.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtContact4.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtAnnIncome.text = @"";
-        txtExactDuties.text = @"";
-        txtHomeAddr1.text = @"";
-        txtHomeAddr2.text = @"";
-        txtHomeAddr3.text = @"";
-        
-        txtOfficeAddr1.text = @"";
-        txtOfficeAddr2.text = @"";
-        txtOfficeAddr3.text = @"";
-        
-        txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtAnnIncome.enabled =false;
-        
-        btnForeignHome.enabled = false;
-        btnForeignOffice.enabled = false;
-        btnHomeCountry.enabled = false;
-        btnOfficeCountry.enabled = false;
-        
-        companyCase = NO;
-        segGender.enabled = FALSE;
-        gender = @"MALE";//Default value
-        ClientSmoker = @"N";//Default value
-        segSmoker.enabled = FALSE;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.text = @"";
-        txtIDType.enabled = NO;
-        
-        txtDOB.hidden = YES;
-        //CLEAR DOB
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        outletDOB.enabled = YES;
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        txtOtherIDType.enabled = NO;
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOtherIDType.text = @"";
-        
-        txtExactDuties.editable = NO;
-        txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtHomeAddr1.enabled = NO;
-        txtHomeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        txtHomeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtHomeAddr2.enabled = NO;
-        
-        txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtHomeAddr3.enabled = NO;
-        
-        txtHomePostCode.text = @"";
-        txtHomeState.text = @"";
-        txtHomeTown.text = @"";
-        txtHomeCountry.text = @"";
-        
-        txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtHomePostCode.enabled = NO;
-        
-        txtOfficeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOfficeAddr1.enabled = NO;
-        
-        txtOfficeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOfficeAddr2.enabled = NO;
-        
-        txtOfficeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOfficeAddr3.enabled = NO;
-        
-        txtOfficePostcode.text = @"";
-        txtOfficeCountry.text = @"";
-        txtOfficeState.text = @"";
-        txtOfficeTown.text = @"";
-        
-        txtOfficePostcode.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOfficePostcode.enabled = NO;
-        
-        
-        txtRigNO.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtRigNO.enabled = NO;
-        txtRigNO.text = @"";
-        
-        txtRigDate.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        outletRigDate.enabled = NO;
-        outletRigDate.titleLabel.textColor = [UIColor grayColor];
-        txtRigDate.text = @"";
-        
-        
-        segRigPerson.selectedSegmentIndex=1;
-        segRigPerson.enabled = NO;
-        
-        segRigExempted.selectedSegmentIndex  = 0;
-        segRigExempted.enabled = NO;
-        
-    } else if([selectedIDType isEqualToString:@"BIRTH CERTIFICATE"] && [occupation isEqualToString:@"BABY"]) {
-        txtOtherIDType.enabled = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        if(txtIDType.text.length !=0) {
-            outletDOB.enabled = NO;
-            
-        } else {
-            outletDOB.enabled = YES;
-            [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        }
-        
-    } else if(([selectedIDType isEqualToString:@"BIRTH CERTIFICATE"]||[selectedIDType isEqualToString:@"OLD IDENTIFICATION NO"]) && ![occupation isEqualToString:@"BABY"]) {        
-        companyCase = NO;
-        
-        if(txtIDType.text.length !=0) {
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            
-        } else {
-            txtDOB.hidden = YES;
-            txtDOB.text = @"";
-            outletDOB.hidden = NO;
-            
-            outletDOB.enabled = YES;
-            [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal]; //ENABLE DOB OUTLETS
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        }
-                
-        // check if ic field is empty
-        if ([txtIDType.text isEqualToString:@""]) {
-            txtIDType.backgroundColor = [UIColor whiteColor];
-            txtIDType.enabled = YES;
-            segGender.enabled = YES;
-            segSmoker.enabled = YES;
-            
-            // Reset gender
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-        } else if (![txtIDType.text isEqualToString:@""]) {
-            segGender.enabled = FALSE;
-        }
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        txtOtherIDType.enabled = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletRace.enabled = YES;
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    } else if([selectedIDType isEqualToString:@"BIRTH CERTIFICATE"]||[selectedIDType isEqualToString:@"OLD IDENTIFICATION NO"]) {
-        segGender.enabled = TRUE;
-        
-    } else if([selectedIDType isEqualToString:@"COMPANY REGISTRATION NUMBER"]) {
-        companyCase = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        
-        txtIDType.enabled = NO;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.text = @"";
-        
-        segGender.enabled = FALSE;
-        
-        segSmoker.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        outletTitle.hidden = NO;
-        outletTitle.enabled = NO;
-        [outletTitle setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletTitle.titleLabel.textColor = [UIColor grayColor];
-        
-        outletOccup.hidden = NO;
-        outletOccup.enabled = NO;
-        [outletOccup setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletOccup.titleLabel.textColor = [UIColor grayColor];
-        
-        segSmoker.enabled = NO;
-        
-		//BIRTH COUNTRY
-        btnCoutryOfBirth.enabled = NO;
-        btnCoutryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [btnCoutryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        btnCoutryOfBirth.titleLabel.textColor = [UIColor grayColor];
-        
-        outletRace.hidden = NO;
-        outletRace.enabled = NO;
-        [outletRace setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletRace.titleLabel.textColor = [UIColor grayColor];
-        
-        outletReligion.hidden = NO;
-        outletReligion.enabled = NO;
-        [outletReligion setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletReligion.titleLabel.textColor = [UIColor grayColor];
-        
-        outletMaritalStatus.hidden = NO;
-        outletMaritalStatus.enabled = NO;
-        [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-        
-        outletNationality.hidden = NO;
-        outletNationality.enabled = NO;
-        [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletNationality.titleLabel.textColor = [UIColor grayColor];
-        
-        segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        //DISABLE DOB
-        outletDOB.hidden = NO;
-        outletDOB.enabled = NO;
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        outletDOB.titleLabel.textColor = [UIColor grayColor];
-        
-    } else if([selectedIDType isEqualToString:@"PASSPORT"]) {
-        companyCase = NO;
-        
-        // check if ic field is empty
-        if ([txtIDType.text isEqualToString:@""]) {
-            txtIDType.backgroundColor = [UIColor whiteColor];
-            txtIDType.enabled = YES;
-            segGender.enabled = YES;
-            segSmoker.enabled = YES;
-            
-            txtDOB.hidden = YES;
-            txtDOB.backgroundColor = [UIColor whiteColor];
-            
-            // Reset gender
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            // Reset dob
-            txtDOB.text = @"";
-            outletDOB.hidden = NO;
-            outletDOB.enabled = TRUE;
-            
-            [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        } else if (![txtIDType.text isEqualToString:@""]) {
-            
-            segSmoker.enabled = YES;
-            segGender.enabled = FALSE;
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            outletDOB.enabled = FALSE;
-        }
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        txtOtherIDType.enabled = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletRace.enabled = YES;
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    } else {
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.enabled = NO;
-        txtIDType.text = @"";
-        
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletTitle.enabled = YES;
-        
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        outletOccup.enabled = YES;
-        segGender.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        segSmoker.enabled = YES;
-        companyCase = NO;
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        outletDOB.enabled = YES;
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-    }
-	
-	if ([selectedIDType isEqualToString:@"- Select -"]||[selectedIDType isEqualToString:@"ARMY IDENTIFICATION NUMBER"]||[selectedIDType isEqualToString:@"BIRTH CERTIFICATE"]||[selectedIDType isEqualToString:@"COMPANY REGISTRATION NUMBER"]||[selectedIDType isEqualToString:@"FOREIGNER BIRTH CERTIFICATE"]|[selectedIDType isEqualToString:@"FOREIGNER IDENTIFICATION NUMBER"]||[selectedIDType isEqualToString:@"OLD IDENTIFICATION NO"]||[selectedIDType isEqualToString:@"PASSPORT"]||[selectedIDType isEqualToString:@"PERMANENT RESIDENT"]||[selectedIDType isEqualToString:@"POLICE IDENTIFICATION NUMBER"]||[selectedIDType isEqualToString:@"SINGAPORE IDENTIFICATION NUMBER"]) {
-        
-        txtRigNO.backgroundColor = [UIColor whiteColor];
-        txtRigNO.enabled = YES;
-        txtRigNO.text = @"";
-        
-        txtRigDate.backgroundColor = [UIColor whiteColor];
-        outletRigDate.enabled=YES;
-        outletRigDate.titleLabel.textColor = [UIColor grayColor];
-        txtRigDate.text = @"";
-        
-        segRigPerson.selectedSegmentIndex=1;
-        segRigPerson.enabled =YES;
-        
-        segRigExempted.selectedSegmentIndex =1;
-        segRigExempted.enabled =YES;
-    }
-    
-    if([selectedIDType isEqualToString:@"- SELECT -"]) {
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    } else {
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    [self.IDTypePickerPopover dismissPopoverAnimated:YES];
-    NSString *otherIDType = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    if(([OccpCatCode isEqualToString:@"HSEWIFE"]) || ([OccpCatCode isEqualToString:@"JUV"]) || ([OccpCatCode isEqualToString:@"STU"])) {
-        txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtAnnIncome.enabled =false;
-    } else if(![otherIDType isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-        txtAnnIncome.backgroundColor = [UIColor whiteColor];
-        txtAnnIncome.enabled =true;
-    }*/
     ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
     if ([selectedIDType isEqualToString:@"- SELECT -"]) {
         OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -6595,6 +5963,8 @@ bool RegDatehandling;
     [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType]forState:UIControlStateNormal];
     [OtherIDType setBackgroundColor:[UIColor clearColor]];
     [self.IDTypePickerPopover dismissPopoverAnimated:YES];
+    
+    txtOtherIDType.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType];
 }
 
 -(void)IDTypeCodeSelected:(NSString *)IDTypeCode {
@@ -6605,7 +5975,7 @@ bool RegDatehandling;
 	IDTypeCodeSelected = IDTypeCode;
     IDTypeIdentifierSelected = identifier;
     
-    txtOtherIDType.text = IDTypeIdentifierSelected;
+
 }
 
 - (void)OccupCodeSelected:(NSString *)OccupCode {
@@ -6642,7 +6012,9 @@ bool RegDatehandling;
 - (void)OccupDescSelected:(NSString *)color
 {
     [outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", color]forState:UIControlStateNormal];
-    [outletOccup setBackgroundColor:[UIColor clearColor]];
+//    [outletOccup setBackgroundColor:[UIColor clearColor]];
+    _txtOccupation.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", color];
+    
     [self.OccupationListPopover dismissPopoverAnimated:YES];
     [self.view endEditing:YES];
     [self resignFirstResponder];
@@ -7034,5 +6406,40 @@ bool RegDatehandling;
 }
 
 - (IBAction)ActionCallEnd:(id)sender {
+    
 }
+- (IBAction)ActionAnnualIncome:(id)sender {
+    
+    [self resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    if (_annualIncome == nil) {
+        _annualIncome = [[AnnualIncomeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        _annualIncome.delegate = self;
+        _AnnualIncomePopover = [[UIPopoverController alloc] initWithContentViewController:_annualIncome];
+    }
+    [_AnnualIncomePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+-(void)selectedAnnualIncome:(NSString *)AnnualIncome{
+    _BtnAnnualIncome.titleLabel.text = AnnualIncome;
+    if([_BtnAnnualIncome.titleLabel.text isEqualToString:@"- SELECT -"]) {
+        _BtnAnnualIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    } else {
+        _BtnAnnualIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    }
+    [_BtnAnnualIncome setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",AnnualIncome]forState:UIControlStateNormal];
+    txtAnnIncome.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",AnnualIncome];
+    //    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
+    [_AnnualIncomePopover dismissPopoverAnimated:YES];
+}
+
+
 @end

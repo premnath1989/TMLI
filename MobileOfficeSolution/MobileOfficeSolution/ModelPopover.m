@@ -39,6 +39,36 @@
     return dict;
 }
 
+-(NSDictionary *)getAnnualIncome{
+    NSDictionary *dict;
+    
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:path];
+    [database open];
+    
+    NSMutableArray* arraySourceCode=[[NSMutableArray alloc] init];
+    NSMutableArray* arraySourceDesc=[[NSMutableArray alloc] init];
+    NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
+    
+    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_AnnualIncome WHERE status = 'A'"];
+    while ([s next]) {
+        NSString *AnnCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"AnnCode"]];
+        NSString *AnnDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"AnnDesc"]];
+        NSString *Status = [NSString stringWithFormat:@"%@",[s stringForColumn:@"Status"]];
+        
+        [arraySourceCode addObject:AnnCode];
+        [arraySourceDesc addObject:AnnDesc];
+        [arrayStatus addObject:Status];
+    }
+    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySourceCode,@"AnnCode", arraySourceDesc,@"AnnDesc",arrayStatus,@"Status",nil];
+    
+    [results close];
+    [database close];
+    return dict;
+}
+
 -(NSDictionary *)getVIPClass{
     NSDictionary *dict;
     

@@ -8,7 +8,7 @@
         <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -80,7 +80,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="Khb-Na-QAz" userLabel="DataPribadiCV">
-                                <frame key="frameInset" minY="1132" maxX="1" maxY="-992"/>
+                                <frame key="frameInset" minY="132" maxX="1" maxY="8"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l3Z-rK-slE">
@@ -159,8 +159,8 @@
                                         <frame key="frameInset" minX="106" minY="247" width="309" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <segments>
-                                            <segment title="Female"/>
-                                            <segment title="Male"/>
+                                            <segment title="Pria"/>
+                                            <segment title="Wanita"/>
                                         </segments>
                                     </segmentedControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CFB-xi-oSD">
@@ -170,7 +170,7 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                         <state key="normal" image="Expand Arrow.png">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="actionReferralSource:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="ObZ-XV-eer"/>
@@ -397,7 +397,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" misplaced="YES" id="Ce4-AW-rya" userLabel="AlamatCV">
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="Ce4-AW-rya" userLabel="AlamatCV">
                                 <frame key="frameInset" minY="132" maxY="-32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
@@ -571,15 +571,15 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="dOy-hc-vpZ">
-                                        <frame key="frameInset" minX="353" minY="436" width="97" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="dOy-hc-vpZ">
+                                        <frame key="frameInset" minX="134" minY="436" width="322" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="TLQ-0M-cpB">
-                                        <frame key="frameInset" minX="561" minY="436" width="250" height="30"/>
+                                        <frame key="frameInset" minX="561" minY="436" width="316" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -589,7 +589,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="2cq-uj-6g0" userLabel="PekerjaanCV">
-                                <frame key="frameInset" minY="1132" maxY="-992"/>
+                                <frame key="frameInset" minY="132" maxY="8"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XqJ-e4-Yqa">
@@ -616,7 +616,7 @@
                                             <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnOccup:" destination="aeh-DS-Njm" eventType="touchUpInside" id="AsF-E2-7EL"/>
+                                            <action selector="btnOccup:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="SLz-8n-Up8"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sumber Penghasilan Utama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QNJ-sr-0Sj">
@@ -635,7 +635,17 @@
                                         <state key="normal" image="Expand Arrow.png">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="actionSourceIncome:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="nMo-Sq-bHR"/>
+                                        </connections>
                                     </button>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="ohA-No-Pqk">
+                                        <frame key="frameInset" minX="134" minY="176" width="753" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pendapatan Tahunan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TDB-IN-dnX">
                                         <frame key="frameInset" minX="134" minY="231" width="248" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -652,6 +662,9 @@
                                         <state key="normal" image="Expand Arrow.png">
                                             <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="ActionAnnualIncome:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="Xlh-Hg-Osn"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Lainnya" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0uN-aJ-LKQ">
                                         <frame key="frameInset" minX="134" minY="315" width="248" height="21"/>
@@ -667,6 +680,20 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="y3t-HV-74m">
+                                        <frame key="frameInset" minX="134" minY="94" width="753" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Ega-7P-ZJO">
+                                        <frame key="frameInset" minX="134" minY="260" width="753" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -675,6 +702,7 @@
                     </view>
                     <connections>
                         <outlet property="Alamatcv" destination="Ce4-AW-rya" id="jcY-vn-COA"/>
+                        <outlet property="BtnAnnualIncome" destination="k00-D3-yUY" id="7sl-ye-upg"/>
                         <outlet property="DataPcv" destination="Khb-Na-QAz" id="UhV-yF-t51"/>
                         <outlet property="Occcv" destination="2cq-uj-6g0" id="Pni-h2-fdj"/>
                         <outlet property="TxtKecamatan" destination="X9Q-Mk-FPA" id="BAa-HZ-TNP"/>
@@ -684,14 +712,19 @@
                         <outlet property="btnHomeCountry" destination="LRI-q6-1m6" id="WJE-bt-kaH"/>
                         <outlet property="btnOcc" destination="diH-Vj-HeH" id="L1X-wQ-e6z"/>
                         <outlet property="btnOtherIdType" destination="PqS-3N-0A1" id="qB1-ff-cW9"/>
+                        <outlet property="btnSourceIncome" destination="hgB-Ao-57j" id="bEd-G4-bZc"/>
                         <outlet property="outletDOB" destination="d1r-zA-Ijg" id="BYy-CM-GDr"/>
                         <outlet property="outletMaritalStatus" destination="Sb9-Hp-gpJ" id="5c4-jU-7Lu"/>
+                        <outlet property="outletOccup" destination="4yR-EH-g3h" id="VXO-Th-hqx"/>
                         <outlet property="outletProvinsi" destination="UBo-ZR-pZ8" id="9Bv-1a-Cm2"/>
                         <outlet property="outletReferralSource" destination="CFB-xi-oSD" id="91z-Le-265"/>
                         <outlet property="outletReligion" destination="cBy-fN-KUh" id="rt5-GK-kcu"/>
                         <outlet property="scrollViewNewProspect" destination="W3B-ya-3sF" id="dua-5i-Aba"/>
                         <outlet property="segGender" destination="r2w-d8-3LF" id="UvZ-J8-cDR"/>
                         <outlet property="txtAddress4" destination="9lJ-yA-xaY" id="8Rm-pU-L8v"/>
+                        <outlet property="txtAnnIncome" destination="Ega-7P-ZJO" id="SGN-Ar-9FY"/>
+                        <outlet property="txtCallEnd" destination="pz2-M3-gKb" id="TSn-Nx-ssf"/>
+                        <outlet property="txtCallStart" destination="91G-0X-7l9" id="JSj-Qm-zDN"/>
                         <outlet property="txtDOB" destination="UWA-Qv-3Hc" id="0Ya-pa-qHe"/>
                         <outlet property="txtEmail" destination="Q7N-Jx-F7L" id="yZw-nO-KC2"/>
                         <outlet property="txtHPNo" destination="zKk-lq-X2o" id="5Z4-2N-8Xg"/>
@@ -706,7 +739,10 @@
                         <outlet property="txtKota" destination="O2k-6N-HzG" id="wfM-wE-oJc"/>
                         <outlet property="txtNamaBelakang" destination="KuR-bk-vFs" id="wBC-sT-oym"/>
                         <outlet property="txtNamaDepan" destination="NYj-Q8-C55" id="UTo-Zz-fWm"/>
+                        <outlet property="txtOccupation" destination="y3t-HV-74m" id="Ovz-iH-8ce"/>
                         <outlet property="txtOtherIDType" destination="VU2-Nj-AfD" id="o0L-7v-rxT"/>
+                        <outlet property="txtRemark" destination="U8F-9X-871" id="d8w-wa-QlI"/>
+                        <outlet property="txtSourceIncome" destination="ohA-No-Pqk" id="VLy-hn-fEZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="avm-jN-SPt" userLabel="First Responder" sceneMemberID="firstResponder"/>

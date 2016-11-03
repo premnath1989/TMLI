@@ -65,6 +65,15 @@ MBProgressHUD *HUD;
     outletDOB.layer.borderWidth = 1.0;
     
     
+    _btnSearch.layer.cornerRadius = 10;
+    _btnSearch.layer.masksToBounds = YES;
+    _btnCancel.layer.cornerRadius = 10;
+    _btnCancel.layer.masksToBounds = YES;
+    _btnDelete.layer.cornerRadius = 10;
+    _btnDelete.layer.masksToBounds = YES;
+    
+    
+    
     [self setTextfieldBorder];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
