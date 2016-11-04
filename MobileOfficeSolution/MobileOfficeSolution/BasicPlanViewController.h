@@ -180,6 +180,7 @@
 @property (nonatomic, assign,readwrite) int secondLAAge;
 @property (nonatomic, copy) NSString *secondLAOccpCode;
 @property (nonatomic, copy) NSString *PembelianKEString;
+@property (nonatomic, copy) NSString *getPlanCode;
 //--
 @property (strong, nonatomic) IBOutlet UIButton *btnPlan;
 @property (retain, nonatomic) IBOutlet UITextField *termField;

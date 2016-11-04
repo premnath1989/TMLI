@@ -40,7 +40,7 @@
 @synthesize maxSALabel;
 @synthesize healthLoadingView;
 @synthesize MOPSegment;
-@synthesize totalDivide;
+@synthesize totalDivide,getPlanCode;
 @synthesize S100MOPSegment;
 @synthesize incomeSegment,cashDivSgmntCP,DiscountCalculation;
 @synthesize advanceIncomeSegment;
@@ -989,6 +989,7 @@ bool WPTPD30RisDeleted = FALSE;
     
     self.currencyList = [[Currency alloc] init];
     _CurrencyList.delegate = self;
+    self.currencyList.CurrencyType = getPlanCode;
     self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_CurrencyList];
     
     
@@ -1001,9 +1002,10 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(IBAction)actionFrekuensiPembayaran:(id)sender
 {
-
+    
     self.frekuensiTwoList = [[FrekuensiTwo alloc] init];
     _frekuensiTwoList.delegate = self;
+     self.frekuensiTwoList.ProductCode = getPlanCode;
     self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensiTwoList];
     
     
@@ -5833,7 +5835,8 @@ bool WPTPD30RisDeleted = FALSE;
   
     [_masaPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
     [self.planPopover dismissPopoverAnimated:YES];
-    // getPlanCode = aaCode;
+     getPlanCode = aaCode;
+    
     
     [_frekuensiPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
     [_MataUangPembayaran setTitle:@"--Please Select--" forState:UIControlStateNormal];
@@ -5858,6 +5861,7 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP;
 {
+    
     [_frekuensiPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
     _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min :%@)",aaMinAmount];
     _PremiTopUp.text = [NSString stringWithFormat:@"(Min :%@)",aaMaxAmount];
@@ -5901,7 +5905,7 @@ bool WPTPD30RisDeleted = FALSE;
     int ModeOfPayValue = [MOPString intValue];
     
     double TotalPremiAValue = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue;
-    _TotalPremiField.text = [NSString stringWithFormat:@"%.2f", TotalPremiAValue];
+    _TotalPremiField.text = [NSString stringWithFormat:@"%.f", TotalPremiAValue];
     
     double TotalUangPertanggungan  = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue * 5;
     

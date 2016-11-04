@@ -13,7 +13,7 @@
 @end
 
 @implementation FrekuensiTwo
-@synthesize ListOfFrekuensi,ListOfValue,ListOfValueMax,ListOfMOP;
+@synthesize ListOfFrekuensi,ListOfValue,ListOfValueMax,ListOfMOP,ProductCode;
 @synthesize delegate;
 
 -(id)init {
@@ -26,10 +26,53 @@
     [super viewDidLoad];
 
 	
-    ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
-    ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@"IDR 18,000,000", @"IDR 9,000,000",@"IDR 4,500,000",@"IDR 1,500,000", @"" ,nil ];
-    ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@"IDR 1,000,000", @"IDR 500,000",@"IDR 250,000",@"IDR 100,000", @"" ,nil ];
-    ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+    NSLog(@"productCode = %@",ProductCode);
+    
+    if([ProductCode isEqualToString:@"3BE"])//Investasiku
+    {
+        ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
+        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@"IDR 18,000,000", @"IDR 9,000,000",@"IDR 4,500,000",@"IDR 1,500,000", @"" ,nil ];
+        ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@"IDR 1,000,000", @"IDR 500,000",@"IDR 250,000",@"IDR 100,000", @"" ,nil ];
+        ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+
+    }
+    else if([ProductCode isEqualToString:@"3FE"])//Proteksiku
+    {
+        ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
+        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@"IDR 2,400,000", @"IDR 1,200,000",@"IDR 600,000",@"IDR 200,000", @"" ,nil ];
+        ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@"IDR 1,000,000", @"IDR 500,000",@"IDR 250,000",@"IDR 100,000", @"" ,nil ];
+        ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+
+        
+    }
+    else if([ProductCode isEqualToString:@"3MS"])//Mip
+    {
+        ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
+        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@"IDR 2,400,000", @"IDR 1,200,000",@"IDR 600,000",@"IDR 200,000", @"" ,nil ];
+        ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@"IDR 1,000,000", @"IDR 500,000",@"IDR 250,000",@"IDR 100,000", @"" ,nil ];
+        ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+
+        
+    }
+    else if([ProductCode isEqualToString:@"3RP"])//Wealth Accumulation
+    {
+        
+               
+    }
+    else if([ProductCode isEqualToString:@"3SP"])//Wealth Enhancement
+    {
+        
+        ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
+        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@"IDR 18,000,000", @"IDR 9,000,000",@"IDR 4,500,000",@"IDR 1,500,000", @"" ,nil ];
+        ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@"IDR 1,000,000", @"IDR 500,000",@"IDR 250,000",@"IDR 100,000", @"" ,nil ];
+        ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        
+    }
+    else if([ProductCode isEqualToString:@"1TE"])// Peace of Mind
+    {
+        
+    }
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -5,10 +5,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.ttf">
+        <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Italics.ttf">
+        <array key="BPreplay_Italics.otf">
             <string>BPreplay-Italic</string>
         </array>
         <array key="BPreplay_Regular.otf">
@@ -2900,7 +2900,7 @@
                                                 <action selector="ActionEAPP:" destination="gBu-Hz-A8j" id="oj6-bz-ulT"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Selesai" id="pza-PN-3E0">
+                                        <barButtonItem key="rightBarButtonItem" title="Simpan" id="pza-PN-3E0">
                                             <color key="tintColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="doSave:" destination="gBu-Hz-A8j" id="xig-9S-P3Y"/>
@@ -3053,6 +3053,14 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <searchBar hidden="YES" contentMode="redraw" misplaced="YES" id="Mif-Tl-efy">
+                                        <rect key="frame" x="34" y="97" width="671" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="gBu-Hz-A8j" id="m2m-4P-W1y"/>
+                                        </connections>
+                                    </searchBar>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -3068,10 +3076,20 @@
                         <outlet property="navigationBar" destination="xsw-jh-SMI" id="Keq-o3-Olg"/>
                         <outlet property="outletDone" destination="pza-PN-3E0" id="GeI-Pb-Dd7"/>
                         <outlet property="scrollLA" destination="9q7-6a-XHh" id="Toc-Xq-vYl"/>
+                        <outlet property="searchDisplayController" destination="T41-4c-XeM" id="6Qm-I6-mS7"/>
                         <outlet property="sexSegment" destination="afS-7k-o9O" id="iVL-lH-Qhb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UyB-Z1-pnj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="T41-4c-XeM">
+                    <connections>
+                        <outlet property="delegate" destination="gBu-Hz-A8j" id="5Aw-KR-5as"/>
+                        <outlet property="searchBar" destination="Mif-Tl-efy" id="sIb-G3-EPP"/>
+                        <outlet property="searchContentsController" destination="gBu-Hz-A8j" id="qgx-DW-bjz"/>
+                        <outlet property="searchResultsDataSource" destination="gBu-Hz-A8j" id="wGl-BV-c7P"/>
+                        <outlet property="searchResultsDelegate" destination="gBu-Hz-A8j" id="ORP-zw-Wd4"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="-3684" y="3945"/>
         </scene>
@@ -3098,7 +3116,7 @@
                                                 <action selector="ActionEAPP:" destination="Bg9-Wf-jjW" id="Kh2-7N-Ano"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Selesai" id="GzP-st-cHH">
+                                        <barButtonItem key="rightBarButtonItem" title="Simpan" id="GzP-st-cHH">
                                             <color key="tintColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="doSavePlan:" destination="Bg9-Wf-jjW" id="WpP-s0-QRw"/>
@@ -4641,7 +4659,7 @@
                                                 <action selector="ActionEAPP:" destination="dE2-cD-TzV" id="jsP-bO-jsQ"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Selesai " id="Ven-dD-eO4">
+                                        <barButtonItem key="rightBarButtonItem" title="Simpan" id="Ven-dD-eO4">
                                             <color key="tintColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <connections>
                                                 <action selector="doSave:" destination="dE2-cD-TzV" id="yib-Qc-9CP"/>

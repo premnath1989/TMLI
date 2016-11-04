@@ -24,6 +24,8 @@
     NSString *ilustrationProductCode;
     int clientProfileID;
     NSNumber *numberIntInternalStaff;
+    NSArray *ProspectName;
+    NSArray *searchResults;
 }
 
 @end
@@ -108,6 +110,8 @@
 
     [self loadDataFromList];
     [_delegate setQuickQuoteValue:[quickQuoteFlag isOn]];
+    
+    ProspectName = [NSArray arrayWithObjects:@"Prem",@"Emi", nil];
 }
 
 - (void) checkEditingMode {
@@ -1516,6 +1520,48 @@
     }
     return currentAge;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchResults count];
+        
+    } else {
+        return [ProspectName count];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 71;
+}
+
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    static NSString *CellIdentifier = @"CustomTableCell";
+//    RecipeTableCell *cell = (RecipeTableCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    
+//    // Configure the cell...
+//    if (cell == nil) {
+//        cell = [[RecipeTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+//    }
+//    
+//    // Display recipe in the table cell
+//    Recipe *recipe = nil;
+//    if (tableView == self.searchDisplayController.searchResultsTableView) {
+//        recipe = [searchResults objectAtIndex:indexPath.row];
+//    } else {
+//        recipe = [recipes objectAtIndex:indexPath.row];
+//    }
+//    
+//    cell.nameLabel.text = recipe.name;
+//    cell.thumbnailImageView.image = [UIImage imageNamed:recipe.image];
+//    cell.prepTimeLabel.text = recipe.prepTime;
+//    
+//    return cell;
+//}
+
+
 
 -(void)calculateAge
 {

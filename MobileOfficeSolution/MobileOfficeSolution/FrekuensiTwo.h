@@ -24,6 +24,7 @@
 @property (retain, nonatomic) NSMutableArray *ListOfValueMax;
 @property (retain, nonatomic) NSMutableArray *ListOfMOP;
 @property (nonatomic,strong) id <FrekuensiListDelegate> delegate;
+@property (nonatomic,strong) id ProductCode;
 
 
 
