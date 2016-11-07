@@ -83,8 +83,18 @@
 /*end of added by faiz*/
 
 
-@property (nonatomic, retain) NSString* Score;
-
+@property (nonatomic, retain) NSString* tScore;
+@property (nonatomic, retain) NSString *ProspectLastName;
+@property (nonatomic, retain) NSString *ProspectAge;
+@property (nonatomic, retain) NSString* PhoneHomeNo;
+@property (nonatomic, retain) NSString* PhoneNoHP;
+@property (nonatomic, retain) NSString* Address4;
+@property (nonatomic, retain) NSString* Kelurahan;
+@property (nonatomic, retain) NSString* Kecamatan;
+@property (nonatomic, retain) NSString* CallStartTime;
+@property (nonatomic, retain) NSString* CallEndTime;
+@property (nonatomic, retain) NSString* isForeignAdd;
+@property (nonatomic, retain) NSString* ProspectStatus;
 
 
 /*-(id) initWithName:(NSString*) TheNickName AndProspectID:(NSString*)TheProspectID AndProspectName:(NSString*)TheProspectName
@@ -108,6 +118,6 @@ AndResidenceAddressCountry:(NSString*)TheResidenceAddressCountry AndOfficeAddres
 AndOfficeAddressTown:(NSString*)TheOfficeAddressTown AndOfficeAddressState:(NSString*)TheOfficeAddressState
 AndOfficeAddressPostCode:(NSString*)TheOfficeAddressPostCode
 AndOfficeAddressCountry:(NSString*)TheOfficeAddressCountry AndProspectEmail:(NSString*)TheProspectEmail AndProspectRemark:(NSString*)TheProspectRemark AndDateCreated:(NSString*)TheDateCreated AndDateModified:(NSString*)TheDateModified AndCreatedBy:(NSString*)TheCreatedBy AndModifiedBy:(NSString*)TheModifiedBy AndProspectOccupationCode:(NSString*)TheProspectOccupationCode
-    AndProspectDOB:(NSString*)TheProspectDOB AndExactDuties:(NSString*)TheExactDuties AndGroup:(NSString *)TheGroup AndTitle:(NSString *)TheTitle AndIDTypeNo:(NSString *)TheIDTypeNo AndOtherIDType:(NSString *)TheOtherIDType AndOtherIDTypeNo:(NSString *)TheOtherIDTypeNo AndSmoker:(NSString *)TheSmoker AndAnnIncome:(NSString *)TheIncome AndBussType:(NSString *)TheBussType AndRace:(NSString*)TheRace AndMaritalStatus:(NSString*)TheMaritalStatus AndReligion:(NSString*)TheReligion AndNationality:(NSString*)TheNationality AndRegistrationNo:(NSString*)TheRegistrationNo AndRegistration:(NSString*)TheRegistration AndRegistrationDate:(NSString*)TheRegistrationDate AndRegistrationExempted:(NSString*)TheRegistrationExempted AndProspect_IsGrouping:(NSString*)TheProspect_IsGrouping AndCountryOfBirth:(NSString *)TheCountryOfBirth AndNIP:(NSString *)TheNIP AndBranchCode:(NSString *)TheBranchCode AndBranchName:(NSString *)TheBranchName AndKCU:(NSString *)TheKCU AndReferralSource:(NSString *)TheReferralSource AndReferralName:(NSString *)TheReferralName AndIdentitySubmitted:(NSString *)TheIdentitySubmitted AndIDExpirityDate:(NSString *)TheIDExpirityDate AndNPWPNo:(NSString *)TheNPWPNo AndKanwil:(NSString *)kanwil AndHomeVillage:(NSString *)homeVillage AndHomeDistrict:(NSString *)homeDistrict AndHomeProvince:(NSString *)homeProvince AndOfficeVillage:(NSString *)officeVillage AndOfficeDistrict:(NSString *)officeDistrict AndOfficePorvince:(NSString *)officeProvince AndSourceIncome:(NSString *)sourceIncome AndClientSegmentation:(NSString *)clientSegmentation AndScore:(NSString *)Score;
+    AndProspectDOB:(NSString*)TheProspectDOB AndExactDuties:(NSString*)TheExactDuties AndGroup:(NSString *)TheGroup AndTitle:(NSString *)TheTitle AndIDTypeNo:(NSString *)TheIDTypeNo AndOtherIDType:(NSString *)TheOtherIDType AndOtherIDTypeNo:(NSString *)TheOtherIDTypeNo AndSmoker:(NSString *)TheSmoker AndAnnIncome:(NSString *)TheIncome AndBussType:(NSString *)TheBussType AndRace:(NSString*)TheRace AndMaritalStatus:(NSString*)TheMaritalStatus AndReligion:(NSString*)TheReligion AndNationality:(NSString*)TheNationality AndRegistrationNo:(NSString*)TheRegistrationNo AndRegistration:(NSString*)TheRegistration AndRegistrationDate:(NSString*)TheRegistrationDate AndRegistrationExempted:(NSString*)TheRegistrationExempted AndProspect_IsGrouping:(NSString*)TheProspect_IsGrouping AndCountryOfBirth:(NSString *)TheCountryOfBirth AndNIP:(NSString *)TheNIP AndBranchCode:(NSString *)TheBranchCode AndBranchName:(NSString *)TheBranchName AndKCU:(NSString *)TheKCU AndReferralSource:(NSString *)TheReferralSource AndReferralName:(NSString *)TheReferralName AndIdentitySubmitted:(NSString *)TheIdentitySubmitted AndIDExpirityDate:(NSString *)TheIDExpirityDate AndNPWPNo:(NSString *)TheNPWPNo AndKanwil:(NSString *)kanwil AndHomeVillage:(NSString *)homeVillage AndHomeDistrict:(NSString *)homeDistrict AndHomeProvince:(NSString *)homeProvince AndOfficeVillage:(NSString *)officeVillage AndOfficeDistrict:(NSString *)officeDistrict AndOfficePorvince:(NSString *)officeProvince AndSourceIncome:(NSString *)sourceIncome AndClientSegmentation:(NSString *)clientSegmentation AndtScore:(NSString *)tScore AndProspectLastName:(NSString *)ProspectLastName AndProspectAge:(NSString *)ProspectAge AndPhoneHomeNo:(NSString *)PhoneHomeNo AndPhoneNoHP:(NSString *)PhoneNoHP AndAddress4:(NSString *)Address4 AndKelurahan:(NSString *)Kelurahan AndKecamatan:(NSString *)Kecamatan AndCallStartTime:(NSString *)CallStartTime AndCallEndTime:(NSString *)CallEndTime AndisForeignAdd:(NSString *)isForeignAdd AndProspectStatus:(NSString *)ProspectStatus;
 
 @end

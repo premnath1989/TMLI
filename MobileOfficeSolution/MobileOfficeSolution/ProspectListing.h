@@ -76,7 +76,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtIDTypeNo;
 @property (strong, nonatomic) IBOutlet UITextField *txtBranchName;
 @property (strong, nonatomic) IBOutlet UITextField *txtIDNumber;
-//@property (strong, nonatomic) IBOutlet UIButton *outletDOB;
+@property (strong, nonatomic) IBOutlet UIButton *outletDOB;
 @property (strong, nonatomic) IBOutlet UIButton *btnGroup;
 @property (strong, nonatomic) IBOutlet UIButton *editBtn;
 @property (strong, nonatomic) IBOutlet UIButton *deleteBtn;
