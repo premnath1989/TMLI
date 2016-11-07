@@ -106,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "499858436.934147"
+            timestampString = "500202147.696658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5403"
-            endingLineNumber = "5403"
-            landmarkName = "-validationDataBasicPlan"
-            landmarkType = "7">
+            startingLineNumber = "5518"
+            endingLineNumber = "5518"
+            landmarkName = "@implementation BasicPlanViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "499858436.934147"
+            timestampString = "500202147.696658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5904"
-            endingLineNumber = "5904"
+            startingLineNumber = "6054"
+            endingLineNumber = "6054"
             landmarkName = "-CalculationTotalPremi"
             landmarkType = "7">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "499858436.934147"
+            timestampString = "500202147.696658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5922"
-            endingLineNumber = "5922"
+            startingLineNumber = "6082"
+            endingLineNumber = "6082"
             landmarkName = "-loadHeritageCalculation"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,27 +154,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "498986866.931232"
+            timestampString = "500202147.696658"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "952"
-            endingLineNumber = "952"
-            landmarkName = "-actionMasaPembayaran:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "499858436.934147"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "5839"
-            endingLineNumber = "5839"
+            startingLineNumber = "5954"
+            endingLineNumber = "5954"
             landmarkName = "-Planlisting:didSelectCode:andDesc:"
             landmarkType = "7">
          </BreakpointContent>
@@ -192,6 +176,102 @@
             startingLineNumber = "1005"
             endingLineNumber = "1005"
             landmarkName = "-actionFrekuensiPembayaran:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/FrekuensiTwo.m"
+            timestampString = "500177417.287699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/Currency.m"
+            timestampString = "500177968.279708"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/BasicPlanViewController.m"
+            timestampString = "500202147.696658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5471"
+            endingLineNumber = "5471"
+            landmarkName = "-validationDataBasicPlan"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/BasicPlanViewController.m"
+            timestampString = "500202147.696658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5480"
+            endingLineNumber = "5480"
+            landmarkName = "-validationDataBasicPlan"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/BasicPlanViewController.m"
+            timestampString = "500202147.696658"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "5420"
+            endingLineNumber = "5420"
+            landmarkName = "-validationDataBasicPlan"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/NewLAViewController.m"
+            timestampString = "500207231.656293"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1160"
+            endingLineNumber = "1160"
+            landmarkName = "-setDictionaryLA"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

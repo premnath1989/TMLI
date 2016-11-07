@@ -249,6 +249,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *PremiTopUpRegularField;
 @property (strong, nonatomic) IBOutlet UITextField *TotalPremiField;
 
+
 -(NSMutableDictionary *)setDataBasicPlan;
 - (IBAction)tempNext:(id)sender;
 - (IBAction)tempNext1:(id)sender;
@@ -307,6 +308,9 @@
 @property (nonatomic, assign,readwrite) double TotalA;
 @property (nonatomic,strong) NSString *planCode;
 @property (nonatomic, copy) NSString *quotationLang;
+@property (nonatomic,strong) NSString *MinBasicPremiValue;
+@property (nonatomic,strong) NSString *MinTopUpRegularValue;
+@property (nonatomic,strong) NSString *SumTotalUangPertanggungan;
 
 
 //to display

@@ -30,7 +30,7 @@
 		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Secure100", @"HLA Wealth Plan", nil ];
 		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"S100", @"HLAWP", nil ];
         ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"TM Link Investasiku",@"TM Link ProteksiKu",@"TM Maximum Investment Plan(MIP)",@"TM Maximum Investment Plan(MIP Plus)",@"TM Link Wealth Accumulation",@"TM Link Wealth Enhancement",@"TM Peace of Mind Accident",nil];
-        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"3BE",@"3FE",@"3MS",@"3RP",@"3SP",@"3SP",@"1TE", nil ];
+        ListOfCode = [[NSMutableArray alloc] initWithObjects:@"3BE",@"3FE",@"3MI",@"3MD",@"3RP",@"3SP",@"3SP",@"1TE", nil ];
         
 //		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"HLA Wealth Plan", nil ];
 //		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"HLAWP", nil ];

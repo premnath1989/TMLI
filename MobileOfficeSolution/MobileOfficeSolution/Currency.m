@@ -34,14 +34,20 @@
         
        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
     }
-    else if([CurrencyType isEqualToString:@"3MS"])//Mip
+    else if([CurrencyType isEqualToString:@"3MI"])//Mip
     {
         ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
         
     }
+    else if([CurrencyType isEqualToString:@"3MD"])//Mip
+    {
+        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+        
+    }
+
     else if([CurrencyType isEqualToString:@"3RP"])//Wealth Accumulation
     {
-        
+        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
         
     }
     else if([CurrencyType isEqualToString:@"3SP"])//Wealth Enhancement
