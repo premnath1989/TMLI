@@ -10,6 +10,9 @@
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
+		DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */; };
+		DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168461DD03551007DDA9B /* NewJune_Light.ttf */; };
+		DE11684A1DD0355A007DDA9B /* NewJune_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -521,6 +524,9 @@
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
 		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
+		DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Bold.ttf; sourceTree = "<group>"; };
+		DE1168461DD03551007DDA9B /* NewJune_Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Light.ttf; sourceTree = "<group>"; };
+		DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Regular.ttf; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -1339,6 +1345,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE1168431DD0350F007DDA9B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				DE1168441DD03531007DDA9B /* New June */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		DE1168441DD03531007DDA9B /* New June */ = {
+			isa = PBXGroup;
+			children = (
+				DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */,
+				DE1168461DD03551007DDA9B /* NewJune_Light.ttf */,
+				DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */,
+			);
+			name = "New June";
+			sourceTree = "<group>";
+		};
 		DE5F7AFB1DB0EC00006DC32F /* IllustrationHTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1376,6 +1400,7 @@
 		DEDC5C581DAE347E0033FE37 /* MobileOfficeSolution */ = {
 			isa = PBXGroup;
 			children = (
+				DE1168431DD0350F007DDA9B /* Fonts */,
 				DE5F7AE31DB08ED2006DC32F /* database */,
 				DEDC5C951DAE35380033FE37 /* WebServices */,
 				DEDC5E161DAE42720033FE37 /* SPAJ */,
@@ -3172,6 +3197,7 @@
 				DEC846201DAF99890081DEF7 /* gendb.sh in Resources */,
 				DEDC60B41DAF69100033FE37 /* cb_glossy_on.png in Resources */,
 				DEDC5FF31DAE56890033FE37 /* xibLibrary.bundle in Resources */,
+				DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */,
 				DEDC60D21DAF74D30033FE37 /* btn_newSI_on.png in Resources */,
 				DEDC5FA71DAE49BD0033FE37 /* Reader-Button-N.png in Resources */,
 				DEDC60941DAF69100033FE37 /* menu_ilustrasi.png in Resources */,
@@ -3203,6 +3229,7 @@
 				DEDC61191DAF796E0033FE37 /* MultipleImageIDTableViewCell.xib in Resources */,
 				DEDC60A51DAF69100033FE37 /* White-Header.png in Resources */,
 				DEDC61B81DAF7DA80033FE37 /* camera-icon.png in Resources */,
+				DE11684A1DD0355A007DDA9B /* NewJune_Regular.ttf in Resources */,
 				DEDC60B21DAF69100033FE37 /* merahBtn.png in Resources */,
 				DEDC60B01DAF69100033FE37 /* prospect_100_3.png in Resources */,
 				DE5F7AEC1DB0B62F006DC32F /* DataReferral.sqlite in Resources */,
@@ -3257,6 +3284,7 @@
 				DEDC60201DAF4FDB0033FE37 /* HTMLResources.bundle in Resources */,
 				DEDC613C1DAF797E0033FE37 /* SPAJEAppListStoryBoard.storyboard in Resources */,
 				DEDC60771DAF69100033FE37 /* undo@2x.png in Resources */,
+				DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */,
 				DEDC5FAE1DAE49BD0033FE37 /* Reader-Export@2x.png in Resources */,
 				DEDC60731DAF69100033FE37 /* cancel@2x.png in Resources */,
 			);
