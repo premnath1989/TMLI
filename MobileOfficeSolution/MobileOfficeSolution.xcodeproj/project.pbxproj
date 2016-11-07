@@ -1400,7 +1400,6 @@
 		DEDC5C581DAE347E0033FE37 /* MobileOfficeSolution */ = {
 			isa = PBXGroup;
 			children = (
-				DE1168431DD0350F007DDA9B /* Fonts */,
 				DE5F7AE31DB08ED2006DC32F /* database */,
 				DEDC5C951DAE35380033FE37 /* WebServices */,
 				DEDC5E161DAE42720033FE37 /* SPAJ */,
@@ -1426,6 +1425,7 @@
 		DEDC5C591DAE347E0033FE37 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DE1168431DD0350F007DDA9B /* Fonts */,
 				DEDC601F1DAF4FDB0033FE37 /* HTMLResources.bundle */,
 				DEDC5FF21DAE56890033FE37 /* xibLibrary.bundle */,
 				DEDC62191DAF84790033FE37 /* DataClass */,
@@ -3056,7 +3056,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2YT8E2D9X6;
+						DevelopmentTeam = 25W8386326;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3745,7 +3745,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3777,7 +3777,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
