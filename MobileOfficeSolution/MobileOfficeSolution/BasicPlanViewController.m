@@ -27,6 +27,7 @@
 
 @implementation BasicPlanViewController
 @synthesize btnPlan;
+@synthesize MOPString;
 @synthesize termField;
 @synthesize FrekuensiPembayaranChecking,FRekeunsiPembayaranMode,YearlyIncm;
 @synthesize yearlyIncomeField;
@@ -39,7 +40,7 @@
 @synthesize maxSALabel;
 @synthesize healthLoadingView;
 @synthesize MOPSegment;
-@synthesize totalDivide;
+@synthesize totalDivide,getPlanCode;
 @synthesize S100MOPSegment;
 @synthesize incomeSegment,cashDivSgmntCP,DiscountCalculation;
 @synthesize advanceIncomeSegment;
@@ -69,6 +70,8 @@
 @synthesize advanceYearlyIncomeHLAIB,advanceYearlyIncomeHLACP,maxAge,occLoad,LSDRate,LUnits,occCPA_PA;
 @synthesize planList = _planList;
 @synthesize currencyList = _CurrencyList;
+@synthesize frekuensiTwoList = _frekuensiTwoList;
+@synthesize frekuensiList = _frekuensiList;
 @synthesize Pembelianke = _Pembelianke;
 @synthesize _masaPembayaran = _masaPembayaran;
 @synthesize planPopover = _planPopover;
@@ -273,6 +276,7 @@ bool WPTPD30RisDeleted = FALSE;
     [_totalPremiWithLoadingField setText:@""];
     [_masaPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
     [_frekuensiPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
+    [_MataUangPembayaran setTitle:@"--Please Select--" forState:UIControlStateNormal];
     FRekeunsiPembayaranMode = @"";
     [_KKLKPembelianKeBtn setTitle:@"--Please Select--" forState:UIControlStateNormal];
     [_KKLKDiskaunBtn setText:@"0"];
@@ -598,6 +602,40 @@ bool WPTPD30RisDeleted = FALSE;
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
     NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    
+    if (textField == _BasicPremiiField)
+    {
+        /*NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+         return (([string isEqualToString:filtered]) && newLength <= 15);*/
+        BOOL return13digit = FALSE;
+        //KY - IMPORTANT - PUT THIS LINE TO DETECT THE FIRST CHARACTER PRESSED....
+        //This method is being called before the content of textField.text is changed.
+        NSString * AI = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        
+        if ([AI rangeOfString:@"."].length == 1) {
+            NSArray  *comp = [AI componentsSeparatedByString:@"."];
+            NSString *get_num = [[comp objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""];
+            int c = [get_num length];
+            return13digit = (c > 15);
+            
+        } else if([AI rangeOfString:@"."].length == 0) {
+            NSArray  *comp = [AI componentsSeparatedByString:@"."];
+            NSString *get_num = [[comp objectAtIndex:0] stringByReplacingOccurrencesOfString:@"," withString:@""];
+            int c = [get_num length];
+            return13digit = (c  > 15);
+        }
+        
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        if( return13digit == TRUE) {
+            return (([string isEqualToString:filtered])&&(newLength <= 15));
+        } else {
+            return (([string isEqualToString:filtered])&&(newLength <= 19));
+        }
+
+    }
     
     if (textField == yearlyIncomeField)
     {
@@ -951,6 +989,7 @@ bool WPTPD30RisDeleted = FALSE;
     
     self.currencyList = [[Currency alloc] init];
     _CurrencyList.delegate = self;
+    self.currencyList.CurrencyType = getPlanCode;
     self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_CurrencyList];
     
     
@@ -963,16 +1002,26 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(IBAction)actionFrekuensiPembayaran:(id)sender
 {
-
     
-    _frekuensi = [[Frekeunsi alloc] init];
-    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensi];
+    self.frekuensiTwoList = [[FrekuensiTwo alloc] init];
+    _frekuensiTwoList.delegate = self;
+     self.frekuensiTwoList.ProductCode = getPlanCode;
+    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensiTwoList];
     
-        CGRect rect = [sender frame];
-        rect.origin.y = [sender frame].origin.y + 30;
     
-        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
-        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    CGRect rect = [sender frame];
+    rect.origin.y = [sender frame].origin.y + 30;
+    
+    [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+    [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
+//    self.frekuensiList = [[Frekeunsi alloc] init];
+//    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensiList];
+//    
+//        CGRect rect = [sender frame];
+//        rect.origin.y = [sender frame].origin.y + 30;
+//    
+//        [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+//        [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 -(void)PaymentDasarMDBKK: (NSString *)PaymentDesc
@@ -2403,99 +2452,99 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(void)PremiDasarIncomeChange:(NSString *)BAsicPremiDasar
 {
-    //BasisSumAssured = [yearlyIncomeField.text intValue];
-    
-    _basicPremiField.text = [BAsicPremiDasar stringByReplacingOccurrencesOfString:@" " withString:@""];
-    _basicPremiField.text = [BAsicPremiDasar stringByReplacingOccurrencesOfString:@"," withString:@""];
-    _basicPremiField.text = [BAsicPremiDasar stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *result;
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-    [formatter setMaximumFractionDigits:0];
-    [formatter setUsesGroupingSeparator:YES];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    
-    double entryFieldFloat = [_basicPremiField.text doubleValue];
-    
-    if ([_basicPremiField.text rangeOfString:@""].length == 3)
-    {
-        formatter.alwaysShowsDecimalSeparator = YES;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-        result = [result stringByAppendingFormat:@""];
-        
-    } else  if ([_basicPremiField.text rangeOfString:@"."].length == 1)
-    {
-        formatter.alwaysShowsDecimalSeparator = NO;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-    } else if ([_basicPremiField.text rangeOfString:@"."].length != 1)
-    {
-        formatter.alwaysShowsDecimalSeparator = NO;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-        result = [result stringByAppendingFormat:@""];
-    }
-    
-    NSLog(@"uang dasar %@", result);
-    
-    if([result hasSuffix:@"."]){
-        NSString *str = result;
-        result = [str substringToIndex:[str length]-1];
-    }
-        
-    
-    if(_basicPremiField.text.length==0)
-    {
-        _basicPremiField.text = @"";
-    } else {
-        _basicPremiField.text = result;
-    }
+//    //BasisSumAssured = [yearlyIncomeField.text intValue];
+//    
+//    _basicPremiField.text = [BAsicPremiDasar stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    _basicPremiField.text = [BAsicPremiDasar stringByReplacingOccurrencesOfString:@"," withString:@""];
+//    _basicPremiField.text = [BAsicPremiDasar stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    
+//    NSString *result;
+//    
+//    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+//    [formatter setMaximumFractionDigits:0];
+//    [formatter setUsesGroupingSeparator:YES];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+//    
+//    double entryFieldFloat = [_basicPremiField.text doubleValue];
+//    
+//    if ([_basicPremiField.text rangeOfString:@""].length == 3)
+//    {
+//        formatter.alwaysShowsDecimalSeparator = YES;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//        result = [result stringByAppendingFormat:@""];
+//        
+//    } else  if ([_basicPremiField.text rangeOfString:@"."].length == 1)
+//    {
+//        formatter.alwaysShowsDecimalSeparator = NO;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//    } else if ([_basicPremiField.text rangeOfString:@"."].length != 1)
+//    {
+//        formatter.alwaysShowsDecimalSeparator = NO;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//        result = [result stringByAppendingFormat:@""];
+//    }
+//    
+//    NSLog(@"uang dasar %@", result);
+//    
+//    if([result hasSuffix:@"."]){
+//        NSString *str = result;
+//        result = [str substringToIndex:[str length]-1];
+//    }
+//        
+//    
+//    if(_basicPremiField.text.length==0)
+//    {
+//        _basicPremiField.text = @"";
+//    } else {
+//        _basicPremiField.text = result;
+//    }
 }
 
 
 
 
--(void)PremiDasarIncomeChangeB:(NSString *)BAsicPremiDasarB
-{
-    //BasisSumAssured = [yearlyIncomeField.text intValue];
-    
-    _extraBasicPremiField.text = [BAsicPremiDasarB stringByReplacingOccurrencesOfString:@" " withString:@""];
-    _extraBasicPremiField.text = [BAsicPremiDasarB stringByReplacingOccurrencesOfString:@"," withString:@""];
-    _extraBasicPremiField.text = [BAsicPremiDasarB stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *result;
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-    [formatter setMaximumFractionDigits:0];
-    [formatter setUsesGroupingSeparator:YES];
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
-    
-    double entryFieldFloat = [_extraBasicPremiField.text doubleValue];
-    
-    if ([_extraBasicPremiField.text rangeOfString:@""].length == 3) {
-        formatter.alwaysShowsDecimalSeparator = YES;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-        result = [result stringByAppendingFormat:@"00"];
-        
-    } else  if ([_extraBasicPremiField.text rangeOfString:@"."].length == 1) {
-        formatter.alwaysShowsDecimalSeparator = YES;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-        
-    } else if ([_extraBasicPremiField.text rangeOfString:@"."].length != 1) {
-        formatter.alwaysShowsDecimalSeparator = NO;
-        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
-        result = [result stringByAppendingFormat:@""];
-        
-    }
-    
-    if(_extraBasicPremiField.text.length==0)
-    {
-        _extraBasicPremiField.text = @"";
-    } else {
-        _extraBasicPremiField.text = result;
-    }
-}
+//-(void)PremiDasarIncomeChangeB:(NSString *)BAsicPremiDasarB
+//{
+//    //BasisSumAssured = [yearlyIncomeField.text intValue];
+//    
+//    _extraBasicPremiField.text = [BAsicPremiDasarB stringByReplacingOccurrencesOfString:@" " withString:@""];
+//    _extraBasicPremiField.text = [BAsicPremiDasarB stringByReplacingOccurrencesOfString:@"," withString:@""];
+//    _extraBasicPremiField.text = [BAsicPremiDasarB stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//    
+//    NSString *result;
+//    
+//    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+//    [formatter setMaximumFractionDigits:0];
+//    [formatter setUsesGroupingSeparator:YES];
+//    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+//    [formatter setRoundingMode:NSNumberFormatterRoundHalfUp];
+//    
+//    double entryFieldFloat = [_extraBasicPremiField.text doubleValue];
+//    
+//    if ([_extraBasicPremiField.text rangeOfString:@""].length == 3) {
+//        formatter.alwaysShowsDecimalSeparator = YES;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//        result = [result stringByAppendingFormat:@"00"];
+//        
+//    } else  if ([_extraBasicPremiField.text rangeOfString:@"."].length == 1) {
+//        formatter.alwaysShowsDecimalSeparator = YES;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//        
+//    } else if ([_extraBasicPremiField.text rangeOfString:@"."].length != 1) {
+//        formatter.alwaysShowsDecimalSeparator = NO;
+//        result =[formatter stringFromNumber:[NSNumber numberWithDouble:entryFieldFloat]];
+//        result = [result stringByAppendingFormat:@""];
+//        
+//    }
+//    
+//    if(_extraBasicPremiField.text.length==0)
+//    {
+//        _extraBasicPremiField.text = @"";
+//    } else {
+//        _extraBasicPremiField.text = result;
+//    }
+//}
 
 -(void)PremiDasarIncomeChangeAplusB:(NSString *)BAsicPremiDasar
 {
@@ -5786,9 +5835,11 @@ bool WPTPD30RisDeleted = FALSE;
   
     [_masaPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
     [self.planPopover dismissPopoverAnimated:YES];
-    // getPlanCode = aaCode;
+     getPlanCode = aaCode;
+    
     
     [_frekuensiPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
+    [_MataUangPembayaran setTitle:@"--Please Select--" forState:UIControlStateNormal];
     
     FrekuensiPembayaranChecking = aaDesc;
     
@@ -5803,33 +5854,20 @@ bool WPTPD30RisDeleted = FALSE;
 -(void)Currencylisting:(Currency *)inController didSelectCode:(NSString *)aaDesc;
 {
     [_MataUangPembayaran setTitle:aaDesc forState:normal];
+    
     [self.planPopover dismissPopoverAnimated:YES];
     
 }
 
--(void)PlanFrekuensi:(MasaPembayaran *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
+-(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP;
 {
+    
     [_frekuensiPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
+    _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min :%@)",aaMinAmount];
+    _PremiTopUp.text = [NSString stringWithFormat:@"(Min :%@)",aaMaxAmount];
+   // _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%@)",aaMOP];
+    MOPString = aaMOP;
     [self.planPopover dismissPopoverAnimated:YES];
-    // getPlanCode = aaCode;
-    
-    FRekeunsiPembayaranMode = aaDesc;
-    
-    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
-    {
-        PaymentDescMDKK = aaDesc;
-        [self PremiDasarActKeluargaku:aaDesc];
-        //[self PremiDasarActkklk];
-        [self calculateRiderPremi];
-    }
-    else
-    {
-        [self PremiDasarAct];
-        [self PremiDasarActB];
-        [self ExtraNumbPremi];
-        [self loadHeritageCalculation];
-    }
-    
 }
 
 -(void)setDefaultSA
@@ -5842,6 +5880,42 @@ bool WPTPD30RisDeleted = FALSE;
     [self getExistingBasic:false];
     [self toggleExistingField];
 }
+
+#pragma mark - Premnath
+
+- (IBAction)BasicPremiAction:(id)sender;
+{
+    NSLog(@"Basic %@",_BasicPremiiField.text);
+    [self CalculationTotalPremi];
+}
+
+- (IBAction)PremiTopUpRegularAction:(id)sender;
+{
+     NSLog(@"Basic %@",_PremiTopUpRegularField.text);
+    [self CalculationTotalPremi];
+    
+}
+
+-(void)CalculationTotalPremi
+{
+    int BasicPremiValue = [ _BasicPremiiField.text intValue];
+    
+    int PremiTopUpRegularValue = [_PremiTopUpRegularField.text intValue];
+    
+    int ModeOfPayValue = [MOPString intValue];
+    
+    double TotalPremiAValue = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue;
+    _TotalPremiField.text = [NSString stringWithFormat:@"%.f", TotalPremiAValue];
+    
+    double TotalUangPertanggungan  = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue * 5;
+    
+    _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%.f)", TotalUangPertanggungan];
+    
+    
+    //_BasicPremiField
+}
+
+
 #pragma mark - Heritage Calculation
 -(void)loadHeritageCalculation{
     NSMutableDictionary* dictionaryBasicPlan = [[NSMutableDictionary alloc]initWithDictionary:[self setDataBasicPlan]];

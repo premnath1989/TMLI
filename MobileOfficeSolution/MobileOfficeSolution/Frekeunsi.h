@@ -11,6 +11,7 @@
 @class Frekeunsi;
 @protocol FrekeunsiDelegate
 -(void)PlanFrekuensi:(Frekeunsi *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
+-(void)FrekuensiListing:(Frekeunsi *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
 @end
 
 @interface Frekeunsi : UITableViewController {
@@ -20,6 +21,7 @@
 
 @property (retain, nonatomic) NSMutableArray *ListOfPlan;
 @property (retain, nonatomic) NSMutableArray *ListOfCode;
+@property (retain, nonatomic) NSMutableArray *ListOfMOP;
 @property (nonatomic,strong) id <FrekeunsiDelegate> delegate;
 
 @property (nonatomic,strong) id TradOrEver;

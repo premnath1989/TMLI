@@ -13,7 +13,7 @@
 @end
 
 @implementation Currency
-@synthesize ListOfCurrency;
+@synthesize ListOfCurrency,CurrencyType;
 @synthesize delegate;
 
 -(id)init {
@@ -24,9 +24,39 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if([CurrencyType isEqualToString:@"3BE"])//Investasiku
+    {
+        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
+    }
+    else if([CurrencyType isEqualToString:@"3FE"])//Proteksiku
+    {
+        
+       ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
+    }
+    else if([CurrencyType isEqualToString:@"3MS"])//Mip
+    {
+        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+        
+    }
+    else if([CurrencyType isEqualToString:@"3RP"])//Wealth Accumulation
+    {
+        
+        
+    }
+    else if([CurrencyType isEqualToString:@"3SP"])//Wealth Enhancement
+    {
+       ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
+        
+    }
+    else if([CurrencyType isEqualToString:@"1TE"])// Peace of Mind
+    {
+        ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
+    }
+    
+
 
 	
-		ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
     
 
 }

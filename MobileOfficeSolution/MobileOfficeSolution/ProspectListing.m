@@ -65,6 +65,15 @@ MBProgressHUD *HUD;
     outletDOB.layer.borderWidth = 1.0;
     
     
+    _btnSearch.layer.cornerRadius = 10;
+    _btnSearch.layer.masksToBounds = YES;
+    _btnCancel.layer.cornerRadius = 10;
+    _btnCancel.layer.masksToBounds = YES;
+    _btnDelete.layer.cornerRadius = 10;
+    _btnDelete.layer.masksToBounds = YES;
+    
+    
+    
     [self setTextfieldBorder];
     
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
@@ -1156,7 +1165,7 @@ MBProgressHUD *HUD;
 
     
     //UIStoryboard* clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AddNewProspect"];
+    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Prospect"];
     self.ProspectViewController.delegate = self;
     [self.navigationController pushViewController:_ProspectViewController animated:YES];
     //Cheged by faiz due to language translation

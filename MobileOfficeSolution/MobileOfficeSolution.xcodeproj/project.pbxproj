@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
-		DE1168421DD0325E007DDA9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DE1168411DD0325E007DDA9B /* Assets.xcassets */; };
+		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
+		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -33,6 +34,7 @@
 		DEDC5C5B1DAE347E0033FE37 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5C5A1DAE347E0033FE37 /* main.m */; };
 		DEDC5C5E1DAE347E0033FE37 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5C5D1DAE347E0033FE37 /* AppDelegate.m */; };
 		DEDC5C611DAE347E0033FE37 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5C601DAE347E0033FE37 /* ViewController.m */; };
+		DEDC5C661DAE347E0033FE37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDC5C651DAE347E0033FE37 /* Assets.xcassets */; };
 		DEDC5C691DAE347E0033FE37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDC5C671DAE347E0033FE37 /* LaunchScreen.storyboard */; };
 		DEDC5C741DAE347E0033FE37 /* MobileOfficeSolutionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5C731DAE347E0033FE37 /* MobileOfficeSolutionTests.m */; };
 		DEDC5C7F1DAE347E0033FE37 /* MobileOfficeSolutionUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5C7E1DAE347E0033FE37 /* MobileOfficeSolutionUITests.m */; };
@@ -515,10 +517,10 @@
 /* Begin PBXFileReference section */
 		17F7585C1DBDDD6E0003DFCA /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
-		DE11683E1DD0324A007DDA9B /* NewJune_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Bold.ttf; sourceTree = "<group>"; };
-		DE11683F1DD0324A007DDA9B /* NewJune_Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Light.ttf; sourceTree = "<group>"; };
-		DE1168401DD0324A007DDA9B /* NewJune_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Regular.ttf; sourceTree = "<group>"; };
-		DE1168411DD0325E007DDA9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
+		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
+		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
+		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -549,6 +551,7 @@
 		DEDC5C5D1DAE347E0033FE37 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		DEDC5C5F1DAE347E0033FE37 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		DEDC5C601DAE347E0033FE37 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DEDC5C651DAE347E0033FE37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DEDC5C681DAE347E0033FE37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DEDC5C6F1DAE347E0033FE37 /* MobileOfficeSolutionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileOfficeSolutionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEDC5C731DAE347E0033FE37 /* MobileOfficeSolutionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobileOfficeSolutionTests.m; sourceTree = "<group>"; };
@@ -1336,33 +1339,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		DE11683B1DD0322C007DDA9B /* Asset */ = {
-			isa = PBXGroup;
-			children = (
-				DE11683C1DD03235007DDA9B /* Font */,
-				DE1168411DD0325E007DDA9B /* Assets.xcassets */,
-			);
-			name = Asset;
-			sourceTree = "<group>";
-		};
-		DE11683C1DD03235007DDA9B /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				DE11683D1DD03240007DDA9B /* NewJune */,
-			);
-			name = Font;
-			sourceTree = "<group>";
-		};
-		DE11683D1DD03240007DDA9B /* NewJune */ = {
-			isa = PBXGroup;
-			children = (
-				DE11683E1DD0324A007DDA9B /* NewJune_Bold.ttf */,
-				DE11683F1DD0324A007DDA9B /* NewJune_Light.ttf */,
-				DE1168401DD0324A007DDA9B /* NewJune_Regular.ttf */,
-			);
-			name = NewJune;
-			sourceTree = "<group>";
-		};
 		DE5F7AFB1DB0EC00006DC32F /* IllustrationHTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1400,7 +1376,6 @@
 		DEDC5C581DAE347E0033FE37 /* MobileOfficeSolution */ = {
 			isa = PBXGroup;
 			children = (
-				DE11683B1DD0322C007DDA9B /* Asset */,
 				DE5F7AE31DB08ED2006DC32F /* database */,
 				DEDC5C951DAE35380033FE37 /* WebServices */,
 				DEDC5E161DAE42720033FE37 /* SPAJ */,
@@ -1415,6 +1390,7 @@
 				DEDC5C5F1DAE347E0033FE37 /* ViewController.h */,
 				DEDC5C601DAE347E0033FE37 /* ViewController.m */,
 				DEDC60191DAF4F2A0033FE37 /* MainStoryboard.storyboard */,
+				DEDC5C651DAE347E0033FE37 /* Assets.xcassets */,
 				DEDC5C671DAE347E0033FE37 /* LaunchScreen.storyboard */,
 				DEDC60171DAF4E9F0033FE37 /* Info.plist */,
 				DEDC5C591DAE347E0033FE37 /* Supporting Files */,
@@ -1755,6 +1731,8 @@
 				DEDC5DE51DAE41B30033FE37 /* MasaPembayaran.m */,
 				DEDC5DE61DAE41B30033FE37 /* Frekeunsi.h */,
 				DEDC5DE71DAE41B30033FE37 /* Frekeunsi.m */,
+				17F758621DC99E140003DFCA /* FrekuensiTwo.h */,
+				17F758631DC99E140003DFCA /* FrekuensiTwo.m */,
 				DEDC5DE81DAE41B30033FE37 /* Pembelianke.h */,
 				DEDC5DE91DAE41B30033FE37 /* Pembelianke.m */,
 				DEDC5DEA1DAE41B30033FE37 /* MasaPembayaran.h */,
@@ -2280,6 +2258,8 @@
 			children = (
 				DEDC5EA91DAE472F0033FE37 /* SourceIncome.h */,
 				DEDC5EAA1DAE472F0033FE37 /* SourceIncome.m */,
+				C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */,
+				C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */,
 				DEDC5EA31DAE47200033FE37 /* Country.h */,
 				DEDC5EA41DAE47200033FE37 /* Country.m */,
 				DEDC5EA51DAE47200033FE37 /* Country2.h */,
@@ -3051,7 +3031,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 25W8386326;
+						DevelopmentTeam = 2YT8E2D9X6;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3104,7 +3084,6 @@
 				DEDC609E1DAF69100033FE37 /* eAplicationv2.png in Resources */,
 				DEDC60781DAF69100033FE37 /* Signature Filled.png in Resources */,
 				DEDC613E1DAF797E0033FE37 /* SPAJFilesViewController.xib in Resources */,
-				DE1168421DD0325E007DDA9B /* Assets.xcassets in Resources */,
 				DEDC60831DAF69100033FE37 /* Icon_SaveAs_Gray_BG.png in Resources */,
 				DEDC5FAD1DAE49BD0033FE37 /* Reader-Export.png in Resources */,
 				DEDC607C1DAF69100033FE37 /* login_box.png in Resources */,
@@ -3150,6 +3129,7 @@
 				DEDC61311DAF797E0033FE37 /* SPAJ E Application List.xib in Resources */,
 				DEDC60951DAF69100033FE37 /* customer_fact_find@2x_20141118.png in Resources */,
 				DEDC60AE1DAF69100033FE37 /* greenBtn.png in Resources */,
+				DEDC5C661DAE347E0033FE37 /* Assets.xcassets in Resources */,
 				DEDC61B11DAF7D9D0033FE37 /* CardSnap.xib in Resources */,
 				DEDC60A41DAF69100033FE37 /* White-Header@2x.png in Resources */,
 				DEDC61BB1DAF7DA80033FE37 /* tick-snapshot.png in Resources */,
@@ -3460,7 +3440,9 @@
 				DEDC5D781DAE3CDD0033FE37 /* AgentWS.m in Sources */,
 				DEDC5EA71DAE47200033FE37 /* Country.m in Sources */,
 				DEDC5F601DAE49AE0033FE37 /* CGPDFDocument.m in Sources */,
+				17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */,
 				DEDC5CB51DAE37C90033FE37 /* ClearData.m in Sources */,
+				C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */,
 				DEDC5D2D1DAE39420033FE37 /* ModelProspectChild.m in Sources */,
 				DEDC5E8A1DAE46B60033FE37 /* PasswordTips.m in Sources */,
 				DEDC5E721DAE46460033FE37 /* PagesController.m in Sources */,
@@ -3735,7 +3717,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3767,7 +3749,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",

@@ -14,6 +14,7 @@
     FMResultSet *results;
 }
 -(NSDictionary *)getSourceIncome;
+-(NSDictionary *)getAnnualIncome;
 -(NSDictionary *)getVIPClass;
 -(NSDictionary *)getReferralSource;
 -(NSDictionary *)getOccupation;

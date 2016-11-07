@@ -20,6 +20,7 @@
 
 @property (retain, nonatomic) NSMutableArray *ListOfCurrency;
 @property (nonatomic,strong) id <CurrencyListDelegate> delegate;
+@property (nonatomic,strong) id CurrencyType;
 
 
 
