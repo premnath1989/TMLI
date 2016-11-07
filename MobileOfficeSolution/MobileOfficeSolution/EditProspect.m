@@ -353,13 +353,13 @@ bool PolicyOwnerSigned = TRUE;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(saveToDB) name:@"EditProfile_Save" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(check_edited) name:@"CheckEdited" object:nil];
     
-    [self addressChange];
+//    [self addressChange];
     modelAgentProfil=[[ModelAgentProfile alloc]init];
     modelDataReferral=[[ModelDataReferral alloc]init];
     
-    dictAgentData=[[NSDictionary alloc]initWithDictionary:[modelAgentProfil getAgentData]];
-    [_txtChannelName setText:pp.ReferralSource];
-    [txtKanwil setText:pp.Kanwil];
+//    dictAgentData=[[NSDictionary alloc]initWithDictionary:[modelAgentProfil getAgentData]];
+//    [_txtChannelName setText:pp.ReferralSource];
+//    [txtKanwil setText:pp.Kanwil];
 }
 
 /*code added by faiz*/
@@ -2197,1139 +2197,1159 @@ bool PolicyOwnerSigned = TRUE;
     [self setTextfieldBorder];
     [self setButtonImageAndTextAlignment];
     
-    segGender.enabled = NO;
+    txtReferralName.text = pp.ReferralName;
+    _txtNamaDepan.text = pp.ProspectName;
+    _txtNamaBelakang.text = @"";
     
-    //GET THE OCCUPATION CODE
-	[self get_unemploy_initial];
-    
-	//GET THE COUNTRY DESC
-	
-	//pp.OfficeAddressCountry =  [self getCountryDesc:pp.OfficeAddressCountry];
-    
-	//pp.ResidenceAddressCountry  =  [self getCountryDesc:pp.ResidenceAddressCountry];
-    
-	txtOtherIDType.text = pp.OtherIDTypeNo;
-    
-    //CHANGE SEGMENTATION CONTROL FONT SIZE
-    UIFont *font= [UIFont fontWithName:@"BPreplay" size:16.0f];
-    
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                           forKey:UITextAttributeFont];
-//    [segSmoker setTitleTextAttributes:attributes
-//                             forState:UIControlStateNormal];
-//    [segRigPerson setTitleTextAttributes:attributes
-//								forState:UIControlStateNormal];
-//    
-//    [segGender setTitleTextAttributes:attributes
-//                             forState:UIControlStateNormal];
-    
-    pp.OtherIDType = [pp.OtherIDType uppercaseString];
-    
-    [btnHomeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletTitle setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletRace setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletReligion setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [outletGroup setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [btnHomeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [btnOfficeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    btnOfficeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-	
-	[BtnCountryOfBirth setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    
-    [OtherIDType setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-	
-    
-    [outletOccup setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-	
-    GSTRigExempted = @"";
-		
-	if ([pp.prospect_IsGrouping isEqualToString:@"Y"]) {
-		SegIsGrouping.selectedSegmentIndex = 0;
-		AddGroup.enabled = YES;
-		AddGroup.alpha = 1.0;
-		isGrouping = @"Y";
-		[self LoadGroupArr];
-		
-	}
-	else if ([pp.prospect_IsGrouping isEqualToString:@"N"]) {
-		SegIsGrouping.selectedSegmentIndex = 1;
-		AddGroup.enabled = NO;
-		AddGroup.alpha = 0.5;
-		isGrouping = @"N";
-	}
-	else {
-		SegIsGrouping.selectedSegmentIndex = -1;
-		AddGroup.enabled = NO;
-		AddGroup.alpha = 0.5;
-		isGrouping = @"N";
-	}
-   
-    txtExactDuties.delegate= self;
-    if ([pp.registration isEqualToString:@"Y"]) {
-        GSTRigperson = @"Y";
-        segRigPerson.selectedSegmentIndex=0;
-        txtRigNO.userInteractionEnabled=YES;
-        btnregDate.userInteractionEnabled=YES;
-        segRigExempted.enabled =TRUE;
-        GSTRigExempted = @"";
-        
-    }
-    else if([pp.registration isEqualToString:@"N"]){
-        GSTRigperson = @"N";
-        segRigPerson.selectedSegmentIndex=1;
-        txtRigNO.enabled=FALSE;
-        txtRigDate.enabled =FALSE;
-        segRigExempted.enabled =TRUE;
-        segRigExempted.selectedSegmentIndex = 1;
-        txtRigNO.userInteractionEnabled=NO;
-        btnregDate.userInteractionEnabled=NO;
-        [outletRigDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletRigDOB.enabled=FALSE;
-        outletRigDOB.titleLabel.textColor = [UIColor grayColor];
+    if ([pp.ProspectGender isEqualToString:@"MALE"]) {
+            gender = @"MALE";
+            segGender.selectedSegmentIndex = 0;
     }
     else {
-        segRigPerson.selectedSegmentIndex = 1;
+        gender = @"FEMALE";
+        segGender.selectedSegmentIndex = 1;
     }
     
-    strChanges = @"No";
-    ColorHexCode *CustomColor = [[ColorHexCode alloc]init ];
-    
-    txtRigDate.userInteractionEnabled=FALSE;
-    txtRigNO.text = pp.registrationNo;
-    
-    if (!(pp.registrationDate == NULL || [pp.registrationDate isEqualToString:@"- SELECT -"] || [pp.registrationDate isEqualToString:@""] )) {
-        [outletRigDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.registrationDate]forState:UIControlStateNormal];
-        outletRigDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-        [outletRigDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-	
-    if ([pp.registrationExempted isEqualToString:@"Y"]) {
-        GSTRigExempted = @"Y";
-        segRigExempted.selectedSegmentIndex=0;
-    }
-    else if([pp.registrationExempted isEqualToString:@"N"]){
-        GSTRigExempted = @"N";
-        segRigExempted.selectedSegmentIndex=1;
-    }
-    else {
-        segRigExempted.selectedSegmentIndex = 1;
-    }
-	
-    if (!(pp.ProspectGroup == NULL || [pp.ProspectGroup isEqualToString:@"- SELECT -"] || [pp.ProspectGroup isEqualToString:@""] )) {
-		
-        [outletGroup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.ProspectGroup]forState:UIControlStateNormal];
-        outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-        [outletGroup setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-    
-    pp.ProspectTitle = [pp.ProspectTitle stringByTrimmingCharactersInSet:
-                        [NSCharacterSet whitespaceCharacterSet]];
-    if (!(pp.ProspectTitle == NULL || [pp.ProspectTitle isEqualToString:@"(null)"] || [pp.ProspectTitle isEqualToString:@"- SELECT -"] || [pp.ProspectTitle isEqualToString:@""])) {
-        [outletTitle setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", [self getTitleDesc:pp.ProspectTitle]]forState:UIControlStateNormal];
-        outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-		TitleCodeSelected = pp.ProspectTitle;
-    }
-    else {
-        [outletTitle setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-    if (!(pp.Race == NULL || [pp.Race isEqualToString:@"- SELECT -"] || [pp.Race isEqualToString:@""])) {
-        [outletRace setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Race]forState:UIControlStateNormal];
-        outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-        [outletRace setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
+    txtDOB.text = pp.ProspectDOB;
     
     if (!(pp.MaritalStatus == NULL || [pp.MaritalStatus isEqualToString:@"- SELECT -"] || [pp.MaritalStatus isEqualToString:@""])) {
         [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.MaritalStatus]forState:UIControlStateNormal];
         outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        _txtMarital.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.MaritalStatus];
     }
     else {
         [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-    
-    if (!(pp.Religion == NULL || [pp.Religion isEqualToString:@"- SELECT -"] || [pp.Religion isEqualToString:@""])) {
-        NSLog(@"religion %@",pp.Religion);
-        [outletReligion setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Religion]forState:UIControlStateNormal];
-        outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-        [outletReligion setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-    if (!(pp.Nationality == NULL || [pp.Nationality isEqualToString:@"- SELECT -"] || [pp.Nationality isEqualToString:@""])) {
-        [outletNationality setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Nationality]forState:UIControlStateNormal];
-        outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-        [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }
-    
-	
-    if (!(pp.OtherIDType == NULL || [pp.OtherIDType isEqualToString:@"- SELECT -"] || [pp.OtherIDType isEqualToString:@""])) {
-        
-        [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", [self getIDTypeDesc:pp.OtherIDType]]forState:UIControlStateNormal];
-		
-		if ([IDTypeCodeSelected isEqualToString:@""] || (IDTypeCodeSelected == NULL)) {
-			IDTypeCodeSelected = pp.OtherIDType;
-		}
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        
-        //for company case
-        if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"CR"]) {
-            companyCase = YES;
-            
-            segSmoker.enabled = NO;
-            segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            segGender.enabled = NO;
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            outletRace.enabled = NO;
-            outletRace.titleLabel.textColor = [UIColor grayColor];
-            outletMaritalStatus.enabled = NO;
-            outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-            outletReligion.enabled = NO;
-            outletReligion.titleLabel.textColor = [UIColor grayColor];
-            outletNationality.enabled = NO;
-            outletNationality.titleLabel.textColor = [UIColor grayColor];
-            
-            outletTitle.enabled = NO;
-            outletTitle.titleLabel.textColor =  [UIColor grayColor];
-			
-            //annual income
-			
-            txtAnnIncome.text = pp.AnnualIncome;
-            
-            txtAnnIncome.enabled = TRUE;
-            txtAnnIncome.backgroundColor = [UIColor whiteColor];
-			
-            outletDOB.enabled = NO;
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-            [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-            outletDOB.titleLabel.textColor = [UIColor grayColor];
-            
-        }
-        else {
-            companyCase = NO;
-            outletOccup.enabled = YES;
-        }
-    }
-    else {
-        [self.OtherIDType setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        [txtOtherIDType setText:@""];
-        txtOtherIDType.enabled = NO;
-    }
-    
-    if ([pp.IDTypeNo isEqualToString:@""] || pp.IDTypeNo == NULL) {
-        pp.IDTypeNo = @"";
-        
-		if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"])
-		{
-			txtDOB.backgroundColor = [UIColor whiteColor];
-			[outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-			outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-			
-			segGender.enabled = NO;
-			
-			txtDOB.enabled = FALSE;
-			outletOccup.enabled = NO;
-			[outletOccup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-			outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-			outletOccup.titleLabel.textColor = [UIColor grayColor];
-		}
-		else
-		{
-			//segGender.enabled = YES;
-            NSLog(@"dob %@",pp.ProspectDOB);
-			[outletDOB setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@"%@",pp.ProspectDOB] forState:UIControlStateNormal];
-			outletDOB.hidden = NO;
-		}
-        txtDOB.hidden = YES;
-    }
-    else {
-        txtIDType.text = pp.IDTypeNo;
-        txtIDType.enabled = NO;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        txtDOB.text = pp.ProspectDOB;
-        
-        segGender.enabled = NO;
-    }	
-	
-	//NSString *COB = @"";
-	/*if (![pp.countryOfBirth isEqualToString:@"(null)"] && pp.countryOfBirth != NULL && pp.countryOfBirth !=nil && ![pp.countryOfBirth isEqualToString: @""]) {
-        COB = [self getCountryDesc:pp.countryOfBirth];
-        pp.countryOfBirth =   [self getCountryDesc:pp.countryOfBirth];
-		
-		[BtnCountryOfBirth setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.countryOfBirth]forState:UIControlStateNormal];
-        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
-    else {
-		[BtnCountryOfBirth setTitle:@"- SELECT -" forState:UIControlStateNormal];
-    }*/
-    
-    //HOME ADD - Eliminate "null" value
-    if ([pp.OtherIDTypeNo isEqualToString:@"(null)"] || pp.OtherIDTypeNo == NULL) {
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        [txtOtherIDType setText:@""];
-        txtOtherIDType.enabled = NO;
-    }
-    else {
-        txtOtherIDType.text = pp.OtherIDTypeNo;
-    }
-    
-    if (![pp.ResidenceAddress1 isEqualToString:@"(null)"] || pp.ResidenceAddress1 != NULL) {
-        txtHomeAddr1.text = pp.ResidenceAddress1;
-    }
-    else {
-        txtHomeAddr1.text = @"";
-    }
-    
-    if (![pp.ResidenceAddress2 isEqualToString:@"(null)"] || pp.ResidenceAddress2 != NULL) {
-        txtHomeAddr2.text = pp.ResidenceAddress2;
-    }
-    else {
-        txtHomeAddr2.text = @"";
-    }
-    
-    if (![pp.ResidenceAddress3 isEqualToString:@"(null)"] || pp.ResidenceAddress3 != NULL) {
-        txtHomeAddr3.text = pp.ResidenceAddress3;
-    }
-    else {
-        txtHomeAddr3.text = @"";
-    }
-    
-    if (![pp.ResidenceAddressCountry isEqualToString:@"(null)"] || pp.ResidenceAddressCountry != NULL) {
-        txtHomeCountry.text = pp.ResidenceAddressCountry;
-    }
-    else {
-        txtHomeCountry.text = @"";
-    }
-    
-    if (![pp.ResidenceAddressPostCode isEqualToString:@"(null)"] || pp.ResidenceAddressPostCode != NULL) {
-        txtHomePostCode.text = pp.ResidenceAddressPostCode;
-    }
-    else {
-        txtHomeCountry.text = @"";
-    }
-    
-    if ([pp.ResidenceAddressTown isEqualToString:@"(null)"] || pp.ResidenceAddressTown == NULL) {
-        txtHomeTown.text = @"";
-        //[_outletKota setTitle:@"" forState:UIControlStateNormal];
-    }
-    else {
-        txtHomeTown.text = pp.ResidenceAddressTown;
-        //[_outletKota setTitle:pp.ResidenceAddressTown forState:UIControlStateNormal];
-    }
-    
-    //Office Add  - Eliminate "null" value
-    
-    if (![pp.OfficeAddress1 isEqualToString:@"(null)"] || pp.OfficeAddress1 != NULL) {
-        txtOfficeAddr1.text = pp.OfficeAddress1;
-    }
-    else {
-        txtOfficeAddr1.text = @"";
-    }
-    
-    if (![pp.OfficeAddress2 isEqualToString:@"(null)"] || pp.OfficeAddress2 != NULL ) {
-        txtOfficeAddr2.text = pp.OfficeAddress2;
-    }
-    else {
-        txtOfficeAddr2.text = @"";
-    }
-    
-    if (![pp.OfficeAddress3 isEqualToString:@"(null)"] || pp.OfficeAddress3 != NULL) {
-        txtOfficeAddr3.text = pp.OfficeAddress3;
-    }
-    else {
-        txtOfficeAddr3.text = @"";
-    }
-	
-    if (![pp.OfficeAddressPostCode isEqualToString:@"(null)"] || pp.OfficeAddressPostCode != NULL) {
-        txtOfficePostCode.text = pp.OfficeAddressPostCode;
-    }
-    else {
-        txtOfficePostCode.text = @"";
-    }
-    
-    if (![pp.OfficeAddressCountry isEqualToString:@"(null)"] || pp.OfficeAddressCountry != NULL) {
-        txtOfficeCountry.text = pp.OfficeAddressCountry;
-    }
-    else {
-        txtOfficeCountry.text = @"";
-    }
-    
-    if ([pp.OfficeAddressTown isEqualToString:@"(null)"] || pp.OfficeAddressTown == NULL) {
-        txtOfficeTown.text = @"";
-        //[_outletKotaOffice setTitle:@"" forState:UIControlStateNormal];
-    }
-    else {
-        txtOfficeTown.text = pp.OfficeAddressTown;
-        //[_outletKotaOffice setTitle:pp.OfficeAddressTown forState:UIControlStateNormal];
-    }
-	
-    if (![pp.ProspectRemark isEqualToString:@"(null)"] || pp.ProspectRemark != NULL) {
-        txtRemark.text = pp.ProspectRemark;
-    }
-    else {
-        txtRemark.text = @"";
-    }
-	
-    if ([pp.ProspectEmail isEqualToString:@"(null)"] || pp.ProspectEmail == NULL) {
-        
-        txtEmail.text = @"";
-	}
-    else {
-		txtEmail.text = pp.ProspectEmail;
-    }
-	
-    if (![pp.ExactDuties isEqualToString:@"(null)"] || pp.ExactDuties != NULL) {
-        txtExactDuties.text = pp.ExactDuties;
-    }
-    else {
-        txtExactDuties.text = @"";
-    }
-    
-    txtrFullName.text = pp.ProspectName;
-    if (!([pp.ResidenceAddressCountry isEqualToString:@""]||pp.ResidenceAddressCountry == NULL) && ![pp.ResidenceAddressCountry isEqualToString:@"MALAYSIA"]) {
-        checked = YES;
-        txtHomeTown.backgroundColor = [UIColor whiteColor];
-        txtHomeState.backgroundColor = [UIColor whiteColor];
-        txtHomeTown.enabled = YES;
-        txtHomeState.enabled = NO;
-        txtHomeState.backgroundColor =  [CustomColor colorWithHexString:@"FFFFFF"];
-        txtHomeCountry.hidden = YES;
-        btnHomeCountry.hidden = NO;
-        [btnForeignHome setImage: [UIImage imageNamed:@"tickCheckBox.png"] forState:UIControlStateNormal];
-        
-        btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [btnHomeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",pp.ResidenceAddressCountry] forState:UIControlStateNormal];
-    }
-    else {
-        btnHomeCountry.hidden = YES;
-        txtHomeCountry.text = pp.ResidenceAddressCountry;
-    }
-    
-    if (!([pp.OfficeAddressCountry isEqualToString:@""]||pp.OfficeAddressCountry == NULL) && ![pp.OfficeAddressCountry isEqualToString:@"MALAYSIA"]) {
-        
-        checked2 = YES;
-        txtOfficeTown.backgroundColor = [UIColor whiteColor];
-        txtOfficeState.backgroundColor = [UIColor whiteColor];
-        txtOfficeTown.enabled = YES;
-        txtOfficeState.enabled = NO;
-        txtOfficeState.backgroundColor =  [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOfficeCountry.hidden = YES;
-        btnOfficeCountry.hidden = NO;
-        [btnForeignOffice setImage: [UIImage imageNamed:@"tickCheckBox.png"] forState:UIControlStateNormal];
-        
-        btnOfficeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [btnOfficeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",pp.OfficeAddressCountry] forState:UIControlStateNormal];
-    }
-    else {
-        btnOfficeCountry.hidden = YES;
-        txtOfficeCountry.text = pp.OfficeAddressCountry;
-    }
-    
-    if (![pp.AnnualIncome isEqualToString:@"(null)"]) {
-        txtAnnIncome.text = pp.AnnualIncome;
-    }
-    else {
-        txtAnnIncome.text = @"";
-    }
-    
-    if (![pp.BussinessType isEqualToString:@"(null)"]) {
-        txtBussinessType.text = pp.BussinessType;
-    }
-    else {
-        txtBussinessType.text = @"";
-    }
-    
-    if ([pp.Smoker isEqualToString:@"Y"]) {
-        ClientSmoker = @"Y";
-        segSmoker.selectedSegmentIndex = 0;
-    }
-    else if([pp.Smoker isEqualToString:@"N"]){
-        ClientSmoker = @"N";
-        segSmoker.selectedSegmentIndex = 1;
-    }
-    else {
-		segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-    }
-    
-    if ([pp.ProspectGender isEqualToString:@"MALE"]) {
-        gender = @"MALE";
-        segGender.selectedSegmentIndex = 0;
-    }
-    else if ([pp.ProspectGender isEqualToString:@"FEMALE"]) {
-        gender = @"FEMALE";
-        segGender.selectedSegmentIndex = 1;
-    }
-    else {
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-    }
-    
-    if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"]) {
-        companyCase = YES;
-		
-        segSmoker.enabled = NO;
-        segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        segGender.enabled = NO;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        outletRace.enabled = NO;
-        outletRace.titleLabel.textColor = [UIColor grayColor];
-        outletMaritalStatus.enabled = NO;
-        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-        outletReligion.enabled = NO;
-        outletReligion.titleLabel.textColor = [UIColor grayColor];
-        outletNationality.enabled = NO;
-        outletNationality.titleLabel.textColor = [UIColor grayColor];
-        outletOccup.enabled = NO;
-        outletOccup.titleLabel.textColor = [UIColor grayColor];
-        
-        outletTitle.enabled = NO;
-        outletTitle.titleLabel.textColor =  [UIColor grayColor];
-        
-        //annual income
-        txtAnnIncome.enabled = TRUE;
-        txtAnnIncome.backgroundColor = [UIColor whiteColor];
-        txtAnnIncome.text = pp.AnnualIncome;
-        
-        //IC
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtIDType.enabled = NO;
-    }
-    else {
-        companyCase = NO;
-        outletOccup.enabled = YES;
-    }
-    
-    txtContact1.text = @"";
-    txtContact2.text = @"";
-    txtContact3.text = @"";
-    txtContact4.text = @"";
-    
-    txtPrefix1.text = @"";
-    txtPrefix2.text = @"";
-    txtPrefix3.text = @"";
-    txtPrefix4.text = @"";
-    
-    const char *dbpath = [databasePath UTF8String];
-    sqlite3_stmt *statement;
-    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT ContactCode, ContactNo, Prefix FROM contact_input where indexNo = %@ ", pp.ProspectID];
-        
-        const char *query_stmt = [querySQL UTF8String];
-        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-        {
-            int a = 0;
-            NSString *ContactCode;
-            NSString *ContactNo;
-            NSString *Prefix;
-            while (sqlite3_step(statement) == SQLITE_ROW){
-                ContactCode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                ContactNo = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                Prefix = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-				
-                if (a==0) {
-                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
-                        txtContact2.text  = ContactNo;
-                        txtPrefix2.text = Prefix;
-                        
-                        temp_pre2=Prefix;
-                        temp_cont2 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
-                        txtContact1.text = ContactNo;
-                        txtPrefix1.text = Prefix;
-                        
-                        temp_pre1=Prefix;
-                        temp_cont1 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
-                        txtContact4.text = ContactNo;
-                        txtPrefix4.text = Prefix;
-                        
-                        temp_pre4=Prefix;
-                        temp_cont4 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
-                        txtContact3.text = ContactNo;
-                        txtPrefix3.text = Prefix;
-                        
-                        temp_pre3=Prefix;
-                        temp_cont3 = ContactNo;
-                    }
-                }
-                else if (a==1) {
-                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
-                        txtContact2.text  = ContactNo;
-                        txtPrefix2.text = Prefix;
-                        
-                        temp_pre2=Prefix;
-                        temp_cont2 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
-                        txtContact1.text = ContactNo;
-                        txtPrefix1.text = Prefix;
-                        
-                        temp_pre1=Prefix;
-                        temp_cont1 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
-                        txtContact4.text = ContactNo;
-                        txtPrefix4.text = Prefix;
-                        
-                        temp_pre4=Prefix;
-                        temp_cont4 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
-                        txtContact3.text = ContactNo;
-                        txtPrefix3.text = Prefix;
-                        
-                        temp_pre3=Prefix;
-                        temp_cont3 = ContactNo;
-                    }
-                }
-                else if (a==2) {
-                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
-                        txtContact2.text  = ContactNo;
-                        txtPrefix2.text = Prefix;
-                        
-                        temp_pre2=Prefix;
-                        temp_cont2 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
-                        txtContact1.text = ContactNo;
-                        txtPrefix1.text = Prefix;
-                        
-                        temp_pre1=Prefix;
-                        temp_cont1 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
-                        txtContact4.text = ContactNo;
-                        txtPrefix4.text = Prefix;
-                        
-                        temp_pre4=Prefix;
-                        temp_cont4 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
-                        txtContact3.text = ContactNo;
-                        txtPrefix3.text = Prefix;
-                        
-                        temp_pre3=Prefix;
-                        temp_cont3 = ContactNo;
-                    }
-                }
-                else if (a==3) {
-                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
-                        txtContact2.text  = ContactNo;
-                        txtPrefix2.text = Prefix;
-                        
-                        temp_pre2=Prefix;
-                        temp_cont2 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
-                        txtContact1.text = ContactNo;
-                        txtPrefix1.text = Prefix;
-                        
-                        temp_pre1=Prefix;
-                        temp_cont1 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
-                        txtContact4.text = ContactNo;
-                        txtPrefix4.text = Prefix;
-                        
-                        temp_pre4=Prefix;
-                        temp_cont4 = ContactNo;
-                    }
-                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
-                        txtContact3.text = ContactNo;
-                        txtPrefix3.text = Prefix;
-                        
-                        temp_pre3=Prefix;
-                        temp_cont3 = ContactNo;
-                    }
-                }
-                a = a + 1;
-            }
-            sqlite3_finalize(statement);
-            [self PopulateOccupCode];
-            
-            NSString *otherIDType = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
-									 [NSCharacterSet whitespaceCharacterSet]];
-            [self PopulateOtherIDCode];
-            
-            if([otherIDType isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                //Enable DOB
-                //Disable - New IC field and Other ID field
-                
-                //TITLE
-                txtBussinessType.enabled = false;
-                txtBussinessType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                
-                txtRemark.editable = false;
-                txtRemark.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                
-                outletTitle.enabled = NO;
-                outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletTitle setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletTitle.titleLabel.textColor = [UIColor grayColor];
-                [self PopulateTitle];
-				
-				BtnCountryOfBirth.enabled = NO;
-                BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [BtnCountryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                BtnCountryOfBirth.titleLabel.textColor = [UIColor grayColor];
-                
-                //RACE
-                outletRace.enabled = NO;
-                outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletRace setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletRace.titleLabel.textColor = [UIColor grayColor];
-                
-                
-                //NATIONALITY
-                outletNationality.enabled = NO;
-                outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletNationality setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletNationality.titleLabel.textColor = [UIColor grayColor];
-                
-                
-                //RELIGION
-                outletReligion.enabled = NO;
-                outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletReligion setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletReligion.titleLabel.textColor = [UIColor grayColor];
-                
-                
-                //MARITAL
-                outletMaritalStatus.enabled = NO;
-                outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletMaritalStatus setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-                
-                //OCCUPATION
-                outletOccup.enabled = NO;
-				outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-				[outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"MINOR"]forState:UIControlStateNormal];
-				outletOccup.titleLabel.textColor = [UIColor grayColor];
-				txtClass.text = @"2";
-				OccupCodeSelected = @"OCC01360";
-				[_OccupationList setTitle:@"MINOR"];
-                
-                //group
-                outletGroup.enabled = NO;
-                outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                [outletGroup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletGroup.titleLabel.textColor = [UIColor grayColor];
-				
-                txtEmail.enabled = false;
-                
-                txtAnnIncome.text = @"";
-                txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtAnnIncome.enabled =false;
-                
-                outletTitle.enabled = NO;
-                outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-                
-                [outletTitle setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-                outletTitle.titleLabel.textColor = [UIColor grayColor];
-                
-                companyCase = NO;
-                segGender.enabled = FALSE;
-                segSmoker.enabled = FALSE;
-                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtIDType.text = @"";
-                txtIDType.enabled = NO;
-                
-                txtDOB.hidden = YES;
-                outletDOB.hidden = NO;
-                //outletDOB.enabled = YES;
-                txtDOB.backgroundColor = [UIColor whiteColor];
-				
-				OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-				txtOtherIDType.enabled = NO;
-				txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-				txtOtherIDType.text =@"";
-                
-                txtExactDuties.editable = NO;
-                txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                
-                txtHomeAddr1.enabled = NO;
-                txtHomeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                
-                txtHomeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtHomeAddr2.enabled = NO;
-                
-                txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtHomeAddr3.enabled = NO;
-                
-                txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtHomePostCode.enabled = NO;
-                
-                txtOfficeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtOfficeAddr1.enabled = NO;
-                
-                txtOfficeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtOfficeAddr2.enabled = NO;
-                
-                txtOfficeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtOfficeAddr3.enabled = NO;
-                
-                txtOfficePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtOfficePostCode.enabled = NO;
-                
-                txtRigNO.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                txtRigNO.enabled = NO;
-                txtRigNO.text =@"";
-                
-                txtRigDate.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                outletRigDOB.enabled = NO;
-                outletRigDOB.titleLabel.textColor = [UIColor grayColor];
-                txtRigDate.text =@"";
-                
-                
-                segRigPerson.selectedSegmentIndex=1;
-                segRigPerson.enabled =NO;
-                
-                segRigExempted.selectedSegmentIndex =0;
-                segRigExempted.enabled =NO;
-				
-            }
-            
-            if([OccpCatCode isEqualToString:@"HSEWIFE"] || [OccpCatCode isEqualToString:@"JUV"] || [OccpCatCode isEqualToString:@"STU"])
-            {
-                ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
-                
-                if (![[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] && ![pp.OtherIDType isEqualToString:@"CR"])
-                {
-                    txtAnnIncome.text = @"";
-                    txtAnnIncome.enabled = NO;
-                    txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-                }
-            }
-            else if([OccpCatCode isEqualToString:@"RET"] ||[OccpCatCode isEqualToString:@"UNEMP"])
-            {
-                txtAnnIncome.enabled = YES;
-                txtAnnIncome.backgroundColor = [UIColor whiteColor];
-            }
-            else {
-                txtAnnIncome.enabled = YES;
-                txtAnnIncome.backgroundColor = [UIColor whiteColor];
-				
-            }
-            
-            txtHomeState.text = @"";
-            if (![[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && [txtHomeCountry.text isEqualToString:@"MALAYSIA"]) {
-                
-                [self PopulateState];
-                //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                [txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-            }
-            else if (![[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && ![txtHomeCountry.text isEqualToString:@"MALAYSIA"]) {
-                
-                txtHomeState.text = pp.ResidenceAddressState;
-            }
-            else {
-                
-                txtHomeState.text = @"";
-                //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                [txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-            }
-            
-            if (![[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && [txtOfficeCountry.text isEqualToString:@"MALAYSIA"]) {
-                
-                [self PopulateOfficeState];
-                //[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                [txtOfficePostCode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-            }
-            else if (![[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && ![txtOfficeCountry.text isEqualToString:@"MALAYSIA"]) {
-                
-                txtOfficeState.text = pp.OfficeAddressState;
-            }
-            else {
-                
-                txtOfficeState.text = @"";
-                //[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                [txtOfficePostCode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-            }
-        }
-        sqlite3_close(contactDB);
-        
-    }
-    else {
-        NSLog(@"Error opening database");
-    }
-    
-	dbpath = Nil;
-	statement = Nil;
-    
-    // WHEHN EDIT CLIENT PROFILE - USER NOT ABLE TO EDIT THE NEW IC NO, OTHER ID TYPE, OTHER ID
-		
-    txtIDType.enabled = FALSE;
-    txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-	if (![OtherIDType.titleLabel.text isEqualToString:@"- SELECT -"]) {
-		txtOtherIDType.enabled = YES;
-		txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-		
-		OtherIDType.enabled = NO;
-		OtherIDType.titleLabel.textColor = [UIColor grayColor];
-	}
-    
-    segGender.enabled = NO;
-    
-    NSString *trim_otheridtype = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
-                                  [NSCharacterSet whitespaceCharacterSet]];
-    
-    if ([trim_otheridtype isEqualToString:@"EXPECTED DELIVERY DATE"])
-    {
-        txtEmail.enabled = false;
-        txtEmail.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        txtPrefix1.enabled = false;
-        txtPrefix2.enabled = false;
-        txtPrefix3.enabled = false;
-        txtPrefix4.enabled = false;
-        
-        txtPrefix1.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtPrefix2.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtPrefix3.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtPrefix4.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        txtContact1.enabled = false;
-        txtContact2.enabled = false;
-        txtContact3.enabled = false;
-        txtContact4.enabled = false;
-        
-        txtContact1.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtContact2.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtContact3.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtContact4.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        txtAnnIncome.text = @"";
-        txtExactDuties.text = @"";
-        txtHomeAddr1.text = @"";
-        txtHomeAddr2.text = @"";
-        txtHomeAddr3.text = @"";
-        
-        txtOfficeAddr1.text = @"";
-        txtOfficeAddr2.text =@"";
-        txtOfficeAddr3.text = @"";
-        
-        txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtAnnIncome.enabled =false;
-        
-        txtHomeAddr1.enabled = NO;
-        txtHomeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        txtHomeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtHomeAddr2.enabled = NO;
-        
-        txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtHomeAddr3.enabled = NO;
-        
-        txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtHomePostCode.enabled = NO;
-        
-        txtOfficeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOfficeAddr1.enabled = NO;
-        
-        txtOfficeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOfficeAddr2.enabled = NO;
-        
-        txtOfficeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOfficeAddr3.enabled = NO;
-        
-        txtOfficePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOfficePostCode.enabled = NO;
-        
-        txtExactDuties.editable = NO;
-        txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        [btnForeignHome setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        [btnForeignOffice setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        
-        btnForeignHome.enabled = false;
-        btnForeignOffice.enabled = false;
-        btnHomeCountry.enabled = false;
-        btnOfficeCountry.enabled = false;
-		
-    }
-    
-    //KY - IF COMPANY , DISABLE DOB
-    if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"])
-    {
-        //IMPORTANT ! - outletDOB AND txtDOB were overlap together, so when need to display the outletDOB button, u need to hide the txtDOB.
-		
-        txtDOB.hidden = YES;
-        outletDOB.hidden = NO;
-        
-        outletDOB.enabled = NO;
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletDOB.titleLabel.textColor = [UIColor grayColor];
-		
-		BtnCountryOfBirth.enabled = NO;
-		BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-		[BtnCountryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-		BtnCountryOfBirth.titleLabel.textColor = [UIColor grayColor];
-		
-    }
-    else if([pp.ProspectDOB isEqualToString:@"- SELECT -"])
-    {
-        txtDOB.hidden = YES;
-        outletDOB.hidden = NO;
-        
-        outletDOB.enabled = NO;
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
-        outletDOB.titleLabel.textColor = [UIColor grayColor];
-		
-    }
-    else {
-		txtDOB.text = pp.ProspectDOB;
-		outletDOB.hidden = YES;
-		txtDOB.hidden = NO;
-		txtDOB.enabled = NO;
-		txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-    }
-	
-	//fixed for dob missing value if IC exist:
-	if (txtIDType.text.length == 12 && [[textFields trimWhiteSpaces:outletDOB.titleLabel.text] isEqualToString:@"- Select -"]) {
-		[self GenerateDOB];
-	}
-    
-    //added by faiz//
-    [outletExpiryDate setTitle:pp.IDExpirityDate forState:UIControlStateNormal];
-    txtNip.text=pp.NIP;
-    [_outletBranchCode setTitle:pp.BranchCode forState:UIControlStateNormal];
-    [_outletBranchName setTitle:pp.BranchName forState:UIControlStateNormal];
-    [outletReferralSource setTitle:pp.ReferralSource forState:UIControlStateNormal];
-    txtKcu.text=pp.KCU;
-    txtReferralName.text=pp.ReferralName;
-    txtNPWPNo.text=pp.NPWPNo;
-    
-    NSDateFormatter *expiryDateFormat = [[NSDateFormatter alloc] init];
-    [expiryDateFormat setDateFormat:@"dd/MM/yyyy"];
-    NSDate *dateExpiry = [expiryDateFormat dateFromString:pp.IDExpirityDate];
-    // Convert date object to desired output format
-    [expiryDateFormat setDateFormat:@"yyyy-MM-dd"];
-    NSString *newExpiryDate = [expiryDateFormat stringFromDate:dateExpiry];
-    if ([pp.IDExpirityDate isEqualToString:@"(null)"]){
-        [outletExpiryDate setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@""] forState:UIControlStateNormal];
-    }
-    else{
-    [outletExpiryDate setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@"%@",pp.IDExpirityDate] forState:UIControlStateNormal];
-    }
-    
-    
-    _txtCountryOfBirth.text=pp.countryOfBirth;
-    _txtHomeVillage.text=pp.HomeVillage;
-    _txtHomeDistrict.text=pp.HomeDistrict;
-    _txtHomeProvince.text=pp.HomeProvicne;
-    _txtOfficeVillage.text=pp.OfficeVillage;
-    _txtOfficeDistrict.text=pp.OfficeDistrict;
-    _txtOfficeProvince.text=pp.OfficeProvicne;
-
-    /*if (![pp.HomeProvicne isEqualToString:@"(null)"]){
-        [_outletProvinsi setTitle:pp.HomeProvicne forState:UIControlStateNormal];
-    }
-    if (![pp.OfficeProvicne isEqualToString:@"(null)"]){
-        [_outletProvinsiOffice setTitle:pp.OfficeProvicne forState:UIControlStateNormal];    
-    }*/
-    
-    if (![pp.ClientSegmentation isEqualToString:@"(null)"]){
-        [_outletVIPClass setTitle:pp.ClientSegmentation forState:UIControlStateNormal];
+         _txtMarital.text = @"- SELECT -";
     }
 
-    if (![pp.SourceIncome isEqualToString:@"(null)"]){
-        [_outletSourceIncome setTitle:pp.SourceIncome forState:UIControlStateNormal];
-    }
-
+   
     
-    if ([[pp.ResidenceAddressCountry uppercaseString] isEqualToString:@"INDONESIA"]){
-        [_switchCountryHome setOn:NO];
-        [btnHomeCountry setHidden:YES];
-        [_outletKota setHidden:NO];
-        [_outletProvinsi setHidden:NO];
-        [txtHomeCountry setHidden:NO];
-        checked = NO;
-    }
-    else{
-        [_switchCountryHome setOn:YES];
-        [btnHomeCountry setHidden:NO];
-        [_outletKota setHidden:YES];
-        [_outletProvinsi setHidden:YES];
-        [txtHomeCountry setHidden:YES];
-        checked = YES;
-    }
-
-    if (([[pp.OfficeAddressCountry uppercaseString] isEqualToString:@"INDONESIA"])||([[pp.OfficeAddressCountry uppercaseString] isEqualToString:@""])){
-        [_switchCountryOffice setOn:NO];
-        [btnOfficeCountry setHidden:YES];
-        [_outletKotaOffice setHidden:NO];
-        [_outletProvinsiOffice setHidden:NO];
-        [txtOfficeCountry setHidden:NO];
-        checked2 = NO;
-    }
-    else{
-        [_switchCountryOffice setOn:YES];
-        [btnOfficeCountry setHidden:NO];
-        [_outletKotaOffice setHidden:YES];
-        [_outletProvinsiOffice setHidden:YES];
-        [txtOfficeCountry setHidden:YES];
-        checked2 = YES;
-    }
-
-    [BtnCountryOfBirth setHidden:YES];
-    //[btnOfficeCountry setHidden:YES];
-    //[btnHomeCountry setHidden:YES];
-    //[txtHomeCountry setHidden:NO];
-    //[txtOfficeCountry setHidden:NO];
     
-    txtHomeCountry.text = pp.ResidenceAddressCountry;
-    txtOfficeCountry.text = pp.OfficeAddressCountry;
-    [btnHomeCountry setTitle:pp.ResidenceAddressCountry forState:UIControlStateNormal];
-    [btnOfficeCountry setTitle:pp.OfficeAddressCountry forState:UIControlStateNormal];
     
-    //segGender.enabled = YES;
-    txtDOB.hidden=YES;
-    //[txtOtherIDType setEnabled:YES];
-    //[txtOtherIDType setBackgroundColor:[UIColor whiteColor]];
+    
+    
+//    segGender.enabled = NO;
+//    
+//    //GET THE OCCUPATION CODE
+////	[self get_unemploy_initial];
+//
+//    
+//	txtOtherIDType.text = pp.OtherIDTypeNo;
+//    
+//    //CHANGE SEGMENTATION CONTROL FONT SIZE
+//    UIFont *font= [UIFont fontWithName:@"BPreplay" size:16.0f];
+//    
+////    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+////                                                           forKey:UITextAttributeFont];
+//
+//    
+////    pp.OtherIDType = [pp.OtherIDType uppercaseString];
+//    
+//    [btnHomeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletTitle setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletRace setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletReligion setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [outletGroup setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [btnHomeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [btnOfficeCountry setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    btnOfficeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//	
+//	[BtnCountryOfBirth setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    
+//    [OtherIDType setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//	
+//    
+//    [outletOccup setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//	
+//    GSTRigExempted = @"";
+//		
+//	if ([pp.prospect_IsGrouping isEqualToString:@"Y"]) {
+//		SegIsGrouping.selectedSegmentIndex = 0;
+//		AddGroup.enabled = YES;
+//		AddGroup.alpha = 1.0;
+//		isGrouping = @"Y";
+//		[self LoadGroupArr];
+//		
+//	}
+//	else if ([pp.prospect_IsGrouping isEqualToString:@"N"]) {
+//		SegIsGrouping.selectedSegmentIndex = 1;
+//		AddGroup.enabled = NO;
+//		AddGroup.alpha = 0.5;
+//		isGrouping = @"N";
+//	}
+//	else {
+//		SegIsGrouping.selectedSegmentIndex = -1;
+//		AddGroup.enabled = NO;
+//		AddGroup.alpha = 0.5;
+//		isGrouping = @"N";
+//	}
+//   
+//    txtExactDuties.delegate= self;
+//    if ([pp.registration isEqualToString:@"Y"]) {
+//        GSTRigperson = @"Y";
+//        segRigPerson.selectedSegmentIndex=0;
+//        txtRigNO.userInteractionEnabled=YES;
+//        btnregDate.userInteractionEnabled=YES;
+//        segRigExempted.enabled =TRUE;
+//        GSTRigExempted = @"";
+//        
+//    }
+//    else if([pp.registration isEqualToString:@"N"]){
+//        GSTRigperson = @"N";
+//        segRigPerson.selectedSegmentIndex=1;
+//        txtRigNO.enabled=FALSE;
+//        txtRigDate.enabled =FALSE;
+//        segRigExempted.enabled =TRUE;
+//        segRigExempted.selectedSegmentIndex = 1;
+//        txtRigNO.userInteractionEnabled=NO;
+//        btnregDate.userInteractionEnabled=NO;
+//        [outletRigDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//        outletRigDOB.enabled=FALSE;
+//        outletRigDOB.titleLabel.textColor = [UIColor grayColor];
+//    }
+//    else {
+//        segRigPerson.selectedSegmentIndex = 1;
+//    }
+//    
+//    strChanges = @"No";
+//    ColorHexCode *CustomColor = [[ColorHexCode alloc]init ];
+//    
+//    txtRigDate.userInteractionEnabled=FALSE;
+//    txtRigNO.text = pp.registrationNo;
+//    
+//    if (!(pp.registrationDate == NULL || [pp.registrationDate isEqualToString:@"- SELECT -"] || [pp.registrationDate isEqualToString:@""] )) {
+//        [outletRigDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.registrationDate]forState:UIControlStateNormal];
+//        outletRigDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletRigDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//	
+//    if ([pp.registrationExempted isEqualToString:@"Y"]) {
+//        GSTRigExempted = @"Y";
+//        segRigExempted.selectedSegmentIndex=0;
+//    }
+//    else if([pp.registrationExempted isEqualToString:@"N"]){
+//        GSTRigExempted = @"N";
+//        segRigExempted.selectedSegmentIndex=1;
+//    }
+//    else {
+//        segRigExempted.selectedSegmentIndex = 1;
+//    }
+//	
+//    if (!(pp.ProspectGroup == NULL || [pp.ProspectGroup isEqualToString:@"- SELECT -"] || [pp.ProspectGroup isEqualToString:@""] )) {
+//		
+//        [outletGroup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.ProspectGroup]forState:UIControlStateNormal];
+//        outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletGroup setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//    
+//    pp.ProspectTitle = [pp.ProspectTitle stringByTrimmingCharactersInSet:
+//                        [NSCharacterSet whitespaceCharacterSet]];
+//    if (!(pp.ProspectTitle == NULL || [pp.ProspectTitle isEqualToString:@"(null)"] || [pp.ProspectTitle isEqualToString:@"- SELECT -"] || [pp.ProspectTitle isEqualToString:@""])) {
+//        [outletTitle setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", [self getTitleDesc:pp.ProspectTitle]]forState:UIControlStateNormal];
+//        outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//		TitleCodeSelected = pp.ProspectTitle;
+//    }
+//    else {
+//        [outletTitle setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//    if (!(pp.Race == NULL || [pp.Race isEqualToString:@"- SELECT -"] || [pp.Race isEqualToString:@""])) {
+//        [outletRace setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Race]forState:UIControlStateNormal];
+//        outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletRace setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//    
+//    if (!(pp.MaritalStatus == NULL || [pp.MaritalStatus isEqualToString:@"- SELECT -"] || [pp.MaritalStatus isEqualToString:@""])) {
+//        [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.MaritalStatus]forState:UIControlStateNormal];
+//        outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//
+//    if (!(pp.Religion == NULL || [pp.Religion isEqualToString:@"- SELECT -"] || [pp.Religion isEqualToString:@""])) {
+//        NSLog(@"religion %@",pp.Religion);
+//        [outletReligion setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Religion]forState:UIControlStateNormal];
+//        outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletReligion setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//    if (!(pp.Nationality == NULL || [pp.Nationality isEqualToString:@"- SELECT -"] || [pp.Nationality isEqualToString:@""])) {
+//        [outletNationality setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.Nationality]forState:UIControlStateNormal];
+//        outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//        [outletNationality setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }
+//    
+//	
+//    if (!(pp.OtherIDType == NULL || [pp.OtherIDType isEqualToString:@"- SELECT -"] || [pp.OtherIDType isEqualToString:@""])) {
+//        
+//        [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", [self getIDTypeDesc:pp.OtherIDType]]forState:UIControlStateNormal];
+//		
+//		if ([IDTypeCodeSelected isEqualToString:@""] || (IDTypeCodeSelected == NULL)) {
+//			IDTypeCodeSelected = pp.OtherIDType;
+//		}
+//        
+//        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        
+//        //for company case
+//        if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"CR"]) {
+//            companyCase = YES;
+//            
+//            segSmoker.enabled = NO;
+//            segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
+//            
+//            segGender.enabled = NO;
+//            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
+//            
+//            outletRace.enabled = NO;
+//            outletRace.titleLabel.textColor = [UIColor grayColor];
+//            outletMaritalStatus.enabled = NO;
+//            outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
+//            outletReligion.enabled = NO;
+//            outletReligion.titleLabel.textColor = [UIColor grayColor];
+//            outletNationality.enabled = NO;
+//            outletNationality.titleLabel.textColor = [UIColor grayColor];
+//            
+//            outletTitle.enabled = NO;
+//            outletTitle.titleLabel.textColor =  [UIColor grayColor];
+//			
+//            //annual income
+//			
+//            txtAnnIncome.text = pp.AnnualIncome;
+//            
+//            txtAnnIncome.enabled = TRUE;
+//            txtAnnIncome.backgroundColor = [UIColor whiteColor];
+//			
+//            outletDOB.enabled = NO;
+//            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//            [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//            outletDOB.titleLabel.textColor = [UIColor grayColor];
+//            
+//        }
+//        else {
+//            companyCase = NO;
+//            outletOccup.enabled = YES;
+//        }
+//    }
+//    else {
+//        [self.OtherIDType setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
+//        [txtOtherIDType setText:@""];
+//        txtOtherIDType.enabled = NO;
+//    }
+//    
+//    if ([pp.IDTypeNo isEqualToString:@""] || pp.IDTypeNo == NULL) {
+//        pp.IDTypeNo = @"";
+//        
+//		if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"])
+//		{
+//			txtDOB.backgroundColor = [UIColor whiteColor];
+//			[outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//			outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//			
+//			segGender.enabled = NO;
+//			
+//			txtDOB.enabled = FALSE;
+//			outletOccup.enabled = NO;
+//			[outletOccup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//			outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//			outletOccup.titleLabel.textColor = [UIColor grayColor];
+//		}
+//		else
+//		{
+//			//segGender.enabled = YES;
+//            NSLog(@"dob %@",pp.ProspectDOB);
+//			[outletDOB setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@"%@",pp.ProspectDOB] forState:UIControlStateNormal];
+//			outletDOB.hidden = NO;
+//		}
+//        txtDOB.hidden = YES;
+//    }
+//    else {
+//        txtIDType.text = pp.IDTypeNo;
+//        txtIDType.enabled = NO;
+//        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        txtDOB.text = pp.ProspectDOB;
+//        
+//        segGender.enabled = NO;
+//    }	
+//	
+//	//NSString *COB = @"";
+//	/*if (![pp.countryOfBirth isEqualToString:@"(null)"] && pp.countryOfBirth != NULL && pp.countryOfBirth !=nil && ![pp.countryOfBirth isEqualToString: @""]) {
+//        COB = [self getCountryDesc:pp.countryOfBirth];
+//        pp.countryOfBirth =   [self getCountryDesc:pp.countryOfBirth];
+//		
+//		[BtnCountryOfBirth setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.countryOfBirth]forState:UIControlStateNormal];
+//        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
+//    else {
+//		[BtnCountryOfBirth setTitle:@"- SELECT -" forState:UIControlStateNormal];
+//    }*/
+//    
+//    //HOME ADD - Eliminate "null" value
+//    if ([pp.OtherIDTypeNo isEqualToString:@"(null)"] || pp.OtherIDTypeNo == NULL) {
+//        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
+//        [txtOtherIDType setText:@""];
+//        txtOtherIDType.enabled = NO;
+//    }
+//    else {
+//        txtOtherIDType.text = pp.OtherIDTypeNo;
+//    }
+//    
+//    if (![pp.ResidenceAddress1 isEqualToString:@"(null)"] || pp.ResidenceAddress1 != NULL) {
+//        txtHomeAddr1.text = pp.ResidenceAddress1;
+//    }
+//    else {
+//        txtHomeAddr1.text = @"";
+//    }
+//    
+//    if (![pp.ResidenceAddress2 isEqualToString:@"(null)"] || pp.ResidenceAddress2 != NULL) {
+//        txtHomeAddr2.text = pp.ResidenceAddress2;
+//    }
+//    else {
+//        txtHomeAddr2.text = @"";
+//    }
+//    
+//    if (![pp.ResidenceAddress3 isEqualToString:@"(null)"] || pp.ResidenceAddress3 != NULL) {
+//        txtHomeAddr3.text = pp.ResidenceAddress3;
+//    }
+//    else {
+//        txtHomeAddr3.text = @"";
+//    }
+//    
+//    if (![pp.ResidenceAddressCountry isEqualToString:@"(null)"] || pp.ResidenceAddressCountry != NULL) {
+//        txtHomeCountry.text = pp.ResidenceAddressCountry;
+//    }
+//    else {
+//        txtHomeCountry.text = @"";
+//    }
+//    
+//    if (![pp.ResidenceAddressPostCode isEqualToString:@"(null)"] || pp.ResidenceAddressPostCode != NULL) {
+//        txtHomePostCode.text = pp.ResidenceAddressPostCode;
+//    }
+//    else {
+//        txtHomeCountry.text = @"";
+//    }
+//    
+//    if ([pp.ResidenceAddressTown isEqualToString:@"(null)"] || pp.ResidenceAddressTown == NULL) {
+//        txtHomeTown.text = @"";
+//        //[_outletKota setTitle:@"" forState:UIControlStateNormal];
+//    }
+//    else {
+//        txtHomeTown.text = pp.ResidenceAddressTown;
+//        //[_outletKota setTitle:pp.ResidenceAddressTown forState:UIControlStateNormal];
+//    }
+//    
+//    //Office Add  - Eliminate "null" value
+//    
+//    if (![pp.OfficeAddress1 isEqualToString:@"(null)"] || pp.OfficeAddress1 != NULL) {
+//        txtOfficeAddr1.text = pp.OfficeAddress1;
+//    }
+//    else {
+//        txtOfficeAddr1.text = @"";
+//    }
+//    
+//    if (![pp.OfficeAddress2 isEqualToString:@"(null)"] || pp.OfficeAddress2 != NULL ) {
+//        txtOfficeAddr2.text = pp.OfficeAddress2;
+//    }
+//    else {
+//        txtOfficeAddr2.text = @"";
+//    }
+//    
+//    if (![pp.OfficeAddress3 isEqualToString:@"(null)"] || pp.OfficeAddress3 != NULL) {
+//        txtOfficeAddr3.text = pp.OfficeAddress3;
+//    }
+//    else {
+//        txtOfficeAddr3.text = @"";
+//    }
+//	
+//    if (![pp.OfficeAddressPostCode isEqualToString:@"(null)"] || pp.OfficeAddressPostCode != NULL) {
+//        txtOfficePostCode.text = pp.OfficeAddressPostCode;
+//    }
+//    else {
+//        txtOfficePostCode.text = @"";
+//    }
+//    
+//    if (![pp.OfficeAddressCountry isEqualToString:@"(null)"] || pp.OfficeAddressCountry != NULL) {
+//        txtOfficeCountry.text = pp.OfficeAddressCountry;
+//    }
+//    else {
+//        txtOfficeCountry.text = @"";
+//    }
+//    
+//    if ([pp.OfficeAddressTown isEqualToString:@"(null)"] || pp.OfficeAddressTown == NULL) {
+//        txtOfficeTown.text = @"";
+//        //[_outletKotaOffice setTitle:@"" forState:UIControlStateNormal];
+//    }
+//    else {
+//        txtOfficeTown.text = pp.OfficeAddressTown;
+//        //[_outletKotaOffice setTitle:pp.OfficeAddressTown forState:UIControlStateNormal];
+//    }
+//	
+//    if (![pp.ProspectRemark isEqualToString:@"(null)"] || pp.ProspectRemark != NULL) {
+//        txtRemark.text = pp.ProspectRemark;
+//    }
+//    else {
+//        txtRemark.text = @"";
+//    }
+//	
+//    if ([pp.ProspectEmail isEqualToString:@"(null)"] || pp.ProspectEmail == NULL) {
+//        
+//        txtEmail.text = @"";
+//	}
+//    else {
+//		txtEmail.text = pp.ProspectEmail;
+//    }
+//	
+//    if (![pp.ExactDuties isEqualToString:@"(null)"] || pp.ExactDuties != NULL) {
+//        txtExactDuties.text = pp.ExactDuties;
+//    }
+//    else {
+//        txtExactDuties.text = @"";
+//    }
+//    
+//    _txtNamaDepan.text = pp.ProspectName;
+//    if (!([pp.ResidenceAddressCountry isEqualToString:@""]||pp.ResidenceAddressCountry == NULL) && ![pp.ResidenceAddressCountry isEqualToString:@"MALAYSIA"]) {
+//        checked = YES;
+//        txtHomeTown.backgroundColor = [UIColor whiteColor];
+//        txtHomeState.backgroundColor = [UIColor whiteColor];
+//        txtHomeTown.enabled = YES;
+//        txtHomeState.enabled = NO;
+//        txtHomeState.backgroundColor =  [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtHomeCountry.hidden = YES;
+//        btnHomeCountry.hidden = NO;
+//        [btnForeignHome setImage: [UIImage imageNamed:@"tickCheckBox.png"] forState:UIControlStateNormal];
+//        
+//        btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        [btnHomeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",pp.ResidenceAddressCountry] forState:UIControlStateNormal];
+//    }
+//    else {
+//        btnHomeCountry.hidden = YES;
+//        txtHomeCountry.text = pp.ResidenceAddressCountry;
+//    }
+//    
+//    if (!([pp.OfficeAddressCountry isEqualToString:@""]||pp.OfficeAddressCountry == NULL) && ![pp.OfficeAddressCountry isEqualToString:@"MALAYSIA"]) {
+//        
+//        checked2 = YES;
+//        txtOfficeTown.backgroundColor = [UIColor whiteColor];
+//        txtOfficeState.backgroundColor = [UIColor whiteColor];
+//        txtOfficeTown.enabled = YES;
+//        txtOfficeState.enabled = NO;
+//        txtOfficeState.backgroundColor =  [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtOfficeCountry.hidden = YES;
+//        btnOfficeCountry.hidden = NO;
+//        [btnForeignOffice setImage: [UIImage imageNamed:@"tickCheckBox.png"] forState:UIControlStateNormal];
+//        
+//        btnOfficeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//        [btnOfficeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",pp.OfficeAddressCountry] forState:UIControlStateNormal];
+//    }
+//    else {
+//        btnOfficeCountry.hidden = YES;
+//        txtOfficeCountry.text = pp.OfficeAddressCountry;
+//    }
+//    
+//    if (![pp.AnnualIncome isEqualToString:@"(null)"]) {
+//        txtAnnIncome.text = pp.AnnualIncome;
+//    }
+//    else {
+//        txtAnnIncome.text = @"";
+//    }
+//    
+//    if (![pp.BussinessType isEqualToString:@"(null)"]) {
+//        txtBussinessType.text = pp.BussinessType;
+//    }
+//    else {
+//        txtBussinessType.text = @"";
+//    }
+//    
+//    if ([pp.Smoker isEqualToString:@"Y"]) {
+//        ClientSmoker = @"Y";
+//        segSmoker.selectedSegmentIndex = 0;
+//    }
+//    else if([pp.Smoker isEqualToString:@"N"]){
+//        ClientSmoker = @"N";
+//        segSmoker.selectedSegmentIndex = 1;
+//    }
+//    else {
+//		segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
+//    }
+//    
+//    if ([pp.ProspectGender isEqualToString:@"MALE"]) {
+//        gender = @"MALE";
+//        segGender.selectedSegmentIndex = 0;
+//    }
+//    else if ([pp.ProspectGender isEqualToString:@"FEMALE"]) {
+//        gender = @"FEMALE";
+//        segGender.selectedSegmentIndex = 1;
+//    }
+//    else {
+//        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
+//    }
+//    
+//    if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"]) {
+//        companyCase = YES;
+//		
+//        segSmoker.enabled = NO;
+//        segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
+//        
+//        segGender.enabled = NO;
+//        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
+//        
+//        outletRace.enabled = NO;
+//        outletRace.titleLabel.textColor = [UIColor grayColor];
+//        outletMaritalStatus.enabled = NO;
+//        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
+//        outletReligion.enabled = NO;
+//        outletReligion.titleLabel.textColor = [UIColor grayColor];
+//        outletNationality.enabled = NO;
+//        outletNationality.titleLabel.textColor = [UIColor grayColor];
+//        outletOccup.enabled = NO;
+//        outletOccup.titleLabel.textColor = [UIColor grayColor];
+//        
+//        outletTitle.enabled = NO;
+//        outletTitle.titleLabel.textColor =  [UIColor grayColor];
+//        
+//        //annual income
+//        txtAnnIncome.enabled = TRUE;
+//        txtAnnIncome.backgroundColor = [UIColor whiteColor];
+//        txtAnnIncome.text = pp.AnnualIncome;
+//        
+//        //IC
+//        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtIDType.enabled = NO;
+//    }
+//    else {
+//        companyCase = NO;
+//        outletOccup.enabled = YES;
+//    }
+//    
+//    txtContact1.text = @"";
+//    txtContact2.text = @"";
+//    txtContact3.text = @"";
+//    txtContact4.text = @"";
+//    
+//    txtPrefix1.text = @"";
+//    txtPrefix2.text = @"";
+//    txtPrefix3.text = @"";
+//    txtPrefix4.text = @"";
+//    
+//    const char *dbpath = [databasePath UTF8String];
+//    sqlite3_stmt *statement;
+//    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
+//        NSString *querySQL = [NSString stringWithFormat:@"SELECT ContactCode, ContactNo, Prefix FROM contact_input where indexNo = %@ ", pp.ProspectID];
+//        
+//        const char *query_stmt = [querySQL UTF8String];
+//        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
+//        {
+//            int a = 0;
+//            NSString *ContactCode;
+//            NSString *ContactNo;
+//            NSString *Prefix;
+//            while (sqlite3_step(statement) == SQLITE_ROW){
+//                ContactCode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
+//                ContactNo = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
+//                Prefix = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+//				
+//                if (a==0) {
+//                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
+//                        txtContact2.text  = ContactNo;
+//                        txtPrefix2.text = Prefix;
+//                        
+//                        temp_pre2=Prefix;
+//                        temp_cont2 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
+//                        txtContact1.text = ContactNo;
+//                        txtPrefix1.text = Prefix;
+//                        
+//                        temp_pre1=Prefix;
+//                        temp_cont1 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
+//                        txtContact4.text = ContactNo;
+//                        txtPrefix4.text = Prefix;
+//                        
+//                        temp_pre4=Prefix;
+//                        temp_cont4 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
+//                        txtContact3.text = ContactNo;
+//                        txtPrefix3.text = Prefix;
+//                        
+//                        temp_pre3=Prefix;
+//                        temp_cont3 = ContactNo;
+//                    }
+//                }
+//                else if (a==1) {
+//                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
+//                        txtContact2.text  = ContactNo;
+//                        txtPrefix2.text = Prefix;
+//                        
+//                        temp_pre2=Prefix;
+//                        temp_cont2 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
+//                        txtContact1.text = ContactNo;
+//                        txtPrefix1.text = Prefix;
+//                        
+//                        temp_pre1=Prefix;
+//                        temp_cont1 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
+//                        txtContact4.text = ContactNo;
+//                        txtPrefix4.text = Prefix;
+//                        
+//                        temp_pre4=Prefix;
+//                        temp_cont4 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
+//                        txtContact3.text = ContactNo;
+//                        txtPrefix3.text = Prefix;
+//                        
+//                        temp_pre3=Prefix;
+//                        temp_cont3 = ContactNo;
+//                    }
+//                }
+//                else if (a==2) {
+//                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
+//                        txtContact2.text  = ContactNo;
+//                        txtPrefix2.text = Prefix;
+//                        
+//                        temp_pre2=Prefix;
+//                        temp_cont2 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
+//                        txtContact1.text = ContactNo;
+//                        txtPrefix1.text = Prefix;
+//                        
+//                        temp_pre1=Prefix;
+//                        temp_cont1 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
+//                        txtContact4.text = ContactNo;
+//                        txtPrefix4.text = Prefix;
+//                        
+//                        temp_pre4=Prefix;
+//                        temp_cont4 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
+//                        txtContact3.text = ContactNo;
+//                        txtPrefix3.text = Prefix;
+//                        
+//                        temp_pre3=Prefix;
+//                        temp_cont3 = ContactNo;
+//                    }
+//                }
+//                else if (a==3) {
+//                    if ([ContactCode isEqualToString:@"CONT008"]) { //mobile
+//                        txtContact2.text  = ContactNo;
+//                        txtPrefix2.text = Prefix;
+//                        
+//                        temp_pre2=Prefix;
+//                        temp_cont2 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT006"]) { //home
+//                        txtContact1.text = ContactNo;
+//                        txtPrefix1.text = Prefix;
+//                        
+//                        temp_pre1=Prefix;
+//                        temp_cont1 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT009"]) { //fax
+//                        txtContact4.text = ContactNo;
+//                        txtPrefix4.text = Prefix;
+//                        
+//                        temp_pre4=Prefix;
+//                        temp_cont4 = ContactNo;
+//                    }
+//                    else if ([ContactCode isEqualToString:@"CONT007"]) { //office
+//                        txtContact3.text = ContactNo;
+//                        txtPrefix3.text = Prefix;
+//                        
+//                        temp_pre3=Prefix;
+//                        temp_cont3 = ContactNo;
+//                    }
+//                }
+//                a = a + 1;
+//            }
+//            sqlite3_finalize(statement);
+//            [self PopulateOccupCode];
+//            
+//            NSString *otherIDType = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
+//									 [NSCharacterSet whitespaceCharacterSet]];
+//            [self PopulateOtherIDCode];
+//            
+//            if([otherIDType isEqualToString:@"EXPECTED DELIVERY DATE"])
+//            {
+//                //Enable DOB
+//                //Disable - New IC field and Other ID field
+//                
+//                //TITLE
+//                txtBussinessType.enabled = false;
+//                txtBussinessType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                
+//                txtRemark.editable = false;
+//                txtRemark.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                
+//                outletTitle.enabled = NO;
+//                outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletTitle setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletTitle.titleLabel.textColor = [UIColor grayColor];
+//                [self PopulateTitle];
+//				
+//				BtnCountryOfBirth.enabled = NO;
+//                BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [BtnCountryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                BtnCountryOfBirth.titleLabel.textColor = [UIColor grayColor];
+//                
+//                //RACE
+//                outletRace.enabled = NO;
+//                outletRace.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletRace setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletRace.titleLabel.textColor = [UIColor grayColor];
+//                
+//                
+//                //NATIONALITY
+//                outletNationality.enabled = NO;
+//                outletNationality.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletNationality setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletNationality.titleLabel.textColor = [UIColor grayColor];
+//                
+//                
+//                //RELIGION
+//                outletReligion.enabled = NO;
+//                outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletReligion setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletReligion.titleLabel.textColor = [UIColor grayColor];
+//                
+//                
+//                //MARITAL
+//                outletMaritalStatus.enabled = NO;
+//                outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletMaritalStatus setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
+//                
+//                //OCCUPATION
+//                outletOccup.enabled = NO;
+//				outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//				[outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"MINOR"]forState:UIControlStateNormal];
+//				outletOccup.titleLabel.textColor = [UIColor grayColor];
+//				txtClass.text = @"2";
+//				OccupCodeSelected = @"OCC01360";
+//				[_OccupationList setTitle:@"MINOR"];
+//                
+//                //group
+//                outletGroup.enabled = NO;
+//                outletGroup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                [outletGroup setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletGroup.titleLabel.textColor = [UIColor grayColor];
+//				
+//                txtEmail.enabled = false;
+//                
+//                txtAnnIncome.text = @"";
+//                txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtAnnIncome.enabled =false;
+//                
+//                outletTitle.enabled = NO;
+//                outletTitle.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//                
+//                [outletTitle setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//                outletTitle.titleLabel.textColor = [UIColor grayColor];
+//                
+//                companyCase = NO;
+//                segGender.enabled = FALSE;
+//                segSmoker.enabled = FALSE;
+//                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
+//                txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtIDType.text = @"";
+//                txtIDType.enabled = NO;
+//                
+//                txtDOB.hidden = YES;
+//                outletDOB.hidden = NO;
+//                //outletDOB.enabled = YES;
+//                txtDOB.backgroundColor = [UIColor whiteColor];
+//				
+//				OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//				txtOtherIDType.enabled = NO;
+//				txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//				txtOtherIDType.text =@"";
+//                
+//                txtExactDuties.editable = NO;
+//                txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                
+//                txtHomeAddr1.enabled = NO;
+//                txtHomeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                
+//                txtHomeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtHomeAddr2.enabled = NO;
+//                
+//                txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtHomeAddr3.enabled = NO;
+//                
+//                txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtHomePostCode.enabled = NO;
+//                
+//                txtOfficeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtOfficeAddr1.enabled = NO;
+//                
+//                txtOfficeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtOfficeAddr2.enabled = NO;
+//                
+//                txtOfficeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtOfficeAddr3.enabled = NO;
+//                
+//                txtOfficePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtOfficePostCode.enabled = NO;
+//                
+//                txtRigNO.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                txtRigNO.enabled = NO;
+//                txtRigNO.text =@"";
+//                
+//                txtRigDate.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                outletRigDOB.enabled = NO;
+//                outletRigDOB.titleLabel.textColor = [UIColor grayColor];
+//                txtRigDate.text =@"";
+//                
+//                
+//                segRigPerson.selectedSegmentIndex=1;
+//                segRigPerson.enabled =NO;
+//                
+//                segRigExempted.selectedSegmentIndex =0;
+//                segRigExempted.enabled =NO;
+//				
+//            }
+//            
+//            if([OccpCatCode isEqualToString:@"HSEWIFE"] || [OccpCatCode isEqualToString:@"JUV"] || [OccpCatCode isEqualToString:@"STU"])
+//            {
+//                ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
+//                
+//                if (![[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] && ![pp.OtherIDType isEqualToString:@"CR"])
+//                {
+//                    txtAnnIncome.text = @"";
+//                    txtAnnIncome.enabled = NO;
+//                    txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//                }
+//            }
+//            else if([OccpCatCode isEqualToString:@"RET"] ||[OccpCatCode isEqualToString:@"UNEMP"])
+//            {
+//                txtAnnIncome.enabled = YES;
+//                txtAnnIncome.backgroundColor = [UIColor whiteColor];
+//            }
+//            else {
+//                txtAnnIncome.enabled = YES;
+//                txtAnnIncome.backgroundColor = [UIColor whiteColor];
+//				
+//            }
+//            
+//            txtHomeState.text = @"";
+//            if (![[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && [txtHomeCountry.text isEqualToString:@"MALAYSIA"]) {
+//                
+//                [self PopulateState];
+//                //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+//                [txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+//            }
+//            else if (![[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && ![txtHomeCountry.text isEqualToString:@"MALAYSIA"]) {
+//                
+//                txtHomeState.text = pp.ResidenceAddressState;
+//            }
+//            else {
+//                
+//                txtHomeState.text = @"";
+//                //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+//                [txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+//            }
+//            
+//            if (![[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && [txtOfficeCountry.text isEqualToString:@"MALAYSIA"]) {
+//                
+//                [self PopulateOfficeState];
+//                //[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+//                [txtOfficePostCode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+//            }
+//            else if (![[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"" ] && ![txtOfficeCountry.text isEqualToString:@"MALAYSIA"]) {
+//                
+//                txtOfficeState.text = pp.OfficeAddressState;
+//            }
+//            else {
+//                
+//                txtOfficeState.text = @"";
+//                //[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
+//                [txtOfficePostCode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+//            }
+//        }
+//        sqlite3_close(contactDB);
+//        
+//    }
+//    else {
+//        NSLog(@"Error opening database");
+//    }
+//    
+//	dbpath = Nil;
+//	statement = Nil;
+//    
+//    // WHEHN EDIT CLIENT PROFILE - USER NOT ABLE TO EDIT THE NEW IC NO, OTHER ID TYPE, OTHER ID
+//		
+//    txtIDType.enabled = FALSE;
+//    txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//	if (![OtherIDType.titleLabel.text isEqualToString:@"- SELECT -"]) {
+//		txtOtherIDType.enabled = YES;
+//		txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//		
+//		OtherIDType.enabled = NO;
+//		OtherIDType.titleLabel.textColor = [UIColor grayColor];
+//	}
+//    
+//    segGender.enabled = NO;
+//    
+//    NSString *trim_otheridtype = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
+//                                  [NSCharacterSet whitespaceCharacterSet]];
+//    
+//    if ([trim_otheridtype isEqualToString:@"EXPECTED DELIVERY DATE"])
+//    {
+//        txtEmail.enabled = false;
+//        txtEmail.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        txtPrefix1.enabled = false;
+//        txtPrefix2.enabled = false;
+//        txtPrefix3.enabled = false;
+//        txtPrefix4.enabled = false;
+//        
+//        txtPrefix1.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtPrefix2.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtPrefix3.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtPrefix4.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        txtContact1.enabled = false;
+//        txtContact2.enabled = false;
+//        txtContact3.enabled = false;
+//        txtContact4.enabled = false;
+//        
+//        txtContact1.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtContact2.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtContact3.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtContact4.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        txtAnnIncome.text = @"";
+//        txtExactDuties.text = @"";
+//        txtHomeAddr1.text = @"";
+//        txtHomeAddr2.text = @"";
+//        txtHomeAddr3.text = @"";
+//        
+//        txtOfficeAddr1.text = @"";
+//        txtOfficeAddr2.text =@"";
+//        txtOfficeAddr3.text = @"";
+//        
+//        txtAnnIncome.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtAnnIncome.enabled =false;
+//        
+//        txtHomeAddr1.enabled = NO;
+//        txtHomeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        txtHomeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtHomeAddr2.enabled = NO;
+//        
+//        txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtHomeAddr3.enabled = NO;
+//        
+//        txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtHomePostCode.enabled = NO;
+//        
+//        txtOfficeAddr1.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtOfficeAddr1.enabled = NO;
+//        
+//        txtOfficeAddr2.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtOfficeAddr2.enabled = NO;
+//        
+//        txtOfficeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtOfficeAddr3.enabled = NO;
+//        
+//        txtOfficePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+//        txtOfficePostCode.enabled = NO;
+//        
+//        txtExactDuties.editable = NO;
+//        txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//        
+//        [btnForeignHome setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
+//        [btnForeignOffice setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
+//        
+//        btnForeignHome.enabled = false;
+//        btnForeignOffice.enabled = false;
+//        btnHomeCountry.enabled = false;
+//        btnOfficeCountry.enabled = false;
+//		
+//    }
+//    
+//    //KY - IF COMPANY , DISABLE DOB
+//    if ([[pp.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"] || [pp.OtherIDType isEqualToString:@"CR"])
+//    {
+//        //IMPORTANT ! - outletDOB AND txtDOB were overlap together, so when need to display the outletDOB button, u need to hide the txtDOB.
+//		
+//        txtDOB.hidden = YES;
+//        outletDOB.hidden = NO;
+//        
+//        outletDOB.enabled = NO;
+//        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//        outletDOB.titleLabel.textColor = [UIColor grayColor];
+//		
+//		BtnCountryOfBirth.enabled = NO;
+//		BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//		[BtnCountryOfBirth setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//		BtnCountryOfBirth.titleLabel.textColor = [UIColor grayColor];
+//		
+//    }
+//    else if([pp.ProspectDOB isEqualToString:@"- SELECT -"])
+//    {
+//        txtDOB.hidden = YES;
+//        outletDOB.hidden = NO;
+//        
+//        outletDOB.enabled = NO;
+//        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//        [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
+//        outletDOB.titleLabel.textColor = [UIColor grayColor];
+//		
+//    }
+//    else {
+//		txtDOB.text = pp.ProspectDOB;
+//		outletDOB.hidden = YES;
+//		txtDOB.hidden = NO;
+//		txtDOB.enabled = NO;
+//		txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//    }
+//	
+//	//fixed for dob missing value if IC exist:
+//	if (txtIDType.text.length == 12 && [[textFields trimWhiteSpaces:outletDOB.titleLabel.text] isEqualToString:@"- Select -"]) {
+//		[self GenerateDOB];
+//	}
+//    
+//    //added by faiz//
+//    [outletExpiryDate setTitle:pp.IDExpirityDate forState:UIControlStateNormal];
+//    txtNip.text=pp.NIP;
+//    [_outletBranchCode setTitle:pp.BranchCode forState:UIControlStateNormal];
+//    [_outletBranchName setTitle:pp.BranchName forState:UIControlStateNormal];
+//    [outletReferralSource setTitle:pp.ReferralSource forState:UIControlStateNormal];
+//    txtKcu.text=pp.KCU;
+//    txtReferralName.text=pp.ReferralName;
+//    txtNPWPNo.text=pp.NPWPNo;
+//    
+//    NSDateFormatter *expiryDateFormat = [[NSDateFormatter alloc] init];
+//    [expiryDateFormat setDateFormat:@"dd/MM/yyyy"];
+//    NSDate *dateExpiry = [expiryDateFormat dateFromString:pp.IDExpirityDate];
+//    // Convert date object to desired output format
+//    [expiryDateFormat setDateFormat:@"yyyy-MM-dd"];
+//    NSString *newExpiryDate = [expiryDateFormat stringFromDate:dateExpiry];
+//    if ([pp.IDExpirityDate isEqualToString:@"(null)"]){
+//        [outletExpiryDate setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@""] forState:UIControlStateNormal];
+//    }
+//    else{
+//    [outletExpiryDate setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@"%@",pp.IDExpirityDate] forState:UIControlStateNormal];
+//    }
+//    
+//    
+//    _txtCountryOfBirth.text=pp.countryOfBirth;
+//    _txtHomeVillage.text=pp.HomeVillage;
+//    _txtHomeDistrict.text=pp.HomeDistrict;
+//    _txtHomeProvince.text=pp.HomeProvicne;
+//    _txtOfficeVillage.text=pp.OfficeVillage;
+//    _txtOfficeDistrict.text=pp.OfficeDistrict;
+//    _txtOfficeProvince.text=pp.OfficeProvicne;
+//
+//    /*if (![pp.HomeProvicne isEqualToString:@"(null)"]){
+//        [_outletProvinsi setTitle:pp.HomeProvicne forState:UIControlStateNormal];
+//    }
+//    if (![pp.OfficeProvicne isEqualToString:@"(null)"]){
+//        [_outletProvinsiOffice setTitle:pp.OfficeProvicne forState:UIControlStateNormal];    
+//    }*/
+//    
+//    if (![pp.ClientSegmentation isEqualToString:@"(null)"]){
+//        [_outletVIPClass setTitle:pp.ClientSegmentation forState:UIControlStateNormal];
+//    }
+//
+//    if (![pp.SourceIncome isEqualToString:@"(null)"]){
+//        [_outletSourceIncome setTitle:pp.SourceIncome forState:UIControlStateNormal];
+//    }
+//
+//    
+//    if ([[pp.ResidenceAddressCountry uppercaseString] isEqualToString:@"INDONESIA"]){
+//        [_switchCountryHome setOn:NO];
+//        [btnHomeCountry setHidden:YES];
+//        [_outletKota setHidden:NO];
+//        [_outletProvinsi setHidden:NO];
+//        [txtHomeCountry setHidden:NO];
+//        checked = NO;
+//    }
+//    else{
+//        [_switchCountryHome setOn:YES];
+//        [btnHomeCountry setHidden:NO];
+//        [_outletKota setHidden:YES];
+//        [_outletProvinsi setHidden:YES];
+//        [txtHomeCountry setHidden:YES];
+//        checked = YES;
+//    }
+//
+//    if (([[pp.OfficeAddressCountry uppercaseString] isEqualToString:@"INDONESIA"])||([[pp.OfficeAddressCountry uppercaseString] isEqualToString:@""])){
+//        [_switchCountryOffice setOn:NO];
+//        [btnOfficeCountry setHidden:YES];
+//        [_outletKotaOffice setHidden:NO];
+//        [_outletProvinsiOffice setHidden:NO];
+//        [txtOfficeCountry setHidden:NO];
+//        checked2 = NO;
+//    }
+//    else{
+//        [_switchCountryOffice setOn:YES];
+//        [btnOfficeCountry setHidden:NO];
+//        [_outletKotaOffice setHidden:YES];
+//        [_outletProvinsiOffice setHidden:YES];
+//        [txtOfficeCountry setHidden:YES];
+//        checked2 = YES;
+//    }
+//
+//    [BtnCountryOfBirth setHidden:YES];
+//    //[btnOfficeCountry setHidden:YES];
+//    //[btnHomeCountry setHidden:YES];
+//    //[txtHomeCountry setHidden:NO];
+//    //[txtOfficeCountry setHidden:NO];
+//    
+//    txtHomeCountry.text = pp.ResidenceAddressCountry;
+//    txtOfficeCountry.text = pp.OfficeAddressCountry;
+//    [btnHomeCountry setTitle:pp.ResidenceAddressCountry forState:UIControlStateNormal];
+//    [btnOfficeCountry setTitle:pp.OfficeAddressCountry forState:UIControlStateNormal];
+//    
+//    //segGender.enabled = YES;
+//    txtDOB.hidden=YES;
+//    //[txtOtherIDType setEnabled:YES];
+//    //[txtOtherIDType setBackgroundColor:[UIColor whiteColor]];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"dd/MM/yyyy"];
@@ -5766,7 +5786,7 @@ bool PolicyOwnerSigned = TRUE;
 													  AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
 												  AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
 												AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-											  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:RigNumber AndRegistration:registration AndRegistrationDate:RigDate AndRegistrationExempted:registrationexempted AndProspect_IsGrouping:isGroupingLocal AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndScore:@""];
+											  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:RigNumber AndRegistration:registration AndRegistrationDate:RigDate AndRegistrationExempted:registrationexempted AndProspect_IsGrouping:isGroupingLocal AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@""];
                 
             }
             sqlite3_finalize(statement);
@@ -14448,6 +14468,26 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)ActionforRegDate:(id)sender {
     
+}
+
+- (IBAction)BtnDataPressed:(id)sender {
+    
+    _DataPcv.hidden = NO;
+    _Alamatcv.hidden = YES;
+    _Occcv.hidden = YES;
+    
+}
+
+- (IBAction)BtnAlamatPressed:(id)sender {
+    _DataPcv.hidden = YES;
+    _Alamatcv.hidden = NO;
+    _Occcv.hidden = YES;
+}
+
+- (IBAction)btnOccPressed:(id)sender {
+    _DataPcv.hidden = YES;
+    _Alamatcv.hidden = YES;
+    _Occcv.hidden = NO;
 }
 
 - (void)viewDidUnload

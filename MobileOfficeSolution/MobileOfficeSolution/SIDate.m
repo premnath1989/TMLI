@@ -126,20 +126,28 @@
     if (msg == NULL) {
         
         // if msg = null means user din rotate the date...and choose the default date value
-        NSDateFormatter *formatter;
-        NSString        *dateString;
-        
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd/MM/yyyy"];
-        
-        dateString = [formatter stringFromDate:[NSDate date]];
-        msg = dateString;
+//        NSDateFormatter *formatter;
+//        NSString        *dateString;
+//        
+//        formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"dd/MM/yyyy"];
+//        
+//        dateString = [formatter stringFromDate:[NSDate date]];
+//        msg = dateString;
         
           [_delegate DateSelected:msg :DBDate];
     }
     else{
         
-         
+//        NSDateFormatter *formatter;
+//        NSString        *dateString;
+//        
+//        formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"dd/MM/yyyy"];
+//        
+//        dateString = [formatter stringFromDate:[NSDate date]];
+//        msg = dateString;
+        
          [_delegate DateSelected:msg :DBDate];
     }
     

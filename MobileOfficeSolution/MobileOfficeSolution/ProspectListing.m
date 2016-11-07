@@ -65,12 +65,20 @@ MBProgressHUD *HUD;
     outletDOB.layer.borderWidth = 1.0;
     
     
-    _btnSearch.layer.cornerRadius = 10;
+    _btnSearch.layer.cornerRadius = 5;
     _btnSearch.layer.masksToBounds = YES;
-    _btnCancel.layer.cornerRadius = 10;
+    _btnCancel.layer.cornerRadius = 5;
     _btnCancel.layer.masksToBounds = YES;
-    _btnDelete.layer.cornerRadius = 10;
-    _btnDelete.layer.masksToBounds = YES;
+    editBtn.layer.cornerRadius = 5;
+    editBtn.layer.masksToBounds = YES;
+    deleteBtn.layer.cornerRadius = 5;
+    deleteBtn.layer.masksToBounds = YES;
+    
+    UIColor * grey70 = [UIColor colorWithWhite: 0.70 alpha:1];
+    [_txtFrontName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtLastName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    [_txtTanggalLahir setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
     
     
     
@@ -203,6 +211,8 @@ MBProgressHUD *HUD;
             textField.leftViewMode = UITextFieldViewModeAlways;
         }
     }
+    
+    
     
     
 }
@@ -350,25 +360,30 @@ MBProgressHUD *HUD;
                 identity = [NSString stringWithFormat:@"%@ : %@",pp.OtherIDType, pp.OtherIDTypeNo];
             }
             
-            [cell1.labelName setText:pp.ProspectName];
+            
+            NSString *name = [NSString stringWithFormat:@"%@ %@", pp.ProspectName, pp.ProspectLastName];
+            [cell1.labelName setText:name];
 //            [cell1.labelidNum setText:identity];
             cell1.labelidNum.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
             [cell1.labelDOB setText:pp.ProspectDOB];
 //            [cell1.labelBranchName [indexPath.row] + 1];
 //            cell1.labelBranchName.text = @"0";
-            [cell1.labelBranchName setText:pp.Score];
+            [cell1.labelBranchName setText:pp.tScore];
             //[cell1.labelPhone1 setText:@""];
-            if ([dataPrefix count]>indexPath.row){
-                cell1.labelPhone1.text= [NSString stringWithFormat:@"%@ - %@",[dataPrefix objectAtIndex:indexPath.row],[dataMobile objectAtIndex:indexPath.row]];
-            }
-            else {
-                cell1.labelPhone1.text = @"";
-            }
+//            if ([dataPrefix count]>indexPath.row){
+//                cell1.labelPhone1.text= [NSString stringWithFormat:@"%@ - %@",[dataPrefix objectAtIndex:indexPath.row],[dataMobile objectAtIndex:indexPath.row]];
+//            }
+//            else {
+//                cell1.labelPhone1.text = @"";
+//            }
+            
+            cell1.labelPhone1.text = pp.PhoneNoHP;
             
             [cell1.labelDateCreated setText:pp.DateCreated];
             [cell1.labelDateModified setText:pp.DateModified];
 //            [cell1.labelTimeRemaining setText:DateRemaining];
-            cell1.labelTimeRemaining.text = @"NEW";
+            cell1.labelTimeRemaining.text = pp.ProspectStatus; //prospectStatus Image
+            
             //cell=cell1;
             return cell1;
             
@@ -735,6 +750,7 @@ MBProgressHUD *HUD;
     else{
         outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [outletDOB setTitle:strDate forState:UIControlStateNormal];
+        _txtTanggalLahir.text = strDate;
     }
     df = Nil, d = Nil, d2 = Nil;
 }
@@ -1021,7 +1037,7 @@ MBProgressHUD *HUD;
                                                                  AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
                                                              AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                            AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndScore:@""]];
+                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@""]];
             }
             sqlite3_finalize(statement);
             
@@ -1317,8 +1333,6 @@ MBProgressHUD *HUD;
     
     sqlite3_stmt *statement;
     
-    NSString *trim_group = [btnGroup.titleLabel.text stringByTrimmingCharactersInSet:
-                            [NSCharacterSet whitespaceCharacterSet]];
     
     if(_txtFrontName.text.length ==0 && _txtLastName.text.length ==0 && _TxtPhoneNo.text.length ==0 && _txtTanggalLahir.text.length ==0)
     {
@@ -1371,6 +1385,13 @@ MBProgressHUD *HUD;
     _txtBranchName.text = @"";
     [outletDOB setTitle:@"" forState:UIControlStateNormal];
     [outletDOB.titleLabel setText:@""];
+    
+    _txtTanggalLahir.text = @"";
+    _txtFrontName.text = @"";
+    _txtLastName.text = @"";
+    _TxtPhoneNo.text = @"";
+    
+    
     NSMutableAttributedString *titleText = [[NSMutableAttributedString alloc] initWithString:@""];
     // Set the font to bold from the beginning of the string to the ","
     // Set the attributed string as the buttons' title text
@@ -1394,7 +1415,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:NO animated:TRUE];
         deleteBtn.hidden = true;
         deleteBtn.enabled = false;
-        [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
+        [editBtn setTitle:@"Hapus" forState:UIControlStateNormal ];
         
         ItemToBeDeleted = [[NSMutableArray alloc] init];
         indexPaths = [[NSMutableArray alloc] init];
@@ -1406,7 +1427,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:YES animated:TRUE];
         deleteBtn.hidden = FALSE;
         //[deleteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal ];
-        [editBtn setTitle:@"Cancel" forState:UIControlStateNormal ];
+        [editBtn setTitle:@"Batal" forState:UIControlStateNormal ];
     }
 }
 
@@ -1462,124 +1483,26 @@ MBProgressHUD *HUD;
                 clt = pp.ProspectName;
             }
             
-            /*if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK) {
-             // For Trad product should check trad_lapayor and not ul_payor table.
-             NSString *SQL = [NSString stringWithFormat:@"select * from trad_lapayor as A, clt_profile as B, prospect_profile as C where A.custcode = B.custcode AND B.indexno = c.indexno AND  C.indexNo = '%@' ", pp.ProspectID];
-             
-             if(sqlite3_prepare_v2(contactDB, [SQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
-             if (sqlite3_step(statement) == SQLITE_ROW) {
-             CanDelete = FALSE;
-             }
-             sqlite3_finalize(statement);
-             }
-             
-             //SI EVER SERIES
-             SQL = [NSString stringWithFormat:@"select * from UL_LAPayor as A, clt_profile as B, prospect_profile as C where A.custcode = B.custcode AND B.indexno = c.indexno  AND C.indexNo = '%@' ", pp.ProspectID];
-             
-             
-             if(sqlite3_prepare_v2(contactDB, [SQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
-             if (sqlite3_step(statement) == SQLITE_ROW) {
-             CanDelete = FALSE;
-             }
-             sqlite3_finalize(statement);
-             }
-             
-             //CFF
-             SQL = [NSString stringWithFormat:@"SELECT *  FROM CFF_Master WHERE ClientProfileID = '%@' ", pp.ProspectID];
-             
-             if(sqlite3_prepare_v2(contactDB, [SQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
-             if (sqlite3_step(statement) == SQLITE_ROW) {
-             CanDelete = FALSE;
-             }
-             sqlite3_finalize(statement);
-             }
-             
-             //eAPP
-             SQL = [NSString stringWithFormat:@"SELECT *  FROM eApp_Listing WHERE ClientProfileID = '%@' ", pp.ProspectID];
-             
-             if(sqlite3_prepare_v2(contactDB, [SQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
-             if (sqlite3_step(statement) == SQLITE_ROW) {
-             CanDelete = FALSE;
-             }
-             sqlite3_finalize(statement);
-             }
-             sqlite3_close(contactDB);
-             }*/
-            int usedInSI=[modelSIPOData getLADataCount:pp.ProspectID];
-            if (usedInSI>0){
-                CanDelete = FALSE;
-            }
-            
-            if (CanDelete == FALSE) {
-                break;
-            }
-            else {
-                RecCount = RecCount + 1;
-                if (RecCount > 1) {
-                    break;
-                }
-            }
         }
     }
     
-    //CHECK eProposal Status for pending case
-    
-    FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
-    [db open];
-    NSString *status;
-    FMResultSet *results;
-    
-    results = [db executeQuery:@"SELECT A.Status  from eProposal AS A, eApp_Listing AS B where B.ClientProfileID  = ?  AND B.ProposalNo = A.eProposalNo", clientID];
-    
-    int ee = 0;
-    while ([results next]) {
-        status = [results objectForColumnName:@"Status"];
-        ee = ee + 1;
+    NSString *msg;
+    if (RecDelete == 1) {
+        msg = @"Apakah anda yakin ingin menghapus klien ini ?";//Are you sure want to delete these Clients?";
     }
-    [results close];
-    [db close];
-    
-    if([status isEqualToString:@"2"] || [status isEqualToString:@"3"] || [status isEqualToString:@"6"]) {
-        status_delete = TRUE;
-    } else {
-        status_delete = FALSE;
+    else {
+        msg = @"Apakah anda yakin ingin menghapus klien ini ?";//Are you sure want to delete these Clients?";
     }
     
-    /*if (CanDelete == FALSE && status_delete == TRUE) {
-     NSString *msg = @"There are pending eApp cases for this client. Should you wish to proceed, system will auto delete all the pending eApp cases and you are required to recreate the necessary should you wish to resubmit the case.";
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-     [alert setTag:1002];
-     [alert show];
-     
-     }
-     else if(CanDelete == FALSE && status_delete == FALSE)
-     {
-     NSString *msg = @"There are existing records created (either SI, CFF or eApp cases) for this client.Should you wish to proceed, system will auto delete all the existing records and you are required to recreate the necessary should you wish to resubmit the case.";
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-     [alert setTag:1002];
-     [alert show];
-     }
-     else */if(CanDelete == FALSE)
-     {
-         NSString *msg = @"Nasabah telah memiliki Ilustrasi/SPAJ, bila ada perubahan data, data Ilustrasi/SPAJ akan terhapus dan perlu dilakukan pengisian Ilustrasi/SPAJ ulang";
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-         [alert setTag:1002];
-         [alert show];
-     }
-     else {
-         NSString *msg;
-         if (RecDelete == 1) {
-             msg = @"Apakah anda yakin ingin menghapus klien ini ?";//Are you sure want to delete these Clients?";
-         }
-         else {
-             msg = @"Apakah anda yakin ingin menghapus klien ini ?";//Are you sure want to delete these Clients?";
-         }
-         
-         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-         [alert setTag:1001];
-         [alert show];
-     }
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+    [alert setTag:1001];
+    [alert show];
+
     
+    
+    
+
+
 }
 
 -(void) alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

@@ -261,6 +261,12 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segGender;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnOtherIdType;
+@property (strong, nonatomic) IBOutlet UITextField *txtOtherIDType;
+@property (strong, nonatomic) IBOutlet UITextField *txtIDType;
+
+@property (strong, nonatomic) IBOutlet UITextField *txtIdNumber;
+
+
 @property (weak, nonatomic) IBOutlet UIButton *outletRace;
 @property (weak, nonatomic) IBOutlet UIButton *outletMaritalStatus;
 @property (weak, nonatomic) IBOutlet UIButton *outletReligion;
@@ -268,11 +274,11 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *outletDOB;
 @property (strong, nonatomic) IBOutlet UITextField *txtDOB;
+@property (strong, nonatomic) IBOutlet UITextField *txtMarital;
+@property (strong, nonatomic) IBOutlet UITextField *txtTypeID;
+@property (strong, nonatomic) IBOutlet UITextField *txtReligion;
 
-@property (strong, nonatomic) IBOutlet UITextField *txtOtherIDType;
-@property (strong, nonatomic) IBOutlet UITextField *txtIDType;
 
-@property (strong, nonatomic) IBOutlet UITextField *txtIdNumber;
 @property (strong, nonatomic) IBOutlet UITextField *txtHPNo;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
@@ -318,6 +324,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeTown;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;
+@property (strong, nonatomic) IBOutlet UITextField *txtCountry;
 
 - (IBAction)actionProvinsiInfo:(id)sender;
 - (IBAction)actionKotaInfo:(UIButton *)sender;
