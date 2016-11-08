@@ -1207,8 +1207,8 @@
         [dictionaryNewLA setObject:btnDOB.titleLabel.text forKey:@"LA_DOB"];
         [dictionaryNewLA setObject:LAAgeField.text forKey:@"LA_Age"];
         [dictionaryNewLA setObject:sex forKey:@"LA_Gender"];
-        [dictionaryNewLA setObject:occuCode forKey:@"LA_OccpCode"];
-        [dictionaryNewLA setObject:occupationDesc forKey:@"LA_Occp"];
+   //     [dictionaryNewLA setObject:occuCode forKey:@"LA_OccpCode"];
+   //     [dictionaryNewLA setObject:occupationDesc forKey:@"LA_Occp"];
     }
     else{
         [dictionaryNewLA setObject:@"" forKey:@"LA_ClientID"];

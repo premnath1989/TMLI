@@ -80,10 +80,10 @@
 @synthesize waiverRiderAnn2,waiverRiderHalf,waiverRiderHalf2,waiverRiderMonth,waiverRiderMonth2,waiverRiderQuar,waiverRiderQuar2;
 @synthesize quotationLang,requesteProposalStatus, EAPPorSI, outletDone, outletEAPP, DiskounPremi;
 @synthesize labelPremiumPay, requestEDD;
-@synthesize planChoose,PremiType;
+@synthesize planChoose,PremiType,MinBasicPremiValue,MinTopUpRegularValue;
 @synthesize isFirstSaved;
 @synthesize navigationBar;
-@synthesize percentPaymentMode;
+@synthesize percentPaymentMode,SumTotalUangPertanggungan;
 
 #pragma mark - Cycle View
 
@@ -919,18 +919,18 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 -(IBAction)MasaExtraPremiTextFieldDidEnd:(UITextField *)sender {
-    [MasaExtraPremiLBL setHidden:YES];
-    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
-    {
-        [self PremiDasarActKeluargaku:FRekeunsiPembayaranMode];
-        [self calculateRiderPremi];
-    }
-    else{
-        [self PremiDasarAct];
-        [self PremiDasarActB];
-        [self ExtraNumbPremi];
-        [self loadHeritageCalculation];
-    }
+//    [MasaExtraPremiLBL setHidden:YES];
+//    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
+//    {
+//        [self PremiDasarActKeluargaku:FRekeunsiPembayaranMode];
+//        [self calculateRiderPremi];
+//    }
+//    else{
+//        [self PremiDasarAct];
+//        [self PremiDasarActB];
+//        [self ExtraNumbPremi];
+//        [self loadHeritageCalculation];
+//    }
 }
 
 
@@ -1006,6 +1006,7 @@ bool WPTPD30RisDeleted = FALSE;
     self.frekuensiTwoList = [[FrekuensiTwo alloc] init];
     _frekuensiTwoList.delegate = self;
      self.frekuensiTwoList.ProductCode = getPlanCode;
+    self.frekuensiTwoList.CurrencySelected = _MataUangPembayaran.titleLabel.text;
     self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_frekuensiTwoList];
     
     
@@ -5315,7 +5316,8 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 
-- (bool)validationDataBasicPlan{
+- (bool)validationDataBasicPlan
+{
     bool valid=true;
     NSArray* validationSet=[[NSArray alloc]initWithObjects:@"",@"- SELECT -",@"- Select -",@"--Please Select--", nil];
     
@@ -5338,12 +5340,33 @@ bool WPTPD30RisDeleted = FALSE;
     NSString* frekuensiPembayaran=_frekuensiPembayaranButton.titleLabel.text;
     NSString* masaEktraPremi=_masaExtraPremiField.text;
     
+    
+    NSString* BasicPremiTotal=_BasicPremiiField.text;
+    NSString* PremiTopupTotal=_PremiTopUpRegularField.text;
+    NSString* UangPertanggunganTotal = yearlyIncomeField.text;
+    
+   // MinBasicPremiValue
+    
+    
     NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
     f.numberStyle = NSNumberFormatterDecimalStyle;
     //NSNumber *myNumber = [f numberFromString:uangPertanggunganDasar];
-    NSNumber *myNumber = [classFormatter convertAnyNonDecimalNumberToString:uangPertanggunganDasar];
+    NSNumber *myNumber = [classFormatter convertAnyNonDecimalNumberToString: BasicPremiTotal];
+    NSNumber *myNumberBasicPremiTotal = [classFormatter convertAnyNonDecimalNumberToString: MinBasicPremiValue];
+    NSNumber *myNumberTopUp = [classFormatter convertAnyNonDecimalNumberToString: PremiTopupTotal];
+    NSNumber *myNumberPremiTopUpTotal = [classFormatter convertAnyNonDecimalNumberToString: MinTopUpRegularValue];
+   
+    NSNumber *myNumberUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: UangPertanggunganTotal];
+    NSNumber *myNumberPremiUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: SumTotalUangPertanggungan];
     
-    long long sumAssured = [myNumber longLongValue];
+ //Sample//
+    long long sumBasicPremiTotal = [myNumber longLongValue];
+    long long sumMinBasicPremiValue = [myNumberBasicPremiTotal longLongValue];
+    long long sumBasicPremiTopUpTotal = [myNumberTopUp longLongValue];
+    long long sumMinBasicPremiTopUpValue = [myNumberPremiTopUpTotal longLongValue];
+    long long sumMinBasicPremiUangPertanggunganTotal = [myNumberUangPertanggunganTotal longLongValue];
+    long long sumMinBasicPremiUangPertanggunganTotalValue = [myNumberPremiUangPertanggunganTotal longLongValue];
+    
     long long maxNumber = 300000000000;
     long long minNumber;
     int IsInternalStaff =[[_dictionaryPOForInsert valueForKey:@"IsInternalStaff"] intValue];
@@ -5363,149 +5386,241 @@ bool WPTPD30RisDeleted = FALSE;
     long long maxNumberkk = 1500000000;
     long long minNumberkk = 30000000;
     
-    NSLog(@"%lld",sumAssured);
-    NSLog(@"%lld",maxNumber);
+    NSLog(@"%lld",sumBasicPremiTotal);
+    NSLog(@"%lld",sumMinBasicPremiValue);
     
-    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
+    //Sample//
+    
+    
+    //TMLI Validation
+    
+    NSString *NamaProduk=@"Nama Produk harus diisi";
+    NSString *MAtaUang=@"Mata Uang harus DiIsi";
+    NSString *FrekuensiPembayaran1 =@"Frekuensi Pembayaran harus diisi";
+    NSString *BasicPremi =@"Basic Premi harus diisi";
+    NSString *PremiTopUpRegularField =@"Premi Top Up Regular harus diisi";
+    
+    NSString *ValidationPremiDasar;
+    NSString *ValidationPremiTopUp;
+    NSString *ValidationPremiTotalSum;
+    
+    if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
     {
-        if ([validationSet containsObject:uangPertanggunganDasar]||uangPertanggunganDasar==NULL){
-            [self createAlertViewAndShow:validationUangPertanggunganDasar tag:0];
-            [yearlyIncomeField becomeFirstResponder];
-            return false;
-        }
-
-        else if ((sumAssured > maxNumberkk)||(sumAssured < minNumberkk)){
-            [self createAlertViewAndShow:validationUanglebihkk tag:0];
-            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ([_KKLKMasaPembayaran.text isEqualToString:@""]||_KKLKMasaPembayaran.text==NULL){
-            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
-            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ([validationSet containsObject:frekuensiPembayaran]||frekuensiPembayaran==NULL){
-            [self createAlertViewAndShow:validationFrekuensiPembayaran tag:0];
-            //[btnOccp setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ([PembelianKEString intValue]==0){
-            [self createAlertViewAndShow:validationPembelianKe tag:0];
-            //[btnOccp setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ((![_extraPremiPercentField.text isEqualToString:@""] && ![_extraPremiPercentField.text isEqualToString:@"0"])&&![_extraPremiPercentField.text isEqualToString:@"25"]&&![_extraPremiPercentField.text isEqualToString:@"50"]&&![_extraPremiPercentField.text isEqualToString:@"75"]&&![_extraPremiPercentField.text isEqualToString:@"100"]&&![_extraPremiPercentField.text isEqualToString:@"125"]&&![_extraPremiPercentField.text isEqualToString:@"150"]&&![_extraPremiPercentField.text isEqualToString:@"175"]&&![_extraPremiPercentField.text isEqualToString:@"200"]&&![_extraPremiPercentField.text isEqualToString:@"225"]&&![_extraPremiPercentField.text isEqualToString:@"250"]&&![_extraPremiPercentField.text isEqualToString:@"275"]&&![_extraPremiPercentField.text isEqualToString:@"300"])
-        {
-            
-            [self createAlertViewAndShow:validationExtraPremi tag:0];
-            //[btnOccp setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        
-        else if ((![_extraPremiNumberField.text isEqualToString:@""]&&![_extraPremiNumberField.text isEqualToString:@"1"]&&![_extraPremiNumberField.text isEqualToString:@"2"]&&![_extraPremiNumberField.text isEqualToString:@"3"]&&![_extraPremiNumberField.text isEqualToString:@"4"]&&![_extraPremiNumberField.text isEqualToString:@"5"]&&![_extraPremiNumberField.text isEqualToString:@"6"]&&![_extraPremiNumberField.text isEqualToString:@"7"]&&![_extraPremiNumberField.text isEqualToString:@"8"]&&![_extraPremiNumberField.text isEqualToString:@"9"]&&![_extraPremiNumberField.text isEqualToString:@"10"]))
-        {
-            [self createAlertViewAndShow:validationExtraNumber tag:0];
-            [_masaExtraPremiField becomeFirstResponder];
-            return false;
-        }
-        
-        
-        else if (([_extraPremiPercentField.text length]>0)||([_extraPremiNumberField.text length]>0))
-        {
-            if ([validationSet containsObject:masaEktraPremi]||masaEktraPremi==NULL)
-            {
-                [self createAlertViewAndShow:validationMasaExtraPremi tag:0];
-                [_masaExtraPremiField becomeFirstResponder];
-                return false;
-            }
-        }
-        
-        else if ([_masaExtraPremiField.text length]>0)
-        {
-            if (([_extraPremiPercentField.text length]==0)&&([_extraPremiNumberField.text length]==0))
-            {
-                [self createAlertViewAndShow:validationEmptyExtraPremi tag:0];
-                return false;
-            }
-        }
-        return valid;
-
-        
-    }else
+    ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinBasicPremiValue];
+    ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinTopUpRegularValue];
+    ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",SumTotalUangPertanggungan];
+    }
+    else
     {
-        if ([validationSet containsObject:uangPertanggunganDasar]||uangPertanggunganDasar==NULL){
-            [self createAlertViewAndShow:validationUangPertanggunganDasar tag:0];
-            [yearlyIncomeField becomeFirstResponder];
-            return false;
-        }
-        else if ((sumAssured > maxNumber)||(sumAssured < minNumber)){
-            [self createAlertViewAndShow:validationUanglebih tag:0];
-            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        
-        else if ([validationSet containsObject:masaPembayaran]||masaPembayaran==NULL){
-            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
-            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ([validationSet containsObject:masaPembayaran]||masaPembayaran==NULL){
-            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
-            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        else if ([validationSet containsObject:frekuensiPembayaran]||frekuensiPembayaran==NULL){
-            [self createAlertViewAndShow:validationFrekuensiPembayaran tag:0];
-            //[btnOccp setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        
-        else if ((IsInternalStaff==0)&&([diskonPremi longLongValue]>0)){
-            //if ([diskonPremi longLongValue]>0){
-                [self createAlertViewAndShow:validationDiskonLebih tag:2];
-                return false;
-            //}
-        }
-        
-        else if ((![_extraPremiPercentField.text isEqualToString:@""] && ![_extraPremiPercentField.text isEqualToString:@"0"])&&![_extraPremiPercentField.text isEqualToString:@"25"]&&![_extraPremiPercentField.text isEqualToString:@"50"]&&![_extraPremiPercentField.text isEqualToString:@"75"]&&![_extraPremiPercentField.text isEqualToString:@"100"]&&![_extraPremiPercentField.text isEqualToString:@"125"]&&![_extraPremiPercentField.text isEqualToString:@"150"]&&![_extraPremiPercentField.text isEqualToString:@"175"]&&![_extraPremiPercentField.text isEqualToString:@"200"]&&![_extraPremiPercentField.text isEqualToString:@"225"]&&![_extraPremiPercentField.text isEqualToString:@"250"]&&![_extraPremiPercentField.text isEqualToString:@"275"]&&![_extraPremiPercentField.text isEqualToString:@"300"])
-        {
-            
-            [self createAlertViewAndShow:validationExtraPremi tag:0];
-            //[btnOccp setBackgroundColor:[UIColor redColor]];
-            return false;
-        }
-        
-        else if ((![_extraPremiNumberField.text isEqualToString:@""]&&![_extraPremiNumberField.text isEqualToString:@"1"]&&![_extraPremiNumberField.text isEqualToString:@"2"]&&![_extraPremiNumberField.text isEqualToString:@"3"]&&![_extraPremiNumberField.text isEqualToString:@"4"]&&![_extraPremiNumberField.text isEqualToString:@"5"]&&![_extraPremiNumberField.text isEqualToString:@"6"]&&![_extraPremiNumberField.text isEqualToString:@"7"]&&![_extraPremiNumberField.text isEqualToString:@"8"]&&![_extraPremiNumberField.text isEqualToString:@"9"]&&![_extraPremiNumberField.text isEqualToString:@"10"]))
-        {
-            [self createAlertViewAndShow:validationExtraNumber tag:0];
-            [_masaExtraPremiField becomeFirstResponder];
-            return false;
-        }
-        
-        else if (([_extraPremiPercentField.text length]>0)||([_extraPremiNumberField.text length]>0))
-        {
-            if ([validationSet containsObject:masaEktraPremi]||masaEktraPremi==NULL)
-            {
-                [self createAlertViewAndShow:validationMasaExtraPremi tag:0];
-                [_masaExtraPremiField becomeFirstResponder];
-                return false;
-            }
-        }
-        
-        else if ([_masaExtraPremiField.text length]>0)
-        {
-            if (([_extraPremiPercentField.text length]==0)&&([_extraPremiNumberField.text length]==0))
-            {
-                [self createAlertViewAndShow:validationEmptyExtraPremi tag:0];
-                return false;
-            }
-        }
-        
-        
-        return valid;
+    ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinBasicPremiValue];
+    ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinTopUpRegularValue];
+    ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",SumTotalUangPertanggungan];
     }
     
+    
+    if ([validationSet containsObject:_masaPembayaranButton.titleLabel.text]||_masaPembayaranButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:NamaProduk tag:0];
+        [_masaPembayaranButton setBackgroundColor:[UIColor redColor]];
+        return false;
+    }
+    
+    else if([validationSet containsObject:_MataUangPembayaran.titleLabel.text]||_MataUangPembayaran.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:MAtaUang tag:0];
+        [_MataUangPembayaran setBackgroundColor:[UIColor redColor]];
+
+        return false;
+    }
+    
+    else if([validationSet containsObject:_frekuensiPembayaranButton.titleLabel.text]||_frekuensiPembayaranButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:FrekuensiPembayaran1 tag:0];
+        [_frekuensiPembayaranButton setBackgroundColor:[UIColor redColor]];
+
+        return false;
+    }
+    
+    else if ([_BasicPremiiField.text isEqualToString:@""]||_BasicPremiiField.text==NULL)
+    {
+        [self createAlertViewAndShow:BasicPremi tag:0];
+        [_BasicPremiiField becomeFirstResponder];
+        return false;
+    }
+    
+    else if (sumBasicPremiTotal < sumMinBasicPremiValue)
+    {
+        [self createAlertViewAndShow:ValidationPremiDasar tag:0];
+       [_BasicPremiiField becomeFirstResponder];
+        return false;
+    }
+    
+    else if ([_PremiTopUpRegularField.text isEqualToString:@""]||_PremiTopUpRegularField.text==NULL)
+    {
+        [self createAlertViewAndShow:PremiTopUpRegularField tag:0];
+        [_PremiTopUpRegularField becomeFirstResponder];
+        return false;
+    }
+    
+    else if (sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
+    {
+        [self createAlertViewAndShow:ValidationPremiTopUp tag:0];
+        [_PremiTopUpRegularField becomeFirstResponder];
+        return false;
+    }
+    
+    else if (sumMinBasicPremiUangPertanggunganTotal < sumMinBasicPremiUangPertanggunganTotalValue)
+    {
+        [self createAlertViewAndShow:ValidationPremiTotalSum tag:0];
+        [yearlyIncomeField becomeFirstResponder];
+        return false;
+    }
+
+
+
+    return valid;
 }
+    
+//    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
+//    {
+//        if ([validationSet containsObject:uangPertanggunganDasar]||uangPertanggunganDasar==NULL){
+//            [self createAlertViewAndShow:validationUangPertanggunganDasar tag:0];
+//            [yearlyIncomeField becomeFirstResponder];
+//            return false;
+//        }
+//
+//        else if ((sumAssured > maxNumberkk)||(sumAssured < minNumberkk)){
+//            [self createAlertViewAndShow:validationUanglebihkk tag:0];
+//            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ([_KKLKMasaPembayaran.text isEqualToString:@""]||_KKLKMasaPembayaran.text==NULL){
+//            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
+//            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ([validationSet containsObject:frekuensiPembayaran]||frekuensiPembayaran==NULL){
+//            [self createAlertViewAndShow:validationFrekuensiPembayaran tag:0];
+//            //[btnOccp setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ([PembelianKEString intValue]==0){
+//            [self createAlertViewAndShow:validationPembelianKe tag:0];
+//            //[btnOccp setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ((![_extraPremiPercentField.text isEqualToString:@""] && ![_extraPremiPercentField.text isEqualToString:@"0"])&&![_extraPremiPercentField.text isEqualToString:@"25"]&&![_extraPremiPercentField.text isEqualToString:@"50"]&&![_extraPremiPercentField.text isEqualToString:@"75"]&&![_extraPremiPercentField.text isEqualToString:@"100"]&&![_extraPremiPercentField.text isEqualToString:@"125"]&&![_extraPremiPercentField.text isEqualToString:@"150"]&&![_extraPremiPercentField.text isEqualToString:@"175"]&&![_extraPremiPercentField.text isEqualToString:@"200"]&&![_extraPremiPercentField.text isEqualToString:@"225"]&&![_extraPremiPercentField.text isEqualToString:@"250"]&&![_extraPremiPercentField.text isEqualToString:@"275"]&&![_extraPremiPercentField.text isEqualToString:@"300"])
+//        {
+//            
+//            [self createAlertViewAndShow:validationExtraPremi tag:0];
+//            //[btnOccp setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        
+//        else if ((![_extraPremiNumberField.text isEqualToString:@""]&&![_extraPremiNumberField.text isEqualToString:@"1"]&&![_extraPremiNumberField.text isEqualToString:@"2"]&&![_extraPremiNumberField.text isEqualToString:@"3"]&&![_extraPremiNumberField.text isEqualToString:@"4"]&&![_extraPremiNumberField.text isEqualToString:@"5"]&&![_extraPremiNumberField.text isEqualToString:@"6"]&&![_extraPremiNumberField.text isEqualToString:@"7"]&&![_extraPremiNumberField.text isEqualToString:@"8"]&&![_extraPremiNumberField.text isEqualToString:@"9"]&&![_extraPremiNumberField.text isEqualToString:@"10"]))
+//        {
+//            [self createAlertViewAndShow:validationExtraNumber tag:0];
+//            [_masaExtraPremiField becomeFirstResponder];
+//            return false;
+//        }
+//        
+//        
+//        else if (([_extraPremiPercentField.text length]>0)||([_extraPremiNumberField.text length]>0))
+//        {
+//            if ([validationSet containsObject:masaEktraPremi]||masaEktraPremi==NULL)
+//            {
+//                [self createAlertViewAndShow:validationMasaExtraPremi tag:0];
+//                [_masaExtraPremiField becomeFirstResponder];
+//                return false;
+//            }
+//        }
+//        
+//        else if ([_masaExtraPremiField.text length]>0)
+//        {
+//            if (([_extraPremiPercentField.text length]==0)&&([_extraPremiNumberField.text length]==0))
+//            {
+//                [self createAlertViewAndShow:validationEmptyExtraPremi tag:0];
+//                return false;
+//            }
+//        }
+//        return valid;
+//
+//        
+//    }else
+//    {
+//        if ([validationSet containsObject:uangPertanggunganDasar]||uangPertanggunganDasar==NULL){
+//            [self createAlertViewAndShow:validationUangPertanggunganDasar tag:0];
+//            [yearlyIncomeField becomeFirstResponder];
+//            return false;
+//        }
+//        else if ((sumAssured > maxNumber)||(sumAssured < minNumber)){
+//            [self createAlertViewAndShow:validationUanglebih tag:0];
+//            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        
+//        else if ([validationSet containsObject:masaPembayaran]||masaPembayaran==NULL){
+//            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
+//            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ([validationSet containsObject:masaPembayaran]||masaPembayaran==NULL){
+//            [self createAlertViewAndShow:validationMasaPembayaran tag:0];
+//            //[_BtnTanggalLahir setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        else if ([validationSet containsObject:frekuensiPembayaran]||frekuensiPembayaran==NULL){
+//            [self createAlertViewAndShow:validationFrekuensiPembayaran tag:0];
+//            //[btnOccp setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        
+//        else if ((IsInternalStaff==0)&&([diskonPremi longLongValue]>0)){
+//            //if ([diskonPremi longLongValue]>0){
+//                [self createAlertViewAndShow:validationDiskonLebih tag:2];
+//                return false;
+//            //}
+//        }
+//        
+//        else if ((![_extraPremiPercentField.text isEqualToString:@""] && ![_extraPremiPercentField.text isEqualToString:@"0"])&&![_extraPremiPercentField.text isEqualToString:@"25"]&&![_extraPremiPercentField.text isEqualToString:@"50"]&&![_extraPremiPercentField.text isEqualToString:@"75"]&&![_extraPremiPercentField.text isEqualToString:@"100"]&&![_extraPremiPercentField.text isEqualToString:@"125"]&&![_extraPremiPercentField.text isEqualToString:@"150"]&&![_extraPremiPercentField.text isEqualToString:@"175"]&&![_extraPremiPercentField.text isEqualToString:@"200"]&&![_extraPremiPercentField.text isEqualToString:@"225"]&&![_extraPremiPercentField.text isEqualToString:@"250"]&&![_extraPremiPercentField.text isEqualToString:@"275"]&&![_extraPremiPercentField.text isEqualToString:@"300"])
+//        {
+//            
+//            [self createAlertViewAndShow:validationExtraPremi tag:0];
+//            //[btnOccp setBackgroundColor:[UIColor redColor]];
+//            return false;
+//        }
+//        
+//        else if ((![_extraPremiNumberField.text isEqualToString:@""]&&![_extraPremiNumberField.text isEqualToString:@"1"]&&![_extraPremiNumberField.text isEqualToString:@"2"]&&![_extraPremiNumberField.text isEqualToString:@"3"]&&![_extraPremiNumberField.text isEqualToString:@"4"]&&![_extraPremiNumberField.text isEqualToString:@"5"]&&![_extraPremiNumberField.text isEqualToString:@"6"]&&![_extraPremiNumberField.text isEqualToString:@"7"]&&![_extraPremiNumberField.text isEqualToString:@"8"]&&![_extraPremiNumberField.text isEqualToString:@"9"]&&![_extraPremiNumberField.text isEqualToString:@"10"]))
+//        {
+//            [self createAlertViewAndShow:validationExtraNumber tag:0];
+//            [_masaExtraPremiField becomeFirstResponder];
+//            return false;
+//        }
+//        
+//        else if (([_extraPremiPercentField.text length]>0)||([_extraPremiNumberField.text length]>0))
+//        {
+//            if ([validationSet containsObject:masaEktraPremi]||masaEktraPremi==NULL)
+//            {
+//                [self createAlertViewAndShow:validationMasaExtraPremi tag:0];
+//                [_masaExtraPremiField becomeFirstResponder];
+//                return false;
+//            }
+//        }
+//        
+//        else if ([_masaExtraPremiField.text length]>0)
+//        {
+//            if (([_extraPremiPercentField.text length]==0)&&([_extraPremiNumberField.text length]==0))
+//            {
+//                [self createAlertViewAndShow:validationEmptyExtraPremi tag:0];
+//                return false;
+//            }
+//        }
+//        
+//        
+//        return valid;
+//    }
+    
+//}
 
 
 -(int)validateSave//basic plan validation checking before save
@@ -5840,6 +5955,13 @@ bool WPTPD30RisDeleted = FALSE;
     
     [_frekuensiPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
     [_MataUangPembayaran setTitle:@"--Please Select--" forState:UIControlStateNormal];
+    yearlyIncomeField.text = @"";
+    _BasicPremiiField.text = @"";
+    _PremiTopUpRegularField.text = @"";
+    _TotalPremiField.text = @"";
+    _MInBasicPremi.text =  @"";
+    _PremiTopUp.text = @"";
+    _SumAssLbl.text =@"";
     
     FrekuensiPembayaranChecking = aaDesc;
     
@@ -5855,6 +5977,17 @@ bool WPTPD30RisDeleted = FALSE;
 {
     [_MataUangPembayaran setTitle:aaDesc forState:normal];
     
+    [_frekuensiPembayaranButton setTitle:@"--Please Select--" forState:UIControlStateNormal];
+    yearlyIncomeField.text = @"";
+    _BasicPremiiField.text = @"";
+    _PremiTopUpRegularField.text = @"";
+    _TotalPremiField.text = @"";
+    _MInBasicPremi.text =  @"";
+    _PremiTopUp.text = @"";
+    _SumAssLbl.text =@"";
+
+
+    
     [self.planPopover dismissPopoverAnimated:YES];
     
 }
@@ -5863,10 +5996,30 @@ bool WPTPD30RisDeleted = FALSE;
 {
     
     [_frekuensiPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
-    _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min :%@)",aaMinAmount];
-    _PremiTopUp.text = [NSString stringWithFormat:@"(Min :%@)",aaMaxAmount];
+    
+    MinBasicPremiValue = aaMinAmount;
+    MinTopUpRegularValue = aaMaxAmount;
+    
+    if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
+    {
+        _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : IDR%@)",aaMinAmount];
+        _PremiTopUp.text = [NSString stringWithFormat:@"(Min : IDR%@)",aaMaxAmount];
+    }
+   else
+   {
+       _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : USD%@)",aaMinAmount];
+       _PremiTopUp.text = [NSString stringWithFormat:@"(Min : USD%@)",aaMaxAmount];
+   }
+   
    // _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%@)",aaMOP];
     MOPString = aaMOP;
+    yearlyIncomeField.text = @"";
+    _BasicPremiiField.text = @"";
+    _PremiTopUpRegularField.text = @"";
+    _TotalPremiField.text = @"";
+    _SumAssLbl.text =@"";
+
+    
     [self.planPopover dismissPopoverAnimated:YES];
 }
 
@@ -5898,21 +6051,28 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(void)CalculationTotalPremi
 {
-    int BasicPremiValue = [ _BasicPremiiField.text intValue];
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+   
+    NSNumber *NumberBasicPremiValue = [classFormatter convertAnyNonDecimalNumberToString: _BasicPremiiField.text];
+    long long sumBasicPremiValue = [NumberBasicPremiValue longLongValue];
     
-    int PremiTopUpRegularValue = [_PremiTopUpRegularField.text intValue];
+    NSNumber *NumberPremiTopUpRegularValue = [classFormatter convertAnyNonDecimalNumberToString: _PremiTopUpRegularField.text];
+    long long sumBasicPremiTopUpRegularValue = [NumberPremiTopUpRegularValue longLongValue];
     
     int ModeOfPayValue = [MOPString intValue];
     
-    double TotalPremiAValue = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue;
-    _TotalPremiField.text = [NSString stringWithFormat:@"%.f", TotalPremiAValue];
+    long long SumToltal1 = sumBasicPremiValue + sumBasicPremiTopUpRegularValue;
     
-    double TotalUangPertanggungan  = BasicPremiValue + PremiTopUpRegularValue * ModeOfPayValue * 5;
+    long long SumToltal2 = SumToltal1 * ModeOfPayValue;
+
+    _TotalPremiField.text = [NSString stringWithFormat:@" %lld", SumToltal2];
     
-    _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%.f)", TotalUangPertanggungan];
+    long long Sumtotal3 = SumToltal2 * 5;
+    _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
     
-    
-    //_BasicPremiField
+    SumTotalUangPertanggungan =  [NSString stringWithFormat:@" %lld", Sumtotal3];
+
 }
 
 

@@ -46,6 +46,11 @@
     BOOL isDOBDate;
 	BOOL isGSTDate;
     BOOL isExpiryDate;
+    
+    NSString *PStatus;
+    int score;
+    int completeStatus;
+    int age;
 
     NSString *annualIncome_original;
     
@@ -297,8 +302,8 @@ bool RegDatehandling;
     txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
     txtOtherIDType.enabled = NO;
     //outletDOB.hidden = YES; //*remarked by faiz due to validation request
-    txtDOB.enabled = NO;
-    txtDOB.hidden = YES; //*added by faiz due to validation request
+//    txtDOB.enabled = NO;
+//    txtDOB.hidden = YES; //*added by faiz due to validation request
     //segGender.enabled = FALSE; //*remarked by faiz due to validation request
     segRigPerson.selectedSegmentIndex=1;
 	
@@ -774,24 +779,29 @@ bool RegDatehandling;
         [self createAlertViewAndShow:validateSumberData tag:0];
         [outletReferralSource setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
+
         return false;
     }
     else if ([validationSet containsObject:NamaDepan]||NamaDepan==NULL){
         [self createAlertViewAndShow:validateNamaDepan tag:0];
         [txtNamaDepan setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
         return false;
     }
     else if ([validationSet containsObject:NamaBelakang]||NamaBelakang==NULL){
         [self createAlertViewAndShow:validationNamaBelakang tag:0];
         [txtNamaBelakang setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
         return false;
     }
     else if ([validationSet containsObject:HPno]||HPno==NULL){
         [self createAlertViewAndShow:validationNoHP tag:0];
         [_txtHPNo setBackgroundColor:[UIColor grayColor]];
         [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
         return false;
     }
     return valid;
@@ -2272,7 +2282,7 @@ bool RegDatehandling;
             segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
             segGender.enabled = YES;
             
-            txtDOB.hidden = YES;
+//            txtDOB.hidden = YES;
             outletDOB.hidden = NO;
             outletDOB.enabled = YES;
             txtDOB.backgroundColor = [UIColor whiteColor];
@@ -2485,8 +2495,8 @@ bool RegDatehandling;
     
     if([OtherIDType.titleLabel.text isEqualToString:@"PASSPORT"]) {
         outletDOB.hidden = NO;
-        outletDOB.enabled = FALSE;
-        txtDOB.hidden = YES;
+//        outletDOB.enabled = FALSE;
+//        txtDOB.hidden = YES;
         
     } else {
         outletDOB.hidden = YES;
@@ -3127,13 +3137,16 @@ bool RegDatehandling;
                 } else {
                     
                     NSString *isForeign = @"NO";
-                    NSString *PStatus = @"Complete";
+                    
+                    
+                    [self CalculateScore];
+                    
                     
                     insertSQL = [NSString stringWithFormat:
-                                 @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\") "
-                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\")",
+                                 @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\") "
+                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\")",
                                  txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
-                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus];
+                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age];
                     
                 }
                 
@@ -3238,6 +3251,143 @@ bool RegDatehandling;
     
     //********* END ***************  UPDATE CLIENT OF LA1, LA2, PO IN EAPP   *********************************
     
+}
+
+-(void) CalculateScore {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsPath = [paths objectAtIndex:0];
+    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    [db open];
+    FMResultSet *result;
+   
+    int poin;
+    score = 0;
+    completeStatus = 0;
+    //Age
+    if (![txtDOB.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        if (age >35 && age <45) {
+            score = score + 5;
+        }
+        else if (age >45 && age <55) {
+            score = score + 4;
+        }
+        else if (age > 55) {
+            score = score + 3;
+        }
+        else if (age >25 && age <35) {
+            score = score + 2;
+        }
+        else if (age >17 && age <25) {
+            score = score + 1;
+        }
+    }
+    
+    //gender
+    if (segGender.selectedSegmentIndex == 0) {
+        score = score + 2;
+        completeStatus = completeStatus + 1;
+    }
+    else {
+        score = score + 1;
+        completeStatus = completeStatus + 1;
+    }
+
+    //marital
+    if (![_txtMarital.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT poin FROM eProposal_marital_Status WHERE MSDesc = ?", _txtMarital.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"poin"] intValue];
+        }
+        score = score + poin;
+    }
+    
+    //income
+    if (![txtAnnIncome.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = ?", txtAnnIncome.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //sourceIncome
+    if (![_txtSourceIncome.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_SourceIncome WHERE SourceDesc = ?", _txtSourceIncome.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+    }
+    
+    //occ
+    if (![_txtOccupation.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_OCCP WHERE OccpDesc = ?", _txtOccupation.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //reference
+    if (![txtReferralName.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_ReferralSource WHERE ReferDesc = ?", txtReferralName.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //status
+    score = score + 1; //new additional
+    completeStatus = completeStatus + 1;
+
+    if (completeStatus == 8) {
+        PStatus = @"Complete";
+    }
+    else {
+        PStatus = @"Incomplete";
+    }
+    
+    [result close];
+    [db close];
+}
+
+-(void)calculateAge:(NSString *)DOBdate
+{
+
+    NSDate *todayDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    int time = [todayDate timeIntervalSinceDate:[dateFormatter dateFromString:DOBdate]];
+    int allDays = (((time/60)/60)/24);
+    int days = allDays%365;
+    int years = (allDays-days)/365;
+    
+//    NSLog(@"You live since %i years and %i days",years,days);
+    age = years;
+    
+   
 }
 
 
@@ -3549,6 +3699,10 @@ bool RegDatehandling;
     _Occcv.hidden = NO;
 }
 
+
+
+
+
 - (IBAction)ActionforRigdate:(id)sender {
     
     [self resignFirstResponder];
@@ -3663,10 +3817,10 @@ bool RegDatehandling;
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
     //if (_branchInfo == nil) {
-//    _kodePosInfo = [[KodePosInfo alloc] initWithStyle:UITableViewStylePlain];
-//    _kodePosInfo.delegate = self;
-//    [_kodePosInfo setData:[NSNumber numberWithInt:btn.tag]];
-//    [_kodePosInfo.tableView reloadData];
+    _kodePosInfo = [[KodePosInfo alloc] initWithStyle:UITableViewStylePlain];
+    _kodePosInfo.delegate = self;
+    [_kodePosInfo setData:[NSNumber numberWithInt:btn.tag]];
+    [_kodePosInfo.tableView reloadData];
     
     _kodePosPopover = [[UIPopoverController alloc] initWithContentViewController:_kodePosInfo];
     //}
@@ -4043,7 +4197,7 @@ bool RegDatehandling;
             txtAnnIncome.enabled = TRUE;
             txtAnnIncome.backgroundColor = [UIColor whiteColor];
             
-            txtDOB.hidden = YES;
+//            txtDOB.hidden = YES;
             [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
             outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
             outletDOB.titleLabel.textColor = [UIColor grayColor];
@@ -4073,7 +4227,7 @@ bool RegDatehandling;
         [outletDOB setTitle:[[NSString stringWithFormat:@" "]stringByAppendingFormat:@"%@",prospectprofile.ProspectDOB] forState:UIControlStateNormal];
         outletDOB.hidden = NO;
         segGender.enabled = ([[prospectprofile.OtherIDType stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@"COMPANYREGISTRATIONNUMBER"]);
-        txtDOB.hidden = YES;
+//        txtDOB.hidden = YES;
         
     } else {
         txtIDType.text = prospectprofile.IDTypeNo;
@@ -4287,7 +4441,7 @@ bool RegDatehandling;
         txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
         txtIDType.enabled = NO;
         
-        txtDOB.hidden = YES;
+//        txtDOB.hidden = YES;
         [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
         outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
         outletDOB.titleLabel.textColor = [UIColor grayColor];
@@ -4540,7 +4694,7 @@ bool RegDatehandling;
                 txtIDType.text = @"";
                 txtIDType.enabled = NO;
                 
-                txtDOB.hidden = YES;
+//                txtDOB.hidden = YES;
                 outletDOB.hidden = NO;
                 outletDOB.enabled = YES;
                 txtDOB.backgroundColor = [UIColor whiteColor];
@@ -4763,7 +4917,7 @@ bool RegDatehandling;
         txtDOB.text = @"- SELECT -";
         prospectprofile.ProspectDOB = @"- SELECT -";
         
-        txtDOB.hidden = YES;
+//        txtDOB.hidden = YES;
         outletDOB.hidden = NO;
         
         outletDOB.enabled = NO;
@@ -5099,7 +5253,7 @@ bool RegDatehandling;
                                                       AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
                                                   AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                 AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-                                              AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndScore:@""];
+                                              AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@""];
                 
             }
             sqlite3_finalize(statement);
@@ -5747,6 +5901,7 @@ bool RegDatehandling;
         outletReferralSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [outletReferralSource setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",referralSource]forState:UIControlStateNormal];
+    txtReferralName.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",referralSource];
 //    [outletReferralSource setBackgroundColor:[UIColor clearColor]];
     [_referralSourcePopover dismissPopoverAnimated:YES];
 }
@@ -5759,9 +5914,10 @@ bool RegDatehandling;
         _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [_outletSourceIncome setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",sourceIncome]forState:UIControlStateNormal];
-    _txtSourceIncome.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",sourceIncome];
 //    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
     [_sourceIncomePopover dismissPopoverAnimated:YES];
+    
+    _txtSourceIncome.text = sourceIncome;
 }
 
 -(void)selectedGroup:(NSString *)aaGroup
@@ -5825,6 +5981,7 @@ bool RegDatehandling;
     }
     outletReligion.titleLabel.text = setReligion;
     [outletReligion setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",setReligion]forState:UIControlStateNormal];
+    _txtReligion.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",setReligion];
     [self.ReligionListPopover dismissPopoverAnimated:YES];
 }
 
@@ -5878,6 +6035,8 @@ bool RegDatehandling;
             outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             //[outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
             [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
+            txtDOB.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];
+            [self calculateAge:txtDOB.text];
             [outletDOB setBackgroundColor:[UIColor clearColor]];
         }
 	}
@@ -5897,47 +6056,7 @@ bool RegDatehandling;
         }
     }
 
-    /*if([otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] && [dateString isEqualToString:strDate]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Expected Delivery Date must be future date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-        [alert show];
-        outletDOB.titleLabel.textColor =  [UIColor redColor];
-        alert = Nil;
-        DATE_OK = NO;
-    } else if ([otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] && [d compare:d2] == NSOrderedDescending) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Expected Delivery Date must be future date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-        [alert show];
-        outletDOB.titleLabel.textColor =  [UIColor redColor];
-        alert = Nil;
-        DATE_OK = NO;
-    } else if (![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] && ![OtherIDType.titleLabel.text isEqualToString:@"- SELECT -"] &&  ![otherIDType_trim isEqualToString:@"BIRTH CERTIFICATION"] && [d compare:d2] == NSOrderedAscending) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Date of Birth cannot be greater than today’s date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-        [alert show];
-        outletDOB.titleLabel.textColor =  [UIColor redColor];
-        alert = Nil;
-        DATE_OK = NO;
-        
-    } else {
-        if (isDOBDate) {
-			outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-			//[outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
-            [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", clientDateString] forState:UIControlStateNormal];
-		}
-    }*/
-    
-//    if((segRigPerson.selectedSegmentIndex == 0) && [d compare:d2] == NSOrderedAscending) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-//                                                        message:@"GST Registration date cannot be greater than today’s date." delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-//        [alert show];
-//        
-//        txtRigDate.textColor = [UIColor redColor];
-//        [outletRigDate setTitle:@"- SELECT -" forState:UIControlStateNormal];
-//        outletRigDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-//        outletRigDate.titleLabel.textColor = [UIColor redColor];
-//        txtRigDate.text = @"";
-//    }
+
     
     isDOBDate = NO;
 	isGSTDate = NO;
@@ -5964,7 +6083,7 @@ bool RegDatehandling;
     [OtherIDType setBackgroundColor:[UIColor clearColor]];
     [self.IDTypePickerPopover dismissPopoverAnimated:YES];
     
-    txtOtherIDType.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType];
+    _txtTypeID.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType];
 }
 
 -(void)IDTypeCodeSelected:(NSString *)IDTypeCode {
@@ -5994,7 +6113,7 @@ bool RegDatehandling;
         
         txtDOB.enabled = YES;
         
-        txtDOB.hidden = YES;
+//        txtDOB.hidden = YES;
         txtDOB.text = @"";
         outletDOB.hidden = NO;
         outletDOB.enabled = YES;
@@ -6069,6 +6188,7 @@ bool RegDatehandling;
     }
     outletMaritalStatus.titleLabel.text = status;
     [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",status]forState:UIControlStateNormal];
+    _txtMarital.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",status];
     [self.MaritalStatusPopover dismissPopoverAnimated:YES];
     
 }
@@ -6112,7 +6232,7 @@ bool RegDatehandling;
     [btnHomeCountry setBackgroundColor:[UIColor whiteColor]];
     [btnHomeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry] forState:UIControlStateNormal];
     
-    txtHomeCountry.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry];
+    _txtCountry.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry];
     [self.CountryListPopover dismissPopoverAnimated:YES];
 }
 
