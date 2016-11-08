@@ -12,40 +12,182 @@
 #import "Input.h"
 #import "Theme.h"
 #import "Dimension.h"
-#import "User Interface.h"
+#import "Font Size.h"
 
 
-// IMPLEMENTATION
+// TEXTFIELD
 
-@implementation TextFieldPrimary
+    /* FORM */
 
-    // INITIALIZE
+    @implementation TextFieldFormGeneralPrimary
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self setupStyle]; }
+
+        - (CGRect)textRectForBounds:(CGRect)bounds
+        {
+            return CGRectMake
+            (
+                bounds.origin.x + GENERAL_SPACE_TINY, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + GENERAL_SPACE_LITTLE, bounds.size.height - GENERAL_SPACE_LITTLE
+            );
+        }
+
+        - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
+
+
+        /* FUNCTION */
+
+        - (void)setupStyle
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            
+            [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
+            [self setTextAlignment : NSTextAlignmentLeft];
+            self.textColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+            [self setFont:[UIFont fontWithName:THEME_FONT_PRIMARY size:FONTSIZE_TEXTFIELD_FORM]];
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+            self.borderStyle = UITextBorderStyleLine;
+            self.layer.borderWidth = INPUT_WIDTH_BORDER;
+            self.layer.cornerRadius = INPUT_RADIUS_BORDER;
+            self.layer.masksToBounds = YES;
+            self.layer.borderColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0].CGColor;
+            self.autocorrectionType = UITextAutocorrectionTypeNo;
+        }
+
+    @end
+
+    /* FORM */
+
+    @implementation TextFieldPhotoGeneralPrimary
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self setupStyle]; }
+
+        - (CGRect)textRectForBounds:(CGRect)bounds
+        {
+            return CGRectMake
+            (
+                bounds.origin.x + GENERAL_SPACE_TINY, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + GENERAL_SPACE_LITTLE, bounds.size.height - GENERAL_SPACE_LITTLE
+            );
+        }
+
+        - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
+
+
+        /* FUNCTION */
+
+        - (void)setupStyle
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            
+            [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
+            [self setTextAlignment : NSTextAlignmentLeft];
+            self.textColor = [_objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+            [self setFont:[UIFont fontWithName:THEME_FONT_PRIMARY size:FONTSIZE_TEXTFIELD_FORM]];
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:INPUT_OPACITY_BACKGROUND];
+            self.borderStyle = UITextBorderStyleNone;
+            self.layer.cornerRadius = INPUT_RADIUS_BORDER;
+            self.layer.masksToBounds = YES;
+        }
+
+    @end
+
+
+// PROGRESS VIEW
+
+@implementation ProgressViewGuideHeader
+
+    /* INITIALIZE */
 
     - (void)awakeFromNib
     {
         [self setupStyle];
+        [self styleOnProgress];
+        [self styleComplete];
+        [self styleDisable];
     }
 
-
-    // FUNCTION
+    /* FUNCTION */
 
     - (void)setupStyle
     {
-        UserInterface* objectUserInterface = [[UserInterface alloc] init];
+        _objectUserInterface = [[UserInterface alloc] init];
         
-        [self.widthAnchor constraintEqualToConstant:TEXTFIELD_WIDTH_MEDIUM].active = true;
-        [self.heightAnchor constraintEqualToConstant:TEXTFIELD_HEIGHT_SINGLE].active = true;
+        [self.heightAnchor constraintEqualToConstant:PROGRESSVIEW_HEIGHT_BAR].active = true;
+        self.progress = 0.5;
+        self.progressTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_DISABLE floatOpacity:1.0];
+        self.trackTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_DISABLE floatOpacity:1.0];
+        self.layer.cornerRadius = GENERAL_RADIUS_FORM;
+    }
+
+    - (void)styleOnProgress
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.progressTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+        self.trackTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+    }
+
+    - (void)styleComplete
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.progressTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_SECONDARY floatOpacity:1.0];
+        self.trackTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+    }
+
+    - (void)styleDisable
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.progressTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_DISABLE floatOpacity:1.0];
+        self.trackTintColor = [_objectUserInterface generateUIColor:THEME_COLOR_DISABLE floatOpacity:1.0];
+    }
+
+@end
+
+
+// SECGMENTED CONTROL
+
+@implementation SegmentedControlFormGeneralPrimary
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
-        [self setTextAlignment : NSTextAlignmentLeft];
-        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:0.0];
-        self.borderStyle = UITextBorderStyleLine;
-        self.layer.borderWidth = INPUT_BORDER_WIDTH;
-        self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0].CGColor;
-
-        UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 8, 20)];
-        self.leftView = paddingView;
-        self.leftViewMode = UITextFieldViewModeAlways;
+        [self setContentHorizontalAlignment : UIControlContentHorizontalAlignmentCenter];
+        self.tintColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+        self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+        self.layer.cornerRadius = INPUT_RADIUS_BORDER;
+        self.layer.masksToBounds = YES;
+        self.layer.borderWidth = INPUT_WIDTH_BORDER;
+        self.layer.borderColor = [_objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0].CGColor;
+        UIFont *fontSetup = [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_TEXTFIELD_FORM];
+        NSDictionary *dictionaryFontSetup = [NSDictionary dictionaryWithObject:fontSetup forKey:NSFontAttributeName];
+        [self setTitleTextAttributes:dictionaryFontSetup forState:UIControlStateNormal];
+        
+        
+        // [menu setSelectedSegmentIndex:UISegmentedControlNoSegment];
     }
+
+
 
 @end

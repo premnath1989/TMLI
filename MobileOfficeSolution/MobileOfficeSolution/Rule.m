@@ -27,3 +27,12 @@
     NSString *const REGEX_IS_NUMERIC = @"^[0-9]*$";
     NSString *const REGEX_IS_ALPHA = @"^[a-zA-Z]*$";
     NSString *const REGEX_IS_EMAIL = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+
+
+    // FORMAT
+
+    NSString *const FORMAT_NUMERIC = @"Number";
+    NSString *const FORMAT_ALPHABET = @"Alphabet";
+    NSString *const FORMAT_ALPHANUMERIC = @"Alphabet and Number";
+    NSString *const FORMAT_DATE_BIRTHDAY = @"dd/M/yyyy";
+    int const FORMAT_STRING_TRUNCATED = 30;

@@ -11,39 +11,260 @@
 
 #import "Layout.h"
 #import "Theme.h"
-#import "User Interface.h"
 #import "Dimension.h"
 
 
-// IMPLEMENTATION
+// SLIDER
 
-    // NAVIGATION
+@implementation ViewSliderController
 
-    @implementation ViewNavigation
+    /* INITIALIZE */
 
-        // INITIALIZE
-
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+    - (void)awakeFromNib { [self setupStyle]; }
 
 
-        // FUNCTION
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
+
+@end
+
+
+// NAVIGATION
+
+@implementation ViewProfile
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:PROFILE_HEIGHT_VIEW].active = true;
+        [self.widthAnchor constraintEqualToConstant:PROFILE_WIDTH_VIEW].active = true;
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
+        self.layer.borderWidth = GENERAL_WIDTH_THIN;
+        self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0].CGColor;
+    }
+
+@end
+
+@implementation StackViewNavigationDetail
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.hidden = true;
+    }
+
+@end
+
+@implementation ViewNavigation
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
+    }
+
+@end
+
+@implementation ScrollViewNavigation
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
+        self.layer.borderWidth = GENERAL_WIDTH_THIN;
+        self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0].CGColor;
+    }
+
+@end
+
+
+// DESCRIPTOR
+
+@implementation ViewDescriptor
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:DESCRIPTOR_HEIGHT_VIEW].active = true;
+        [self.widthAnchor constraintEqualToConstant:DESCRIPTOR_WIDTH_VIEW].active = true;
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
+    }
+
+@end
+
+
+// LINE
+
+@implementation ViewLineHorizontal
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self.heightAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+}
+
+@end
+
+@implementation ViewLineVertical
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self.widthAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+}
+
+@end
+
+
+// PHOTO
+
+@implementation StackViewPhotoMenu
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentCenter;
+        self.spacing = GENERAL_SPACE_HUGE;
+    }
+
+@end
+
+@implementation StackViewPhotoTitle
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentCenter;
+        self.spacing = GENERAL_SPACE_LITTLE;
+    }
+
+@end
+
+@implementation StackViewPhotoButton
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisHorizontal;
+        self.spacing = GENERAL_SPACE_HUGE;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentCenter;
+    }
+
+@end
+
+
+// GUIDE
+
+    /* GUIDE HEADER */
+
+    @implementation StackViewGuideHeaderContent
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self setupStyle]; }
+
+
+        /* FUNCTION */
 
         - (void)setupStyle
         {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.widthAnchor constraintEqualToConstant:NAVIGATION_CONTAINER_WIDTH].active = true;
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+            self.axis = UILayoutConstraintAxisVertical;
+            self.spacing = GENERAL_SPACE_TINY;
+            self.distribution = UIStackViewDistributionFill;
+            self.alignment = UIStackViewAlignmentFill;
         }
 
     @end
 
-    @implementation StackViewNavigation
+    @implementation ViewGuideHeader
 
-        // INITIALIZE
+        /* INITIALIZE */
 
         - (void)awakeFromNib
         {
@@ -51,322 +272,259 @@
         }
 
 
-        // FUNCTION
+        /* FUNCTION */
 
         - (void)setupStyle
         {
-            [self.widthAnchor constraintEqualToConstant:NAVIGATION_CONTAINER_WIDTH].active = true;
+            _objectUserInterface = [[UserInterface alloc] init];
             
+            [self.widthAnchor constraintEqualToConstant:GUIDEHEADER_WIDTH_VIEW].active = true;
+            [self.heightAnchor constraintEqualToConstant:GUIDEHEADER_HEIGHT_VIEW].active = true;
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+        }
+
+        - (void)styleOnProgress
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+        }
+
+        - (void)styleComplete
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+        }
+
+        - (void)styleDisable
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+        }
+
+    @end
+
+    /* GUIDE DETAIL */
+
+    @implementation StackViewGuideDetailContent
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self setupStyle]; }
+
+
+        /* FUNCTION */
+
+        - (void)setupStyle
+        {
             self.axis = UILayoutConstraintAxisVertical;
+            self.spacing = GENERAL_SPACE_MEDIUM;
             self.distribution = UIStackViewDistributionFill;
             self.alignment = UIStackViewAlignmentCenter;
-            // self.spacing = FORM_STACKVIEW_VERTICALSPACING;
         }
 
     @end
 
     @implementation ViewGuideDetail
 
-        // INITIALIZE
+        /* INITIALIZE */
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+        - (void)awakeFromNib { [self setupStyle]; }
 
 
-        // FUNCTION
+        /* FUNCTION */
 
         - (void)setupStyle
         {
             UserInterface *objectUserInterface = [[UserInterface alloc] init];
             
-            [self.widthAnchor constraintEqualToConstant:GUIDEDETAIL_CONTAINER_WIDTH].active = true;
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_TERTIARY floatOpacity:1.0];
+            [self.widthAnchor constraintEqualToConstant:GUIDEDETAIL_WIDTH_VIEW].active = true;
+            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
         }
 
     @end
 
-    // PAGE
 
-    @implementation ViewPageHeader
+// SCROLL VIEW
 
-        // INITIALIZE
+@implementation ScrollViewSenary
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+    /* INITIALIZE */
 
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        // FUNCTION
 
-        - (void)setupStyle
-        {
-            [self.heightAnchor constraintEqualToConstant:PAGE_HEADER_HEIGHT].active = true;
-            
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUATERNARY floatOpacity:1.0];
-            
-            self.clipsToBounds = YES;
-            CALayer *layerBorderBottom = [CALayer layer];
-            layerBorderBottom.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_TERTIARY floatOpacity:1.0].CGColor;
-            layerBorderBottom.borderWidth = PAGE_HEADER_BORDERWIDTH;
-            layerBorderBottom.frame = CGRectMake(0, CGRectGetHeight(self.frame) - 1, CGRectGetWidth(self.frame), PAGE_HEADER_BORDERWIDTH);
-            [self.layer addSublayer:layerBorderBottom];
-        }
+    /* FUNCTION */
 
-    @end
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
 
-    @implementation ViewPageSubHeader
+@end
 
-        // INITIALIZE
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+// FORM
 
+@implementation StackViewFormVerticalContainer
 
-        // FUNCTION
+    /* INITIALIZE */
 
-        - (void)setupStyle
-        {
-            [self.heightAnchor constraintEqualToConstant:PAGE_SUBHEADER_HEIGHT].active = true;
-            
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0];
-        }
+    - (void)awakeFromNib { [self setupStyle]; }
 
-    @end
 
-    // FORM
+    /* FUNCTION */
 
-    @implementation StackViewFormColumn
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.spacing = GENERAL_SPACE_LARGE;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentFill;
+    }
 
-        // INITIALIZE
+@end
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+@implementation StackViewFormHorizontalQuestion
 
+    /* INITIALIZE */
 
-        // FUNCTION
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisHorizontal;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentCenter;
-            self.spacing = FORM_STACKVIEWCOLUMN_HORIZONTALSPACING;
-        }
 
-    @end
+    /* FUNCTION */
 
-    @implementation StackViewFormHorizontal
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisHorizontal;
+        self.spacing = GENERAL_SPACE_LARGE;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentTop;
+    }
 
-        // INITIALIZE
+@end
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+@implementation StackViewFormHorizontalMultiQuestion
 
+    /* INITIALIZE */
 
-        // FUNCTION
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisHorizontal;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentCenter;
-            self.spacing = FORM_STACKVIEW_HORIZONTALSPACING;
-        }
 
-    @end
+    /* FUNCTION */
 
-    @implementation StackViewFormVertical
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisHorizontal;
+        self.spacing = GENERAL_SPACE_LARGE;
+        self.distribution = UIStackViewDistributionFillEqually;
+        self.alignment = UIStackViewAlignmentTop;
+    }
 
-        // INITIALIZE
+@end
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+@implementation StackViewFormVerticalQuestion
 
+    /* INITIALIZE */
 
-        // FUNCTION
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisVertical;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentLeading;
-            self.spacing = FORM_STACKVIEW_VERTICALSPACING;
-        }
 
-    @end
+    /* FUNCTION */
 
-    // GUIDE
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.spacing = GENERAL_SPACE_SMALL;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentFill;
+    }
 
-    @implementation ViewGuideMenuSelected
+@end
 
-        // INITIALIZE
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+// MAIN
 
+@implementation ViewMain
 
-        // FUNCTION
+    /* INITIALIZE */
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:GUIDEMENU_CONTAINER_HEIGHT].active = true;
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
-        }
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        @end
 
-    @implementation ViewGuideMenuNotSelected
+    /* FUNCTION */
 
-        // INITIALIZE
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
+    }
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+@end
 
 
-        // FUNCTION
+// MODULE
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:GUIDEMENU_CONTAINER_HEIGHT].active = true;
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
-        }
+@implementation StackViewModuleDetail
 
-    @end
+    /* INITIALIZE */
 
-    @implementation StackViewGuideMenuContainer
+    - (void)awakeFromNib { [self setupStyle]; }
 
-        // INITIALIZE
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+    /* FUNCTION */
 
+    - (void)setupStyle
+    {
+        self.hidden = true;
+    }
 
-        // FUNCTION
+@end
 
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisVertical;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentLeading;
-        }
+@implementation ViewModule
 
-    @end
+    /* INITIALIZE */
 
-    @implementation StackViewGuideMenuHorizontal
+    - (void)awakeFromNib
+    {
+        [self setupStyle];
+    }
 
-        // INITIALIZE
 
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
+    /* FUNCTION */
 
+    - (void)setupStyle
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:MODULE_HEIGHT_VIEW].active = true;
+        self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
 
-        // FUNCTION
+    - (void)styleOnProgress
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
 
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisHorizontal;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentCenter;
-            self.spacing = GUIDEMENU_STACKVIEW_HORIZONTALSPACING;
-        }
+    - (void)styleComplete
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+    }
 
-    @end
+    - (void)styleDisable
+    {
+        _objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
 
-    @implementation StackViewGuideMenuVertical
-
-        // INITIALIZE
-
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
-
-
-        // FUNCTION
-
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisVertical;
-            self.distribution = UIStackViewDistributionFill;
-            self.alignment = UIStackViewAlignmentLeading;
-            self.spacing = GUIDEMENU_STACKVIEW_VERTICALSPACING;
-        }
-
-    @end
-
-    // TABLE
-
-    @implementation StackViewTableHorizontal
-
-        // INITIALIZE
-
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
-
-
-        // FUNCTION
-
-        - (void)setupStyle
-        {
-            self.axis = UILayoutConstraintAxisHorizontal;
-            self.distribution = UIStackViewDistributionFillEqually;
-            self.alignment = UIStackViewAlignmentFill;
-            self.spacing = TABLE_STACKVIEW_SPACING;
-            
-            [self.heightAnchor constraintEqualToConstant:TABLE_HEADER_HEIGHT].active = true;
-        }
-
-    @end
-
-    @implementation TableViewGeneral
-
-        // INITIALIZE
-
-        - (void)awakeFromNib
-        {
-            [self setupStyle];
-        }
-
-
-        // FUNCTION
-
-        - (void)setupStyle
-        {
-            UserInterface* objectUserInterface = [[UserInterface alloc] init];
-            self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:0.0];
-            
-            self.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-            self.separatorColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
-            self.separatorInset = UIEdgeInsetsMake(0, -10, 0, 0);
-        }
-
-    @end
+@end

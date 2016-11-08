@@ -13,6 +13,26 @@
 		DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */; };
 		DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168461DD03551007DDA9B /* NewJune_Light.ttf */; };
 		DE11684A1DD0355A007DDA9B /* NewJune_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */; };
+		DE1168DE1DD17468007DDA9B /* Descriptor View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1168DA1DD17468007DDA9B /* Descriptor View.xib */; };
+		DE1168DF1DD17468007DDA9B /* Guide Header View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1168DB1DD17468007DDA9B /* Guide Header View.xib */; };
+		DE1168E01DD17468007DDA9B /* Navigation View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1168DC1DD17468007DDA9B /* Navigation View.xib */; };
+		DE1168E11DD17468007DDA9B /* Module View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1168DD1DD17468007DDA9B /* Module View.xib */; };
+		DE1168E31DD17471007DDA9B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1168E21DD17471007DDA9B /* Main.storyboard */; };
+		DE1168EE1DD17494007DDA9B /* Descriptor Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168E71DD17494007DDA9B /* Descriptor Controller.m */; };
+		DE1168EF1DD17494007DDA9B /* Navigation Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168E91DD17494007DDA9B /* Navigation Controller.m */; };
+		DE1168F11DD17494007DDA9B /* Module Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168ED1DD17494007DDA9B /* Module Controller.m */; };
+		DE1168F41DD1749E007DDA9B /* Login Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168F31DD1749E007DDA9B /* Login Controller.m */; };
+		DE1168F71DD174C8007DDA9B /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168F61DD174C8007DDA9B /* Image.m */; };
+		DE1168FA1DD17528007DDA9B /* Guide Header Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168F91DD17528007DDA9B /* Guide Header Controller.m */; };
+		DE1168FD1DD17789007DDA9B /* Guide Header Controller_design.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168FC1DD17789007DDA9B /* Guide Header Controller_design.m */; };
+		DE1169001DD178DE007DDA9B /* Home Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1168FF1DD178DE007DDA9B /* Home Controller.m */; };
+		DE1169031DD17951007DDA9B /* SPAJ.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DE1169021DD17951007DDA9B /* SPAJ.storyboard */; };
+		DE1169061DD17962007DDA9B /* SPAJ Policy Holder 1 View.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1169051DD17962007DDA9B /* SPAJ Policy Holder 1 View.xib */; };
+		DE11690B1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE11690A1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m */; };
+		DE1169121DD179B2007DDA9B /* SPAJ Landing Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE11690D1DD179B2007DDA9B /* SPAJ Landing Controller.m */; };
+		DE1169131DD179B2007DDA9B /* SPAJ Add New Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE11690F1DD179B2007DDA9B /* SPAJ Add New Controller.m */; };
+		DE1169141DD179B2007DDA9B /* SPAJ Module Controller.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1169111DD179B2007DDA9B /* SPAJ Module Controller.m */; };
+		DE1169171DD17A7A007DDA9B /* Guide Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1169161DD17A7A007DDA9B /* Guide Helper.m */; };
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
@@ -527,6 +547,39 @@
 		DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Bold.ttf; sourceTree = "<group>"; };
 		DE1168461DD03551007DDA9B /* NewJune_Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Light.ttf; sourceTree = "<group>"; };
 		DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Regular.ttf; sourceTree = "<group>"; };
+		DE1168DA1DD17468007DDA9B /* Descriptor View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Descriptor View.xib"; sourceTree = "<group>"; };
+		DE1168DB1DD17468007DDA9B /* Guide Header View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Guide Header View.xib"; sourceTree = "<group>"; };
+		DE1168DC1DD17468007DDA9B /* Navigation View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Navigation View.xib"; sourceTree = "<group>"; };
+		DE1168DD1DD17468007DDA9B /* Module View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Module View.xib"; sourceTree = "<group>"; };
+		DE1168E21DD17471007DDA9B /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		DE1168E61DD17494007DDA9B /* Descriptor Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Descriptor Controller.h"; sourceTree = "<group>"; };
+		DE1168E71DD17494007DDA9B /* Descriptor Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Descriptor Controller.m"; sourceTree = "<group>"; };
+		DE1168E81DD17494007DDA9B /* Navigation Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Navigation Controller.h"; sourceTree = "<group>"; };
+		DE1168E91DD17494007DDA9B /* Navigation Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Navigation Controller.m"; sourceTree = "<group>"; };
+		DE1168EC1DD17494007DDA9B /* Module Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Module Controller.h"; sourceTree = "<group>"; };
+		DE1168ED1DD17494007DDA9B /* Module Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Module Controller.m"; sourceTree = "<group>"; };
+		DE1168F21DD1749E007DDA9B /* Login Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Login Controller.h"; sourceTree = "<group>"; };
+		DE1168F31DD1749E007DDA9B /* Login Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Login Controller.m"; sourceTree = "<group>"; };
+		DE1168F51DD174C8007DDA9B /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		DE1168F61DD174C8007DDA9B /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
+		DE1168F81DD17528007DDA9B /* Guide Header Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Guide Header Controller.h"; sourceTree = "<group>"; };
+		DE1168F91DD17528007DDA9B /* Guide Header Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Guide Header Controller.m"; sourceTree = "<group>"; };
+		DE1168FB1DD17789007DDA9B /* Guide Header Controller_design.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Guide Header Controller_design.h"; sourceTree = "<group>"; };
+		DE1168FC1DD17789007DDA9B /* Guide Header Controller_design.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Guide Header Controller_design.m"; sourceTree = "<group>"; };
+		DE1168FE1DD178DE007DDA9B /* Home Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Home Controller.h"; sourceTree = "<group>"; };
+		DE1168FF1DD178DE007DDA9B /* Home Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Home Controller.m"; sourceTree = "<group>"; };
+		DE1169021DD17951007DDA9B /* SPAJ.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SPAJ.storyboard; sourceTree = "<group>"; };
+		DE1169051DD17962007DDA9B /* SPAJ Policy Holder 1 View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "SPAJ Policy Holder 1 View.xib"; sourceTree = "<group>"; };
+		DE1169091DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPAJ Policyholder 1 Controller.h"; sourceTree = "<group>"; };
+		DE11690A1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPAJ Policyholder 1 Controller.m"; sourceTree = "<group>"; };
+		DE11690C1DD179B2007DDA9B /* SPAJ Landing Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPAJ Landing Controller.h"; sourceTree = "<group>"; };
+		DE11690D1DD179B2007DDA9B /* SPAJ Landing Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPAJ Landing Controller.m"; sourceTree = "<group>"; };
+		DE11690E1DD179B2007DDA9B /* SPAJ Add New Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPAJ Add New Controller.h"; sourceTree = "<group>"; };
+		DE11690F1DD179B2007DDA9B /* SPAJ Add New Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPAJ Add New Controller.m"; sourceTree = "<group>"; };
+		DE1169101DD179B2007DDA9B /* SPAJ Module Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPAJ Module Controller.h"; sourceTree = "<group>"; };
+		DE1169111DD179B2007DDA9B /* SPAJ Module Controller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPAJ Module Controller.m"; sourceTree = "<group>"; };
+		DE1169151DD17A7A007DDA9B /* Guide Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Guide Helper.h"; sourceTree = "<group>"; };
+		DE1169161DD17A7A007DDA9B /* Guide Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Guide Helper.m"; sourceTree = "<group>"; };
 		DE1514D81DB4A80800C429A2 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		DE1514D91DB4A80800C429A2 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
@@ -1363,6 +1416,95 @@
 			name = "New June";
 			sourceTree = "<group>";
 		};
+		DE1168D81DD1744E007DDA9B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DE1169011DD17947007DDA9B /* SPAJ */,
+				DE1168E21DD17471007DDA9B /* Main.storyboard */,
+				DE1168D91DD17456007DDA9B /* Include */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		DE1168D91DD17456007DDA9B /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				DE1168DA1DD17468007DDA9B /* Descriptor View.xib */,
+				DE1168DB1DD17468007DDA9B /* Guide Header View.xib */,
+				DE1168DC1DD17468007DDA9B /* Navigation View.xib */,
+				DE1168DD1DD17468007DDA9B /* Module View.xib */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		DE1168E41DD1747E007DDA9B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DE1169071DD1798D007DDA9B /* SPAJ */,
+				DE1168F21DD1749E007DDA9B /* Login Controller.h */,
+				DE1168F31DD1749E007DDA9B /* Login Controller.m */,
+				DE1168FE1DD178DE007DDA9B /* Home Controller.h */,
+				DE1168FF1DD178DE007DDA9B /* Home Controller.m */,
+				DE1168E51DD1748A007DDA9B /* Include */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		DE1168E51DD1748A007DDA9B /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				DE1168FB1DD17789007DDA9B /* Guide Header Controller_design.h */,
+				DE1168FC1DD17789007DDA9B /* Guide Header Controller_design.m */,
+				DE1168E61DD17494007DDA9B /* Descriptor Controller.h */,
+				DE1168E71DD17494007DDA9B /* Descriptor Controller.m */,
+				DE1168E81DD17494007DDA9B /* Navigation Controller.h */,
+				DE1168E91DD17494007DDA9B /* Navigation Controller.m */,
+				DE1168EC1DD17494007DDA9B /* Module Controller.h */,
+				DE1168ED1DD17494007DDA9B /* Module Controller.m */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		DE1169011DD17947007DDA9B /* SPAJ */ = {
+			isa = PBXGroup;
+			children = (
+				DE1169041DD17956007DDA9B /* Include */,
+				DE1169021DD17951007DDA9B /* SPAJ.storyboard */,
+			);
+			name = SPAJ;
+			sourceTree = "<group>";
+		};
+		DE1169041DD17956007DDA9B /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				DE1169051DD17962007DDA9B /* SPAJ Policy Holder 1 View.xib */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
+		DE1169071DD1798D007DDA9B /* SPAJ */ = {
+			isa = PBXGroup;
+			children = (
+				DE11690C1DD179B2007DDA9B /* SPAJ Landing Controller.h */,
+				DE11690D1DD179B2007DDA9B /* SPAJ Landing Controller.m */,
+				DE11690E1DD179B2007DDA9B /* SPAJ Add New Controller.h */,
+				DE11690F1DD179B2007DDA9B /* SPAJ Add New Controller.m */,
+				DE1169101DD179B2007DDA9B /* SPAJ Module Controller.h */,
+				DE1169111DD179B2007DDA9B /* SPAJ Module Controller.m */,
+				DE1169081DD17991007DDA9B /* Include */,
+			);
+			name = SPAJ;
+			sourceTree = "<group>";
+		};
+		DE1169081DD17991007DDA9B /* Include */ = {
+			isa = PBXGroup;
+			children = (
+				DE1169091DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.h */,
+				DE11690A1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m */,
+			);
+			name = Include;
+			sourceTree = "<group>";
+		};
 		DE5F7AFB1DB0EC00006DC32F /* IllustrationHTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -1553,6 +1695,8 @@
 		DEDC5C911DAE35030033FE37 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				DE1168E41DD1747E007DDA9B /* Controller */,
+				DE1168D81DD1744E007DDA9B /* View */,
 				DEDC5C9A1DAE356D0033FE37 /* Keychains */,
 				DEDC5C991DAE35670033FE37 /* Disclaimer */,
 				DEDC5C981DAE355C0033FE37 /* SessionManagement */,
@@ -2111,6 +2255,8 @@
 		DEDC5E191DAE42AB0033FE37 /* Style */ = {
 			isa = PBXGroup;
 			children = (
+				DE1168F51DD174C8007DDA9B /* Image.h */,
+				DE1168F61DD174C8007DDA9B /* Image.m */,
 				DEDC61691DAF7BF30033FE37 /* Button.h */,
 				DEDC616A1DAF7BF30033FE37 /* Button.m */,
 				DEDC616B1DAF7BF30033FE37 /* Input.h */,
@@ -2126,6 +2272,10 @@
 		DEDC5E1A1DAE42AF0033FE37 /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				DE1169151DD17A7A007DDA9B /* Guide Helper.h */,
+				DE1169161DD17A7A007DDA9B /* Guide Helper.m */,
+				DE1168F81DD17528007DDA9B /* Guide Header Controller.h */,
+				DE1168F91DD17528007DDA9B /* Guide Header Controller.m */,
 				DEDC61751DAF7C270033FE37 /* User Interface.h */,
 				DEDC61761DAF7C270033FE37 /* User Interface.m */,
 				DEDC61771DAF7C270033FE37 /* Alert.h */,
@@ -3129,6 +3279,7 @@
 				DEDC61171DAF796E0033FE37 /* SPAJ Submitted List Cell.xib in Resources */,
 				DEDC5F131DAE48290033FE37 /* SIListingTableViewCell.xib in Resources */,
 				DEDC60C91DAF74710033FE37 /* btn_SIlisting_off.png in Resources */,
+				DE1168DF1DD17468007DDA9B /* Guide Header View.xib in Resources */,
 				DEDC60B91DAF69100033FE37 /* tickCheckBox.png in Resources */,
 				DEDC60A81DAF69100033FE37 /* HeaderHLA.png in Resources */,
 				DEDC612E1DAF797E0033FE37 /* SPAJ Add Signature.xib in Resources */,
@@ -3179,6 +3330,7 @@
 				DEDC5F161DAE48290033FE37 /* SIMenuTableViewCell.xib in Resources */,
 				DEDC5DB41DAE40880033FE37 /* selectionIndicatorImage.png in Resources */,
 				DEDC5FA41DAE49BD0033FE37 /* Reader-Button-H.png in Resources */,
+				DE1169061DD17962007DDA9B /* SPAJ Policy Holder 1 View.xib in Resources */,
 				DEDC60AB1DAF69100033FE37 /* Client_Profile@2x.png in Resources */,
 				DEDC613D1DAF797E0033FE37 /* SPAJPDFWebViewController.xib in Resources */,
 				DEDC5FAA1DAE49BD0033FE37 /* Reader-Email.png in Resources */,
@@ -3188,6 +3340,7 @@
 				DEDC60B71DAF69100033FE37 /* disclosure_indicator.png in Resources */,
 				DEDC5FB31DAE49BD0033FE37 /* Reader-Mark-Y.png in Resources */,
 				DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */,
+				DE1168E01DD17468007DDA9B /* Navigation View.xib in Resources */,
 				DEDC60A71DAF69100033FE37 /* Rectangle.png in Resources */,
 				DEDC615A1DAF7BD00033FE37 /* Localizable.strings in Resources */,
 				DEDC613F1DAF797E0033FE37 /* SPAJIDCapturedViewController.xib in Resources */,
@@ -3198,6 +3351,7 @@
 				DEDC60B41DAF69100033FE37 /* cb_glossy_on.png in Resources */,
 				DEDC5FF31DAE56890033FE37 /* xibLibrary.bundle in Resources */,
 				DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */,
+				DE1168E11DD17468007DDA9B /* Module View.xib in Resources */,
 				DEDC60D21DAF74D30033FE37 /* btn_newSI_on.png in Resources */,
 				DEDC5FA71DAE49BD0033FE37 /* Reader-Button-N.png in Resources */,
 				DEDC60941DAF69100033FE37 /* menu_ilustrasi.png in Resources */,
@@ -3228,6 +3382,7 @@
 				DEDC5F181DAE48290033FE37 /* ProspectListingTableViewCell.xib in Resources */,
 				DEDC61191DAF796E0033FE37 /* MultipleImageIDTableViewCell.xib in Resources */,
 				DEDC60A51DAF69100033FE37 /* White-Header.png in Resources */,
+				DE1168DE1DD17468007DDA9B /* Descriptor View.xib in Resources */,
 				DEDC61B81DAF7DA80033FE37 /* camera-icon.png in Resources */,
 				DE11684A1DD0355A007DDA9B /* NewJune_Regular.ttf in Resources */,
 				DEDC60B21DAF69100033FE37 /* merahBtn.png in Resources */,
@@ -3248,6 +3403,7 @@
 				DE5F7B021DB0EC0F006DC32F /* eng_BCALH_Page3.html in Resources */,
 				DEDC601A1DAF4F2A0033FE37 /* MainStoryboard.storyboard in Resources */,
 				DEDC60C21DAF74290033FE37 /* btn_home.png in Resources */,
+				DE1168E31DD17471007DDA9B /* Main.storyboard in Resources */,
 				DEDC61181DAF796E0033FE37 /* SIListingForSPAJTableViewCell.xib in Resources */,
 				DEDC60B81DAF69100033FE37 /* emptyCheckBox.png in Resources */,
 				DEDC60861DAF69100033FE37 /* Expand Arrow@2x.png in Resources */,
@@ -3260,6 +3416,7 @@
 				DEDC60A61DAF69100033FE37 /* Sales_Illustration@2x.png in Resources */,
 				DEDC5FBB1DAE49BD0033FE37 /* Reader-Thumbs@3x.png in Resources */,
 				DEDC60891DAF69100033FE37 /* menu_customerfactfind.png in Resources */,
+				DE1169031DD17951007DDA9B /* SPAJ.storyboard in Resources */,
 				DEDC607B1DAF69100033FE37 /* btn_login.png in Resources */,
 				DEDC5FAB1DAE49BD0033FE37 /* Reader-Email@2x.png in Resources */,
 				DEDC5DB51DAE40880033FE37 /* selectionIndicatorImage@2x.png in Resources */,
@@ -3359,10 +3516,12 @@
 				DEDC5E811DAE468F0033FE37 /* JobListTbViewController.m in Sources */,
 				DEDC5E3C1DAE43800033FE37 /* ColorHexCode.m in Sources */,
 				DEDC60FF1DAF79350033FE37 /* SPAJ Add Detail.m in Sources */,
+				DE1168F41DD1749E007DDA9B /* Login Controller.m in Sources */,
 				DEDC5DB31DAE40880033FE37 /* FSVerticalTabBarController.m in Sources */,
 				DEDC5FD51DAE52C90033FE37 /* RiderCalculation.m in Sources */,
 				DEDC5E0D1DAE41FC0033FE37 /* GroupViewVC.m in Sources */,
 				DEDC5CCE1DAE38830033FE37 /* DataTable.m in Sources */,
+				DE1168EE1DD17494007DDA9B /* Descriptor Controller.m in Sources */,
 				DEDC5F6E1DAE49AE0033FE37 /* ReaderThumbsView.m in Sources */,
 				DEDC5E351DAE43590033FE37 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				DEDC5F151DAE48290033FE37 /* SIMenuTableViewCell.m in Sources */,
@@ -3384,6 +3543,7 @@
 				DEDC5E551DAE455B0033FE37 /* ClientTabBarButton.m in Sources */,
 				DEDC61D21DAF80A60033FE37 /* myLable.m in Sources */,
 				DEDC60011DAE57440033FE37 /* UIButton+Property.m in Sources */,
+				DE1168F71DD174C8007DDA9B /* Image.m in Sources */,
 				DEDC5D341DAE39420033FE37 /* ModelSPAJDetail.m in Sources */,
 				DEDC5D431DAE39DB0033FE37 /* ChangePassword.m in Sources */,
 				DEDC5FC11DAE51980033FE37 /* Formatter.m in Sources */,
@@ -3445,6 +3605,7 @@
 				DEDC60FE1DAF79350033FE37 /* SPAJ Form Generation.m in Sources */,
 				DEDC5DFA1DAE41B30033FE37 /* ListingTbViewController.m in Sources */,
 				DEDC610D1DAF79350033FE37 /* SPAJ Pembayaran Premi.m in Sources */,
+				DE1168FD1DD17789007DDA9B /* Guide Header Controller_design.m in Sources */,
 				DEDC5DF01DAE41B30033FE37 /* SIObj.m in Sources */,
 				DEDC5E621DAE45860033FE37 /* ProspectListing.m in Sources */,
 				DEDC5EFF1DAE47C80033FE37 /* MultipleImageIDTableViewCell.m in Sources */,
@@ -3468,6 +3629,7 @@
 				DEDC5D781DAE3CDD0033FE37 /* AgentWS.m in Sources */,
 				DEDC5EA71DAE47200033FE37 /* Country.m in Sources */,
 				DEDC5F601DAE49AE0033FE37 /* CGPDFDocument.m in Sources */,
+				DE11690B1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m in Sources */,
 				17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */,
 				DEDC5CB51DAE37C90033FE37 /* ClearData.m in Sources */,
 				C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */,
@@ -3485,6 +3647,7 @@
 				DEDC62111DAF81BC0033FE37 /* PDFFormTextField.m in Sources */,
 				DEDC5DFB1DAE41B30033FE37 /* TabValidation.m in Sources */,
 				DEDC5D2F1DAE39420033FE37 /* ModelSPAJTransaction.m in Sources */,
+				DE1169121DD179B2007DDA9B /* SPAJ Landing Controller.m in Sources */,
 				DEDC5F351DAE49390033FE37 /* CFFAPIController.m in Sources */,
 				DEDC5E311DAE43580033FE37 /* AFHTTPClient.m in Sources */,
 				DEDC5D791DAE3CDD0033FE37 /* NSDate+ISO8601Parsing.m in Sources */,
@@ -3509,6 +3672,7 @@
 				DEDC5E8D1DAE46BF0033FE37 /* IDTypeViewController.m in Sources */,
 				DEDC5FDB1DAE537F0033FE37 /* SPAJSubmissionFiles.m in Sources */,
 				DEDC5D961DAE3FBB0033FE37 /* LoginDBManagement.m in Sources */,
+				DE1168F11DD17494007DDA9B /* Module Controller.m in Sources */,
 				DEDC5CC81DAE382F0033FE37 /* FMResultSet.m in Sources */,
 				DEDC61821DAF7C270033FE37 /* AllAboutPDFGeneration.m in Sources */,
 				DEDC5D971DAE3FBB0033FE37 /* SynchDaysCounter.m in Sources */,
@@ -3539,6 +3703,7 @@
 				DEDC5FF71DAE57190033FE37 /* TableManagement.m in Sources */,
 				DEDC5E151DAE42370033FE37 /* SIListing.m in Sources */,
 				DEDC5E691DAE46160033FE37 /* VIPClass.m in Sources */,
+				DE1169141DD179B2007DDA9B /* SPAJ Module Controller.m in Sources */,
 				DEDC5F661DAE49AE0033FE37 /* ReaderDocumentOutline.m in Sources */,
 				DEDC5EB11DAE474C0033FE37 /* BranchInfo.m in Sources */,
 				DEDC5DC71DAE417A0033FE37 /* IlustrationViewController.m in Sources */,
@@ -3552,10 +3717,12 @@
 				DEDC5EA81DAE47200033FE37 /* Country2.m in Sources */,
 				DEDC5E0E1DAE41FC0033FE37 /* ClientGroup.m in Sources */,
 				DEDC5F651DAE49AE0033FE37 /* ReaderDocument.m in Sources */,
+				DE1168EF1DD17494007DDA9B /* Navigation Controller.m in Sources */,
 				DEDC5FD81DAE53740033FE37 /* SettingUserProfile.m in Sources */,
 				DEDC620E1DAF81BC0033FE37 /* PDFFormButtonField.m in Sources */,
 				DEDC5F2B1DAE48980033FE37 /* NSString+DDXML.m in Sources */,
 				DEDC5E121DAE41FC0033FE37 /* NewGroupListing.m in Sources */,
+				DE1169131DD179B2007DDA9B /* SPAJ Add New Controller.m in Sources */,
 				DEDC5DF11DAE41B30033FE37 /* NewLAViewController.m in Sources */,
 				DEDC5F201DAE486A0033FE37 /* DDXMLDocument.m in Sources */,
 				DEDC5DF31DAE41B30033FE37 /* PayorViewController.m in Sources */,
@@ -3570,6 +3737,7 @@
 				DEDC5DA41DAE402B0033FE37 /* StringEncryption.m in Sources */,
 				DEDC5D7F1DAE3CDD0033FE37 /* WebResponObj.m in Sources */,
 				DEDC5E9C1DAE46FC0033FE37 /* Race.m in Sources */,
+				DE1169171DD17A7A007DDA9B /* Guide Helper.m in Sources */,
 				DEDC615E1DAF7BD00033FE37 /* Theme.m in Sources */,
 				DEDC5EA21DAE47110033FE37 /* Religion.m in Sources */,
 				DEDC5E901DAE46C90033FE37 /* TitleViewController.m in Sources */,
@@ -3584,11 +3752,13 @@
 				DEDC5CDF1DAE38B60033FE37 /* DataManager.m in Sources */,
 				DEDC61F51DAF81860033FE37 /* PDFFormAction.m in Sources */,
 				DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */,
+				DE1168FA1DD17528007DDA9B /* Guide Header Controller.m in Sources */,
 				DEDC5E371DAE43590033FE37 /* AFURLConnectionOperation.m in Sources */,
 				DEDC5FE11DAE539B0033FE37 /* SPAJTableCell.m in Sources */,
 				DEDC60FD1DAF79350033FE37 /* SPAJPDFWebViewController.m in Sources */,
 				DEDC61F91DAF81860033FE37 /* PDFStream.m in Sources */,
 				DEDC61F81DAF81860033FE37 /* PDFPage.m in Sources */,
+				DE1169001DD178DE007DDA9B /* Home Controller.m in Sources */,
 				DEDC5F721DAE49AE0033FE37 /* ThumbsViewController.m in Sources */,
 				DEDC5D321DAE39420033FE37 /* ModelSPAJHtml.m in Sources */,
 				DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */,

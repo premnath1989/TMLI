@@ -11,14 +11,64 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "User Interface.h"
 
 
-// DECLARATION
+// TEXTFIELD
 
-@interface TextFieldPrimary : UITextField<UITextFieldDelegate>
+    /* FORM */
 
-    // FUNCTION
+    @interface TextFieldFormGeneralPrimary : UITextField<UITextFieldDelegate>
+
+        @property (nonatomic, copy, readwrite) UserInterface* objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleValid;
+        - (void)styleInvalid;
+        - (void)styleDisable;
+        - (void)styleEnable;
+
+    @end
+
+    /* PHOTO */
+
+    @interface TextFieldPhotoGeneralPrimary : UITextField<UITextFieldDelegate>
+
+        @property (nonatomic, copy, readwrite) UserInterface* objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleValid;
+        - (void)styleInvalid;
+        - (void)styleDisable;
+        - (void)styleEnable;
+
+    @end
+
+
+// PROGRESS VIEW
+
+@interface ProgressViewGuideHeader : UIProgressView
+
+    @property (nonatomic, copy, readwrite) UserInterface* objectUserInterface;
 
     - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end
+
+
+// SEGMENTED CONTROL
+
+@interface SegmentedControlFormGeneralPrimary : UISegmentedControl
+
+    @property (nonatomic, copy, readwrite) UserInterface* objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleValid;
+    - (void)styleInvalid;
+    - (void)styleDisable;
+    - (void)styleEnable;
 
 @end

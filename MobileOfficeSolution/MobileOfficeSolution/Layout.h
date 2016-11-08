@@ -11,19 +11,111 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "User Interface.h"
 
 
-// DECLARATION
+// NAVIGATION
 
-    // NAVIGATION
+@interface ViewSliderController : UIView
 
-    @interface ViewNavigation : UIView
+    - (void)setupStyle;
+
+@end
+
+@interface ViewProfile : UIView
+
+    - (void)setupStyle;
+
+@end
+
+@interface StackViewNavigationDetail : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+@interface ViewNavigation : UIView
+
+    - (void)setupStyle;
+
+@end
+
+@interface ScrollViewNavigation : UIScrollView
+
+    - (void)setupStyle;
+
+@end
+
+
+// DESCRIPTOR
+
+@interface ViewDescriptor : UIView
+
+    - (void)setupStyle;
+
+@end
+
+
+// LINE
+
+@interface ViewLineHorizontal : UIView
+
+    - (void)setupStyle;
+
+@end
+
+@interface ViewLineVertical : UIView
+
+    - (void)setupStyle;
+
+@end
+
+
+// PHOTO
+
+@interface StackViewPhotoMenu : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+@interface StackViewPhotoTitle : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+@interface StackViewPhotoButton : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+
+// GUIDE
+
+    /* GUIDE HEADER */
+
+    @interface StackViewGuideHeaderContent : UIStackView
 
         - (void)setupStyle;
 
     @end
 
-    @interface StackViewNavigation : UIStackView
+    @interface ViewGuideHeader : UIView
+
+        @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleOnProgress;
+        - (void)styleComplete;
+        - (void)styleDisable;
+
+    @end
+
+    /* GUIDE DETAIL */
+
+    @interface StackViewGuideDetailContent : UIStackView
 
         - (void)setupStyle;
 
@@ -35,83 +127,67 @@
 
     @end
 
-    // PAGE
 
-    @interface ViewPageHeader : UIView
+// SCROLL VIEW
 
-        - (void)setupStyle;
+@interface ScrollViewSenary : UIScrollView
 
-    @end
+    - (void)setupStyle;
 
-    @interface ViewPageSubHeader : UIView
-
-        - (void)setupStyle;
-
-    @end
-
-    // FORM
-
-    @interface StackViewFormColumn : UIStackView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface StackViewFormHorizontal : UIStackView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface StackViewFormVertical : UIStackView
-
-        - (void)setupStyle;
-
-    @end
-
-    // GUIDE
-
-    @interface ViewGuideMenuSelected : UIView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface ViewGuideMenuNotSelected : UIView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface StackViewGuideMenuContainer : UIStackView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface StackViewGuideMenuVertical : UIStackView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface StackViewGuideMenuHorizontal : UIStackView
-
-        - (void)setupStyle;
-
-    @end
+@end
 
 
-    //  TABLE
+// FORM
 
-    @interface StackViewTableHorizontal : UIStackView
+@interface StackViewFormVerticalContainer : UIStackView
 
-        - (void)setupStyle;
+    - (void)setupStyle;
 
-    @end
+@end
 
-    @interface TableViewGeneral : UITableView
+@interface StackViewFormHorizontalQuestion : UIStackView
 
-        - (void)setupStyle;
+    - (void)setupStyle;
 
-    @end
+@end
+
+@interface StackViewFormHorizontalMultiQuestion : UIStackView
+
+- (void)setupStyle;
+
+@end
+
+@interface StackViewFormVerticalQuestion : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+
+// MAIN
+
+@interface ViewMain : UIView
+
+    - (void)setupStyle;
+
+@end
+
+
+// MODULE
+
+@interface StackViewModuleDetail : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+@interface ViewModule : UIView
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end

@@ -11,42 +11,126 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "User Interface.h"
 
 
-// DECLARATION
 
-    // NAVIGATION
+// FORM
 
-    @interface ButtonNavigation : UIButton
+@interface ButtonFormPrimary : UIButton
 
-        - (void)setupStyle;
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonFormSecondary : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+
+// NAVIGATION
+
+@interface ButtonNavigation : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonProfile : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonHeader : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+    /* HORIZONTAL */
+
+    @interface ButtonNavigationHorizontalHeader : UIButton
+
+     - (void)setupStyle;
 
     @end
 
-    // FORM
+    @interface ButtonNavigationHorizontalDetail : UIButton
 
-    @interface ButtonFormPrimary : UIButton
-
-        - (void)setupStyle;
+     - (void)setupStyle;
 
     @end
 
-    // GUIDE
+    /* VERTICAL */
 
-    @interface ButtonGuideMenu : UIButton
+    @interface ButtonNavigationVerticalHeader : UIButton
 
-        - (void)setupStyle;
-
-    @end
-
-    @interface ButtonOverlay : UIButton
-
-        - (void)setupStyle;
+     - (void)setupStyle;
 
     @end
 
-    @interface ButtonConfirmSPAJ : UIButton
+    @interface ButtonNavigationVerticalDetail : UIButton
 
-        - (void)setupStyle;
+     - (void)setupStyle;
 
     @end
+
+
+// PHOTO
+
+@interface ButtonPhotoUnderline : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonPhotoTitleRight : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonPhotoTitleLeft : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+
+// SLIDER
+
+@interface ButtonSlider : UIButton
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleSelected;
+    - (void)styleNotSelected;
+
+@end
+
+
+// MASKING
+
+@interface ButtonMasking : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+
+// GUIDE
+
+@interface ButtonGuideDetail : UIButton
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end

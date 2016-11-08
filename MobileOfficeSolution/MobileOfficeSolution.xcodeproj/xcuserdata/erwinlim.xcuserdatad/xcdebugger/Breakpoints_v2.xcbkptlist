@@ -19,5 +19,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/Guide Header Controller.h"
+            timestampString = "500266673.213784"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "@interface GuideHeaderController"
+            landmarkType = "2">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GuideHeaderController labelTitle]"
+                  moduleName = "MobileOfficeSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erwinlim/Documents/TMLI_IOS_MPOS/MobileOfficeSolution/MobileOfficeSolution/Guide%20Header%20Controller.h"
+                  timestampString = "500270654.291748"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "10">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GuideHeaderController setLabelTitle:]"
+                  moduleName = "MobileOfficeSolution"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/erwinlim/Documents/TMLI_IOS_MPOS/MobileOfficeSolution/MobileOfficeSolution/Guide%20Header%20Controller.h"
+                  timestampString = "500270654.294298"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "55"
+                  endingLineNumber = "55"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

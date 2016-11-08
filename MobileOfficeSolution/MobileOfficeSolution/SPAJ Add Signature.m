@@ -1090,7 +1090,7 @@
         if ([stringSIRelation isEqualToString:@"DIRI SENDIRI"]){
             if ((indexPath.row == 0)||(indexPath.row == 3)){
                 [cell setUserInteractionEnabled:true];
-                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                 
             }
             else{
@@ -1102,7 +1102,7 @@
                 if (boolOrangTuaWali){
                     if ((indexPath.row == 0)||(indexPath.row == 2)||(indexPath.row == 3)){
                         [cell setUserInteractionEnabled:true];
-                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                     }
                     else{
                         [cell setUserInteractionEnabled:false];
@@ -1111,7 +1111,7 @@
                 else{
                     if ((indexPath.row == 0)||(indexPath.row == 2)){
                         [cell setUserInteractionEnabled:true];
-                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                     }
                     else{
                         [cell setUserInteractionEnabled:false];
@@ -1122,7 +1122,7 @@
                 if (boolTertanggung){
                     if ((indexPath.row == 0)||(indexPath.row == 1)||(indexPath.row == 3)){
                         [cell setUserInteractionEnabled:true];
-                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                     }
                     else{
                         [cell setUserInteractionEnabled:false];
@@ -1131,7 +1131,7 @@
                 else{
                     if ((indexPath.row == 0)||(indexPath.row == 1)){
                         [cell setUserInteractionEnabled:true];
-                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                        [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                     }
                     else{
                         [cell setUserInteractionEnabled:false];
@@ -1143,7 +1143,7 @@
     else{
         if (indexPath.row == 0){
             [cell setUserInteractionEnabled:true];
-            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
         }
         else{
             [cell setUserInteractionEnabled:false];

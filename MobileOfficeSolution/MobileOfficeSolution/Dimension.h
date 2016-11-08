@@ -10,11 +10,41 @@
 // IMPORT
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 
-// INTERFACE
+// GENERAL
 
-    // GENERAL
+    /* SPACE */
+
+    extern int const GENERAL_SPACE_TINY;
+    extern int const GENERAL_SPACE_LITTLE;
+    extern int const GENERAL_SPACE_SMALL;
+    extern int const GENERAL_SPACE_MEDIUM;
+    extern int const GENERAL_SPACE_LARGE;
+    extern int const GENERAL_SPACE_HUGE;
+    extern int const GENERAL_SPACE_ENORMOUS;
+
+    /* MEASUREMENT */
+
+    extern int const GENERAL_WIDTH_SHORT;
+    extern int const GENERAL_WIDTH_MEDIUM;
+    extern int const GENERAL_WIDTH_LONG;
+
+    extern int const GENERAL_HEIGHT_SINGLE;
+    extern int const GENERAL_HEIGHT_DOUBLE;
+    extern int const GENERAL_HEIGHT_TRIPPLE;
+
+    extern int const GENERAL_WIDTH_THIN;
+    extern int const GENERAL_WIDTH_REGULAR;
+    extern int const GENERAL_WIDTH_THICK;
+
+    extern int const GENERAL_RADIUS_FORM;
+
+
+// OBJECT / SHAPE
+
+    /* ICON */
 
     extern int const ICON_SIZE_SMALL;
     extern int const ICON_SIZE_MEDIUM;
@@ -23,68 +53,97 @@
     extern int const ICON_SIZE_XXLARGE;
     extern int const ICON_SIZE_XXXLARGE;
 
-    extern int const GENERAL_MARGIN_SMALL;
-    extern int const GENERAL_MARGIN_MEDIUM;
-    extern int const GENERAL_MARGIN_LARGE;
+    /* ARC */
 
-    extern int const GENERAL_PADDING_SMALL;
-    extern int const GENERAL_PADDING_MEDIUM;
-    extern int const GENERAL_PADDING_LARGE;
+    extern int const ARC_SIZE_FULLSCREEN;
+    extern int const ARC_SIZE_HOME;
+    extern int const ARC_SIZE_HEADER;
 
-    // INPUT
+    /* LOGO */
 
-    extern int const INPUT_WIDTH_PURE;
-    extern int const INPUT_HEIGHT_PURE;
-    extern int const INPUT_BORDER_WIDTH;
+    extern int const LOGO_WIDTH_HAT;
+    extern int const LOGO_HEIGHT_HAT;
+    extern int const LOGO_WIDTH_HORIZONTAL;
+    extern int const LOGO_HEIGHT_HORIZONTAL;
 
-    extern int const TEXTFIELD_WIDTH_SHORT;
-    extern int const TEXTFIELD_WIDTH_MEDIUM;
-    extern int const TEXTFIELD_WIDTH_LONG;
-    extern int const TEXTFIELD_HEIGHT_SINGLE;
-    extern int const TEXTFIELD_HEIGHT_MULTI;
-    extern int const TEXTFIELD_BORDER_WIDTH;
+    /* DESCRIPTOR */
 
-    // LAYOUT
+    extern int const DESCRIPTOR_WIDTH_VIEW;
+    extern int const DESCRIPTOR_HEIGHT_VIEW;
 
-    extern int const LAYOUT_BORDER_WIDTH;
-    extern int const LAYOUT_DECORATOR_PROPORTION1;
-    extern int const LAYOUT_STACKVIEW_SPACING;
 
-    extern int const NAVIGATION_CONTAINER_WIDTH;
-    extern int const PAGE_HEADER_HEIGHT;
-    extern int const PAGE_SUBHEADER_HEIGHT;
-    extern int const PAGE_HEADER_BORDERWIDTH;
-    extern int const FORM_STACKVIEW_HORIZONTALSPACING;
-    extern int const FORM_STACKVIEW_VERTICALSPACING;
-    extern int const FORM_STACKVIEWCOLUMN_HORIZONTALSPACING;
-    extern int const GUIDEMENU_CONTAINER_HEIGHT;
-    extern int const GUIDEMENU_STACKVIEW_HORIZONTALSPACING;
-    extern int const GUIDEMENU_STACKVIEW_VERTICALSPACING;
-    extern int const GUIDEDETAIL_CONTAINER_WIDTH;
+// INPUT
 
-    // LABEL
+    /* BORDER */
 
-    extern int const FIELD_WIDTH_PURE;
-    extern int const FIELD_HEIGHT_PURE;
+    extern int const INPUT_WIDTH_BORDER;
+    extern int const INPUT_RADIUS_BORDER;
 
-    extern int const FIELD_WIDTH_SHORT;
-    extern int const FIELD_WIDTH_MEDIUM;
-    extern int const FIELD_WIDTH_LONG;
-    extern int const FIELD_HEIGHT_SINGLE;
-    extern int const FIELD_HEIGHT_MULTI;
+    /* BACKGROUND */
 
-    extern int const NOTE_WIDTH_MEDIUM;
+    extern CGFloat const INPUT_OPACITY_BACKGROUND;
 
-    // BUTTON
+    /* PROGRESS VIEW */
 
-    extern int const BUTTON_WIDTH_PURE;
-    extern int const BUTTON_HEIGHT_PURE;
+    extern int const PROGRESSVIEW_HEIGHT_BAR;
 
-    extern int const BUTTON_NAVIGATION_WIDTH;
-    extern int const BUTTON_NAVIGATION_HEIGHT;
-    extern int const BUTTON_CONFIRMSPAJ_HEIGHT;
 
-    // TABLE
+// NAVIGATION
 
-    extern int const TABLE_STACKVIEW_SPACING;
-    extern int const TABLE_HEADER_HEIGHT;
+    extern int const NAVIGATION_WIDTH_CONTAINER;
+    extern int const NAVIGATION_HEIGHT_GRIP;
+
+    /* PROFILE */
+
+    extern int const PROFILE_WIDTH_VIEW;
+    extern int const PROFILE_HEIGHT_VIEW;
+
+    /* HEADER */
+
+    extern int const NAVIGATION_HEIGHT_HEADER;
+    extern int const NAVIGATION_WIDTH_HEADER;
+
+    /* DETAIL */
+
+    extern int const NAVIGATION_HEIGHT_DETAIL;
+    extern int const NAVIGATION_WIDTH_DETAIL;
+
+
+// SLIDER
+
+    /* CONTROLLER */
+
+    extern int const SLIDER_HEIGHT_CONTROLLER;
+    extern int const BUTTON_SIZE_SLIDER;
+
+    /* SLIDER */
+
+    extern int const SLIDER_HEIGHT_SCROLLVIEW;
+
+
+// BUTTON
+
+extern int const BUTTON_RADIUS_BORDER;
+
+
+// GUIDE
+
+    /* HEADER */
+
+    extern int const GUIDEHEADER_WIDTH_VIEW;
+    extern int const GUIDEHEADER_HEIGHT_VIEW;
+
+    /* DETAIL */
+
+    extern int const GUIDEDETAIL_SIZE_BUTTON;
+    extern int const GUIDEDETAIL_WIDTH_VIEW;
+
+
+// FORM
+
+extern int const FORM_SIZE_LABELNUMBER;
+
+
+// MODULE
+
+extern int const MODULE_HEIGHT_VIEW;

@@ -27,3 +27,12 @@
     extern NSString *const REGEX_IS_ALPHA;
     extern NSString *const REGEX_IS_ALPHANUMERIC;
     extern NSString *const REGEX_IS_EMAIL;
+
+
+    // FORMAT
+
+    extern NSString *const FORMAT_NUMERIC;
+    extern NSString *const FORMAT_ALPHA;
+    extern NSString *const FORMAT_ALPHANUMERIC;
+    extern NSString *const FORMAT_DATE_BIRTHDAY;
+    extern int const FORMAT_STRING_TRUNCATED;

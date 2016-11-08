@@ -612,11 +612,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
 - (IBAction)btnDone:(id)sender {
     [loginDB updateLogoutDate];
-    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
-    Login *mainLogin = [mainStoryBoard instantiateViewControllerWithIdentifier:@"Login"];
-    mainLogin.modalPresentationStyle = UIModalPresentationFullScreen;
-    mainLogin.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-    [self presentViewController:mainLogin animated:YES completion:nil];
+//    UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
+//    Login *mainLogin = [mainStoryBoard instantiateViewControllerWithIdentifier:@"Login"];
+//    mainLogin.modalPresentationStyle = UIModalPresentationFullScreen;
+//    mainLogin.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    [self presentViewController:mainLogin animated:YES completion:nil];
+    UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"LoginPage"] animated:YES completion: nil];
 }
 
 - (IBAction)btnContractDatePressed:(id)sender     //--bob

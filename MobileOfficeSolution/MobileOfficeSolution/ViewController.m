@@ -43,12 +43,14 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     if (sss != 1) {
-        self.Login = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
-        _Login.delegate = self;
-        
-        _Login.modalPresentationStyle = UIModalPresentationFullScreen;
-        _Login.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:_Login animated:NO completion:nil];
+//        self.Login = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
+//        _Login.delegate = self;
+//        
+//        _Login.modalPresentationStyle = UIModalPresentationFullScreen;
+//        _Login.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        //        [self presentViewController:_Login animated:NO completion:nil];
+        UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"LoginPage"] animated:YES completion: nil];
     }
     
 }

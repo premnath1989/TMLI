@@ -695,7 +695,7 @@
                             if (boolKesehatan){
                                 if (indexPath.row < 6){
                                     [cell setUserInteractionEnabled:true];
-                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                                 }
                                 else{
                                     [cell setUserInteractionEnabled:false];
@@ -704,7 +704,7 @@
                             else{
                                 if (indexPath.row < 6){
                                     [cell setUserInteractionEnabled:true];
-                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                                 }
                                 else{
                                     [cell setUserInteractionEnabled:false];
@@ -716,7 +716,7 @@
                         else{
                             if (indexPath.row < 5){
                                 [cell setUserInteractionEnabled:true];
-                                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                             }
                             else{
                                 [cell setUserInteractionEnabled:false];
@@ -727,7 +727,7 @@
                     else{
                         if (indexPath.row < 4){
                             [cell setUserInteractionEnabled:true];
-                            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                         }
                         else{
                             [cell setUserInteractionEnabled:false];
@@ -744,7 +744,7 @@
                             if (boolKesehatan){
                                 if (indexPath.row < 6){
                                     [cell setUserInteractionEnabled:true];
-                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                                 }
                                 else{
                                     [cell setUserInteractionEnabled:false];
@@ -753,7 +753,7 @@
                             else{
                                 if (indexPath.row < 6){
                                     [cell setUserInteractionEnabled:true];
-                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                                 }
                                 else{
                                     [cell setUserInteractionEnabled:false];
@@ -765,7 +765,7 @@
                         else{
                             if (indexPath.row < 5){
                                 [cell setUserInteractionEnabled:true];
-                                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                             }
                             else{
                                 [cell setUserInteractionEnabled:false];
@@ -775,7 +775,7 @@
                     else{
                         if (indexPath.row < 4){
                             [cell setUserInteractionEnabled:true];
-                            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                         }
                         else{
                             [cell setUserInteractionEnabled:false];
@@ -787,7 +787,7 @@
             else{
                 if (indexPath.row < 2){
                     [cell setUserInteractionEnabled:true];
-                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                    [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
                 }
                 else{
                     [cell setUserInteractionEnabled:false];
@@ -797,7 +797,7 @@
         else{
             if (indexPath.row < 1){
                 [cell setUserInteractionEnabled:true];
-                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//                [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
             }
             else{
                 [cell setUserInteractionEnabled:false];
@@ -806,7 +806,7 @@
         
         if (indexPath.row == 2){
             [cell setUserInteractionEnabled:false];
-            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
+//            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
         }
         
         [cell.button1 setEnabled:false];

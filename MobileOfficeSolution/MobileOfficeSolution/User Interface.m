@@ -10,6 +10,7 @@
 // IMPORT
 
 #import "User Interface.h"
+#import "Dimension.h"
 
 
 // DECLARATION
@@ -26,6 +27,146 @@
         
         return [UIColor colorWithRed : floatRed green : floatGreen blue : floatBlue alpha : floatOpacity];
     };
+
+
+    // NAVIGATION
+
+    -(void) navigationExpand:(UIStackView *) stackViewNavigationDetail
+    {
+        stackViewNavigationDetail.clipsToBounds = true;
+        
+        if (stackViewNavigationDetail.hidden == false)
+        {
+            [UIStackView
+                animateWithDuration: 0.25
+                animations:^
+                {
+                stackViewNavigationDetail.alpha = 0;
+                stackViewNavigationDetail.hidden = true;
+
+                }
+                completion:^(BOOL finished)
+                {
+                stackViewNavigationDetail.hidden = true;
+                }
+            ];
+        }
+        else
+        {
+            [UIStackView beginAnimations:nil context:nil];
+            [UIStackView setAnimationDuration:0.25];
+            [UIStackView setAnimationDelay:0.0];
+            [UIStackView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            stackViewNavigationDetail.hidden = false;
+            stackViewNavigationDetail.alpha = 1;
+            [UIStackView commitAnimations];
+        }
+    }
+
+    -(void) navigationShow:(UIView *) viewMain
+    {
+        [UIStackView beginAnimations:nil context:nil];
+         [UIStackView setAnimationDuration:0.25];
+         [UIStackView setAnimationDelay:0.0];
+         [UIStackView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        if (viewMain.frame.origin.x != 0)
+        {
+            viewMain.frame = CGRectMake(viewMain.frame.origin.x + NAVIGATION_WIDTH_CONTAINER, viewMain.frame.origin.y, viewMain.frame.size.width, viewMain.frame.size.height);
+        }
+        else
+        {
+            viewMain.frame = CGRectMake(viewMain.frame.origin.x - NAVIGATION_WIDTH_CONTAINER, viewMain.frame.origin.y, viewMain.frame.size.width, viewMain.frame.size.height);
+        }
+        
+        [UIStackView commitAnimations];
+    }
+
+    -(void) headerShow:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin booleanShow : (Boolean) booleanShow
+    {
+        viewHeaderThick.clipsToBounds = true;
+        viewHeaderThin.clipsToBounds = true;
+        
+        if (booleanShow == false)
+        {
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            [UIView
+                animateWithDuration: 0.25
+                animations:^
+                {
+                    viewHeaderThick.alpha = 0;
+                    viewHeaderThick.hidden = true;
+                    viewHeaderThin.hidden = false;
+                    viewHeaderThin.alpha = 1;
+                }
+                completion:^(BOOL finished)
+                {
+                    viewHeaderThick.hidden = true;
+                    viewHeaderThin.hidden = false;
+                }
+            ];
+            
+        }
+        else
+        {
+            [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+            [UIView
+                animateWithDuration: 0.25
+                animations:^
+                {
+                    viewHeaderThick.hidden = false;
+                    viewHeaderThick.alpha = 1;
+                    viewHeaderThin.hidden = true;
+                    viewHeaderThin.alpha = 0;
+                }
+                completion:^(BOOL finished)
+                {
+                    viewHeaderThick.hidden = false;
+                    viewHeaderThin.hidden = true;
+                }
+            ];
+        }
+    }
+
+    - (void) headerShowByHidden:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin
+    {
+        if (viewHeaderThick.hidden == false)
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : false];
+        }
+        else
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : true];
+        }
+    }
+
+    - (void) headerShowByCoordinateY:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin intCoordinateYDefault : (int) intCoordinateYDefault intCoordinateYCurrent : (int) intCoordinateYCurrent
+    {
+        if (intCoordinateYCurrent < intCoordinateYDefault)
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : false];
+        }
+        else
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : true];
+        }
+    }
+
+    - (void) headerShowByScrollOffset:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin intScrollOffsetPage : (int) intScrollOffsetPage intScrollOffsetCurrent : (int) intScrollOffsetCurrent
+    {
+        if (intScrollOffsetCurrent > intScrollOffsetPage)
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : false];
+        }
+        else if (intScrollOffsetCurrent <= 0)
+        {
+            [self headerShow:viewHeaderThick viewHeaderThin : viewHeaderThin booleanShow : true];
+        }
+        else
+        {
+            
+        }
+    }
 
 
     // TABLE HELPER
@@ -97,6 +238,60 @@
                 }
             }
         }
+    }
+
+    - (NSDate*) formatDateToDate:(NSString *)stringPattern dateRAW : (NSDate *) dateRAW
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:stringPattern];
+        return [NSDate date] ;
+    }
+
+    - (NSString*) formatDateToString:(NSString *)stringPattern dateRAW : (NSDate *) dateRAW
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:stringPattern];
+        return [dateFormatter stringFromDate:dateRAW] ;
+    }
+
+    - (NSDate*) formatStringToDate:(NSString *)stringPattern stringRAW : (NSString *) stringRAW
+    {
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:stringPattern];
+        return [dateFormatter dateFromString:stringRAW] ;
+    }
+
+
+    /* KEYBOARD EFFECT */
+
+    - (void) keyboardShow:(NSNotification *)notificationKeyboard viewMain : (UIView *) viewMain
+    {
+        CGSize sizeKeyboard = [[[notificationKeyboard userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+            animateWithDuration:0.25
+            animations:^
+            {
+                CGRect rectangleViewMain = viewMain.frame;
+                rectangleViewMain.origin.y = - sizeKeyboard.height + GENERAL_SPACE_MEDIUM;
+                viewMain.frame = rectangleViewMain;
+            }
+         ];
+    }
+
+    - (void) keyboardHide:(NSNotification *)notificationKeyboard viewMain : (UIView *) viewMain
+    {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+            animateWithDuration:0.25
+            animations:^
+            {
+                CGRect rectangleViewMain = viewMain.frame;
+                rectangleViewMain.origin.y = 0.0f + GENERAL_SPACE_MEDIUM;
+                viewMain.frame = rectangleViewMain;
+            }
+        ];
     }
 
 @end

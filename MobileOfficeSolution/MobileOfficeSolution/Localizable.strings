@@ -1,150 +1,158 @@
 /* 
   Localizable.strings
-  Bless SPAJ
+  TMConnect
 
-  Created by Ibrahim on 21/06/2016.
-  Copyright © 2016 Ibrahim. All rights reserved.
+  Created by Ibrahim Aziz Tejokusumo on 10/27/16.
+  Copyright © 2016 Ibrahim Aziz Tejokusumo. All rights reserved.
 */
 
 
-// FIELD
+// FORM
 
-FIELD_NAME = "Nama";
-FIELD_SPAJNUMBER = "Nomor SPAJ";
-FIELD_SOCIALNUMBER = "Nomor Identitas";
-FIELD_EAPPLICATIONNUMBER = "E application number";
+/* SECTION */
 
-FIELD_CUSTOMERSIGNATURE = "Customer signature";
-FIELD_DATETIME = "Date & time";
-FIELD_SPAJEXPIRED = "SPAJ expired date";
-FIELD_SPAJLASTUPDATED = "Last update / vieweing date & time";
-FIELD_TIMEREMAINING = "Time remaining";
+FORM_SECTION_INFORMATION = "Information";
+FORM_SECTION_LOGIN = "Login";
+FORM_SECTION_PERSONALINFORMATION = "Personal Information";
+FORM_SECTION_PERSONALADDRESS = "Personal Address";
+FORM_SECTION_OTHERADDRESS = "Other Address";
+FORM_SECTION_CORRESPONDANCEADDRESS = "Correspondance Address";
 
+/* PHARAGRAPH */
 
-// TITLE
+FORM_PARAGRAPH_INFORMATION = "Lorem Ipsum is si mply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text.";
 
-TITLE_SPAJEXISTINGLIST = "SPAJ Listing";
-TITLE_SPAJSUBMITTEDLIST = "Submitted SPAJ Listing";
-TITLE_EAPPLICATIONLIST = "E Application List";
-TITLE_EAPPLICATIONGUIDE = "eApplication Checklist";
+/* QUESTION */
 
-TITLE_IMPORTANTINFORMATION = "Important Information";
-TITLE_CAPTUREDID = "Capture Identification Documents";
-TITLE_FORMGENERATION = "E Application Forms Generation";
+FORM_QUESTION_FULLNAME = "Full name";
+FORM_QUESTION_SEX = "Sex";
+FORM_QUESTION_BIRTHPLACE = "Place of birth";
+FORM_QUESTION_BIRTHDATE = "Date of birth";
+FORM_QUESTION_IDTYPE = "ID type";
+FORM_QUESTION_IDNUMBER = "ID number";
+FORM_QUESTION_NATIONALITY = "Nationality";
+FORM_QUESTION_MARITALSTATUS = "Marital status";
+FORM_QUESTION_RELIGION = "Religion";
+FORM_QUESTION_HANDPHONE1 = "Handphone 1";
+FORM_QUESTION_HANDPHONE2 = "Handphone 2";
+FORM_QUESTION_EMAIL = "Email";
 
-
-// TABLE
-
-TABLE_HEADER_POLICYHOLDER = "Nama Pemegang Polis / Tertanggung Polis";
-TABLE_HEADER_EAPPLICATIONNUMBER = "E Application Number";
-TABLE_HEADER_SPAJNUMBER = "Nomor SPAJ";
-TABLE_HEADER_LASTUPDATEDON = "Tanggal Terakhir Di Update";
-TABLE_HEADER_STATUS = "Status";
-TABLE_HEADER_ILLUSTRATIONVERSION = "Versi SI";
-TABLE_HEADER_TIMEREMAINING = "Sisa Waktu";
-TABLE_HEADER_VIEW = "View";
-TABLE_HEADER_PRODUCT = "Produk";
-TABLE_HEADER_SUBMITTEDDATE = "Tanggal Di Submit";
-
-
-// GUIDE
-
-GUIDE_SPAJMENU_STEP1 = "1";
-GUIDE_SPAJMENU_STEP2 = "2";
-GUIDE_SPAJMENU_STEP3 = "3";
-GUIDE_SPAJMENU_STEP4 = "4";
-GUIDE_SPAJMENU_STEP5 = "5";
-GUIDE_SPAJMENU_STEP6 = "6";
-
-GUIDE_SPAJMENU_HEADER1 = "Select Sales Illustration";
-GUIDE_SPAJMENU_HEADER2 = "Select Customer Fact Find";
-GUIDE_SPAJMENU_HEADER3 = "To Complete SPAJ Details";
-GUIDE_SPAJMENU_HEADER4 = "Forms Generation And Verification";
-GUIDE_SPAJMENU_HEADER5 = "To Capture Proof of Identification";
-GUIDE_SPAJMENU_HEADER6 = "To Obtain eSignature from Respective Parties";
-
-GUIDE_SPAJMENU_DETAIL1 = "Nomor SI : 123456789012345-12345    Tertanggung Polis : Andy Phan Chee Seng    Produk : Heritage";
-GUIDE_SPAJMENU_DETAIL2 = "Pemegang Polis : ";
-
-GUIDE_SPAJDETAIL_STEP1 = "1";
-GUIDE_SPAJDETAIL_STEP2 = "2";
-GUIDE_SPAJDETAIL_STEP3 = "3";
-GUIDE_SPAJDETAIL_STEP4 = "4";
-GUIDE_SPAJDETAIL_STEP5 = "5";
-GUIDE_SPAJDETAIL_STEP6 = "6";
-
-GUIDE_SPAJDETAIL_HEADER1 = "Policy Holder";
-GUIDE_SPAJDETAIL_HEADER2 = "Payor Holder";
-GUIDE_SPAJDETAIL_HEADER3 = "Legal";
-GUIDE_SPAJDETAIL_HEADER4 = "Benefit Holder";
-GUIDE_SPAJDETAIL_HEADER5 = "Payment";
-GUIDE_SPAJDETAIL_HEADER6 = "Health";
-
-GUIDE_FORMGENERATION_STEP1 = "1";
-GUIDE_FORMGENERATION_STEP2 = "2";
-GUIDE_FORMGENERATION_STEP3 = "3";
-
-GUIDE_FORMGENERATION_HEADER1 = "SPAJ";
-GUIDE_FORMGENERATION_HEADER2 = "Third Party";
-GUIDE_FORMGENERATION_HEADER3 = "Additional Health Questionnaires";
-
-GUIDE_CAPTUREID_STEP1 = "1";
-GUIDE_CAPTUREID_STEP2 = "2";
-GUIDE_CAPTUREID_STEP3 = "3";
-GUIDE_CAPTUREID_STEP4 = "4";
-
-GUIDE_CAPTUREID_HEADER1 = "Policy Holder";
-GUIDE_CAPTUREID_HEADER2 = "Payor Holder";
-GUIDE_CAPTUREID_HEADER3 = "Parent / Guardian";
-GUIDE_CAPTUREID_HEADER4 = "Agent";
+FORM_QUESTION_PERSONALADDRESS = "Personal Address";
+FORM_QUESTION_CITY = "City";
+FORM_QUESTION_PROVINCE = "Province";
+FORM_QUESTION_POSTALCODE = "Postal code";
+FORM_QUESTION_TELEPHONE = "Telephone";
+FORM_QUESTION_COMPANYADDRESS = "Company / school address";
+FORM_QUESTION_CORRESPONDANCEADDRESS = "Correspondance address";
+FORM_QUESTION_COMPANYNAME = "Company / school name";
 
 
-// ALERT
-ALERT_TITLE_FORM_GENERATION = "Peringatan";
-ALERT_MESSAGE_FORM_GENERATION = "Telah terjadi perubahan data pada detail SPAJ. Harap generate ulang form SPAJ.";
+// INPUT
 
-ALERT_TITLE_LOCK = "Peringatan";
-ALERT_MESSAGE_LOCK = "Anda tidak dapat melakukan perubahan data karena tenaga penjual sudah menandatangani pengajuan ini.";
+/* PLACEHOLDER */
 
-ALERT_TITLE_TABLEDELETE = "Delete ";
-ALERT_MESSAGE_TABLEDELETE = "Are you sure to delete ";
-
-
-// NOTE
-
-NOTE_SPAJHEADER = "Perhatian";
-NOTE_SPAJDETAIL = "Perngiriman online dapat dilakukan setiap hari kerj jam 07:00 - 19:00 WIB\nPengajuan yang diterima oleh New Business BCA Life setelah jam 14:00 akan diproses pada hari kerja berikutnya\nMaksimum 2 kasus per pengiriman";
-NOTE_GUIDEMENU = "Please complete the following items before submission";
-
-
-// STATE
-
-STATE_CAPTURED = "Captured";
-
-
-// LABEL
-
-LABEL_FRONT = "Front";
-LABEL_BACK = "Back";
+PLACEHOLDER_TEXTFIELD_USERCODE = "Usercode";
+PLACEHOLDER_TEXTFIELD_PASSWORD = "Password";
 
 
 // BUTTON
 
-BUTTON_EDIT_CANCEL = "Cancel";
-BUTTON_EDIT = "Delete";
-BUTTON_SEARCH = "Search";
-BUTTON_RESET = "Clear Search";
-BUTTON_DELETE = "Delete";
-BUTTON_ADD = "Add";
-BUTTON_CONFIRMSPAJ = "Confirm & Assign SPAJ Number";
-BUTTON_HOME = "Home";
-BUTTON_EAPPLICATIONLIST = "E App\nList";
-BUTTON_EXISTINGLIST = "Existing\nList";
-BUTTON_SUBMITTEDLIST = "Submitted\nList";
-BUTTON_ADD = "Add";
-BUTTON_VIEW = "View";
-BUTTON_CLOSE = "Close";
-BUTTON_DONE = "Done";
-BUTTON_CANCEL = "Cancel";
-BUTTON_GENERATEFORM = "Generate Form";
+BUTTON_FORM_LOGIN = "Enter";
+BUTTON_PHOTO_FORGOTPASSWORD = "forgot your password ?.";
+BUTTON_PHOTO_ADDNEW = "Add New";
+BUTTON_PHOTO_EXISTINGLIST = "Existing List";
 BUTTON_SAVE = "Save";
+BUTTON_DONE = "Done";
+BUTTON_NEXT = "Next";
+BUTTON_CHANGE = "Change";
+BUTTON_EDIT = "Edit";
+BUTTON_DELETE = "Delete";
+BUTTON_RESET = "Reset";
+BUTTON_CANCEL = "Cancel";
+
+
+// DECORATOR
+
+/* DESCRIPTOR */
+
+DECORATOR_DESCRIPTOR_HEADER = "PT Tokio Marine Life Insurance Indonesia";
+DECORATOR_DESCRIPTOR_WEBSITE = "tokiomarine.com";
+DECORATOR_DESCRIPTOR_DETAIL = "Lfe & Health | Property & Casualty";
+
+
+// NAVIGATION
+
+/* MENU */
+
+NAVIGATION_HEADER_CALENDAR = "Calendar";
+NAVIGATION_HEADER_SALES = "Sales";
+NAVIGATION_HEADER_ACTIVITYMANAGEMENT = "Activity Management";
+NAVIGATION_HEADER_EPAYMENT = "E Payment";
+NAVIGATION_HEADER_ELIBRARY = "E Library";
+NAVIGATION_HEADER_REPORT = "Report";
+
+/* DETAIL */
+
+NAVIGATION_DETAIL_PROSPECT = "Prospect";
+NAVIGATION_DETAIL_FNA = "Financial Needs Analysis";
+NAVIGATION_DETAIL_SI = "Sales Illustration";
+NAVIGATION_DETAIL_SPAJ = "S.P.A.J";
+NAVIGATION_DETAIL_POLICYRECEIPT = "Policy Receipt";
+
+
+// HEADER
+
+/* HEADER */
+
+HEADER_SPAJ_LANDING = "E - S.P.A.J Module"; //"Surat Pengajuan Asuransi Jiwa";
+HEADER_SPAJ_ADDNEW = "S.P.A.J Add New";
+HEADER_SPAJ_EXISTINGLIST = "S.P.A.J Existing List";
+HEADER_SPAJ_MODULE = "S.P.A.J Module";
+
+
+/* DETAIL */
+
+DETAIL_SPAJ_LANDING = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
+DETAIL_SPAJ_ADDNEW = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
+DETAIL_SPAJ_EXISTINGLIST = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
+DETAIL_SPAJ_MODULE = "loren ipsum dolores o riordan\nsimple dummy text";
+
+
+// GUIDE
+
+/* TITLE */
+
+GUIDE_HEADER_POLICYHOLDER = "Policyholder";
+GUIDE_HEADER_PROSPECTIVEINSURED = "Prospective Insured";
+GUIDE_HEADER_BENEFICIARIESLIST = "Beneficiaires List";
+GUIDE_HEADER_COMPANY = "Company";
+GUIDE_HEADER_PREMIPAYMENT = "Premi Payment";
+GUIDE_HEADER_HEALTHQUESTIONNAIRE = "Health Questionnaire";
+
+
+// WORDS
+
+WORDS_INFIX_OUTOF = " out of ";
+
+
+// CHARACTER
+
+CHARACTER_NUMBERING_GUIDEDETAIL = ".";
+
+
+// MODULE
+
+MODULE_TITLE_SI = "Pick Sales Illustration";
+MODULE_TITLE_FNA = "Pick Prospect";
+MODULE_TITLE_FORM = "Fill in SPAJ Form";
+MODULE_TITLE_GENERATE = "Generate SPAJ Form and verify";
+MODULE_TITLE_ATTACHMENT = "Attach Necessary and Related Document";
+MODULE_TITLE_SIGNATURE = "Sign the document";
+MODULE_TITLE_CONFIRMATION = "Confirmation and take SPAJ Number";
+MODULE_TITLE_PAYMENT = "Payment";
+MODULE_TITLE_REPORT = "Fill Up Report and Financial Consultant Statement";
+
+MODULE_HEADER1_SI = "S.I number";
+MODULE_DETAIL1_SI = "Policyholder name";
+MODULE_HEADER2_FNA = "F.N.A number";
+MODULE_DETAIL2_FNA = "Policyholder name";

@@ -11,106 +11,225 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "User Interface.h"
 
 
-// DECLARATION
+// FORM
 
-    // FORM
+@interface LabelFormSection : UILabel
 
-    @interface LabelPageTitle : UILabel
+    - (void)setupStyle;
 
-        - (void)setupStyle;
+@end
 
-    @end
+@interface LabelFormParagraph : UILabel
 
-    @interface LabelMenuHint : UILabel
+    - (void)setupStyle;
 
-        - (void)setupStyle;
+@end
 
-    @end
+@interface LabelFormNumber : UILabel
 
-    // NOTE
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
 
-    @interface LabelNoteHeader : UILabel
+    - (void)setupStyle;
+    - (void)styleValid;
+    - (void)styleInvalid;
+    - (void)styleEnable;
+    - (void)styleDisable;
 
-        - (void)setupStyle;
+@end
 
-    @end
+@interface LabelFormQuestion : UILabel
 
-    @interface LabelNoteDetail : UILabel
+    - (void)setupStyle;
 
-        - (void)setupStyle;
+@end
 
-    @end
 
-    @interface LabelInformationHeader : UILabel
+// PHOTO
 
-        - (void)setupStyle;
+@interface LabelPhotoSection : UILabel
 
-    @end
+    - (void)setupStyle;
 
-    @interface LabelInformationDetail : UILabel
+@end
 
-        - (void)setupStyle;
+@interface LabelPhotoParagraph : UILabel
 
-    @end
+    - (void)setupStyle;
 
-    // FIELD
+@end
 
-    @interface LabelFieldShort : UILabel
+@interface LabelPhotoHeader : UILabel
 
-        - (void)setupStyle;
+    - (void)setupStyle;
 
-    @end
+@end
 
-    @interface LabelFieldMedium : UILabel
+@interface LabelPhotoDetail : UILabel
 
-        - (void)setupStyle;
+    - (void)setupStyle;
 
-    @end
+@end
 
-    @interface LabelFieldLong : UILabel
 
-        - (void)setupStyle;
+// DESCRIPTOR
 
-    @end
+@interface LabelDescriptorHeader : UILabel
 
-    // MENU
+    - (void)setupStyle;
 
-    @interface LabelGuideMenuStep : UILabel
+@end
 
-        - (void)setupStyle;
+@interface LabelDescriptorWebsite : UILabel
 
-    @end
+    - (void)setupStyle;
 
-    @interface LabelGuideMenuHeader : UILabel
+@end
 
-        - (void)setupStyle;
+@interface LabelDescriptorDetail : UILabel
 
-    @end
+    - (void)setupStyle;
 
-    @interface LabelGuideMenuDetail : UILabel
+@end
 
-        - (void)setupStyle;
 
-    @end
+// NAVIGATION
 
-    // TABLE
+    /* PROFILE */
 
-    @interface ViewTableHeader : UIView
-
-        - (void)setupStyle;
-
-    @end
-
-    @interface LabelTableHeader : UILabel
+    @interface LabelProfileHeader : UILabel
 
         - (void)setupStyle;
 
     @end
 
-    @interface LabelTableDetail : UILabel
+    @interface LabelProfileDetail : UILabel
 
         - (void)setupStyle;
 
     @end
+
+    /* HEADER */
+
+    @interface LabelNavigationHeader : UILabel
+
+        - (void)setupStyle;
+
+    @end
+
+    /* DETAIL */
+
+    @interface LabelNavigationDetail : UILabel
+
+        - (void)setupStyle;
+
+    @end
+
+
+// GUIDE
+
+    /* HEADER */
+
+    @interface LabelGuideHeaderStep : UILabel
+
+        @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleOnProgress;
+        - (void)styleComplete;
+        - (void)styleDisable;
+
+    @end
+
+    @interface LabelGuideHeaderTitle : UILabel
+
+        @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleOnProgress;
+        - (void)styleComplete;
+        - (void)styleDisable;
+
+    @end
+
+    @interface LabelGuideHeaderState : UILabel
+
+        @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleOnProgress;
+        - (void)styleComplete;
+        - (void)styleDisable;
+
+    @end
+
+    /* DETAIL */
+
+    @interface LabelGuideDetailStep : UILabel
+
+        @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleOnProgress;
+        - (void)styleComplete;
+        - (void)styleDisable;
+
+    @end
+
+
+// HEADER
+
+@interface LabelHeaderTitle : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+
+// MODULE
+
+@interface LabelModuleTitle : UILabel
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end
+
+@interface LabelModuleHeader : UILabel
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end
+
+@interface LabelModuleDetail : UILabel
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end
+
+@interface LabelModuleProgress : UILabel
+
+    @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    - (void)setupStyle;
+    - (void)styleOnProgress;
+    - (void)styleComplete;
+    - (void)styleDisable;
+
+@end

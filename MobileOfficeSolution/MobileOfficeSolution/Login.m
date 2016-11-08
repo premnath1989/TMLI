@@ -781,7 +781,10 @@ static NSString *labelVers;
     CarouselViewController* carouselMenu = [carouselStoryboard instantiateViewControllerWithIdentifier:@"carouselView"];
     carouselMenu.getInternet = @"No";
     carouselMenu.loginPreviousController = @"Login";
-    [self presentViewController:carouselMenu animated:YES completion:Nil];
+//    [self presentViewController:carouselMenu animated:YES completion:Nil];
+    
+    UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
 }
 
 - (int)syncDaysLeft{

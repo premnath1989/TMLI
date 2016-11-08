@@ -12,25 +12,25 @@
 #import <Foundation/Foundation.h>
 
 
-// INTERFACE
+// COLOR
 
-    // COLOR
+extern UInt32 const THEME_COLOR_PRIMARY;
+extern UInt32 const THEME_COLOR_SECONDARY;
+extern UInt32 const THEME_COLOR_TERTIARY;
+extern UInt32 const THEME_COLOR_QUATERNARY;
+extern UInt32 const THEME_COLOR_QUINARY;
+extern UInt32 const THEME_COLOR_SENARY;
+extern UInt32 const THEME_COLOR_SEPTENARY;
+extern UInt32 const THEME_COLOR_OCTONARY;
+extern UInt32 const THEME_COLOR_NONARY;
 
-    extern UInt32 const THEME_COLOR_PRIMARY;
-    extern UInt32 const THEME_COLOR_SECONDARY;
-    extern UInt32 const THEME_COLOR_TERTIARY;
-    extern UInt32 const THEME_COLOR_QUATERNARY;
-    extern UInt32 const THEME_COLOR_QUINARY;
-    extern UInt32 const THEME_COLOR_SENARY;
-    extern UInt32 const THEME_COLOR_SEPTENARY;
-    extern UInt32 const THEME_COLOR_OCTONARY;
-    extern UInt32 const THEME_COLOR_NONARY;
-    extern UInt32 const THEME_COLOR_ACTIVE_CELL;
+extern UInt32 const THEME_COLOR_DISABLE;
+extern UInt32 const THEME_COLOR_ERROR;
+extern UInt32 const THEME_COLOR_DARK;
 
 
-    // FONT
+// FONT
 
-    extern NSString *const THEME_FONT_PRIMARY;
-    extern NSString *const THEME_FONT_SECONDARY;
-    extern NSString *const THEME_FONT_TERTIARY;
-    extern NSString *const THEME_FONT_QUATERNARY;
+extern NSString *const THEME_FONT_PRIMARY;
+extern NSString *const THEME_FONT_SECONDARY;
+extern NSString *const THEME_FONT_TERTIARY;
