@@ -159,12 +159,12 @@ int maxGycc = 0;
 }
 
 -(void)loadInitialRiderData{
-    arrayDataRiders=[[NSMutableArray alloc]initWithObjects:[self dictMDBKK],[self dictMBKK],[self dictBebasPremi], nil];
+   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
     [myTableView reloadData];
 }
 
 -(void)loadInitialRiderDataFromDatabase{
-    arrayDataRiders=[[NSMutableArray alloc]initWithObjects:[self dictMDBKK],[self dictMBKK],[self loadDictBebasPremi], nil];
+   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
     [myTableView reloadData];
 }
 
@@ -6013,7 +6013,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:[dictForCalculateBPPremi valueForKey:@"ExtraPremiPerMil"] forKey:@"ExtraPremiPerMil"];
     [dictBebasPremi setObject:[dictForCalculateBPPremi valueForKey:@"MasaExtraPremi"] forKey:@"MasaExtraPremi"];
     
-    arrayDataRiders=[[NSMutableArray alloc]initWithObjects:dictMDBKK,dictMBKK,dictBebasPremi, nil];
+    _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
     [myTableView reloadData];
     
     [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -6184,7 +6184,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
 
     
-    arrayDataRiders=[[NSMutableArray alloc]initWithObjects:dictMDBKK,dictMBKK,dictBebasPremi, nil];
+   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
     [myTableView reloadData];
     
     [_delegate saveRider:dictMDBKK MDKK:dictMBKK BP:dictBebasPremi];
@@ -6230,7 +6230,8 @@ int maxGycc = 0;
             [dictBebasPremi setObject:_extraPremiNumberField.text forKey:@"ExtraPremiPerMil"];
             [dictBebasPremi setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
             
-            arrayDataRiders=[[NSMutableArray alloc]initWithObjects:dictMDBKK,dictMBKK,dictBebasPremi, nil];
+            _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD" ];
+           
             [myTableView reloadData];
             
             // Some long running task you want on another thread
@@ -6288,7 +6289,7 @@ int maxGycc = 0;
 - (NSInteger)tableView:(UITableView *)myTableView numberOfRowsInSection:(NSInteger)section
 {
     //return [LTypeRiderCode count];
-    return [arrayDataRiders count];
+    return [_RiderListTMLI count];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -6313,23 +6314,38 @@ int maxGycc = 0;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    KeluargakuTableViewCell *cell = (KeluargakuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
+    
     if (cell == nil) {
-        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"KeluargakuTableViewCell" owner:self options:nil];
-        cell = [nib objectAtIndex:0];
+        
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
     }
-    if (indexPath.row < [arrayDataRiders count]){
-        [cell.labelManfaat setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"RiderCode"]];
-        [cell.labelUangPertanggungan setText:[formatter stringToCurrencyDecimalFormatted:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"SumAssured"]]]];
-        [cell.labelMasaAsuransi setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaAsuransi"]];
-        [cell.labelUnit setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"Unit"]];
-        [cell.labelExtraPremiPercent setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerCent"]]];
-        [cell.labelExtraPremiPerMil setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerMil"]]];
-        [cell.labelMasaExtraPremi setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaExtraPremi"]]];
-        [cell.labelExraPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiRp"]];
-        [cell.labelPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"PremiRp"]];
-    }
+    
+    cell.textLabel.text = [_RiderListTMLI objectAtIndex:indexPath.row];
+
+    
+    
+//    static NSString *CellIdentifier = @"Cell";
+//    KeluargakuTableViewCell *cell = (KeluargakuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+//    if (cell == nil) {
+//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"KeluargakuTableViewCell" owner:self options:nil];
+//        cell = [nib objectAtIndex:0];
+//    }
+//    if (indexPath.row < [arrayDataRiders count]){
+//        [cell.labelManfaat setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"RiderCode"]];
+//        [cell.labelUangPertanggungan setText:[formatter stringToCurrencyDecimalFormatted:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"SumAssured"]]]];
+//        [cell.labelMasaAsuransi setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaAsuransi"]];
+//        [cell.labelUnit setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"Unit"]];
+//        [cell.labelExtraPremiPercent setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerCent"]]];
+//        [cell.labelExtraPremiPerMil setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerMil"]]];
+//        [cell.labelMasaExtraPremi setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaExtraPremi"]]];
+//        [cell.labelExraPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiRp"]];
+//        [cell.labelPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"PremiRp"]];
+//    }
     return cell;
     /*static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -7155,7 +7171,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:riderPremiFormatted forKey:@"PremiRp"];
     [dictBebasPremi setObject:riderPremiLoadingFormatted forKey:@"ExtraPremiRp"];
     
-    arrayDataRiders=[[NSMutableArray alloc]initWithObjects:dictMDBKK,dictMBKK,dictBebasPremi, nil];
+   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD" ];
     [myTableView reloadData];
 }
 

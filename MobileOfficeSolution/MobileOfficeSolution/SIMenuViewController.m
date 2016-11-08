@@ -3328,16 +3328,16 @@ BOOL isFirstLoad;
         NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
         f.numberStyle = NSNumberFormatterDecimalStyle;
         NSNumber *myNumber = [f numberFromString:[newDictionaryForBasicPlan valueForKey:@"Sum_Assured"]];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"ProductCode"] forKey:@"ProductCode"];
+     //   [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"ProductCode"] forKey:@"ProductCode"];
         if(myNumber != nil)
             [newDictionaryForBasicPlan setObject:myNumber forKey:@"Number_Sum_Assured"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"PO_Gender"] forKey:@"PO_Gender"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"PO_Age"] forKey:@"PO_Age"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"LA_Gender"] forKey:@"LA_Gender"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"RelWithLA"] forKey:@"RelWithLA"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"LA_Age"] forKey:@"LA_Age"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"SINO"] forKey:@"SINO"];
-        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"IsInternalStaff"] forKey:@"IsInternalStaff"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"PO_Gender"] forKey:@"PO_Gender"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"PO_Age"] forKey:@"PO_Age"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"LA_Gender"] forKey:@"LA_Gender"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"RelWithLA"] forKey:@"RelWithLA"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"LA_Age"] forKey:@"LA_Age"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"SINO"] forKey:@"SINO"];
+//        [newDictionaryForBasicPlan setObject:[dictionaryPOForInsert valueForKey:@"IsInternalStaff"] forKey:@"IsInternalStaff"];
         
         if ([_modelSIPremium getPremiumCount:[dictionaryPOForInsert valueForKey:@"SINO"]]>0){
             [_modelSIPremium updatePremium:newDictionaryForBasicPlan];
@@ -3349,8 +3349,8 @@ BOOL isFirstLoad;
 
     NSString *PlanType = [dictionaryPOForInsert valueForKey:@"ProductName"];
     
-    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
-    {
+//    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
+//    {
         if(![self.RiderController.view isDescendantOfView:self.RightView]) {
             [_RiderController setPODictionaryFromRoot:dictionaryPOForInsert];
             [_RiderController setDictionaryForBasicPlan:newDictionaryForBasicPlan];
@@ -3366,22 +3366,22 @@ BOOL isFirstLoad;
             [self.RightView addSubview:self.RiderController.view];
             [self.RightView bringSubviewToFront:self.RiderController.view];
         }
-        [_RiderController calculateRiderPremi];
-    }
-    else{
-        if (!_PremiumController) {
-            _PremiumController = [self.storyboard instantiateViewControllerWithIdentifier:@"premiumView"];
-            _PremiumController.delegate = self;
-            _PremiumController.requestSINo = [dictionaryPOForInsert valueForKey:@"SINO"];
-            [self.RightView addSubview:_PremiumController.view];
-        }
-        [_PremiumController setPremiumDictionary:newDictionaryForBasicPlan];
-        [_PremiumController loadDataFromDB];
-        [_PremiumController.view removeFromSuperview];
-        _PremiumController.requestSINo = [dictionaryPOForInsert valueForKey:@"SINO"];
-        [self.RightView addSubview:_PremiumController.view];
-        [self.RightView bringSubviewToFront:_PremiumController.view];
-    }
+ //       [_RiderController calculateRiderPremi];
+//    }
+//    else{
+//        if (!_PremiumController) {
+//            _PremiumController = [self.storyboard instantiateViewControllerWithIdentifier:@"premiumView"];
+//            _PremiumController.delegate = self;
+//            _PremiumController.requestSINo = [dictionaryPOForInsert valueForKey:@"SINO"];
+//            [self.RightView addSubview:_PremiumController.view];
+//        }
+//        [_PremiumController setPremiumDictionary:newDictionaryForBasicPlan];
+//        [_PremiumController loadDataFromDB];
+//        [_PremiumController.view removeFromSuperview];
+//        _PremiumController.requestSINo = [dictionaryPOForInsert valueForKey:@"SINO"];
+//        [self.RightView addSubview:_PremiumController.view];
+//        [self.RightView bringSubviewToFront:_PremiumController.view];
+//    }
     
     
     /*
@@ -3392,7 +3392,8 @@ BOOL isFirstLoad;
         [self.RightView addSubview:self.RiderController.view];
     }
     [self.RiderController setSumAssured:[newDictionaryForBasicPlan valueForKey:@"Sum_Assured"]];
-    [self.RightView bringSubviewToFront:self.RiderController.view];    //[self.myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:SIMENU_RIDER inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];*/
+    [self.RightView bringSubviewToFront:self.RiderController.view];*/
+     [self.myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:SIMENU_RIDER inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 -(void)saveRider:(NSDictionary *)dictMDBKK MDKK:(NSDictionary *)dictMDKK BP:(NSDictionary *)dictBasicPremi{

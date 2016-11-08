@@ -60,11 +60,6 @@
         ListOfCurrency = [[NSMutableArray alloc] initWithObjects:@"Rupiah", nil ];
     }
     
-
-
-	
-    
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

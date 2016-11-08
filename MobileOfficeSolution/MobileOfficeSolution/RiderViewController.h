@@ -83,11 +83,20 @@
     
     double doubleSumAssured;
     NSMutableArray* arrayDataRiders;
+    NSMutableArray *RiderListTMLI;
 }
 -(void)localSaveRider;
 -(void)loadInitialRiderData;
 -(void)loadInitialRiderDataFromDatabase;
 -(void)setPODictionaryFromRoot:(NSMutableDictionary *)dictionaryRootPO;
+
+//TMLI
+@property (weak, nonatomic) IBOutlet UITableView *Jenis;
+@property (weak, nonatomic) IBOutlet UITableView *NamaAnsuransiTambahan1;
+@property (weak, nonatomic) IBOutlet UITableView *NamaAnsuransiTambahan2;
+
+
+
 
 @property (retain, nonatomic) NSMutableDictionary* dictionaryPOForInsert;
 @property (retain, nonatomic) NSMutableDictionary* dictionaryForBasicPlan;
@@ -99,6 +108,7 @@
 
 @property (nonatomic,strong) BasicPlanHandler *riderBH;
 @property (strong, nonatomic) NSMutableArray *dataInsert;
+@property (strong, nonatomic) NSMutableArray *RiderListTMLI;
 @property (nonatomic, retain) RiderListTbViewController *RiderList;
 @property (nonatomic, retain) RiderPlanTb *planList;
 @property (nonatomic, retain) RiderDeducTb *deductList;
