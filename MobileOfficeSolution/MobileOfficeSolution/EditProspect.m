@@ -2199,7 +2199,7 @@ bool PolicyOwnerSigned = TRUE;
     
     txtReferralName.text = pp.ReferralName;
     _txtNamaDepan.text = pp.ProspectName;
-    _txtNamaBelakang.text = @"";
+    _txtNamaBelakang.text = pp.ProspectLastName;
     
     if ([pp.ProspectGender isEqualToString:@"MALE"]) {
             gender = @"MALE";
@@ -2221,9 +2221,47 @@ bool PolicyOwnerSigned = TRUE;
         [outletMaritalStatus setTitle:@"- SELECT -" forState:UIControlStateNormal];
          _txtMarital.text = @"- SELECT -";
     }
-
-   
     
+    _txtTypeID.text = pp.OtherIDType;
+    _txtIdNumber.text = pp.OtherIDTypeNo;
+    
+    _txtReligion.text = pp.Religion;
+    
+    _txtHPNo.text = pp.PhoneNoHP;
+    txtEmail.text = pp.ProspectEmail;
+
+    _txtCallStart.text = pp.CallStartTime;
+    _txtCallEnd.text = pp.CallEndTime;
+    
+    txtHomeAddr1.text = pp.ResidenceAddress1;
+    txtHomeAddr2.text = pp.ResidenceAddress2;
+    txtHomeAddr3.text = pp.ResidenceAddress3;
+    _txtAddress4.text = pp.Address4;
+    txtHomePostCode.text = pp.ResidenceAddressPostCode;
+    _txtKelurahan.text = pp.Kelurahan;
+    _TxtKecamatan.text = pp.Kecamatan;
+    _txtHomeProvince.text = pp.HomeProvicne;
+    txtHomeCountry.text = pp.ResidenceAddressCountry;
+    
+    if ([txtHomeCountry.text isEqualToString:@"Indonesia"]) {
+        _switchCountryHome.selected = NO;
+    }
+    else {
+        _switchCountryHome.selected = YES;
+    }
+
+    _txtHPRumah.text = pp.PhoneHomeNo;
+    
+//    _txtOccupation.text = pp.ProspectOccupationCode;
+    [self PopulateOccupCode];
+    
+    _txtSourceIncome.text = pp.SourceIncome;
+    txtAnnIncome.text = pp.AnnualIncome;
+    
+    txtRemark.text = pp.ProspectRemark;
+    
+    txtRemark.layer.borderWidth = 1.0f;
+    txtRemark.layer.borderColor = [[UIColor grayColor] CGColor];
     
     
     
@@ -6773,6 +6811,7 @@ bool PolicyOwnerSigned = TRUE;
                     [outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", OccpDesc]forState:UIControlStateNormal];
                 txtClass.text = OccpClass;
                 outletOccup.titleLabel.text = OccpDesc;
+                _txtOccupation.text = OccpDesc;
             }
             sqlite3_finalize(statement);
         }
@@ -14471,11 +14510,9 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 - (IBAction)BtnDataPressed:(id)sender {
-    
     _DataPcv.hidden = NO;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = YES;
-    
 }
 
 - (IBAction)BtnAlamatPressed:(id)sender {
@@ -14488,6 +14525,13 @@ bool PolicyOwnerSigned = TRUE;
     _DataPcv.hidden = YES;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = NO;
+}
+
+- (IBAction)ActionCallStart:(id)sender {
+    
+}
+- (IBAction)ActionCallEnd:(id)sender {
+    
 }
 
 - (void)viewDidUnload
