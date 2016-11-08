@@ -114,7 +114,10 @@ BOOL isBusy;
             } else {
                 delegate.SICompleted = YES;
                 delegate.ExistPayor = YES;
-                [self presentViewController:selectedViewController animated:NO completion:Nil];
+                
+                UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
+//                [self presentViewController:selectedViewController animated:NO completion:Nil];
 					
                 [self updateTabBar];
             }

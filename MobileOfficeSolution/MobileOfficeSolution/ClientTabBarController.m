@@ -107,10 +107,13 @@ int rrr;
         // add new view controller to hierarchy
         UIViewController *selectedViewController = [self.viewControllers objectAtIndex:selectedIndex];
         
-        if (selectedIndex == 0 ||selectedIndex == 3) {
+        if (selectedIndex == 3) {
             
             [self presentViewController:selectedViewController animated:NO completion:Nil];
             [self updateTabBar];
+        }else if(selectedIndex == 0){
+            UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
         }
         else {
             if (selectedIndex == 1||selectedIndex == 2) {
