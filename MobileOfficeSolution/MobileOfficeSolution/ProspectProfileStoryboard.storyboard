@@ -33,26 +33,26 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="QjK-gR-pdu">
                                         <frame key="frameInset" width="342" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.45882352941176469" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="shape_guideright_complete">
                                             <attributedString key="attributedTitle">
                                                 <fragment content="      Data">
                                                     <attributes>
-                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="24" name="LucidaGrande"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                                 <fragment content=" ">
                                                     <attributes>
-                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="24" name="AlBayan"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
                                                 <fragment content="Pribadi">
                                                     <attributes>
-                                                        <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="24" name="LucidaGrande"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
@@ -63,6 +63,25 @@
                                             <action selector="BtnDataPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="07o-4Y-9ma"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="AEu-kd-mgR">
+                                        <frame key="frameInset" minX="340" width="342" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.8784313725490196" green="0.89803921568627454" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="shape_guideright_onprogress">
+                                            <attributedString key="attributedTitle">
+                                                <fragment content="         Alamat">
+                                                    <attributes>
+                                                        <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
+                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                    </attributes>
+                                                </fragment>
+                                            </attributedString>
+                                        </state>
+                                        <connections>
+                                            <action selector="BtnAlamatPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="Ghh-eT-TW5"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="diH-Vj-HeH">
                                         <frame key="frameInset" minX="680" width="344" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,7 +90,7 @@
                                             <attributedString key="attributedTitle">
                                                 <fragment content="       Pekerjaan">
                                                     <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                                         <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
@@ -93,28 +112,9 @@
                                         <frame key="frameInset" minX="13" minY="6" width="35" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
-                                        <color key="textColor" red="0.11764705882352941" green="0.51764705882352946" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="AEu-kd-mgR">
-                                        <frame key="frameInset" minX="340" width="342" height="60"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.8784313725490196" green="0.89803921568627454" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="shape_guideright_onprogress">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="         Alamat">
-                                                    <attributes>
-                                                        <color key="NSColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </state>
-                                        <connections>
-                                            <action selector="BtnAlamatPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="Ghh-eT-TW5"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lBm-lk-mnD">
                                         <frame key="frameInset" minX="350" minY="4" width="35" height="52"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -133,7 +133,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="Khb-Na-QAz" userLabel="DataPribadiCV">
-                                <frame key="frameInset" minY="132" maxX="1" maxY="8"/>
+                                <frame key="frameInset" minX="-2" minY="129" maxX="5" maxY="9"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="l3Z-rK-slE">
@@ -318,7 +318,7 @@
                                             <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="ActionCallStart:" destination="wW1-uM-Ie5" eventType="touchUpInside" id="yqS-Kj-JIV"/>
+                                            <action selector="ActionCallStart:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="Xp3-RN-F2e"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="16" id="91G-0X-7l9">
@@ -472,7 +472,7 @@
                                 <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="Ce4-AW-rya" userLabel="AlamatCV">
-                                <frame key="frameInset" minY="132" maxY="-31"/>
+                                <frame key="frameInset" minX="-2" minY="129" maxY="-30"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korespondensi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9aR-n2-PLi">
@@ -663,7 +663,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="2cq-uj-6g0" userLabel="PekerjaanCV">
-                                <frame key="frameInset" minY="132" maxY="8"/>
+                                <frame key="frameInset" minX="-2" minY="129" maxY="9"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XqJ-e4-Yqa">
@@ -782,6 +782,7 @@
                         <outlet property="TxtKecamatan" destination="X9Q-Mk-FPA" id="BAa-HZ-TNP"/>
                         <outlet property="btnAlamat" destination="AEu-kd-mgR" id="wOB-zl-trR"/>
                         <outlet property="btnCallEnd" destination="qfk-YJ-B0C" id="l57-NQ-3Bf"/>
+                        <outlet property="btnCallstart" destination="lpy-Hu-GxK" id="NAU-yA-GJh"/>
                         <outlet property="btnData" destination="QjK-gR-pdu" id="phB-qx-5Jw"/>
                         <outlet property="btnHomeCountry" destination="LRI-q6-1m6" id="WJE-bt-kaH"/>
                         <outlet property="btnOcc" destination="diH-Vj-HeH" id="L1X-wQ-e6z"/>
@@ -1264,7 +1265,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="RJf-yD-TQs" userLabel="DataPribadiCV">
-                                        <rect key="frame" x="1" y="70" width="2046" height="1376"/>
+                                        <rect key="frame" x="1" y="70" width="3070" height="2124"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHe-uD-ePQ">
@@ -1606,7 +1607,7 @@
                                         <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="7bo-Yb-rMF" userLabel="AlamatCV">
-                                        <rect key="frame" x="0.0" y="70" width="2048" height="1416"/>
+                                        <rect key="frame" x="0.0" y="70" width="3072" height="2164"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korespondensi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRn-dc-SRX">
@@ -1797,7 +1798,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="q0E-rR-Y2J" userLabel="PekerjaanCV">
-                                        <rect key="frame" x="0.0" y="70" width="2048" height="1376"/>
+                                        <rect key="frame" x="0.0" y="70" width="3072" height="2124"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MJ8-cH-n73">
@@ -2178,8 +2179,7 @@
                                     <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="ActionCallStart:" destination="wW1-uM-Ie5" eventType="touchUpInside" id="Ezs-vb-ZdQ"/>
-                                    <action selector="btnTitle:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="J1D-bO-0AT"/>
+                                    <action selector="ActionCallStart:" destination="wW1-uM-Ie5" eventType="touchUpInside" id="PXD-bF-S1X"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="16" id="cmN-fH-Ssw">
@@ -2328,7 +2328,7 @@
                     <connections>
                         <outlet property="OtherIDType" destination="AbB-AW-4RF" id="q8D-Nn-2rb"/>
                         <outlet property="btnCallEnd" destination="bp8-KB-TfK" id="fLa-xN-KgA"/>
-                        <outlet property="btnCallstart" destination="ZUu-hD-Rjr" id="MrE-IC-WvF"/>
+                        <outlet property="btnCallstart" destination="ZUu-hD-Rjr" id="Ho2-Iv-qS4"/>
                         <outlet property="btnOtherIdType" destination="AbB-AW-4RF" id="wTf-W8-Kh3"/>
                         <outlet property="outletDOB" destination="xJH-BE-yiu" id="Mgd-gp-lua"/>
                         <outlet property="outletMaritalStatus" destination="dWA-mC-ota" id="bTV-pJ-DpJ"/>
@@ -7455,6 +7455,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Egp-wy-rsc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3619.8400000000001" y="-167.25333333333333"/>
+        </scene>
+        <!--TimePicker-->
+        <scene sceneID="yh3-qd-ywR">
+            <objects>
+                <viewController storyboardIdentifier="TimePicker" title="TimePicker" id="OXW-3q-Qhj" customClass="TimePickerVC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N3e-xk-Tid">
+                        <rect key="frame" x="0.0" y="0.0" width="372" height="250"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="U8S-uE-6Vl">
+                                <frame key="frameInset" minY="45" width="372" height="159"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="371048106.04521298">
+                                    <!--2012-10-04 12:55:06 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="en_US"/>
+                                <connections>
+                                    <action selector="ActionDate:" destination="OXW-3q-Qhj" eventType="valueChanged" id="t75-jo-2dA"/>
+                                </connections>
+                            </datePicker>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="43B-eF-O8k">
+                                <frame key="frameInset" minY="1" width="372" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.71581763030000001" green="0.78642475609999996" blue="0.99927043910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="VKS-41-Gwf">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="vHz-3Y-AUA">
+                                            <connections>
+                                                <action selector="btnDone:" destination="OXW-3q-Qhj" id="lcn-cd-ljJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="JlO-UZ-PdL">
+                                <frame key="frameInset" minX="300" minY="212" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnClose:" destination="OXW-3q-Qhj" eventType="touchUpInside" id="2qM-3k-SHb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="540" height="210"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="372" height="250"/>
+                    <connections>
+                        <outlet property="outletDate" destination="U8S-uE-6Vl" id="Upb-fW-Zdn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDG-8b-kfb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3144" y="-2945"/>
         </scene>
     </scenes>
     <resources>

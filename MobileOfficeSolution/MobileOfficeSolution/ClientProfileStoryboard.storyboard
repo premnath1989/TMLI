@@ -1459,9 +1459,9 @@
                                     <mask key="constraints">
                                         <exclude reference="XXJ-Rr-6kp"/>
                                         <exclude reference="fig-F4-gou"/>
-                                        <exclude reference="n9A-IG-HpY"/>
-                                        <exclude reference="3PY-FI-i7G"/>
                                         <exclude reference="sQx-Ui-Dz8"/>
+                                        <exclude reference="3PY-FI-i7G"/>
+                                        <exclude reference="n9A-IG-HpY"/>
                                     </mask>
                                 </variation>
                             </scrollView>
