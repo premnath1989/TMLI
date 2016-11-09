@@ -1,20 +1,21 @@
 //
-//  TimePickerVC.m
+//  TimePicker.m
 //  MobileOfficeSolution
 //
-//  Created by Emi on 8/11/16.
+//  Created by Emi on 9/11/16.
 //  Copyright © 2016 Erwin Lim InfoConnect. All rights reserved.
 //
 
-#import "TimePickerVC.h"
+#import "TimePicker.h"
 
-@interface TimePickerVC ()
+@interface TimePicker ()
 
 @end
 
-@implementation TimePickerVC
+@implementation TimePicker
+
 @synthesize outletDate = _outletDate;
-@synthesize _Timedelegate;
+@synthesize delegate = _delegate;
 @synthesize ProspectDOB;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -27,12 +28,10 @@
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    
-    _outletDate.datePickerMode = UIDatePickerModeTime;
     if ((ProspectDOB != NULL)&&(![ProspectDOB isEqual:@"(null)"])) {
         @try {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm a"];
+            [dateFormatter setDateFormat:@"dd/MM/yyyy"];
             //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
@@ -41,7 +40,7 @@
         @catch (NSException *exception) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             //[dateFormatter setDateFormat:@"dd/MM/yyyy"];
-            [dateFormatter setDateFormat:@"HH:mm a"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
             
@@ -57,6 +56,10 @@
 {
     [super viewDidLoad];
     
+    
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"NL"];
+    [self.outletDate setLocale:locale];
+    
     msg = @"";
     DBDate = @"";
     
@@ -64,7 +67,8 @@
     NSString        *dateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"HH:mm a"];
+    [formatter setDateFormat:@"HH:mm"];
+    
     dateString = [formatter stringFromDate:[NSDate date]];
     msg = dateString;
     
@@ -72,7 +76,7 @@
     if ((ProspectDOB != NULL)&&(![ProspectDOB isEqual:@"(null)"])) {
         @try {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"HH:mm a"];
+            [dateFormatter setDateFormat:@"dd/MM/yyyy"];
             //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
@@ -80,7 +84,7 @@
         @catch (NSException *exception) {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             //[dateFormatter setDateFormat:@"dd/MM/yyyy"];
-            [dateFormatter setDateFormat:@"HH:mm a"];
+            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
         }
@@ -106,20 +110,23 @@
 }
 
 - (IBAction)ActionDate:(id)sender {
-    if (_Timedelegate != Nil) {
+//    if (_delegate != Nil) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"HH:mm a"];
+        [dateFormatter setDateFormat:@"HH:mm"];
+
         
         NSString *pickerDate = [dateFormatter stringFromDate:[_outletDate date]];
         
         msg = [NSString stringWithFormat:@"%@",pickerDate];
-        [dateFormatter setDateFormat:@"HH:mm a"];
+        [dateFormatter setDateFormat:@"HH:mm"];
+
         DBDate = [dateFormatter stringFromDate:[_outletDate date]];
         //[_delegate DateSelected:msg :DBDate];
-    }
+//    }
+    
 }
 - (IBAction)btnClose:(id)sender {
-    [_Timedelegate CloseWindow];
+    [_delegate CloseWindow];
 }
 
 - (IBAction)btnDone:(id)sender {
@@ -127,34 +134,34 @@
     if (msg == NULL) {
         
         // if msg = null means user din rotate the date...and choose the default date value
-        NSDateFormatter *formatter;
-        NSString        *dateString;
+                NSDateFormatter *formatter;
+                NSString        *dateString;
         
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"HH:mm a"];
+                formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"HH:mm"];
         
-        dateString = [formatter stringFromDate:[NSDate date]];
-        msg = dateString;
+                dateString = [formatter stringFromDate:[NSDate date]];
+                msg = dateString;
         
-        [_Timedelegate TimeSelected:msg :DBDate];
+        [_delegate TimeSelected:msg :DBDate];
     }
     else{
         
-        NSDateFormatter *formatter;
-        NSString        *dateString;
+//                NSDateFormatter *formatter;
+//                NSString        *dateString;
+//        
+//                formatter = [[NSDateFormatter alloc] init];
+//        [formatter setDateFormat:@"HH:mm a"];
+//        
+//                dateString = [formatter stringFromDate:[NSDate date]];
+//                msg = dateString;
         
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"HH:mm a"];
-        
-        dateString = [formatter stringFromDate:[NSDate date]];
-        msg = dateString;
-        
-        [_Timedelegate TimeSelected:msg :DBDate];
+        [_delegate TimeSelected:msg :DBDate];
     }
     
     
     
     
-    [_Timedelegate CloseWindow];
+    [_delegate CloseWindow];
 }
 @end

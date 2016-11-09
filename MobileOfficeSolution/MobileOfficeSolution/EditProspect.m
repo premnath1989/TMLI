@@ -55,6 +55,9 @@
     int completeStatus;
     int age;
     
+    BOOL isStartTime;
+    BOOL isEndTime;
+    
 	BOOL Update_record;
     BOOL IC_Hold_Alert;
     BOOL OTHERID_Hold_Alert;
@@ -110,6 +113,8 @@
 @synthesize delegate = _delegate;
 @synthesize SIDate = _SIDate;
 @synthesize SIDatePopover = _SIDatePopover;
+@synthesize TimePicker = _TimePicker;
+@synthesize TimePickerPopover = _TimePickerPopover;
 @synthesize IDTypePicker = _IDTypePicker;
 @synthesize IDTypePickerPopover = _IDTypePickerPopover;
 @synthesize TitlePicker = _TitlePicker;
@@ -11873,9 +11878,77 @@ bool PolicyOwnerSigned = TRUE;
 }
 - (IBAction)ActionCallStart:(id)sender {
     
-}
-- (IBAction)ActionCallEnd:(id)sender {
+    [self resignFirstResponder];
+    [self.view endEditing:YES];
     
+    isStartTime = YES;
+    isEndTime = NO;
+    
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *dateString;
+    
+    if (_TimePicker == Nil) {
+        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _TimePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+    }
+    _TimePicker.ProspectDOB = dateString;
+    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    
+}
+
+-(void)TimeSelected:(NSString *)strDate :(NSString *)dbDate {
+    
+    if (isStartTime) {
+        _txtCallStart.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];
+        
+    }
+    else if (isEndTime) {
+        _txtCallEnd.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];
+        
+    }
+    
+    [self.TimePickerPopover dismissPopoverAnimated:YES];
+    
+}
+
+- (IBAction)ActionCallEnd:(id)sender {
+    [self resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    isStartTime = NO;
+    isEndTime = YES;
+    
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *dateString;
+    
+    if (_TimePicker == Nil) {
+        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _TimePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+    }
+    _TimePicker.ProspectDOB = dateString;
+    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 }
 
 - (IBAction)ActionAnnualIncome:(id)sender {

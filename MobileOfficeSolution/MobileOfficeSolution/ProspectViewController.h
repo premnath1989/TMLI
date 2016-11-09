@@ -33,7 +33,7 @@
 #import "NIPInfo.h"
 #import "Formatter.h"
 #import "AnnualIncomeTableViewController.h"
-#import "TimePickerVC.h"
+#import "TimePicker.h"
 
 @class DataTable,DBController;
 @protocol ProspectViewControllerDelegate
@@ -50,7 +50,7 @@
     Formatter* classFormatter;
     OccupationList *_OccupationList;
     SIDate *_SIDate;
-    TimePickerVC *_timePicker;
+    TimePicker *_timePicker;
     GroupClass *_GroupList;
     TitleViewController *_TitlePicker;
     Race *_raceList;
@@ -134,8 +134,9 @@
 @property (nonatomic, strong) IDTypeViewController *IDTypePicker;
 @property (nonatomic, strong) UIPopoverController *IDTypePickerPopover;
 @property (nonatomic, retain) SIDate *SIDate;
-@property (nonatomic, retain) TimePickerVC *TimePickerVC;
+@property (nonatomic, retain) TimePicker *TimePicker;
 @property (nonatomic, retain) UIPopoverController *SIDatePopover;
+@property (nonatomic, retain) UIPopoverController *TimePickerPopover;
 @property (nonatomic, retain) OccupationList *OccupationList;
 @property (nonatomic, retain) UIPopoverController *OccupationListPopover;
 @property (nonatomic, strong) GroupClass *GroupList;

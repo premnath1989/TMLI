@@ -35,13 +35,15 @@
 #import "ModelSIRider.h"
 #import "NIPInfo.h"
 #import "AnnualIncomeTableViewController.h"
+#import "TimePicker.h"
+
 
 @class DataTable,DBController;
 @protocol EditProspectDelegate
 - (void)FinishEdit;
 @end
 
-@interface EditProspect : UIViewController<OccupationListDelegate,IDTypeDelegate,SIDateDelegate,UITextViewDelegate,TitleDelegate,GroupDelegate,UITextFieldDelegate,NatinalityDelegate,CountryDelegate,RaceDelegate,ReligionDelegate,MaritalStatusDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate>{
+@interface EditProspect : UIViewController<OccupationListDelegate,IDTypeDelegate,SIDateDelegate,UITextViewDelegate,TitleDelegate,GroupDelegate,UITextFieldDelegate,NatinalityDelegate,CountryDelegate,RaceDelegate,ReligionDelegate,MaritalStatusDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate, TimePickerDelegate>{
     NSString *databasePath;
     sqlite3 *contactDB;
     UITextField *activeField;
@@ -49,6 +51,7 @@
     GroupClass *_GroupList;
     TitleViewController *_TitlePicker;
     SIDate *_SIDate;
+    TimePicker *_TimePicker;
     OccupationList *_OccupationList;
     Nationality *_nationalityList;
     Nationality *_nationalityList2;
@@ -72,6 +75,7 @@
     UIPopoverController *_GroupPopover;
     UIPopoverController *_TitlePickerPopover;
     UIPopoverController *_SIDatePopover;
+    UIPopoverController *_TimePickerPopover;
     UIPopoverController *_OccupationListPopover;
     UIPopoverController *_CountryListPopover;
     UIPopoverController *_nationalityPopover;
@@ -133,6 +137,9 @@
 @property (nonatomic, retain) UIPopoverController *OccupationListPopover;
 @property (nonatomic, retain) SIDate *SIDate;
 @property (nonatomic, retain) UIPopoverController *SIDatePopover;
+@property (nonatomic, retain) TimePicker *TimePicker;
+@property (nonatomic, retain) UIPopoverController *TimePickerPopover;
+
 @property (nonatomic, strong) TitleViewController *TitlePicker;
 @property (nonatomic, strong) UIPopoverController *TitlePickerPopover;
 @property (nonatomic, strong) GroupClass *GroupList;
