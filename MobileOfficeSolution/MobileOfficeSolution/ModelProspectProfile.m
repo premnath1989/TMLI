@@ -188,18 +188,15 @@
         tScore = [NSString stringWithFormat:@"%d",[s intForColumn:@"Score"]];
         ProspectLastName = [s stringForColumn:@"ProspectLastName"];
         ProspectAge = [s stringForColumn:@"ProspectAge"];
-        PhoneHomeNo = [s stringForColumn:@"PhoneHomeNo"];
+        PhoneHomeNo = [s stringForColumn:@"PhoneNoHome"];
         PhoneNoHP = [s stringForColumn:@"PhoneNoHP"];
         Address4 = [s stringForColumn:@"ResidenceAddress4"];
         Kelurahan = [s stringForColumn:@"ResidenceKelurahan"];
         Kecamatan = [s stringForColumn:@"ResidenceKecamatan"];
-        CallStartTime = [s stringForColumn:@"CallStartTime"];
-        CallEndTime = [s stringForColumn:@"CallEndTime"];
-        isForeignAdd = [s stringForColumn:@"isForeignAdd"];
+        CallStartTime = [s stringForColumn:@"CallTimeStart"];
+        CallEndTime = [s stringForColumn:@"CallTimeEnd"];
+        isForeignAdd = [s stringForColumn:@"IsForeignAddress"];
         ProspectStatus = [s stringForColumn:@"ProspectStatus"];
-
-        
-        
         
         
         

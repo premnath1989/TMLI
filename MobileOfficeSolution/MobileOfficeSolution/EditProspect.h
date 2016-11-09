@@ -34,13 +34,14 @@
 #import "Model_SI_Premium.h"
 #import "ModelSIRider.h"
 #import "NIPInfo.h"
+#import "AnnualIncomeTableViewController.h"
 
 @class DataTable,DBController;
 @protocol EditProspectDelegate
 - (void)FinishEdit;
 @end
 
-@interface EditProspect : UIViewController<OccupationListDelegate,IDTypeDelegate,SIDateDelegate,UITextViewDelegate,TitleDelegate,GroupDelegate,UITextFieldDelegate,NatinalityDelegate,CountryDelegate,RaceDelegate,ReligionDelegate,MaritalStatusDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate>{
+@interface EditProspect : UIViewController<OccupationListDelegate,IDTypeDelegate,SIDateDelegate,UITextViewDelegate,TitleDelegate,GroupDelegate,UITextFieldDelegate,NatinalityDelegate,CountryDelegate,RaceDelegate,ReligionDelegate,MaritalStatusDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate>{
     NSString *databasePath;
     sqlite3 *contactDB;
     UITextField *activeField;
@@ -65,6 +66,7 @@
     VIPClass *_vipClass;
     KodePosInfo *_kodePosInfo;
     ReferralSource *_referralSource;
+    AnnualIncomeTableViewController *_annualIncome;
     //end of add
     
     UIPopoverController *_GroupPopover;
@@ -85,6 +87,7 @@
     UIPopoverController *_ReligionListPopover;
     UIPopoverController *_RaceListPopover;
     UIPopoverController *_MaritalStatusPopover;
+    UIPopoverController *_AnnualIncomePopover;
     id<EditProspectDelegate> _delegate;
     UIAlertView *rrr;
     UIAlertView *errormsg;
@@ -209,7 +212,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeVillage;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeDistrict;
-@property (weak, nonatomic) IBOutlet UITextField *txtHomeProvince;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeVillage;
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeDistrict;
 @property (weak, nonatomic) IBOutlet UITextField *txtOfficeProvince;
@@ -352,6 +355,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *txtKota;
 @property (weak, nonatomic) IBOutlet UIButton *outletProvinsi;
+@property (weak, nonatomic) IBOutlet UITextField *txtHomeProvince;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnHomeCountry;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;

@@ -50,7 +50,11 @@
     NSString *temp_cont3;
     NSString *temp_cont4;
 	
-	
+    NSString *PStatus;
+    int score;
+    int completeStatus;
+    int age;
+    
 	BOOL Update_record;
     BOOL IC_Hold_Alert;
     BOOL OTHERID_Hold_Alert;
@@ -133,6 +137,7 @@
 @synthesize outletExpiryDate;
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
+@synthesize txtHPNo;
 
 bool IsContinue = TRUE;
 bool PolicyOwnerSigned = TRUE;
@@ -269,23 +274,24 @@ bool PolicyOwnerSigned = TRUE;
     txtHomePostCode.delegate = self;
     txtOfficePostCode.delegate = self;
     txtAnnIncome.delegate = self;
-    txtAnnIncome.keyboardType = UIKeyboardTypeNumberPad;
+//    txtAnnIncome.keyboardType = UIKeyboardTypeNumberPad;
+    _txtHPRumah.keyboardType = UIKeyboardTypeNumberPad;
     
     
-    outletTitle.enabled = NO;
-    outletReligion.enabled = NO;
-    outletRace.enabled = NO;
-    outletNationality.enabled = NO;
-    outletMaritalStatus.enabled = NO;
+//    outletTitle.enabled = NO;
+//    outletReligion.enabled = NO;
+//    outletRace.enabled = NO;
+//    outletNationality.enabled = NO;
+//    outletMaritalStatus.enabled = NO;
     
     // By Benjamin Law on 17/10/2013 for bug 2584
     //outletTitle.enabled = YES;
-    outletReligion.enabled = YES;
-    outletRace.enabled = YES;
-    outletNationality.enabled = YES;
-    outletMaritalStatus.enabled = YES;
-    outletOccup.enabled = YES;
-    segGender.enabled = NO;
+//    outletReligion.enabled = YES;
+//    outletRace.enabled = YES;
+//    outletNationality.enabled = YES;
+//    outletMaritalStatus.enabled = YES;
+//    outletOccup.enabled = YES;
+//    segGender.enabled = NO;
     
     txtRigDate.userInteractionEnabled=FALSE;
     
@@ -320,10 +326,10 @@ bool PolicyOwnerSigned = TRUE;
     isOffCountry = NO;
 	
     
-    outletDOB.hidden = YES;
-    txtDOB.enabled = NO;
-    segGender.enabled = FALSE;
-    txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//    outletDOB.hidden = YES;
+//    txtDOB.enabled = NO;
+//    segGender.enabled = FALSE;
+//    txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
     
     CustomColor = nil;
     
@@ -360,6 +366,12 @@ bool PolicyOwnerSigned = TRUE;
 //    dictAgentData=[[NSDictionary alloc]initWithDictionary:[modelAgentProfil getAgentData]];
 //    [_txtChannelName setText:pp.ReferralSource];
 //    [txtKanwil setText:pp.Kanwil];
+    
+    
+    self.txtRemark.layer.borderColor = [[UIColor grayColor] CGColor];
+    self.txtRemark.layer.borderWidth = 1.0;
+    self.txtRemark.layer.cornerRadius = 8;
+    
 }
 
 /*code added by faiz*/
@@ -391,7 +403,7 @@ bool PolicyOwnerSigned = TRUE;
     UIFont *font= [UIFont fontWithName:@"BPreplay" size:16.0f];
     ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
     txtrFullName.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-    outletDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
+//    outletDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
     
     for (UIView *view in [_viewPersonalInfo subviews]) {
         if ([view isKindOfClass:[UITextField class]]) {
@@ -2222,12 +2234,16 @@ bool PolicyOwnerSigned = TRUE;
          _txtMarital.text = @"- SELECT -";
     }
     
+    if ([IDTypeCodeSelected isEqualToString:@""] || (IDTypeCodeSelected == NULL)) {
+        IDTypeCodeSelected = pp.OtherIDType;
+    }
+    
     _txtTypeID.text = pp.OtherIDType;
     _txtIdNumber.text = pp.OtherIDTypeNo;
     
     _txtReligion.text = pp.Religion;
     
-    _txtHPNo.text = pp.PhoneNoHP;
+    txtHPNo.text = pp.PhoneNoHP;
     txtEmail.text = pp.ProspectEmail;
 
     _txtCallStart.text = pp.CallStartTime;
@@ -2240,6 +2256,7 @@ bool PolicyOwnerSigned = TRUE;
     txtHomePostCode.text = pp.ResidenceAddressPostCode;
     _txtKelurahan.text = pp.Kelurahan;
     _TxtKecamatan.text = pp.Kecamatan;
+    _txtKota.text = pp.ResidenceAddressTown;
     _txtHomeProvince.text = pp.HomeProvicne;
     txtHomeCountry.text = pp.ResidenceAddressCountry;
     
@@ -2260,8 +2277,7 @@ bool PolicyOwnerSigned = TRUE;
     
     txtRemark.text = pp.ProspectRemark;
     
-    txtRemark.layer.borderWidth = 1.0f;
-    txtRemark.layer.borderColor = [[UIColor grayColor] CGColor];
+    
     
     
     
@@ -2458,7 +2474,7 @@ bool PolicyOwnerSigned = TRUE;
 //		if ([IDTypeCodeSelected isEqualToString:@""] || (IDTypeCodeSelected == NULL)) {
 //			IDTypeCodeSelected = pp.OtherIDType;
 //		}
-//        
+//
 //        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 //        
 //        //for company case
@@ -3396,11 +3412,12 @@ bool PolicyOwnerSigned = TRUE;
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSString *newDOB = [dateFormat stringFromDate:date];
     [outletDOB setTitle:[[NSString stringWithFormat:@""]stringByAppendingFormat:@"%@",pp.ProspectDOB] forState:UIControlStateNormal];
-    outletDOB.enabled = NO;
-    outletDOB.hidden = NO;
-    OtherIDType.enabled=YES;
+    
+//    outletDOB.enabled = NO;
+//    outletDOB.hidden = NO;
+//    OtherIDType.enabled=YES;
     //end of added by faiz//
-    [self check_OID_BirthCer_Passport];
+//    [self check_OID_BirthCer_Passport];
     
     [super viewWillAppear:animated];
     
@@ -4375,6 +4392,7 @@ bool PolicyOwnerSigned = TRUE;
         _sourceIncomePopover = [[UIPopoverController alloc] initWithContentViewController:_sourceIncome];
     }
     [_sourceIncomePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
 }
 
 - (IBAction)actionBranchInfo:(UIButton *)sender
@@ -4831,7 +4849,7 @@ bool PolicyOwnerSigned = TRUE;
     CGRect butt = [sender frame];
     int y = butt.origin.y - 44;
     butt.origin.y = y;
-    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (IBAction)btnExpiryDate:(id)sender
@@ -7214,6 +7232,7 @@ bool PolicyOwnerSigned = TRUE;
         counter = counter+1;
 		
 		//eliminate empty or null value
+        [self getIDTypeCode:_txtTypeID.text];
         if (IDTypeCodeSelected == NULL || [IDTypeCodeSelected isEqualToString:@"(NULL)"] || [IDTypeCodeSelected isEqualToString:@"(null)"]) {
 			IDTypeCodeSelected = @"";
         }
@@ -7287,12 +7306,18 @@ bool PolicyOwnerSigned = TRUE;
         }else{
             genderSeg = @"FEMALE";
         }
-		
+        
+        
+        NSString *isforeignAdd = @"NO";
+        [self CalculateScore];
+        [self calculateAge:txtDOB.text];
+        
+        
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\" where indexNo = \"%@\" "
-                                    , txtrFullName.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
-                            religion,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _outletSourceIncome.titleLabel.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, pp.ProspectID];
+                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\" where indexNo = \"%@\" "
+                                    , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
+                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,pp.ProspectID];
 
         const char *Update_stmt = [insertSQL UTF8String];
         if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
@@ -9113,2303 +9138,77 @@ bool PolicyOwnerSigned = TRUE;
 
 - (bool) Validation
 {
-/*	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-	
-    int annual_income =  [txtAnnIncome.text integerValue];
-    
-    NSString *title   = [outletTitle.titleLabel.text stringByTrimmingCharactersInSet:
-                         [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *religion = [outletReligion.titleLabel.text stringByTrimmingCharactersInSet:
-                          [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *race = [outletRace.titleLabel.text stringByTrimmingCharactersInSet:
-                      [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *RigDateOutlet = [outletRigDOB.titleLabel.text stringByTrimmingCharactersInSet:
-                      [NSCharacterSet whitespaceCharacterSet]];
-	
-    NSString *otherIDType_trim = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
-								  [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *nation = [outletNationality.titleLabel.text stringByTrimmingCharactersInSet:
-                        [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *marital = [outletMaritalStatus.titleLabel.text stringByTrimmingCharactersInSet:
-                         [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *home1_trim = [txtHomeAddr1.text stringByTrimmingCharactersInSet:
-                            [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *homePostcode_trim = [txtHomePostCode.text stringByTrimmingCharactersInSet:
-								   [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *office1_trim = [txtOfficeAddr1.text stringByTrimmingCharactersInSet:
-							  [NSCharacterSet whitespaceCharacterSet]];
-    
-    NSString *officePostcode_trim = [txtOfficePostCode.text stringByTrimmingCharactersInSet:
-									 [NSCharacterSet whitespaceCharacterSet]];
-	
-	NSString *BirthCountry = [BtnCountryOfBirth.titleLabel.text stringByTrimmingCharactersInSet:
-                      [NSCharacterSet whitespaceCharacterSet]];
-	
-	
-	[ClientProfile setObject:@"" forKey:@"TabBar1"];
-	clickDone = 2; //to allow prompt same id checking, can use any number as long not 1
-	
-	if ([textFields trimWhiteSpaces:txtIDType.text].length == 12 && [pp.IDTypeNo isEqualToString:@""]) {
-		if (![self IDValidation]) {
-			[ClientProfile setObject:@"NO" forKey:@"TabBar"];
-			return FALSE;
-		}
-	}
-	
-	if (![otherIDType_trim isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@""] && ![textFields trimWhiteSpaces:txtOtherIDType.text].length == 0 && [pp.OtherIDTypeNo isEqualToString:@""]) {
-		if (![self OtherIDValidation]) {
-			[ClientProfile setObject:@"NO" forKey:@"TabBar"];
-			return FALSE;
-		}
-	}
-	
-	if ([otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"]) {
-		companyCase = true;
-	}
-    else {
-		companyCase = false;
-    }
-	
-    if(!companyCase) {
-        if([title isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]){
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Title is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1006;
-            [alert show];
-            return false;
-        }
-    }
-    
-    //check 3 times repeat alphabetic
-    NSArray  *repeat = [txtrFullName.text componentsSeparatedByString:@" "];
-    
-    NSString *substring;
-    NSString *first;
-    NSString *second;
-    NSString *third;
-    NSString *forth;
-    int range2;
-    int range3;
-    int range4;
-    for(int x=0; x<repeat.count;x++)
-    {
-        substring = [repeat objectAtIndex:x];
-        if([substring length] > 3)
-        {
-            for(int y =0; y<substring.length;y++)
-            {
-                range2 = y+1;
-                range3 = y+2;
-                range4 = y+3;
-                
-                if(range4 < substring.length) // the forth digit index cannot > than substring.length else get execption!
-                {
-                    first = [[substring substringWithRange:NSMakeRange(y,1)] lowercaseString];
-                    second = [[substring substringWithRange:NSMakeRange(range2,1)] lowercaseString];
-                    third = [[substring substringWithRange:NSMakeRange(range3,1)] lowercaseString];
-                    forth = [[substring substringWithRange:NSMakeRange(range4,1)] lowercaseString];
-                    
-                    if ([first isEqualToString:second] &&  [second isEqualToString:third] && [third isEqualToString:forth]) {
-                        name_repeat = name_repeat +1;
-                    }
-                }
-            }
-        }
-    }
-    
-    if([[txtrFullName.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@""]){
-        errormsg = [[UIAlertView alloc] initWithTitle:@" "
-                                              message:@"Full Name is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        errormsg.tag = 80;
-        [errormsg show];
-        errormsg = nil;
-        return false;
-    }
-    else if([textFields validateString3:txtrFullName.text]){
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @" "
-                              message:@"Invalid name format. Input must be alphabet A to Z, space, apostrophe(‘), alias(@), slash(/), dash(-), bracket(( )) or dot(.)."
-                              delegate: self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        alert.tag = 80;
-        [alert show];
-        alert = Nil;
-        return false;
-    }
-    else if( name_repeat > 0)
-    {
-        if(name_morethan3times == TRUE && name_repeat == 100)
-        {
-        }
-        else
-        {
-            name_repeat = 0;
-            name_morethan3times = false;
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Name format. Same alphabet cannot be repeated more than three times." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 80;
-            
-            [alert show];
-            return false;
-        }
-    }
-    else {
-        BOOL valid;
-        NSString *strToBeTest = [txtrFullName.text stringByReplacingOccurrencesOfString:@" " withString:@"" ];
-        
-        for (int i=0; i<strToBeTest.length; i++) {
-            int str1=(int)[strToBeTest characterAtIndex:i];
-            
-            if((str1 >96 && str1 <123)  || (str1 >64 && str1 <91) || str1 == 39 || str1 == 40 || str1 == 41 || str1 == 64 || str1 == 47 || str1 == 45 || str1 == 46){
-                valid = TRUE;
-                
-            } else {
-                valid = FALSE;
-                break;
-            }
-        }
-        if (!valid) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Name format. Input must be alphabet A to Z, space, apostrophe(‘), alias(@), slash(/), dash(-), bracket(( )) or dot(.)" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 80;
-            
-            [alert show];
-            return false;
-        }
-    }
-    
-    if((segRigPerson.selectedSegmentIndex == 0) && (txtRigNO.text.length<=0))
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"GST Registered No is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [self resignFirstResponder];
-        [self.view endEditing:TRUE];
-        [alert show];
-        return false;
-    }
-    
-    if((segRigPerson.selectedSegmentIndex == 0) && [RigDateOutlet isEqualToString:@"- SELECT -"])
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"GST Registration Date is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [self resignFirstResponder];
-        [self.view endEditing:TRUE];
-        [alert show];
-         outletRigDOB.titleLabel.textColor = [UIColor redColor];
-        return false;
-    }
-    
-    if(segRigExempted.selectedSegmentIndex == -1)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@""
-                                                        message:@"GST Exempted is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [self resignFirstResponder];
-        [self.view endEditing:TRUE];
-        [alert show];
-        
-        return false;
-    }
-	
-    //KY START COMPANY
-	
-    if(companyCase) {
-        if ([[txtOtherIDType.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 82;
-            [alert show];
-            return false;
-        }
-        else if([textFields validateOtherID:txtOtherIDType.text]){
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @" "
-                                  message:@"Invalid Other ID."
-                                  delegate: self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            alert.tag = 81;
-            [alert show];
-            alert = Nil;
-            return false;
-        }
-        
-        if (txtOtherIDType.text.length > 30) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Other ID length. Other ID length should be not more 30 characters long" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [txtOtherIDType becomeFirstResponder];
-            return false;
-        }
-        
-        if ([[txtOtherIDType.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 82;
-            [alert show];
-            return false;
-        }
-        else if([textFields validateOtherID:txtOtherIDType.text]){
-            UIAlertView *alert = [[UIAlertView alloc]
-                                  initWithTitle: @" "
-                                  message:@"Invalid Other ID."
-                                  delegate: self
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-            alert.tag = 81;
-            [alert show];
-            alert = Nil;
-            return false;
-        }
-        
-        if (txtExactDuties.text.length > 40) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Exact Duties length. Only 40 characters allowed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1007;
-            [alert show];
-            return false;
-        }
-        
-        if ([txtBussinessType.text isEqualToString:@""]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Type of business is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 2060;
-            [alert show];
-            return false;
-        }
-        
-        if (txtBussinessType.text.length > 60) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Type of Business length. Only 60 characters allowed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag=2060;
-            [alert show];
-            return false;
-        }
-        
-        NSString * AI = [annualIncome_original stringByTrimmingCharactersInSet:
-                         [NSCharacterSet whitespaceCharacterSet]];
-        NSArray  *comp = [AI componentsSeparatedByString:@"."];
-        
-        int AI_Length = [[comp objectAtIndex:0] length];
-        if ([txtAnnIncome.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-            if((![OccpCatCode isEqualToString:@"HSEWIFE"]) &&
-               (![OccpCatCode isEqualToString:@"JUV"]) &&
-               (![OccpCatCode isEqualToString:@"RET"]) &&
-               (![OccpCatCode isEqualToString:@"STU"]) &&
-               (![OccpCatCode isEqualToString:@"UNEMP"])) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Annual Income is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                txtAnnIncome.enabled = true;
-                txtAnnIncome.backgroundColor = [UIColor whiteColor];
-                alert.tag = 1008;
-                [alert show];
-                
-                return false;
-            }
-        }
-        else if (AI_Length >13  && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-            if((![OccpCatCode isEqualToString:@"HSEWIFE"]) &&
-               (![OccpCatCode isEqualToString:@"JUV"]) &&
-               (![OccpCatCode isEqualToString:@"RET"]) &&
-               (![OccpCatCode isEqualToString:@"STU"]) &&
-               (![OccpCatCode isEqualToString:@"UNEMP"])) {
-                
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Annual income must be numerical value. It must be greater than zero, maximum 13 digits with 2 decimal points." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1008;
-                [rrr show];
-                rrr = nil;
-                
-                return false;
-            }
-        }
-        else if (AI_Length < 13 && annual_income == 0)
-        {
-            rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                             message:@"Annual income must be numerical value. It must be greater than zero, maximum 13 digits with 2 decimal points." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1008;
-            [rrr show];
-            rrr = nil;
-            
-            return false;
-            
-        }
-        //###### ky Home address START#######
-        NSString *homecountry = [btnHomeCountry.titleLabel.text stringByTrimmingCharactersInSet:
-                                 [NSCharacterSet whitespaceCharacterSet]];
-        
-        
-        if (   home1_trim.length==0  && checked == YES )
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Residential Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1012;
-            [alert show];
-            return false;
-        }
-        else  if ([homecountry isEqualToString:@"- SELECT -"] && checked == YES )
-        {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Country for residential address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            
-            alert.tag = 5001;
-            [alert show];
-            return false;
-            
-        }
-        else if ( (home1_trim.length!=0 || ![txtHomeAddr2.text isEqualToString:@""] || ![txtHomeAddr3.text isEqualToString:@""])&& homePostcode_trim.length==0)
-        {
-            if(checked == NO)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Postcode for residential address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2000;
-                [alert show];
-                return false;
-            }
-        }
-        else  if ( home1_trim.length==0 && ![txtHomePostCode.text isEqualToString:@""])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Residential Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1012;
-            [alert show];
-            return false;
-        }
-        else if (![txtHomePostCode.text isEqualToString:@""] && checked == NO)
-        {
-            //HOME POSTCODE START
-            //CHECK INVALID SYMBOLS
-            NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-            
-            HomePostcodeContinue = false;
-            BOOL valid;
-            BOOL valid_symbol;
-            
-            NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-            
-            NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-            
-            valid = [alphaNums isSupersetOfSet:inStringSet];
-            valid_symbol = [set isSupersetOfSet:inStringSet];
-            
-            txtHomePostCode.text = [txtHomePostCode.text stringByTrimmingCharactersInSet:
-                                    [NSCharacterSet whitespaceCharacterSet]];
-            
-            if(txtHomePostCode.text.length < 5)
-            {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag = 2001;
-                [rrr show];
-                rrr=nil;
-                return false;
-            }
-            else if (!valid_symbol) {
-                txtHomeState.text=@"";
-                txtHomeState.text = @"";
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag = 2001;
-                [rrr show];
-                rrr=nil;
-                return false;
-                
-            }
-            else if (!valid) {
-                txtHomeState.text=@"";
-                txtHomeState.text = @"";
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag = 2001;
-                [rrr show];
-                
-                rrr=nil;
-                
-                txtHomeState.text = @"";
-                txtHomeTown.text = @"";
-                txtHomeCountry.text = @"";
-                SelectedStateCode = @"";
-                HomePostcodeContinue = FALSE;
-                
-                return false;
-            }
-            else {
-                BOOL gotRow = false;
-                const char *dbpath = [databasePath UTF8String];
-                sqlite3_stmt *statement;
-                
-                if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-                    NSString *querySQL = [NSString stringWithFormat:@"SELECT \"Town\", \"Statedesc\", b.Statecode FROM eProposal_PostCode as A, eproposal_state as B where trim(a.Statecode) = b.statecode and Postcode = %@ ", txtHomePostCode.text];
-                    const char *query_stmt = [querySQL UTF8String];
-                    if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-                    {
-                        NSString *Town;
-                        NSString *State;
-                        NSString *Statecode;
-                        while (sqlite3_step(statement) == SQLITE_ROW){
-                            Town = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                            State = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                            Statecode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                            
-                            txtHomeState.text = State;
-                            txtHomeTown.text = Town;
-                            txtHomeCountry.text = @"MALAYSIA";
-                            SelectedStateCode = Statecode;
-                            gotRow = true;
-                            HomePostcodeContinue = TRUE;
-                            
-                            self.navigationItem.rightBarButtonItem.enabled = TRUE;
-                        }
-                        sqlite3_finalize(statement);
-                    }
-                    else {
-                        txtHomeState.text = @"";
-                        txtHomeTown.text = @"";
-                        txtHomeCountry.text = @"";
-                    }
-                    sqlite3_close(contactDB);
-                }
-                
-                if(!HomePostcodeContinue)
-                {
-                    txtHomeState.text = @"";
-                    txtHomeTown.text = @"";
-                    txtHomeCountry.text = @"";
-                    SelectedStateCode = @"";
-                    
-                    txtHomeState.text=@"";
-                    txtHomeState.text = @"";
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 2001;
-                    [rrr show];
-                    rrr=nil;
-                    //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                    return false;
-                }
-                
-            }
-            //HOME POSTCODE END
-        }
-		
-        
-        //###### Home address END#######
-        
-        //######office address#######
-        if(checked2) {
-            NSString *officecountry = [btnOfficeCountry.titleLabel.text stringByTrimmingCharactersInSet:
-                                       [NSCharacterSet whitespaceCharacterSet]];
-            
-            if(office1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag = 2002;
-                [alert show];
-                return false;
-                
-            }
-            
-            if([officecountry isEqualToString:@"- SELECT -"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Country for office address is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=5002;
-                [alert show];
-                return false;
-            }
-        }
-        else {
-            if(office1_trim.length==0  && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag = 2002;
-                
-                [alert show];
-                return false;
-            }
-            else if (![txtOfficePostCode.text isEqualToString:@""])
-            {
-                //HOME POSTCODE START
-                //CHECK INVALID SYMBOLS
-                NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-                
-                BOOL valid;
-                BOOL valid_symbol;
-                
-                NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                
-                NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-                
-                valid = [alphaNums isSupersetOfSet:inStringSet];
-                valid_symbol = [set isSupersetOfSet:inStringSet];
-                
-                if(officePostcode_trim.length < 5)
-                {
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 3001;
-                    [rrr show];
-                    rrr=nil;
-                    return false;
-                }
-				else if (!valid_symbol) {
-                    
-                    txtOfficeState.text = @"";
-                    txtOfficeTown.text = @"";
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 3001;
-                    [rrr show];
-                    rrr=nil;
-                    
-                    return false;
-                    
-                }
-                else if (!valid) {
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 3001;
-                    [rrr show];
-                    
-                    rrr=nil;
-                    
-                    txtHomeState.text = @"";
-                    txtHomeTown.text = @"";
-                    txtHomeCountry.text = @"";
-                    SelectedStateCode = @"";
-                    return false;
-                }
-                else {
-                    const char *dbpath = [databasePath UTF8String];
-                    sqlite3_stmt *statement;
-                    
-                    txtOfficePostCode.text = [txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-                    
-                    //CHECK INVALID SYMBOLS
-                    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-                    
-                    BOOL valid;
-                    BOOL valid_symbol;
-                    
-                    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                    
-                    NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-                    
-                    valid = [alphaNums isSupersetOfSet:inStringSet];
-                    valid_symbol = [set isSupersetOfSet:inStringSet];
-                    OfficePostcodeContinue = false;
-                    
-                    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-                        NSString *querySQL = [NSString stringWithFormat:@"SELECT \"Town\", \"Statedesc\", b.Statecode FROM eProposal_PostCode as A, eproposal_state as B where trim(a.Statecode) = b.statecode and Postcode = %@ ", txtOfficePostCode.text];
-                        const char *query_stmt = [querySQL UTF8String];
-                        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-                        {
-                            NSString *OfficeTown;
-                            NSString *OfficeState;
-                            NSString *Statecode;
-                            while (sqlite3_step(statement) == SQLITE_ROW){
-                                OfficeTown = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                                OfficeState = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                                Statecode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                                
-                                txtOfficeState.text = OfficeState;
-                                txtOfficeTown.text = OfficeTown;
-                                txtOfficeCountry.text = @"MALAYSIA";
-                                SelectedOfficeStateCode = Statecode;
-                                
-                                OfficePostcodeContinue = TRUE;
-                                self.navigationItem.rightBarButtonItem.enabled = TRUE;
-                            }
-                            sqlite3_finalize(statement);
-                            sqlite3_close(contactDB);
-                        }
-                        else {
-                            txtOfficeState.text = @"";
-                            txtOfficeTown.text = @"";
-                            txtOfficeCountry.text = @"";
-                        }
-                    }
-                    
-                    if(!OfficePostcodeContinue)
-                    {
-                        txtOfficeState.text = @"";
-                        txtOfficeTown.text = @"";
-                        txtOfficeCountry.text = @"";
-                        SelectedStateCode = @"";
-                        
-                        rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                         message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        
-                        rrr.tag = 3001;
-                        [rrr show];
-                        rrr=nil;
-                        [txtOfficePostCode addTarget:self action:@selector(OfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                        return false;
-                    }
-                }
-                //HOME POSTCODE END
-                
-            }
-        }
-    }
-    else {
-		// CHECK OTHER ID
-		if ((txtOtherIDType.text.length == 0 ) && ![otherIDType_trim isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]  )
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag= 82;
-            [alert show];
-            return false;
-        }
-        else if (txtOtherIDType.text.length!=0){
-			if([textFields validateOtherID:txtOtherIDType.text])
-			{
-				UIAlertView *alert = [[UIAlertView alloc]
-									  initWithTitle: @" "
-									  message:@"Invalid Other ID."
-									  delegate: self
-									  cancelButtonTitle:@"OK"
-									  otherButtonTitles:nil];
-				alert.tag = 81;
-				[alert show];
-				alert = Nil;
-			    return false;
-            }
-        }
-        
-        //Check if baby
-        if([OccpCatCode isEqualToString:@"JUV"] && [otherIDType_trim isEqualToString:@"BIRTH CERTIFICATE"]) {
-            //segGender.enabled = YES;
-            if(txtOtherIDType.text.length==0 && txtIDType.text.length == 0)
-            {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No or Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1003;
-                [rrr show];
-                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                return false;
-            }
-            else if (txtOtherIDType.text.length==0){
-                [txtOtherIDType becomeFirstResponder];
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 82;
-                [rrr show];
-                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                return false;
-            }
-        }
-		
-        if(([otherIDType_trim isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"OLD IDENTIFICATION NO"]) && ![OccpCatCode isEqualToString:@"JUV"] ){
-            ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            
-            if ([otherIDType_trim isEqualToString:@"- SELECT -"] && ([txtIDType.text isEqualToString:@""] || (txtIDType.text.length == 0) )) {
-				
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No or Other ID is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1003;
-                [rrr show];
-                txtIDType.text = @"";
-                txtDOB.text = @"";
-                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                return false;
-            }
-            else if([txtIDType.text isEqualToString:@""] || (txtIDType.text.length == 0) ){
-                
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                txtIDType.text = @"";
-                txtDOB.text = @"";
-                segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                return false;
-            }
-            else if (txtIDType.text.length != 12) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No must be 12 digits characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                rrr=nil;
-                return false;
-            }
-            else if (![[txtIDType.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@""]) {
-                BOOL valid;
-                NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtIDType.text];
-                valid = [alphaNums isSupersetOfSet:inStringSet];
-                if (!valid) {
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"New IC No must be numeric" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    rrr.tag = 1002;
-                    [rrr show];
-                    rrr = nil;
-                    return false;
-                }
-                
-                if (txtIDType.text.length != 12) {
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"New IC No must be 12 digits characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    rrr.tag = 1002;
-                    [rrr show];
-                    rrr = nil;
-                    return false;
-                }
-            }
-            
-            //GET DOB
-            
-            NSString *last = [txtIDType.text substringFromIndex:[txtIDType.text length] -1];
-            NSCharacterSet *oddSet = [NSCharacterSet characterSetWithCharactersInString:@"13579"];
-            
-            if ([last rangeOfCharacterFromSet:oddSet].location != NSNotFound) {
-                NSLog(@"MALE");
-                segGender.selectedSegmentIndex = 0;
-                gender = @"MALE";
-            } else {
-                NSLog(@"FEMALE");
-                segGender.selectedSegmentIndex = 1;
-                gender = @"FEMALE";
-            }
-            
-            //CHECK DAY / MONTH / YEAR START
-            //get the DOB value from ic entered
-            NSString *strDate = [txtIDType.text substringWithRange:NSMakeRange(4, 2)];
-            NSString *strMonth = [txtIDType.text substringWithRange:NSMakeRange(2, 2)];
-            NSString *strYear = [txtIDType.text substringWithRange:NSMakeRange(0, 2)];
-            
-            //get value for year whether 20XX or 19XX
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy"];
-			
-            
-            NSString *currentYear = [dateFormatter stringFromDate:[NSDate date]];
-            NSString *strCurrentYear = [currentYear substringWithRange:NSMakeRange(2, 2)];
-            if ([strYear intValue] > [strCurrentYear intValue] && !([strYear intValue] < 30)) {
-                strYear = [NSString stringWithFormat:@"19%@",strYear];
-            }
-            else {
-                strYear = [NSString stringWithFormat:@"20%@",strYear];
-            }
-            
-            NSString *strDOB = [NSString stringWithFormat:@"%@/%@/%@",strDate,strMonth,strYear];
-            NSString *strDOB2 = [NSString stringWithFormat:@"%@-%@-%@",strYear,strMonth,strDate];
-            
-            //determine day of february
-            NSString *febStatus = nil;
-            float devideYear = [strYear floatValue]/4;
-            int devideYear2 = devideYear;
-            float minus = devideYear - devideYear2;
-            if (minus > 0) {
-                febStatus = @"Normal";
-            }
-            else {
-                febStatus = @"Jump";
-            }
-            
-            //compare year is valid or not
-            [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-            NSDate *d = [NSDate date];
-            NSDate *d2 = [dateFormatter dateFromString:strDOB2];
-            
-            if ([d compare:d2] == NSOrderedAscending) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No not valid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                
-                if(![otherIDType_trim isEqualToString:@"PASSPORT"])
-                {
-                    txtDOB.text = @"";
-                    segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                }
-                return false;
-            }
-            else if ([strMonth intValue] > 12 || [strMonth intValue] < 1) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC month must be between 1 and 12." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                
-                if(![otherIDType_trim isEqualToString:@"PASSPORT"])
-                {
-                    txtDOB.text = @"";
-                    segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                }
-                return false;
-            }
-            else if([strDate intValue] < 1 || [strDate intValue] > 31)
-            {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC day must be between 1 and 31." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                
-                return false;
-                
-            }
-            else if (([strMonth isEqualToString:@"01"] || [strMonth isEqualToString:@"03"] || [strMonth isEqualToString:@"05"] || [strMonth isEqualToString:@"07"] || [strMonth isEqualToString:@"08"] || [strMonth isEqualToString:@"10"] || [strMonth isEqualToString:@"12"]) && [strDate intValue] > 31) {
-                
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No not valid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                
-                txtIDType.text = @"";
-                if(![otherIDType_trim isEqualToString:@"PASSPORT"])
-                {
-                    txtDOB.text = @"";
-                    segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                }
-                return false;
-            }
-            else if (([strMonth isEqualToString:@"04"] || [strMonth isEqualToString:@"06"] || [strMonth isEqualToString:@"09"] || [strMonth isEqualToString:@"11"]) && [strDate intValue] > 30) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No not valid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                
-                txtIDType.text = @"";
-                if(![otherIDType_trim isEqualToString:@"PASSPORT"])
-                {
-                    txtDOB.text = @"";
-                    segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                }
-                return false;
-            }
-            else if (([febStatus isEqualToString:@"Normal"] && [strDate intValue] > 28 && [strMonth isEqualToString:@"02"]) || ([febStatus isEqualToString:@"Jump"] && [strDate intValue] > 29 && [strMonth isEqualToString:@"02"])) {
-                NSString *msg = [NSString stringWithFormat:@"February of %@ doesn’t have 29 days",strYear];
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:msg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-                [rrr show];
-                
-                if(![otherIDType_trim isEqualToString:@"PASSPORT"])
-                {
-                    txtDOB.text = @"";
-                    segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-                }
-                
-                return false;
-            }
-            else {
-                outletDOB.hidden = YES;
-                outletDOB.enabled = FALSE;
-                txtDOB.enabled = FALSE;
-                txtDOB.hidden = NO;
-                txtDOB.text = strDOB;
-                [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",strDOB]forState:UIControlStateNormal];
-            }
-            
-            //CHECK DAY / MONTH / YEAT END
-            
-        }
-        //KY - IF USER KEY IN OTHER ID AND IC
-        else if(![otherIDType_trim isEqualToString:@"- SELECT -"]  && (txtIDType.text.length > 0 && txtIDType.text.length<12) )
-        {
-			if (txtIDType.text.length != 12) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No must be 12 digits characters." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1002;
-                [rrr show];
-                rrr=nil;
-                return false;
-            }
-        }
-		else if(![otherIDType_trim isEqualToString:@"- SELECT -"]  && (txtIDType.text.length==12) )
-        {
-            //ky
-            //get the DOB value from ic entered
-			
-            NSString *strDate = [txtIDType.text substringWithRange:NSMakeRange(4, 2)];
-            NSString *strMonth = [txtIDType.text substringWithRange:NSMakeRange(2, 2)];
-            NSString *strYear = [txtIDType.text substringWithRange:NSMakeRange(0, 2)];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"yyyy"];
-			
-            NSString *currentYear = [dateFormatter stringFromDate:[NSDate date]];
-            NSString *strCurrentYear = [currentYear substringWithRange:NSMakeRange(2, 2)];
-            if ([strYear intValue] > [strCurrentYear intValue] && !([strYear intValue] < 30)) {
-                strYear = [NSString stringWithFormat:@"19%@",strYear];
-            }
-            else {
-                strYear = [NSString stringWithFormat:@"20%@",strYear];
-            }
-            
-            
-            NSString *dob_trim = [txtDOB.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-			
-            //ky - crash bec of  '- SELECT -'
-            if(![dob_trim isEqualToString:@"- SELECT -"]){
-				NSArray  *temp_dob = [txtDOB.text componentsSeparatedByString:@"/"];
-				
-				NSString *day = [temp_dob objectAtIndex:0];
-				day = [day stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-				NSString *month = [temp_dob objectAtIndex:1];
-				NSString *year = [temp_dob objectAtIndex:2];
-								
-				NSString *ic_gender;
-				
-				NSString *last = [txtIDType.text substringFromIndex:[txtIDType.text length] -1];
-				NSCharacterSet *oddSet = [NSCharacterSet characterSetWithCharactersInString:@"13579"];
-				
-				if ([last rangeOfCharacterFromSet:oddSet].location != NSNotFound) {
-					ic_gender = @"MALE";
-				} else {
-					ic_gender = @"FEMALE";
-					
-				}
-				
-				if(![day isEqualToString:strDate] || ![month isEqualToString:strMonth] || ![year isEqualToString:strYear])
-				{
-					rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No does not match with Date of Birth." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-					rrr.tag = 1002;
-					[rrr show];
-					rrr = nil;
-					return false;
-					
-				}
-				else if(([ic_gender isEqualToString:@"MALE"] && segGender.selectedSegmentIndex !=0) || ([ic_gender isEqualToString:@"FEMALE"] && segGender.selectedSegmentIndex !=1))
-				{
-					rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"New IC No does not match with Gender." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-					rrr.tag = 1002;
-					[rrr show];
-					rrr = nil;
-					return false;
-				}
-            }
-        }
-        
-        if(txtOtherIDType.text.length == 1)
-        {
-            BOOL error = FALSE;
-            NSString *strToBeTest = [txtOtherIDType.text stringByReplacingOccurrencesOfString:@" " withString:@"" ];
-            
-            for (int i=0; i<strToBeTest.length; i++) {
-                int str1=(int)[strToBeTest characterAtIndex:i];
-                
-                if( str1 ==34 ||  str1 == 38 || str1 == 39 || str1 == 40 || str1 == 41 || str1 == 64 || str1 == 47 || str1 == 45 || str1 == 46){
-                    
-                    error = TRUE;
-                }
-            }
-            
-            if(error)
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Invalid Other ID." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alert show];
-                [txtOtherIDType becomeFirstResponder];
-                return false;
-            }
-        }
-        
-        if ([txtOtherIDType.text isEqualToString:txtIDType.text] && txtOtherIDType.text.length != 0 && txtIDType.text.length !=0 )
-        {
-            rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                             message:@"Other ID cannot be same as New IC No." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 81;
-            [rrr show];
-            rrr = nil;
-            
-            return false;
-        }
-        
-        //Other ID Type as ‘SINGAPOREAN IDENTIFICATION NUMBER’, then the “Nationality” must be “Singaporean”.
-        NSString *otherIDtype = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
-                                 [NSCharacterSet whitespaceCharacterSet]];
-        
-        if ([otherIDtype isEqualToString:@"SINGAPOREAN IDENTIFICATION NUMBER"] && ![nation isEqualToString:@"SINGAPOREAN"]  )
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Nationality must be Singaporean" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            alert.tag= 1005;
-            return false;
-        }
-        
-        //COMPARE THE DATE
-        NSDateFormatter* df = [[NSDateFormatter alloc] init];
-        [df setDateFormat:@"yyyy-MM-dd"];
-        NSString *dob =[outletDOB.titleLabel.text stringByTrimmingCharactersInSet:
-                        [NSCharacterSet whitespaceCharacterSet]];
-        
-        NSDateFormatter *formatter;
-        NSString        *today;
-        
-        formatter = [[NSDateFormatter alloc] init];
-        [formatter setDateFormat:@"dd/MM/yyyy"];
-        
-        today = [formatter stringFromDate:[NSDate date]];
-        
-        if(([[txtDOB.text stringByReplacingOccurrencesOfString:@" " withString:@""] isEqualToString:@""]) && ([dob isEqualToString:@"- SELECT -"]) && (!dob.length == 0)){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Date of Birth is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 83;
-            [alert show];
-            return false;
-        }
-		
-        if([BirthCountry isEqualToString:@"- SELECT -"] && (![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] && ![otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"]))
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Country of Birth is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag= 1013;
-            [alert show];
-            return false;
-        }
-        
-        if(segGender.selectedSegmentIndex == -1 && ![otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"] && ![otherIDType_trim isEqualToString:@"Company Registration Number"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] ){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Gender is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [self resignFirstResponder];
-            [self.view endEditing:TRUE];
-            
-            [alert show];
-            return false;
-        }
-        
-        if([race isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Race is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag= 1010;
-            [alert show];
-            return false;
-        }
-        
-        //CHECK NATIONALITY
-        if([nation isEqualToString:@"- SELECT -"]&& ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Nationality is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1005;
-            [rrr show];
-            return false;
-        }
-        else if (txtIDType.text.length != 0 && ![nation isEqualToString:@"MALAYSIAN"]) {
-            
-            rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Nationality didn’t match with New IC No." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1005;
-            [rrr show];
-            
-            return false;
-        }
-        //check for singaporean
-        else if ([otherIDType_trim isEqualToString:@"SINGAPORE IDENTIFICATION NUMBER"] && ![nation isEqualToString:@"SINGAPOREAN"]) {
-            
-            rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Nationality didn’t match with Other ID No." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1005;
-            [rrr show];
-            
-            return false;
-        }
-        //check for MALAYSIAN FOR OTHER ID
-        //The Nationality must be 'Malaysian'
-        else if (([otherIDType_trim isEqualToString:@"ARMY IDENTIFICATION NUMBER"] || [otherIDType_trim  isEqualToString:@"BIRTH CERTIFICATE"] || [otherIDType_trim  isEqualToString:@"OLD IDENTIFICATION NO"] || [otherIDType_trim  isEqualToString:@"POLICE IDENTIFICATION NUMBER"]) && ![nation isEqualToString:@"MALAYSIAN"]) {
-            
-            rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Nationality didn’t match with Other ID No." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1005;
-            [rrr show];
-            
-            return false;
-        }
-        //the Nationality must NOT be “Malaysian
-        else if (([otherIDType_trim isEqualToString:@"FOREIGNER BIRTH CERTIFICATE"] || [otherIDType_trim  isEqualToString:@"FOREIGNER IDENTIFICATION NUMBER"] || [otherIDType_trim  isEqualToString:@"PERMANENT RESIDENT"]) && [nation isEqualToString:@"MALAYSIAN"]) {
-            
-            rrr = [[UIAlertView alloc] initWithTitle:@" " message:@"Nationality didn’t match with Other ID No." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            rrr.tag = 1005;
-            [rrr show];
-            
-            return false;
-        }
-        
-        //CHECK NATIONALITY
-        
-        if([nation isEqualToString:@"- SELECT -"]&& ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Nationality is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1005;
-            [alert show];
-            return false;
-        }
-        
-        //CHECK RELIGION
-        if([religion isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Religion is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1011;
-            [alert show];
-            return false;
-        }
-        
-        //CHECK MARITAL STATUS
-        if([marital isEqualToString:@"- SELECT -"] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Marital status is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 1009;
-            [alert show];
-            return false;
-        }
-        
-        //START CHECK SMOKING
-        if((segSmoker.selectedSegmentIndex == -1) && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Smoking status is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [self resignFirstResponder];
-            [self.view endEditing:TRUE];
-            
-            [alert show];
-            return false;
-        }
-        
-        // CHECK OCCUPATION
-        if(([OccupCodeSelected isEqualToString:@""]  && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]) ||(OccupCodeSelected == NULL && !companyCase && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])){
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Occupation is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            
-            alert.tag = 84;
-            [alert show];
-            return false;
-        }
-        
-        if([OccpCatCode isEqualToString:@"HSEWIFE"] ||
-           [OccpCatCode isEqualToString:@"JUV"] ||
-           [OccpCatCode isEqualToString:@"RET"] ||
-           [OccpCatCode isEqualToString:@"STU"] ||
-           [OccpCatCode isEqualToString:@"UNEMP"] ||
-           ([otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"] && txtOtherIDType.text.length != 0)){
-        }
-        else {
-            if (txtExactDuties.text.length < 1 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Exact nature of work is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag = 1007;
-                [alert show];
-                return false;
-            }
-            else if (txtExactDuties.text.length > 40) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Invalid Exact Duties length. Only 40 characters allowed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag = 1007;
-                [alert show];
-                return false;
-            }
-            
-            if ([txtBussinessType.text isEqualToString:@""] && [otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Type of business is required" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2060;
-                [alert show];
-                return false;
-            }
-            
-            if (txtBussinessType.text.length > 60 && ![otherIDType_trim isEqualToString:@"COMPANY REGISTRATION NUMBER"]) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Invalid Type of Business length. Only 60 characters allowed" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2060;
-                [alert show];
-                return false;
-            }
-            
-            NSString * AI = [annualIncome_original stringByTrimmingCharactersInSet:
-                             [NSCharacterSet whitespaceCharacterSet]];
-            
-            NSArray  *comp = [AI componentsSeparatedByString:@"."];
-            int AI_Length = [[comp objectAtIndex:0] length];
-            
-            if ([txtAnnIncome.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-                
-                if((![OccpCatCode isEqualToString:@"HSEWIFE"]) &&
-                   (![OccpCatCode isEqualToString:@"JUV"]) &&
-                   (![OccpCatCode isEqualToString:@"RET"]) &&
-                   (![OccpCatCode isEqualToString:@"STU"]) &&
-                   (![OccpCatCode isEqualToString:@"UNEMP"])) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Annual Income is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    txtAnnIncome.enabled = true;
-                    txtAnnIncome.backgroundColor = [UIColor whiteColor];
-                    alert.tag = 1008;
-                    [alert show];
-                    
-                    alert = nil;
-                    return false;
-                }
-            }
-            else if (AI_Length >13  && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]) {
-                if((![OccpCatCode isEqualToString:@"HSEWIFE"]) &&
-                   (![OccpCatCode isEqualToString:@"JUV"]) &&
-                   (![OccpCatCode isEqualToString:@"RET"]) &&
-                   (![OccpCatCode isEqualToString:@"STU"]) &&
-                   (![OccpCatCode isEqualToString:@"UNEMP"])) {
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Annual income must be numerical value. It must be greater than zero, maximum 13 digits with 2 decimal points." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    alert.tag = 1008;
-                    [alert show];
-                    
-                    alert=nil;
-                    return false;
-                }
-            }
-            else if(AI_Length < 13 && annual_income == 0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Annual income must be numerical value. It must be greater than zero, maximum 13 digits with 2 decimal points." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1008;
-                [rrr show];
-                rrr = nil;
-                
-                return false;
-            }
-        }
-        
-        if(checked){
-            NSString *homecountry = [btnHomeCountry.titleLabel.text stringByTrimmingCharactersInSet:
-									 [NSCharacterSet whitespaceCharacterSet]];
-            if(home1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"] )
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Residential Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 1012;
-                [alert show];
-                return false;
-                
-            }
-            else if([homecountry isEqualToString:@"- SELECT -"])
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Country for residential address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=5001;
-                [alert show];
-                return false;
-            }
-        }
-        else {
-            //FOR RETIRED/UNEMPLOY - IS OPTIONAL TO KEY IN ANNUAL INCOME, IF KEY IN NEED TO CHECK ALSO
-            NSString * AI = [annualIncome_original stringByTrimmingCharactersInSet:
-                             [NSCharacterSet whitespaceCharacterSet]];
-            
-            NSArray  *comp = [AI componentsSeparatedByString:@"."];
-            
-            int AI_Length = [[comp objectAtIndex:0] length];
-            
-            if (AI_Length < 13 && annual_income == 0 && txtAnnIncome.text.length!=0)
-            {
-                
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Annual income must be numerical value. It must be greater than zero, maximum 13 digits with 2 decimal points." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 1008;
-                [rrr show];
-                rrr = nil;
-                
-                return false;
-                
-            }
-			
-            
-            if((home1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"]))
-            {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Residential Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 1012;
-                
-                [alert show];
-                return false;
-                
-            }else if ([txtHomePostCode.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                if (homePostcode_trim.length==0) {
-                    
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Postcode for residential address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    alert.tag=2000;
-                    
-                    [alert show];
-                    return false;
-                }else if (home1_trim.length==0){
-                    
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Residential Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    alert.tag = 1012;
-                    
-                    [alert show];
-                    return false;
-                }
-                
-            }
-            else if (![txtHomePostCode.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-            {
-                //HOME POSTCODE START
-                //CHECK INVALID SYMBOLS
-                NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-                
-                HomePostcodeContinue = false;
-                BOOL valid;
-                BOOL valid_symbol;
-                
-                NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                
-                NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtHomePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-                
-                valid = [alphaNums isSupersetOfSet:inStringSet];
-                valid_symbol = [set isSupersetOfSet:inStringSet];
-                
-                if(txtHomePostCode.text.length < 5)
-                {
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 2001;
-                    [rrr show];
-                    rrr=nil;
-                    return false;
-                }
-				
-                else if (!valid_symbol) {
-                    txtHomeState.text=@"";
-                    txtHomeState.text = @"";
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 2001;
-                    [rrr show];
-                    rrr=nil;
-                    return false;
-                    
-                }
-                else if (!valid) {
-                    txtHomeState.text=@"";
-                    txtHomeState.text = @"";
-                    rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                     message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    rrr.tag = 2001;
-                    [rrr show];
-                    
-                    rrr=nil;
-                    
-                    txtHomeState.text = @"";
-                    txtHomeTown.text = @"";
-                    txtHomeCountry.text = @"";
-                    SelectedStateCode = @"";
-                    HomePostcodeContinue = FALSE;
-                    
-                    return false;
-                }
-                else {
-                    
-                    BOOL gotRow = false;
-                    const char *dbpath = [databasePath UTF8String];
-                    sqlite3_stmt *statement;
-                    
-                    
-                    if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-                        NSString *querySQL = [NSString stringWithFormat:@"SELECT \"Town\", \"Statedesc\", b.Statecode FROM eProposal_PostCode as A, eproposal_state as B where trim(a.Statecode) = b.statecode and Postcode = %@ ", txtHomePostCode.text];
-                        const char *query_stmt = [querySQL UTF8String];
-                        if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-                        {
-                            
-                            while (sqlite3_step(statement) == SQLITE_ROW){
-                                NSString *Town = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                                NSString *State = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                                NSString *Statecode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                                
-                                txtHomeState.text = State;
-                                txtHomeTown.text = Town;
-                                txtHomeCountry.text = @"MALAYSIA";
-                                SelectedStateCode = Statecode;
-                                gotRow = true;
-                                HomePostcodeContinue = TRUE;
-                                
-                                self.navigationItem.rightBarButtonItem.enabled = TRUE;
-                            }
-                            sqlite3_finalize(statement);
-                        }
-                        else {
-                            txtHomeState.text = @"";
-                            txtHomeTown.text = @"";
-                            txtHomeCountry.text = @"";
-                        }
-                        sqlite3_close(contactDB);
-                    }
-					
-                    if(!HomePostcodeContinue)
-                    {
-                        txtHomeState.text = @"";
-                        txtHomeTown.text = @"";
-                        txtHomeCountry.text = @"";
-                        SelectedStateCode = @"";
-                        
-                        txtHomeState.text=@"";
-                        txtHomeState.text = @"";
-                        rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                         message:@"Postcode for Residential Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        
-                        rrr.tag = 2001;
-                        [rrr show];
-                        rrr=nil;
-                        //[txtHomePostCode addTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                        return false;
-                    }
-                }
-                //HOME POSTCODE END
-            }
-        }
-        
-        //office post code  end
-        
-        // Office address
-        // Added by Benjamin Law on 17/10/2013 for bug 2561
-		
-        if(![OccpCatCode isEqualToString:@"HSEWIFE"] &&
-           ![OccpCatCode isEqualToString:@"JUV"] &&
-           ![OccpCatCode isEqualToString:@"UNEMP"] &&
-           ![OccpCatCode isEqualToString:@"STU"]) {
-            if(checked2){
-                NSString *officecountry = [btnOfficeCountry.titleLabel.text stringByTrimmingCharactersInSet:
-                                           [NSCharacterSet whitespaceCharacterSet]];
-                
-                if(office1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    alert.tag = 2002;
-                    [alert show];
-                    return false;
-                    
-                }
-                
-                if([officecountry isEqualToString:@"- SELECT -"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Country for office address is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    alert.tag=5002;
-                    [alert show];
-                    return false;
-                }
-            }
-            else {
-				if (![txtOfficePostCode.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-                {
-                    
-                    //HOME POSTCODE START
-                    //CHECK INVALID SYMBOLS
-                    NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-                    
-                    BOOL valid;
-                    BOOL valid_symbol;
-                    
-                    NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                    NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-                    
-                    valid = [alphaNums isSupersetOfSet:inStringSet];
-                    valid_symbol = [set isSupersetOfSet:inStringSet];
-                    
-                    if(txtOfficePostCode.text.length < 5)
-                    {
-                        txtOfficeState.text = @"";
-                        txtOfficeTown.text = @"";
-                        rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                         message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        
-                        rrr.tag = 3001;
-                        [rrr show];
-                        rrr=nil;
-                        
-                        return false;
-                    }
-					else if (!valid_symbol) {
-                        txtOfficeState.text = @"";
-                        txtOfficeTown.text = @"";
-                        rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                         message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        
-                        rrr.tag = 3001;
-                        [rrr show];
-                        rrr=nil;
-                        
-                        return false;
-                        
-                    }
-                    else if (!valid) {
-                        rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                         message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                        
-                        rrr.tag = 3001;
-                        [rrr show];
-                        
-                        rrr=nil;
-                        
-                        txtHomeState.text = @"";
-                        txtHomeTown.text = @"";
-                        txtHomeCountry.text = @"";
-                        SelectedStateCode = @"";
-                        return false;
-                    }
-                    else {
-                        const char *dbpath = [databasePath UTF8String];
-                        sqlite3_stmt *statement;
-                        
-                        txtOfficePostCode.text = [txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-                        
-                        //CHECK INVALID SYMBOLS
-                        NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-                        
-                        BOOL valid;
-                        BOOL valid_symbol;
-                        
-                        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-                        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-                        
-                        valid = [alphaNums isSupersetOfSet:inStringSet];
-                        valid_symbol = [set isSupersetOfSet:inStringSet];
-                        OfficePostcodeContinue = false;
-                        
-                        if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-                            NSString *querySQL = [NSString stringWithFormat:@"SELECT \"Town\", \"Statedesc\", b.Statecode FROM eProposal_PostCode as A, eproposal_state as B where trim(a.Statecode) = b.statecode and Postcode = %@ ", txtOfficePostCode.text];
-                            const char *query_stmt = [querySQL UTF8String];
-                            if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-                            {
-                                while (sqlite3_step(statement) == SQLITE_ROW){
-                                    NSString *OfficeTown = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                                    NSString *OfficeState = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                                    NSString *Statecode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-                                    
-                                    txtOfficeState.text = OfficeState;
-                                    txtOfficeTown.text = OfficeTown;
-                                    txtOfficeCountry.text = @"MALAYSIA";
-                                    SelectedOfficeStateCode = Statecode;
-                                    
-                                    OfficePostcodeContinue = TRUE;
-                                    self.navigationItem.rightBarButtonItem.enabled = TRUE;
-                                }
-                                sqlite3_finalize(statement);
-                                sqlite3_close(contactDB);
-                            }
-                            else {
-                                txtOfficeState.text = @"";
-                                txtOfficeTown.text = @"";
-                                txtOfficeCountry.text = @"";
-								
-                            }
-                        }
-                        if(!OfficePostcodeContinue)
-                        {
-                            txtOfficeState.text = @"";
-                            txtOfficeTown.text = @"";
-                            txtOfficeCountry.text = @"";
-                            SelectedStateCode = @"";
-                            
-                            rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                             message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                            
-                            rrr.tag = 3001;
-                            [rrr show];
-                            rrr=nil;
-                            //[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-                            return false;
-                        }
-                    }
-                    //HOME POSTCODE END
-                    
-                }
-            }
-        }
-        //KY - IF USER KEY IN OFFICE ADDRESS PARTIALLY, SYSTEM SHOULD CHECK ON THIS
-        else if (([OccpCatCode isEqualToString:@"HSEWIFE"] ||
-                  [OccpCatCode isEqualToString:@"JUV"] ||
-                  [OccpCatCode isEqualToString:@"RET"] ||
-                  [OccpCatCode isEqualToString:@"STU"] ||
-                  [OccpCatCode isEqualToString:@"UNEMP"]) && (![txtOfficeAddr1.text isEqualToString:@""] || ![txtOfficePostCode.text isEqualToString:@""]))
-        {
-			//KY ADD FOR FOREIGN COUNTRY CHECKING START
-            
-            if(checked2){
-                NSString *officecountry = [btnOfficeCountry.titleLabel.text stringByTrimmingCharactersInSet:
-                                           [NSCharacterSet whitespaceCharacterSet]];
-                if(office1_trim.length==0  && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    
-                    alert.tag = 2002;
-                    [alert show];
-                    return false;
-                    
-                }
-                
-                if([officecountry isEqualToString:@"- SELECT -"])
-                {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                    message:@"Country for office address is required" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    alert.tag=5002;
-                    [alert show];
-                    return false;
-                }
-            }
-			else
-			{
-				if((office1_trim.length!=0 || ![txtOfficeAddr2.text isEqualToString:@""] ||![txtOfficeAddr3.text isEqualToString:@""] ) && officePostcode_trim.length==0)
-				{
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-																	message:@"Postcode for Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-					alert.tag = 3001;
-					
-					[alert show];
-					return false;
-					
-				}
-				else  if(office1_trim.length==0   && ![txtOfficePostCode.text isEqualToString:@""])
-				{
-					UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-																	message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-					alert.tag = 2002;
-					[alert show];
-					return false;
-					
-				}
-				else if (![txtOfficePostCode.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-				{
-					//HOME POSTCODE START
-					//CHECK INVALID SYMBOLS
-					NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-										
-					BOOL valid;
-					BOOL valid_symbol;
-					
-					NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-					NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-					
-					valid = [alphaNums isSupersetOfSet:inStringSet];
-					valid_symbol = [set isSupersetOfSet:inStringSet];
-					
-					if(txtOfficePostCode.text.length < 5)
-					{
-						txtOfficeState.text = @"";
-						txtOfficeTown.text = @"";
-						rrr = [[UIAlertView alloc] initWithTitle:@" "
-														 message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-						
-						rrr.tag = 3001;
-						[rrr show];
-						rrr=nil;
-						
-						return false;
-					}
-					else if (!valid_symbol) {
-						
-						txtOfficeState.text = @"";
-						txtOfficeTown.text = @"";
-						rrr = [[UIAlertView alloc] initWithTitle:@" "
-														 message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-						
-						rrr.tag = 3001;
-						[rrr show];
-						rrr=nil;
-						
-						return false;
-						
-					}
-					else if (!valid) {
-						rrr = [[UIAlertView alloc] initWithTitle:@" "
-														 message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-						
-						rrr.tag = 3001;
-						[rrr show];
-						
-						rrr=nil;
-						
-						txtHomeState.text = @"";
-						txtHomeTown.text = @"";
-						txtHomeCountry.text = @"";
-						SelectedStateCode = @"";
-						return false;
-					}
-					else {
-						const char *dbpath = [databasePath UTF8String];
-						sqlite3_stmt *statement;
-						
-						txtOfficePostCode.text = [txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-						
-						//CHECK INVALID SYMBOLS
-						NSCharacterSet *set = [[NSCharacterSet characterSetWithCharactersInString:@"'@/-.=!`#$%&*()<>?:]["] invertedSet];
-												
-						BOOL valid;
-						BOOL valid_symbol;
-						
-						NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-						
-						NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:[txtOfficePostCode.text stringByReplacingOccurrencesOfString:@" " withString:@""]];
-						
-						valid = [alphaNums isSupersetOfSet:inStringSet];
-						valid_symbol = [set isSupersetOfSet:inStringSet];
-						OfficePostcodeContinue = false;
-												
-						if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
-							NSString *querySQL = [NSString stringWithFormat:@"SELECT \"Town\", \"Statedesc\", b.Statecode FROM eProposal_PostCode as A, eproposal_state as B where trim(a.Statecode) = b.statecode and Postcode = %@ ", txtOfficePostCode.text];
-							const char *query_stmt = [querySQL UTF8String];
-							if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
-                            {
-                                NSString *OfficeTown;
-                                NSString *OfficeState;
-                                NSString *Statecode;
-								while (sqlite3_step(statement) == SQLITE_ROW){
-									OfficeTown = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-									OfficeState = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-									Statecode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
-									
-									txtOfficeState.text = OfficeState;
-									txtOfficeTown.text = OfficeTown;
-									txtOfficeCountry.text = @"MALAYSIA";
-									SelectedOfficeStateCode = Statecode;
-									
-									OfficePostcodeContinue = TRUE;
-									self.navigationItem.rightBarButtonItem.enabled = TRUE;
-								}
-								sqlite3_finalize(statement);
-								sqlite3_close(contactDB);
-							}
-							else {
-								txtOfficeState.text = @"";
-								txtOfficeTown.text = @"";
-								txtOfficeCountry.text = @"";
-							}
-						}
-                        
-						if(!OfficePostcodeContinue)
-						{
-							txtOfficeState.text = @"";
-							txtOfficeTown.text = @"";
-							txtOfficeCountry.text = @"";
-							SelectedStateCode = @"";
-							
-							rrr = [[UIAlertView alloc] initWithTitle:@" "
-															 message:@"Postcode for Office Address is invalid." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-							
-							rrr.tag = 3001;
-							[rrr show];
-							rrr=nil;
-							//[txtOfficePostCode addTarget:self action:@selector(EditOfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-							return false;
-						}
-                    }
-					//HOME POSTCODE END
-				}
-			}
-		}
-    }
-    
-	//######office address#######
-    if(checked2){
-        NSString *officecountry = [btnOfficeCountry.titleLabel.text  stringByTrimmingCharactersInSet:
-								   [NSCharacterSet whitespaceCharacterSet]];
-        
-        if(office1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 2002;
-            [alert show];
-            return false;
-            
-        }
-        
-        if([officecountry isEqualToString:@"- SELECT -"])
-        {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Country for office address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag=5002;
-            [alert show];
-            return false;
-        }
-    }
-    else  if((![OccpCatCode isEqualToString:@"HSEWIFE"]) &&
-             (![OccpCatCode isEqualToString:@"JUV"]) &&
-             (![OccpCatCode isEqualToString:@"RET"]) &&
-             (![OccpCatCode isEqualToString:@"STU"]) &&
-             (![OccpCatCode isEqualToString:@"UNEMP"])) {
-        
-        
-        if(office1_trim.length==0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 2002;
-            [alert show];
-            return false;
-            
-        }
-        else if (office1_trim.length!=0 && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-        {
-			if(officePostcode_trim.length ==0){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Postcode for Office Address is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 3001;
-                [alert show];
-                return false;
-            }
-        }
-    }
-    
-    //######office address#######
-    
-    if([txtPrefix1.text isEqualToString:@""]&&[txtContact1.text isEqualToString:@""]&&[txtPrefix2.text isEqualToString:@""]&&[txtContact2.text isEqualToString:@""]&&[txtPrefix3.text isEqualToString:@""]&&[txtContact3.text isEqualToString:@""]&&[txtPrefix4.text isEqualToString:@""]&&[txtContact4.text isEqualToString:@""] && ![otherIDType_trim isEqualToString:@"EXPECTED DELIVERY DATE"])
-    {
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Please enter at least one of the contact numbers (Residential, Office, Mobile or Fax)." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        alert.tag = 2003;
-        [alert show];
-        return false;
-        
-    }
-    else {
-        //##Contact######
-        
-        //Home number
-        
-        if (![txtPrefix1.text isEqualToString:@""])
-        {
-            if(txtPrefix1.text.length > 4) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix length cannot be more than 4 characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2003;
-                
-                [alert show];
-                return false;
-            }
-            
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSNumber* prefix1 = [numberFormatter numberFromString:txtPrefix1.text];
-            NSNumber* contact1 = [numberFormatter numberFromString:txtContact1.text];
-            
-            //KY START
-            
-            BOOL valid;
-            BOOL valid2;
-            NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-            NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtContact1.text];
-            NSCharacterSet *inStringSet2 = [NSCharacterSet characterSetWithCharactersInString:txtPrefix1.text];
-            
-            valid = [alphaNums isSupersetOfSet:inStringSet];
-            valid2 = [alphaNums isSupersetOfSet:inStringSet2];
-            if (!valid2) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 2003;
-                [alert show];
-                return false;
-            }
-            
-            if (!valid) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag= 2004;
-                [alert show];
-                return false;
-            }
-            
-            //KY END
-            
-            if([txtContact1.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Residential number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2004;
-                [alert show];
-                return false;
-                
-            }
-            else if (txtContact1.text.length < 6) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Residential number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2004;
-                [alert show];
-                return false;
-            }
-            else if(prefix1==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2003;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-            else  if(contact1==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2004;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-        }
-        else {
-            if(![txtContact1.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix for residential number is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2003;
-                [alert show];
-                return false;
-            }
-        }
-        
-        //#####mobile number#####
-        
-        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-        NSNumber* prefix2 = [numberFormatter numberFromString:txtPrefix2.text];
-        NSNumber* contact2 = [numberFormatter numberFromString:txtContact2.text];
-        
-        if (![txtPrefix2.text isEqualToString:@""])
-        {
-            if(txtPrefix2.text.length > 4) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix length cannot be more than 4 characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2005;
-                
-                [alert show];
-                return false;
-            }
-            
-            BOOL valid;
-            BOOL valid2;
-            NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-            NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtContact2.text];
-            NSCharacterSet *inStringSet2 = [NSCharacterSet characterSetWithCharactersInString:txtPrefix2.text];
-            
-            valid = [alphaNums isSupersetOfSet:inStringSet];
-            valid2 = [alphaNums isSupersetOfSet:inStringSet2];
-            if (!valid2) {
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 2005;
-                [alert show];
-                return false;
-            }
-            
-            if (!valid) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag= 2006;
-                [alert show];
-                return false;
-            }
-            
-            if([txtContact2.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Mobile number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2006;
-                [alert show];
-                return false;
-                
-            }
-            else if (txtContact2.text.length < 6) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Mobile number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2006;
-                [alert show];
-                return false;
-            }
-            else if(prefix2==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2003;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-            else  if(contact2==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2004;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-        }
-        else {
-            if(![txtContact2.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix for mobile number is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2005;
-                [alert show];
-                return false;
-            }
-        }
-        
-        //####office number
-        
-        if (![txtPrefix3.text isEqualToString:@""])
-        {
-            if(txtPrefix3.text.length > 4) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix length cannot be more than 4 characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2007;
-                
-                [alert show];
-                return false;
-            }
-            
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSNumber* prefix3 = [numberFormatter numberFromString:txtPrefix3.text];
-            NSNumber* contact3 = [numberFormatter numberFromString:txtContact3.text];
-            
-            BOOL valid;
-            BOOL valid2;
-            NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-            NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtContact3.text];
-            NSCharacterSet *inStringSet2 = [NSCharacterSet characterSetWithCharactersInString:txtPrefix3.text];
-            
-            valid = [alphaNums isSupersetOfSet:inStringSet];
-            valid2 = [alphaNums isSupersetOfSet:inStringSet2];
-            if (!valid2) {
-                
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag =2007;
-                [rrr show];
-                return false;
-            }
-            
-            if (!valid) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag = 2008;
-                [rrr show];
-                return false;
-            }
-            
-            if([txtContact3.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Office number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2008;
-                [alert show];
-                return false;
-                
-            }
-            else if (txtContact3.text.length < 6) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Office number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag = 2008;
-                [rrr show];
-                return false;
-            }
-            else if(prefix3==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2007;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-            else  if(contact3==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2008;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-            
-        }
-        else {
-            if(![txtContact3.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix for office number is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2007;
-                [alert show];
-                return false;
-            }
-        }
-        
-        //####office fax number
-        
-        if (![txtPrefix4.text isEqualToString:@""])
-        {
-            if(txtPrefix4.text.length > 4) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix length cannot be more than 4 characters" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                alert.tag=2009;
-                
-                [alert show];
-                return false;
-            }
-            
-            NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-            NSNumber* prefix4 = [numberFormatter numberFromString:txtPrefix4.text];
-            NSNumber* contact4 = [numberFormatter numberFromString:txtContact4.text];
-            
-            BOOL valid;
-            BOOL valid2;
-            NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-            NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtContact4.text];
-            NSCharacterSet *inStringSet2 = [NSCharacterSet characterSetWithCharactersInString:txtPrefix4.text];
-            
-            valid = [alphaNums isSupersetOfSet:inStringSet];
-            valid2 = [alphaNums isSupersetOfSet:inStringSet2];
-            if (!valid2) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag=2009;
-                [rrr show];
-                return false;
-            }
-            
-            if (!valid) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                rrr.tag =2010;                
-                [rrr show];
-                return false;
-            }
-            
-            if([txtContact4.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Fax number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2010;
-                [alert show];
-                return false;
-                
-            }
-            else if (txtContact4.text.length < 6) {
-                rrr = [[UIAlertView alloc] initWithTitle:@" "
-                                                 message:@"Fax number’s length must be at least 6 digits or more." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag = 2010;
-                
-                [rrr show];
-                return false;
-            }
-            else if(prefix4==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2003;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-            else  if(contact4==nil)
-            {
-                rrr  = [[UIAlertView alloc] initWithTitle:@" "
-                                                  message:@"Input must be integer." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                rrr.tag=2004;
-                [rrr show];
-                rrr = nil;
-                return false;
-            }
-        }
-        else {
-            if(![txtContact4.text isEqualToString:@""]){
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Prefix for fax number is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag=2009;
-                [alert show];
-                return false;
-            }
-        }
-    }
-    
-    if(![txtEmail.text isEqualToString:@""]){
-        if( [self NSStringIsValidEmail:txtEmail.text] == FALSE){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"You have entered an invalid email. Please key in the correct email." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 2050;
-            
-            [alert show];
-            return false;
-        }
-        
-        if (txtEmail.text.length > 40) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Email length. Only 40 characters allowed" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            alert.tag = 2050;
-            [alert show];
-            return false;
-        }
-    }
-    
-	ProsGroupArr = [UDGroup objectForKey:@"groupArr"];
-	if((SegIsGrouping.selectedSegmentIndex == 0) && ProsGroupArr.count == 0)
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Group cannot be empty" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [self resignFirstResponder];
-        [self.view endEditing:TRUE];
-        [alert show];
-        return false;
-    }
-    
-    return true;*/
     bool returnBool;
-    bool validDateRef=[self  validationDataReferral];
-    returnBool=validDateRef;
-    if (validDateRef){
-        bool validDataPribadi=[self validationDataPribadi];
-        returnBool=validDataPribadi;
-        if (validDataPribadi){
-            bool validDataAlamat=[self validationDataAlamat];
-            returnBool=validDataAlamat;
-            if (validDataAlamat) {
-                bool validDataPekerjaan=[self validationDatapekerjaan];
-                returnBool=validDataPekerjaan;
-            }
-        }
-    }
+    returnBool = [self validationCompulsoryValue];
+//    bool validDateRef=[self  validationDataReferral];
+//    returnBool=validDateRef;
+//    if (validDateRef){
+//        bool validDataPribadi=[self validationDataPribadi];
+//        returnBool=validDataPribadi;
+//        if (validDataPribadi){
+//            bool validDataAlamat=[self validationDataAlamat];
+//            returnBool=validDataAlamat;
+//            if (validDataAlamat) {
+//                bool validDataPekerjaan=[self validationDatapekerjaan];
+//                returnBool=validDataPekerjaan;
+//            }
+//        }
+//    }
     return returnBool;
 
 }
+
+- (bool)validationCompulsoryValue{
+    bool valid=true;
+    NSArray* validationSet=[[NSArray alloc]initWithObjects:@"",@"- SELECT -",@"- Select -", @"(null)", nil];
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    
+    //validation message data refferal
+    NSString *validateSumberData = @"Sumber data harus diisi";
+    NSString *validateNamaDepan = @"Nama Depan harus diisi";
+    NSString *validationNamaBelakang = @"Nama Belakang harus diisi";
+    NSString *validationNoHP = @"Nomor HP Utama harus diisi";
+    
+    
+    //textSumberData
+    NSString *SumberData = txtReferralName.text;
+    NSString *NamaDepan = _txtNamaDepan.text;
+    NSString *NamaBelakang = _txtNamaBelakang.text;
+    NSString *HPno = txtHPNo.text;
+    
+    
+    if ([validationSet containsObject:SumberData]||SumberData==NULL){
+        [self createAlertViewAndShow:validateSumberData tag:0];
+        [outletReferralSource setBackgroundColor:[UIColor grayColor]];
+        [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
+        
+        return false;
+    }
+    else if ([validationSet containsObject:NamaDepan]||NamaDepan==NULL){
+        [self createAlertViewAndShow:validateNamaDepan tag:0];
+        [_txtNamaDepan setBackgroundColor:[UIColor grayColor]];
+        [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
+        return false;
+    }
+    else if ([validationSet containsObject:NamaBelakang]||NamaBelakang==NULL){
+        [self createAlertViewAndShow:validationNamaBelakang tag:0];
+        [_txtNamaBelakang setBackgroundColor:[UIColor grayColor]];
+        [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
+        return false;
+    }
+    else if ([validationSet containsObject:HPno]||HPno==NULL){
+        [self createAlertViewAndShow:validationNoHP tag:0];
+        [txtHPNo setBackgroundColor:[UIColor grayColor]];
+        [ClientProfile setObject:@"NO" forKey:@"TabBar"];
+        [self BtnDataPressed:nil];
+        return false;
+    }
+    return valid;
+}
+
 
 - (NSString *) Validation2
 {
@@ -13246,8 +11045,10 @@ bool PolicyOwnerSigned = TRUE;
         outletReferralSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [outletReferralSource setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",referralSource]forState:UIControlStateNormal];
-    [outletReferralSource setBackgroundColor:[UIColor clearColor]];
+//    [outletReferralSource setBackgroundColor:[UIColor clearColor]];
     [_referralSourcePopover dismissPopoverAnimated:YES];
+    
+    txtReferralName.text = referralSource;
 }
 
 -(void)selectedSourceIncome:(NSString *)sourceIncome{
@@ -13258,8 +11059,10 @@ bool PolicyOwnerSigned = TRUE;
         _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
     [_outletSourceIncome setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",sourceIncome]forState:UIControlStateNormal];
-    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
+//    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
     [_sourceIncomePopover dismissPopoverAnimated:YES];
+    
+    _txtSourceIncome.text = sourceIncome;
 }
 
 -(void)GenerateDOB {
@@ -13521,6 +11324,7 @@ bool PolicyOwnerSigned = TRUE;
 	if([marital isEqualToString:@"- SELECT -"])
 		marital = @"";
 	[ClientProfile setObject:marital forKey:@"marital"];
+    _txtMarital.text = marital;
 	//###
 }
 
@@ -13615,6 +11419,8 @@ bool PolicyOwnerSigned = TRUE;
 	if([religion isEqualToString:@"- SELECT -"])
 		religion = @"";
 	[ClientProfile setObject:religion forKey:@"religion"];
+    
+    _txtReligion.text = religion;
 	
 	//###
 }
@@ -13630,533 +11436,6 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
 {
-    /*txtOtherIDType.text=@"";
-	ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
-    
-    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType]forState:UIControlStateNormal];
-    
-    if ([selectedIDType isEqualToString:@"- SELECT -"]) {
-        if(txtIDType.text.length!=0)
-        {
-            segGender.enabled = NO;
-            outletDOB.enabled = NO;
-            outletDOB.hidden = TRUE;
-            outletDOB.titleLabel.text = @"";
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            txtDOB.hidden = NO;
-			
-        }
-        else {
-            segGender.enabled = NO;
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            outletDOB.enabled = NO;
-            outletDOB.hidden = TRUE;
-            outletDOB.titleLabel.text =@"";
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            txtDOB.hidden = NO;
-			
-        }
-		segSmoker.enabled = YES;
-        companyCase = NO;
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        txtOtherIDType.enabled = NO;
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOtherIDType.text =@"";
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletRace.enabled = YES;
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-    }
-    else  if ([selectedIDType isEqualToString:@"EXPECTED DELIVERY DATE"] || [selectedIDType isEqualToString:@"EDD"]){
-        //Enable DOB
-        //Disable - New IC field and Other ID field
-        
-        [btnForeignHome setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        [btnForeignOffice setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        
-        btnForeignHome.enabled = false;
-        btnForeignOffice.enabled = false;
-        btnHomeCountry.enabled = false;
-        btnOfficeCountry.enabled = false;
-        
-        companyCase = NO;
-        segGender.enabled = TRUE;
-        gender = @"";
-        segSmoker.enabled = TRUE;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtIDType.enabled = NO;
-        
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        //outletDOB.enabled = YES;
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        txtOtherIDType.enabled = NO;
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtOtherIDType.text =@"";
-        
-        txtExactDuties.editable = NO;
-        txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    }
-    else if([selectedIDType isEqualToString:@"BIRTH CERTIFICATE"]||[selectedIDType isEqualToString:@"PASSPORT"] ||[selectedIDType isEqualToString:@"OLD IDENTIFICATION NO"] ||[selectedIDType isEqualToString:@"BC"] ||[selectedIDType isEqualToString:@"PP"] ||[selectedIDType isEqualToString:@"OLDIC"])
-    {
-        companyCase = NO;
-        
-        // check if ic field is empty
-        if ([txtIDType.text isEqualToString:@""]) {
-            txtIDType.backgroundColor = [UIColor whiteColor];
-            txtIDType.enabled = YES;
-            segGender.enabled = FALSE;
-            segSmoker.enabled = YES;
-            
-            txtDOB.hidden = YES;
-            txtDOB.text = @"";
-            txtDOB.backgroundColor = [UIColor whiteColor];
-            
-            // Reset gender
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            // Reset dob
-            txtDOB.text = @"";
-            outletDOB.hidden = NO;
-            outletDOB.enabled = FALSE;
-            
-            [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        }
-        else if (![txtIDType.text isEqualToString:@""]) {
-            segGender.enabled = FALSE;
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            outletDOB.enabled = FALSE;
-        }
-        
-        [outletDOB setTitle:@"" forState:UIControlStateNormal];
-        txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtDOB.enabled = NO;
-        
-        outletDOB.enabled = NO;
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        txtOtherIDType.enabled = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    }
-    else if([selectedIDType isEqualToString:@"COMPANY REGISTRATION NUMBER"] || [selectedIDType isEqualToString:@"CR"])
-    {
-        companyCase = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        outletDOB.enabled = NO;
-        txtIDType.enabled = NO;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtIDType.text=@"";
-        
-        segGender.enabled = FALSE;
-        segSmoker.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        outletTitle.enabled = NO;
-        outletTitle.titleLabel.textColor = [UIColor grayColor];
-        
-        outletOccup.enabled = NO;
-        outletOccup.titleLabel.textColor = [UIColor grayColor];
-        
-        segSmoker.enabled = FALSE;
-        
-        outletRace.enabled = NO;
-        outletRace.titleLabel.textColor = [UIColor grayColor];
-        
-        outletReligion.enabled = NO;
-        outletReligion.titleLabel.textColor = [UIColor grayColor];
-		
-        outletMaritalStatus.enabled = NO;
-        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-        
-        outletNationality.enabled = NO;
-        outletNationality.titleLabel.textColor = [UIColor grayColor];
-		
-        segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-        companyCase = YES;
-        txtDOB.hidden = NO;
-        txtDOB.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        outletDOB.hidden = YES;
-        txtDOB.text = @"";
-    }
-    else {
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-        txtIDType.enabled = NO;
-        txtIDType.text = @"";
-        
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletTitle.enabled = YES;
-        
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        outletOccup.enabled = YES;
-        //segGender.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        segSmoker.enabled = YES;
-        companyCase = NO;
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        //outletDOB.enabled = YES;
-		
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-    }
-	
-    [self.IDTypePickerPopover dismissPopoverAnimated:YES];
-	edited = YES;
-	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-	[ClientProfile setObject:@"YES" forKey:@"isEdited"];
-	
-}
-
--(void)IDTypeCodeSelected:(NSString *)IDTypeCode {
-	IDTypeCodeSelected = IDTypeCode;
-	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-	[ClientProfile setObject:IDTypeCode forKey:@"IDTypeCodeSelected"];
-}
-
--(void)selectedIDType:(NSString *)selectedIDType
-{
-    ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
-    
-    OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [OtherIDType setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",selectedIDType]forState:UIControlStateNormal];
-    
-    OtherIDType.titleLabel.text = selectedIDType;
-    
-    if ([selectedIDType isEqualToString:@"- SELECT -"]) {
-        if(txtIDType.text.length!=0)
-        {
-            segGender.enabled = NO;
-			
-            outletDOB.enabled = NO;
-            outletDOB.hidden = TRUE;
-            outletDOB.titleLabel.text =@"";
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            txtDOB.hidden = NO;
-			
-        }
-        else {
-            segGender.enabled = NO;
-			
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            outletDOB.enabled = NO;
-            outletDOB.hidden = TRUE;
-            outletDOB.titleLabel.text =@"";
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            txtDOB.hidden = NO;
-			
-        }
-        
-		if ([selectedIDType isEqualToString:@"- SELECT -"]) {
-			txtOtherIDType.text = @"";
-			txtOtherIDType.enabled = false;
-			txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-		}
-		segSmoker.enabled = YES;
-        companyCase = NO;
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        txtOtherIDType.enabled = NO;
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOtherIDType.text =@"";
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    }
-    else  if ([selectedIDType isEqualToString:@"EXPECTED DELIVERY DATE"] || [selectedIDType isEqualToString:@"EDD"]){
-        //Enable DOB
-        //Disable - New IC field and Other ID field
-        
-        [btnForeignHome setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        [btnForeignOffice setImage: [UIImage imageNamed:@"emptyCheckBox.png"] forState:UIControlStateNormal];
-        
-        btnForeignHome.enabled = false;
-        btnForeignOffice.enabled = false;
-        btnHomeCountry.enabled = false;
-        btnOfficeCountry.enabled = false;
-        
-        companyCase = NO;
-        segGender.enabled = TRUE;
-        segSmoker.enabled = TRUE;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.enabled = NO;
-        
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        //outletDOB.enabled = YES;
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        txtOtherIDType.enabled = NO;
-        txtOtherIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtOtherIDType.text =@"";
-        
-        txtExactDuties.editable = NO;
-        txtExactDuties.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletRace.enabled = YES;
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    }
-    else if([selectedIDType isEqualToString:@"BIRTH CERTIFICATE"]||[selectedIDType isEqualToString:@"PASSPORT"] ||[selectedIDType isEqualToString:@"OLD IDENTIFICATION NO"] ||[selectedIDType isEqualToString:@"BC"] ||[selectedIDType isEqualToString:@"PP"] ||[selectedIDType isEqualToString:@"OLDIC"])
-    {
-        companyCase = NO;
-        
-        // check if ic field is empty
-        if ([txtIDType.text isEqualToString:@""]) {
-            txtIDType.backgroundColor = [UIColor whiteColor];
-            txtIDType.enabled = YES;
-            segGender.enabled = FALSE;
-            segSmoker.enabled = YES;
-            
-            txtDOB.hidden = YES;
-            txtDOB.text = @"";
-            txtDOB.backgroundColor = [UIColor whiteColor];
-            
-            // Reset gender
-            segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-            
-            // Reset dob
-            txtDOB.text = @"";
-            outletDOB.hidden = NO;
-            outletDOB.enabled = FALSE;
-            
-            [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        }
-        else if (![txtIDType.text isEqualToString:@""]) {
-            segGender.enabled = FALSE;
-            txtDOB.enabled = FALSE;
-            txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-            outletDOB.enabled = FALSE;
-        }
-        
-        [outletDOB setTitle:@"" forState:UIControlStateNormal];
-        txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtDOB.enabled = NO;
-        
-        outletDOB.enabled = NO;
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        txtOtherIDType.enabled = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-        
-    }
-    else if([selectedIDType isEqualToString:@"COMPANY REGISTRATION NUMBER"] || [selectedIDType isEqualToString:@"CR"])
-    {
-        companyCase = YES;
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        outletDOB.enabled = NO;
-        txtIDType.enabled = NO;
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.text=@"";
-        
-        segGender.enabled = FALSE;
-        segSmoker.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        
-        outletTitle.enabled = NO;
-        outletTitle.titleLabel.textColor = [UIColor grayColor];
-        
-        outletOccup.enabled = NO;
-        outletOccup.titleLabel.textColor = [UIColor grayColor];
-        
-        segSmoker.enabled = FALSE;
-        
-        outletRace.enabled = NO;
-        outletRace.titleLabel.textColor = [UIColor grayColor];
-        
-        outletReligion.enabled = NO;
-        outletReligion.titleLabel.textColor = [UIColor grayColor];
-		
-        outletMaritalStatus.enabled = NO;
-        outletMaritalStatus.titleLabel.textColor = [UIColor grayColor];
-        
-        outletNationality.enabled = NO;
-        outletNationality.titleLabel.textColor = [UIColor grayColor];
-		
-        segSmoker.selectedSegmentIndex = UISegmentedControlNoSegment;
-        companyCase = YES;
-        txtDOB.hidden = NO;
-        txtDOB.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        outletDOB.hidden = YES;
-        txtDOB.text = @"";
-        
-    }
-    else {
-        txtIDType.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
-        txtIDType.enabled = NO;
-        txtIDType.text = @"";
-        
-        txtOtherIDType.backgroundColor = [UIColor whiteColor];
-        txtOtherIDType.enabled = YES;
-        
-        outletOccup.enabled = YES;
-        outletOccup.titleLabel.textColor = [UIColor blackColor];
-        
-        outletTitle.enabled = YES;
-        outletTitle.titleLabel.textColor = [UIColor blackColor];
-        
-        outletOccup.enabled = YES;
-        //segGender.enabled = YES;
-        segGender.selectedSegmentIndex = UISegmentedControlNoSegment;
-        segSmoker.enabled = YES;
-        companyCase = NO;
-        txtDOB.hidden = YES;
-        txtDOB.text = @"";
-        outletDOB.hidden = NO;
-        //outletDOB.enabled = YES;
-		
-        [outletDOB setTitle:@"- SELECT -" forState:UIControlStateNormal];
-        outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-        
-        txtDOB.backgroundColor = [UIColor whiteColor];
-        outletRace.enabled = YES;
-        outletRace.titleLabel.textColor = [UIColor blackColor];
-        outletReligion.enabled = YES;
-        outletReligion.titleLabel.textColor = [UIColor blackColor];
-        outletNationality.enabled = YES;
-        outletNationality.titleLabel.textColor = [UIColor blackColor];
-        outletMaritalStatus.enabled = YES;
-        outletMaritalStatus.titleLabel.textColor = [UIColor blackColor];
-    }*/
     ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
     if ([selectedIDType isEqualToString:@"- SELECT -"]) {
         OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -14177,6 +11456,8 @@ bool PolicyOwnerSigned = TRUE;
 	edited = YES;
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
 	[ClientProfile setObject:@"YES" forKey:@"isEdited"];
+    
+    _txtTypeID.text = selectedIDType;
 	
 }
 
@@ -14266,7 +11547,9 @@ bool PolicyOwnerSigned = TRUE;
         outletOccup.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     }
 	[outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", color] forState:UIControlStateNormal];
-	[outletOccup setBackgroundColor:[UIColor clearColor]];
+//	[outletOccup setBackgroundColor:[UIColor clearColor]];
+    
+    _txtOccupation.text = color;
     edited = YES;
 	
 	//###
@@ -14463,7 +11746,7 @@ bool PolicyOwnerSigned = TRUE;
         else{
             outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
-            [outletDOB setBackgroundColor:[UIColor clearColor]];
+//            [outletDOB setBackgroundColor:[UIColor clearColor]];
 
         }
     }
@@ -14533,6 +11816,177 @@ bool PolicyOwnerSigned = TRUE;
 - (IBAction)ActionCallEnd:(id)sender {
     
 }
+
+- (IBAction)ActionAnnualIncome:(id)sender {
+    
+    [self resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    if (_annualIncome == nil) {
+        _annualIncome = [[AnnualIncomeTableViewController alloc] initWithStyle:UITableViewStylePlain];
+        _annualIncome.delegate = self;
+        _AnnualIncomePopover = [[UIPopoverController alloc] initWithContentViewController:_annualIncome];
+    }
+    [_AnnualIncomePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+}
+
+-(void)selectedAnnualIncome:(NSString *)AnnualIncome{
+    _BtnAnnualIncome.titleLabel.text = AnnualIncome;
+    if([_BtnAnnualIncome.titleLabel.text isEqualToString:@"- SELECT -"]) {
+        _BtnAnnualIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+    } else {
+        _BtnAnnualIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    }
+    [_BtnAnnualIncome setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",AnnualIncome]forState:UIControlStateNormal];
+    txtAnnIncome.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",AnnualIncome];
+    //    [_outletSourceIncome setBackgroundColor:[UIColor clearColor]];
+    [_AnnualIncomePopover dismissPopoverAnimated:YES];
+}
+
+-(void) CalculateScore {
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docsPath = [paths objectAtIndex:0];
+    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    FMDatabase *db = [FMDatabase databaseWithPath:path];
+    [db open];
+    FMResultSet *result;
+    
+    int poin;
+    score = 0;
+    completeStatus = 0;
+    //Age
+    if (![txtDOB.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        if (age >35 && age <45) {
+            score = score + 5;
+        }
+        else if (age >45 && age <55) {
+            score = score + 4;
+        }
+        else if (age > 55) {
+            score = score + 3;
+        }
+        else if (age >25 && age <35) {
+            score = score + 2;
+        }
+        else if (age >17 && age <25) {
+            score = score + 1;
+        }
+    }
+    
+    //gender
+    if (segGender.selectedSegmentIndex == 0) {
+        score = score + 2;
+        completeStatus = completeStatus + 1;
+    }
+    else {
+        score = score + 1;
+        completeStatus = completeStatus + 1;
+    }
+    
+    //marital
+    if (![_txtMarital.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT poin FROM eProposal_marital_Status WHERE MSDesc = ?", _txtMarital.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"poin"] intValue];
+        }
+        score = score + poin;
+    }
+    
+    //income
+    if (![txtAnnIncome.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = ?", txtAnnIncome.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //sourceIncome
+    if (![_txtSourceIncome.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_SourceIncome WHERE SourceDesc = ?", _txtSourceIncome.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+    }
+    
+    //occ
+    if (![_txtOccupation.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_OCCP WHERE OccpDesc = ?", _txtOccupation.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //reference
+    if (![txtReferralName.text isEqualToString:@""]){
+        completeStatus = completeStatus + 1;
+        result = nil;
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_ReferralSource WHERE ReferDesc = ?", txtReferralName.text];
+        poin = 0;
+        while ([result next]) {
+            poin = [[result objectForColumnName:@"Poin"] intValue];
+        }
+        score = score + poin;
+        
+    }
+    
+    //status
+    score = score + 1; //new additional
+    completeStatus = completeStatus + 1;
+    
+    if (completeStatus == 8) {
+        PStatus = @"Complete";
+    }
+    else {
+        PStatus = @"Incomplete";
+    }
+    
+    [result close];
+    [db close];
+}
+
+-(void)calculateAge:(NSString *)DOBdate
+{
+    
+    NSDate *todayDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    int time = [todayDate timeIntervalSinceDate:[dateFormatter dateFromString:DOBdate]];
+    int allDays = (((time/60)/60)/24);
+    int days = allDays%365;
+    int years = (allDays-days)/365;
+    
+    //    NSLog(@"You live since %i years and %i days",years,days);
+    age = years;
+    
+    
+}
+
 
 - (void)viewDidUnload
 {

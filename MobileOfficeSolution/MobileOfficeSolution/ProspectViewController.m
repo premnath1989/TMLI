@@ -3140,13 +3140,14 @@ bool RegDatehandling;
                     
                     
                     [self CalculateScore];
+                    [self calculateAge:txtDOB.text];
                     
                     
                     insertSQL = [NSString stringWithFormat:
                                  @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\") "
                                  "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\")",
-                                 txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
-                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age];
+                                 txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
+                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age];
                     
                 }
                 
@@ -6523,11 +6524,43 @@ bool RegDatehandling;
 
 
 - (IBAction)ActionCallStart:(id)sender {
+    
+    [self resignFirstResponder];
+    [self.view endEditing:YES];
+    
+    
+    
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    
+    if (_timePicker == Nil) {
+        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+        self.TimePickerVC = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _timePicker._Timedelegate = self;
+        self.TitlePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_timePicker];
+    }
+    
+//    _timePicker.ProspectDOB = timeString;
+    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:NO];
+
+}
+
+-(void)TimeSelected:(NSString *)strDate :(NSString *)dbDate {
+    
 }
 
 - (IBAction)ActionCallEnd:(id)sender {
     
 }
+
+
+
 - (IBAction)ActionAnnualIncome:(id)sender {
     
     [self resignFirstResponder];

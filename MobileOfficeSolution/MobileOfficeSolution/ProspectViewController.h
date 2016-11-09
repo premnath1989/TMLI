@@ -33,6 +33,7 @@
 #import "NIPInfo.h"
 #import "Formatter.h"
 #import "AnnualIncomeTableViewController.h"
+#import "TimePickerVC.h"
 
 @class DataTable,DBController;
 @protocol ProspectViewControllerDelegate
@@ -40,7 +41,7 @@
 - (void)selectDataForEdit:(NSString *)indexNo;
 @end
 
-@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate>{
+@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate, TimePickerDelegate>{
     
     NSString *databasePath;
     sqlite3 *contactDB;
@@ -49,6 +50,7 @@
     Formatter* classFormatter;
     OccupationList *_OccupationList;
     SIDate *_SIDate;
+    TimePickerVC *_timePicker;
     GroupClass *_GroupList;
     TitleViewController *_TitlePicker;
     Race *_raceList;
@@ -72,6 +74,7 @@
     UIPopoverController *_OccupationListPopover;
     UIPopoverController *_ContactTypePopover;
     UIPopoverController *_SIDatePopover;
+    UIPopoverController *_TimePickerPopover;
     UIPopoverController *_GroupPopover;
     UIPopoverController *_TitlePickerPopover;
     UIPopoverController *_ReligionListPopover;
@@ -131,6 +134,7 @@
 @property (nonatomic, strong) IDTypeViewController *IDTypePicker;
 @property (nonatomic, strong) UIPopoverController *IDTypePickerPopover;
 @property (nonatomic, retain) SIDate *SIDate;
+@property (nonatomic, retain) TimePickerVC *TimePickerVC;
 @property (nonatomic, retain) UIPopoverController *SIDatePopover;
 @property (nonatomic, retain) OccupationList *OccupationList;
 @property (nonatomic, retain) UIPopoverController *OccupationListPopover;

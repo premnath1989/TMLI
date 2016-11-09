@@ -8,7 +8,7 @@
         <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Regular.ttf">
+        <array key="BPreplay_Regular.otf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -1264,7 +1264,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="RJf-yD-TQs" userLabel="DataPribadiCV">
-                                        <rect key="frame" x="1" y="70" width="1022" height="628"/>
+                                        <rect key="frame" x="1" y="70" width="2046" height="1376"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHe-uD-ePQ">
@@ -1606,7 +1606,7 @@
                                         <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="7bo-Yb-rMF" userLabel="AlamatCV">
-                                        <rect key="frame" x="0.0" y="70" width="1024" height="668"/>
+                                        <rect key="frame" x="0.0" y="70" width="2048" height="1416"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korespondensi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRn-dc-SRX">
@@ -1797,7 +1797,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="q0E-rR-Y2J" userLabel="PekerjaanCV">
-                                        <rect key="frame" x="0.0" y="70" width="1024" height="628"/>
+                                        <rect key="frame" x="0.0" y="70" width="2048" height="1376"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MJ8-cH-n73">
@@ -1824,7 +1824,7 @@
                                                     <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="btnOccup:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="ecM-LI-gmx"/>
+                                                    <action selector="btnOccup:" destination="Few-sZ-jKx" eventType="touchUpInside" id="7fy-za-HT0"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sumber Penghasilan Utama" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MNY-Am-LoC">
@@ -1844,7 +1844,7 @@
                                                     <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="actionSourceIncome:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="nFp-1V-V1Q"/>
+                                                    <action selector="actionSourceIncome:" destination="Few-sZ-jKx" eventType="touchUpInside" id="jn6-DW-vgV"/>
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="2yr-6B-K2r">
@@ -1871,7 +1871,7 @@
                                                     <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="ActionAnnualIncome:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="db6-a1-nYP"/>
+                                                    <action selector="ActionAnnualIncome:" destination="Few-sZ-jKx" eventType="touchUpInside" id="nbl-Aa-bjL"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Lainnya" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TmP-Qj-fgT">
@@ -1901,6 +1901,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="ActionAnnualIncome:" destination="Few-sZ-jKx" eventType="editingDidEnd" id="rjt-kB-cVq"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1913,6 +1916,7 @@
                     </view>
                     <connections>
                         <outlet property="Alamatcv" destination="7bo-Yb-rMF" id="4wr-93-xSk"/>
+                        <outlet property="BtnAnnualIncome" destination="Dq3-Tn-npC" id="fXx-Ny-hGG"/>
                         <outlet property="DataPcv" destination="RJf-yD-TQs" id="ngT-tZ-xfo"/>
                         <outlet property="Occcv" destination="q0E-rR-Y2J" id="oXp-Ti-dl6"/>
                         <outlet property="TxtKecamatan" destination="jml-oi-aQU" id="xGj-3U-S0Q"/>
@@ -1923,33 +1927,42 @@
                         <outlet property="btnHomeCountry" destination="6Ro-bL-IEa" id="aH6-MA-MQm"/>
                         <outlet property="btnOcc" destination="G3x-Ub-dw1" id="pgA-Cp-WBi"/>
                         <outlet property="btnOtherIdType" destination="Oe7-hu-RAU" id="hwo-Bt-LkK"/>
+                        <outlet property="btnSourceIncome" destination="KOE-PU-xcV" id="ySb-QF-3Wa"/>
                         <outlet property="outletDOB" destination="FwM-bC-kyD" id="n6a-rJ-dDW"/>
                         <outlet property="outletMaritalStatus" destination="y8A-vy-APD" id="eil-dy-nun"/>
+                        <outlet property="outletOccup" destination="kdf-bT-2Jw" id="e1w-JC-qgl"/>
                         <outlet property="outletProvinsi" destination="2p1-bf-miT" id="cT5-ZN-m5q"/>
                         <outlet property="outletReferralSource" destination="hko-85-NGK" id="E3X-M6-vXw"/>
                         <outlet property="outletReligion" destination="Qoh-lW-8DH" id="3pb-9A-RTO"/>
+                        <outlet property="outletSourceIncome" destination="KOE-PU-xcV" id="YbB-Dd-pZd"/>
                         <outlet property="scrollViewEditProspect" destination="jaE-AU-tI1" id="olM-GU-Ybe"/>
                         <outlet property="segGender" destination="Zpt-nF-Fiq" id="BHQ-1D-MOp"/>
                         <outlet property="switchCountryHome" destination="6Zz-bp-0om" id="Sea-kQ-Gcr"/>
                         <outlet property="txtAddress4" destination="hhP-kj-CFK" id="vOw-iu-TkW"/>
+                        <outlet property="txtAnnIncome" destination="wUd-SS-Gra" id="kf3-uQ-SSP"/>
                         <outlet property="txtCallEnd" destination="zCm-x6-W24" id="m8r-pu-BFr"/>
                         <outlet property="txtCallStart" destination="YkE-WZ-QSb" id="IZv-U9-l4L"/>
                         <outlet property="txtDOB" destination="wHa-Sy-5ld" id="jAx-j8-FSx"/>
-                        <outlet property="txtHPNo" destination="JYA-Zv-GhV" id="3D1-0U-prI"/>
+                        <outlet property="txtEmail" destination="JYA-Zv-GhV" id="1UW-pI-lJe"/>
+                        <outlet property="txtHPNo" destination="kQF-13-rc1" id="ssw-zE-HkZ"/>
                         <outlet property="txtHPRumah" destination="uwj-Pz-lcJ" id="RwK-HM-FTY"/>
                         <outlet property="txtHomeAddr1" destination="jzy-XK-HCQ" id="qfv-aE-t7H"/>
                         <outlet property="txtHomeAddr2" destination="tiP-oO-wDC" id="cut-XO-hIF"/>
                         <outlet property="txtHomeAddr3" destination="Ggk-zL-D68" id="42c-sz-Vgv"/>
                         <outlet property="txtHomeCountry" destination="KZQ-YL-tyH" id="cmD-hA-NxA"/>
                         <outlet property="txtHomePostCode" destination="0oJ-pw-UlV" id="Ny8-Pt-IeM"/>
+                        <outlet property="txtHomeProvince" destination="IKF-VB-YzU" id="anZ-8j-cGB"/>
                         <outlet property="txtIdNumber" destination="5az-kR-I9p" id="lBw-Fj-wEu"/>
                         <outlet property="txtKelurahan" destination="qa8-AF-K5n" id="Qu6-Fc-e3v"/>
                         <outlet property="txtKota" destination="TWh-cT-DOw" id="Eua-yc-byk"/>
                         <outlet property="txtMarital" destination="aEb-gQ-Icd" id="GsP-W8-7ng"/>
                         <outlet property="txtNamaBelakang" destination="Jvk-H1-a6P" id="yZ0-fe-SkB"/>
                         <outlet property="txtNamaDepan" destination="1rN-0V-0dM" id="jvq-f8-OhL"/>
+                        <outlet property="txtOccupation" destination="W3i-uB-PUy" id="UFj-MJ-mnD"/>
                         <outlet property="txtReferralName" destination="ivu-2Y-iFG" id="hPP-e5-rlX"/>
                         <outlet property="txtReligion" destination="K55-U2-T1r" id="m2D-nj-6xq"/>
+                        <outlet property="txtRemark" destination="ZNZ-f6-NFn" id="oHD-3g-Kx9"/>
+                        <outlet property="txtSourceIncome" destination="2yr-6B-K2r" id="MK6-GV-Jhh"/>
                         <outlet property="txtTypeID" destination="dEp-o3-mWp" id="IyC-QB-LXB"/>
                     </connections>
                 </viewController>
