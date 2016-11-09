@@ -1197,70 +1197,102 @@
                                 <frame key="frameInset" minY="20" width="1024" height="748"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="cVf-FU-XHb">
+                                    <view contentMode="scaleToFill" misplaced="YES" id="Ahj-EB-c06">
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="PO1-mN-4bI">
-                                                <frame key="frameInset" minY="1" width="343" height="72"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="c2V-cg-jro">
+                                                <frame key="frameInset" width="342" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.45882352939999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 <state key="normal" image="shape_guideright_complete">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="          Data Pribadi">
+                                                        <fragment content="      Data">
                                                             <attributes>
-                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                                <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="24" name="LucidaGrande"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content=" ">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="24" name="AlBayan"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                        <fragment content="Pribadi">
+                                                            <attributes>
+                                                                <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="24" name="LucidaGrande"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <action selector="BtnDataPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="Q9h-cs-2f0"/>
-                                                    <action selector="BtnDataPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="gMj-Nm-w4Q"/>
+                                                    <action selector="BtnDataPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="vRY-67-e04"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="a0x-jy-M3V">
-                                                <frame key="frameInset" minX="341" minY="2" width="334" height="72"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="mBK-YU-hb2">
+                                                <frame key="frameInset" minX="340" width="342" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" image="shape_guideright_complete">
+                                                <color key="backgroundColor" red="0.87843137250000003" green="0.8980392157" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="shape_guideright_onprogress">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="             Alamat">
+                                                        <fragment content="         Alamat">
                                                             <attributes>
-                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                                <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="24" name=".AppleSystemUIFont"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <action selector="BtnAlamatPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="Fjw-zf-gRk"/>
-                                                    <action selector="BtnAlamatPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="eD1-UT-ezF"/>
+                                                    <action selector="BtnAlamatPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="Mjf-8w-cos"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="G3x-Ub-dw1">
-                                                <frame key="frameInset" minX="673" minY="3" width="351" height="72"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="mbc-qb-zJ0">
+                                                <frame key="frameInset" minX="680" width="344" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" image="shape_guideright_complete">
+                                                <color key="backgroundColor" red="0.87843137250000003" green="0.8980392157" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" image="shape_guideright_onprogress">
                                                     <attributedString key="attributedTitle">
-                                                        <fragment content="             Pekerjaan">
+                                                        <fragment content="       Pekerjaan">
                                                             <attributes>
-                                                                <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" metaFont="system" size="18"/>
+                                                                <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
                                                 <connections>
-                                                    <action selector="btnOccPressed:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="IWE-Yn-Pgz"/>
-                                                    <action selector="btnOccPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="uhG-ix-zeQ"/>
+                                                    <action selector="btnOccPressed:" destination="Few-sZ-jKx" eventType="touchUpInside" id="iBc-lt-saW"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Dqz-2X-BDs">
+                                                <frame key="frameInset" minX="690" minY="6" width="35" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Sy2-w0-8g7">
+                                                <frame key="frameInset" minX="13" minY="6" width="35" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aMO-Fb-Wap">
+                                                <frame key="frameInset" minX="350" minY="4" width="35" height="52"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
@@ -1921,12 +1953,12 @@
                         <outlet property="DataPcv" destination="RJf-yD-TQs" id="ngT-tZ-xfo"/>
                         <outlet property="Occcv" destination="q0E-rR-Y2J" id="oXp-Ti-dl6"/>
                         <outlet property="TxtKecamatan" destination="jml-oi-aQU" id="xGj-3U-S0Q"/>
-                        <outlet property="btnAlamat" destination="a0x-jy-M3V" id="tmh-vx-wue"/>
+                        <outlet property="btnAlamat" destination="mBK-YU-hb2" id="TTw-d2-61l"/>
                         <outlet property="btnCallEnd" destination="89m-3j-Uip" id="Tyv-Vn-1Wt"/>
                         <outlet property="btnCallstart" destination="var-t9-8Yv" id="5kN-0T-iYJ"/>
-                        <outlet property="btnData" destination="PO1-mN-4bI" id="gHy-nz-DjE"/>
+                        <outlet property="btnData" destination="c2V-cg-jro" id="eUs-ip-I7o"/>
                         <outlet property="btnHomeCountry" destination="6Ro-bL-IEa" id="aH6-MA-MQm"/>
-                        <outlet property="btnOcc" destination="G3x-Ub-dw1" id="pgA-Cp-WBi"/>
+                        <outlet property="btnOcc" destination="mbc-qb-zJ0" id="WYw-zp-oY2"/>
                         <outlet property="btnOtherIdType" destination="Oe7-hu-RAU" id="hwo-Bt-LkK"/>
                         <outlet property="btnSourceIncome" destination="KOE-PU-xcV" id="ySb-QF-3Wa"/>
                         <outlet property="outletDOB" destination="FwM-bC-kyD" id="n6a-rJ-dDW"/>

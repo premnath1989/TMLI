@@ -11793,23 +11793,84 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 - (IBAction)BtnDataPressed:(id)sender {
+    
     _DataPcv.hidden = NO;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = YES;
+    
+    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
+    UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
+    UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
+    
+    //    [_btnData.titleLabel setTextColor:[UIColor whiteColor]];
+    //    [_btnAlamat.titleLabel setTextColor:[UIColor blackColor]];
+    //    [_btnOcc.titleLabel setTextColor:[UIColor blackColor]];
+    
+    
+    [_btnData setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    
+    [_btnData setBackgroundColor:green];
+    [_btnAlamat setBackgroundColor:gray];
+    [_btnOcc setBackgroundColor:gray];
+    
+    
+    
 }
 
 - (IBAction)BtnAlamatPressed:(id)sender {
     _DataPcv.hidden = YES;
     _Alamatcv.hidden = NO;
     _Occcv.hidden = YES;
+    
+    UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
+    UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
+    
+    //    [_btnData.titleLabel setTextColor:[UIColor blackColor]];
+    //    [_btnAlamat.titleLabel setTextColor:[UIColor whiteColor]];
+    //    [_btnOcc.titleLabel setTextColor:[UIColor blackColor]];
+    
+    [_btnData setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAlamat setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    
+    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
+    [_btnData setBackgroundColor:gray];
+    [_btnAlamat setBackgroundColor:green];
+    [_btnOcc setBackgroundColor:gray];
+    
+    
+    
 }
 
 - (IBAction)btnOccPressed:(id)sender {
     _DataPcv.hidden = YES;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = NO;
+    
+    UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
+    UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
+    
+    //    [_btnData.titleLabel setTextColor:[UIColor blackColor]];
+    //    [_btnAlamat.titleLabel setTextColor:[UIColor blackColor]];
+    //    [_btnOcc.titleLabel setTextColor:[UIColor whiteColor]];
+    
+    [_btnData setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnOcc setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    
+    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
+    
+    [_btnData setBackgroundColor:gray];
+    [_btnAlamat setBackgroundColor:gray];
+    [_btnOcc setBackgroundColor:green];
+    
+    
 }
-
 - (IBAction)ActionCallStart:(id)sender {
     
 }
