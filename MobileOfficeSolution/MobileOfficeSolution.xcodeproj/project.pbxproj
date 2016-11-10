@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
+		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
 		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */; };
 		DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168461DD03551007DDA9B /* NewJune_Light.ttf */; };
@@ -542,6 +543,8 @@
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
+		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
+		C32E03FA1DD41DFD00A76D6F /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
 		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
 		DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Bold.ttf; sourceTree = "<group>"; };
@@ -2431,6 +2434,8 @@
 		DEDC5E661DAE45AF0033FE37 /* PopOver */ = {
 			isa = PBXGroup;
 			children = (
+				C32E03F91DD41DFD00A76D6F /* TimePicker.h */,
+				C32E03FA1DD41DFD00A76D6F /* TimePicker.m */,
 				DEDC5EA91DAE472F0033FE37 /* SourceIncome.h */,
 				DEDC5EAA1DAE472F0033FE37 /* SourceIncome.m */,
 				C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */,
@@ -3598,6 +3603,7 @@
 				DEDC5DCB1DAE417A0033FE37 /* BasicPlanHandler.m in Sources */,
 				DEDC5CDE1DAE38B60033FE37 /* Utility.m in Sources */,
 				DEDC615F1DAF7BD00033FE37 /* String.m in Sources */,
+				C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */,
 				DEDC61091DAF79350033FE37 /* SPAJ Calon Pemegang Polis.m in Sources */,
 				DEDC5D351DAE39420033FE37 /* ModelSPAJFormGeneration.m in Sources */,
 				DEDC5D221DAE39420033FE37 /* ModelVIPClass.m in Sources */,
