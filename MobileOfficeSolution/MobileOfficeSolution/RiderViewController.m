@@ -158,13 +158,31 @@ int maxGycc = 0;
     [super viewDidLoad];
 }
 
--(void)loadInitialRiderData{
-   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+-(void)loadInitialRiderData
+{
+    NSString *ProductName =[_dictionaryForBasicPlan valueForKey:@"Produk_Name"];
+    
+    if([ProductName isEqualToString:@"TM Link Wealth Accumulation"]||[ProductName isEqualToString:@"TM Link Wealth Enhancement"])
+    {
+        _RiderListTMLI =[NSMutableArray arrayWithObjects:@"", nil];
+        
+    }
+    
+   else
+   {
+        _RiderListTMLI =[NSMutableArray arrayWithObjects:@"Waiver Premium",@"Payor Benefit",@"AD&ADD",@"Hospitalization & Surgical",@"Hospital Cash Plan",@"Term Life",@"CI 55 (CI additional)", nil];
+        
+    }
+        
+    
+    
+    
+   [self dictionaryForBasicPlan];
     [myTableView reloadData];
 }
 
 -(void)loadInitialRiderDataFromDatabase{
-   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+    [self dictionaryForBasicPlan];
     [myTableView reloadData];
 }
 
@@ -6013,7 +6031,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:[dictForCalculateBPPremi valueForKey:@"ExtraPremiPerMil"] forKey:@"ExtraPremiPerMil"];
     [dictBebasPremi setObject:[dictForCalculateBPPremi valueForKey:@"MasaExtraPremi"] forKey:@"MasaExtraPremi"];
     
-    _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+    [self dictionaryForBasicPlan];
     [myTableView reloadData];
     
     [myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
@@ -6184,7 +6202,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
 
     
-   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD", nil ];
+    [self dictionaryForBasicPlan];
     [myTableView reloadData];
     
     [_delegate saveRider:dictMDBKK MDKK:dictMBKK BP:dictBebasPremi];
@@ -6230,7 +6248,8 @@ int maxGycc = 0;
             [dictBebasPremi setObject:_extraPremiNumberField.text forKey:@"ExtraPremiPerMil"];
             [dictBebasPremi setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
             
-            _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD" ];
+
+            
            
             [myTableView reloadData];
             
@@ -6289,7 +6308,8 @@ int maxGycc = 0;
 - (NSInteger)tableView:(UITableView *)myTableView numberOfRowsInSection:(NSInteger)section
 {
     //return [LTypeRiderCode count];
-    return [_RiderListTMLI count];
+    
+    return [_dictionaryForBasicPlan count];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -6325,296 +6345,21 @@ int maxGycc = 0;
         
     }
     
-    cell.textLabel.text = [_RiderListTMLI objectAtIndex:indexPath.row];
+    
+    if([tableView isEqual:myTableView])
+    {
+         cell.textLabel.text = [_RiderListTMLI objectAtIndex:indexPath.row];
+    }
+    
+    if([tableView isEqual:_myTableViewNama])
+    {
+        cell.textLabel.text = _cellText;
+    }
+
+   
 
     
-    
-//    static NSString *CellIdentifier = @"Cell";
-//    KeluargakuTableViewCell *cell = (KeluargakuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-//    if (cell == nil) {
-//        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"KeluargakuTableViewCell" owner:self options:nil];
-//        cell = [nib objectAtIndex:0];
-//    }
-//    if (indexPath.row < [arrayDataRiders count]){
-//        [cell.labelManfaat setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"RiderCode"]];
-//        [cell.labelUangPertanggungan setText:[formatter stringToCurrencyDecimalFormatted:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"SumAssured"]]]];
-//        [cell.labelMasaAsuransi setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaAsuransi"]];
-//        [cell.labelUnit setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"Unit"]];
-//        [cell.labelExtraPremiPercent setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerCent"]]];
-//        [cell.labelExtraPremiPerMil setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiPerMil"]]];
-//        [cell.labelMasaExtraPremi setText:[NSString stringWithFormat:@"%@",[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"MasaExtraPremi"]]];
-//        [cell.labelExraPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"ExtraPremiRp"]];
-//        [cell.labelPremiRp setText:[[arrayDataRiders objectAtIndex:indexPath.row] valueForKey:@"PremiRp"]];
-//    }
-    return cell;
-    /*static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil)
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    [formatter setCurrencySymbol:@""];
-    
-    [[cell.contentView viewWithTag:2001] removeFromSuperview];
-    [[cell.contentView viewWithTag:2002] removeFromSuperview];
-    [[cell.contentView viewWithTag:2003] removeFromSuperview];
-    [[cell.contentView viewWithTag:2004] removeFromSuperview];
-    [[cell.contentView viewWithTag:2005] removeFromSuperview];
-    [[cell.contentView viewWithTag:2006] removeFromSuperview];
-    [[cell.contentView viewWithTag:2007] removeFromSuperview];
-    [[cell.contentView viewWithTag:2008] removeFromSuperview];
-    [[cell.contentView viewWithTag:2009] removeFromSuperview];
-    [[cell.contentView viewWithTag:2010] removeFromSuperview];
-    
-    ColorHexCode *CustomColor = [[ColorHexCode alloc]init];
-    
-    CGRect frame=CGRectMake(0,0, 70, 50);
-    UILabel *label1=[[UILabel alloc]init];
-    label1.frame=frame;
-    label1.text= [NSString stringWithFormat:@"%@",[LTypeRiderCode objectAtIndex:indexPath.row]];
-    label1.textAlignment = NSTextAlignmentCenter;
-    label1.tag = 2001;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label1];
-    
-    CGRect frame2=CGRectMake(frame.origin.x + frame.size.width,0, 123, 50);
-    UILabel *label2=[[UILabel alloc]init];
-    label2.frame=frame2;
-    NSString *num = [formatter stringFromNumber:[NSNumber numberWithDouble:[[LTypeSumAssured objectAtIndex:indexPath.row] doubleValue]]];
-    label2.text= num;
-    label2.textAlignment = NSTextAlignmentCenter;
-    label2.tag = 2002;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label2];
-    
-    CGRect frame3=CGRectMake(frame2.origin.x + frame2.size.width,0, 55, 50);
-    UILabel *label3=[[UILabel alloc]init];
-    label3.frame=frame3;
-    label3.text= [LTypeTerm objectAtIndex:indexPath.row];
-    label3.textAlignment = NSTextAlignmentCenter;
-    label3.tag = 2003;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label3];
-    
-    CGRect frame4=CGRectMake(frame3.origin.x + frame3.size.width,0, 63, 50);
-    UILabel *label4=[[UILabel alloc]init];
-    label4.frame=frame4;
-    if ([[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"HB"]){
-        label4.text= [LTypeUnits objectAtIndex:indexPath.row];
-    } else {
-        label4.text= @"-";
-    }
-    label4.textAlignment = NSTextAlignmentCenter;
-    label4.tag = 2004;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label4];
-    
-    CGRect frame5=CGRectMake(frame4.origin.x + frame4.size.width,0, 60, 50);
-    UILabel *label5=[[UILabel alloc]init];
-    label5.frame=frame5;
-	if ([[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"CPA"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"HMM"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"HSP_II"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"MG_II"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"MG_IV"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"PA"]) {
-        label5.text= [NSString stringWithFormat:@"%d",occClass];
-	} else {
-        label5.text= [NSString stringWithFormat:@"-"];
-	}
-    label5.textAlignment = NSTextAlignmentCenter;
-    label5.tag = 2005;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label5];
-    
-    CGRect frame6=CGRectMake(frame5.origin.x + frame5.size.width,0, 73, 50);
-    UILabel *label6=[[UILabel alloc]init];
-    label6.frame=frame6;
-	if ([[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"CCTR"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"EDB"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"TPDYLA"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"ETPDB"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"ICR"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"LCPR"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"LCWP"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"PR"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"PLCP"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"PTR"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WB30R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WB50R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"EDUWR"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WBM6R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WBI6R30"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WBD10R30"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WP30R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WP50R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WPTPD30R"] ||
-        [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"WPTPD50R"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"SP_PRE"] ||
-		[[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"SP_STD"]) {
-		label6.text= [NSString stringWithFormat:@"%@",occLoadType];
-        
-	} else {
-		label6.text= [NSString stringWithFormat:@"-"];
-	}
-    label6.textAlignment = NSTextAlignmentCenter;
-    label6.tag = 2006;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label6];
-    
-    NSString *hl1k = [LTypeRidHL1K objectAtIndex:indexPath.row];
-    NSString *hl100 = [LTypeRidHL100 objectAtIndex:indexPath.row];
-    NSString *hlp = [LTypeRidHLP objectAtIndex:indexPath.row];
-    
-    CGRect frame7=CGRectMake(frame6.origin.x + frame6.size.width,0, 82, 50);
-    UILabel *label7=[[UILabel alloc]init];
-    label7.frame=frame7;
-    NSString *hl1 = nil;
-    if ([hl1k isEqualToString:@"(null)"] && [hl100 isEqualToString:@"(null)"] && [hlp isEqualToString:@"(null)"]) {
-        hl1 = @"";
-    } else if(![hl100 isEqualToString:@"(null)"] && ![hl100 isEqualToString:@""] ){
-        hl1 = [formatter stringFromNumber:[NSNumber numberWithDouble:[hl100 doubleValue]]];
-    } else if (![hl1k isEqualToString:@"(null)"] && [hl1k doubleValue] > 0) {
-        hl1 = [formatter stringFromNumber:[NSNumber numberWithDouble:[hl1k doubleValue]]];
-    } else if (![hlp isEqualToString:@"(null)"] && [hlp doubleValue] > 0) {
-        hl1 = [[formatter stringFromNumber:[NSNumber numberWithDouble:[hlp doubleValue]]] stringByAppendingString:@"%"];
-    } else {
-        hl1 = @"";
-    }
-    label7.text= hl1;
-    
-    label7.textAlignment = NSTextAlignmentCenter;
-    label7.tag = 2007;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label7];
-    
-    NSString *hl1kT = [LTypeRidHLTerm objectAtIndex:indexPath.row];
-    NSString *hl100T = [LTypeRidHL100Term objectAtIndex:indexPath.row];
-    NSString *hlpT = [LTypeRidHLPTerm objectAtIndex:indexPath.row];
-    
-    CGRect frame8=CGRectMake(frame7.origin.x + frame7.size.width,0, 84, 50);
-    UILabel *label8=[[UILabel alloc]init];
-    label8.frame=frame8;
-    NSString *hl1T = nil;
-    if ([hl1kT intValue] == 0 && [hl100T intValue] == 0 && [hlpT intValue] == 0) {
-        hl1T = @"";
-    } else if([hl1kT intValue] !=0) {
-        hl1T = hl1kT;
-    } else if([hl100T intValue] !=0) {
-        hl1T = hl100T;
-    } else if ([hlpT intValue] != 0) {
-        hl1T = hlpT;
-    } else {
-        hl1T = @"";
-    }
-    label8.text= hl1T;
-    
-    label8.textAlignment = NSTextAlignmentCenter;
-    label8.tag = 2008;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label8];
-    
-    //--
-    
-    NSString *hlTemp = [LTypeTempRidHL1K objectAtIndex:indexPath.row];
-    NSString *hlTempT = [LTypeTempRidHLTerm objectAtIndex:indexPath.row];
-    
-    CGRect frame9=CGRectMake(frame8.origin.x + frame8.size.width,0, 80, 50);
-    UILabel *label9=[[UILabel alloc]init];
-    label9.frame=frame9;
-    NSString *hl2 = nil;
-    if ([hlTemp isEqualToString:@"(null)"] ||hlTemp.length == 0) {
-        hl2 = @"";
-        
-    } else {
-        hl2 = [formatter stringFromNumber:[NSNumber numberWithDouble:[hlTemp doubleValue]]];
-        
-        if ([[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"HMM"] ||
-            [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"HSP_II"] ||
-            [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"MG_IV"] ||
-            [[LTypeRiderCode objectAtIndex:indexPath.row] isEqualToString:@"MG_II"]) {
-            label9.text= [hl2 stringByAppendingString:@"%"];
-            
-        } else {
-            label9.text=hl2;
-        }
-    }
-    
-    label9.textAlignment = NSTextAlignmentCenter;
-    label9.tag = 2009;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label9];
-    
-    //--
-    
-    CGRect frame10=CGRectMake(frame9.origin.x + frame9.size.width,0, 82, 50);
-    UILabel *label10=[[UILabel alloc]init];
-    label10.frame=frame10;
-    NSString *hl2T = nil;
-    if ([hlTempT intValue] == 0 || hlTempT.length == 0) {
-        hl2T = @"";
-    } else {
-        hl2T = [NSString stringWithFormat:@"%@",hlTempT];
-    }
-    label10.text=hl2T;
-    
-    label10.textAlignment = NSTextAlignmentCenter;
-    label10.tag = 2010;
-    cell.textLabel.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    [cell.contentView addSubview:label10];
-    
-    //--
-    
-    if (indexPath.row % 2 == 0) {
-        label1.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label2.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label3.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label4.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label5.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label6.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label7.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label8.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label9.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        label10.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-        
-        label1.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label2.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label3.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label4.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label5.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label6.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label7.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label8.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label9.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label10.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    } else {
-        label1.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label2.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label3.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label4.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label5.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label6.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label7.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label8.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label9.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        label10.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-        
-        label1.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label2.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label3.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label4.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label5.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label6.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label7.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label8.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label9.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        label10.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    }
-    
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    
-    return cell;*/
+
 }
 
 
@@ -6625,171 +6370,11 @@ int maxGycc = 0;
     
     //UITableViewCell *currentCell = [myTableView cellForRowAtIndexPath:indexPath];
     //currentCell.frame = CGRectMake(currentCell.frame.origin.x, currentCell.frame.origin.y, 750, currentCell.frame.size.height);
-    lastSelectedIndex = indexPath.row;
-    [self setRiderInformationForTextField:lastSelectedIndex];
-    /*if ([myTableView isEditing]) {
-        BOOL gotRowSelected = FALSE;
-        
-        for (UITableViewCell *cell in [myTableView visibleCells]) {
-            if (cell.selected) {
-                gotRowSelected = TRUE;
-                break;
-            }
-        }
-        
-        if (!gotRowSelected) {
-            [deleteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            deleteBtn.enabled = FALSE;
-        } else {
-            [deleteBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            deleteBtn.enabled = TRUE;
-        }
-        
-        NSString *item = [NSString stringWithFormat:@"%d", indexPath.row];
-        [ItemToBeDeleted addObject:item];
-        [indexPaths addObject:indexPath];
-        
-    } else {        
-        RiderListTbViewController *riderList = [[RiderListTbViewController alloc] init];
-        [self RiderListController:riderList didSelectCode:[LTypeRiderCode objectAtIndex:indexPath.row] desc:[self getRiderDesc:[LTypeRiderCode objectAtIndex:indexPath.row]]];
-        
-        NSRange rangeofDot = [[LTypeSumAssured objectAtIndex:indexPath.row] rangeOfString:@"."];
-        NSString *SumToDisplay = @"";
-        if (rangeofDot.location != NSNotFound) {
-            NSString *substring = [[LTypeSumAssured objectAtIndex:indexPath.row] substringFromIndex:rangeofDot.location];
-            if (substring.length == 2 && [substring isEqualToString:@".0"]) {
-                SumToDisplay = [[LTypeSumAssured objectAtIndex:indexPath.row] substringToIndex:rangeofDot.location];
-            } else {
-                SumToDisplay = [LTypeSumAssured objectAtIndex:indexPath.row];
-            }
-        } else {
-            SumToDisplay = [LTypeSumAssured objectAtIndex:indexPath.row];
-        }
-        
-        sumField.text = SumToDisplay;
-        
-        if([riderCode isEqualToString:@"WA30R"] || [riderCode isEqualToString:@"WA50R"] || [riderCode isEqualToString:@"WB30R"] ||
-           [riderCode isEqualToString:@"WB50R"] || [riderCode isEqualToString:@"WE30R"] || [riderCode isEqualToString:@"WE50R"] ||
-           [riderCode isEqualToString:@"WP30R"] || [riderCode isEqualToString:@"WP50R"] || [riderCode isEqualToString:@"WPTPD30R"] ||
-           [riderCode isEqualToString:@"WPTPD50R"] || [riderCode isEqualToString:@"EDUWR"]) {
-            
-        } else {
-            termField.text = [LTypeTerm objectAtIndex:indexPath.row];
-        }
-        
-        unitField.text = [LTypeUnits objectAtIndex:indexPath.row];
-        
-        if (![[LTypePlanOpt objectAtIndex:indexPath.row] isEqualToString:@"(null)"]) {
-            [self setPlanBtnTitle:[LTypePlanOpt objectAtIndex:indexPath.row]];
-            planOption = [[NSString alloc] initWithFormat:@"%@",planBtn.titleLabel.text];
-        }
-        
-        if (![[LTypeDeduct objectAtIndex:indexPath.row] isEqualToString:@"(null)"]) {
-            [deducBtn setTitle:[LTypeDeduct objectAtIndex:indexPath.row] forState:UIControlStateNormal];
-            deductible = [[NSString alloc] initWithFormat:@"%@",deducBtn.titleLabel.text];
-        }
-        
-        NSRange rangeofDotHL = [[LTypeRidHL1K objectAtIndex:indexPath.row] rangeOfString:@"."];
-        NSString *HLToDisplay = @"";
-        if (rangeofDotHL.location != NSNotFound) {
-            NSString *substringHL = [[LTypeRidHL1K objectAtIndex:indexPath.row] substringFromIndex:rangeofDotHL.location];
-            if (substringHL.length == 2 && [substringHL isEqualToString:@".0"]) {
-                HLToDisplay = [[LTypeRidHL1K objectAtIndex:indexPath.row] substringToIndex:rangeofDotHL.location];
-            } else {
-                HLToDisplay = [LTypeRidHL1K objectAtIndex:indexPath.row];
-            }
-        } else {
-            HLToDisplay = [LTypeRidHL1K objectAtIndex:indexPath.row];
-        }
-        
-        if (![[LTypeRidHL1K objectAtIndex:indexPath.row] isEqualToString:@"(null)"] && ![HLToDisplay isEqualToString:@"0"]) {
-            HLField.text = HLToDisplay;
-        } else {
-            HLField.text = @"";
-        }
-        
-        if (  ![[LTypeRidHLTerm objectAtIndex:indexPath.row] isEqualToString:@"0"]) {
-            HLTField.text = [LTypeRidHLTerm objectAtIndex:indexPath.row];
-        }
-        
-        NSRange rangeofDotHL100 = [[LTypeRidHL100 objectAtIndex:indexPath.row] rangeOfString:@"."];
-        NSString *HL100ToDisplay = @"";
-        if (rangeofDotHL100.location != NSNotFound) {
-            NSString *substringHL100 = [[LTypeRidHL100 objectAtIndex:indexPath.row] substringFromIndex:rangeofDotHL100.location];
-            if (substringHL100.length == 2 && [substringHL100 isEqualToString:@".0"]) {
-                HL100ToDisplay = [[LTypeRidHL100 objectAtIndex:indexPath.row] substringToIndex:rangeofDotHL100.location];
-            } else {
-                HL100ToDisplay = [LTypeRidHL100 objectAtIndex:indexPath.row];
-            }
-        } else {
-            HL100ToDisplay = [LTypeRidHL100 objectAtIndex:indexPath.row];
-        }
-        
-        if (![[LTypeRidHL100 objectAtIndex:indexPath.row] isEqualToString:@"(null)"]) {
-            HLField.text = HL100ToDisplay;
-        }
-        
-        if (  ![[LTypeRidHL100Term objectAtIndex:indexPath.row] isEqualToString:@"0"]) {
-            HLTField.text = [LTypeRidHL100Term objectAtIndex:indexPath.row];
-        }
-        
-        if (  ![[LTypeRidHLP objectAtIndex:indexPath.row] isEqualToString:@"(null)"]) {
-            HLField.text = [LTypeRidHLP objectAtIndex:indexPath.row];
-        }
-        
-        if (  ![[LTypeRidHLPTerm objectAtIndex:indexPath.row] isEqualToString:@"0"]) {
-            HLTField.text = [LTypeRidHLPTerm objectAtIndex:indexPath.row];
-        }
-        
-        NSRange rangeofDotTempHL = [[LTypeTempRidHL1K objectAtIndex:indexPath.row] rangeOfString:@"."];
-        NSString *TempHLToDisplay = @"";
-        if (rangeofDotTempHL.location != NSNotFound) {
-            NSString *substringTempHL = [[LTypeTempRidHL1K objectAtIndex:indexPath.row] substringFromIndex:rangeofDotTempHL.location];
-            if (substringTempHL.length == 2 && [substringTempHL isEqualToString:@".0"]) {
-                TempHLToDisplay = [[LTypeTempRidHL1K objectAtIndex:indexPath.row] substringToIndex:rangeofDotTempHL.location];
-            } else {
-                TempHLToDisplay = [LTypeTempRidHL1K objectAtIndex:indexPath.row];
-            }   
-        } else {
-            TempHLToDisplay = [LTypeTempRidHL1K objectAtIndex:indexPath.row];
-        }
-        
-        tempHLField.text = TempHLToDisplay;
-        tempHLTField.text = [LTypeTempRidHLTerm objectAtIndex:indexPath.row];
-        
-        outletEAPP.title = @"";
-        outletEAPP.enabled = FALSE;
-        
-        if (Editable == NO) {
-            [self DisableTextField:termField];
-            [self DisableTextField:sumField];
-            [self DisableTextField:cpaField];
-            [self DisableTextField:unitField];
-            [self DisableTextField:occpField];
-            [self DisableTextField:HLField];
-            [self DisableTextField:HLTField];
-            [self DisableTextField:tempHLField];
-            [self DisableTextField:tempHLTField];
-            [self DisableTextField:classField];
-            
-            btnAddRider.enabled = FALSE;
-            planBtn.enabled = FALSE;
-            deducBtn.enabled = FALSE;
-            classField.enabled = FALSE;
-            editBtn.enabled = FALSE;
-            deleteBtn.enabled = FALSE;
-            btnAddRider.hidden = TRUE;
-            outletSaveRider.enabled = FALSE;
-            
-            if([EAPPorSI isEqualToString:@"eAPP"]){
-                outletSaveRider.backgroundColor = [UIColor lightGrayColor];
-                outletEAPP.title = @"e-Application Checklist";
-                outletEAPP.enabled = TRUE;
-                outletDone.enabled = FALSE;               
-            }
-            
-        }
-    }*/
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    _cellText = cell.textLabel.text;
+    [_myTableViewNama reloadData];
+    
+  
 }
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -7171,7 +6756,7 @@ int maxGycc = 0;
     [dictBebasPremi setObject:riderPremiFormatted forKey:@"PremiRp"];
     [dictBebasPremi setObject:riderPremiLoadingFormatted forKey:@"ExtraPremiRp"];
     
-   _RiderListTMLI= [[NSMutableArray alloc] initWithObjects:@"Rupiah", @"USD" ];
+    [self dictionaryForBasicPlan];
     [myTableView reloadData];
 }
 

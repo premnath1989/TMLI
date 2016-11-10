@@ -94,6 +94,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *Jenis;
 @property (weak, nonatomic) IBOutlet UITableView *NamaAnsuransiTambahan1;
 @property (weak, nonatomic) IBOutlet UITableView *NamaAnsuransiTambahan2;
+@property (retain, nonatomic) NSString *cellText;
 
 
 
@@ -246,6 +247,7 @@
 
 //setup tableview listing rider
 @property (retain, nonatomic) IBOutlet UITableView *myTableView;
+@property (retain, nonatomic) IBOutlet UITableView *myTableViewNama;
 @property (retain, nonatomic) IBOutlet UILabel *titleRidCode;
 @property (retain, nonatomic) IBOutlet UILabel *titleSA;
 @property (retain, nonatomic) IBOutlet UILabel *titleTerm;

@@ -3514,13 +3514,23 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="CDF-eO-5gi">
-                                        <frame key="frameInset" minX="8" minY="55" width="321" height="313"/>
+                                        <frame key="frameInset" minX="8" minY="55" width="281" height="313"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="dataSource" destination="il8-A2-VxN" id="SYi-ue-9Ek"/>
                                             <outlet property="delegate" destination="il8-A2-VxN" id="cBs-u2-5H3"/>
+                                        </connections>
+                                    </tableView>
+                                    <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="QW7-An-qnB">
+                                        <frame key="frameInset" minX="297" minY="55" width="281" height="313"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="il8-A2-VxN" id="I1q-Ir-EPS"/>
+                                            <outlet property="delegate" destination="il8-A2-VxN" id="a6i-ZZ-nWl"/>
                                         </connections>
                                     </tableView>
                                 </subviews>
@@ -3558,6 +3568,7 @@
                     <connections>
                         <outlet property="minDisplayLabel" destination="AKO-EJ-m7V" id="SDZ-V6-4FT"/>
                         <outlet property="myTableView" destination="CDF-eO-5gi" id="DqP-4g-5hC"/>
+                        <outlet property="myTableViewNama" destination="QW7-An-qnB" id="xam-Rr-ehW"/>
                         <outlet property="myView" destination="GHJ-Af-4mD" id="DNF-Gu-7Lo"/>
                         <outlet property="outletDone" destination="Wia-0e-JFf" id="VAH-8P-nx5"/>
                         <outlet property="outletEAPP" destination="Kwo-10-LlC" id="1Wc-w5-MU7"/>

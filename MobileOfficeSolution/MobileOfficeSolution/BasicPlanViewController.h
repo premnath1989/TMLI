@@ -83,6 +83,7 @@
     double MDBKK;
     NSMutableArray *arrExistRiderCode;
     NSMutableArray *arrExistPlanChoice;
+    NSDictionary *TMLISaveplan;
     
     BOOL planChanged;
     

@@ -2271,42 +2271,64 @@ bool WPTPD30RisDeleted = FALSE;
 
 -(NSMutableDictionary *)setDataBasicPlan{
     @try {
-        NSString *discountText;
-        NSString *purchaseNumberText;
-        if (!_KKLKDiskaunBtn.text){
-            discountText=@"";
-        }
-        else{
-            discountText=_KKLKDiskaunBtn.text;
+        
+        NSString *_AgentCode;
+        
+        NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *docsPath2 = [paths2 objectAtIndex:0];
+        NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        
+        
+        FMDatabase *database = [FMDatabase databaseWithPath:path2];
+        [database open];
+        FMResultSet *results;
+        results = [database executeQuery:@"select AgentCode,AgentName from Agent_profile"];
+        
+        FMDatabase *database1 = [FMDatabase databaseWithPath:path2];
+        if (![database open]) {
+            NSLog(@"Could not open db.");
         }
         
-        if (!_KKLKPembelianKeBtn.titleLabel.text){
-            purchaseNumberText=@"";
-        }
-        else{
-            purchaseNumberText=_KKLKPembelianKeBtn.titleLabel.text;
+        while([results next])
+            
+        {
+            _AgentCode  = [results stringForColumn:@"AgentCode"];
         }
         
-        NSNumber* discount=[classFormatter convertAnyNonDecimalNumberToString:_KKLKDiskaunBtn.text];
-        NSNumber* totalPremi=[classFormatter convertAnyNonDecimalNumberToString:_totalPremiWithLoadingField.text];
         
-        double totalPremiWODiscount = [totalPremi doubleValue]+[discount doubleValue];
+        
+        //generate SINo || CustCode
+        NSDate *currDate = [NSDate date];
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        //[dateFormatter setDateFormat:@"YYYYMMddHHmmss"];
+        [dateFormatter setDateFormat:@"YYMMdd"];
+        NSString *dateString = [dateFormatter stringFromDate:currDate];
+        NSLog(@"%@",dateString);
+        
+        
+        NSDate *currDate1 = [NSDate date];
+        NSDateFormatter *dateFormatter1 = [[NSDateFormatter alloc]init];
+        //[dateFormatter setDateFormat:@"YYYYMMddHHmmss"];
+        [dateFormatter1 setDateFormat:@"HHmmss"];
+        NSString *dateString1 = [dateFormatter1 stringFromDate:currDate1];
+        NSLog(@"%@",dateString1);
+
+        
+        NSString *SINOBCA =[NSString stringWithFormat:@"%@_%@_%@",_AgentCode,dateString,dateString1];
+        
+        
+        
         NSMutableDictionary *dictionaryBasicPlan=[[NSMutableDictionary alloc]initWithObjectsAndKeys:
+                                                  SINOBCA,@"SI_Number",
                                                   yearlyIncomeField.text,@"Sum_Assured",
                                                   //[classFormatter convertNumberFromString:yearlyIncomeField.text],@"Number_Sum_Assured",
                                                   [classFormatter convertAnyNonDecimalNumberToString:yearlyIncomeField.text],@"Number_Sum_Assured",
-                                                  _masaPembayaranButton.titleLabel.text,@"Payment_Term",
+                                                  _masaPembayaranButton.titleLabel.text,@"Produk_Name",
                                                   _frekuensiPembayaranButton.titleLabel.text,@"Payment_Frequency",
-                                                  _basicPremiField.text,@"PremiumPolicyA",
-                                                  _extraPremiPercentField.text,@"ExtraPremiumPercentage",
-                                                  _extraPremiNumberField.text,@"ExtraPremiumSum",
-                                                  _masaExtraPremiField.text,@"ExtraPremiumTerm",
-                                                  _extraBasicPremiField.text,@"ExtraPremiumPolicy",
-                                                  _totalPremiWithLoadingField.text,@"TotalPremiumLoading",
-                                                  _basicPremiFieldAfterDiscount.text,@"SubTotalPremium",
-                                                  discountText,@"Discount",
-                                                  purchaseNumberText,@"PurchaseNumber",
-                                                  [classFormatter numberToCurrencyDecimalFormatted:[NSNumber numberWithDouble:totalPremiWODiscount]],@"TotalPremiWithoutDiscount",nil];
+                                                  _MataUangPembayaran.titleLabel.text,@"Payment_Currency",
+                                                  _BasicPremiiField.text,@"Basic_Premi",
+                                                  _PremiTopUpRegularField.text,@"Premi_TopUp",
+                                                  _TotalPremiField.text,@"Total_Premi",nil];
         return dictionaryBasicPlan;
         
     }
