@@ -292,6 +292,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnCallEnd;
 @property (strong, nonatomic) IBOutlet UITextField *txtCallStart;
 @property (strong, nonatomic) IBOutlet UITextField *txtCallEnd;
+@property (strong, nonatomic) IBOutlet UITextField *txtAge;
 
 
 - (IBAction)ActionCallStart:(id)sender;
@@ -398,5 +399,16 @@
 
 -(void)keyboardDidShow:(NSNotificationCenter *)notification;
 -(void)keyboardDidHide:(NSNotificationCenter *)notification;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
+- (IBAction)ActionFavorite:(id)sender;
+@property (strong, nonatomic) IBOutlet UIButton *Score;
+
+
+@property (strong, nonatomic) IBOutlet UIButton *btnsave2;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnSave;
+- (IBAction)ActionSave:(id)sender;
+
 
 @end

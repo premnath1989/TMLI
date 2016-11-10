@@ -315,7 +315,7 @@ bool PolicyOwnerSigned = TRUE;
     outletDelete.titleLabel.shadowColor = [UIColor lightGrayColor];
     outletDelete.titleLabel.shadowOffset = CGSizeMake(0, -1);
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(btnSave:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(btnSave:)];
     self.navigationItem.rightBarButtonItem.tintColor = borderColor;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Daftar Nasabah" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
@@ -11951,6 +11951,11 @@ bool PolicyOwnerSigned = TRUE;
     [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 }
 
+- (IBAction)ActionSave:(id)sender {
+    
+    [self btnSave:nil];
+}
+
 - (IBAction)ActionAnnualIncome:(id)sender {
     
     [self resignFirstResponder];
@@ -12117,7 +12122,7 @@ bool PolicyOwnerSigned = TRUE;
     
     //    NSLog(@"You live since %i years and %i days",years,days);
     age = years;
-    
+    _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
 }
 
