@@ -352,7 +352,7 @@ bool isEndTime;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Daftar Nasabah" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(btnSave_EditOrNew)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(btnSave_EditOrNew)];
 
     self.navigationItem.leftBarButtonItem.tintColor = borderColor;
 	self.navigationItem.rightBarButtonItem.tintColor = borderColor;
@@ -3264,6 +3264,11 @@ bool isEndTime;
     
 }
 
+- (IBAction)ActionSave:(id)sender {
+    [self btnSave_EditOrNew];
+    
+}
+
 -(void) CalculateScore {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -3397,6 +3402,7 @@ bool isEndTime;
     
 //    NSLog(@"You live since %i years and %i days",years,days);
     age = years;
+    _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
    
 }
@@ -6704,4 +6710,6 @@ bool isEndTime;
 }
 
 
+- (IBAction)ActionFavorite:(id)sender {
+}
 @end

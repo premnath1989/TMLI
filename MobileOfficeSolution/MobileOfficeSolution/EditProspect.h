@@ -337,6 +337,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnCallEnd;
 @property (strong, nonatomic) IBOutlet UITextField *txtCallStart;
 @property (strong, nonatomic) IBOutlet UITextField *txtCallEnd;
+@property (strong, nonatomic) IBOutlet UITextField *txtAge;
+
 
 
 - (IBAction)ActionGender:(id)sender;
@@ -388,6 +390,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *BtnAnnualIncome;
 @property (strong, nonatomic) IBOutlet UIButton *btnSourceIncome;
 @property (weak, nonatomic) IBOutlet UITextView *txtRemark;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnSave2;
+- (IBAction)ActionSave:(id)sender;
+
 
 
 - (IBAction)ActionAnnualIncome:(id)sender;
