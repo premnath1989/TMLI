@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
             <objects>
                 <viewController storyboardIdentifier="Prospect" title="Prospect" id="CEO-Xo-hVe" customClass="ProspectViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="SV4-EF-z8N">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" id="W3B-ya-3sF">
@@ -91,7 +91,7 @@
                                                 <fragment content="       Pekerjaan">
                                                     <attributes>
                                                         <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
+                                                        <font key="NSFont" size="24" name=".SFNSDisplay"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -832,7 +832,7 @@
             <objects>
                 <viewController storyboardIdentifier="newClientListing" title="Client Listing" id="R2U-dm-XLx" customClass="ProspectListing" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="TxC-Ih-Pwh">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Q91-H7-iSR">
@@ -941,6 +941,14 @@
                                         </state>
                                         <connections>
                                             <action selector="deletePressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="NJC-nh-h0u"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hph-qc-tmX">
+                                        <frame key="frameInset" minX="510" minY="146" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="R2U-dm-XLx" eventType="touchUpInside" id="p8g-EV-wNK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1189,7 +1197,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditProspect" title="EditProspect" id="Few-sZ-jKx" customClass="EditProspect" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cwk-fL-cKg">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="jaE-AU-tI1">
@@ -1261,7 +1269,7 @@
                                                         <fragment content="       Pekerjaan">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
+                                                                <font key="NSFont" size="24" name=".SFNSDisplay"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -1296,7 +1304,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="RJf-yD-TQs" userLabel="DataPribadiCV">
-                                        <rect key="frame" x="1" y="70" width="3070" height="2124"/>
+                                        <rect key="frame" x="1" y="70" width="4094" height="2872"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHe-uD-ePQ">
@@ -1638,7 +1646,7 @@
                                         <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="7bo-Yb-rMF" userLabel="AlamatCV">
-                                        <rect key="frame" x="0.0" y="70" width="3072" height="2164"/>
+                                        <rect key="frame" x="0.0" y="70" width="4096" height="2912"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Korespondensi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRn-dc-SRX">
@@ -1829,7 +1837,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="q0E-rR-Y2J" userLabel="PekerjaanCV">
-                                        <rect key="frame" x="0.0" y="70" width="3072" height="2124"/>
+                                        <rect key="frame" x="0.0" y="70" width="4096" height="2872"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MJ8-cH-n73">
@@ -2028,7 +2036,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProspectBak" title="Prospect" id="RkG-rc-Sdh" customClass="ProspectViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="G1J-MT-vB0">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="sFf-bd-al7">
@@ -4455,7 +4463,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditProspect2" title="EditProspect2" id="1hq-AT-yQq" customClass="EditProspect" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t3x-09-Vkj">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="xpt-Gm-N6Q">
@@ -6899,7 +6907,7 @@
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

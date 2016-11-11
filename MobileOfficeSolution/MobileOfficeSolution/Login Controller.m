@@ -41,12 +41,12 @@
         
         [_imageViewBackground setImage:[UIImage imageNamed:@"photo_login_tertiary"]];
         
-            /* INCLUDE */
-            
-            DescriptorController *viewDescriptorController = [[DescriptorController alloc] initWithNibName:@"Descriptor View" bundle:nil];
-            viewDescriptorController.view.frame = _viewDescriptor.bounds;
-            [self addChildViewController:viewDescriptorController];
-            [_viewDescriptor addSubview:viewDescriptorController.view];
+        /* INCLUDE */
+        
+        DescriptorController *viewDescriptorController = [[DescriptorController alloc] initWithNibName:@"Descriptor View" bundle:nil];
+        viewDescriptorController.view.frame = _viewDescriptor.bounds;
+        [self addChildViewController:viewDescriptorController];
+        [_viewDescriptor addSubview:viewDescriptorController.view];
         
         
         // LOCALIZABLE
@@ -61,7 +61,18 @@
         
         _textFieldUserCode.text = NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_USERCODE", nil);
         _textFieldUserPassword.text = NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_PASSWORD", nil);
+        
+        
+        UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+        [self.view addGestureRecognizer:gr];
     }
+
+
+
+    - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
+        NSLog(@"got a tap, but not where i need it");
+    }
+
 
 
     /* DID RECEIVE MEMORY WARNING */
@@ -90,6 +101,10 @@
         [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     }
 
+    - (IBAction)navigationShow:(id)sender
+    {
+        [_objectUserInterface navigationShow:self];
+    }
 
     /* KEYBOARD */
 

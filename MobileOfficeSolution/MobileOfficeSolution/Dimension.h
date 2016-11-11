@@ -91,6 +91,7 @@
 // NAVIGATION
 
     extern int const NAVIGATION_WIDTH_CONTAINER;
+    extern int const NAVIGATION_HEIGHT_CONTAINER;
     extern int const NAVIGATION_HEIGHT_GRIP;
 
     /* PROFILE */

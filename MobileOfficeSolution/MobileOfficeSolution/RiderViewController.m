@@ -6355,11 +6355,7 @@ int maxGycc = 0;
     {
         cell.textLabel.text = _cellText;
     }
-
-   
-
-    
-
+    return cell;
 }
 
 

@@ -30,6 +30,9 @@
         [super viewDidLoad];
         // Do any additional setup after loading the view.
         
+        UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+        [self.view addGestureRecognizer:gr];
+        
         // DECLARATION
         
         _objectUserInterface = [[UserInterface alloc] init];
@@ -59,6 +62,10 @@
             [_buttonDetailSI setTitle:NSLocalizedString(@"NAVIGATION_DETAIL_SI", nil) forState:UIControlStateNormal];
             [_buttonDetailSPAJ setTitle:NSLocalizedString(@"NAVIGATION_DETAIL_SPAJ", nil) forState:UIControlStateNormal];
             [_buttonDetailPolicyReceipt setTitle:NSLocalizedString(@"NAVIGATION_DETAIL_POLICYRECEIPT", nil) forState:UIControlStateNormal];
+    }
+
+    - (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
+        NSLog(@"got a tap on navigation, but not where i need it");
     }
 
     /* DID RECEIVE MEMORY WARNING */

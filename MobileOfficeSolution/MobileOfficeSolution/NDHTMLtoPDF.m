@@ -212,13 +212,18 @@ BOOL isExport;
 
 @implementation UIPrintPageRenderer (PDF)
 
+- (void)drawHeaderForPageAtIndex:(NSInteger)pageIndex inRect:(CGRect)headerRect{
+    
+}
+
+- (void)drawFooterForPageAtIndex:(NSInteger)pageIndex inRect:(CGRect)footerRect{
+    
+}
+
 - (NSData*) printToPDF
 {
     
     NSMutableData *pdfData = [NSMutableData data];
-    
-    
-
     
     //UIGraphicsBeginPDFContextToData( pdfData, CGRectMake(0, 0, 842, 595), nil );//working
     //UIGraphicsBeginPDFContextToData( pdfData, CGRectZero, nil ); //ori

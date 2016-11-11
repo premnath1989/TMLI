@@ -11,7 +11,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "User Interface.h";
+#import "User Interface.h"
+#import "Navigation Controller.h"
+
 
 
 // INTERFACE
@@ -25,6 +27,7 @@
     /* VIEW */
 
     @property (nonatomic, weak) IBOutlet UIView *viewDescriptor;
+    @property (nonatomic, weak) IBOutlet UIView *viewNavigation;
     @property (nonatomic, weak) IBOutlet UIView *viewMain;
 
     /* TEXTFIELD */

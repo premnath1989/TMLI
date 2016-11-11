@@ -17,6 +17,7 @@
 #import "IDTypeViewController.h"
 #import "MBProgressHUD.h"
 #import "ClearData.h"
+#import "User Interface.h"
 #import "Cleanup.h"
 
 
@@ -236,6 +237,12 @@ MBProgressHUD *HUD;
         //return [ProspectTableData count]+1;
         return [ProspectTableData count];
     }
+}
+
+- (IBAction)navigationShow:(id)sender
+{
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface navigationShow:self];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

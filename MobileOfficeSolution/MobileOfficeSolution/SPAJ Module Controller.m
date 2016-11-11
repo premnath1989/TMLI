@@ -132,7 +132,7 @@
 
     - (IBAction)navigationShow:(id)sender
     {
-        [_objectUserInterface navigationShow:self.viewMain];
+        [_objectUserInterface navigationShow:self];
     }
 
 
