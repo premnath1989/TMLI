@@ -245,6 +245,12 @@ MBProgressHUD *HUD;
     [_objectUserInterface navigationShow:self];
 }
 
+- (IBAction)navigationHide:(id)sender
+{
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface navigationHide:self];
+}
+
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Remove seperator inset

@@ -106,6 +106,12 @@
         [_objectUserInterface navigationShow:self];
     }
 
+    - (IBAction)navigationHide:(id)sender
+    {
+        [_objectUserInterface navigationHide:self];
+    }
+
+
     /* KEYBOARD */
 
     - (void) keyboardShow: (NSNotification *) notificationKeyboard

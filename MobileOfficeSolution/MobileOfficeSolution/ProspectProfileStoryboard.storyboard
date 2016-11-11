@@ -1008,11 +1008,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zth-sh-1lY">
-                                        <frame key="frameInset" minX="478" minY="137" width="46" height="30"/>
+                                        <frame key="frameInset" minX="482" minY="137" width="38" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Show"/>
                                         <connections>
                                             <action selector="navigationShow:" destination="R2U-dm-XLx" eventType="touchUpInside" id="nT8-cJ-1B7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4j1-ES-IsA">
+                                        <frame key="frameInset" minX="411" minY="149" width="32" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Hide"/>
+                                        <connections>
+                                            <action selector="navigationHide:" destination="R2U-dm-XLx" eventType="touchUpInside" id="gUh-xj-RhW"/>
                                         </connections>
                                     </button>
                                 </subviews>

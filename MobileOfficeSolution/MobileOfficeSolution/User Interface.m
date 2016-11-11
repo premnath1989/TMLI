@@ -79,16 +79,30 @@
         
         if (viewMain.view.frame.origin.x != 0)
         {
-            viewMain.view.frame = CGRectMake(viewMain.view.frame.origin.x - NAVIGATION_WIDTH_CONTAINER, viewMain.view.frame.origin.y, viewMain.view.frame.size.width, viewMain.view.frame.size.height);
+            for(UIView *subview in [viewMain.view subviews]){
+                subview.frame = CGRectMake(subview.frame.origin.x - NAVIGATION_WIDTH_CONTAINER, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
+            }
         }
         else
         {
             for(UIView *subview in [viewMain.view subviews]){
                 subview.frame = CGRectMake(subview.frame.origin.x + NAVIGATION_WIDTH_CONTAINER, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
-                NSLog(@"class of %@", [subview class]);
-                
             }
         }
+        [UIStackView commitAnimations];
+    }
+
+    -(void) navigationHide:(UIViewController *) viewMain
+    {
+        [UIStackView beginAnimations:nil context:nil];
+        [UIStackView setAnimationDuration:0.25];
+        [UIStackView setAnimationDelay:0.0];
+        [UIStackView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        for(UIView *subview in [viewMain.view subviews]){
+            subview.frame = CGRectMake(subview.frame.origin.x - NAVIGATION_WIDTH_CONTAINER, subview.frame.origin.y, subview.frame.size.width, subview.frame.size.height);
+        }
+        
         [UIStackView commitAnimations];
     }
 

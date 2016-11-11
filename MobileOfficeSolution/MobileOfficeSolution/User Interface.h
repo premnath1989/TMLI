@@ -28,6 +28,7 @@
     - (void) navigationExpand : (UIStackView*) stackViewDetail;
 
     - (void) navigationShow : (UIViewController*) viewMain;
+    - (void) navigationHide : (UIViewController*) viewMain;
 
     - (void) headerShow : (UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin booleanShow : (Boolean) booleanShow;
 
