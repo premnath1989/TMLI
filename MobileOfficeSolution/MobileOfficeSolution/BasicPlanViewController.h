@@ -26,6 +26,7 @@
 #import "Formatter.h"
 #import "RiderCalculation.h"
 #import "HeritageCalculation.h"
+#import "RencanaViewController.h"
 
 @class BasicPlanViewController;
 @protocol BasicPlanViewControllerDelegate
@@ -44,7 +45,7 @@
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan;
 @end
 
-@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate,FrekuensiListDelegate>{
+@interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,RencanaListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate,FrekuensiListDelegate>{
     Formatter* classFormatter;
     HeritageCalculation* heritageCalculation;
     
@@ -59,6 +60,7 @@
     RiderCalculation *riderCalculation;
     PlanList *_planList;
     Currency *_CurrencyList;
+    RencanaViewController *_RencanaList;
     MasaPembayaran*_masaPembayaran;
     Frekeunsi*_frekuensiList;
     FrekuensiTwo*_frekuensiTwoList;
@@ -112,11 +114,17 @@
     IBOutlet UILabel* labelTotalPremiAfterDiscount;
     IBOutlet UILabel* labelExtraPremi;
     IBOutlet UILabel* labelTotalPremi;
+    
 }
 
-@property (nonatomic, retain) UIPopoverController *planPopover;
+- (IBAction)RencanaBasicPlan:(id)sender;
+- (IBAction)RencanaBasicPlanDRpDown:(id)sender;
+
+@property(nonatomic, retain) UIPopoverController *planPopover;
+@property (strong, nonatomic) IBOutlet UIButton *RencanaButton;
 @property (nonatomic, retain) PlanList *planList;
 @property (nonatomic, retain) Currency *currencyList;
+@property (nonatomic, retain) RencanaViewController *RencanaList;
 @property (nonatomic, retain) FrekuensiTwo *frekuensiTwoList;
 @property (nonatomic, retain) MasaPembayaran *_masaPembayaran;
 @property (nonatomic, retain) Frekeunsi*frekuensiList;

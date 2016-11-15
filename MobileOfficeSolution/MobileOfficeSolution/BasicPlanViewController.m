@@ -5421,6 +5421,8 @@ bool WPTPD30RisDeleted = FALSE;
     NSString *FrekuensiPembayaran1 =@"Frekuensi Pembayaran harus diisi";
     NSString *BasicPremi =@"Basic Premi harus diisi";
     NSString *PremiTopUpRegularField =@"Premi Top Up Regular harus diisi";
+    NSString *RencanaField =@"Rencana harus diisi";
+    NSString *RencanaFieldValue =@"Rencana Max : 5";
     
     NSString *ValidationPremiDasar;
     NSString *ValidationPremiTopUp;
@@ -5476,20 +5478,21 @@ bool WPTPD30RisDeleted = FALSE;
        [_BasicPremiiField becomeFirstResponder];
         return false;
     }
+ //Premi-TopUp is not mandatory
+//    else if ([_PremiTopUpRegularField.text isEqualToString:@""]||_PremiTopUpRegularField.text==NULL)
+//    {
+//        [self createAlertViewAndShow:PremiTopUpRegularField tag:0];
+//        [_PremiTopUpRegularField becomeFirstResponder];
+//        return false;
+//    }
     
-    else if ([_PremiTopUpRegularField.text isEqualToString:@""]||_PremiTopUpRegularField.text==NULL)
-    {
-        [self createAlertViewAndShow:PremiTopUpRegularField tag:0];
-        [_PremiTopUpRegularField becomeFirstResponder];
-        return false;
-    }
     
-    else if (sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
-    {
-        [self createAlertViewAndShow:ValidationPremiTopUp tag:0];
-        [_PremiTopUpRegularField becomeFirstResponder];
-        return false;
-    }
+//    else if (sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
+//    {
+//        [self createAlertViewAndShow:ValidationPremiTopUp tag:0];
+//        [_PremiTopUpRegularField becomeFirstResponder];
+//        return false;
+//    }
     
     else if (sumMinBasicPremiUangPertanggunganTotal < sumMinBasicPremiUangPertanggunganTotalValue)
     {
@@ -5497,6 +5500,14 @@ bool WPTPD30RisDeleted = FALSE;
         [yearlyIncomeField becomeFirstResponder];
         return false;
     }
+    
+    else if ([validationSet containsObject:_RencanaButton.titleLabel.text]||_RencanaButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:RencanaField tag:0];
+        [_RencanaButton setBackgroundColor:[UIColor redColor]];
+        return false;
+    }
+
 
 
 
@@ -5967,8 +5978,8 @@ bool WPTPD30RisDeleted = FALSE;
     [self calculateRiderPremi];
 
 }
-
--(void)Planlisting:(MasaPembayaran *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc{
+-(void)Planlisting:(MasaPembayaran *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc :(NSString *)aaMaxAgePO :(NSString *)aaMinAgePO :(NSString *)aaMaxAgeLA :(NSString *)aaMinAgeLA
+{
   
     [_masaPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
     [self.planPopover dismissPopoverAnimated:YES];
@@ -5985,9 +5996,22 @@ bool WPTPD30RisDeleted = FALSE;
     _PremiTopUp.text = @"";
     _SumAssLbl.text =@"";
     
+    
     FrekuensiPembayaranChecking = aaDesc;
     
     _ProductTittle.text = aaDesc;
+    
+    if([_ProductTittle.text isEqualToString:@"TM Maximum Investment Plan(MIP Plus)"]
+        ||
+        [_ProductTittle.text isEqualToString:@"TM Maximum Investment Plan(MIP)"])
+    {
+        _MataUangPembayaran.enabled = TRUE;
+    }
+    else
+    {
+        _MataUangPembayaran.enabled = false;
+         [_MataUangPembayaran setTitle:@"Rupiah" forState:normal];
+    }
     
     [_basicPremiField setText:[NSString stringWithFormat:@"%@",@"0"]];
     
@@ -6014,10 +6038,25 @@ bool WPTPD30RisDeleted = FALSE;
     
 }
 
--(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP;
+-(void)Rencanalisting:(RencanaViewController *)inController didSelectCode:(NSString *)aaDesc;
+{
+    
+    
+    [_RencanaButton setTitle:aaDesc forState:normal];
+    
+    
+    
+    [self.planPopover dismissPopoverAnimated:YES];
+    
+}
+
+
+
+-(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP :(NSString *)aaRencana;
 {
     
     [_frekuensiPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
+   
     
     MinBasicPremiValue = aaMinAmount;
     MinTopUpRegularValue = aaMaxAmount;
@@ -6090,7 +6129,7 @@ bool WPTPD30RisDeleted = FALSE;
 
     _TotalPremiField.text = [NSString stringWithFormat:@" %lld", SumToltal2];
     
-    long long Sumtotal3 = SumToltal2 * 5;
+    long long Sumtotal3 = sumBasicPremiValue * 5;
     _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
     
     SumTotalUangPertanggungan =  [NSString stringWithFormat:@" %lld", Sumtotal3];
@@ -6272,5 +6311,20 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 - (IBAction)KKLKDiskon:(id)sender {
+}
+
+- (IBAction)RencanaBasicPlan:(id)sender
+{
+    self.RencanaList = [[RencanaViewController alloc] init];
+    _RencanaList.delegate = self;
+   // self.currencyList.CurrencyType = getPlanCode;
+    self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_RencanaList];
+    
+    
+    CGRect rect = [sender frame];
+    rect.origin.y = [sender frame].origin.y + 30;
+    
+    [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
+    [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
 @end

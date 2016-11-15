@@ -117,6 +117,7 @@ int maxGycc = 0;
     ridNotAffected = [NSArray arrayWithObjects: @"ACIR_MPP", @"CIR", @"ICR", @"LCPR", @"LCWP", @"PLCP", @"PTR", @"PR", @"SP_PRE",@"SP_STD" , nil];
     
     //myView.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg10.jpg"]];
+    _AddPlanArray =  [[NSMutableArray alloc] init];
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
@@ -6309,25 +6310,25 @@ int maxGycc = 0;
 {
     //return [LTypeRiderCode count];
     
-    return [_dictionaryForBasicPlan count];
+    return [_RiderListTMLI count];
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Remove seperator inset
-    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-        [cell setSeparatorInset:UIEdgeInsetsZero];
-    }
-    
-    // Prevent the cell from inheriting the Table View's margin settings
-    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
-        [cell setPreservesSuperviewLayoutMargins:NO];
-    }
-    
-    // Explictly set your cell's layout margins
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-    }
+//    // Remove seperator inset
+//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+//        [cell setSeparatorInset:UIEdgeInsetsZero];
+//    }
+//    
+//    // Prevent the cell from inheriting the Table View's margin settings
+//    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+//        [cell setPreservesSuperviewLayoutMargins:NO];
+//    }
+//    
+//    // Explictly set your cell's layout margins
+//    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+//        [cell setLayoutMargins:UIEdgeInsetsZero];
+//    }
 
     
 }
@@ -6353,9 +6354,16 @@ int maxGycc = 0;
     
     if([tableView isEqual:_myTableViewNama])
     {
-        cell.textLabel.text = _cellText;
+        if (_AddPlanArray.count > indexPath.row)
+        {
+            cell.textLabel.text = [_AddPlanArray objectAtIndex:indexPath.row];
+
+        }
+        
+        
     }
     return cell;
+
 }
 
 
@@ -6368,10 +6376,72 @@ int maxGycc = 0;
     //currentCell.frame = CGRectMake(currentCell.frame.origin.x, currentCell.frame.origin.y, 750, currentCell.frame.size.height);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     _cellText = cell.textLabel.text;
+    
+    
+    
+   
+    if ( [_AddPlanArray containsObject: _cellText] )
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
+                                                        message:@"Ansuransi sudahpun dipilih"
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        
+        [alert show];
+    }
+    else
+    {
+        [_AddPlanArray addObject:_cellText];
+        NSLog(@"Array - %@", _AddPlanArray);
+        
+        if([_cellText isEqualToString:@"CI 55 (CI additional)"])
+        {
+            [self CriticalIllness];
+        }
+        else if ([_cellText isEqualToString:@"Hospital Cash Plan"])
+        {
+             [self HospitalCashPlan];
+        }
+        else if ([_cellText isEqualToString:@"Personal Accident (PA)"])
+        {
+            [self CriticalIllness];
+        }
+        
+    }
+                 
+    
+    
+    NSMutableDictionary *AnsuransiTambahanList = [NSDictionary dictionaryWithObject:_AddPlanArray forKey:@"SafeRiderList"];
+    
+    
     [_myTableViewNama reloadData];
     
   
 }
+
+-(void)CriticalIllness
+{
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+    CriticalIlnessViewController *CriticalVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"CriticalIllnessVC"];
+   // CriticalVC.delegate=self;
+    
+    
+    CriticalVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:CriticalVC animated:YES completion:nil];
+
+}
+                 
+-(void)HospitalCashPlan
+{
+            UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+            HospitalCashPlanViewController *HospitalCashPlanVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"HospitalCashPlanVC"];
+            // CriticalVC.delegate=self;
+            
+            
+            HospitalCashPlanVC.modalPresentationStyle = UIModalPresentationFormSheet;
+            [self presentViewController:HospitalCashPlanVC animated:YES completion:nil];
+            
+}
+
 
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {

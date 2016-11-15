@@ -13,7 +13,7 @@
 @end
 
 @implementation FrekuensiTwo
-@synthesize ListOfFrekuensi,ListOfValue,ListOfValueMax,ListOfMOP,ProductCode,CurrencySelected,ListOfValueMaximum1,ListOfValueMaximum2;
+@synthesize ListOfFrekuensi,ListOfValue,ListOfValueMax,ListOfMOP,ProductCode,CurrencySelected,ListOfValueMaximum1,ListOfValueMaximum2,ListOfRencana;
 @synthesize delegate;
 
 -(id)init {
@@ -34,6 +34,7 @@
         ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 18,000,000", @" 9,000,000",@" 4,500,000",@" 1,500,000", @"" ,nil ];
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
 
     }
     else if([ProductCode isEqualToString:@"3FE"]&&[CurrencySelected isEqualToString:@"Rupiah"])//Proteksiku
@@ -42,6 +43,7 @@
         ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 2,400,000", @" 1,200,000",@" 600,000",@" 200,000", @"" ,nil ];
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
 
         
     }
@@ -53,6 +55,7 @@
         ListOfValueMaximum1  =  [[NSMutableArray alloc] initWithObjects:@" 499,999,999", @" 249,999,999",@" 124,999,999",@" 44,999,999", @"" ,nil ];
         //Premi_RegularTopUp
         ListOfValueMax  = [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
        
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
         
@@ -68,6 +71,7 @@
         //Premi_RegularTopUp
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 100", @" 50",@" 25",@" 10", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
         
         
     }
@@ -82,6 +86,8 @@
         ListOfValueMax  = [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
+        
         
         
         
@@ -98,6 +104,7 @@
         //Premi_RegularTopUp
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 100", @" 50",@" 25",@" 10", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
         
         
     }
@@ -110,6 +117,8 @@
         ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 18,000,000", @" 9,000,000",@" 4,500,000",@" 1,500,000", @"" ,nil ];
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
+        
 
                
     }
@@ -120,6 +129,7 @@
         ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 18,000,000", @" 9,000,000",@" 4,500,000",@" 1,500,000", @"" ,nil ];
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
+        ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
         
     }
     else if([ProductCode isEqualToString:@"1TE"]&&[CurrencySelected isEqualToString:@"Rupiah"])// Peace of Mind
@@ -175,7 +185,8 @@
 {
     selectedIndex = indexPath.row;
   
-    [delegate Frekuensilisting:self didSelectCode:self.selectedDesc :self.selectedValue :self.selectedValueMax :self.selectedMOP];
+    [delegate Frekuensilisting:self didSelectCode:self.selectedDesc :self.selectedValue :self.selectedValueMax :self.selectedMOP:self.selectedRencana];
+    
    
     [tableView reloadData];
 }
@@ -200,6 +211,12 @@
 {
     return [ListOfMOP objectAtIndex:selectedIndex];
 }
+
+-(NSString *)selectedRencana
+{
+    return [ListOfRencana objectAtIndex:selectedIndex];
+}
+
 
 - (void)viewDidUnload
 {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172DEF891DD55D0C00CDED49 /* CriticalIlnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */; };
+		172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */; };
+		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
@@ -539,6 +542,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriticalIlnessViewController.h; sourceTree = "<group>"; };
+		172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriticalIlnessViewController.m; sourceTree = "<group>"; };
+		172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalCashPlanViewController.h; sourceTree = "<group>"; };
+		172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HospitalCashPlanViewController.m; sourceTree = "<group>"; };
+		17A4F2081DD9A30E00097E90 /* RencanaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RencanaViewController.h; sourceTree = "<group>"; };
+		17A4F2091DD9A30E00097E90 /* RencanaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RencanaViewController.m; sourceTree = "<group>"; };
 		17F7585C1DBDDD6E0003DFCA /* Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Currency.h; sourceTree = "<group>"; };
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
@@ -1865,6 +1874,10 @@
 				DEDC5DB81DAE41680033FE37 /* Illustration Signature */,
 				DEDC5DB61DAE41570033FE37 /* Heritage Calculation */,
 				DEDC5DB91DAE417A0033FE37 /* BasicPlanViewController.h */,
+				172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */,
+				172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */,
+				172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */,
+				172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */,
 				DEDC5DBA1DAE417A0033FE37 /* IlustrationViewController.h */,
 				DEDC5DBB1DAE417A0033FE37 /* IlustrationViewController.m */,
 				DEDC5DBC1DAE417A0033FE37 /* BasicPlanViewController.m */,
@@ -1906,6 +1919,8 @@
 				17F758621DC99E140003DFCA /* FrekuensiTwo.h */,
 				17F758631DC99E140003DFCA /* FrekuensiTwo.m */,
 				DEDC5DE81DAE41B30033FE37 /* Pembelianke.h */,
+				17A4F2081DD9A30E00097E90 /* RencanaViewController.h */,
+				17A4F2091DD9A30E00097E90 /* RencanaViewController.m */,
 				DEDC5DE91DAE41B30033FE37 /* Pembelianke.m */,
 				DEDC5DEA1DAE41B30033FE37 /* MasaPembayaran.h */,
 				DEDC5DEB1DAE41B30033FE37 /* SecondLAHandler.m */,
@@ -3510,6 +3525,7 @@
 				DEDC610A1DAF79350033FE37 /* SPAJ Calon Tertanggung.m in Sources */,
 				DEDC615D1DAF7BD00033FE37 /* Rule.m in Sources */,
 				DEDC61731DAF7BF30033FE37 /* Label.m in Sources */,
+				17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */,
 				DEDC5EB71DAE47680033FE37 /* SIListingPopOver.m in Sources */,
 				DEDC61B01DAF7D9D0033FE37 /* CameraViewController.m in Sources */,
 				DEDC61061DAF79350033FE37 /* SPAJ Submitted List.m in Sources */,
@@ -3570,6 +3586,7 @@
 				DEDC5D2B1DAE39420033FE37 /* ModelCFFTransaction.m in Sources */,
 				DEDC5D311DAE39420033FE37 /* ModelSPAJIDCapture.m in Sources */,
 				DEDC5D281DAE39420033FE37 /* ModelDataReferral.m in Sources */,
+				172DEF891DD55D0C00CDED49 /* CriticalIlnessViewController.m in Sources */,
 				DEDC5DFF1DAE41C00033FE37 /* UIView+viewRecursion.m in Sources */,
 				DEDC5CDC1DAE38B60033FE37 /* textFields.m in Sources */,
 				DEDC5F6F1DAE49AE0033FE37 /* ReaderThumbView.m in Sources */,
@@ -3662,6 +3679,7 @@
 				DEDC5DD21DAE41880033FE37 /* mySmoothLineView.m in Sources */,
 				DEDC5DF71DAE41B30033FE37 /* Frekeunsi.m in Sources */,
 				DEDC5F321DAE48E50033FE37 /* SSKeychainQuery.m in Sources */,
+				172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */,
 				DEDC61831DAF7C270033FE37 /* AllAboutPDFFunctions.m in Sources */,
 				DEDC5C5E1DAE347E0033FE37 /* AppDelegate.m in Sources */,
 				DEDC5E101DAE41FC0033FE37 /* MainClient.m in Sources */,

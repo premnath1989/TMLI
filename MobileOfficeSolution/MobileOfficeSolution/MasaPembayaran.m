@@ -13,7 +13,7 @@
 @end
 
 @implementation MasaPembayaran
-@synthesize ListOfPlan,ListOfCode,selectedCode,selectedDesc, TradOrEver;
+@synthesize ListOfPlan,ListOfCode,selectedCode,selectedDesc, TradOrEver,ListofMaxAgeLA,ListofMinAgeLA,ListofMaxAgePO,ListofMinAgePO;
 @synthesize delegate;
 
 -(id)init {
@@ -29,9 +29,12 @@
 	if([TradOrEver isEqualToString:@"TRAD"]){
 		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Secure100", @"HLA Wealth Plan", nil ];
 		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"S100", @"HLAWP", nil ];
-        ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"TM Link Investasiku",@"TM Link ProteksiKu",@"TM Maximum Investment Plan(MIP)",@"TM Maximum Investment Plan(MIP Plus)",@"TM Link Wealth Accumulation",@"TM Link Wealth Enhancement",@"TM Peace of Mind Accident",nil];
+        ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"TM Link Investasiku",@"TM Link ProteksiKu",@"TM Maximum Investment Plan(MIP)",@"TM Maximum Investment Plan(MIP Plus)",@"TM Link Wealth Accumulation",@"TM Link Wealth Enhancement",nil];
         ListOfCode = [[NSMutableArray alloc] initWithObjects:@"3BE",@"3FE",@"3MI",@"3MD",@"3RP",@"3SP",@"3SP",@"1TE", nil ];
-        
+        ListofMinAgePO = [[NSMutableArray alloc] initWithObjects:@"18",@"18",@"15",@"15",@"18",@"18",nil ];
+        ListofMaxAgePO = [[NSMutableArray alloc] initWithObjects:@"70",@"70",@"70",@"70",@"70",@"70",nil ];
+        ListofMinAgeLA = [[NSMutableArray alloc] initWithObjects:@"15",@"15",@"15",@"15",@"15",@"15",nil ];
+        ListofMaxAgeLA = [[NSMutableArray alloc] initWithObjects:@"70",@"70",@"70",@"70",@"70",@"70",nil ];
 //		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"HLA Wealth Plan", nil ];
 //		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"HLAWP", nil ];
         
@@ -93,9 +96,7 @@
 {
     selectedIndex = indexPath.row;
     
-    
-    [delegate Planlisting:self didSelectCode:self.selectedCode andDesc:self.selectedDesc];
-   
+     [delegate Planlisting:self didSelectCode:self.selectedCode andDesc:self.selectedDesc :self.selectedMaxAgePO :self.selectedMinAgePO :self.selectedMaxAgeLA :self.selectedMinAgeLA];
     
     [tableView reloadData];
 }
@@ -109,6 +110,27 @@
 {
     return [ListOfPlan objectAtIndex:selectedIndex];
 }
+
+-(NSString *)selectedMaxAgePO
+{
+    return [ListofMaxAgePO objectAtIndex:selectedIndex];
+}
+
+-(NSString *)selectedMinAgePO
+{
+    return [ListofMinAgePO objectAtIndex:selectedIndex];
+}
+
+-(NSString *)selectedMaxAgeLA
+{
+    return [ListofMaxAgeLA objectAtIndex:selectedIndex];
+}
+
+-(NSString *)selectedMinAgeLA
+{
+    return [ListofMinAgeLA objectAtIndex:selectedIndex];
+}
+
 
 - (void)viewDidUnload
 {

@@ -20,6 +20,8 @@
 #import "RiderCalculation.h"
 #import "Formatter.h"
 #import "ModelSIRider.h"
+#import "CriticalIlnessViewController.h"
+#import "HospitalCashPlanViewController.h"
 
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
@@ -101,6 +103,7 @@
 
 @property (retain, nonatomic) NSMutableDictionary* dictionaryPOForInsert;
 @property (retain, nonatomic) NSMutableDictionary* dictionaryForBasicPlan;
+@property (retain, nonatomic)NSMutableArray *AddPlanArray;
 
 @property (nonatomic, retain) UIPopoverController *RiderListPopover;
 @property (nonatomic, retain) UIPopoverController *planPopover;

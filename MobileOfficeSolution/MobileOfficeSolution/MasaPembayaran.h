@@ -10,16 +10,22 @@
 
 @class MasaPembayaran;
 @protocol MasaPembayaranDelegate
--(void)Planlisting:(MasaPembayaran *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
+-(void)Planlisting:(MasaPembayaran *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc :(NSString *)aaMaxAgePO :(NSString *)aaMinAgePO :(NSString *)aaMaxAgeLA :(NSString *)aaMinAgeLA;
+
 @end
 
-@interface MasaPembayaran : UITableViewController {
+@interface MasaPembayaran : UITableViewController
+{
     NSUInteger selectedIndex;
     id <MasaPembayaranDelegate> delegate;
 }
 
 @property (retain, nonatomic) NSMutableArray *ListOfPlan;
 @property (retain, nonatomic) NSMutableArray *ListOfCode;
+@property (retain, nonatomic) NSMutableArray *ListofMaxAgePO;
+@property (retain, nonatomic) NSMutableArray *ListofMinAgePO;
+@property (retain, nonatomic) NSMutableArray *ListofMaxAgeLA;
+@property (retain, nonatomic) NSMutableArray *ListofMinAgeLA;
 @property (nonatomic,strong) id <MasaPembayaranDelegate> delegate;
 
 @property (nonatomic,strong) id TradOrEver;

@@ -10,7 +10,7 @@
 
 @class FrekuensiTwo;
 @protocol FrekuensiListDelegate
--(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP;
+-(void)Frekuensilisting:(FrekuensiTwo *)inController didSelectCode:(NSString *)aaDesc :(NSString *)aaMinAmount :(NSString *)aaMaxAmount :(NSString *)aaMOP :(NSString *)aaRencana;
 
 @end
 
@@ -24,6 +24,7 @@
 @property (retain, nonatomic) NSMutableArray *ListOfValueMaximum1,*ListOfValueMaximum2;
 @property (retain, nonatomic) NSMutableArray *ListOfValueMax;
 @property (retain, nonatomic) NSMutableArray *ListOfMOP;
+@property (retain, nonatomic) NSMutableArray *ListOfRencana;
 @property (nonatomic,strong) id <FrekuensiListDelegate> delegate;
 @property (nonatomic,strong) id ProductCode;
 @property (nonatomic,strong) id CurrencySelected;
