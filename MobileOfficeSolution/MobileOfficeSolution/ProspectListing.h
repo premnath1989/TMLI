@@ -100,15 +100,20 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnDelete;
 
 
-//
-
-
-
+//sorting
 @property (strong, nonatomic) IBOutlet UIButton *btnSortFullName;
-@property (strong, nonatomic) IBOutlet UIButton *btnSortDOB;
-@property (strong, nonatomic) IBOutlet UIButton *btnSortBranchName;
+@property (strong, nonatomic) IBOutlet UIButton *btnSortNo;
+@property (strong, nonatomic) IBOutlet UIButton *btnSortHP;
+@property (strong, nonatomic) IBOutlet UIButton *btnSortKualitas;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortDateCreated;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortDateModified;
+@property (strong, nonatomic) IBOutlet UIButton *btnSortStatus;
+
+
+- (IBAction)btnSortBy:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnSortDOB;
+@property (strong, nonatomic) IBOutlet UIButton *btnSortBranchName;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortTimeRemaining;
 
 
@@ -119,7 +124,7 @@
 - (IBAction)deletePressed:(id)sender;
 - (IBAction)editPressed:(id)sender;
 - (IBAction)btnAddNew:(id)sender;
-- (IBAction)btnSortBy:(id)sender;
+
 - (IBAction)segOrderBy:(id)sender;
 - (IBAction)btnDOB:(id)sender;
 

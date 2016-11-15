@@ -131,22 +131,22 @@
 
 - (IBAction)btnDone:(id)sender {
     
-    if (msg == NULL) {
-        
+//    if (msg == NULL) {
+    
         // if msg = null means user din rotate the date...and choose the default date value
-                NSDateFormatter *formatter;
-                NSString        *dateString;
-        
-                formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"HH:mm"];
-        
-                dateString = [formatter stringFromDate:[NSDate date]];
-                msg = dateString;
-        
+//                NSDateFormatter *formatter;
+//                NSString        *dateString;
+//        
+//                formatter = [[NSDateFormatter alloc] init];
+//                [formatter setDateFormat:@"HH:mm"];
+//        
+//                dateString = [formatter stringFromDate:[NSDate date]];
+//                msg = dateString;
+    
         [_delegate TimeSelected:msg :DBDate];
-    }
-    else{
-        
+//    }
+//    else{
+    
 //                NSDateFormatter *formatter;
 //                NSString        *dateString;
 //        
@@ -156,8 +156,8 @@
 //                dateString = [formatter stringFromDate:[NSDate date]];
 //                msg = dateString;
         
-        [_delegate TimeSelected:msg :DBDate];
-    }
+//        [_delegate TimeSelected:msg :DBDate];
+//    }
     
     
     

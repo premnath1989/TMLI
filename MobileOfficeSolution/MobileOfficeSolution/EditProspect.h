@@ -339,6 +339,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtCallEnd;
 @property (strong, nonatomic) IBOutlet UITextField *txtAge;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
+- (IBAction)ActionFavorite:(id)sender;
 
 
 - (IBAction)ActionGender:(id)sender;
@@ -357,6 +359,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr2;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr3;
 @property (strong, nonatomic) IBOutlet UITextField *txtAddress4;
+@property (strong, nonatomic) IBOutlet UITextField *txtRTRW;
 
 @property (weak, nonatomic) IBOutlet UITextField *txtHomePostCode;
 @property (strong, nonatomic) IBOutlet UITextField *TxtKecamatan;

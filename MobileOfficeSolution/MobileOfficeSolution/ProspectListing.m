@@ -41,6 +41,7 @@
 int RecDelete = 0;
 int totalView = 20;
 int TotalData;
+BOOL isSort;
 
 MBProgressHUD *HUD;
 
@@ -56,6 +57,7 @@ MBProgressHUD *HUD;
     [CleanData ClientWipeOff];
     
     sortMethod=@"ASC";
+    isSort = NO;
     
     borderColor=[[UIColor alloc]initWithRed:250.0/255.0 green:175.0/255.0 blue:50.0/255.0 alpha:1.0];
     
@@ -379,16 +381,10 @@ MBProgressHUD *HUD;
 //            [cell1.labelidNum setText:identity];
             cell1.labelidNum.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
             [cell1.labelDOB setText:pp.ProspectDOB];
-//            [cell1.labelBranchName [indexPath.row] + 1];
-//            cell1.labelBranchName.text = @"0";
+
             [cell1.labelBranchName setText:pp.tScore];
-            //[cell1.labelPhone1 setText:@""];
-//            if ([dataPrefix count]>indexPath.row){
-//                cell1.labelPhone1.text= [NSString stringWithFormat:@"%@ - %@",[dataPrefix objectAtIndex:indexPath.row],[dataMobile objectAtIndex:indexPath.row]];
-//            }
-//            else {
-//                cell1.labelPhone1.text = @"";
-//            }
+
+            
             
             cell1.labelPhone1.text = pp.PhoneNoHP;
             
@@ -397,7 +393,18 @@ MBProgressHUD *HUD;
 //            [cell1.labelTimeRemaining setText:DateRemaining];
             cell1.labelTimeRemaining.text = pp.ProspectStatus; //prospectStatus Image
             
-            //cell=cell1;
+            if ([pp.Favorite isEqualToString:@"TRUE"]) {
+                cell1.FavImage.image = [UIImage imageNamed:@"icon_starenable_primary"];
+            }
+            else {
+                cell1.FavImage.image = [UIImage imageNamed:@"icon_stardisable_primary"];
+            }
+        
+            
+            
+            
+            
+            
             return cell1;
             
             /*cell.userInteractionEnabled = YES;
@@ -1050,7 +1057,7 @@ MBProgressHUD *HUD;
                                                                  AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
                                                              AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
                                                            AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@""]];
+                                                         AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:regExempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@"" AndFavorite:@"" AndRTRW:@""]];
             }
             sqlite3_finalize(statement);
             
@@ -1299,22 +1306,17 @@ MBProgressHUD *HUD;
 
 - (IBAction)btnSortBy:(UIButton *)sender
 {
-    /*if (_SortBy == nil) {
-     self.SortBy = [[ClientProfileListingSortBy alloc] initWithStyle:UITableViewStylePlain];
-     _SortBy.delegate = self;
-     self.Popover = [[UIPopoverController alloc] initWithContentViewController:_SortBy];
-     }
-     [self.Popover setPopoverContentSize:CGSizeMake(200, 300)];
-     [self.Popover presentPopoverFromRect:[sender frame ]  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];*/
+
+    isSort = !isSort;
     NSString* sortedBy=sender.titleLabel.text;
     if (sender==_btnSortFullName){
         sortedBy=@"ProspectName";
     }
-    else if (sender==_btnSortDOB){
-        sortedBy=@"ProspectDOB";
+    else if (sender==_btnSortHP){
+        sortedBy=@"PhoneNoHP";
     }
-    else if (sender==_btnSortBranchName){
-        sortedBy=@"BranchName";
+    else if (sender==_btnSortKualitas){
+        sortedBy=@"Score";
     }
     else if (sender==_btnSortDateCreated){
         sortedBy=@"DateCreated";
@@ -1322,19 +1324,24 @@ MBProgressHUD *HUD;
     else if (sender==_btnSortDateModified){
         sortedBy=@"DateModified";
     }
+    else if (sender==_btnSortStatus){
+        sortedBy=@"ProspectStatus";
+    }
     
-    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:@"ProspectName" Method:@"ASC" ID:txtIDNumber.text];
-    
-    [self getMobileNo];
-    TotalData = ProspectTableData.count;
-    [self.myTableView reloadData];
-    
-    if ([sortMethod isEqualToString:@"ASC"]){
+    if (isSort){
         sortMethod=@"DESC";
     }
     else{
         sortMethod=@"ASC";
     }
+    
+    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:sortMethod ID:txtIDNumber.text];
+    
+//    [self getMobileNo];
+    TotalData = ProspectTableData.count;
+    [self.myTableView reloadData];
+    
+   
 }
 
 - (IBAction)searchPressed:(id)sender

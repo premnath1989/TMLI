@@ -58,6 +58,8 @@
     BOOL isStartTime;
     BOOL isEndTime;
     
+    BOOL isFavorite;
+    
 	BOOL Update_record;
     BOOL IC_Hold_Alert;
     BOOL OTHERID_Hold_Alert;
@@ -170,7 +172,9 @@ bool PolicyOwnerSigned = TRUE;
 	ProsGroupArr = [NSMutableArray array];
 	DelGroupArr = [NSMutableArray array];
 	
-	
+    txtHPNo.delegate = self;
+    _txtHPRumah.delegate = self;
+    
     outletDelete.hidden = true;
     HomePostcodeContinue = FALSE;
     OfficePostcodeContinue = FALSE;
@@ -2214,6 +2218,21 @@ bool PolicyOwnerSigned = TRUE;
     [self setTextfieldBorder];
     [self setButtonImageAndTextAlignment];
     
+
+    if ([pp.Favorite isEqualToString:@"TRUE"]) {
+        isFavorite = YES;
+    }
+    else {
+        isFavorite = NO;
+    }
+    
+    if (isFavorite) {
+            [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    }
+    else {
+            [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+        
     txtReferralName.text = pp.ReferralName;
     _txtNamaDepan.text = pp.ProspectName;
     _txtNamaBelakang.text = pp.ProspectLastName;
@@ -2228,6 +2247,10 @@ bool PolicyOwnerSigned = TRUE;
     }
     
     txtDOB.text = pp.ProspectDOB;
+    if (![txtDOB.text isEqualToString:@""]) {
+         [self calculateAge:txtDOB.text];
+    }
+   
     
     if (!(pp.MaritalStatus == NULL || [pp.MaritalStatus isEqualToString:@"- SELECT -"] || [pp.MaritalStatus isEqualToString:@""])) {
         [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", pp.MaritalStatus]forState:UIControlStateNormal];
@@ -2264,6 +2287,8 @@ bool PolicyOwnerSigned = TRUE;
     _txtKota.text = pp.ResidenceAddressTown;
     _txtHomeProvince.text = pp.HomeProvicne;
     txtHomeCountry.text = pp.ResidenceAddressCountry;
+    
+    _txtRTRW.text = pp.RTRW;
     
     if ([txtHomeCountry.text isEqualToString:@"Indonesia"]) {
         _switchCountryHome.selected = NO;
@@ -3881,6 +3906,19 @@ bool PolicyOwnerSigned = TRUE;
         return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
     }
     
+    if ((textField == txtHPNo)||(textField == txtHPNo)){
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+    }
+    if ((textField == _txtHPRumah)||(textField == _txtHPRumah)){
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+    }
+    
     if((checked && textField == txtHomePostCode ) || (checked2 && textField == txtOfficePostCode)) {
         return ((newLength <= CHARACTER_LIMIT_FOREIGN_POSTCODE));
     } else if (textField == txtOfficePostCode || textField == txtHomePostCode) {
@@ -4227,13 +4265,16 @@ bool PolicyOwnerSigned = TRUE;
     [self resignFirstResponder];
     [self.view endEditing:YES];
     
+    NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+    [ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
     Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-	self.CountryList = [[Country alloc] initWithStyle:UITableViewStylePlain];
-	_CountryList.delegate = self;
-	self.CountryListPopover = [[UIPopoverController alloc] initWithContentViewController:_CountryList];
+    self.CountryList = [[Country2 alloc] initWithStyle:UITableViewStylePlain];
+    _CountryList.delegate = self;
+    self.CountryListPopover = [[UIPopoverController alloc] initWithContentViewController:_CountryList];
     [self.CountryListPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	
 }
@@ -4582,6 +4623,10 @@ bool PolicyOwnerSigned = TRUE;
             txtHomeAddr1.text = @"";
             txtHomeAddr2.text=@"";
             txtHomeAddr3.text=@"";
+            _txtAddress4.text = @"";
+            _txtRTRW.text = @"";
+            
+            
             txtHomePostCode.text = @"";
             _txtHomeVillage.text = @"";
             _txtHomeDistrict.text = @"";
@@ -4589,14 +4634,14 @@ bool PolicyOwnerSigned = TRUE;
             txtHomeTown.text = @"";
             txtHomeState.text = @"";
             txtHomeCountry.text = @"";
-            txtHomeTown.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            txtHomeState.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
-            txtHomeCountry.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
+
+//            txtHomeCountry.backgroundColor = [CustomColor colorWithHexString:@"EEEEEE"];
             txtHomeTown.enabled = NO;
             txtHomeState.enabled = NO;
             txtHomeCountry.enabled = NO;
-            txtHomeCountry.hidden = YES;
-            btnHomeCountry.hidden = NO;
+//            txtHomeCountry.hidden = YES;
+//            btnHomeCountry.hidden = NO;
+            btnHomeCountry.enabled = YES;
             _outletKota.hidden=YES;
             _outletProvinsi.hidden=YES;
             
@@ -4626,15 +4671,17 @@ bool PolicyOwnerSigned = TRUE;
             //txtHomeCountry.backgroundColor = [UIColor whiteColor];
             txtHomeTown.enabled = YES;
             txtHomeState.enabled = YES;
-            txtHomeCountry.enabled = NO;
-            txtHomeCountry.hidden = NO;
+            txtHomeCountry.text = @"INDONESIA";
+//            txtHomeCountry.enabled = NO;
+//            txtHomeCountry.hidden = NO;
 
-            btnHomeCountry.hidden = YES;
+//            btnHomeCountry.hidden = YES;
+            btnHomeCountry.enabled = NO;
             _outletKota.hidden=NO;
             _outletProvinsi.hidden=NO;
             
-            txtHomeState.enabled = NO;
-            txtHomeState.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
+//            txtHomeState.enabled = NO;
+//            txtHomeState.backgroundColor = [CustomColor colorWithHexString:@"FFFFFF"];
 			
             
             [txtHomePostCode removeTarget:self action:@selector(EditTextFieldDidChange:) forControlEvents:UIControlEventEditingDidEnd];
@@ -4849,7 +4896,9 @@ bool PolicyOwnerSigned = TRUE;
         _SIDate.delegate = self;
         self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
     }
-    _SIDate.ProspectDOB = pp.ProspectDOB;
+    if (![pp.ProspectDOB isEqualToString:@""]) {
+        _SIDate.ProspectDOB = pp.ProspectDOB;
+    }
     [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
     CGRect butt = [sender frame];
     int y = butt.origin.y - 44;
@@ -4900,6 +4949,21 @@ bool PolicyOwnerSigned = TRUE;
     int y = butt.origin.y - 44;
     butt.origin.y = y;
     [self.OccupationListPopover presentPopoverFromRect:butt  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+    
+}
+
+- (IBAction)ActionFavorite:(id)sender {
+    
+    isFavorite = !(isFavorite) ;
+    
+    if (isFavorite) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    }
+    else {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    
+    
     
 }
 
@@ -5847,7 +5911,7 @@ bool PolicyOwnerSigned = TRUE;
 													  AndOfficeAddress1:OfficeAddress1 AndOfficeAddress2:OfficeAddress2 AndOfficeAddress3:OfficeAddress3 AndOfficeAddressTown:OfficeAddressTown
 												  AndOfficeAddressState:OfficeAddressState AndOfficeAddressPostCode:OfficeAddressPostCode
 												AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
-											  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:RigNumber AndRegistration:registration AndRegistrationDate:RigDate AndRegistrationExempted:registrationexempted AndProspect_IsGrouping:isGroupingLocal AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@""];
+											  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType2 AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:RigNumber AndRegistration:registration AndRegistrationDate:RigDate AndRegistrationExempted:registrationexempted AndProspect_IsGrouping:isGroupingLocal AndCountryOfBirth:COB AndNIP:@"" AndBranchCode:@"" AndBranchName:@"" AndKCU:@"" AndReferralSource:@"" AndReferralName:@"" AndIdentitySubmitted:@"" AndIDExpirityDate:@"" AndNPWPNo:@"" AndKanwil:@"" AndHomeVillage:@"" AndHomeDistrict:@"" AndHomeProvince:@"" AndOfficeVillage:@"" AndOfficeDistrict:@"" AndOfficePorvince:@"" AndSourceIncome:@"" AndClientSegmentation:@"" AndtScore:@"" AndProspectLastName:@"" AndProspectAge:@"" AndPhoneHomeNo:@"" AndPhoneNoHP:@"" AndAddress4:@"" AndKelurahan:@"" AndKecamatan:@"" AndCallStartTime:@"" AndCallEndTime:@"" AndisForeignAdd:@"" AndProspectStatus:@"" AndFavorite:@"" AndRTRW:@""];
                 
             }
             sqlite3_finalize(statement);
@@ -7314,15 +7378,23 @@ bool PolicyOwnerSigned = TRUE;
         
         
         NSString *isforeignAdd = @"NO";
+        
+        NSString *Fav;
+        if (isFavorite) {
+            Fav = @"TRUE";
+        }
+        else
+            Fav = @"FALSE";
+        
         [self CalculateScore];
         [self calculateAge:txtDOB.text];
         
         
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\" where indexNo = \"%@\" "
+                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\", \"isFavorite\"=\"%@\", \"RTRW\"=\"%@\" where indexNo = \"%@\" "
                                     , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
-                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,pp.ProspectID];
+                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,Fav, _txtRTRW.text,pp.ProspectID];
 
         const char *Update_stmt = [insertSQL UTF8String];
         if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
@@ -9174,6 +9246,9 @@ bool PolicyOwnerSigned = TRUE;
     NSString *validationNamaBelakang = @"Nama Belakang harus diisi";
     NSString *validationNoHP = @"Nomor HP Utama harus diisi";
     
+    NSString *validationEmailWrong=@"Anda memasukkan email yang salah. Harap masukkan email yang benar.";
+    NSString *validationEmailCharacter=@"Kesalahan panjang email. Hanya 40 karakter yang dibolehkan";
+    
     
     //textSumberData
     NSString *SumberData = txtReferralName.text;
@@ -9211,6 +9286,18 @@ bool PolicyOwnerSigned = TRUE;
         [self BtnDataPressed:nil];
         return false;
     }
+    else if(![txtEmail.text isEqualToString:@""]) {
+        if( [self NSStringIsValidEmail:txtEmail.text] == FALSE) {
+            [self createAlertViewAndShow:validationEmailWrong tag:0];
+            return false;
+        }
+        
+        if (txtEmail.text.length > 40) {
+            [self createAlertViewAndShow:validationEmailCharacter tag:0];
+            return false;
+        }
+    }
+    
     return valid;
 }
 
@@ -11208,6 +11295,8 @@ bool PolicyOwnerSigned = TRUE;
         [btnHomeCountry setBackgroundColor:[UIColor whiteColor]];
         [btnHomeCountry setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry] forState:UIControlStateNormal];
         [self.CountryListPopover dismissPopoverAnimated:YES];
+        
+        txtHomeCountry.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry];
 		
 		NSString *HomeCountry = @"";
 		HomeCountry = theCountry;
@@ -11227,21 +11316,26 @@ bool PolicyOwnerSigned = TRUE;
 {
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
    
-    if([theCountry isEqualToString:@"- SELECT -"]) {
-        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    } else {
-        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    }
+//    if([theCountry isEqualToString:@"- SELECT -"]) {
+//        
+//        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
+//    } else {
+//        BtnCountryOfBirth.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+//    }
     
-    [BtnCountryOfBirth setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry] forState:UIControlStateNormal];
-    [self.Country2ListPopover dismissPopoverAnimated:YES];
+    txtHomeCountry.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry];
     
-    NSString *COB = @"";
-    COB = theCountry;
-    COB = [self getCountryCode:COB];
-    [ClientProfile setObject:COB forKey:@"CountryOfBirth"];
+//    [BtnCountryOfBirth setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",theCountry] forState:UIControlStateNormal];
+//    [self.Country2ListPopover dismissPopoverAnimated:YES];
+//    
+//    NSString *COB = @"";
+//    COB = theCountry;
+//    COB = [self getCountryCode:COB];
+//    [ClientProfile setObject:COB forKey:@"CountryOfBirth"];
     
 	edited = YES;
+    
+    [self.CountryListPopover dismissPopoverAnimated:YES];
 	
 	[ClientProfile setObject:@"YES" forKey:@"isEdited"];
 	[ClientProfile setObject:@"YES" forKey:@"HasChanged"];
@@ -11752,6 +11846,8 @@ bool PolicyOwnerSigned = TRUE;
             outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
             [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
 //            [outletDOB setBackgroundColor:[UIColor clearColor]];
+            txtDOB.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];
+            [self calculateAge:txtDOB.text];
 
         }
     }
@@ -12114,7 +12210,7 @@ bool PolicyOwnerSigned = TRUE;
     
     NSDate *todayDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     int time = [todayDate timeIntervalSinceDate:[dateFormatter dateFromString:DOBdate]];
     int allDays = (((time/60)/60)/24);
     int days = allDays%365;

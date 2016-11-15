@@ -94,6 +94,7 @@
     NSString* CallEndTime;
     NSString* isForeignAdd;
     NSString* ProspectStatus;
+    NSString* Favorite;
     
     
     //NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -197,6 +198,9 @@
         CallEndTime = [s stringForColumn:@"CallTimeEnd"];
         isForeignAdd = [s stringForColumn:@"IsForeignAddress"];
         ProspectStatus = [s stringForColumn:@"ProspectStatus"];
+        Favorite = [s stringForColumn:@"isFavorite"];
+        NSString* RTRW;
+        RTRW = [s stringForColumn:@"RTRW"];
         
         
         
@@ -210,7 +214,7 @@
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
                                                             AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
-                                                                AndtScore:tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus
+                                                                AndtScore:tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus AndFavorite:Favorite AndRTRW:RTRW
                                       ]];
     }
     [results close];
@@ -439,6 +443,14 @@
         strQuery = [strQuery stringByAppendingFormat:@" QQFlag = 'false'"];
         iswhere = YES;
     }
+    
+    if ([orderBy isEqualToString:@"DateCreated"]||[orderBy isEqualToString:@"DateModified"]){
+         strQuery = [strQuery stringByAppendingFormat: @" order by datetime(%@) %@", orderBy, method];
+    }
+    else {
+         strQuery = [strQuery stringByAppendingFormat: @" order by LOWER(\"%@\") %@", orderBy, method];
+    }
+   
 
     NSLog(@"%@",strQuery);
     
@@ -532,6 +544,10 @@
         CallEndTime = [s stringForColumn:@"CallEndTime"];
         isForeignAdd = [s stringForColumn:@"isForeignAdd"];
         ProspectStatus = [s stringForColumn:@"ProspectStatus"];
+        NSString* Favorite;
+        Favorite = [s stringForColumn:@"isFavorite"];
+        NSString* RTRW;
+        RTRW = [s stringForColumn:@"RTRW"];
         
 
         [ProspectTableData addObject:[[ProspectProfile alloc] initWithName:NickName AndProspectID:ProspectID AndProspectName:ProspectName
@@ -544,7 +560,7 @@
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
                                                             AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
-                                                                AndtScore:(NSString *)tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus
+                                                                AndtScore:(NSString *)tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus AndFavorite:Favorite AndRTRW:RTRW
                                       ]];
     }
     [results close];
@@ -755,6 +771,10 @@
         CallEndTime = [s stringForColumn:@"CallEndTime"];
         isForeignAdd = [s stringForColumn:@"isForeignAdd"];
         ProspectStatus = [s stringForColumn:@"ProspectStatus"];
+        NSString* Favorite;
+        Favorite = [s stringForColumn:@"isFavorite"];
+        NSString* RTRW;
+        RTRW = [s stringForColumn:@"RTRW"];
 
         
         
@@ -768,7 +788,7 @@
                                                    AndOfficeAddressCountry:OfficeAddressCountry AndProspectEmail:ProspectEmail AndProspectRemark:ProspectRemark AndDateCreated:DateCreated AndDateModified:DateModified AndCreatedBy:CreatedBy AndModifiedBy:ModifiedBy
                                                  AndProspectOccupationCode:ProspectOccupationCode AndProspectDOB:ProspectDOB
                                                             AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
-                                                                AndtScore:tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus
+                                                                AndtScore:tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus AndFavorite:Favorite AndRTRW:RTRW
                                                                 ]];
     }
     [results close];

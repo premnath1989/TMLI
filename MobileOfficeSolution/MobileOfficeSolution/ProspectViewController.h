@@ -326,11 +326,13 @@
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeAddr3;
 @property (strong, nonatomic) IBOutlet UITextField *txtAddress4;
 
+
 @property (weak, nonatomic) IBOutlet UITextField *txtHomePostCode;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeTown;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeCountry;
-@property (strong, nonatomic) IBOutlet UITextField *txtCountry;
+@property (strong, nonatomic) IBOutlet UITextField *txtRTRW;
+
 
 - (IBAction)actionProvinsiInfo:(id)sender;
 - (IBAction)actionKotaInfo:(UIButton *)sender;

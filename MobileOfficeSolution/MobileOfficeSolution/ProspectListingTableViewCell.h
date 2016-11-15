@@ -20,4 +20,10 @@
 @property (nonatomic, weak) IBOutlet UILabel* labelDateCreated;
 @property (nonatomic, weak) IBOutlet UILabel* labelDateModified;
 @property (nonatomic, weak) IBOutlet UILabel* labelTimeRemaining;
+@property (strong, nonatomic) IBOutlet UIImageView *FavImage;
+
+
+
+
+
 @end
