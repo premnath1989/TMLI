@@ -6009,6 +6009,29 @@ bool WPTPD30RisDeleted = FALSE;
     
     _ProductTittle.text = aaDesc;
     
+   if([_ProductTittle.text isEqualToString:@"TM Link Wealth Enhancement"])
+      {
+          [_frekuensiPembayaranButton setTitle:@"Single Premium" forState:UIControlStateNormal];
+          _frekuensiPembayaranButton.enabled = false;
+          _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : IDR 12,000,000)"];
+          _PremiTopUp.text = [NSString stringWithFormat:@"(Min : IDR 1,000,000)"];
+          
+          MinBasicPremiValue = @"12,000,000";
+          MinTopUpRegularValue = @"1,000,000";
+
+          
+          
+      }
+      else
+      {
+          _frekuensiPembayaranButton.enabled = TRUE;
+          
+          MinBasicPremiValue = @"";
+          MinTopUpRegularValue = @"";
+
+          
+      }
+    
     if([_ProductTittle.text isEqualToString:@"TM Maximum Investment Plan(MIP Plus)"]
         ||
         [_ProductTittle.text isEqualToString:@"TM Maximum Investment Plan(MIP)"])
@@ -6130,17 +6153,31 @@ bool WPTPD30RisDeleted = FALSE;
     long long sumBasicPremiTopUpRegularValue = [NumberPremiTopUpRegularValue longLongValue];
     
     int ModeOfPayValue = [MOPString intValue];
-    
+     
     long long SumToltal1 = sumBasicPremiValue + sumBasicPremiTopUpRegularValue;
     
     long long SumToltal2 = SumToltal1 * ModeOfPayValue;
+    
+    if([_ProductTittle.text isEqualToString:@"TM Link Wealth Enhancement"])
+    {
+         _TotalPremiField.text = [NSString stringWithFormat:@" N/A"];
+        long long Sumtotal3 = sumBasicPremiValue * 125;
+        _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
+         SumTotalUangPertanggungan =  [NSString stringWithFormat:@" %lld", Sumtotal3];
+    }
+    else
+    {
+         _TotalPremiField.text = [NSString stringWithFormat:@" %lld", SumToltal2];
+        long long Sumtotal3 = sumBasicPremiValue * 5;
+        _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
+        
+        SumTotalUangPertanggungan =  [NSString stringWithFormat:@" %lld", Sumtotal3];
+        
+    }
 
-    _TotalPremiField.text = [NSString stringWithFormat:@" %lld", SumToltal2];
+   
     
-    long long Sumtotal3 = sumBasicPremiValue * 5;
-    _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
-    
-    SumTotalUangPertanggungan =  [NSString stringWithFormat:@" %lld", Sumtotal3];
+   
 
 }
 
