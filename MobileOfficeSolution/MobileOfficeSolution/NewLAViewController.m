@@ -1207,6 +1207,7 @@
         [dictionaryNewLA setObject:btnDOB.titleLabel.text forKey:@"LA_DOB"];
         [dictionaryNewLA setObject:LAAgeField.text forKey:@"LA_Age"];
         [dictionaryNewLA setObject:sex forKey:@"LA_Gender"];
+        [dictionaryNewLA setObject:relationDesc forKey:@"RelWithLA"];
    //     [dictionaryNewLA setObject:occuCode forKey:@"LA_OccpCode"];
    //     [dictionaryNewLA setObject:occupationDesc forKey:@"LA_Occp"];
     }
@@ -1218,6 +1219,7 @@
         [dictionaryNewLA setObject:@"" forKey:@"LA_Gender"];
         [dictionaryNewLA setObject:@"" forKey:@"LA_OccpCode"];
         [dictionaryNewLA setObject:@"" forKey:@"LA_Occp"];
+        [dictionaryNewLA setObject:@"" forKey:@"RelWithLA"];
     }
     return dictionaryNewLA;
 }
@@ -2722,8 +2724,8 @@
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
         return NO;
-    } else if (LAAGEint < 18) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Usia harus sama dengan atau lebih dari 18 tahun"
+    } else if (LAAGEint < 15) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Usia harus sama dengan atau lebih dari 15 tahun"
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
      //   [alert setTag:1005];
         [alert show];

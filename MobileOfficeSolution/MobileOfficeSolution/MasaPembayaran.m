@@ -25,8 +25,6 @@
 {
     [super viewDidLoad];
     
-   
-	if([TradOrEver isEqualToString:@"TRAD"]){
 		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Secure100", @"HLA Wealth Plan", nil ];
 		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"S100", @"HLAWP", nil ];
         ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"TM Link Investasiku",@"TM Link ProteksiKu",@"TM Maximum Investment Plan(MIP)",@"TM Maximum Investment Plan(MIP Plus)",@"TM Link Wealth Accumulation",@"TM Link Wealth Enhancement",nil];
@@ -40,14 +38,6 @@
         
         //ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"Life100", nil ];
         //ListOfCode = [[NSMutableArray alloc] initWithObjects:@"L100", nil ];
-	}
-	else{
-		ListOfPlan = [[NSMutableArray alloc] initWithObjects:@"HLA EverLife Plus",@"test", nil ];
-		ListOfCode = [[NSMutableArray alloc] initWithObjects:@"UV",@"test2", nil ];
-		
-		[ListOfPlan addObject:@"HLA EverGain Plus"];
-		[ListOfCode addObject:@"UP" ];
-	}
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -94,9 +84,48 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     selectedIndex = indexPath.row;
     
-     [delegate Planlisting:self didSelectCode:self.selectedCode andDesc:self.selectedDesc :self.selectedMaxAgePO :self.selectedMinAgePO :self.selectedMaxAgeLA :self.selectedMinAgeLA];
+    NSString *testing = TradOrEver;
+    
+    int number = [testing intValue];
+    
+    
+    
+   // Relationship
+    
+//    && ([self.selectedDesc isEqualToString:@"TM Maximum Investment Plan(MIP)"]) || [self.selectedDesc isEqualToString:@"TM Maximum Investment PlanPlan(MIP Plus)"])
+    
+    if ([_Relationship isEqualToString:@"DIRI SENDIRI"] && ([testing intValue] > 70 || [testing intValue] < 15) && ([self.selectedDesc isEqualToString:@"TM Maximum Investment Plan(MIP)"] || [self.selectedDesc isEqualToString:@"TM Maximum Investment Plan(MIP Plus)"]) )
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@" " message:@"Usia Pemegang Polis : Min : 15  Max : 70 " delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.tag=12000;
+        [alert show];
+  
+    }
+    else if ([_Relationship isEqualToString:@"DIRI SENDIRI"] && ([testing intValue] > 70 || [testing intValue] < 18))
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@" " message:@"Usia Pemegang Polis : Min : 18  Max : 70 " delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.tag=12000;
+        [alert show];
+
+    }
+    else if ([_Relationship isEqualToString:@""] && ([testing intValue] > 70 || [testing intValue] < 15))
+    {
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@" " message:@"Usia Tertanggung : Min : 18  Max : 70 " delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        alert.tag=12000;
+        [alert show];
+    }
+    else
+
+    {
+        [delegate Planlisting:self didSelectCode:self.selectedCode andDesc:self.selectedDesc :self.selectedMaxAgePO :self.selectedMinAgePO :self.selectedMaxAgeLA :self.selectedMinAgeLA];
+
+    }
+    
+
+    
     
     [tableView reloadData];
 }
@@ -108,6 +137,8 @@
 
 -(NSString *)selectedDesc
 {
+    
+    
     return [ListOfPlan objectAtIndex:selectedIndex];
 }
 

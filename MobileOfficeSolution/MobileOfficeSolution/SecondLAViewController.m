@@ -701,7 +701,9 @@ id dobtemp;
                                           ageField.text,@"LA_Age",
                                           sex,@"LA_Gender",
                                           occuCode,@"LA_OccpCode",
-                                          occupationDesc,@"LA_Occp",nil];
+                                          occupationDesc,@"LA_Occp",
+                                          nil];
+    
     return dictionaryNewLA;
 }
 

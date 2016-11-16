@@ -934,6 +934,7 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 
+
 -(IBAction)actionMasaPembayaran:(id)sender
 {
     
@@ -944,9 +945,15 @@ bool WPTPD30RisDeleted = FALSE;
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-    if (_masaPembayaran == nil) {
+     NSString *LAAgeTMLI = [_dictionaryPOForInsert valueForKey:@"LA_Age"];
+     NSString *LARelationTMLI = [_dictionaryPOForInsert valueForKey:@"RelWithLA"];
+    
+    if (_masaPembayaran == nil)
+    {
+       
         _masaPembayaran = [[MasaPembayaran alloc] init];
-        _masaPembayaran.TradOrEver = @"TRAD";
+        _masaPembayaran.TradOrEver = LAAgeTMLI;
+        _masaPembayaran.Relationship = LARelationTMLI;
         _masaPembayaran.delegate = self;
         self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_masaPembayaran];
         
@@ -954,7 +961,8 @@ bool WPTPD30RisDeleted = FALSE;
     else
     {
         _masaPembayaran = [[MasaPembayaran alloc] init];
-        _masaPembayaran.TradOrEver = @"TRAD";
+        _masaPembayaran.TradOrEver = LAAgeTMLI;
+        _masaPembayaran.Relationship = LARelationTMLI;
         _masaPembayaran.delegate = self;
         self.planPopover = [[UIPopoverController alloc] initWithContentViewController:_masaPembayaran];
         

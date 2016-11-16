@@ -29,6 +29,7 @@
 @property (nonatomic,strong) id <MasaPembayaranDelegate> delegate;
 
 @property (nonatomic,strong) id TradOrEver;
+@property (nonatomic,strong) id Relationship;
 @property (readonly) NSString *selectedCode;
 @property (readonly) NSString *selectedDesc;
 
