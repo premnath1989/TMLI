@@ -360,6 +360,36 @@
 
 @end
 
+@implementation ButtonPhotoTitleLeftProspect
+
+/* INITIALIZE */
+
+- (void)awakeFromNib{[self setupStyle];}
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+    [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+    [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0] forState:UIControlStateNormal];
+    [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_BUTTON_FORM]];
+    UIImage *imageBackground = [UIImage imageNamed:@"shape_guideleft_complete"];
+    [self setImage:imageBackground forState:UIControlStateNormal];
+    [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
+    [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentRight];
+    [self.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    self.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -self.bounds.size.width + (imageBackground.size.width+10));
+    self.layer.cornerRadius = BUTTON_RADIUS_BORDER;
+    self.layer.masksToBounds = true;
+    self.tintColor = [objectUserInterface generateUIColor:THEME_COLOR_SECONDARY floatOpacity:1.0];
+    self.titleEdgeInsets = UIEdgeInsetsMake(0, -self.bounds.size.width, 0, imageBackground.size.width / 2 + GENERAL_SPACE_SMALL);
+}
+
+@end
 
 // SLIDER
 

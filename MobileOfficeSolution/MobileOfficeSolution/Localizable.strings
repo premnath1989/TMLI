@@ -109,6 +109,11 @@ HEADER_SPAJ_ADDNEW = "S.P.A.J Add New";
 HEADER_SPAJ_EXISTINGLIST = "S.P.A.J Existing List";
 HEADER_SPAJ_MODULE = "S.P.A.J Module";
 
+HEADER_PROSPECT_LANDING = "Prospect Module";
+HEADER_PROSPECT_ADDNEW = "Prospect Add New";
+HEADER_PROSPECT_EXISTINGLIST = "Prospect Existing List";
+HEADER_PROSPECT_MODULE = "Prospect Module";
+
 
 /* DETAIL */
 

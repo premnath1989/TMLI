@@ -3710,7 +3710,7 @@ bool isEndTime;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = YES;
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
@@ -3748,7 +3748,7 @@ bool isEndTime;
     [_btnAlamat setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     [_btnData setBackgroundColor:gray];
     [_btnAlamat setBackgroundColor:green];
@@ -3774,7 +3774,7 @@ bool isEndTime;
     [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     
     [_btnData setBackgroundColor:gray];

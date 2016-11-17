@@ -154,11 +154,11 @@
     }
 
     - (IBAction)goToProspect:(id)sender {
-        UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+        UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
         AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-        MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"mainClient"];
+        MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"];
         mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-        mainClient.IndexTab = appdlg.ProspectListingIndex;
+        //        mainClient.IndexTab = appdlg.ProspectListingIndex;
         [self presentViewController:mainClient animated:NO completion:Nil];
         appdlg = Nil;
         mainClient= Nil;

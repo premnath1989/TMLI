@@ -99,6 +99,12 @@
 
 @end
 
+@interface ButtonPhotoTitleLeftProspect : UIButton
+
+- (void)setupStyle;
+
+@end
+
 
 // SLIDER
 
