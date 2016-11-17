@@ -25,13 +25,15 @@
 @implementation ProspectLandingController
 @synthesize ProspectViewController = _ProspectViewController;
 
-
+BOOL NavShow;
 
 /* VIEW DID LOAD */
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NavShow = NO;
     // Do any additional setup after loading the view.
     
     // DECLARATION
@@ -79,7 +81,10 @@
 
 - (IBAction)navigationShow:(id)sender
 {
-    [_objectUserInterface navigationShow:self];
+    if (!NavShow) {
+        [_objectUserInterface navigationShow:self];
+        NavShow = YES;
+    }
 }
 
 
