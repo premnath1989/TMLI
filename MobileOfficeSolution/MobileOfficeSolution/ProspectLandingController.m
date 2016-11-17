@@ -37,12 +37,10 @@ BOOL NavShow;
     // Do any additional setup after loading the view.
     
     // DECLARATION
-    
     _objectUserInterface = [[UserInterface alloc] init];
     
     
     // LAYOUT
-    
     [_imageViewBackground setImage:[UIImage imageNamed:@"photo_spaj_secondary"]];
     
     /* INCLUDE */
@@ -117,12 +115,6 @@ BOOL NavShow;
     appdlg = Nil;
     mainClient= Nil;
     
-    
-//    UIStoryboard* clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-//    self.ProspectViewController = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"Prospect"];
-//    self.ProspectViewController.delegate = self;
-//    [self.navigationController pushViewController:_ProspectViewController animated:YES];
-//    _ProspectViewController.navigationItem.title = @"Add New Data Nasabah";
 }
 
 -(void) headerShow:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin booleanShow : (Boolean) booleanShow

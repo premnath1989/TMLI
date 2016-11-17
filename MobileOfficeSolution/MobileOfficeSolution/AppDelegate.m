@@ -13,6 +13,7 @@
 #import "ClearData.h"
 #import "SessionManagement.h"
 #import "Login.h"
+#import "Login Controller.h"
 #import <CoreData/CoreData.h>
 
 @implementation AppDelegate
@@ -81,10 +82,13 @@ NSString *uatAgentCode;
         topController = topController.presentedViewController;
     }
     
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
-    UIViewController *mainLogin = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:nil];
+//    UIViewController *mainLogin = [storyboard instantiateViewControllerWithIdentifier:@"Login"];
     
-    if(![topController isKindOfClass:[Login class]]){
+    UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *mainLogin = [_storyboardMain instantiateViewControllerWithIdentifier:@"LoginPage"] ;
+    
+    if(![topController isKindOfClass:[LoginController class]]){
         [topController presentViewController:mainLogin animated:YES completion:NULL];
     }
 }
