@@ -20,10 +20,7 @@
     [super viewDidLoad];
     _RiderListTMLI =[NSMutableArray arrayWithObjects:@"Waiver Premium",@"Payor Benefit",@"AD&ADD",@"Hospitalization & Surgical",@"Hospital Cash Plan",@"Term Life",@"CI 55 (CI additional)", nil];
     
-    [TableView reloadData];
-
-
-
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,22 +30,13 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return 0;
+     return 7;
 }
 
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-    
-}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -63,8 +51,10 @@
         
     }
     
+      NSMutableArray* RiderListTMLI1 =[NSMutableArray arrayWithObjects:@"Hospital Cash Plan 100k",@"Hospital Cash Plan 200k",@"Hospital Cash Plan 300k",@"Hospital Cash Plan 400k",@"Hospital Cash Plan 500k", nil];
     
-        cell.textLabel.text = [_RiderListTMLI objectAtIndex:indexPath.row];
+        cell.textLabel.text =  [RiderListTMLI1 objectAtIndex:indexPath.row];
+    
     
     
     
@@ -97,4 +87,8 @@
 }
 */
 
+- (IBAction)CancelSubview:(id)sender{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
 @end

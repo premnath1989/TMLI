@@ -4739,19 +4739,10 @@
         <scene sceneID="Nfk-cl-HzX">
             <objects>
                 <viewController storyboardIdentifier="HospitalCashPlanVC" id="oX9-F2-6K1" customClass="HospitalCashPlanViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="SvB-vk-89r">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="SvB-vk-89r">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="340"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="1Mf-7g-8mM">
-                                <frame key="frameInset" minX="20" minY="61" width="560" height="222"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="SvB-vk-89r" id="6ch-z2-xYI"/>
-                                    <outlet property="delegate" destination="SvB-vk-89r" id="dBO-VF-vPK"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" id="qWx-lZ-b2H">
                                 <frame key="frameInset" width="600" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4763,9 +4754,31 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="od8-FW-fvp">
+                                        <frame key="frameInset" minX="20" minY="56" width="447" height="279"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="separatorColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <sections/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="oX9-F2-6K1" id="PXy-XO-c8F"/>
+                                            <outlet property="delegate" destination="oX9-F2-6K1" id="Mjy-0C-47X"/>
+                                        </connections>
+                                    </tableView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.80000000000000004" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="167-8u-z3g">
+                                <frame key="frameInset" minX="484" minY="208" width="96" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.14901960780000001" green="0.41568627450000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="CancelSubview:" destination="oX9-F2-6K1" eventType="touchUpInside" id="rl8-6L-eQW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -4773,9 +4786,9 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="600" height="300"/>
+                    <size key="freeformSize" width="600" height="340"/>
                     <connections>
-                        <outlet property="TableView" destination="1Mf-7g-8mM" id="Ugw-nX-Usi"/>
+                        <outlet property="TableView" destination="od8-FW-fvp" id="h9w-tr-QgK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wff-po-O40" userLabel="First Responder" sceneMemberID="firstResponder"/>
