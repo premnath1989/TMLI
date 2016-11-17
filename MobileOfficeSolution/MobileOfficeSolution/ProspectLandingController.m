@@ -84,7 +84,13 @@ BOOL NavShow;
     if (!NavShow) {
         [_objectUserInterface navigationShow:self];
         NavShow = YES;
+        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : true];
+    }else{
+        [_objectUserInterface navigationHide:self];
+        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : false];
+        NavShow = NO;
     }
+    
 }
 
 
@@ -118,4 +124,52 @@ BOOL NavShow;
 //    [self.navigationController pushViewController:_ProspectViewController animated:YES];
 //    _ProspectViewController.navigationItem.title = @"Add New Data Nasabah";
 }
+
+-(void) headerShow:(UIView *) viewHeaderThick viewHeaderThin : (UIView *) viewHeaderThin booleanShow : (Boolean) booleanShow
+{
+    viewHeaderThick.clipsToBounds = true;
+    viewHeaderThin.clipsToBounds = true;
+    
+    if (booleanShow == false)
+    {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+         animateWithDuration: 0.25
+         animations:^
+         {
+             viewHeaderThick.alpha = 0;
+             viewHeaderThick.hidden = true;
+             viewHeaderThin.hidden = false;
+             viewHeaderThin.alpha = 1;
+         }
+         completion:^(BOOL finished)
+         {
+             viewHeaderThick.hidden = true;
+             viewHeaderThin.hidden = false;
+         }
+         ];
+        
+    }
+    else
+    {
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+         animateWithDuration: 0.25
+         animations:^
+         {
+             viewHeaderThick.hidden = false;
+             viewHeaderThick.alpha = 1;
+             viewHeaderThin.hidden = true;
+             viewHeaderThin.alpha = 0;
+         }
+         completion:^(BOOL finished)
+         {
+             viewHeaderThick.hidden = false;
+             viewHeaderThin.hidden = true;
+         }
+         ];
+    }
+}
+
+
 @end
