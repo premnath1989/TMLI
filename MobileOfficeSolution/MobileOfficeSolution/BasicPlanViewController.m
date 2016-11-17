@@ -5449,6 +5449,7 @@ bool WPTPD30RisDeleted = FALSE;
     ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",SumTotalUangPertanggungan];
     }
     
+      NSLog(@"topUpRegular %@",_PremiTopUpRegularField.text);
     
     if ([validationSet containsObject:_masaPembayaranButton.titleLabel.text]||_masaPembayaranButton.titleLabel.text==NULL)
     {
@@ -5495,7 +5496,7 @@ bool WPTPD30RisDeleted = FALSE;
 //    }
     
     
-//    else if (sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
+//    else if (_PremiTopUpRegularField.text ==nil && _PremiTopUpRegularField.text.length  0 ) //&& sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
 //    {
 //        [self createAlertViewAndShow:ValidationPremiTopUp tag:0];
 //        [_PremiTopUpRegularField becomeFirstResponder];
@@ -6153,7 +6154,7 @@ bool WPTPD30RisDeleted = FALSE;
     long long sumBasicPremiTopUpRegularValue = [NumberPremiTopUpRegularValue longLongValue];
     
     int ModeOfPayValue = [MOPString intValue];
-     
+    
     long long SumToltal1 = sumBasicPremiValue + sumBasicPremiTopUpRegularValue;
     
     long long SumToltal2 = SumToltal1 * ModeOfPayValue;

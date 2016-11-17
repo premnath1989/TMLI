@@ -114,12 +114,12 @@
     else if([ProductCode isEqualToString:@"3RP"]&&[CurrencySelected isEqualToString:@"Rupiah"])//Wealth Accumulation
     {
         ListOfFrekuensi =  [[NSMutableArray alloc] initWithObjects: @"Tahunan",@"Semester",@"Kuartal",@"Bulanan", nil ];
-        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 18,000,000", @" 9,000,000",@" 4,500,000",@" 1,500,000", @"" ,nil ];
+        ListOfValue  =  [[NSMutableArray alloc] initWithObjects:@" 3,000,000", @" 1,800,000",@" 900,000",@" 300,000", @"" ,nil ];
         ListOfValueMax  =  [[NSMutableArray alloc] initWithObjects:@" 1,000,000", @" 500,000",@" 250,000",@" 100,000", @"" ,nil ];
         ListOfMOP = [[NSMutableArray alloc]initWithObjects:@"1",@"2",@"4",@"12", nil];
         ListOfRencana = [[NSMutableArray alloc] initWithObjects:@"1",@"2",@"3",@"4",@"5", nil];
         
-
+        
                
     }
     else if([ProductCode isEqualToString:@"3SP"]&&[CurrencySelected isEqualToString:@"Rupiah"])//Wealth Enhancement
