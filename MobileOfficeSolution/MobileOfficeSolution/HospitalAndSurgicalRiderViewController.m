@@ -1,26 +1,22 @@
 //
-//  HospitalCashPlanViewController.m
+//  HospitalAndSurgicalRiderViewController.m
 //  MobileOfficeSolution
 //
-//  Created by Premnath on 11/11/2016.
+//  Created by Premnath on 18/11/2016.
 //  Copyright © 2016 Erwin Lim InfoConnect. All rights reserved.
 //
 
-#import "HospitalCashPlanViewController.h"
+#import "HospitalAndSurgicalRiderViewController.h"
 
-@interface HospitalCashPlanViewController ()
+@interface HospitalAndSurgicalRiderViewController ()
 
 @end
 
-@implementation HospitalCashPlanViewController
-@synthesize TableView;
+@implementation HospitalAndSurgicalRiderViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-    _RiderListTMLI =[NSMutableArray arrayWithObjects:@"Waiver Premium",@"Payor Benefit",@"AD&ADD",@"Hospitalization & Surgical",@"Hospital Cash Plan",@"Term Life",@"CI 55 (CI additional)", nil];
-    
-    
+    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -34,7 +30,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-     return 5;
+    return 13;
 }
 
 
@@ -51,9 +47,10 @@
         
     }
     
-      NSMutableArray* RiderListTMLI1 =[NSMutableArray arrayWithObjects:@"Hospital Cash Plan 100k",@"Hospital Cash Plan 200k",@"Hospital Cash Plan 300k",@"Hospital Cash Plan 400k",@"Hospital Cash Plan 500k", nil];
+    NSMutableArray* RiderListTMLI1 =[NSMutableArray arrayWithObjects:@"Indo 200",@"Plat.Indo 500",@"Plat.Indo 1000",@"Plat.Indo 1500",@"Plat.Indo Plus 500",@"Plat.Indo Plus 1000",@"Plat.Indo 1500",@"Plat.Slrh Dunia 500",@"Plat.Slrh Dunia 1000",@"Plat.Slrh Dunia 1500",@"Plat.Slrh Dunia Plus 500",@"Plat.Slrh Dunia Plus 1000",@"Plat.Slrh Dunia Plus 1500", nil];
     
-        cell.textLabel.text =  [RiderListTMLI1 objectAtIndex:indexPath.row];
+
+    cell.textLabel.text =  [RiderListTMLI1 objectAtIndex:indexPath.row];
     
     
     
@@ -78,17 +75,18 @@
 
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 - (IBAction)CancelSubview:(id)sender{
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
 @end

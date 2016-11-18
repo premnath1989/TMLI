@@ -6342,7 +6342,7 @@ int maxGycc = 0;
         
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"MyIdentifier"];
         
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleGray;
         
     }
     
@@ -6380,16 +6380,16 @@ int maxGycc = 0;
     
     
    
-    if ( [_AddPlanArray containsObject: _cellText] )
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Ansuransi sudahpun dipilih"
-                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        
-        [alert show];
-    }
-    else
-    {
+//    if ( [_AddPlanArray containsObject: _cellText] )
+//    {
+//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
+//                                                        message:@"Ansuransi sudahpun dipilih"
+//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//        
+//        [alert show];
+//    }
+//    else
+//    {
         [_AddPlanArray addObject:_cellText];
         NSLog(@"Array - %@", _AddPlanArray);
         
@@ -6405,8 +6405,13 @@ int maxGycc = 0;
         {
             [self CriticalIllness];
         }
+        else if ([_cellText isEqualToString:@"Hospitalization & Surgical"])
+        {
+            [self HospitalSurgical];
+        }
+
         
-    }
+//    }
                  
     
     
@@ -6440,6 +6445,18 @@ int maxGycc = 0;
             HospitalCashPlanVC.modalPresentationStyle = UIModalPresentationFormSheet;
             [self presentViewController:HospitalCashPlanVC animated:YES completion:nil];
             
+}
+
+-(void)HospitalSurgical
+{
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+    HospitalAndSurgicalRiderViewController *HospitalSurgicalVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"HospitalSurgicalVC"];
+    // CriticalVC.delegate=self;
+    
+    
+    HospitalSurgicalVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:HospitalSurgicalVC animated:YES completion:nil];
+    
 }
 
 

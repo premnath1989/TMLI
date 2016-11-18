@@ -22,6 +22,7 @@
 #import "ModelSIRider.h"
 #import "CriticalIlnessViewController.h"
 #import "HospitalCashPlanViewController.h"
+#import "HospitalAndSurgicalRiderViewController.h"
 
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
