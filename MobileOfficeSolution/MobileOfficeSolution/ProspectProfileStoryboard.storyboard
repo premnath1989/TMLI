@@ -4688,6 +4688,9 @@
                                         <frame key="frameInset" minX="27" minY="65" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBackTo:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="nfd-Id-vKh"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1176470588" green="0.51764705879999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -4818,6 +4821,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="TxtPhoneNo" destination="fRK-05-G7H" id="nhS-ki-C35"/>
+                        <outlet property="btnBackTo" destination="llW-zp-3ME" id="wSh-ga-xV5"/>
                         <outlet property="btnCancel" destination="LhM-wz-Ni5" id="w7T-hV-u1K"/>
                         <outlet property="btnSearch" destination="3JY-EG-KvX" id="vnv-Np-npX"/>
                         <outlet property="btnSortDateCreated" destination="uvE-DF-GiG" id="Bbi-E1-kmX"/>

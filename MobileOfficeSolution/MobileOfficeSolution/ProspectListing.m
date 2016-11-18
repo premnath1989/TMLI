@@ -38,10 +38,14 @@
 //@synthesize outletDOB;
 //@synthesize SIDate = _SIDate;
 
+
 int RecDelete = 0;
 int totalView = 20;
 int TotalData;
 BOOL isSort;
+BOOL NavIsShow;
+
+
 
 MBProgressHUD *HUD;
 
@@ -58,6 +62,7 @@ MBProgressHUD *HUD;
     
     sortMethod=@"ASC";
     isSort = NO;
+    NavIsShow = NO;
     
     borderColor=[[UIColor alloc]initWithRed:250.0/255.0 green:175.0/255.0 blue:50.0/255.0 alpha:1.0];
     
@@ -243,8 +248,16 @@ MBProgressHUD *HUD;
 
 - (IBAction)navigationShow:(id)sender
 {
-    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
-    [_objectUserInterface navigationShow:self];
+    if (!NavIsShow) {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+        NavIsShow = YES;
+    }
+    else {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+        NavIsShow = NO;
+    }
 }
 
 - (IBAction)navigationHide:(id)sender
@@ -1335,7 +1348,7 @@ MBProgressHUD *HUD;
         sortMethod=@"ASC";
     }
     
-    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:sortMethod ID:txtIDNumber.text];
+    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:@"ASC" ID:txtIDNumber.text];
     
 //    [self getMobileNo];
     TotalData = ProspectTableData.count;
@@ -1661,6 +1674,19 @@ MBProgressHUD *HUD;
     //[deleteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal ];
     
     [self ReloadTableData];
+}
+
+- (IBAction)ActionBackTo:(id)sender {
+    
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"];
+    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
+    [self presentViewController:mainClient animated:NO completion:Nil];
+    appdlg = Nil;
+    mainClient= Nil;
+    
 }
 
 - (IBAction)ActionGroup:(id)sender
