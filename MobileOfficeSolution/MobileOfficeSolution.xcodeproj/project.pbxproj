@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		171BD3B11DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */; };
+		171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */; };
 		172DEF891DD55D0C00CDED49 /* CriticalIlnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */; };
 		172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */; };
 		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
@@ -543,6 +545,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		171BD3AF1DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalAndSurgicalRiderViewController.h; sourceTree = "<group>"; };
+		171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HospitalAndSurgicalRiderViewController.m; sourceTree = "<group>"; };
+		171BD3B21DDED0CB005CC058 /* PzyorWaiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PzyorWaiverViewController.h; sourceTree = "<group>"; };
+		171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PzyorWaiverViewController.m; sourceTree = "<group>"; };
 		172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriticalIlnessViewController.h; sourceTree = "<group>"; };
 		172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriticalIlnessViewController.m; sourceTree = "<group>"; };
 		172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalCashPlanViewController.h; sourceTree = "<group>"; };
@@ -1883,6 +1889,10 @@
 				172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */,
 				172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */,
 				172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */,
+				171BD3AF1DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.h */,
+				171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */,
+				171BD3B21DDED0CB005CC058 /* PzyorWaiverViewController.h */,
+				171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */,
 				DEDC5DBA1DAE417A0033FE37 /* IlustrationViewController.h */,
 				DEDC5DBB1DAE417A0033FE37 /* IlustrationViewController.m */,
 				DEDC5DBC1DAE417A0033FE37 /* BasicPlanViewController.m */,
@@ -3231,7 +3241,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 25W8386326;
+						DevelopmentTeam = 2YT8E2D9X6;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3658,6 +3668,7 @@
 				DEDC5D781DAE3CDD0033FE37 /* AgentWS.m in Sources */,
 				DEDC5EA71DAE47200033FE37 /* Country.m in Sources */,
 				DEDC5F601DAE49AE0033FE37 /* CGPDFDocument.m in Sources */,
+				171BD3B11DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m in Sources */,
 				DE11690B1DD179A6007DDA9B /* SPAJ Policyholder 1 Controller.m in Sources */,
 				17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */,
 				DEDC5CB51DAE37C90033FE37 /* ClearData.m in Sources */,
@@ -3755,6 +3766,7 @@
 				DE1169131DD179B2007DDA9B /* SPAJ Add New Controller.m in Sources */,
 				DEDC5DF11DAE41B30033FE37 /* NewLAViewController.m in Sources */,
 				DEDC5F201DAE486A0033FE37 /* DDXMLDocument.m in Sources */,
+				171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */,
 				DEDC5DF31DAE41B30033FE37 /* PayorViewController.m in Sources */,
 				DEDC60FC1DAF79350033FE37 /* SPAJIDCapturedViewController.m in Sources */,
 				DEDC61001DAF79350033FE37 /* SPAJ Add Menu.m in Sources */,
@@ -3945,7 +3957,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3977,7 +3989,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 25W8386326;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",

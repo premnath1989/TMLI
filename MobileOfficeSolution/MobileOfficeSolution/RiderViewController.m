@@ -6409,6 +6409,11 @@ int maxGycc = 0;
         {
             [self HospitalSurgical];
         }
+        else if ([_cellText isEqualToString:@"Waiver Premium"])
+        {
+            [self PayorWaiver];
+        }
+
 
         
 //    }
@@ -6456,6 +6461,22 @@ int maxGycc = 0;
     
     HospitalSurgicalVC.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:HospitalSurgicalVC animated:YES completion:nil];
+    
+    
+    
+}
+
+-(void)PayorWaiver
+{
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+    PzyorWaiverViewController *PayorWaiverVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"PayorWaiverPlanVC"];
+    // CriticalVC.delegate=self;
+    
+    
+    PayorWaiverVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:PayorWaiverVC animated:YES completion:nil];
+    
+    
     
 }
 

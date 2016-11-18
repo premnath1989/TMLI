@@ -4793,7 +4793,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wff-po-O40" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4714" y="1600"/>
+            <point key="canvasLocation" x="-4714" y="1570"/>
         </scene>
         <!--Hospital And Surgical Rider View Controller-->
         <scene sceneID="Gg3-ZP-kmg">
@@ -4854,6 +4854,66 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7T-F3-Jd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4714" y="2082"/>
+        </scene>
+        <!--Pzyor Waiver View Controller-->
+        <scene sceneID="Usv-DS-Oh2">
+            <objects>
+                <viewController storyboardIdentifier="PayorWaiverPlanVC" id="Wdu-CK-tBr" customClass="PzyorWaiverViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qw5-uK-ITu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="340"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="qkc-wi-Tq0">
+                                <frame key="frameInset" width="600" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payor Waiver Rider" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bir-fs-Mxq">
+                                        <frame key="frameInset" minX="8" minY="15" width="259" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Xw7-ry-YGY">
+                                        <frame key="frameInset" minX="20" minY="56" width="447" height="279"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="separatorColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <sections/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="Wdu-CK-tBr" id="zrk-wL-fg5"/>
+                                            <outlet property="delegate" destination="Wdu-CK-tBr" id="gIp-QZ-fO1"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.80392156859999997" green="0.80000000000000004" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="8lZ-yE-SGY">
+                                <frame key="frameInset" minX="484" minY="208" width="96" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" red="0.14901960780000001" green="0.41568627450000001" blue="0.98039215690000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="CancelSubview:" destination="Wdu-CK-tBr" eventType="touchUpInside" id="oUg-Ie-HP1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="340"/>
+                    <connections>
+                        <outlet property="TableView" destination="Xw7-ry-YGY" id="7Kc-Gl-9dM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="v4a-Ch-id9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4714" y="2624"/>
         </scene>
     </scenes>
     <resources>

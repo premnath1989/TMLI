@@ -23,6 +23,7 @@
 #import "CriticalIlnessViewController.h"
 #import "HospitalCashPlanViewController.h"
 #import "HospitalAndSurgicalRiderViewController.h"
+#import "PzyorWaiverViewController.h"
 
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
