@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +10,9 @@
         </array>
         <array key="BPreplay_Regular.otf">
             <string>BPreplay</string>
+        </array>
+        <array key="NewJune_Regular.ttf">
+            <string>NewJune-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -91,7 +94,7 @@
                                                 <fragment content="       Pekerjaan">
                                                     <attributes>
                                                         <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <font key="NSFont" size="24" name=".SFNSDisplay"/>
+                                                        <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -913,313 +916,6 @@
             </objects>
             <point key="canvasLocation" x="-4452" y="-5064"/>
         </scene>
-        <!--Client Listing-->
-        <scene sceneID="gNB-tp-Aqu">
-            <objects>
-                <viewController storyboardIdentifier="newClientListing" title="Client Listing" id="R2U-dm-XLx" customClass="ProspectListing" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="TxC-Ih-Pwh">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" id="lyP-PZ-kFE">
-                                <frame key="frameInset" width="1024" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="e6i-Lm-FA2">
-                                <frame key="frameInset" minX="375" minY="359" width="274" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="rxJ-zx-Wdo">
-                                <frame key="frameInset" minX="10" minY="305" width="1014" height="463"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="separatorColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <sections/>
-                                <connections>
-                                    <outlet property="dataSource" destination="R2U-dm-XLx" id="z73-6p-j5Z"/>
-                                    <outlet property="delegate" destination="R2U-dm-XLx" id="7oI-Gb-wDf"/>
-                                </connections>
-                            </tableView>
-                            <view contentMode="scaleToFill" id="7bc-3e-Nzd">
-                                <frame key="frameInset" minX="10" minY="254" width="948" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" id="rxk-S5-SNC">
-                                        <frame key="frameInset" width="948" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="rDh-1l-piM">
-                                                <frame key="frameInset" minX="5" width="46" height="51"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="9dr-co-t8m"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="No." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="tsh-HB-mMT">
-                                                <frame key="frameInset" minX="5" width="47" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LRr-MQ-JwM">
-                                                <frame key="frameInset" minX="50" minY="1" width="216" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="tPV-Yi-msq"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nama                            [Tanggal Lahir]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WDC-D9-jQf">
-                                                <frame key="frameInset" minX="50" width="216" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9vR-zg-0fd">
-                                                <frame key="frameInset" minX="265" minY="1" width="127" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="4zS-fU-U3A"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nomor HP Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WwL-bf-bJV">
-                                                <frame key="frameInset" minX="265" width="127" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oSM-mr-693">
-                                                <frame key="frameInset" minX="391" minY="1" width="114" height="49"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="3oQ-Kd-42z"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Kualitas Nasabah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="dn9-am-8cP">
-                                                <frame key="frameInset" minX="391" minY="1" width="114" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5ab-ac-UBh">
-                                                <frame key="frameInset" minX="507" minY="1" width="155" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="RLs-dx-d6d"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Tanggal Pembuatan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Ee5-bw-1wA">
-                                                <frame key="frameInset" minX="507" width="155" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j2O-6M-bc2">
-                                                <frame key="frameInset" minX="666" minY="1" width="157" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="WET-g9-md4"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tanggal Terakhir Di Update" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="K57-dt-bvH">
-                                                <frame key="frameInset" minX="666" minY="1" width="157" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="TUo-lK-6mT">
-                                                <frame key="frameInset" minX="831" width="117" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="btnSortBy:" destination="R2U-dm-XLx" eventType="touchUpInside" id="UOi-gT-bdR"/>
-                                                </connections>
-                                            </button>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="bPz-SB-Q69">
-                                                <frame key="frameInset" minX="831" minY="1" width="117" height="50"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.28235294117647058" green="0.3843137254901961" blue="0.42352941176470588" alpha="1" colorSpace="calibratedRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" misplaced="YES" id="Q91-H7-iSR">
-                                <frame key="frameInset" minY="20" width="1024" height="204"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="coZ-N9-Goc">
-                                        <frame key="frameInset" minX="691" minY="147" width="75" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Clear">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="resetPressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="KT4-96-IeV"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Depan" minimumFontSize="16" clearButtonMode="whileEditing" id="7J9-gn-ppM">
-                                        <frame key="frameInset" minX="27" minY="64" width="432" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Belakang" minimumFontSize="16" clearButtonMode="whileEditing" id="oua-NP-QG3">
-                                        <frame key="frameInset" minX="500" minY="64" width="432" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nomor HP" minimumFontSize="16" clearButtonMode="whileEditing" id="cJc-Cl-S1W">
-                                        <frame key="frameInset" minX="500" minY="99" width="432" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                    </textField>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Existing Data Nasabah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HiX-xy-Rbo">
-                                        <frame key="frameInset" minX="117" minY="8" width="545" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="24"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tIJ-d4-dqo">
-                                        <frame key="frameInset" minX="857" minY="147" width="75" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Hapus">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="editPressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="w56-bQ-XY3"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mwh-8u-Y2r">
-                                        <frame key="frameInset" minX="608" minY="147" width="75" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529411764703" green="0.83137254901960789" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Cari">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529411764703" green="0.83137254901960789" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="searchPressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="KUa-QH-a2j"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="n4Z-3a-HPM">
-                                        <frame key="frameInset" minX="27" minY="106" width="432" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078431372548" green="0.40000000000000002" blue="0.46274509803921571" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" image="Expand Arrow.png">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="btnDOB:" destination="R2U-dm-XLx" eventType="touchUpInside" id="RlC-UX-dse"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tanggal Lahir" minimumFontSize="16" clearButtonMode="whileEditing" id="8Ti-dp-skb">
-                                        <frame key="frameInset" minX="27" minY="106" width="384" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xXk-pY-1Be">
-                                        <frame key="frameInset" minX="774" minY="146" width="75" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Hapus">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="deletePressed:" destination="R2U-dm-XLx" eventType="touchUpInside" id="NJC-nh-h0u"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4j1-ES-IsA">
-                                        <frame key="frameInset" minX="411" minY="149" width="32" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Hide"/>
-                                        <connections>
-                                            <action selector="navigationHide:" destination="R2U-dm-XLx" eventType="touchUpInside" id="gUh-xj-RhW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zth-sh-1lY" customClass="ButtonNavigation">
-                                        <frame key="frameInset" minX="27" minY="8" width="56" height="48"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Show"/>
-                                        <connections>
-                                            <action selector="navigationShow:" destination="R2U-dm-XLx" eventType="touchUpInside" id="nT8-cJ-1B7"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.11764705882352941" green="0.51764705882352946" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="yh2-Jj-DQA">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="XLt-X2-hM4">
-                            <color key="tintColor" red="0.98039215690000003" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <connections>
-                                <action selector="btnAddNew:" destination="R2U-dm-XLx" id="Deo-Px-55h"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
-                    <connections>
-                        <outlet property="TxtPhoneNo" destination="cJc-Cl-S1W" id="aa3-7k-vz8"/>
-                        <outlet property="btnCancel" destination="coZ-N9-Goc" id="vVf-9h-o1f"/>
-                        <outlet property="btnSearch" destination="mwh-8u-Y2r" id="kvJ-95-dWd"/>
-                        <outlet property="btnSortDateCreated" destination="5ab-ac-UBh" id="H5W-gh-AYA"/>
-                        <outlet property="btnSortDateModified" destination="j2O-6M-bc2" id="WQS-n2-k2L"/>
-                        <outlet property="btnSortFullName" destination="LRr-MQ-JwM" id="iSP-uy-VBl"/>
-                        <outlet property="btnSortHP" destination="9vR-zg-0fd" id="dTs-pp-dET"/>
-                        <outlet property="btnSortKualitas" destination="oSM-mr-693" id="JXQ-GD-ECM"/>
-                        <outlet property="btnSortNo" destination="rDh-1l-piM" id="KEP-H1-Xf1"/>
-                        <outlet property="btnSortStatus" destination="TUo-lK-6mT" id="nL8-EI-9qj"/>
-                        <outlet property="deleteBtn" destination="xXk-pY-1Be" id="RdR-SJ-CZH"/>
-                        <outlet property="editBtn" destination="tIJ-d4-dqo" id="bSy-q3-kKR"/>
-                        <outlet property="groupLabel" destination="e6i-Lm-FA2" id="OT0-1V-fcQ"/>
-                        <outlet property="myTableView" destination="rxJ-zx-Wdo" id="Vxo-3N-c0c"/>
-                        <outlet property="outletDOB" destination="n4Z-3a-HPM" id="Axc-Ay-MSa"/>
-                        <outlet property="txtFrontName" destination="7J9-gn-ppM" id="tGc-c0-TnI"/>
-                        <outlet property="txtLastName" destination="oua-NP-QG3" id="RJo-9q-CzX"/>
-                        <outlet property="txtTanggalLahir" destination="8Ti-dp-skb" id="CF2-pP-43b"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ijo-ij-8sy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="194" y="-236"/>
-        </scene>
         <!--View Controller-->
         <scene sceneID="01J-bd-7Pd">
             <objects>
@@ -1419,7 +1115,7 @@
                                                         <fragment content="       Pekerjaan">
                                                             <attributes>
                                                                 <color key="NSColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <font key="NSFont" size="24" name=".SFNSDisplay"/>
+                                                                <font key="NSFont" size="24" name=".SFNSDisplay-Regular"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -1454,7 +1150,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" misplaced="YES" id="RJf-yD-TQs" userLabel="DataPribadiCV">
-                                        <rect key="frame" x="1" y="70" width="10000" height="8856"/>
+                                        <rect key="frame" x="1" y="70" width="10000" height="9604"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pribadi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FHe-uD-ePQ">
@@ -1836,7 +1532,7 @@
                                         <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="7bo-Yb-rMF" userLabel="AlamatCV">
-                                        <rect key="frame" x="0.0" y="70" width="10000" height="8896"/>
+                                        <rect key="frame" x="0.0" y="70" width="10000" height="9644"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alamat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fRn-dc-SRX">
@@ -2044,7 +1740,7 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="q0E-rR-Y2J" userLabel="PekerjaanCV">
-                                        <rect key="frame" x="0.0" y="70" width="10000" height="8856"/>
+                                        <rect key="frame" x="0.0" y="70" width="10000" height="9604"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data Pekerjaan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MJ8-cH-n73">
@@ -4840,6 +4536,310 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGU-Vi-8HG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="772" y="-1150"/>
+        </scene>
+        <!--Client Listing-->
+        <scene sceneID="rki-xn-4pD">
+            <objects>
+                <viewController storyboardIdentifier="newClientListing" title="Client Listing" id="pfa-Zt-HM6" customClass="ProspectListing" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jWf-h9-kqG">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="C9V-QT-T3g">
+                                <frame key="frameInset" width="1024" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ZNI-Xs-Pr2">
+                                <frame key="frameInset" minX="375" minY="359" width="274" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="TrebuchetMS-Bold" family="Trebuchet MS" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="JYR-OK-UZa">
+                                <frame key="frameInset" minY="300" width="1024" height="468"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="separatorColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <sections/>
+                                <connections>
+                                    <outlet property="dataSource" destination="pfa-Zt-HM6" id="yuI-Pd-Yz8"/>
+                                    <outlet property="delegate" destination="pfa-Zt-HM6" id="pUV-bm-Xpq"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" id="oD5-o9-5Vg">
+                                <frame key="frameInset" minY="20" width="1024" height="233"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="LhM-wz-Ni5" customClass="ButtonFormSecondary">
+                                        <frame key="frameInset" minX="687" minY="175" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Clear">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="ej2-hR-S9M"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Belakang" minimumFontSize="16" clearButtonMode="whileEditing" id="m2g-0m-aVG" customClass="TextFieldSPAJ">
+                                        <frame key="frameInset" minX="528" minY="80" width="400" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Existing Data Nasabah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4fg-1T-Fgx" customClass="LabelProfileHeader">
+                                        <frame key="frameInset" minX="109" minY="2" width="545" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="24"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Depan" minimumFontSize="16" clearButtonMode="whileEditing" id="oSz-xL-qwq" customClass="TextFieldSPAJ">
+                                        <frame key="frameInset" minX="109" minY="80" width="400" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0Qe-Kx-pgM" customClass="ButtonFormSecondary">
+                                        <frame key="frameInset" minX="770" minY="175" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Hapus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="fSp-W8-4y8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3JY-EG-KvX" customClass="ButtonFormSecondary">
+                                        <frame key="frameInset" minX="604" minY="175" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Cari">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="K0L-a1-TDW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rHH-aD-WzN">
+                                        <frame key="frameInset" minX="109" minY="118" width="400" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" image="Expand Arrow.png">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnDOB:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="WCG-ys-Xt2"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tanggal Lahir" minimumFontSize="16" clearButtonMode="whileEditing" id="v2c-08-Cr6" customClass="TextFieldSPAJ">
+                                        <frame key="frameInset" minX="109" minY="118" width="358" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a4b-e1-xsi" customClass="ButtonNavigation2">
+                                        <frame key="frameInset" minX="27" minY="8" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Show"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="zCf-8z-7gf"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nomor HP" minimumFontSize="16" clearButtonMode="whileEditing" id="fRK-05-G7H" customClass="TextFieldSPAJ">
+                                        <frame key="frameInset" minX="528" minY="118" width="400" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="B6W-t9-ZHJ" customClass="ButtonFormSecondary">
+                                        <frame key="frameInset" minX="853" minY="175" width="75" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Hapus">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deletePressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="qlC-Vl-Lyr"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="llW-zp-3ME" customClass="ButtonBack">
+                                        <frame key="frameInset" minX="27" minY="65" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1176470588" green="0.51764705879999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="Mre-Lh-Glm">
+                                <frame key="frameInset" minY="251" width="1024" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="dUP-QO-dI6">
+                                        <frame key="frameInset" width="1024" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ygk-Od-9CU">
+                                                <frame key="frameInset" minX="5" width="46" height="51"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="k60-cm-tSH"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="#" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="2Hl-2Y-ytd">
+                                                <frame key="frameInset" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aK0-M2-EfF">
+                                                <frame key="frameInset" minX="50" minY="1" width="285" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="lj0-KB-dxV"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nama                                           [Tanggal Lahir]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xVr-ln-nQ0">
+                                                <frame key="frameInset" minX="50" width="285" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8KF-AZ-PSS">
+                                                <frame key="frameInset" minX="334" minY="-3" width="135" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="8ZL-cc-g0F"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nomor HP       Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="NFm-3l-z77">
+                                                <frame key="frameInset" minX="334" width="135" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c46-Nj-MOg">
+                                                <frame key="frameInset" minX="466" minY="-2" width="114" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="CLS-MG-noX"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Kualitas Nasabah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="wY0-xG-eqQ">
+                                                <frame key="frameInset" minX="466" width="114" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uvE-DF-GiG">
+                                                <frame key="frameInset" minX="578" width="165" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="mGk-Zj-Baa"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tanggal Pembuatan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1rI-pb-ZHh">
+                                                <frame key="frameInset" minX="578" width="165" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="83r-o9-oqz">
+                                                <frame key="frameInset" minX="742" minY="-1" width="157" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="np0-ZX-zWr"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Tanggal Terakhir Di Update" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oaz-KH-RTv">
+                                                <frame key="frameInset" minX="742" width="157" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obk-aw-EvY">
+                                                <frame key="frameInset" minX="899" minY="-1" width="117" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <connections>
+                                                    <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="1nc-qU-qlm"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1cS-SV-wA3">
+                                                <frame key="frameInset" minX="899" width="117" height="50"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="a5L-cq-SdA">
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="K5H-dZ-kTJ">
+                            <color key="tintColor" red="0.98039215690000003" green="0.68627450980000004" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="btnAddNew:" destination="pfa-Zt-HM6" id="5VD-jN-KIg"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="TxtPhoneNo" destination="fRK-05-G7H" id="nhS-ki-C35"/>
+                        <outlet property="btnCancel" destination="LhM-wz-Ni5" id="w7T-hV-u1K"/>
+                        <outlet property="btnSearch" destination="3JY-EG-KvX" id="vnv-Np-npX"/>
+                        <outlet property="btnSortDateCreated" destination="uvE-DF-GiG" id="Bbi-E1-kmX"/>
+                        <outlet property="btnSortDateModified" destination="83r-o9-oqz" id="Krz-bB-Nhv"/>
+                        <outlet property="btnSortFullName" destination="aK0-M2-EfF" id="tBB-Mg-Yh9"/>
+                        <outlet property="btnSortHP" destination="8KF-AZ-PSS" id="Mzm-1g-eec"/>
+                        <outlet property="btnSortKualitas" destination="c46-Nj-MOg" id="yhA-oV-Zu6"/>
+                        <outlet property="btnSortNo" destination="Ygk-Od-9CU" id="yWZ-Lm-CY4"/>
+                        <outlet property="btnSortStatus" destination="obk-aw-EvY" id="h8i-bH-GFS"/>
+                        <outlet property="deleteBtn" destination="B6W-t9-ZHJ" id="qwh-CM-N8B"/>
+                        <outlet property="editBtn" destination="0Qe-Kx-pgM" id="j1z-s6-Czt"/>
+                        <outlet property="groupLabel" destination="ZNI-Xs-Pr2" id="Mzd-pu-RLI"/>
+                        <outlet property="myTableView" destination="JYR-OK-UZa" id="Eju-Gf-aWG"/>
+                        <outlet property="outletDOB" destination="rHH-aD-WzN" id="6u1-Jy-gX3"/>
+                        <outlet property="txtFrontName" destination="oSz-xL-qwq" id="Y9d-X9-u7H"/>
+                        <outlet property="txtLastName" destination="m2g-0m-aVG" id="iaF-Qn-kY8"/>
+                        <outlet property="txtTanggalLahir" destination="v2c-08-Cr6" id="ymm-Jz-OHc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p4A-eh-UvF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="82" y="-67"/>
         </scene>
     </scenes>
     <resources>

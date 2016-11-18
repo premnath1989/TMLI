@@ -38,6 +38,18 @@
 
 @end
 
+@interface ButtonNavigation2 : UIButton
+
+- (void)setupStyle;
+
+@end
+
+@interface ButtonBack : UIButton
+
+- (void)setupStyle;
+
+@end
+
 @interface ButtonProfile : UIButton
 
     - (void)setupStyle;
