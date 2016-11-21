@@ -5,13 +5,13 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.otf">
+        <array key="BPreplay_Bold.ttf">
             <string>BPreplay-Bold</string>
         </array>
         <array key="BPreplay_Italics.otf">
             <string>BPreplay-Italic</string>
         </array>
-        <array key="BPreplay_Regular.ttf">
+        <array key="BPreplay_Regular.otf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -4915,10 +4915,10 @@
             </objects>
             <point key="canvasLocation" x="-4714" y="2624"/>
         </scene>
-        <!--Pzyor Waiver View Controller-->
+        <!--Waiver Rider View Controller-->
         <scene sceneID="eA2-Ek-FCJ">
             <objects>
-                <viewController storyboardIdentifier="WaiverPlanVC" id="i9m-FT-SzO" customClass="PzyorWaiverViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WaiverPlanVC" id="i9m-FT-SzO" customClass="WaiverRiderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Ju-5c-9vH">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="340"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4974,6 +4974,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yAH-mY-sOF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4714" y="2624"/>
+        </scene>
+        <!--SILandingPage-->
+        <scene sceneID="n8f-Gd-HhC">
+            <objects>
+                <viewController restorationIdentifier="SPAJLandingPage" storyboardIdentifier="SILandingPage" title="SILandingPage" id="rwS-ir-vd0" customClass="SILandingScreen" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fvL-iq-tWT" customClass="ViewMain">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="6jI-R5-x5Z">
+                                <frame key="frameInset" minX="-310" minY="20" width="1334" height="748"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="THl-sJ-Fan" customClass="ViewNavigation">
+                                        <frame key="frameInset" width="310" height="748"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hAX-Dv-ktC" customClass="ImageViewBackground">
+                                        <frame key="frameInset" minX="310" width="1024" height="748"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wfr-hV-StR" customClass="ImageViewLogoHat">
+                                        <frame key="frameInset" minX="1154" width="120" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="JKm-nL-ZE3" customClass="ImageViewArcFullScreenPrimary">
+                                        <frame key="frameInset" minX="984" minY="458" width="290" height="290"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <view contentMode="scaleToFill" id="oFe-JL-AVO" customClass="ViewDescriptor">
+                                        <frame key="frameInset" minX="1144" minY="638" width="130" height="70"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QKW-8U-qPK" customClass="ButtonPhotoTitleLeftProspect">
+                                        <frame key="frameInset" minX="599" minY="379" width="200" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionExisting:" destination="rwS-ir-vd0" eventType="touchUpInside" id="cN6-5A-LI6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eOo-0m-dhG" customClass="ButtonNavigation">
+                                        <frame key="frameInset" minX="340" minY="25" width="46" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="rwS-ir-vd0" eventType="touchUpInside" id="ay8-2c-Har"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YgB-ac-B6S" customClass="LabelPhotoDetail">
+                                        <frame key="frameInset" minX="599" minY="294" width="447" height="62"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hIg-xh-hIk" customClass="ButtonPhotoTitleRight">
+                                        <frame key="frameInset" minX="846" minY="379" width="190" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionAddNew:" destination="rwS-ir-vd0" eventType="touchUpInside" id="2el-JN-g2A"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AMA-Ky-SB2" customClass="LabelPhotoHeader">
+                                        <frame key="frameInset" minX="599" minY="239" width="447" height="47"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view hidden="YES" contentMode="scaleToFill" id="VWZ-iW-i6o">
+                                        <frame key="frameInset" minX="746" minY="8" width="313" height="148"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" id="6Rv-gw-cdI">
+                                        <frame key="frameInset" minX="746" minY="8" width="313" height="60"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonAddNew" destination="hIg-xh-hIk" id="F4Z-pN-gqt"/>
+                        <outlet property="buttonExistingList" destination="QKW-8U-qPK" id="JTC-ZI-Syq"/>
+                        <outlet property="buttonNavigation" destination="eOo-0m-dhG" id="XVf-DL-Cuk"/>
+                        <outlet property="imageViewBackground" destination="hAX-Dv-ktC" id="1CI-L8-6l3"/>
+                        <outlet property="labelPhotoDetail" destination="YgB-ac-B6S" id="Bwn-Bk-AyS"/>
+                        <outlet property="labelPhotoHeader" destination="AMA-Ky-SB2" id="kzt-gc-brL"/>
+                        <outlet property="viewDescriptor" destination="oFe-JL-AVO" id="Mra-w1-Yvm"/>
+                        <outlet property="viewMain" destination="6jI-R5-x5Z" id="SBi-Jp-gUl"/>
+                        <outlet property="viewNavigation" destination="THl-sJ-Fan" id="VYh-c3-vx5"/>
+                        <outlet property="viewTest1" destination="VWZ-iW-i6o" id="UJs-TI-3cu"/>
+                        <outlet property="viewTest2" destination="6Rv-gw-cdI" id="7xr-iC-zvo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tcM-u0-Ir6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1678" y="256"/>
         </scene>
     </scenes>
     <resources>

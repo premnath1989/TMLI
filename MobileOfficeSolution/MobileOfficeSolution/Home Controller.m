@@ -168,10 +168,10 @@
         // Override option, open the Traditional SI
         UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
         AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-        MainScreen *mainScreen= [cpStoryboard instantiateViewControllerWithIdentifier:@"Main"];
-        mainScreen.tradOrEver = @"TRAD";
+        MainScreen *mainScreen= [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
+        //mainScreen.tradOrEver = @"TRAD";
         mainScreen.modalPresentationStyle = UIModalPresentationFullScreen;
-        mainScreen.IndexTab = appdlg.SIListingIndex;
+        //mainScreen.IndexTab = appdlg.SIListingIndex;
         [self presentViewController:mainScreen animated:NO completion:Nil];
         mainScreen= Nil;
         appdlg = nil;

@@ -10,6 +10,7 @@
 		171BD3B11DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */; };
 		171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */; };
 		171BD3B71DDEDB7E005CC058 /* WaiverRiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */; };
+		171BD3BA1DE28689005CC058 /* SILandingScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B91DE28689005CC058 /* SILandingScreen.m */; };
 		172DEF891DD55D0C00CDED49 /* CriticalIlnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */; };
 		172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */; };
 		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
@@ -552,6 +553,8 @@
 		171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PzyorWaiverViewController.m; sourceTree = "<group>"; };
 		171BD3B51DDEDB7E005CC058 /* WaiverRiderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaiverRiderViewController.h; sourceTree = "<group>"; };
 		171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaiverRiderViewController.m; sourceTree = "<group>"; };
+		171BD3B81DE28689005CC058 /* SILandingScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SILandingScreen.h; sourceTree = "<group>"; };
+		171BD3B91DE28689005CC058 /* SILandingScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SILandingScreen.m; sourceTree = "<group>"; };
 		172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriticalIlnessViewController.h; sourceTree = "<group>"; };
 		172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriticalIlnessViewController.m; sourceTree = "<group>"; };
 		172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalCashPlanViewController.h; sourceTree = "<group>"; };
@@ -1921,6 +1924,8 @@
 				DEDC5DFC1DAE41B50033FE37 /* DisableView */,
 				DEDC5DD71DAE41B30033FE37 /* SIObj.h */,
 				DEDC5DD81DAE41B30033FE37 /* SIObj.m */,
+				171BD3B81DE28689005CC058 /* SILandingScreen.h */,
+				171BD3B91DE28689005CC058 /* SILandingScreen.m */,
 				DEDC5DD91DAE41B30033FE37 /* NewLAViewController.h */,
 				DEDC5DDA1DAE41B30033FE37 /* NewLAViewController.m */,
 				DEDC5DDB1DAE41B30033FE37 /* ExtraPremi.h */,
@@ -3645,6 +3650,7 @@
 				C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */,
 				DEDC61091DAF79350033FE37 /* SPAJ Calon Pemegang Polis.m in Sources */,
 				DEDC5D351DAE39420033FE37 /* ModelSPAJFormGeneration.m in Sources */,
+				171BD3BA1DE28689005CC058 /* SILandingScreen.m in Sources */,
 				DEDC5D221DAE39420033FE37 /* ModelVIPClass.m in Sources */,
 				DEDC620F1DAF81BC0033FE37 /* PDFFormChoiceField.m in Sources */,
 				DEDC60FE1DAF79350033FE37 /* SPAJ Form Generation.m in Sources */,
