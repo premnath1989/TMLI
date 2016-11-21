@@ -17,6 +17,7 @@
 #import "UIButton+Property.h"
 #import "UIElementsManagement.h"
 #import <QuartzCore/QuartzCore.h>
+#import "User Interface.h"
 
 @interface SIListing ()
 @property(nonatomic, readwrite) int kPageIndex;
@@ -48,6 +49,8 @@
 @synthesize Popover = _Popover;
 @synthesize SIDate = _SIDate;
 @synthesize SIDatePopover = _SIDatePopover;
+
+BOOL NavIsShow1;
 
 //@synthesize TableHeader;
 
@@ -1712,5 +1715,36 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
 -(void)loadDataDelayed {    
     //[self LoadAllResult];
 }
+
+- (IBAction)ActionBackTo:(id)sender {
+    
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
+    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
+    [self presentViewController:mainClient animated:NO completion:Nil];
+    appdlg = Nil;
+    mainClient= Nil;
+    
+}
+
+- (IBAction)navigationShow:(id)sender
+{
+    if (!NavIsShow1)
+    {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+        NavIsShow1 = YES;
+    }
+    else
+    {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+        NavIsShow1 = NO;
+    }
+}
+
+
 
 @end
