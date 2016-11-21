@@ -1,18 +1,18 @@
 //
-//  PzyorWaiverViewController.m
+//  WaiverRiderViewController.m
 //  MobileOfficeSolution
 //
 //  Created by Premnath on 18/11/2016.
 //  Copyright © 2016 Erwin Lim InfoConnect. All rights reserved.
 //
 
-#import "PzyorWaiverViewController.h"
+#import "WaiverRiderViewController.h"
 
-@interface PzyorWaiverViewController ()
+@interface WaiverRiderViewController ()
 
 @end
 
-@implementation PzyorWaiverViewController
+@implementation WaiverRiderViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 7;
 }
 
 
@@ -47,12 +47,12 @@
         
     }
     
-    NSMutableArray* RiderListTMLI1 =[NSMutableArray arrayWithObjects:@"10A",@"10B",@"10C",@"55A",@"55B",@"65A",@"65B",@"65C",nil];
+    NSMutableArray* RiderListTMLI1 =[NSMutableArray arrayWithObjects:@"10A",@"10B",@"55A",@"55B",@"65A",@"65B",nil];
     
     
     cell.textLabel.text =  [RiderListTMLI1 objectAtIndex:indexPath.row];
     
-
+    
     return cell;
     
 }
@@ -86,5 +86,6 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
 
 @end

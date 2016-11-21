@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		171BD3B11DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */; };
 		171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */; };
+		171BD3B71DDEDB7E005CC058 /* WaiverRiderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */; };
 		172DEF891DD55D0C00CDED49 /* CriticalIlnessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */; };
 		172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 172DEF8B1DD573FC00CDED49 /* HospitalCashPlanViewController.m */; };
 		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
@@ -549,6 +550,8 @@
 		171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HospitalAndSurgicalRiderViewController.m; sourceTree = "<group>"; };
 		171BD3B21DDED0CB005CC058 /* PzyorWaiverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PzyorWaiverViewController.h; sourceTree = "<group>"; };
 		171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PzyorWaiverViewController.m; sourceTree = "<group>"; };
+		171BD3B51DDEDB7E005CC058 /* WaiverRiderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaiverRiderViewController.h; sourceTree = "<group>"; };
+		171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaiverRiderViewController.m; sourceTree = "<group>"; };
 		172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CriticalIlnessViewController.h; sourceTree = "<group>"; };
 		172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CriticalIlnessViewController.m; sourceTree = "<group>"; };
 		172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HospitalCashPlanViewController.h; sourceTree = "<group>"; };
@@ -1893,6 +1896,8 @@
 				171BD3B01DDE9AFC005CC058 /* HospitalAndSurgicalRiderViewController.m */,
 				171BD3B21DDED0CB005CC058 /* PzyorWaiverViewController.h */,
 				171BD3B31DDED0CB005CC058 /* PzyorWaiverViewController.m */,
+				171BD3B51DDEDB7E005CC058 /* WaiverRiderViewController.h */,
+				171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */,
 				DEDC5DBA1DAE417A0033FE37 /* IlustrationViewController.h */,
 				DEDC5DBB1DAE417A0033FE37 /* IlustrationViewController.m */,
 				DEDC5DBC1DAE417A0033FE37 /* BasicPlanViewController.m */,
@@ -3553,6 +3558,7 @@
 				DEDC5E3C1DAE43800033FE37 /* ColorHexCode.m in Sources */,
 				DEDC60FF1DAF79350033FE37 /* SPAJ Add Detail.m in Sources */,
 				DE1168F41DD1749E007DDA9B /* Login Controller.m in Sources */,
+				171BD3B71DDEDB7E005CC058 /* WaiverRiderViewController.m in Sources */,
 				DEDC5DB31DAE40880033FE37 /* FSVerticalTabBarController.m in Sources */,
 				DEDC5FD51DAE52C90033FE37 /* RiderCalculation.m in Sources */,
 				DEDC5E0D1DAE41FC0033FE37 /* GroupViewVC.m in Sources */,

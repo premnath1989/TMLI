@@ -6413,6 +6413,12 @@ int maxGycc = 0;
         {
             [self PayorWaiver];
         }
+        else if ([_cellText isEqualToString:@"Payor Benefit"])
+        {
+            [self WaiverRider];
+
+        }
+        
 
 
         
@@ -6475,6 +6481,20 @@ int maxGycc = 0;
     
     PayorWaiverVC.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:PayorWaiverVC animated:YES completion:nil];
+    
+    
+    
+}
+
+-(void)WaiverRider
+{
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+    WaiverRiderViewController *WaiverVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"WaiverPlanVC"];
+    // CriticalVC.delegate=self;
+    
+    
+    WaiverVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    [self presentViewController:WaiverVC animated:YES completion:nil];
     
     
     
