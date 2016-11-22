@@ -16,6 +16,7 @@
 #import "FMDatabase.h"
 #import "textFields.h"
 #import "AppDelegate.h"
+#import "User Interface.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -59,6 +60,9 @@
     BOOL isEndTime;
     
     BOOL isFavorite;
+    
+    BOOL isThin;
+    BOOL NavShowP;
     
 	BOOL Update_record;
     BOOL IC_Hold_Alert;
@@ -171,6 +175,11 @@ bool PolicyOwnerSigned = TRUE;
 	UDGroup = [NSUserDefaults standardUserDefaults];
 	ProsGroupArr = [NSMutableArray array];
 	DelGroupArr = [NSMutableArray array];
+    
+    NavShowP = NO;
+    isThin = NO;
+    [self ActionChangeHeader:nil];
+
 	
     txtHPNo.delegate = self;
     _txtHPRumah.delegate = self;
@@ -11899,7 +11908,7 @@ bool PolicyOwnerSigned = TRUE;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = YES;
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
@@ -11937,7 +11946,7 @@ bool PolicyOwnerSigned = TRUE;
     [_btnAlamat setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     [_btnData setBackgroundColor:gray];
     [_btnAlamat setBackgroundColor:green];
@@ -11963,7 +11972,7 @@ bool PolicyOwnerSigned = TRUE;
     [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     
-    UIColor *green = [UIColor colorWithRed:0.09 green:0.40 blue:0.46 alpha:1.0];
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     
     [_btnData setBackgroundColor:gray];
@@ -12222,6 +12231,47 @@ bool PolicyOwnerSigned = TRUE;
     
 }
 
+- (IBAction)ActionChangeHeader:(id)sender {
+    
+    if (isThin) {
+        _ViewThinHeader.hidden = NO;
+        _ViewThickHeader.hidden = YES;
+        isThin = NO;
+        _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
+        _scrollViewEditProspect .frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
+//        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+//        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+//        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        
+    }
+    else {
+        _ViewThinHeader.hidden = YES;
+        _ViewThickHeader.hidden = NO;
+        isThin = YES;
+        _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
+         _scrollViewEditProspect .frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+        _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
+//        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+//        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+//        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+    }
+    
+}
+
+- (IBAction)ActionNavigationShow:(id)sender {
+    if (!NavShowP) {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+        NavShowP = YES;
+    }
+    else {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+        NavShowP = NO;
+    }
+    
+}
 
 - (void)viewDidUnload
 {

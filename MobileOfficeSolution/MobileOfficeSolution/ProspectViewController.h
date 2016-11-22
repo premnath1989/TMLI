@@ -245,6 +245,20 @@
 // TMLI - Add By Emi
 
 //Main
+
+//Header
+@property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
+@property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
+@property (strong, nonatomic) IBOutlet UIView *ViewThickHeader;
+@property (strong, nonatomic) IBOutlet UIButton *btnChangeHeader;
+
+- (IBAction)ActionChangeHeader:(id)sender;
+- (IBAction)ActionNavigationShow:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIView *ViewMenu1;
+
+//
+
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;
 @property (strong, nonatomic) IBOutlet UIButton *btnOcc;

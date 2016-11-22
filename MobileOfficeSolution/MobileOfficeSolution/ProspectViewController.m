@@ -20,6 +20,7 @@
 #import "DataTable.h"
 #import "FMDatabase.h"
 #import "textFields.h"
+#import "User Interface.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -168,6 +169,9 @@ bool RegDatehandling;
 bool isStartTime;
 bool isEndTime;
 
+BOOL isThin;
+BOOL NavShowP;
+
 - (void)viewDidLoad
 {
     RegDatehandling =YES;
@@ -189,6 +193,8 @@ bool isEndTime;
     isEndTime = NO;
     
     isFavorite = NO;
+    isThin = NO;
+    [self ActionChangeHeader:nil];
     
     borderColor=[[UIColor alloc]initWithRed:250.0/255.0 green:175.0/255.0 blue:50.0/255.0 alpha:1.0];
     
@@ -403,6 +409,8 @@ bool isEndTime;
     self.txtRemark.layer.cornerRadius = 8;
 
     [self isForeign:nil];
+    
+    
     
     
 }
@@ -6729,7 +6737,44 @@ bool isEndTime;
         [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
     }
     
+}
+- (IBAction)ActionChangeHeader:(id)sender {
     
+    if (isThin) {
+        _ViewThinHeader.hidden = NO;
+        _ViewThickHeader.hidden = YES;
+        isThin = NO;
+        _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
+        _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
+        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+
+    }
+    else {
+        _ViewThinHeader.hidden = YES;
+        _ViewThickHeader.hidden = NO;
+        isThin = YES;
+        _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
+        _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
+        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+    }
+    
+}
+
+- (IBAction)ActionNavigationShow:(id)sender {
+    if (!NavShowP) {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+        NavShowP = YES;
+    }
+    else {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+        NavShowP = NO;
+    }
     
 }
 @end

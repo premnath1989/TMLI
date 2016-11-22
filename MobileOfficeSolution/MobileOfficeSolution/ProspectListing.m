@@ -1153,13 +1153,19 @@ MBProgressHUD *HUD;
     }
     zzz.pp = pp;
     
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    
+    
     if (_EditProspect == Nil) {
-        self.EditProspect = [self.storyboard instantiateViewControllerWithIdentifier:@"EditProspect"];
+        self.EditProspect = [cpStoryboard instantiateViewControllerWithIdentifier:@"EditProspect"];
+        
         _EditProspect.delegate = self;
+     
     }
-    _EditProspect.pp = pp;
+     _EditProspect.pp = pp;
     @try {
-        [self.navigationController pushViewController:_EditProspect animated:YES];
+//        [self.navigationController pushViewController:_EditProspect animated:YES];
+        [self presentViewController:_EditProspect animated:NO completion:Nil];
         _EditProspect.navigationItem.title = @"Edit";
     } @catch (NSException * e) {
         NSLog(@"Exception: %@", e);
