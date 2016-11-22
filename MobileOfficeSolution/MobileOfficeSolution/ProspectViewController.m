@@ -358,9 +358,9 @@ BOOL NavShowP;
     
     CustomColor = Nil;
     
-    [myScrollView setScrollEnabled:YES];
-    self.myScrollView.frame = CGRectMake(0, 0, 1024, 900);
-    self.myScrollView.contentSize = CGSizeMake(900, 1300);
+    [_ScrollViewProspect setScrollEnabled:YES];
+//    _ScrollViewProspect.frame = CGRectMake(0, 200, 1024, 900);
+    _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Daftar Nasabah" style:UIBarButtonItemStyleBordered target:self action:@selector(back)];
     
@@ -3284,6 +3284,14 @@ BOOL NavShowP;
     
 }
 
+-(void) SuccessAlert {
+    
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+    ProspectViewController *AlertPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"SuccessAlertVC"];
+
+    [self presentViewController:AlertPage animated:YES completion:nil];
+}
+
 -(void) CalculateScore {
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -5886,11 +5894,13 @@ BOOL NavShowP;
         
     } else {
 		if (![[ClientProfile objectForKey:@"TabBar"] isEqualToString:@"YES"]) {
-			SuccessAlert = [[UIAlertView alloc] initWithTitle:@" "
-													  message:@"Data Nasabah telah berhasil disimpan" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//			SuccessAlert = [[UIAlertView alloc] initWithTitle:@" "
+//													  message:@"Data Nasabah telah berhasil disimpan" delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+            
+            [self SuccessAlert];
 		}
 		SuccessAlert.tag = 1;
-		[SuccessAlert show];
+//		[SuccessAlert show];
 		[ClientProfile setObject:@"NO" forKey:@"isNew"];
     }
 	
@@ -6746,9 +6756,10 @@ BOOL NavShowP;
         isThin = NO;
         _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
         _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
-        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
+//        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+//        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+//        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
 
     }
     else {
@@ -6757,9 +6768,10 @@ BOOL NavShowP;
         isThin = YES;
         _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
         _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
-        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+        _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
+//        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+//        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+//        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
     }
     
 }

@@ -247,6 +247,7 @@
 //Main
 
 //Header
+
 @property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
 @property (strong, nonatomic) IBOutlet UIView *ViewThickHeader;
@@ -258,6 +259,8 @@
 @property (strong, nonatomic) IBOutlet UIView *ViewMenu1;
 
 //
+@property (strong, nonatomic) IBOutlet UIScrollView *ScrollViewProspect;
+
 
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;

@@ -17,6 +17,7 @@
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
+		C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */; };
 		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		C3E969741DDAE9FA002C26BD /* ProspectLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E969731DDAE9FA002C26BD /* ProspectLandingController.m */; };
 		DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */; };
@@ -567,6 +568,8 @@
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		C32E03FA1DD41DFD00A76D6F /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		C3CFB3991DE42AE50067A160 /* SuccessAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessAlertVC.h; sourceTree = "<group>"; };
+		C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessAlertVC.m; sourceTree = "<group>"; };
 		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
 		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
 		C3E969721DDAE9FA002C26BD /* ProspectLandingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProspectLandingController.h; sourceTree = "<group>"; };
@@ -1683,6 +1686,8 @@
 				DEDC5C9F1DAE35A40033FE37 /* ClientGroup */,
 				C3E969721DDAE9FA002C26BD /* ProspectLandingController.h */,
 				C3E969731DDAE9FA002C26BD /* ProspectLandingController.m */,
+				C3CFB3991DE42AE50067A160 /* SuccessAlertVC.h */,
+				C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */,
 			);
 			name = Prospect;
 			sourceTree = "<group>";
@@ -3622,6 +3627,7 @@
 				DEDC5F011DAE47C80033FE37 /* SPAJ E Application List Cell.m in Sources */,
 				DEDC61CA1DAF7E300033FE37 /* ButtonSPAJ.m in Sources */,
 				DEDC62011DAF81B20033FE37 /* PDFUtility.m in Sources */,
+				C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */,
 				DEDC61681DAF7BE40033FE37 /* Entity SPAJ Header.m in Sources */,
 				DEDC5D301DAE39420033FE37 /* ModelSPAJSignature.m in Sources */,
 				DEDC5DA31DAE402B0033FE37 /* NSData+Base64.m in Sources */,
