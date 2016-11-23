@@ -158,7 +158,7 @@
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
 
-@synthesize txtNamaDepan, txtNamaBelakang;
+@synthesize txtNamaDepan, txtNamaBelakang, UDScore;
 
 
 bool PostcodeContinue = TRUE;
@@ -3167,6 +3167,11 @@ BOOL NavShowP;
                         strDOB = @"";
                         age = 0;
                     }
+                    
+                    NSString *strScore = [NSString stringWithFormat:@"%d", score];
+                    UDScore = [NSUserDefaults standardUserDefaults];
+                    [UDScore setObject:strScore forKey:@"Score"];
+                    [UDScore synchronize];
                     
                     insertSQL = [NSString stringWithFormat:
                                  @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
@@ -6787,6 +6792,14 @@ BOOL NavShowP;
         [_objectUserInterface navigationHide:self];
         NavShowP = NO;
     }
+    
+}
+
+- (IBAction)ActionBackTo:(id)sender {
+    
+ 
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
     
 }
 @end

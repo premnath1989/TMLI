@@ -1685,13 +1685,7 @@ MBProgressHUD *HUD;
 - (IBAction)ActionBackTo:(id)sender {
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
     
 }
 

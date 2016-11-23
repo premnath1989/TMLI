@@ -299,7 +299,7 @@
 
 
 // TMLI - Add By Emi
-
+@property (strong, nonatomic) NSUserDefaults *UDScore;
 //Header
 @property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;

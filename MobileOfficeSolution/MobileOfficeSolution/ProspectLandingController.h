@@ -24,8 +24,8 @@
 @property (nonatomic, weak) IBOutlet UIView *viewNavigation;
 @property (nonatomic, weak) IBOutlet UIView *viewMain;
 
-@property (nonatomic, weak) IBOutlet UIView *viewTest1;
-@property (nonatomic, weak) IBOutlet UIView *viewTest2;
+//@property (nonatomic, weak) IBOutlet UIView *viewTest1;
+//@property (nonatomic, weak) IBOutlet UIView *viewTest2;
 
 
 /* IMAGE VIEW */

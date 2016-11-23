@@ -17,17 +17,46 @@
 @end
 
 @implementation SuccessAlertVC
+@synthesize UDScore;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    UDScore = [NSUserDefaults standardUserDefaults];
+    
+    int totalScore = [[UDScore stringForKey:@"Score"] integerValue];
+    _lblScore.text = [NSString stringWithFormat:@"%d", totalScore];
+    
+    
+    if (totalScore > 8 && totalScore < 15) {
+       _LblGroup.text = @"COLD";
+        _LblGroup.textColor = [UIColor redColor];
+        [_ViewScore setBackgroundColor:[UIColor redColor]];
+    }
+    else if (totalScore > 16 && totalScore < 23) {
+        _LblGroup.text = @"WARM";
+        _LblGroup.textColor = [UIColor orangeColor];
+        [_ViewScore setBackgroundColor:[UIColor orangeColor]];
+    }
+    else if (totalScore > 24 && totalScore < 31) {
+        _LblGroup.text = @"HOT";
+        _LblGroup.textColor = [UIColor redColor];
+        [_ViewScore setBackgroundColor:[UIColor redColor]];
+    }
+    else {
+        _LblGroup.text = @"";
+        _LblGroup.textColor = [UIColor blueColor];
+        [_ViewScore setBackgroundColor:[UIColor blackColor]];
+    }
+    
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 
 - (IBAction)ActionOK:(id)sender {

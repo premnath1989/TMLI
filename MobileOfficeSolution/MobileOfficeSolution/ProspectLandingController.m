@@ -82,10 +82,10 @@ BOOL NavShow;
     if (!NavShow) {
         [_objectUserInterface navigationShow:self];
         NavShow = YES;
-        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : true];
+//        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : true];
     }else{
         [_objectUserInterface navigationHide:self];
-        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : false];
+//        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : false];
         NavShow = NO;
     }
     
@@ -95,25 +95,15 @@ BOOL NavShow;
 - (IBAction)ActionExisting:(id)sender {
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
+    
+
 }
 
 - (IBAction)ActionAddNew:(id)sender {
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"Prospect"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"Prospect"] animated:YES completion: nil];
     
 }
 

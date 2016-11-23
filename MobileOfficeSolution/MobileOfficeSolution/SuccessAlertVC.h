@@ -10,7 +10,15 @@
 
 @interface SuccessAlertVC : UIViewController
 
+
+@property (strong, nonatomic) NSUserDefaults *UDScore;
+
 @property (strong, nonatomic) IBOutlet UIButton *btnOK;
 - (IBAction)ActionOK:(id)sender;
+@property (strong, nonatomic) IBOutlet UILabel *lblScore;
+@property (strong, nonatomic) IBOutlet UILabel *LblTittle;
+@property (strong, nonatomic) IBOutlet UILabel *LblGroup;
+@property (strong, nonatomic) IBOutlet UIView *ViewScore;
+
 
 @end

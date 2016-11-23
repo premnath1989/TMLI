@@ -148,7 +148,7 @@
 @synthesize outletExpiryDate;
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
-@synthesize txtHPNo;
+@synthesize txtHPNo, UDScore;
 
 bool IsContinue = TRUE;
 bool PolicyOwnerSigned = TRUE;
@@ -179,6 +179,8 @@ bool PolicyOwnerSigned = TRUE;
     NavShowP = NO;
     isThin = NO;
     [self ActionChangeHeader:nil];
+    
+    UDScore = [NSUserDefaults standardUserDefaults];
 
 	
     txtHPNo.delegate = self;
@@ -7398,6 +7400,11 @@ bool PolicyOwnerSigned = TRUE;
         [self CalculateScore];
         [self calculateAge:txtDOB.text];
         
+        NSString *strScore = [NSString stringWithFormat:@"%d", score];
+        UDScore = [NSUserDefaults standardUserDefaults];
+        [UDScore setObject:strScore forKey:@"Score"];
+        [UDScore synchronize];
+        
         
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
@@ -7879,11 +7886,13 @@ bool PolicyOwnerSigned = TRUE;
 	if (![[ClientProfile objectForKey:@"TabBar"] isEqualToString:@"YES"]) {
 		//UIAlertView *SuccessAlert = [[UIAlertView alloc] initWithTitle:@" "
 		//													   message:@"Changes have been updated successfully." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-        UIAlertView *SuccessAlert = [[UIAlertView alloc] initWithTitle:@" "
-        message:@"Perubahan telah berhasil disimpan." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        UIAlertView *SuccessAlert = [[UIAlertView alloc] initWithTitle:@" "
+//        message:@"Perubahan telah berhasil disimpan." delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+//        
+//		SuccessAlert.tag = 9001;
+//		[SuccessAlert show];
+        [self SuccessAlert];
         
-		SuccessAlert.tag = 9001;
-		[SuccessAlert show];
 	}
 	
 	[ClientProfile setObject:@"Save Succeed" forKey:@"Message"];
@@ -7891,6 +7900,14 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:@"NO" forKey:@"NeedToSave"];
 	[ClientProfile setObject:@"NO" forKey:@"HasChanged"];
 	
+}
+
+-(void) SuccessAlert {
+    
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+    ProspectViewController *AlertPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"SuccessAlertVC"];
+    
+    [self presentViewController:AlertPage animated:YES completion:nil];
 }
 
 -(BOOL) validateTrust:(NSString *)ProposalNo :(NSString *)PO_MAritalStatus database:(FMDatabase *)db {

@@ -255,6 +255,8 @@
 
 - (IBAction)ActionChangeHeader:(id)sender;
 - (IBAction)ActionNavigationShow:(id)sender;
+- (IBAction)ActionBackTo:(id)sender;
+@property (strong, nonatomic) NSUserDefaults *UDScore;
 
 @property (strong, nonatomic) IBOutlet UIView *ViewMenu1;
 
