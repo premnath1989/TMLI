@@ -83,6 +83,9 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="2Fz-hT-jdE"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_prospect_primary"/>
+                                    <connections>
+                                        <action selector="goToProspectLanding:" destination="-1" eventType="touchUpInside" id="qjT-BM-cGu"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34V-22-lO6" customClass="ButtonNavigationVerticalHeader">
                                     <constraints>

@@ -102,4 +102,13 @@
             [self presentViewController:[_storyboardSPAJ instantiateViewControllerWithIdentifier:@"SPAJLandingPage"] animated:YES completion: nil];
         }
 
+        /* NAVIGATION */
+
+        - (IBAction)goToProspectLanding: (id) sender
+        {
+            UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+            [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
+        }
+
+
 @end

@@ -3256,7 +3256,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2YT8E2D9X6;
+						DevelopmentTeam = 25W8386326;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3975,7 +3975,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -4007,7 +4007,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 2YT8E2D9X6;
+				DEVELOPMENT_TEAM = 25W8386326;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
