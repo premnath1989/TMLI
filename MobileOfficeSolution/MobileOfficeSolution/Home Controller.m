@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "MainClient.h"
 #import "MainScreen.h"
+#import "ProductInformation.h"
 
 
 // INTERFACE
@@ -156,6 +157,8 @@
     - (IBAction)goToProspect:(id)sender {
         UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
         [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
+        
+
     }
 
     - (IBAction)goToSalesIllustration:(id)sender {
@@ -169,6 +172,13 @@
         [self presentViewController:mainScreen animated:NO completion:Nil];
         mainScreen= Nil;
         appdlg = nil;
+    }
+
+    - (IBAction)goToELibrary:(id)sender {
+
+        ProductInformation *view = [[ProductInformation alloc] initWithNibName:@"ProductInformation" bundle:nil];
+        view.modalTransitionStyle = UIModalPresentationFullScreen;
+        [self presentViewController:view animated:NO completion:nil];
     }
 
 @end

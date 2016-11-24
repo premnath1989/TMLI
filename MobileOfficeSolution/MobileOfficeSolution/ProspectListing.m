@@ -1214,18 +1214,11 @@ MBProgressHUD *HUD;
 
 }
 
-- (IBAction)btnAddNew:(id)sender//premnathvj
+- (IBAction)btnAddNew:(id)sender
 {
     
-
-    
-    //UIStoryboard* clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-    self.ProspectViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Prospect"];
-    self.ProspectViewController.delegate = self;
-    [self.navigationController pushViewController:_ProspectViewController animated:YES];
-    //Cheged by faiz due to language translation
-    /*_ProspectViewController.navigationItem.title = @"Add Client Profile";*/
-    _ProspectViewController.navigationItem.title = @"Add New Data Nasabah";
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"Prospect"] animated:YES completion: nil];
     
 }
 
@@ -1454,7 +1447,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:NO animated:TRUE];
         deleteBtn.hidden = true;
         deleteBtn.enabled = false;
-        [editBtn setTitle:@"Hapus" forState:UIControlStateNormal ];
+        [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
         
         ItemToBeDeleted = [[NSMutableArray alloc] init];
         indexPaths = [[NSMutableArray alloc] init];
@@ -1466,7 +1459,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:YES animated:TRUE];
         deleteBtn.hidden = FALSE;
         //[deleteBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal ];
-        [editBtn setTitle:@"Batal" forState:UIControlStateNormal ];
+        [editBtn setTitle:@"Cancel" forState:UIControlStateNormal ];
     }
 }
 
