@@ -14,6 +14,8 @@
 #import "SpinnerUtilities.h"
 #import "ProgressBarDelegate.h"
 #import "TableManagement.h"
+#import "User Interface.h"
+
 
 #define videoExt @"mp4"
 #define brochureExt @"pdf"
@@ -44,5 +46,10 @@
 
 - (IBAction)goHome:(id)sender;
 - (IBAction)seePDF:(id)sender;
+
+- (IBAction)ShowNavigation:(id)sender;
+- (IBAction)GoBack:(id)sender;
+
+
 
 @end

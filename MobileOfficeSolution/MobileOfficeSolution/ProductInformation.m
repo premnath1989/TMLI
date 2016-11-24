@@ -15,6 +15,7 @@
 #import "ProgressBar.h"
 #import "ChangePassword.h"
 #import "UIView+viewRecursion.h"
+#import "User Interface.h"
 
 @implementation ProductInformation
 
@@ -24,8 +25,12 @@
 @synthesize navigationBar;
 @synthesize moviePlayer;
 
+BOOL NavShow2;
+
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    NavShow2 = NO;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Brochures"];
     
@@ -253,6 +258,26 @@
         
         [self presentViewController:readerViewController animated:YES completion:Nil];
     }
+}
+
+- (IBAction)ShowNavigation:(id)sender {
+
+    if (!NavShow2) {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+
+    }
+    else {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+    }
+
+    NavShow2 = !NavShow2;
+}
+
+- (IBAction)GoBack:(id)sender {
+    UIStoryboard *_storyboardMain = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
 }
 
 - (IBAction)seeVideo:(NSString *)fileName{
