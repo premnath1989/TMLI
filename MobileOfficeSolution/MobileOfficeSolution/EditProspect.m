@@ -11696,32 +11696,6 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:@"YES" forKey:@"isEdited"];
 }
 
--(BOOL)get_unemploy_initial
-{
-    sqlite3_stmt *statement;
-    BOOL valid = FALSE;
-    
-    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK){
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT \"OccpCatCode\" from Adm_OccpCat_Occp WHERE OccpCode = \"%@\" ", pp.ProspectOccupationCode];
-        if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String ], -1, &statement, NULL) == SQLITE_OK)
-        {
-            if (sqlite3_step(statement) == SQLITE_ROW){
-                OccpCatCode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                OccpCatCode = [OccpCatCode stringByTrimmingCharactersInSet: [NSCharacterSet whitespaceCharacterSet]];
-                
-                valid = !([[OccpCatCode stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@"EMP"]);
-                
-            }
-            sqlite3_finalize(statement);
-        }
-        else {
-            valid = FALSE;
-        }
-        sqlite3_close(contactDB);
-    }
-    return valid;
-    
-}
 
 -(BOOL)get_unemploy
 {
