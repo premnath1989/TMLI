@@ -2672,7 +2672,7 @@ bool WPTPD30RisDeleted = FALSE;
         
         [self presentViewController:MainScreenPage animated:YES completion:^(){
             [MainScreenPage presentViewController:NewLAPage animated:NO completion:nil];
-            NewLAPage.view.superview.bounds =  CGRectMake(-300, 0, 1024, 748);
+            NewLAPage.view.superview.bounds =  CGRectMake(0, 0, 1024, 748);
             
         }];
     } else if (alertView.tag==1002 && buttonIndex == 0) {

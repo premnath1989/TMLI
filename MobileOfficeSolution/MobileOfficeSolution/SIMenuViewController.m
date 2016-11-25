@@ -76,6 +76,9 @@ BOOL isFirstLoad;
 {
     [super viewDidLoad];
     [self resignFirstResponder];
+    
+    
+    [self.myTableView setFrame:CGRectMake(0,0,342, 60)];
 
     formatter = [[Formatter alloc] init];
     riderCalculation = [[RiderCalculation alloc]init];
@@ -104,7 +107,8 @@ BOOL isFirstLoad;
     arrayIntValidate = [[NSMutableArray alloc] initWithObjects:@"0",@"0",@"0",@"0",@"0",@"0", nil];
 
     _NumberListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"1", @"2", @"3", @"4",@"5",@"6",@"7",@"8", nil];
-    ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Asuransi Dasar", @"Asuransi Tambahan ",@"Jenis Investasi",@"Penambahan /\nPenarikan Tunggal",@"Illustrasi",@"Email Illustrasi",nil];
+    ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis",nil];
+  //  ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Asuransi Dasar", @"Asuransi Tambahan ",@"Jenis Investasi",@"Penambahan /\nPenarikan Tunggal",@"Illustrasi",@"Email Illustrasi",nil];
     
     appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
     
@@ -118,6 +122,8 @@ BOOL isFirstLoad;
     
     myTableView.rowHeight = 84;
     [myTableView reloadData];
+    
+    //testingTheAv
     
     //self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
     //_RiderController.delegate = self;
@@ -219,10 +225,11 @@ BOOL isFirstLoad;
     self.view.autoresizesSubviews = NO;
     
     if ([[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
-        self.myTableView.frame = CGRectMake(0, 100, 260, 748);
+        self.myTableView.frame = CGRectMake(0, 330, 642, 60);
         self.RightView.frame = CGRectMake(255, 20, 600, 748);
     } else {
-        self.myTableView.frame = CGRectMake(0, 20, 203, 748);
+        self.myTableView.frame = CGRectMake(0, 250, 642, 83);
+       
     }
     
     [self hideSeparatorLine];
@@ -2796,7 +2803,7 @@ BOOL isFirstLoad;
 
 - (NSInteger)tableView:(UITableView *)myTableView numberOfRowsInSection:(NSInteger)section
 {
-    return ListOfSubMenu.count;
+    return 1;
 }
 
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -2902,8 +2909,12 @@ BOOL isFirstLoad;
     UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, cell.contentView.bounds.size.height - 1.0f, cell.contentView.bounds.size.width, 1.0f)];
     lineView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     lineView.backgroundColor = [UIColor blackColor];
+     
+     
     
     [cell.contentView addSubview:lineView];*/
+    
+    
     static NSString *CellIdentifier = @"Cell";
     SIMenuTableViewCell *cell = (SIMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -2913,15 +2924,45 @@ BOOL isFirstLoad;
     UIView *bgColorView = [[UIView alloc] init];
     if (indexPath.row<[arrayIntValidate count]){
         if ([[arrayIntValidate objectAtIndex:indexPath.row] isEqualToString:@"1"]){
-            [cell setBackgroundColor:[UIColor colorWithRed:88.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1.0]];
+//            [cell setBackgroundColor:[UIColor colorWithRed:88.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1.0]];
         }
         else{
-            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
+//            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
         }
     }
     else{
-            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
+//            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
     }
+    
+    
+    
+     if (indexPath.row == 0)
+         {
+              //(0,0,342, 60)
+//             UIButton *scanQRCodeButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//             scanQRCodeButton.frame = CGRectMake(0.0f, 0.0f, 85,85);
+//             UIImage *img = [UIImage imageNamed:@"shape_guideright_complete"];
+//             [scanQRCodeButton setBackgroundImage:img forState:UIControlStateNormal];
+//             [scanQRCodeButton setTitle:@"" forState:UIControlStateNormal];
+//             [cell addSubview:scanQRCodeButton];
+             
+//             if (cell.accessoryView == nil)
+//             {
+//                 
+//                 ButtontoClick = [UIButton buttonWithType:UIButtonTypeCustom];
+//                 UIImage *btnImage = [UIImage imageNamed:@"shape_guideright_complete"];
+//                 [ButtontoClick setImage:btnImage forState:UIControlStateNormal];
+//    
+//                 cell.accessoryView = ButtontoClick;
+//             }
+             
+             
+             //cell.imageView.image = [UIImage imageNamed:@"shape_guideright_complete"];
+//             [cell.imageView setFrame:CGRectMake(-70.0,0,self.view.frame.size.width,self.view.frame.size.width)];
+             [cell setBackgroundColor: [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0]];
+             
+             
+         }
     
     if (indexPath.row == 1){
         if (selfRelation){
@@ -2932,7 +2973,7 @@ BOOL isFirstLoad;
         }
     }
     
-    bgColorView.backgroundColor = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
+//    bgColorView.backgroundColor = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     
     [cell setSelectedBackgroundView:bgColorView];
     
@@ -2981,6 +3022,8 @@ BOOL isFirstLoad;
     
     return cell;
 }
+
+
 
 #pragma mark - void added by faiz
 -(void)checkValidateView{
