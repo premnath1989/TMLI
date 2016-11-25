@@ -17,6 +17,7 @@
 #import "MainClient.h"
 #import "MainScreen.h"
 #import "ProductInformation.h"
+#import "SettingUserProfile.h"
 
 
 // INTERFACE
@@ -159,6 +160,21 @@
         [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
         
 
+    }
+
+    - (IBAction)goToAgentProfile:(id)sender;
+    {
+        UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
+        SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SettingUserProfile"];
+        UserProfileView.modalPresentationStyle = UIModalPresentationPageSheet;
+        UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//        UserProfileView.indexNo = self.indexNo;
+        UserProfileView.getLatest = @"Yes";
+        //            [self presentModalViewController:UserProfileView animated:YES];
+        [self presentViewController:UserProfileView animated:YES completion:nil];
+        
+        UserProfileView.view.superview.frame = CGRectMake(150, 50, 700, 748);
+        UserProfileView = nil;
     }
 
     - (IBAction)goToSalesIllustration:(id)sender {
