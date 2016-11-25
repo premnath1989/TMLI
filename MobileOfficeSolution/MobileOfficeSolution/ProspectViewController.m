@@ -56,6 +56,8 @@
     bool isStartTime;
     bool isEndTime;
     bool isFavorite;
+    
+    CGPoint _lastContentOffset;
 
     NSString *annualIncome_original;
     
@@ -157,6 +159,7 @@
 @synthesize outletBranchName;
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
+@synthesize lastContentOffset;
 
 @synthesize txtNamaDepan, txtNamaBelakang, UDScore;
 
@@ -195,6 +198,8 @@ BOOL NavShowP;
     isFavorite = NO;
     isThin = NO;
     [self ActionChangeHeader:nil];
+    
+    _ScrollViewProspect.delegate = self;
     
     borderColor=[[UIColor alloc]initWithRed:250.0/255.0 green:175.0/255.0 blue:50.0/255.0 alpha:1.0];
     
@@ -644,6 +649,10 @@ BOOL NavShowP;
     _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     _outletSourceIncome.imageEdgeInsets = UIEdgeInsetsMake(0., _outletSourceIncome.frame.size.width - (24 + 10.0), 0., 0.);
     _outletSourceIncome.titleEdgeInsets = UIEdgeInsetsMake(0, -14.0, 0, 31.7);
+    
+    _BtnAnnualIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    _BtnAnnualIncome.imageEdgeInsets = UIEdgeInsetsMake(0., _BtnAnnualIncome.frame.size.width - (24 + 10.0), 0., 0.);
+    _BtnAnnualIncome.titleEdgeInsets = UIEdgeInsetsMake(0, -14.0, 0, 31.7);
     
     outletBranchCode.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     outletBranchCode.imageEdgeInsets = UIEdgeInsetsMake(0., outletBranchCode.frame.size.width - (24 + 10.0), 0., 0.);
@@ -1542,6 +1551,9 @@ BOOL NavShowP;
 //    [segSmoker setTitleTextAttributes:attributes forState:UIControlStateNormal];
 //    [segGender setTitleTextAttributes:attributes forState:UIControlStateNormal];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
+    
     [super viewWillAppear:animated];
 }
 
@@ -1663,6 +1675,18 @@ BOOL NavShowP;
     UIEdgeInsets contentInsets = UIEdgeInsetsZero;
     _scrollViewNewProspect.contentInset = contentInsets;
     _scrollViewNewProspect.scrollIndicatorInsets = contentInsets;
+}
+
+- (void) keyboardShow: (NSNotification *) notificationKeyboard
+{
+     UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardShow:notificationKeyboard viewMain:_MainView];
+}
+
+- (void) keyboardHide: (NSNotification *) notificationKeyboard
+{
+     UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardHide:notificationKeyboard viewMain:_MainView];
 }
 
 - (BOOL)disablesAutomaticKeyboardDismissal {
@@ -6762,9 +6786,6 @@ BOOL NavShowP;
         _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
         _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
         _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
-//        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-//        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-//        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
 
     }
     else {
@@ -6774,9 +6795,7 @@ BOOL NavShowP;
         _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
         _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
         _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
-//        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-//        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-//        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+
     }
     
 }
@@ -6801,5 +6820,46 @@ BOOL NavShowP;
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
     [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
     
+}
+
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _lastContentOffset = scrollView.contentOffset;
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.lastContentOffset > scrollView.contentOffset.y)
+    {
+        isThin = NO;
+        [self ActionChangeHeader:nil];
+    }
+    else if (self.lastContentOffset < scrollView.contentOffset.y)
+    {
+        isThin = YES;
+        [self ActionChangeHeader:nil];
+    }
+    
+    self.lastContentOffset = scrollView.contentOffset.y;
+}
+
+
+
+- (IBAction)Gesture_UP:(id)sender {
+    
+}
+
+- (IBAction)Gesture_down:(id)sender {
+}
+
+- (void)handleUpwardsGesture:(UIPanGestureRecognizer *)sender
+{
+    NSLog(@"Up");
+}
+
+- (void)handleDownwardsGesture:(UIPanGestureRecognizer *)sender
+{
+    NSLog(@"Down");
 }
 @end

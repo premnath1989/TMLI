@@ -41,7 +41,7 @@
 - (void)selectDataForEdit:(NSString *)indexNo;
 @end
 
-@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate, TimePickerDelegate>{
+@interface ProspectViewController : UIViewController<IDTypeDelegate,SIDateDelegate,IDTypeDelegate, OccupationListDelegate,TitleDelegate,GroupDelegate, UITextFieldDelegate,UITextInputDelegate, UITextViewDelegate,NatinalityDelegate,RaceDelegate,MaritalStatusDelegate,ReligionDelegate,CountryDelegate,EditProspectDelegate, Country2Delegate,SourceIncomeDelegate,VIPClassDelegate,ReferralSourceDelegate,BranchInfoDelegate,KodeposInfoDelegate,NIPInfoDelegate, AnnualIncomeDelegate, TimePickerDelegate, UIScrollViewDelegate, UIGestureRecognizerDelegate>{
     
     NSString *databasePath;
     sqlite3 *contactDB;
@@ -246,7 +246,11 @@
 
 //Main
 
+@property (strong, nonatomic) IBOutlet UIView *MainView;
+
 //Header
+
+
 
 @property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
@@ -262,7 +266,12 @@
 
 //
 @property (strong, nonatomic) IBOutlet UIScrollView *ScrollViewProspect;
+@property (nonatomic) CGFloat lastContentOffset;
 
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *GestureDown;
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *GestureUp;
+- (IBAction)Gesture_UP:(id)sender;
+- (IBAction)Gesture_down:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;

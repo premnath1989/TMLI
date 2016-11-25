@@ -2229,6 +2229,9 @@ bool PolicyOwnerSigned = TRUE;
     [self setTextfieldBorder];
     [self setButtonImageAndTextAlignment];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
 
     if ([pp.Favorite isEqualToString:@"TRUE"]) {
         isFavorite = YES;
@@ -12288,6 +12291,18 @@ bool PolicyOwnerSigned = TRUE;
         NavShowP = NO;
     }
     
+}
+
+- (void) keyboardShow: (NSNotification *) notificationKeyboard
+{
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardShow:notificationKeyboard viewMain:_MainView];
+}
+
+- (void) keyboardHide: (NSNotification *) notificationKeyboard
+{
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardHide:notificationKeyboard viewMain:_MainView];
 }
 
 - (void)viewDidUnload
