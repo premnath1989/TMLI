@@ -17,6 +17,7 @@
 #import "TabValidation.h"
 #import "UIView+viewRecursion.h"
 #import "LoginDBManagement.h"
+#import "String.h"
 
 @interface BasicPlanViewController (){
     ColorHexCode *CustomColor;
@@ -2289,7 +2290,8 @@ bool WPTPD30RisDeleted = FALSE;
         FMDatabase *database = [FMDatabase databaseWithPath:path2];
         [database open];
         FMResultSet *results;
-        results = [database executeQuery:@"select AgentCode,AgentName from Agent_profile"];
+        NSString *query =[NSString stringWithFormat:@"select AgentCode,AgentName from %@",TABLE_AGENT_PROFILE];
+        results = [database executeQuery:query];
         
         FMDatabase *database1 = [FMDatabase databaseWithPath:path2];
         if (![database open]) {

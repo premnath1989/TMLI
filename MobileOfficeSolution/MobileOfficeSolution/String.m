@@ -51,3 +51,25 @@
     NSString* const COLUMN_SPAJHEADER_SUBMITTEDBY = @"submittedby";
     NSString* const COLUMN_SPAJHEADER_SUBMITTEDON = @"submittedon";
     NSString* const COLUMN_SPAJHEADER_STATE = @"state";
+
+
+    // Tables Name
+    NSString* const TABLE_AGENT_PROFILE = @"TMLI_Agent_profile";
+    NSString* const TABLE_CHANNEL = @"TMLI_Agent_profile";
+    NSString* const TABLE_DATA_CABANG = @"TMLI_Agent_profile";
+    NSString* const TABLE_DATA_VERSION = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Credit_Card_Bank = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Identification = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_LA_Details = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Marital_Status = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Nationality = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_OCCP = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_ReferralSource = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Relation = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Religion = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_SourceIncome = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_Title = @"TMLI_Agent_profile";
+    NSString* const TABLE_eProposal_VIPClass = @"TMLI_Agent_profile";
+    NSString* const TABLE_kodepos = @"TMLI_Agent_profile";
+    NSString* const TABLE_Master_Info = @"TMLI_Agent_profile";
+    NSString* const TABLE_Ref_ErrorCode = @"TMLI_Agent_profile";

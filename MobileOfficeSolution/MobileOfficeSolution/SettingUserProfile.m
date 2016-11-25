@@ -23,6 +23,7 @@
 #import "DDXMLNode.h"
 
 #import "CFFAPIController.h"
+#import "String.h"
 @interface SettingUserProfile ()
 
 @end
@@ -695,8 +696,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             sqlite3_stmt *statement;
             if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
             {
-                NSString *querySQL = [NSString stringWithFormat: @"UPDATE Agent_Profile set AgentStatus = \"1\" WHERE "
-                                      "AgentLoginID=\"hla\" "];
+                NSString *querySQL = [NSString stringWithFormat: @"UPDATE %@ set AgentStatus = \"1\" WHERE "
+                                      "AgentLoginID=\"hla\" ",TABLE_AGENT_PROFILE];
                 /* NSString *querySQL = [NSString stringWithFormat: @"UPDATE User_Profile set AgentStatus = \"1\" WHERE "
                  "AgentLoginID=\"hla\" "];*/
                 
@@ -728,8 +729,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             {
                 /*NSString *querySQL = [NSString stringWithFormat: @"UPDATE User_Profile set AgentStatus = \"0\" WHERE "
                  "AgentLoginID=\"hla\" "];*/
-                NSString *querySQL = [NSString stringWithFormat: @"UPDATE Agent_Profile set AgentStatus = \"0\" WHERE "
-                                      "AgentLoginID=\"hla\" "];
+                NSString *querySQL = [NSString stringWithFormat: @"UPDATE %@ set AgentStatus = \"0\" WHERE "
+                                      "AgentLoginID=\"hla\" ",TABLE_AGENT_PROFILE];
                 
                 if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
                     if (sqlite3_step(statement) == SQLITE_DONE){
@@ -821,7 +822,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         NSString *querySQL = [NSString stringWithFormat:@"SELECT IndexNo, AgentLoginID, AgentCode, AgentName, AgentContactNo, "
                               "ImmediateLeaderCode, ImmediateLeaderName, BusinessRegNumber, AgentEmail, AgentICNo, "
                               "AgentContractDate, AgentAddr1, AgentAddr2, AgentAddr3, AgentPortalLoginID, AgentPortalPassword "
-                              "FROM Agent_Profile WHERE IndexNo=\"%d\"",
+                              "FROM %@ WHERE IndexNo=\"%d\"",TABLE_AGENT_PROFILE,
                               self.indexNo];
         const char *query_stmt = [querySQL UTF8String];
         

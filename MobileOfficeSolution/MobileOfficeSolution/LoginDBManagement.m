@@ -12,6 +12,7 @@
 #import "LoginMacros.h"
 #import "SSKeychain.h"
 #import "WebServiceUtilities.h"
+#import "String.h"
 
 @implementation LoginDBManagement
 
@@ -79,7 +80,7 @@
     int AgentFound = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT * FROM Agent_Profile WHERE AgentLoginID=\"%@\" ", AgentID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT * FROM %@ WHERE AgentLoginID=\"%@\" ", TABLE_AGENT_PROFILE, AgentID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) AgentFound = AGENT_IS_FOUND;
@@ -96,7 +97,7 @@
     int AgentFound = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT * FROM Agent_Profile"];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT * FROM %@",TABLE_AGENT_PROFILE];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) AgentFound = AGENT_IS_FOUND;
@@ -113,7 +114,7 @@
     int DeviceStatusFlag = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT DeviceStatus FROM Agent_Profile WHERE AgentCode=\"%@\" ", AgentID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT DeviceStatus FROM %@ WHERE AgentCode=\"%@\" ", TABLE_AGENT_PROFILE, AgentID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -143,7 +144,7 @@
     int agentStatusFlag = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT DirectSupervisorStatus FROM Agent_Profile WHERE DirectSupervisorCode=\"%@\" ", spvID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT DirectSupervisorStatus FROM %@ WHERE DirectSupervisorCode=\"%@\" ",TABLE_AGENT_PROFILE, spvID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -173,7 +174,7 @@
     int agentStatusFlag = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT AgentStatus FROM Agent_Profile WHERE AgentCode=\"%@\" ", AgentID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT AgentStatus FROM %@ WHERE AgentCode=\"%@\" ", TABLE_AGENT_PROFILE, AgentID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -203,7 +204,7 @@
     NSString *nsdate = @"";
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT LicenseExpiryDate FROM Agent_Profile WHERE AgentCode=\"%@\" ", AgentID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT LicenseExpiryDate FROM %@ WHERE AgentCode=\"%@\" ", TABLE_AGENT_PROFILE, AgentID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -225,7 +226,7 @@
     int DeleteAgent = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"DELETE FROM AGENT_PROFILE"];
+        NSString *querySQL = [NSString stringWithFormat: @"DELETE FROM %@",TABLE_AGENT_PROFILE];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_DONE)
@@ -248,7 +249,7 @@
     int FirstLogin = DATABASE_ERROR;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT FirstLogin FROM Agent_Profile WHERE AgentCode=\"%@\" ", AgentID];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT FirstLogin FROM %@ WHERE AgentCode=\"%@\" ",TABLE_AGENT_PROFILE, AgentID];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -276,7 +277,7 @@
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET LastLogoutDate= \"%@\"",dateString];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET LastLogoutDate= \"%@\"",TABLE_AGENT_PROFILE,dateString];
         
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
@@ -309,7 +310,7 @@
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET AgentPassword= \"%@\"",newPassword];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET AgentPassword= \"%@\"",TABLE_AGENT_PROFILE, newPassword];
         
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
@@ -342,7 +343,7 @@
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET LastLogonDate= \"%@\"",dateString];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET LastLogonDate= \"%@\"",TABLE_AGENT_PROFILE, dateString];
         
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
@@ -779,7 +780,7 @@
     NSString *nsdate = @"";
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT LastLogonDate FROM Agent_Profile"];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT LastLogonDate FROM %@",TABLE_AGENT_PROFILE];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -930,7 +931,7 @@
     NSString *UDID = @"";
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT UDID FROM Agent_Profile"];
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT UDID FROM %@",TABLE_AGENT_PROFILE];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -952,7 +953,8 @@
     NSMutableArray *columns = [NSMutableArray array];
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        int rc = sqlite3_prepare_v2(contactDB, "pragma table_info ('Agent_Profile')", -1, &statement, NULL);
+        const char *query = [[NSString stringWithFormat:@"pragma table_info ('%@')",TABLE_AGENT_PROFILE] cStringUsingEncoding:NSASCIIStringEncoding];
+        int rc = sqlite3_prepare_v2(contactDB, query, -1, &statement, NULL);
         
         if (rc==SQLITE_OK)
         {
@@ -1010,7 +1012,7 @@
     }
     sql = [sql substringToIndex:[sql length]-1];
     
-    NSString *querySQL = [NSString stringWithFormat: @"SELECT %@ FROM Agent_Profile", sql];
+    NSString *querySQL = [NSString stringWithFormat: @"SELECT %@ FROM %@", sql,TABLE_AGENT_PROFILE];
     NSLog(@"%@",querySQL);
     
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
@@ -1056,7 +1058,9 @@
     NSString *Admin;
     NSString *AdminPassword;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword  from Agent_profile"];
+    NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword  from  %@",TABLE_AGENT_PROFILE];
+    
+    FMResultSet *result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         
@@ -1093,7 +1097,9 @@
     NSString *Admin;
     NSString *AdminPassword;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword  from Agent_profile"];
+    NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword from  %@",TABLE_AGENT_PROFILE];
+    
+    FMResultSet *result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

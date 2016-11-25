@@ -25,6 +25,7 @@
 #import "LoginDBManagement.h"
 #import "PremiumViewController.h"
 #import "BrowserViewController.h"
+#import "String.h"
 
 #define TRAD_PAYOR_FIRSTLA  @"0"
 #define TRAD_PAYOR_SECONDLA  @"1"
@@ -4418,10 +4419,12 @@ BOOL isFirstLoad;
     NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
     
     
+    NSString *query = [NSString stringWithFormat:@"select AgentCode,AgentName from %@",TABLE_AGENT_PROFILE];
+    
     FMDatabase *database = [FMDatabase databaseWithPath:path2];
     [database open];
     FMResultSet *results;
-    results = [database executeQuery:@"select AgentCode,AgentName from Agent_profile"];
+    results = [database executeQuery:query];
     if (![database open]) {
         NSLog(@"Could not open db.");
     }

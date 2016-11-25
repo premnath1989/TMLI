@@ -23,6 +23,7 @@
 #import "ProspectListing.h"
 #import "SIListing.h"
 #import "EditProspect.h"
+#import "String.h"
 
 #define DEFAULT_TAB_BAR_HEIGHT 60.0
 
@@ -484,7 +485,7 @@ int rrr;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET LastLogoutDate= \"%@\" WHERE IndexNo=\"%d\"",dateString, 1];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET LastLogoutDate= \"%@\" WHERE IndexNo=\"%d\"",TABLE_AGENT_PROFILE, dateString, 1];
         
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)

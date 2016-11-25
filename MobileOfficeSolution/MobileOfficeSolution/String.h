@@ -51,3 +51,24 @@
     extern NSString *const COLUMN_SPAJHEADER_SUBMITTEDBY;
     extern NSString *const COLUMN_SPAJHEADER_SUBMITTEDON;
     extern NSString *const COLUMN_SPAJHEADER_STATE;
+
+    // Tables Name
+    extern NSString* const TABLE_AGENT_PROFILE;
+    extern NSString* const TABLE_CHANNEL;
+    extern NSString* const TABLE_DATA_CABANG;
+    extern NSString* const TABLE_DATA_VERSION;
+    extern NSString* const TABLE_eProposal_Credit_Card_Bank;
+    extern NSString* const TABLE_eProposal_Identification;
+    extern NSString* const TABLE_eProposal_LA_Details;
+    extern NSString* const TABLE_eProposal_Marital_Status;
+    extern NSString* const TABLE_eProposal_Nationality;
+    extern NSString* const TABLE_eProposal_OCCP;
+    extern NSString* const TABLE_eProposal_ReferralSource;
+    extern NSString* const TABLE_eProposal_Relation;
+    extern NSString* const TABLE_eProposal_Religion;
+    extern NSString* const TABLE_eProposal_SourceIncome;
+    extern NSString* const TABLE_eProposal_Title;
+    extern NSString* const TABLE_eProposal_VIPClass;
+    extern NSString* const TABLE_kodepos;
+    extern NSString* const TABLE_Master_Info;
+    extern NSString* const TABLE_Ref_ErrorCode;

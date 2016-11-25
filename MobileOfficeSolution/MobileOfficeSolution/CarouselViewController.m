@@ -23,6 +23,7 @@
 #import "ClearData.h"
 #import "ProductInformation.h"
 #import "SPAJ Main.h"
+#import "String.h"
 
 const int numberOfModule = 7;
 
@@ -89,7 +90,8 @@ const int numberOfModule = 7;
     FMDatabase *database = [FMDatabase databaseWithPath:path2];
     [database open];
     FMResultSet *results;
-    results = [database executeQuery:@"select AgentCode,AgentName from Agent_profile"];
+    NSString *query =[NSString stringWithFormat:@"select AgentCode,AgentName from %@",TABLE_AGENT_PROFILE];
+    results = [database executeQuery:query];
     while([results next])
     {
          _AgentName.text  = [results stringForColumn:@"AgentName"];
@@ -104,7 +106,7 @@ const int numberOfModule = 7;
     sqlite3 *hladb;
     NSString *ac;
     if (sqlite3_open([databasePath UTF8String ], &hladb) == SQLITE_OK) {
-        NSString *querySQL = [NSString stringWithFormat: @"select agentCode FROM agent_profile"];
+        NSString *querySQL = [NSString stringWithFormat: @"select agentCode FROM %@",TABLE_AGENT_PROFILE];
         sqlite3_stmt *statement;
         if (sqlite3_prepare_v2(hladb, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK) {
             if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -229,7 +231,7 @@ const int numberOfModule = 7;
         BOOL newRec = FALSE;
         
         querySQL = [NSString stringWithFormat:
-                    @"select agentCode FROM agent_profile where agentCode = '%@' ", agentCode ];
+                    @"select agentCode FROM %@ where agentCode = '%@' ", TABLE_AGENT_PROFILE, agentCode ];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW){
@@ -242,7 +244,7 @@ const int numberOfModule = 7;
         }
         
         if (newRec == FALSE) {
-            querySQL = [NSString stringWithFormat: @"Delete FROM agent_profile "];
+            querySQL = [NSString stringWithFormat: @"Delete FROM %@", TABLE_AGENT_PROFILE];
             
             if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
                 if (sqlite3_step(statement) == SQLITE_DONE){
@@ -252,10 +254,10 @@ const int numberOfModule = 7;
         }
         
         querySQL = [NSString stringWithFormat:
-                    @"insert into Agent_profile (agentCode, AgentName, AgentType, AgentContactNo, ImmediateLeaderCode, ImmediateLeaderName, BusinessRegNumber, AgentEmail, AgentLoginID, AgentICNo, "
+                    @"insert into %@ (agentCode, AgentName, AgentType, AgentContactNo, ImmediateLeaderCode, ImmediateLeaderName, BusinessRegNumber, AgentEmail, AgentLoginID, AgentICNo, "
                     "AgentContractDate, AgentAddr1, AgentAddr2, AgentAddr3, AgentAddr4, AgentPortalLoginID, AgentPortalPassword, AgentContactNumber, AgentPassword, AgentStatus, Channel, AgentAddrPostcode, agentNRIC ) VALUES "
                     "('%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@', '%@', '%@') ",
-                    agentCode, agentName, agentType, agentContactNumber, immediateLeaderCode, immediateLeaderName,BusinessRegNumber, agentEmail, agentLoginId, agentIcNo, agentContractDate, agentAddr1, agentAddr2, agentAddr3, @"", agentLoginId, agentPassword, agentContactNumber, agentPassword, agentStatus, channel, agentAddrPostcode, agentIcNo ];
+                    TABLE_AGENT_PROFILE, agentCode, agentName, agentType, agentContactNumber, immediateLeaderCode, immediateLeaderName,BusinessRegNumber, agentEmail, agentLoginId, agentIcNo, agentContractDate, agentAddr1, agentAddr2, agentAddr3, @"", agentLoginId, agentPassword, agentContactNumber, agentPassword, agentStatus, channel, agentAddrPostcode, agentIcNo ];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_DONE){
@@ -445,7 +447,7 @@ const int numberOfModule = 7;
     sqlite3_stmt *statement;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK) {
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET LastLogoutDate= \"%@\" WHERE IndexNo=\"%d\"",dateString, 1];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET LastLogoutDate= \"%@\" WHERE IndexNo=\"%d\"",TABLE_AGENT_PROFILE, dateString, 1];
         
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK) {

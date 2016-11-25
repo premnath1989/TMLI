@@ -7,6 +7,7 @@
 //
 
 #import "ModelPopover.h"
+#import "String.h"
 
 @implementation ModelPopover
 -(NSDictionary *)getSourceIncome{
@@ -236,9 +237,11 @@
     NSMutableArray* arrayKanwilCabang=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, Agent_profile ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",columnOrder]];
+    NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_AGENT_PROFILE, columnOrder];
     
-   NSLog(@"query %@",[NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, Agent_profile ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",columnOrder]);
+    FMResultSet *s = [database executeQuery:query];
+    
+   NSLog(@"query %@",[NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_AGENT_PROFILE, columnOrder]);
     while ([s next]) {
         NSString *occpCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"KodeCabang"]];
         NSString *occpeDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"NamaCabang"]];
@@ -276,12 +279,15 @@
     NSString *Status;
     
     //FMResultSet *s = [database executeQuery:@"SELECT dc.* FROM Data_Cabang dc, Agent_profile ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and %@ = \"%@\"",columnFilter,columnValue];
+    
     FMResultSet *s;
     if ([columnFilter isEqualToString:@"dc.KodeCabang"]){
-        s = [database executeQuery:@"SELECT dc.* FROM Data_Cabang dc, Agent_profile ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.KodeCabang=?",columnValue];
+        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.KodeCabang=%@",TABLE_AGENT_PROFILE,columnValue];
+        s = [database executeQuery:query];
     }
     else{
-        s = [database executeQuery:@"SELECT dc.* FROM Data_Cabang dc, Agent_profile ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.NamaCabang=?",columnValue];
+        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.NamaCabang=%@",TABLE_AGENT_PROFILE,columnValue];
+        s = [database executeQuery:query];
     }
     while ([s next]) {
         branchCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"KodeCabang"]];

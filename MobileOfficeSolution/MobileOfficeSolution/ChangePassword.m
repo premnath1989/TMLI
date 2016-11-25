@@ -23,6 +23,7 @@
 #import "LoginMacros.h"
 
 #import "CFFAPIController.h"
+#import "String.h"
 
 @interface ChangePassword ()
 
@@ -128,7 +129,7 @@
     sqlite3_stmt *statement;
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"UPDATE Agent_Profile set FirstLogin = \"1\" "];
+        NSString *querySQL = [NSString stringWithFormat: @"UPDATE %@ set FirstLogin = \"1\" ",TABLE_AGENT_PROFILE];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_DONE){
@@ -178,7 +179,7 @@
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
         //NSString *querySQL = [NSString stringWithFormat:@"SELECT AgentPassword FROM User_Profile WHERE IndexNO=\"%d\"",self.userID];
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT AgentPassword FROM Agent_Profile WHERE IndexNO=\"%d\"",self.userID];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT AgentPassword FROM %@ WHERE IndexNO=\"%d\"",TABLE_AGENT_PROFILE, self.userID];
         
         //        NSLog(@"%@", querySQL);
         const char *query_stmt = [querySQL UTF8String];
@@ -228,7 +229,7 @@
         // NSString *querySQL = [NSString stringWithFormat:@"UPDATE User_Profile SET AgentPassword= \"%@\" WHERE IndexNo=\"%d\"",txtNewPwd.text,self.userID];
         
         NSString *encryptedPass = [encryptWrapper encrypt:txtNewPwd.text];
-        NSString *querySQL = [NSString stringWithFormat:@"UPDATE Agent_Profile SET AgentPassword= \"%@\" WHERE IndexNo=\"%d\"",encryptedPass,self.userID];
+        NSString *querySQL = [NSString stringWithFormat:@"UPDATE %@ SET AgentPassword= \"%@\" WHERE IndexNo=\"%d\"",TABLE_AGENT_PROFILE, encryptedPass,self.userID];
         
         const char *query_stmt = [querySQL UTF8String];
         

@@ -31,6 +31,7 @@
 #import "WebResponObj.h"
 #import "DBMigration.h"
 #import "SSKeychain.h"
+#import "String.h"
 
 @interface Login ()
 
@@ -967,7 +968,8 @@ static NSString *labelVers;
     NSString *AdminPassword;
     NSString *UDID;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword, UDID  from Agent_profile"];
+    NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword, UDID from %@",TABLE_AGENT_PROFILE];
+    FMResultSet *result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -1021,7 +1023,9 @@ static NSString *labelVers;
     NSString *Admin;
     NSString *AdminPassword;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword  from Agent_profile"];
+    NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword from %@",TABLE_AGENT_PROFILE];
+    
+    FMResultSet *result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

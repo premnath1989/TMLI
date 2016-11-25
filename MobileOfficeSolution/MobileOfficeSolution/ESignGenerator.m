@@ -8,6 +8,8 @@
 
 #import "ESignGenerator.h"
 #import "NSObject_ConstantTags.h"
+#import "String.h"
+
 #include <string.h>
 #include <errno.h>
 //#import "test.h"
@@ -84,7 +86,8 @@
 
         //NSString *getIC;
         
-        FMResultSet *getAgent = [database executeQuery:@"select * from Agent_profile "];
+        NSString *query = [NSString stringWithFormat:@"select * from %@",TABLE_AGENT_PROFILE];
+        FMResultSet *getAgent = [database executeQuery:query];
         while ([getAgent next]) {
             _intermediaryName = [getAgent objectForColumnName:@"AgentName"];
             _getIC = [getAgent objectForColumnName:@"AgentICNo"];

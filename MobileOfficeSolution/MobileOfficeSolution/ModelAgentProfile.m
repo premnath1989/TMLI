@@ -7,6 +7,7 @@
 //
 
 #import "ModelAgentProfile.h"
+#import "String.h"
 
 @implementation ModelAgentProfile
 
@@ -27,7 +28,9 @@
     NSString *AgentBranch ;
     NSString *AgentExpiryDate ;
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM Agent_profile"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@",TABLE_AGENT_PROFILE];
+    
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NamaChannel = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ChannelName"]];
         CodeChannel = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ChannelCode"]];
