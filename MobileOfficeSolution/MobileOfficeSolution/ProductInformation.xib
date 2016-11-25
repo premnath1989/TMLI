@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.ttf">
+        <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
         <array key="NewJune_Regular.ttf">
@@ -50,11 +50,17 @@
                             <rect key="frame" x="27" y="21" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Show"/>
+                            <connections>
+                                <action selector="ShowNavigation:" destination="-1" eventType="touchUpInside" id="Htc-7E-hpz"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvl-JJ-QvU" customClass="ButtonBack">
                             <rect key="frame" x="27" y="78" width="45" height="45"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="GoBack:" destination="-1" eventType="touchUpInside" id="Lz0-sx-d2I"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informasi Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euT-w5-rWU" customClass="LabelProfileHeader">
                             <rect key="frame" x="98" y="63" width="545" height="48"/>

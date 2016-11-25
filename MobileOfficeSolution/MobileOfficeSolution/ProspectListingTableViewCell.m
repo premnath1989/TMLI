@@ -20,7 +20,7 @@
 @synthesize FavImage;
 
 - (void)awakeFromNib {
-    NSLog(@"test");
+//    NSLog(@"test");
     // Initialization code
 }
 

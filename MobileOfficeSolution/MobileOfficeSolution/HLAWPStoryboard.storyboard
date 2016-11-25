@@ -5,7 +5,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.ttf">
+        <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
         <array key="BPreplay_Italics.otf">
@@ -24,35 +24,95 @@
             <objects>
                 <viewController storyboardIdentifier="SIPageView" id="geq-zo-2Ih" customClass="SIMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LwU-rL-ZUw">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="H24-Bb-FUr">
-                                <frame key="frameInset" minX="195" minY="20" width="841" height="748"/>
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="zdP-SC-WiA" userLabel="View Thin Header">
+                                <frame key="frameInset" width="1024" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.2292430694" green="0.3648514564" blue="0.57879577019999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IlB-Ig-h0q" customClass="ImageViewLogoHorizontal">
+                                        <frame key="frameInset" minX="815" minY="21" width="170" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aaG-6h-8mi" customClass="ButtonNavigation">
+                                        <frame key="frameInset" minX="8" minY="21" width="46" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Data Nasabah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ExT-h0-NRw" customClass="LabelHeaderTitle">
+                                        <frame key="frameInset" minX="88" minY="23" width="395" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" misplaced="YES" id="vd7-oD-fVo" userLabel="View Thick Header">
+                                <frame key="frameInset" width="1024" height="240"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo_spaj_primary" id="FK4-r7-jFi" customClass="ImageViewBackground">
+                                        <frame key="frameInset" width="1024" height="240"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oIc-e6-g5n" customClass="ButtonNavigation">
+                                        <frame key="frameInset" minX="8" minY="20" width="46" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hnU-gR-h9k" customClass="ImageViewArcHeaderPrimary">
+                                        <frame key="frameInset" minX="93" minY="90" width="150" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Data Nasabah" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="DiI-SM-fbA" customClass="LabelPhotoHeader">
+                                        <frame key="frameInset" minX="262" minY="94" width="419" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ps0-TE-Sh8" customClass="LabelPhotoDetail">
+                                        <frame key="frameInset" minX="262" minY="124" width="314" height="63"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="BX5-uc-brI" customClass="ImageViewLogoHat">
+                                        <frame key="frameInset" minX="845" minY="20" width="120" height="105"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" id="OXt-6s-JuY">
                                 <frame key="frameInset" minY="-6" width="1226" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dmj-H4-hpd">
-                                <frame key="frameInset" minY="20" width="205" height="748"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.79607843140000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="sectionIndexBackgroundColor" red="0.80000000000000004" green="0.79607843137254897" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="geq-zo-2Ih" id="asb-CV-TNZ"/>
-                                    <outlet property="delegate" destination="geq-zo-2Ih" id="aFf-Bk-Dxc"/>
-                                </connections>
-                            </tableView>
                             <view contentMode="scaleToFill" id="cID-5y-RUj">
                                 <frame key="frameInset" minY="670" width="205" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" misplaced="YES" id="H24-Bb-FUr">
+                                <frame key="frameInset" minY="344" width="1036" height="652"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dmj-H4-hpd">
+                                <frame key="frameInset" minY="248" width="1024" height="88"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.79607843140000001" blue="0.80392156859999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="geq-zo-2Ih" id="asb-CV-TNZ"/>
+                                    <outlet property="delegate" destination="geq-zo-2Ih" id="aFf-Bk-Dxc"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -70,7 +130,7 @@
             <objects>
                 <viewController storyboardIdentifier="Main" title="Main" id="b7I-0E-pxP" customClass="MainScreen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="67U-mK-eKY">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -84,7 +144,7 @@
             <objects>
                 <viewController storyboardIdentifier="FSVertical" title="FSVertical" id="uem-r2-8TL" customClass="FSVerticalTabBarController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q0j-Wv-0aI">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -98,7 +158,7 @@
             <objects>
                 <viewController storyboardIdentifier="Browser" title="Browser" id="Tro-yW-H5V" customClass="BrowserViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n7E-e3-3f2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -112,7 +172,7 @@
             <objects>
                 <viewController storyboardIdentifier="SalesIlustration" id="hyY-qz-y3i" customClass="IlustrationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9a7-5U-d1s">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" id="3Tj-db-vyv">
@@ -233,7 +293,7 @@
                                     <action selector="btnDateTo:" destination="l1n-wK-wLB" eventType="touchUpInside" id="Nte-Wd-GZj"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="No.Illustrasi" minimumFontSize="16" clearButtonMode="whileEditing" id="9Xz-2U-oc2" customClass="TextFieldSPAJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="No.Illustrasi" minimumFontSize="16" clearButtonMode="whileEditing" id="9Xz-2U-oc2" customClass="TextFieldSPAJ">
                                 <frame key="frameInset" minX="109" minY="80" width="400" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25101745130000003" green="0.5907619596" blue="0.67238336799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -448,7 +508,7 @@
                                     <action selector="btnDelete:" destination="l1n-wK-wLB" eventType="touchUpInside" id="c1T-hI-45P"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Nama" minimumFontSize="16" clearButtonMode="whileEditing" id="rGc-ys-sEx" customClass="TextFieldSPAJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nama" minimumFontSize="16" clearButtonMode="whileEditing" id="rGc-ys-sEx" customClass="TextFieldSPAJ">
                                 <frame key="frameInset" minX="528" minY="80" width="400" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -457,7 +517,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bku-qC-yCd">
-                                <frame key="frameInset" minX="-10" minY="305" width="1484" height="485"/>
+                                <frame key="frameInset" minX="-10" minY="305" width="1034" height="485"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="separatorColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -497,7 +557,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditProspect" title="EditProspect" id="Iz4-6t-bhg" customClass="EditProspect" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ga-4o-cz4">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="tPn-SI-1iC">
@@ -2665,7 +2725,7 @@
             <objects>
                 <viewController storyboardIdentifier="newClientListing" title="Client Listing" id="wxI-wq-IhM" customClass="ProspectListing" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nsh-ac-XxT">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="TeV-EC-O8B">
@@ -2856,13 +2916,13 @@
         <!--NewLA View Controller-->
         <scene sceneID="pmG-Z7-12f">
             <objects>
-                <viewController storyboardIdentifier="LAView" modalTransitionStyle="crossDissolve" id="gBu-Hz-A8j" customClass="NewLAViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LAView" definesPresentationContext="YES" modalTransitionStyle="crossDissolve" id="gBu-Hz-A8j" customClass="NewLAViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e9J-m9-Aex">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" id="xsw-jh-SMI">
-                                <frame key="frameInset" width="776" height="44"/>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="xsw-jh-SMI">
+                                <frame key="frameInset" minY="-1" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <textAttributes key="titleTextAttributes">
                                     <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="17"/>
@@ -2884,8 +2944,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="9q7-6a-XHh">
-                                <frame key="frameInset" minY="43" width="768" height="961"/>
+                            <scrollView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" id="9q7-6a-XHh">
+                                <frame key="frameInset" minY="42" width="1024" height="961"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nama Pemegang Polis " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="oY3-F3-mUl">
@@ -2930,8 +2990,8 @@
                                         <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="line" minimumFontSize="16" clearButtonMode="whileEditing" id="cLX-v8-mxG">
-                                        <rect key="frame" x="34" y="106" width="665" height="30"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minimumFontSize="16" clearButtonMode="whileEditing" id="cLX-v8-mxG" customClass="TextFieldFormGeneralPrimary">
+                                        <rect key="frame" x="34" y="106" width="912" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -2952,7 +3012,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R01-7c-7Hp">
-                                        <rect key="frame" x="46" y="395" width="653" height="30"/>
+                                        <rect key="frame" x="46" y="395" width="942" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay-Italic" family="BPreplay" pointSize="16"/>
@@ -2966,7 +3026,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" misplaced="YES" id="EKY-ui-3Dd">
-                                        <rect key="frame" x="0.0" y="331" width="768" height="1"/>
+                                        <rect key="frame" x="0.0" y="331" width="1024" height="1"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
@@ -2978,23 +3038,8 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hPv-sx-1L3">
-                                        <rect key="frame" x="705" y="102" width="34" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
-                                        <state key="normal" backgroundImage="prospect_100_2.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selectProspect:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="0Hg-be-qyP"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Data Peserta" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="UG0-EY-rxE">
-                                        <rect key="frame" x="0.0" y="0.0" width="789" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1024" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.50980392159999999" green="0.50980392159999999" blue="0.50980392159999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3029,13 +3074,28 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <searchBar hidden="YES" contentMode="redraw" misplaced="YES" id="Mif-Tl-efy">
-                                        <rect key="frame" x="34" y="97" width="671" height="44"/>
+                                        <rect key="frame" x="34" y="30" width="954" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
                                             <outlet property="delegate" destination="gBu-Hz-A8j" id="m2m-4P-W1y"/>
                                         </connections>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hPv-sx-1L3">
+                                        <rect key="frame" x="954" y="104" width="34" height="34"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
+                                        <state key="normal" backgroundImage="prospect_100_2.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="selectProspect:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="0Hg-be-qyP"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                         </subviews>
@@ -3073,7 +3133,7 @@
             <objects>
                 <viewController storyboardIdentifier="BasicPlanView" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="crossDissolve" id="Bg9-Wf-jjW" customClass="BasicPlanViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Y9-Ql-A5m">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" id="FSd-Tl-JeS">
@@ -3477,7 +3537,7 @@
             <objects>
                 <viewController storyboardIdentifier="RiderView" modalTransitionStyle="crossDissolve" id="il8-A2-VxN" customClass="RiderViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NeH-hA-F7J">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="GHJ-Af-4mD">
@@ -3577,7 +3637,7 @@
             <objects>
                 <viewController storyboardIdentifier="HealthLoadView" id="iNw-RG-YYL" customClass="HLViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vzx-M5-nIH">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Health Loading  (Per 1k SA) :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="P03-V8-x1s">
@@ -3691,7 +3751,7 @@
             <objects>
                 <viewController storyboardIdentifier="premiumView" id="ejT-Sa-vKM" customClass="PremiumViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vJg-xz-Ems">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="neP-Ii-q4u">
@@ -4129,7 +4189,7 @@
             <objects>
                 <viewController storyboardIdentifier="secondLAView" modalTransitionStyle="crossDissolve" id="dE2-cD-TzV" customClass="SecondLAViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SXl-iL-UHs">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="5zq-j1-lRV">
@@ -4293,7 +4353,7 @@
             <objects>
                 <viewController storyboardIdentifier="payorView" modalTransitionStyle="crossDissolve" id="O1D-FY-YIm" customClass="PayorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B0M-Cl-dJ0">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IRq-Bm-g7X">
@@ -4955,7 +5015,7 @@
             <objects>
                 <viewController restorationIdentifier="SPAJLandingPage" storyboardIdentifier="SILandingPage" title="SILandingPage" id="rwS-ir-vd0" customClass="SILandingScreen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvL-iq-tWT" customClass="ViewMain">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="6jI-R5-x5Z">
@@ -5063,13 +5123,14 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
+        <image name="photo_spaj_primary" width="2048" height="1536"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

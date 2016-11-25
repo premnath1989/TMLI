@@ -315,7 +315,7 @@ MBProgressHUD *HUD;
             return cell;
         }
         else if(indexPath.row <[ProspectTableData count]){
-            //static NSString *CellIdentifier = @"Cell";
+
             ProspectListingTableViewCell *cell1 = (ProspectListingTableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"DataCell"];
             if (cell1 == nil) {
                 NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ProspectListingTableViewCell" owner:self options:nil];
@@ -341,35 +341,35 @@ MBProgressHUD *HUD;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
             
-            NSDate *FinalDate = dateFromString1;
-            
-            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-            NSDateComponents *components = [[NSDateComponents alloc] init];
-            [components setHour:hoursToAdd];
-            NSLog(@"components %@",components);
-            NSDate *newDate= [calendar dateByAddingComponents:components toDate:FinalDate options:0];
+//            NSDate *FinalDate = dateFromString1;
+//            
+//            NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+//            NSDateComponents *components = [[NSDateComponents alloc] init];
+//            [components setHour:hoursToAdd];
+
+//            NSDate *newDate= [calendar dateByAddingComponents:components toDate:FinalDate options:0];
             
             [df setDateFormat:@"dd/MM/yyyy ( HH:mm a )"];
             //NSString *strNewDate = [df stringFromDate:newDate];
             
-            NSDate *mydate = [NSDate date];
-            NSTimeInterval secondsInEightHours = 8 * 60 * 60;
-            NSDate *currentDate = [mydate dateByAddingTimeInterval:secondsInEightHours];
-            NSDate *expireDate = [newDate dateByAddingTimeInterval:secondsInEightHours];
-            
-            NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
-            NSDateComponents *componentsDay = [gregorianCalendar components:NSCalendarUnitDay
-                                                                   fromDate:currentDate
-                                                                     toDate:expireDate
-                                                                    options:NSCalendarWrapComponents];
-            int days1 = [componentsDay day];
-            
-            int countdown = -[currentDate timeIntervalSinceDate:expireDate];//pay attention here.
-            int minutes = (countdown / 60) % 60;
-            int hours = (countdown / 3600) % 24;
-            int days = (countdown / 86400) % 365;
-            
-            NSString *DateRemaining =[NSString stringWithFormat:@"%d Hari %d Jam\n %d Menit",days1,hours,minutes];
+//            NSDate *mydate = [NSDate date];
+//            NSTimeInterval secondsInEightHours = 8 * 60 * 60;
+//            NSDate *currentDate = [mydate dateByAddingTimeInterval:secondsInEightHours];
+//            NSDate *expireDate = [newDate dateByAddingTimeInterval:secondsInEightHours];
+//            
+//            NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+//            NSDateComponents *componentsDay = [gregorianCalendar components:NSCalendarUnitDay
+//                                                                   fromDate:currentDate
+//                                                                     toDate:expireDate
+//                                                                    options:NSCalendarWrapComponents];
+//            int days1 = [componentsDay day];
+//            
+//            int countdown = -[currentDate timeIntervalSinceDate:expireDate];//pay attention here.
+//            int minutes = (countdown / 60) % 60;
+//            int hours = (countdown / 3600) % 24;
+//            int days = (countdown / 86400) % 365;
+//            
+//            NSString *DateRemaining =[NSString stringWithFormat:@"%d Hari %d Jam\n %d Menit",days1,hours,minutes];
             
             if ([dataIndex containsObject:pp.ProspectID]){
                 int indexArray = [dataIndex indexOfObject:pp.ProspectID];
@@ -1227,10 +1227,9 @@ MBProgressHUD *HUD;
     [self getTotal];
     [ProspectTableData removeAllObjects];
     ProspectTableData=[modelProspectProfile getProspectProfile];
-    [self getMobileNo];
+//    [self getMobileNo];
     [self.myTableView reloadData];
     
-    [self.myTableView reloadData];
 }
 
 -(void) FinishEdit
@@ -1341,13 +1340,13 @@ MBProgressHUD *HUD;
     }
     
     if (isSort){
-        sortMethod=@"DESC";
-    }
-    else{
         sortMethod=@"ASC";
     }
+    else{
+        sortMethod=@"DESC";
+    }
     
-    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:@"ASC" ID:txtIDNumber.text];
+    ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:sortMethod ID:txtIDNumber.text];
     
 //    [self getMobileNo];
     TotalData = ProspectTableData.count;

@@ -29,17 +29,17 @@
     _lblScore.text = [NSString stringWithFormat:@"%d", totalScore];
     
     
-    if (totalScore > 8 && totalScore < 15) {
+    if (totalScore < 15) {
        _LblGroup.text = @"COLD";
-        _LblGroup.textColor = [UIColor redColor];
-        [_ViewScore setBackgroundColor:[UIColor redColor]];
+        _LblGroup.textColor = [UIColor blueColor];
+        [_ViewScore setBackgroundColor:[UIColor blueColor]];
     }
-    else if (totalScore > 16 && totalScore < 23) {
+    else if (totalScore > 15 && totalScore < 23) {
         _LblGroup.text = @"WARM";
         _LblGroup.textColor = [UIColor orangeColor];
         [_ViewScore setBackgroundColor:[UIColor orangeColor]];
     }
-    else if (totalScore > 24 && totalScore < 31) {
+    else if (totalScore > 23 && totalScore < 31) {
         _LblGroup.text = @"HOT";
         _LblGroup.textColor = [UIColor redColor];
         [_ViewScore setBackgroundColor:[UIColor redColor]];
