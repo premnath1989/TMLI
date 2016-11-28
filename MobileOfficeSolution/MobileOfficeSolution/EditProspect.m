@@ -149,6 +149,9 @@
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
 @synthesize txtHPNo, UDScore;
+@synthesize lastContentOffset;
+
+CGPoint _lastContentOffset;
 
 bool IsContinue = TRUE;
 bool PolicyOwnerSigned = TRUE;
@@ -161,6 +164,8 @@ bool PolicyOwnerSigned = TRUE;
     modelSIRider=[[ModelSIRider alloc]init];
     modelSIPremium=[[Model_SI_Premium alloc]init];
     modelSIMaster=[[Model_SI_Master alloc]init];
+    
+    _scrollViewEditProspect.delegate = self;
 
     borderColor=[[UIColor alloc]initWithRed:250.0/255.0 green:175.0/255.0 blue:50.0/255.0 alpha:1.0];
     
@@ -12267,6 +12272,27 @@ bool PolicyOwnerSigned = TRUE;
         NavShowP = NO;
     }
     
+}
+
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    _lastContentOffset = scrollView.contentOffset;
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (self.lastContentOffset > scrollView.contentOffset.y)
+    {
+        isThin = NO;
+        [self ActionChangeHeader:nil];
+    }
+    else if (self.lastContentOffset < scrollView.contentOffset.y)
+    {
+        isThin = YES;
+        [self ActionChangeHeader:nil];
+    }
+    
+    self.lastContentOffset = scrollView.contentOffset.y;
 }
 
 - (void) keyboardShow: (NSNotification *) notificationKeyboard
