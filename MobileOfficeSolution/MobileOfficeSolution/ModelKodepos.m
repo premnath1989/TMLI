@@ -7,6 +7,7 @@
 //
 
 #import "ModelKodepos.h"
+#import "String.h"
 
 @implementation ModelKodepos
 
@@ -19,7 +20,8 @@
     
     NSMutableArray* arrayPropinsiName=[[NSMutableArray alloc] init];
 
-    FMResultSet *s = [database executeQuery:@"select propinsi from kodepos group by propinsi"];
+    NSString *query = [NSString stringWithFormat:@"select propinsi from %@ group by propinsi",TABLE_ZIPCODE];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *stringPropinsi = [NSString stringWithFormat:@"%@",[s stringForColumn:@"propinsi"]];
         
@@ -39,7 +41,8 @@
     
     NSMutableArray* arrayKabupatenName=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select kabupaten from kodepos where propinsi=\"%@\" group by kabupaten",propinsi]];
+    NSString *query = [NSString stringWithFormat:@"select kabupaten from %@ where propinsi=\"%@\" group by kabupaten", TABLE_ZIPCODE,propinsi];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *stringKabupaten = [NSString stringWithFormat:@"%@",[s stringForColumn:@"kabupaten"]];
         

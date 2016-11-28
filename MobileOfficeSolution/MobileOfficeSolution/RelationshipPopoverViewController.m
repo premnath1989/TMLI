@@ -8,7 +8,7 @@
 
 #import "RelationshipPopoverViewController.h"
 #import "DataClass.h"
-
+#import "String.h"
 
 
 @interface RelationshipPopoverViewController (){
@@ -73,10 +73,10 @@
         //NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpCode, OccpDesc, Class FROM Adm_Occp_Loading_Penta where status = 'A' ORDER BY OccpDesc ASC"];
         NSString *querySQL;
         if ([numberIsInternalStaff intValue]==1){
-            querySQL = [NSString stringWithFormat:@"SELECT RelCode,RelDesc FROM eProposal_Relation where status = 'A' and InternalStaff='Y' ORDER BY RelDesc ASC"];
+            querySQL = [NSString stringWithFormat:@"SELECT RelCode,RelDesc FROM %@ where status = 'A' and InternalStaff='Y' ORDER BY RelDesc ASC", TABLE_RELATION];
         }
         else{
-            querySQL = [NSString stringWithFormat:@"SELECT RelCode,RelDesc FROM eProposal_Relation where status = 'A' ORDER BY RelDesc ASC"];
+            querySQL = [NSString stringWithFormat:@"SELECT RelCode,RelDesc FROM %@ where status = 'A' ORDER BY RelDesc ASC", TABLE_RELATION];
         }
         
         

@@ -7,6 +7,7 @@
 //
 
 #import "ModelOccupation.h"
+#import "String.h"
 
 
 @implementation ModelOccupation
@@ -21,7 +22,8 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:@"SELECT OccpDesc from eProposal_OCCP WHERE occp_Code = ?", occupationCode, Nil];
+    NSString *query = [NSString stringWithFormat:@"SELECT OccpDesc from %@ WHERE occp_Code = %@", TABLE_OCCP, occupationCode, Nil];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         stringOccupationDesc = [s stringForColumn:@"OccpDesc"];
     }

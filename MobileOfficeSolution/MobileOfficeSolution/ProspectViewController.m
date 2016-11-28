@@ -3395,7 +3395,8 @@ BOOL NavShowP;
     if (![_txtSourceIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_SourceIncome WHERE SourceDesc = ?", _txtSourceIncome.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = %@",  TABLE_SOURCEINCOME,_txtSourceIncome.text]
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];
@@ -3407,7 +3408,8 @@ BOOL NavShowP;
     if (![_txtOccupation.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_OCCP WHERE OccpDesc = ?", _txtOccupation.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = %@", TABLE_OCCP, _txtOccupation.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];
@@ -3420,7 +3422,8 @@ BOOL NavShowP;
     if (![txtReferralName.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_ReferralSource WHERE ReferDesc = ?", txtReferralName.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = %@", TABLE_REFERRALSOURCE, txtReferralName.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];
@@ -5146,7 +5149,7 @@ BOOL NavShowP;
     sqlite3_stmt *statement;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK) {
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT TitleDesc FROM eProposal_Title WHERE TitleCode = \"%@\"", prospectprofile.ProspectTitle];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT TitleDesc FROM %@ WHERE TitleCode = \"%@\"", TABLE_TITLE,prospectprofile.ProspectTitle];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK) {
             NSString *TitleDesc;
@@ -6402,7 +6405,8 @@ BOOL NavShowP;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    FMResultSet *result = [db executeQuery:@"SELECT TitleDesc FROM eProposal_Title WHERE TitleCode = ?", Title];
+    NSString *query = [NSString stringWithFormat:@"SELECT TitleDesc FROM %@ WHERE TitleCode = %@", TABLE_TITLE, Title];
+    FMResultSet *result = [db executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {
@@ -6433,7 +6437,8 @@ BOOL NavShowP;
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     
-    FMResultSet *result = [db executeQuery:@"SELECT TitleCode FROM eProposal_Title WHERE TitleDesc = ?", Title];
+    NSString *query = [NSString stringWithFormat:@"SELECT TitleCode FROM %@ WHERE TitleDesc = %@", TABLE_TITLE, Title];
+    FMResultSet *result = [db executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {

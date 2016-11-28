@@ -12,6 +12,7 @@
 #import "ColorHexCode.h"
 #import "TabValidation.h"
 #import "UIView+viewRecursion.h"
+#import "String.h"
 
 #import "LoginDBManagement.h"
 @interface SecondLAViewController (){
@@ -1235,7 +1236,8 @@ id dobtemp;
     
     results = Nil;
     
-    results = [db executeQuery:@"SELECT OccpDesc from eProposal_OCCP WHERE occp_Code = ?", OccpCode, Nil];
+    NSString *query = [NSString stringWithFormat:@"SELECT OccpDesc from %@ WHERE occp_Code = %@", TABLE_OCCP, OccpCode, Nil];
+    results = [db executeQuery:query];
     while ([results next]) {
         NSString *occpDesc = [results stringForColumn:@"OccpDesc"] != NULL ? [results stringForColumn:@"OccpDesc"] : @"";
         OccpDesc = occpDesc;

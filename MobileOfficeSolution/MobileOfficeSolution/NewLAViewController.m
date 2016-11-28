@@ -1852,7 +1852,8 @@
     
     results = Nil;
 
-    results = [db executeQuery:@"SELECT OccpDesc from eProposal_OCCP WHERE occp_Code = ?", occuCode, Nil];
+    NSString *query = [NSString stringWithFormat:@"SELECT OccpDesc from %@ WHERE occp_Code = %@", TABLE_OCCP,occuCode, Nil];
+    results = [db executeQuery:query];
     while ([results next]) {
         NSString *occpDesc = [results stringForColumn:@"OccpDesc"] != NULL ? [results stringForColumn:@"OccpDesc"] : @"";
         occuDesc = occpDesc;

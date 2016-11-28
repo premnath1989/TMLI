@@ -8,7 +8,7 @@
 
 #import "TitleViewController.h"
 #import "FMDatabase.h"
-
+#import "String.h"
 
 @interface TitleViewController ()
 
@@ -53,7 +53,8 @@
         //GET THE TRAD/UL SI VERSION START
         FMResultSet *results2;
         //NSString *title;
-        results2 =  [database executeQuery:@"SELECT TitleCode, TitleDesc from eProposal_Title where status = 'A' ORDER BY TitleDesc asc"];
+        NSString *query = [NSString stringWithFormat:@"SELECT TitleCode, TitleDesc from %@ where status = 'A' ORDER BY TitleDesc asc", TABLE_TITLE];
+        results2 =  [database executeQuery:query];
         
         while ([results2 next]) {
             

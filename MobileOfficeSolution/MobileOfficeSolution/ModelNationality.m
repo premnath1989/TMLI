@@ -7,6 +7,7 @@
 //
 
 #import "ModelNationality.h"
+#import "String.h"
 
 @implementation ModelNationality
 
@@ -23,7 +24,8 @@
     NSMutableArray* arrayNationDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_Nationality WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_NATIONALITY];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *NationCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"NationCode"]];
         NSString *NationDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"NationDesc"]];

@@ -23,7 +23,8 @@
     NSMutableArray* arraySourceDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_SourceIncome WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_SOURCEINCOME];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *SourceCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SourceCode"]];
         NSString *SourceDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SourceDesc"]];
@@ -83,7 +84,8 @@
     NSMutableArray* arrayVIPDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_VIPClass WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_VIPCLASS];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *vipCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"VIPCode"]];
         NSString *vipDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"VIPDesc"]];
@@ -113,7 +115,8 @@
     NSMutableArray* arrayReferDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_ReferralSource WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_REFERRALSOURCE];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *referCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ReferCode"]];
         NSString *referDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ReferDesc"]];
@@ -143,7 +146,8 @@
     NSMutableArray* arrayTitleDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_Title WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'",TABLE_TITLE];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *titleCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"TitleCode"]];
         NSString *titleDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"TitleDesc"]];
@@ -174,7 +178,8 @@
     NSMutableArray* arrayOccpClass=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_OCCP WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_OCCP];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *occpCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"occp_Code"]];
         NSString *occpeDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"OccpDesc"]];
@@ -207,7 +212,8 @@
     NSString* stringOccpClass=[[NSString alloc] init];
     NSString* stringStatus=[[NSString alloc] init];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT * FROM eProposal_OCCP where occp_Code = \"%@\"",occupCode]];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ where occp_Code = \"%@\"",TABLE_OCCP,occupCode];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         stringOccpCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"occp_Code"]];
         stringOccpDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"OccpDesc"]];

@@ -6906,7 +6906,7 @@ bool PolicyOwnerSigned = TRUE;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
         //NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, Class FROM Adm_Occp_Loading_Penta where OccpCode = \"%@\"", pp.ProspectOccupationCode];
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM eProposal_OCCP where occp_Code = \"%@\"", pp.ProspectOccupationCode];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM %@ where occp_Code = \"%@\"",TABLE_OCCP, pp.ProspectOccupationCode];
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK)
         {
             NSString *OccpDesc;
@@ -6967,7 +6967,7 @@ bool PolicyOwnerSigned = TRUE;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
         
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT TitleDesc FROM eProposal_Title WHERE TitleCode = \"%@\"", pp.ProspectTitle];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT TitleDesc FROM %@ WHERE TitleCode = \"%@\"", TABLE_TITLE,pp.ProspectTitle];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK)
         {
@@ -8752,7 +8752,8 @@ bool PolicyOwnerSigned = TRUE;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    FMResultSet *result = [db executeQuery:@"SELECT TitleDesc FROM eProposal_Title WHERE TitleCode = ?", Title];
+    NSString *query = [NSString stringWithFormat:@"SELECT TitleDesc FROM %@ WHERE TitleCode = %@", TABLE_TITLE, Title];
+    FMResultSet *result = [db executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {
@@ -8784,7 +8785,8 @@ bool PolicyOwnerSigned = TRUE;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    FMResultSet *result = [db executeQuery:@"SELECT TitleCode FROM eProposal_Title WHERE TitleDesc = ?", Title];
+    NSString *query = [@"SELECT TitleCode FROM %@ WHERE TitleDesc = %@", TABLE_TITLE, Title];
+    FMResultSet *result = [db executeQuery:query];
     
     while ([result next]) {
         code =[result objectForColumnName:@"TitleCode"];
@@ -12175,7 +12177,8 @@ bool PolicyOwnerSigned = TRUE;
     if (![_txtSourceIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_SourceIncome WHERE SourceDesc = ?", _txtSourceIncome.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = %@", TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];
@@ -12187,6 +12190,7 @@ bool PolicyOwnerSigned = TRUE;
     if (![_txtOccupation.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = %@", TABLE_OCCP, _txtOccupation.text];
         result = [db executeQuery:@"SELECT Poin FROM eProposal_OCCP WHERE OccpDesc = ?", _txtOccupation.text];
         poin = 0;
         while ([result next]) {
@@ -12200,7 +12204,8 @@ bool PolicyOwnerSigned = TRUE;
     if (![txtReferralName.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_ReferralSource WHERE ReferDesc = ?", txtReferralName.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = %@", TABLE_REFERRALSOURCE,txtReferralName.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];

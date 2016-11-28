@@ -7,6 +7,7 @@
 //
 
 #import "ModelReligion.h"
+#import "String.h"
 
 @implementation ModelReligion
 
@@ -23,7 +24,8 @@
     NSMutableArray* arrayReligionDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_Religion WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_RELIGION];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *ReligionCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ReligionCode"]];
         NSString *ReligionDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ReligionDesc"]];
