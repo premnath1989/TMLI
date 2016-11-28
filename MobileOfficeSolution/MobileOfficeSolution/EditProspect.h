@@ -302,6 +302,7 @@
 @property (strong, nonatomic) NSUserDefaults *UDScore;
 @property (strong, nonatomic) IBOutlet UIView *MainView;
 
+
 //Header
 @property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
@@ -328,6 +329,10 @@
 
 //data pribadi View
 //SumberData
+
+@property (weak, nonatomic) IBOutlet UIView *viewScore;
+@property (weak, nonatomic) IBOutlet UILabel *LblScore;
+
 @property (weak, nonatomic) IBOutlet UITextField *txtReferralName;
 @property (weak, nonatomic) IBOutlet UIButton *outletReferralSource;
 @property (strong, nonatomic) IBOutlet UITextField *txtNamaDepan;

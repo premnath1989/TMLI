@@ -2246,6 +2246,8 @@ bool PolicyOwnerSigned = TRUE;
     else {
             [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
     }
+    
+    _LblScore.text = pp.tScore;
         
     txtReferralName.text = pp.ReferralName;
     _txtNamaDepan.text = pp.ProspectName;

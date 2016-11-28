@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.ttf">
+        <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
         <array key="BPreplay_Regular.ttf">
@@ -2065,6 +2065,20 @@
                                                     <action selector="ActionFavorite:" destination="Few-sZ-jKx" eventType="touchUpInside" id="men-LU-q3o"/>
                                                 </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" misplaced="YES" id="WHV-pO-1nl">
+                                                <rect key="frame" x="797" y="110" width="80" height="80"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="11" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="IFX-ip-UDx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" name="NewJune-Bold" family="NewJuneBold" pointSize="47"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" red="0.10588235294117647" green="0.45882352941176469" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="tintColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2158,6 +2172,7 @@
                         <outlet property="Alamatcv" destination="7bo-Yb-rMF" id="4wr-93-xSk"/>
                         <outlet property="BtnAnnualIncome" destination="Dq3-Tn-npC" id="fXx-Ny-hGG"/>
                         <outlet property="DataPcv" destination="RJf-yD-TQs" id="ngT-tZ-xfo"/>
+                        <outlet property="LblScore" destination="IFX-ip-UDx" id="oE9-WW-nDR"/>
                         <outlet property="MainView" destination="cwk-fL-cKg" id="jvz-HW-yyD"/>
                         <outlet property="Occcv" destination="q0E-rR-Y2J" id="oXp-Ti-dl6"/>
                         <outlet property="TxtKecamatan" destination="jml-oi-aQU" id="xGj-3U-S0Q"/>
@@ -2214,6 +2229,7 @@
                         <outlet property="txtRemark" destination="ZNZ-f6-NFn" id="oHD-3g-Kx9"/>
                         <outlet property="txtSourceIncome" destination="2yr-6B-K2r" id="MK6-GV-Jhh"/>
                         <outlet property="txtTypeID" destination="dEp-o3-mWp" id="IyC-QB-LXB"/>
+                        <outlet property="viewScore" destination="WHV-pO-1nl" id="LlY-ge-e0J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="36h-rN-ICj" userLabel="First Responder" sceneMemberID="firstResponder"/>

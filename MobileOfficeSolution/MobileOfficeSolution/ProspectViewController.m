@@ -4324,8 +4324,8 @@ BOOL NavShowP;
             
             txtAnnIncome.text = prospectprofile.AnnualIncome;
             
-            txtAnnIncome.enabled = TRUE;
-            txtAnnIncome.backgroundColor = [UIColor whiteColor];
+//            txtAnnIncome.enabled = TRUE;
+//            txtAnnIncome.backgroundColor = [UIColor whiteColor];
             
 //            txtDOB.hidden = YES;
             [outletDOB setTitle: [NSString stringWithFormat:@"- SELECT -"] forState:UIControlStateNormal];
