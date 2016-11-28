@@ -17,6 +17,7 @@
 #import "textFields.h"
 #import "AppDelegate.h"
 #import "User Interface.h"
+#import "String.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -1386,7 +1387,7 @@ bool PolicyOwnerSigned = TRUE;
 		
 		//Note: why only update LA_details when POFlag = N, need confirmation on this ##ENS
 		
-		NSString *query = [NSString stringWithFormat:@"SELECT COUNT(*) FROM eProposal_LA_Details WHERE ProspectProfileID = '%@'", ProspectID];
+		NSString *query = [NSString stringWithFormat:@"SELECT COUNT(*) FROM %@ WHERE ProspectProfileID = '%@'", TABLE_LA_DETAILS, ProspectID];
 		result = [db executeQuery:query];
 		while ([result next]) {
 			int count = [result intForColumn:@"COUNT(*)"];
@@ -1400,8 +1401,8 @@ bool PolicyOwnerSigned = TRUE;
 					gender = @"F";
 				}
 				
-				NSString *update_query = [NSString stringWithFormat:@"Update eProposal_LA_Details SET \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
-										  
+				NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+										  TABLE_LA_DETAILS,
 										  FullName,
 										  gender,
 										  strDOB,
@@ -1488,7 +1489,8 @@ bool PolicyOwnerSigned = TRUE;
         }
         
         // Check Policy Owner, LA1, LA2
-        FMResultSet *result_checkLA = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", ProspectID];
+        NSString *queryCheckLA = [NSString stringWithFormat:@"SELECT * from %@ WHERE ProspectProfileID = %@", TABLE_LA_DETAILS,ProspectID];
+        FMResultSet *result_checkLA = [db executeQuery:queryCheckLA];
         while ([result_checkLA next]) {
             
             eProposalNo =  [result_checkLA objectForColumnName:@"eProposalNo"];
@@ -1790,8 +1792,9 @@ bool PolicyOwnerSigned = TRUE;
 	[db executeUpdate:@"DELETE FROM eProposal_Existing_Policy_2 WHERE eProposalNo = ?", ProposalNo_to_delete];
 	NSLog(@"Prospect data changed. eProposal_Existing_Policy_2 Table Cleaned for Confirmed Case.");
 	
-	[db executeUpdate:@"DELETE FROM eProposal_LA_Details WHERE eProposalNo = ?", ProposalNo_to_delete];
-	NSLog(@"Prospect data changed. eProposal_LA_Details Table Cleaned for Confirmed Case.");
+    NSString *queryDeleteProposal = [NSString stringWithFormat:@"DELETE FROM %@ WHERE eProposalNo = %@",TABLE_LA_DETAILS, ProposalNo_to_delete];
+	[db executeUpdate:queryDeleteProposal];
+	NSLog(@"Prospect data changed. %@ Table Cleaned for Confirmed Case.",TABLE_LA_DETAILS);
 	
 	[db executeUpdate:@"DELETE FROM eProposal_NM_Details WHERE eProposalNo = ?", ProposalNo_to_delete];
 	NSLog(@"Prospect data changed. eProposal_NM_Details Table Cleaned for Confirmed Case.");
@@ -6935,7 +6938,7 @@ bool PolicyOwnerSigned = TRUE;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
         
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT IdentityDesc FROM eProposal_Identification where IdentityCode = \"%@\"", pp.OtherIDType];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ where IdentityCode = \"%@\"", TABLE_IDENTIFICATION, pp.OtherIDType];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK)
         {
@@ -7443,7 +7446,7 @@ bool PolicyOwnerSigned = TRUE;
 	//Note: why only update LA_details when POFlag = N, need confirmation on this ##ENS
     
 	
-    NSString *query = [NSString stringWithFormat:@"SELECT LANAME, eProposalNo FROM eProposal_LA_Details WHERE ProspectProfileID = '%@'", pp.ProspectID];
+    NSString *query = [NSString stringWithFormat:@"SELECT LANAME, eProposalNo FROM %@ WHERE ProspectProfileID = '%@'",TABLE_LA_DETAILS, pp.ProspectID];
     
     result = [db executeQuery:query];
     NSString *ProposalNo;
@@ -7475,8 +7478,8 @@ bool PolicyOwnerSigned = TRUE;
 				gender = @"F";
 			}
 			
-            NSString *update_query = [NSString stringWithFormat:@"Update eProposal_LA_Details SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
-                                      
+            NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+                                      TABLE_LA_DETAILS,
 									  TitleCodeSelected,
                                       txtrFullName.text,
                                       gender,
@@ -7565,7 +7568,8 @@ bool PolicyOwnerSigned = TRUE;
     }
     
     // Check Policy Owner, LA1, LA2
-    FMResultSet *result_checkLA = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", pp.ProspectID];
+    NSString *queryProspectProfile = [NSString stringWithFormat:@"SELECT * from %@ WHERE ProspectProfileID = %@", TABLE_LA_DETAILS, pp.ProspectID];
+    FMResultSet *result_checkLA = [db executeQuery:queryProspectProfile];
     while ([result_checkLA next]) {
         eProposalNo =  [result_checkLA objectForColumnName:@"eProposalNo"];
         FMResultSet *result_check_proposal = [db executeQuery:@"SELECT COUNT(*) from eApp_Listing WHERE ProposalNo = ? AND Status = ?", eProposalNo,@"3"];
@@ -8050,7 +8054,7 @@ bool PolicyOwnerSigned = TRUE;
 	
 	//eProposal_LA_Details
 	query = @"";
-	query = [NSString stringWithFormat:@"UPDATE eProposal_LA_Details SET LAEmployerName = '', LARelationship = '', CorrespondenceAddress = '', HaveChildren = '', LACompleteFlag = '' WHERE eProposalNo = '%@'", proposal, nil];
+	query = [NSString stringWithFormat:@"UPDATE %@ SET LAEmployerName = '', LARelationship = '', CorrespondenceAddress = '', HaveChildren = '', LACompleteFlag = '' WHERE eProposalNo = '%@'", TABLE_LA_DETAILS, proposal, nil];
 	[db executeUpdate:query];
 	
 }
@@ -8461,8 +8465,9 @@ bool PolicyOwnerSigned = TRUE;
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
 	
+    NSString *querySelectProspectProfile = [NSString stringWithFormat:@"SELECT * from %@ WHERE ProspectProfileID = %@", TABLE_LA_DETAILS, pp.ProspectID];
     // Check Policy Owner, LA1, LA2 - Confirmed Case
-    FMResultSet *result_checkLA = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", pp.ProspectID];
+    FMResultSet *result_checkLA = [db executeQuery:querySelectProspectProfile];
     while ([result_checkLA next]) {
         eProposalNo =  [result_checkLA objectForColumnName:@"eProposalNo"];
         FMResultSet *result_check_proposal = [db executeQuery:@"SELECT * from eApp_Listing WHERE ProposalNo = ? AND Status = ?", eProposalNo,@"3"];
@@ -8512,7 +8517,7 @@ bool PolicyOwnerSigned = TRUE;
     [db open];
 	
     // Check Policy Owner, LA1, LA2 - Failed Case
-    FMResultSet *result_checkLA_failed = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", pp.ProspectID];
+    FMResultSet *result_checkLA_failed = [db executeQuery:@"SELECT * from ? WHERE ProspectProfileID = ?", TABLE_LA_DETAILS, pp.ProspectID];
     while ([result_checkLA_failed next]) {
         
         eProposalNo =  [result_checkLA_failed objectForColumnName:@"eProposalNo"];
@@ -8566,8 +8571,9 @@ bool PolicyOwnerSigned = TRUE;
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     
+     NSString *querySelectProspectProfile = [NSString stringWithFormat:@"SELECT * from %@ WHERE ProspectProfileID = %@", TABLE_LA_DETAILS, pp.ProspectID];
     // Check Policy Owner, LA1, LA2 - Received Case
-    FMResultSet *result_checkLA_received = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", pp.ProspectID];
+    FMResultSet *result_checkLA_received = [db executeQuery:querySelectProspectProfile];
     while ([result_checkLA_received next]) {
         eProposalNo =  [result_checkLA_received objectForColumnName:@"eProposalNo"];
         FMResultSet *result_check_proposal_received = [db executeQuery:@"SELECT * from eApp_Listing WHERE ProposalNo = ? AND Status = ?", eProposalNo,@"7"];
@@ -8620,8 +8626,9 @@ bool PolicyOwnerSigned = TRUE;
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     
+    NSString *querySelectProspectProfile = [NSString stringWithFormat:@"SELECT * from %@ WHERE ProspectProfileID = %@", TABLE_LA_DETAILS, pp.ProspectID];
     // Check Policy Owner, LA1, LA2 - Submitted Case
-    FMResultSet *result_checkLA_submitted = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", pp.ProspectID];
+    FMResultSet *result_checkLA_submitted = [db executeQuery:querySelectProspectProfile];
     while ([result_checkLA_submitted next]) {
         eProposalNo =  [result_checkLA_submitted objectForColumnName:@"eProposalNo"];
         FMResultSet *result_check_proposal_submitted = [db executeQuery:@"SELECT * from eApp_Listing WHERE ProposalNo = ? AND Status = ?", eProposalNo,@"4"];
@@ -8688,9 +8695,10 @@ bool PolicyOwnerSigned = TRUE;
     NSString *desc = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
+    NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@",TABLE_IDENTIFICATION, IDtype,IDtype];
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    FMResultSet *result = [db executeQuery:@"SELECT IdentityDesc FROM eProposal_identification WHERE IdentityCode = ? or DataIdentifier = ?", IDtype,IDtype];
+    FMResultSet *result = [db executeQuery:query];
     
 	NSInteger *count = 0;
     while ([result next]) {
@@ -8720,10 +8728,10 @@ bool PolicyOwnerSigned = TRUE;
     NSString *code = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
+    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM %@ WHERE IdentityDesc = %@", TABLE_IDENTIFICATION,IDtype];
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    //FMResultSet *result = [db executeQuery:@"SELECT IdentityCode FROM eProposal_identification WHERE IdentityDesc = ?", IDtype];
-    FMResultSet *result = [db executeQuery:@"SELECT DataIdentifier FROM eProposal_Identification WHERE IdentityDesc = ?", IDtype];
+    FMResultSet *result = [db executeQuery:query];
     
     while ([result next]) {
         //code =[result objectForColumnName:@"IdentityCode"];
@@ -12141,7 +12149,8 @@ bool PolicyOwnerSigned = TRUE;
     if (![_txtMarital.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT poin FROM eProposal_marital_Status WHERE MSDesc = ?", _txtMarital.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = %@", TABLE_MARITAL_STATUS,  _txtMarital.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"poin"] intValue];

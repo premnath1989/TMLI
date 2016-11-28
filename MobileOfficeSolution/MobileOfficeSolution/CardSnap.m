@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CameraViewController.h"
 #import "DataClass.h"
+#import "String.h"
 
 #define kfirstLA        @"0"
 #define ksecondLA       @"1"
@@ -170,10 +171,6 @@ bool checkIndex;
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *results_check_comcase = [database executeQuery:@"SELECT * from eProposal_LA_Details WHERE eProposalNo = ? AND PTypeCode =? AND LAOtherIDType = ?", [[obj.eAppData objectForKey:@"EAPP"] objectForKey:@"eProposalNo"], ptypeCode_check, otherIDType_check];
-    
-    
-    
     if([[NSFileManager defaultManager] fileExistsAtPath:[FormsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_ID.pdf",@"RN140922083513312"]]])
     {
         
@@ -203,10 +200,6 @@ bool checkIndex;
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    
-    FMResultSet *results_check_comcase = [database executeQuery:@"SELECT * from eProposal_LA_Details WHERE eProposalNo = ? AND PTypeCode =? AND LAOtherIDType = ?", [[obj.eAppData objectForKey:@"EAPP"] objectForKey:@"eProposalNo"], ptypeCode_check, otherIDType_check];
-    
-    
     
     if([[NSFileManager defaultManager] fileExistsAtPath:[FormsPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_ID.pdf",@"RN140922083513312"]]])
     {

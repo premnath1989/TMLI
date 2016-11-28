@@ -545,6 +545,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 //                 for(dataCollection *data in [returnObj getDataWrapper]){
                 //                 }
                 //partialsync
+                
+                
+                //need to change the tablename
                 NSString *xmlDummy = @"<?xml version='1.0'?><!-- This is a sample XML document --><Master><SyncDate>2016-02-25</SyncDate><TableName>Data_Cabang</TableName><TableName>eProposal_Credit_Card_Bank</TableName><TableName>eProposal_Identification</TableName></Master>";
                 WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
                 [webservice partialSync:@"1024" delegate:self xml:xmlDummy];

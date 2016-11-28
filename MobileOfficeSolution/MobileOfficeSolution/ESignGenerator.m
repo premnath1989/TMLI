@@ -585,7 +585,8 @@
     FMDatabase* db = [FMDatabase databaseWithPath:writableDBPath];
     [db open];
     NSString *POOtherIDType;
-    results4 = [db executeQuery:@"select LAOtherIDType from eProposal_LA_Details where eProposalNo = ? AND POFlag = ?", _proposalNumber, @"N"];
+    NSString *query = [NSString stringWithFormat:@"select LAOtherIDType from %@ where eProposalNo = %@ AND POFlag = %@", TABLE_LA_DETAILS, _proposalNumber, @"N"];
+    results4 = [db executeQuery:query];
 	
 	while ([results4 next]) {
 		POOtherIDType = [results4 objectForColumnName:@"LAOtherIDType"];

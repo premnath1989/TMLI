@@ -7,6 +7,7 @@
 //
 
 #import "ModelCFFTransaction.h"
+#import "String.h"
 
 @implementation ModelCFFTransaction
 
@@ -95,8 +96,8 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ci.Prefix||ci.ContactNo AS ContactPhone,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' order by %@ %@",sortedBy,sortMethod]];
-    //NSLog(@"query %@",[NSString stringWithFormat:@"select * from SI_Premium where SINO = \"%@\" and RiderCode=\"%@\"",SINo,riderCode]);
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ci.Prefix||ci.ContactNo AS ContactPhone,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' order by %@ %@", TABLE_IDENTIFICATION, sortedBy,sortMethod]];
+ 
     while ([s next]) {
         ProspectIndex = [s intForColumn:@"IndexNo"];
         CFFTransactionID = [s intForColumn:@"CFFTransactionID"];
@@ -191,11 +192,11 @@
     
     FMResultSet *s;
     if ([dictSearch valueForKey:@"Date"] != nil){
-        s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' and pp.ProspectName like \"%%%@%%\" and pp.BranchName like \"%%%@%%\" and pp.ProspectDOB = \"%@\"",[dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"BranchName"],[dictSearch valueForKey:@"Date"]]];
+        s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' and pp.ProspectName like \"%%%@%%\" and pp.BranchName like \"%%%@%%\" and pp.ProspectDOB = \"%@\"",TABLE_IDENTIFICATION, [dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"BranchName"],[dictSearch valueForKey:@"Date"]]];
         
     }
     else{
-        s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' and pp.ProspectName like \"%%%@%%\" and pp.BranchName like \"%%%@%%\"",[dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"BranchName"]]];
+        s = [database executeQuery:[NSString stringWithFormat:@"select CFFT.*,pp.*,ci.*,ep.* from CFFTransaction CFFT join prospect_profile pp join contact_input ci on CFFT.ProspectIndexNo=pp.IndexNo and CFFT.ProspectIndexNo=ci.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier or pp.OtherIDType=ep.IdentityCode where ci.ContactCode='CONT008' and pp.ProspectName like \"%%%@%%\" and pp.BranchName like \"%%%@%%\"", TABLE_IDENTIFICATION, [dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"BranchName"]]];
     }
     
     //NSLog(@"query %@",[NSString stringWithFormat:@"select * from SI_Premium where SINO = \"%@\" and RiderCode=\"%@\"",SINo,riderCode]);

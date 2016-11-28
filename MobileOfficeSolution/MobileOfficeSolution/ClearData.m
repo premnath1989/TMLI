@@ -12,6 +12,7 @@
 #import "FMDatabase.h"
 #import "Cleanup.h"
 #import "ModelSPAJTransaction.h"
+#import "String.h"
 
 @implementation ClearData
 
@@ -116,7 +117,8 @@ NSMutableArray *EProArr;
 	}
 	
 	NSMutableArray *prosIDArr = [NSMutableArray array];
-	FMResultSet *result2 = [db executeQuery:@"SELECT * from eProposal_LA_Details WHERE eProposalNo = ?", eProposalNo];
+    NSString *query = [NSString stringWithFormat:@"SELECT * from %@ WHERE eProposalNo = %@", TABLE_LA_DETAILS, eProposalNo];
+	FMResultSet *result2 = [db executeQuery:query];
     
     NSDictionary *tempData;
 	while ([result2 next]) {
@@ -141,8 +143,9 @@ NSMutableArray *EProArr;
 
 -(void)GetProposalNo:(NSString *)prospectID database:(FMDatabase *)db {
 	NSString *ProposalNo = @"";
-	EProArr = [NSMutableArray array];	
-	FMResultSet *result = [db executeQuery:@"SELECT eProposalNo FROM eProposal_LA_Details where prospectProfileID = ?", prospectID];
+	EProArr = [NSMutableArray array];
+    NSString *query = [NSString stringWithFormat:@"SELECT eProposalNo FROM %@ where prospectProfileID = %@", TABLE_LA_DETAILS, prospectID];
+	FMResultSet *result = [db executeQuery:query];
 	
 	while ([result next]) {
 		ProposalNo =  [result objectForColumnName:@"eProposalNo"];
@@ -228,8 +231,9 @@ NSMutableArray *EProArr;
 		}
 		
 		//Delete eProposal_LA_Details
-		if (![db executeUpdate:@"Delete from eProposal_LA_Details where eProposalNo = ?", proposal, nil]) {
-			NSLog(@"Error in Delete Statement - eProposal_LA_Details");
+        NSString *query = [NSString stringWithFormat:@"Delete from %@ where eProposalNo = %@", TABLE_LA_DETAILS, proposal, nil];
+		if (![db executeUpdate:query]) {
+			NSLog(@"Error in Delete Statement - %@",TABLE_LA_DETAILS);
 		}
 		
 		//Delete eProposal

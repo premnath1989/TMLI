@@ -558,7 +558,7 @@ int rrr;
         [database open];
         
         // Check Policy Owner, LA1, LA2
-        FMResultSet *result_checkLA = [database executeQuery:@"SELECT * from eProposal_LA_Details WHERE ProspectProfileID = ?", prospectID];
+        FMResultSet *result_checkLA = [database executeQuery:@"SELECT * from %@ WHERE ProspectProfileID = ?", TABLE_LA_DETAILS, prospectID];
         FMResultSet *result_check_proposal;
         while ([result_checkLA next]) {
             eProposalNo =  [result_checkLA objectForColumnName:@"eProposalNo"];

@@ -7,6 +7,7 @@
 //
 
 #import "ModelIdentificationType.h"
+#import "String.h"
 
 @implementation ModelIdentificationType
 
@@ -24,7 +25,8 @@
     NSMutableArray* arrayIdentityDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_Identification WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'",TABLE_IDENTIFICATION];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *IdentityCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IdentityCode"]];
         NSString *DataIdentifier = [NSString stringWithFormat:@"%@",[s stringForColumn:@"DataIdentifier"]];
@@ -52,7 +54,8 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    FMResultSet *result = [database executeQuery:@"SELECT IdentityDesc FROM eProposal_Identification WHERE IdentityCode = ? or DataIdentifier = ?", otherId,otherId];
+    NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@", TABLE_IDENTIFICATION, otherId,otherId];
+    FMResultSet *result = [database executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {
@@ -82,7 +85,8 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    FMResultSet *result = [database executeQuery:@"SELECT DataIdentifier FROM eProposal_Identification WHERE Status='A' and IdentityDesc = ? ", otherDesc];
+    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM %@ WHERE Status='A' and IdentityDesc = %@ ", TABLE_IDENTIFICATION, otherDesc];
+    FMResultSet *result = [database executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {

@@ -237,11 +237,11 @@
     NSMutableArray* arrayKanwilCabang=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_AGENT_PROFILE, columnOrder];
+    NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM %@ dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_DATA_CABANG,TABLE_AGENT_PROFILE, columnOrder];
     
     FMResultSet *s = [database executeQuery:query];
     
-   NSLog(@"query %@",[NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_AGENT_PROFILE, columnOrder]);
+   NSLog(@"query %@",[NSString stringWithFormat:@"SELECT dc.* FROM %@ dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil order by %@ ASC",TABLE_DATA_CABANG,TABLE_AGENT_PROFILE, columnOrder]);
     while ([s next]) {
         NSString *occpCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"KodeCabang"]];
         NSString *occpeDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"NamaCabang"]];
@@ -282,11 +282,11 @@
     
     FMResultSet *s;
     if ([columnFilter isEqualToString:@"dc.KodeCabang"]){
-        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.KodeCabang=%@",TABLE_AGENT_PROFILE,columnValue];
+        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM %@ dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.KodeCabang=%@", TABLE_DATA_CABANG, TABLE_AGENT_PROFILE,columnValue];
         s = [database executeQuery:query];
     }
     else{
-        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM Data_Cabang dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.NamaCabang=%@",TABLE_AGENT_PROFILE,columnValue];
+        NSString *query = [NSString stringWithFormat:@"SELECT dc.* FROM %@ dc, %@ ap WHERE dc.status = 'A' and ap.Kanwil = dc.Kanwil and dc.NamaCabang=%@", TABLE_DATA_CABANG, TABLE_AGENT_PROFILE,columnValue];
         s = [database executeQuery:query];
     }
     while ([s next]) {

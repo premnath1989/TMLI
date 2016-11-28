@@ -7,6 +7,7 @@
 //
 
 #import "ModelMaritalStatus.h"
+#import "String.h"
 
 @implementation ModelMaritalStatus
 
@@ -23,7 +24,8 @@
     NSMutableArray* arrayMSDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_Marital_Status WHERE status = 'A'"];
+    NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_MARITAL_STATUS];
+    FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         NSString *MSCode = [NSString stringWithFormat:@"%@",[s stringForColumn:@"MSCode"]];
         NSString *MSDesc = [NSString stringWithFormat:@"%@",[s stringForColumn:@"MSDesc"]];

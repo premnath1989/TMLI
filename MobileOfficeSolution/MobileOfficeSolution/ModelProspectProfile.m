@@ -8,6 +8,7 @@
 
 #import "ModelProspectProfile.h"
 #import "ProspectProfile.h"
+#import "String.h"
 
 @implementation ModelProspectProfile
 -(NSMutableArray *)getProspectProfile{
@@ -108,7 +109,7 @@
     NSMutableArray* ProspectTableData=[[NSMutableArray alloc]init];
     //results = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by LOWER(ProspectName) ASC LIMIT 20)", Nil];
     //FMResultSet *s = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by DateModified DESC LIMIT 20"];
-    FMResultSet *s = [database executeQuery:@"SELECT pp.*,ep.* FROM prospect_profile pp left join eProposal_Identification ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by DateModified DESC"];
+    FMResultSet *s = [database executeQuery:@"SELECT pp.*,ep.* FROM prospect_profile pp left join ? ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by DateModified DESC",TABLE_IDENTIFICATION];
     while ([s next]) {
         //occpToEnableSection = [results stringForColumn:@"OccpCode"];
         int ID = [s intForColumn:@"IndexNo"];

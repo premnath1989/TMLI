@@ -7,6 +7,7 @@
 //
 
 #import "ModelSPAJTransaction.h"
+#import "String.h"
 
 
 @implementation ModelSPAJTransaction
@@ -38,7 +39,7 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.* FROM SPAJTransaction spajtrans left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJStatus='EAPP' order by %@ %@",sortedBy,sortMethod]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.* FROM SPAJTransaction spajtrans left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJStatus='EAPP' order by %@ %@", TABLE_IDENTIFICATION, sortedBy,sortMethod]];
     
     while ([s next]) {
         ProspectIndex = [s intForColumn:@"IndexNo"];
@@ -109,7 +110,7 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans left join SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber <>'' and spajtrans.SPAJStatus in (%@) order by %@ %@",stringSPAJStatus,sortedBy,sortMethod]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans left join SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber <>'' and spajtrans.SPAJStatus in (%@) order by %@ %@",TABLE_IDENTIFICATION, stringSPAJStatus,sortedBy,sortMethod]];
     
     while ([s next]) {
         ProspectIndex = [s intForColumn:@"IndexNo"];
@@ -188,10 +189,10 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans left join SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber like \"%%%@%%\" and pp.ProspectName like \"%%%@%%\" and pp.OtherIDTypeNo like \"%%%@%%\" and spajtrans.SPAJStatus in (%@)",stringSPAJNumber,stringName,stringIDNumber,stringSPAJStatus]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans left join SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber like \"%%%@%%\" and pp.ProspectName like \"%%%@%%\" and pp.OtherIDTypeNo like \"%%%@%%\" and spajtrans.SPAJStatus in (%@)", TABLE_IDENTIFICATION, stringSPAJNumber,stringName,stringIDNumber,stringSPAJStatus]];
     
     
-    NSLog(@"query %@",[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber like \"%%%@%%\" and pp.ProspectName like \"%%%@%%\" and pp.OtherIDTypeNo like \"%%%@%%\"",stringSPAJNumber,stringName,stringIDNumber]);
+    NSLog(@"query %@",[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.*,sim.SI_Version FROM SPAJTransaction spajtrans SI_Master sim on spajtrans.SPAJSINO = sim.SINO left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier where spajtrans.SPAJNumber like \"%%%@%%\" and pp.ProspectName like \"%%%@%%\" and pp.OtherIDTypeNo like \"%%%@%%\"",TABLE_IDENTIFICATION, stringSPAJNumber,stringName,stringIDNumber]);
     while ([s next]) {
         ProspectIndex = [s intForColumn:@"IndexNo"];
         SPAJTransactionID = [s intForColumn:@"SPAJTransactionID"];
@@ -264,7 +265,7 @@
     [database open];
     
     FMResultSet *s;
-    s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.* FROM SPAJTransaction spajtrans left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join eProposal_Identification ep on pp.OtherIDType=ep.DataIdentifier where where spajtrans.SPAJStatus='EAPP' and pp.ProspectName like \"%%%@%%\" and spajtrans.SPAJEappNumber like \"%%%@%%\"",[dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"SPAJEappNumber"]]];
+    s = [database executeQuery:[NSString stringWithFormat:@"SELECT spajtrans.*,sipo.*,pp.*,ep.* FROM SPAJTransaction spajtrans left join SI_PO_Data sipo on spajtrans.SPAJSINO = sipo.SINO left join prospect_profile pp on sipo.PO_ClientID = pp.IndexNo left join %@ ep on pp.OtherIDType=ep.DataIdentifier where where spajtrans.SPAJStatus='EAPP' and pp.ProspectName like \"%%%@%%\" and spajtrans.SPAJEappNumber like \"%%%@%%\"",TABLE_IDENTIFICATION, [dictSearch valueForKey:@"Name"],[dictSearch valueForKey:@"SPAJEappNumber"]]];
     
     
     //NSLog(@"query %@",[NSString stringWithFormat:@"select * from SI_Premium where SINO = \"%@\" and RiderCode=\"%@\"",SINo,riderCode]);

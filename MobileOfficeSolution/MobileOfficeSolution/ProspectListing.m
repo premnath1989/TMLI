@@ -19,6 +19,7 @@
 #import "ClearData.h"
 #import "User Interface.h"
 #import "Cleanup.h"
+#import "String.h"
 
 
 @interface ProspectListing ()
@@ -1636,7 +1637,8 @@ MBProgressHUD *HUD;
         //Get proposal No
         FMResultSet *results;
         NSString *proposal = @"";
-        results = [db executeQuery:@"SELECT eProposalNo FROM eProposal_LA_Details where prospectProfileID = ?", pp.ProspectID];
+        NSString *query = [NSString stringWithFormat:@"SELECT eProposalNo FROM %@ where prospectProfileID = %@", TABLE_LA_DETAILS, pp.ProspectID];
+        results = [db executeQuery:query];
         while ([results next]) {
             proposal = [results objectForColumnName:@"eProposalNo"];
             [EProArr addObject:proposal];

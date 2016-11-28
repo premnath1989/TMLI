@@ -21,6 +21,7 @@
 #import "FMDatabase.h"
 #import "textFields.h"
 #import "User Interface.h"
+#import "String.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -3238,7 +3239,8 @@ BOOL NavShowP;
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     
-    FMResultSet *result = [db executeQuery:@"SELECT COUNT(*) as COUNT FROM eProposal_LA_Details WHERE ProspectProfileID = ? AND POFlag = 'N'", prospectprofile.ProspectID];
+    NSString *query = [NSString stringWithFormat:@"SELECT COUNT(*) as COUNT FROM %@ WHERE ProspectProfileID = %@ AND POFlag = 'N'", TABLE_LA_DETAILS, prospectprofile.ProspectID];
+    FMResultSet *result = [db executeQuery:query];
     NSString *str_counter;
     NSString *contact1;
     NSString *contact2;
@@ -3255,8 +3257,8 @@ BOOL NavShowP;
             contact4 =  [NSString stringWithFormat:@"%@",txtContact4.text];//[NSString stringWithFormat:@"%@%@",txtPrefix4.text, txtContact4.text];
             /*end of edit by faiz*/
             
-            [db executeUpdate:@"Update eProposal_LA_Details SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
-             
+            [db executeUpdate:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+             TABLE_LA_DETAILS,
 			 TitleCodeSelected,
              txtFullName.text,
              gender,
@@ -3367,7 +3369,8 @@ BOOL NavShowP;
     if (![_txtMarital.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT poin FROM eProposal_marital_Status WHERE MSDesc = ?", _txtMarital.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = %@", TABLE_MARITAL_STATUS, _txtMarital.text];
+        result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"poin"] intValue];
@@ -5119,7 +5122,7 @@ BOOL NavShowP;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK) {
         
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT IdentityDesc FROM eProposal_Identification where IdentityCode = \"%@\"", prospectprofile.OtherIDType];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ where IdentityCode = \"%@\"", TABLE_IDENTIFICATION, prospectprofile.OtherIDType];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK) {
             while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -6460,7 +6463,7 @@ BOOL NavShowP;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    FMResultSet *result = [db executeQuery:@"SELECT IdentityDesc FROM eProposal_Identification WHERE IdentityCode = ? or DataIdentifier = ?", otherId,otherId];
+    FMResultSet *result = [db executeQuery:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = ? or DataIdentifier = ?", TABLE_IDENTIFICATION, otherId,otherId];
     
     NSInteger *count = 0;
     while ([result next]) {
@@ -6488,8 +6491,9 @@ BOOL NavShowP;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    //FMResultSet *result = [db executeQuery:@"SELECT IdentityCode FROM eProposal_Identification WHERE IdentityDesc = ?", otherId];
-    FMResultSet *result = [db executeQuery:@"SELECT DataIdentifier FROM eProposal_Identification WHERE IdentityDesc = ?", otherId];
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM %@ WHERE IdentityDesc = %@", TABLE_IDENTIFICATION, otherId];
+    FMResultSet *result = [db executeQuery:query];
     
     NSInteger *count = 0;
     while ([result next]) {
