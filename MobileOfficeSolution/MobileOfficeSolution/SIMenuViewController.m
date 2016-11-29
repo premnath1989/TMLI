@@ -226,14 +226,15 @@ BOOL isFirstLoad;
     self.view.autoresizesSubviews = NO;
     
     if ([[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
-        self.myTableView.frame = CGRectMake(0, 330, 642, 60);
+        self.myTableView.frame = CGRectMake(0, 330, 1700, 60);
         self.RightView.frame = CGRectMake(255, 20, 600, 748);
     } else {
-        self.myTableView.frame = CGRectMake(0, 250, 642, 83);
+        self.myTableView.frame = CGRectMake(0, 250, 1700, 83);
        
     }
     
     [self hideSeparatorLine];
+    
     
     [self setSaveAsMode:[dictionaryPOForInsert valueForKey:@"SINO"]];
 }
@@ -2958,9 +2959,17 @@ BOOL isFirstLoad;
 //             }
              
              
-             //cell.imageView.image = [UIImage imageNamed:@"shape_guideright_complete"];
-//             [cell.imageView setFrame:CGRectMake(-70.0,0,self.view.frame.size.width,self.view.frame.size.width)];
-             [cell setBackgroundColor: [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0]];
+             cell.IconPemegangPolis.image = [UIImage imageNamed:@"shape_guideright_complete"];
+             cell.PemegangPolis.backgroundColor = [UIColor redColor];
+           //  cell.PemengangPolisButton.backgroundColor = [UIColor redColor];
+             cell.LabelOne.textColor = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
+             
+             //[UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
+            
+ //            [cell.imageView setFrame:CGRectMake(-70.0,0,self.view.frame.size.width,self.view.frame.size.width)];
+  //           [cell setBackgroundColor: [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0]];
+ //
+             
              
              
          }
@@ -3011,14 +3020,17 @@ BOOL isFirstLoad;
     
     
     if ([[_NumberListOfSubMenu objectAtIndex:indexPath.row] isEqualToString:@"0"]){
-        [cell.labelNumber setText:@""];
-        [cell.labelDesc setText:@""];
-        [cell.labelWide setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
+//        [cell.labelNumber setText:@""];
+//        [cell.labelDesc setText:@""];
+//        [cell.labelWide setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
+        
+        
+        
     }
     else{
-        [cell.labelNumber setText:[_NumberListOfSubMenu objectAtIndex:indexPath.row]];
-        [cell.labelDesc setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
-        [cell.labelWide setText:@""];
+//        [cell.labelNumber setText:[_NumberListOfSubMenu objectAtIndex:indexPath.row]];
+//        [cell.labelDesc setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
+//        [cell.labelWide setText:@""];
     }
     
     return cell;
