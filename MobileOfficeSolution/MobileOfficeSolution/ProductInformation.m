@@ -215,6 +215,7 @@ BOOL NavShow2;
             
             ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
             progressBar.TitleFileName = [NSString stringWithFormat: @"%@.%@",fileName.text, brochureExt];
+            progressBar.TitleProgressBar=[NSString stringWithFormat: @"%@.%@",fileName.text, brochureExt];
             progressBar.progressDelegate = self;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
@@ -230,6 +231,7 @@ BOOL NavShow2;
             
             ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
             progressBar.TitleFileName = [NSString stringWithFormat: @"%@.%@",fileName.text, videoExt];
+            progressBar.TitleProgressBar = [NSString stringWithFormat: @"%@.%@",fileName.text, videoExt];
             progressBar.progressDelegate = self;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
