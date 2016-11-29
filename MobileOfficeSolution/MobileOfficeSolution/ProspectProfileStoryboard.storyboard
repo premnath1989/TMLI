@@ -2732,6 +2732,63 @@
             </objects>
             <point key="canvasLocation" x="82" y="-67"/>
         </scene>
+        <!--SIDate-->
+        <scene sceneID="L2e-k0-QDV">
+            <objects>
+                <viewController storyboardIdentifier="SIDate" title="SIDate" id="gvF-pH-mgO" customClass="SIDate" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ona-Xk-dFt">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="620"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" id="Urg-vp-b2X">
+                                <rect key="frame" x="0.0" y="45" width="540" height="216"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="371048106.04521298">
+                                    <!--2012-10-04 12:55:06 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="en_US"/>
+                                <connections>
+                                    <action selector="ActionDate:" destination="gvF-pH-mgO" eventType="valueChanged" id="xm8-y3-F9C"/>
+                                </connections>
+                            </datePicker>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="k3O-0Y-fXv">
+                                <rect key="frame" x="437" y="167" width="72" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnClose:" destination="gvF-pH-mgO" eventType="touchUpInside" id="MK6-mK-EOg"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" id="07g-ze-wNR">
+                                <rect key="frame" x="0.0" y="1" width="540" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.71581763030000001" green="0.78642475609999996" blue="0.99927043910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="aGV-lm-0y5">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="BdZ-BE-Nss">
+                                            <connections>
+                                                <action selector="btnDone:" destination="gvF-pH-mgO" id="ooY-nh-OBd"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="540" height="210"/>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="outletDate" destination="Urg-vp-b2X" id="HeF-8V-SIL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tSG-so-ftx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3144" y="-2945"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Expand Arrow.png" width="24" height="24"/>
