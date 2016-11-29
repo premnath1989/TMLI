@@ -32,6 +32,7 @@
 #import "DBMigration.h"
 #import "SSKeychain.h"
 #import "String.h"
+#import "FMDatabase.h"
 
 @interface Login ()
 
@@ -969,7 +970,7 @@ static NSString *labelVers;
     NSString *UDID;
     
     NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword, UDID from %@",TABLE_AGENT_PROFILE];
-    FMResultSet *result1 = [db executeQuery:query];
+    result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -1025,7 +1026,7 @@ static NSString *labelVers;
     
     NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword from %@",TABLE_AGENT_PROFILE];
     
-    FMResultSet *result1 = [db executeQuery:query];
+    result1 = [db executeQuery:query];
     
     while ([result1 next]) {
         AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

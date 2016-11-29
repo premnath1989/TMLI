@@ -17,6 +17,7 @@
 #import "SpinnerUtilities.h"
 #import "AppDisclaimer.h"
 #import <MessageUI/MFMailComposeViewController.h>
+#import "FMResultSet.h"
 
 @protocol LoginDelegate
 - (void)Dismiss: (NSString *)ViewToBePresented;
@@ -89,6 +90,7 @@ static NSString* DATE_FORMAT = @"yyyy-MM-dd";
     ChangePassword * UserProfileView;
     SpinnerUtilities *spinnerLoading;
     EncryptDecryptWrapper *encryptWrapper;
+    FMResultSet *result1;
 }
 
 @property (nonatomic, strong) id<LoginDelegate> delegate;

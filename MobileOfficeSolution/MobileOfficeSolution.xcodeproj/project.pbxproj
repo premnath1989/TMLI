@@ -170,7 +170,6 @@
 		DEDC5E0D1DAE41FC0033FE37 /* GroupViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E001DAE41FC0033FE37 /* GroupViewVC.m */; };
 		DEDC5E0E1DAE41FC0033FE37 /* ClientGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E021DAE41FC0033FE37 /* ClientGroup.m */; };
 		DEDC5E0F1DAE41FC0033FE37 /* GroupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E051DAE41FC0033FE37 /* GroupVC.m */; };
-		DEDC5E101DAE41FC0033FE37 /* MainClient.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E071DAE41FC0033FE37 /* MainClient.m */; };
 		DEDC5E111DAE41FC0033FE37 /* GroupListing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E091DAE41FC0033FE37 /* GroupListing.m */; };
 		DEDC5E121DAE41FC0033FE37 /* NewGroupListing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E0B1DAE41FC0033FE37 /* NewGroupListing.m */; };
 		DEDC5E151DAE42370033FE37 /* SIListing.m in Sources */ = {isa = PBXBuildFile; fileRef = DEDC5E141DAE42370033FE37 /* SIListing.m */; };
@@ -407,7 +406,6 @@
 		DEDC60B71DAF69100033FE37 /* disclosure_indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC606C1DAF69100033FE37 /* disclosure_indicator.png */; };
 		DEDC60B81DAF69100033FE37 /* emptyCheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC606D1DAF69100033FE37 /* emptyCheckBox.png */; };
 		DEDC60B91DAF69100033FE37 /* tickCheckBox.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC606E1DAF69100033FE37 /* tickCheckBox.png */; };
-		DEDC60BB1DAF6A9E0033FE37 /* ClientProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDC60BA1DAF6A9E0033FE37 /* ClientProfileStoryboard.storyboard */; };
 		DEDC60BD1DAF6B360033FE37 /* ProspectProfileStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDC60BC1DAF6B360033FE37 /* ProspectProfileStoryboard.storyboard */; };
 		DEDC60BF1DAF6D0B0033FE37 /* HLAWPStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDC60BE1DAF6D0B0033FE37 /* HLAWPStoryboard.storyboard */; };
 		DEDC60C21DAF74290033FE37 /* btn_home.png in Resources */ = {isa = PBXBuildFile; fileRef = DEDC60C11DAF74290033FE37 /* btn_home.png */; };
@@ -843,8 +841,6 @@
 		DEDC5E031DAE41FC0033FE37 /* ClientGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClientGroup.h; sourceTree = "<group>"; };
 		DEDC5E041DAE41FC0033FE37 /* GroupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupVC.h; sourceTree = "<group>"; };
 		DEDC5E051DAE41FC0033FE37 /* GroupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupVC.m; sourceTree = "<group>"; };
-		DEDC5E061DAE41FC0033FE37 /* MainClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainClient.h; sourceTree = "<group>"; };
-		DEDC5E071DAE41FC0033FE37 /* MainClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainClient.m; sourceTree = "<group>"; };
 		DEDC5E081DAE41FC0033FE37 /* GroupListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupListing.h; sourceTree = "<group>"; };
 		DEDC5E091DAE41FC0033FE37 /* GroupListing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupListing.m; sourceTree = "<group>"; };
 		DEDC5E0A1DAE41FC0033FE37 /* NewGroupListing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewGroupListing.h; sourceTree = "<group>"; };
@@ -1193,7 +1189,6 @@
 		DEDC606C1DAF69100033FE37 /* disclosure_indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = disclosure_indicator.png; sourceTree = "<group>"; };
 		DEDC606D1DAF69100033FE37 /* emptyCheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emptyCheckBox.png; sourceTree = "<group>"; };
 		DEDC606E1DAF69100033FE37 /* tickCheckBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tickCheckBox.png; sourceTree = "<group>"; };
-		DEDC60BA1DAF6A9E0033FE37 /* ClientProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ClientProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		DEDC60BC1DAF6B360033FE37 /* ProspectProfileStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ProspectProfileStoryboard.storyboard; sourceTree = "<group>"; };
 		DEDC60BE1DAF6D0B0033FE37 /* HLAWPStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HLAWPStoryboard.storyboard; sourceTree = "<group>"; };
 		DEDC60C11DAF74290033FE37 /* btn_home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_home.png; sourceTree = "<group>"; };
@@ -1671,7 +1666,6 @@
 		DEDC5C8E1DAE34EE0033FE37 /* Prospect */ = {
 			isa = PBXGroup;
 			children = (
-				DEDC60BA1DAF6A9E0033FE37 /* ClientProfileStoryboard.storyboard */,
 				DEDC60BC1DAF6B360033FE37 /* ProspectProfileStoryboard.storyboard */,
 				DEDC5E571DAE45860033FE37 /* ProspectViewController.h */,
 				DEDC5E581DAE45860033FE37 /* ProspectViewController.m */,
@@ -1971,8 +1965,6 @@
 				DEDC5E031DAE41FC0033FE37 /* ClientGroup.h */,
 				DEDC5E041DAE41FC0033FE37 /* GroupVC.h */,
 				DEDC5E051DAE41FC0033FE37 /* GroupVC.m */,
-				DEDC5E061DAE41FC0033FE37 /* MainClient.h */,
-				DEDC5E071DAE41FC0033FE37 /* MainClient.m */,
 				DEDC5E081DAE41FC0033FE37 /* GroupListing.h */,
 				DEDC5E091DAE41FC0033FE37 /* GroupListing.m */,
 				DEDC5E0A1DAE41FC0033FE37 /* NewGroupListing.h */,
@@ -3384,7 +3376,6 @@
 				DEDC60AB1DAF69100033FE37 /* Client_Profile@2x.png in Resources */,
 				DEDC613D1DAF797E0033FE37 /* SPAJPDFWebViewController.xib in Resources */,
 				DEDC5FAA1DAE49BD0033FE37 /* Reader-Email.png in Resources */,
-				DEDC60BB1DAF6A9E0033FE37 /* ClientProfileStoryboard.storyboard in Resources */,
 				DEDC60981DAF69100033FE37 /* sales_illustrationv3.png in Resources */,
 				DE5F7AE61DB090B1006DC32F /* MOSDB.sqlite.sql in Resources */,
 				DEDC60B71DAF69100033FE37 /* disclosure_indicator.png in Resources */,
@@ -3717,7 +3708,6 @@
 				172DEF8C1DD573FC00CDED49 /* HospitalCashPlanViewController.m in Sources */,
 				DEDC61831DAF7C270033FE37 /* AllAboutPDFFunctions.m in Sources */,
 				DEDC5C5E1DAE347E0033FE37 /* AppDelegate.m in Sources */,
-				DEDC5E101DAE41FC0033FE37 /* MainClient.m in Sources */,
 				DEDC5F731DAE49AE0033FE37 /* UIXToolbarView.m in Sources */,
 				DEDC5D261DAE39420033FE37 /* ModelSIMaster.m in Sources */,
 				DEDC61481DAF799B0033FE37 /* Query SPAJ Header.m in Sources */,

@@ -18,7 +18,6 @@
 #import "AFNetworking.h"
 #import "SettingUserProfile.h"
 #import "SIUtilities.h"
-#import "MainClient.h"
 #import <AdSupport/ASIdentifierManager.h>
 #import "ClearData.h"
 #import "ProductInformation.h"
@@ -465,14 +464,14 @@ const int numberOfModule = 7;
 }
 
 - (IBAction)selectClientProfile:(id)sender {
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"mainClient"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-    mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"mainClient"];
+//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+//    mainClient.IndexTab = appdlg.ProspectListingIndex;
+//    [self presentViewController:mainClient animated:NO completion:Nil];
+//    appdlg = Nil;
+//    mainClient= Nil;
 }
 
 - (IBAction)selectSalesIllustration:(id)sender {

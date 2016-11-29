@@ -14,7 +14,6 @@
 #import "Button.h"
 #import "User Interface.h"
 #import "AppDelegate.h"
-#import "MainClient.h"
 #import "MainScreen.h"
 #import "ProductInformation.h"
 #import "SettingUserProfile.h"

@@ -14,7 +14,6 @@
 #import "Button.h"
 #import "User Interface.h"
 #import "AppDelegate.h"
-#import "MainClient.h"
 #import "MainScreen.h"
 
 
@@ -84,26 +83,26 @@ BOOL NavShowOne;
 
 - (IBAction)ActionExisting:(id)sender {
     
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIListing"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIListing"];
+//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+//    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
+//    [self presentViewController:mainClient animated:NO completion:Nil];
+//    appdlg = Nil;
+//    mainClient= Nil;
 }
 
 - (IBAction)ActionAddNew:(id)sender {
     
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIPageView"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIPageView"];
+//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+//    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
+//    [self presentViewController:mainClient animated:NO completion:Nil];
+//    appdlg = Nil;
+//    mainClient= Nil;
     
 }
 

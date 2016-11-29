@@ -11,7 +11,6 @@
 #import "BasicPlanHandler.h"
 #import "PayorHandler.h"
 #import "SecondLAHandler.h"
-#import "MainClient.h"
 @interface MainScreen : FSVerticalTabBarController<FSTabBarControllerDelegate>{
 	    
 }

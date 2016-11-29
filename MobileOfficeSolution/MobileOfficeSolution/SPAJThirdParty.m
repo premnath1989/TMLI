@@ -348,15 +348,15 @@
         dateString= sender.currentTitle;
     }
     
-    if (siDate == Nil) {
-        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-        siDate = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"SIDate"];
-        siDate.delegate = self;
-        SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:siDate];
-    }
-    siDate.ProspectDOB=dateString;
-    [SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    [SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+//    if (siDate == Nil) {
+//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//        siDate = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        siDate.delegate = self;
+//        SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:siDate];
+//    }
+//    siDate.ProspectDOB=dateString;
+//    [SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    [SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 
 

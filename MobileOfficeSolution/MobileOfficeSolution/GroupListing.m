@@ -90,16 +90,16 @@
 
 - (IBAction)addNew:(id)sender
 {	
-	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-	NewGroupListing *NgroupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupVC"];
-	
-	
-	NgroupPage.modalPresentationStyle = UIModalPresentationFormSheet;
-	//[UDGroup setObject:@"Add New Group" forKey:@"GroupTitle"];
-    [UDGroup setObject:@"New" forKey:@"GroupTitle"];
-	[self presentViewController:NgroupPage animated:YES completion:nil];
-	
-	[self refreshData];
+//	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//	NewGroupListing *NgroupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupVC"];
+//	
+//	
+//	NgroupPage.modalPresentationStyle = UIModalPresentationFormSheet;
+//	//[UDGroup setObject:@"Add New Group" forKey:@"GroupTitle"];
+//    [UDGroup setObject:@"New" forKey:@"GroupTitle"];
+//	[self presentViewController:NgroupPage animated:YES completion:nil];
+//	
+//	[self refreshData];
 	
 }
 
@@ -689,21 +689,21 @@
         NSLog(@"go other page!");
 
 		
-		UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-		GroupVC *NgroupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupVC"];
-        NgroupPage.delegateGroup = self;
-		
-		NgroupPage.modalPresentationStyle = UIModalPresentationFormSheet;
-		
-		[UDGroup setObject:@"Edit Group" forKey:@"GroupTitle"];
-        
-		if (!isFiltered) {
-			NgroupPage.data = [[itemInArray objectAtIndex:indexPath.row] copy];
-		}
-		else {
-			NgroupPage.data = [[FilteredTableData objectAtIndex:indexPath.row] copy];
-		}
-		[self presentViewController:NgroupPage animated:YES completion:nil];
+//		UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//		GroupVC *NgroupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupVC"];
+//        NgroupPage.delegateGroup = self;
+//		
+//		NgroupPage.modalPresentationStyle = UIModalPresentationFormSheet;
+//		
+//		[UDGroup setObject:@"Edit Group" forKey:@"GroupTitle"];
+//        
+//		if (!isFiltered) {
+//			NgroupPage.data = [[itemInArray objectAtIndex:indexPath.row] copy];
+//		}
+//		else {
+//			NgroupPage.data = [[FilteredTableData objectAtIndex:indexPath.row] copy];
+//		}
+//		[self presentViewController:NgroupPage animated:YES completion:nil];
     }
 }
 

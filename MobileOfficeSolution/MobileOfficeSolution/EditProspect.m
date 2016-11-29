@@ -4240,19 +4240,19 @@ bool PolicyOwnerSigned = TRUE;
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
 	txtRigDate.textColor = [UIColor blackColor];
-    UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+//    UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+//    
+//    if (_SIDate == Nil) {
+//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    
+//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    [self.SIDatePopover presentPopoverFromRect:[sender bounds ]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
     
-    if (_SIDate == Nil) {
-        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    
-    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    [self.SIDatePopover presentPopoverFromRect:[sender bounds ]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
-    
-    dateFormatter = Nil;
-    dateString = Nil, clientProfileStoryboard = nil;
+//    dateFormatter = Nil;
+//    dateString = Nil, clientProfileStoryboard = nil;
 }
 
 - (IBAction)ActionExempted:(id)sender
@@ -4347,28 +4347,28 @@ bool PolicyOwnerSigned = TRUE;
 
 - (IBAction)addNewGroup:(id)sender
 {
-	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-	EditProspect *groupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"ClientGroup"];
-	
-	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
-	[UDGroup setObject:pp.ProspectID forKey:@"ProspectID"];
-	[UDGroup setObject:pp.ProspectName forKey:@"ProspectName"];
-	[UDGroup setObject:@"Edit" forKey:@"Mode"];
-	
-    [self presentViewController:groupPage animated:YES completion:nil];
+//	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//	EditProspect *groupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"ClientGroup"];
+//	
+//	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
+//	[UDGroup setObject:pp.ProspectID forKey:@"ProspectID"];
+//	[UDGroup setObject:pp.ProspectName forKey:@"ProspectName"];
+//	[UDGroup setObject:@"Edit" forKey:@"Mode"];
+//	
+//    [self presentViewController:groupPage animated:YES completion:nil];
 }
 
 - (IBAction)ViewGroup:(id)sender{
 	
-	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-	EditProspect *groupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupViewVC"];
-	
-	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
-	[UDGroup setObject:pp.ProspectID forKey:@"ProspectID"];
-	[UDGroup setObject:pp.ProspectName forKey:@"ProspectName"];
-	[UDGroup setObject:@"Edit" forKey:@"Mode"];
-	
-    [self presentViewController:groupPage animated:YES completion:nil];
+//	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//	EditProspect *groupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"GroupViewVC"];
+//	
+//	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
+//	[UDGroup setObject:pp.ProspectID forKey:@"ProspectID"];
+//	[UDGroup setObject:pp.ProspectName forKey:@"ProspectName"];
+//	[UDGroup setObject:@"Edit" forKey:@"Mode"];
+//	
+//    [self presentViewController:groupPage animated:YES completion:nil];
 }
 
 - (void)disableGroup {
@@ -4914,20 +4914,20 @@ bool PolicyOwnerSigned = TRUE;
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-    if (_SIDate == Nil) {
-        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
-        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    if (![pp.ProspectDOB isEqualToString:@""]) {
-        _SIDate.ProspectDOB = pp.ProspectDOB;
-    }
-    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    CGRect butt = [sender frame];
-    int y = butt.origin.y - 44;
-    butt.origin.y = y;
-    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+//    if (_SIDate == Nil) {
+//        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    if (![pp.ProspectDOB isEqualToString:@""]) {
+//        _SIDate.ProspectDOB = pp.ProspectDOB;
+//    }
+//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    CGRect butt = [sender frame];
+//    int y = butt.origin.y - 44;
+//    butt.origin.y = y;
+//    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (IBAction)btnExpiryDate:(id)sender
@@ -4939,19 +4939,19 @@ bool PolicyOwnerSigned = TRUE;
     isExpiryDate = YES;
 
     
-    if (_SIDate == Nil) {
-        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
-        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        
-        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    _SIDate.ProspectDOB = pp.IDExpirityDate;
-    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    CGRect butt = [sender frame];
-    int y = butt.origin.y - 44;
-    butt.origin.y = y;
-    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
+//    if (_SIDate == Nil) {
+//        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        
+//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    _SIDate.ProspectDOB = pp.IDExpirityDate;
+//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    CGRect butt = [sender frame];
+//    int y = butt.origin.y - 44;
+//    butt.origin.y = y;
+//    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionRight animated:YES];
 }
 
 - (IBAction)btnOccup:(id)sender
@@ -12011,15 +12011,15 @@ bool PolicyOwnerSigned = TRUE;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-    if (_TimePicker == Nil) {
-        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-        _TimePicker.delegate = self;
-        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
-    }
-    _TimePicker.ProspectDOB = dateString;
-    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+//    if (_TimePicker == Nil) {
+//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
+//        _TimePicker.delegate = self;
+//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+//    }
+//    _TimePicker.ProspectDOB = dateString;
+//    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
     
 }
 
@@ -12056,15 +12056,15 @@ bool PolicyOwnerSigned = TRUE;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-    if (_TimePicker == Nil) {
-        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-        _TimePicker.delegate = self;
-        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
-    }
-    _TimePicker.ProspectDOB = dateString;
-    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+//    if (_TimePicker == Nil) {
+//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
+//        _TimePicker.delegate = self;
+//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+//    }
+//    _TimePicker.ProspectDOB = dateString;
+//    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 }
 
 - (IBAction)ActionSave:(id)sender {

@@ -18,6 +18,7 @@
 #import "UIElementsManagement.h"
 #import <QuartzCore/QuartzCore.h>
 #import "User Interface.h"
+#import "ProspectProfile.h"
 
 @interface SIListing ()
 @property(nonatomic, readwrite) int kPageIndex;
@@ -797,29 +798,29 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
 }
 
 - (IBAction)btnDateFrom:(id)sender {
-    DateOption = 1;
-    if (_SIDate == Nil) {
-        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    
-    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    [self.SIDatePopover presentPopoverFromRect:[sender frame ]  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    DateOption = 1;
+//    if (_SIDate == Nil) {
+//        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    
+//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    [self.SIDatePopover presentPopoverFromRect:[sender frame ]  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (IBAction)btnDateTo:(id)sender {
-    DateOption = 2;
-    if (_SIDate == Nil) {
-        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    
-    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    [self.SIDatePopover presentPopoverFromRect:[sender frame ]  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+//    DateOption = 2;
+//    if (_SIDate == Nil) {
+//        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    
+//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    [self.SIDatePopover presentPopoverFromRect:[sender frame ]  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 }
 
 - (IBAction)segOrderBy:(id)sender {
@@ -1718,14 +1719,14 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
 
 - (IBAction)ActionBackTo:(id)sender {
     
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
-    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
-    [self presentViewController:mainClient animated:NO completion:Nil];
-    appdlg = Nil;
-    mainClient= Nil;
+//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
+//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+//    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
+//    [self presentViewController:mainClient animated:NO completion:Nil];
+//    appdlg = Nil;
+//    mainClient= Nil;
     
 }
 

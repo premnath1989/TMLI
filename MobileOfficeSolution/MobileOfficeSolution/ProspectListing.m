@@ -187,15 +187,15 @@ MBProgressHUD *HUD;
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-    if (_SIDate == Nil) {
-        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-        _SIDate = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"SIDate"];
-        _SIDate.delegate = self;
-        _SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-    }
-    
-    [_SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-    [_SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionLeft animated:NO];
+//    if (_SIDate == Nil) {
+//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
+//        _SIDate = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"SIDate"];
+//        _SIDate.delegate = self;
+//        _SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+//    }
+//    
+//    [_SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+//    [_SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionLeft animated:NO];
 }
 
 -(void)createBlackStatusBar{
