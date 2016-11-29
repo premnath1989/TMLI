@@ -3395,7 +3395,7 @@ BOOL NavShowP;
     if (![_txtSourceIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = %@",  TABLE_SOURCEINCOME,_txtSourceIncome.text]
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = %@",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -6839,8 +6839,7 @@ BOOL NavShowP;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.lastContentOffset > scrollView.contentOffset.y)
-    {
+    if (scrollView.contentOffset.y < 0)    {
         isThin = NO;
         [self ActionChangeHeader:nil];
     }

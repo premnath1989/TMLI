@@ -8785,7 +8785,7 @@ bool PolicyOwnerSigned = TRUE;
 	
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
-    NSString *query = [@"SELECT TitleCode FROM %@ WHERE TitleDesc = %@", TABLE_TITLE, Title];
+    NSString *query = [NSString stringWithFormat:@"SELECT TitleCode FROM %@ WHERE TitleDesc = %@", TABLE_TITLE, Title];
     FMResultSet *result = [db executeQuery:query];
     
     while ([result next]) {
@@ -12295,7 +12295,8 @@ bool PolicyOwnerSigned = TRUE;
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    if (self.lastContentOffset > scrollView.contentOffset.y)
+    
+    if (scrollView.contentOffset.y < 0)
     {
         isThin = NO;
         [self ActionChangeHeader:nil];
