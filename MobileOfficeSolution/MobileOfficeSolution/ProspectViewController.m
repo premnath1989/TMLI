@@ -592,7 +592,7 @@ BOOL NavShowP;
     outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     outletDOB.imageEdgeInsets = UIEdgeInsetsMake(0., outletDOB.frame.size.width - (24 + 10.0), 0., 0.);
     outletDOB.titleEdgeInsets = UIEdgeInsetsMake(0, -14.0, 0, 31.7);
-    outletDOB.layer.borderColor = borderColor.CGColor;
+//    outletDOB.layer.borderColor = borderColor.CGColor;
     outletDOB.layer.borderWidth = 1.0;
     
     OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
@@ -2725,18 +2725,18 @@ BOOL NavShowP;
         [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", outletDOB.titleLabel.text] forState:UIControlStateNormal];
     }*/
     
-//    if (_SIDate == Nil) {
-//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
-//        self.SIDate = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"SIDate"];
-//        _SIDate.delegate = self;
-//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-//    }
-//    _SIDate.ProspectDOB = dateString;
-//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-//    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:NO];
+    if (_SIDate == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.SIDate = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+        _SIDate.delegate = self;
+        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+    }
+    _SIDate.ProspectDOB = dateString;
+    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:NO];
     
-    //dateFormatter = Nil;
-    //dateString = Nil;
+    dateFormatter = Nil;
+    dateString = Nil;
     
 }
 
@@ -6683,15 +6683,15 @@ BOOL NavShowP;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-//    if (_timePicker == Nil) {
-//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-//        _timePicker.delegate = self;
-//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_timePicker];
-//    }
-//    _timePicker.ProspectDOB = dateString;
-////    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    if (_timePicker == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _timePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_timePicker];
+    }
+    _timePicker.ProspectDOB = dateString;
+//    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 
 }
 
@@ -6728,15 +6728,15 @@ BOOL NavShowP;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-//    if (_timePicker == Nil) {
-//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-//        _timePicker.delegate = self;
-//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_timePicker];
-//    }
-//    _timePicker.ProspectDOB = dateString;
-//    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    if (_timePicker == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _timePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_timePicker];
+    }
+    _timePicker.ProspectDOB = dateString;
+    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 }
 
 
