@@ -65,6 +65,15 @@
         
         UITapGestureRecognizer *gr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
         [self.view addGestureRecognizer:gr];
+        
+        AppDelegate *delegate= (AppDelegate*)[[UIApplication sharedApplication] delegate];
+        if(![[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] containsString:@"UAT"])
+        {
+            delegate.serverURL = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"Prod_Webservices"];
+        }else{
+            delegate.serverURL = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"UAT_Webservices"];
+        }
+
     }
 
 

@@ -6618,12 +6618,12 @@
 }
 + (AgentWSSoapBinding *)AgentWSSoapBinding
 {
-    NSString *serverURL = [NSString stringWithFormat:@"%@/webservices/AgentWS.asmx", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
+    NSString *serverURL = [NSString stringWithFormat:@"%@/AgentWS.asmx", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
     return [[[AgentWSSoapBinding alloc] initWithAddress:serverURL] autorelease];
 }
 + (AgentWSSoap12Binding *)AgentWSSoap12Binding
 {
-    NSString *serverURL = [NSString stringWithFormat:@"%@/webservices/AgentWS.asmx", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
+    NSString *serverURL = [NSString stringWithFormat:@"%@/AgentWS.asmx", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
     return [[[AgentWSSoap12Binding alloc] initWithAddress:serverURL] autorelease];
 }
 @end
