@@ -79,7 +79,7 @@ BOOL isFirstLoad;
     [self resignFirstResponder];
     
     
-    [self.myTableView setFrame:CGRectMake(0,0,342, 60)];
+//    [self.myTableView setFrame:CGRectMake(0,0,342, 60)];
 
     formatter = [[Formatter alloc] init];
     riderCalculation = [[RiderCalculation alloc]init];
@@ -226,10 +226,10 @@ BOOL isFirstLoad;
     self.view.autoresizesSubviews = NO;
     
     if ([[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
-        self.myTableView.frame = CGRectMake(0, 330, 1700, 60);
+//        self.myTableView.frame = CGRectMake(0, 330, 1700, 60);
         self.RightView.frame = CGRectMake(255, 20, 600, 748);
     } else {
-        self.myTableView.frame = CGRectMake(0, 250, 1700, 83);
+//        self.myTableView.frame = CGRectMake(0, 250, 1700, 83);
        
     }
     

@@ -55,6 +55,11 @@
     sqlite3 *contactDB;
     BOOL PlanEmpty;
     
+    IBOutlet UIView *MenuView;
+    IBOutlet UIScrollView *ScrollMenu;
+    
+    
+    
     Formatter* formatter;
     RiderCalculation* riderCalculation;
     IlustrationViewController *_salesIlustrationViewController;

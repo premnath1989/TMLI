@@ -48,7 +48,6 @@
         _LblGroup.textColor = [UIColor blueColor];
         [_ViewScore setBackgroundColor:[UIColor blackColor]];
     }
-    
 
 }
 
@@ -60,14 +59,8 @@
 
 - (IBAction)ActionOK:(id)sender {
     
-//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"];
-//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:mainClient animated:NO completion:Nil];
-//    appdlg = Nil;
-//    mainClient= Nil;
-    
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
     
 }
 @end

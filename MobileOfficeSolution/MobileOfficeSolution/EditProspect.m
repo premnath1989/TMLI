@@ -4914,20 +4914,20 @@ bool PolicyOwnerSigned = TRUE;
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-//    if (_SIDate == Nil) {
-//        UIStoryboard *clientProfileStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
-//        self.SIDate = [clientProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
-//        _SIDate.delegate = self;
-//        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
-//    }
-//    if (![pp.ProspectDOB isEqualToString:@""]) {
-//        _SIDate.ProspectDOB = pp.ProspectDOB;
-//    }
-//    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
-//    CGRect butt = [sender frame];
-//    int y = butt.origin.y - 44;
-//    butt.origin.y = y;
-//    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
+    if (_SIDate == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+        self.SIDate = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"SIDate"];
+        _SIDate.delegate = self;
+        self.SIDatePopover = [[UIPopoverController alloc] initWithContentViewController:_SIDate];
+    }
+    if (![pp.ProspectDOB isEqualToString:@""]) {
+        _SIDate.ProspectDOB = pp.ProspectDOB;
+    }
+    [self.SIDatePopover setPopoverContentSize:CGSizeMake(300.0f, 255.0f)];
+    CGRect butt = [sender frame];
+    int y = butt.origin.y - 44;
+    butt.origin.y = y;
+    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionUp animated:YES];
 }
 
 - (IBAction)btnExpiryDate:(id)sender
@@ -12011,15 +12011,15 @@ bool PolicyOwnerSigned = TRUE;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-//    if (_TimePicker == Nil) {
-//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-//        _TimePicker.delegate = self;
-//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
-//    }
-//    _TimePicker.ProspectDOB = dateString;
-//    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    if (_TimePicker == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _TimePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+    }
+    _TimePicker.ProspectDOB = dateString;
+    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
     
 }
 
@@ -12056,15 +12056,15 @@ bool PolicyOwnerSigned = TRUE;
     [dateFormatter setDateFormat:@"HH:mm"];
     NSString *dateString;
     
-//    if (_TimePicker == Nil) {
-//        UIStoryboard *clientProfileStoryBoard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
-//        self.TimePicker = [clientProfileStoryBoard instantiateViewControllerWithIdentifier:@"TimePicker"];
-//        _TimePicker.delegate = self;
-//        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
-//    }
-//    _TimePicker.ProspectDOB = dateString;
-//    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
-//    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
+    if (_TimePicker == Nil) {
+        UIStoryboard *ProspectProfileStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:nil];
+        self.TimePicker = [ProspectProfileStoryboard instantiateViewControllerWithIdentifier:@"TimePicker"];
+        _TimePicker.delegate = self;
+        self.TimePickerPopover = [[UIPopoverController alloc] initWithContentViewController:_TimePicker];
+    }
+    _TimePicker.ProspectDOB = dateString;
+    //    [self.TimePickerPopover setPopoverContentSize:CGSizeMake(250.0f, 300.0f)];
+    [self.TimePickerPopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionDown animated:NO];
 }
 
 - (IBAction)ActionSave:(id)sender {

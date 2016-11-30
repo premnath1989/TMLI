@@ -83,26 +83,16 @@ BOOL NavShowOne;
 
 - (IBAction)ActionExisting:(id)sender {
     
-//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIListing"];
-//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
-//    [self presentViewController:mainClient animated:NO completion:Nil];
-//    appdlg = Nil;
-//    mainClient= Nil;
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"SIListing"] animated:YES completion: nil];
+    
 }
 
 - (IBAction)ActionAddNew:(id)sender {
     
-//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIPageView"];
-//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    //    mainClient.IndexTab = appdlg.ProspectListingIndex;
-//    [self presentViewController:mainClient animated:NO completion:Nil];
-//    appdlg = Nil;
-//    mainClient= Nil;
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"SIPageView"] animated:YES completion: nil];
+    
     
 }
 
