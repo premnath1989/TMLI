@@ -45,7 +45,7 @@
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -55,9 +55,7 @@
     sqlite3 *contactDB;
     BOOL PlanEmpty;
     
-    IBOutlet UIView *MenuView;
-    IBOutlet UIScrollView *ScrollMenu;
-    
+
     
     
     Formatter* formatter;
@@ -204,6 +202,20 @@
 @property (nonatomic ,assign ,readwrite) int getAdvance;
 
 //----
+@property (strong, nonatomic) IBOutlet UIScrollView *ScrollMenu;
+@property (strong, nonatomic) IBOutlet UIScrollView *SiScrollView;
+@property (strong, nonatomic) IBOutlet UIView *MenuView;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
+@property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
+@property (strong, nonatomic) IBOutlet UIView *ViewThickHeader;
+@property (strong, nonatomic) IBOutlet UIButton *btnChangeHeader;
+
+- (IBAction)ActionChangeHeader:(id)sender;
+- (IBAction)ActionNavigationShow:(id)sender;
+
+
+//-----
 
 @property (nonatomic, copy) NSString *payorSINo;
 @property (nonatomic, copy) NSString *payorCustCode;

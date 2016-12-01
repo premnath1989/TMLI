@@ -26,6 +26,7 @@
 #import "PremiumViewController.h"
 #import "BrowserViewController.h"
 #import "String.h"
+#import "User Interface.h"
 
 #define TRAD_PAYOR_FIRSTLA  @"0"
 #define TRAD_PAYOR_SECONDLA  @"1"
@@ -66,12 +67,14 @@
 @synthesize HLController = _HLController;
 id RiderCount;
 @synthesize isNewSI;
+@synthesize ScrollMenu, MenuView;
 
 
 const NSString * SUM_MSG_HLACP = @"Guaranteed Yearly Income";
 const NSString * SUM_MSG_L100 = @"Basic Sum Assured";
 int CurrentPath;
 BOOL isFirstLoad;
+BOOL NavShow3;
 
 - (void)viewDidLoad
 {
@@ -88,6 +91,15 @@ BOOL isFirstLoad;
     _modelSIMaster = [[Model_SI_Master alloc]init];
     _modelSIRider = [[ModelSIRider alloc]init];
     
+    NavShow3 = NO;
+     _SiScrollView.delegate = self;
+    [_SiScrollView setScrollEnabled:YES];
+    _SiScrollView.contentSize = CGSizeMake(900, 1300);
+    
+    ScrollMenu.delegate = self;
+    [ScrollMenu setScrollEnabled:YES];
+    ScrollMenu.contentSize = CGSizeMake(1500, 72);
+ 
     self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
     _RiderController.delegate = self;
     
@@ -124,6 +136,7 @@ BOOL isFirstLoad;
     myTableView.rowHeight = 84;
     [myTableView reloadData];
     
+
     //testingTheAv
     
     //self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
@@ -224,6 +237,8 @@ BOOL isFirstLoad;
 {
     [super viewWillAppear:animated];
     self.view.autoresizesSubviews = NO;
+    
+ 
     
     if ([[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
 //        self.myTableView.frame = CGRectMake(0, 330, 1700, 60);
@@ -5527,6 +5542,43 @@ NSString *prevPlan;
 -(void)RemovePDS {
     ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Pemegang Polis", @"Tertanggung", @"Ansurasi Dasar \n Asuransi Tambahan \n Premi", @"Ilustrasi ",@"Produk Brosur",@"Simpan sebagai Baru", nil];
 //	ListOfSubMenu = [[NSMutableArray alloc] initWithObjects:@"Life Assured", @"   2nd Life Assured", @"   Payor", @"Basic Plan", nil];
+}
+
+- (IBAction)ActionChangeHeader:(id)sender {
+    
+    if (_ViewThinHeader.hidden == YES) {
+        _ViewThinHeader.hidden = NO;
+        _ViewThickHeader.hidden = YES;
+        //isThin = NO;
+        _btnChangeHeader.frame = CGRectMake(0, 105.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(0, 125.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(0, 197.0, 1024.0, 800.0);
+        
+    }
+    else {
+        _ViewThinHeader.hidden = YES;
+        _ViewThickHeader.hidden = NO;
+        //isThin = YES;
+        _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(0, 280.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 800.0);
+        
+    }
+    
+}
+
+- (IBAction)ActionNavigationShow:(id)sender {
+    if (!NavShow3) {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationShow:self];
+        NavShow3 = YES;
+    }
+    else {
+        UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+        [_objectUserInterface navigationHide:self];
+        NavShow3 = NO;
+    }
+    
 }
 
 -(void)setNewBasicSA :(NSString*)aaSA {

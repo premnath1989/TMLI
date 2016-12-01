@@ -147,6 +147,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *statusLabel;
 @property (strong, nonatomic) IBOutlet UIToolbar *myToolBar;
 @property (strong, nonatomic) IBOutlet UIButton *btnDOB;
+@property (strong, nonatomic) IBOutlet UITextField *txtDob;
 @property (strong, nonatomic) IBOutlet UIButton *btnOccp;
 @property (strong, nonatomic) IBOutlet UIButton *btnProspect;
 @property (strong, nonatomic) IBOutlet UIButton *btnEnabled;
@@ -154,6 +155,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *outletDone;
 @property (strong, nonatomic) IBOutlet UIButton *NamaProduk;
 @property (strong, nonatomic) IBOutlet UIButton *BtnHubungan;
+@property (strong, nonatomic) IBOutlet UITextField *txtHubungan;
+
 @property (nonatomic, assign)BOOL QuickQuoteBool;
 
 @property (nonatomic, copy) NSString *SINo, *SINOBCA;
