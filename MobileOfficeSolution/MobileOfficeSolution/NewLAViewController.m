@@ -2722,7 +2722,7 @@
         [LANameField becomeFirstResponder];
         return NO;
        
-    } else if ([btnDOB.titleLabel.text isEqualToString:@"(null)"] ||[btnDOB.titleLabel.text isEqualToString:@"--Please Select--"] || btnDOB.titleLabel.text.length == 0) {
+    } else if ([_txtDob.text isEqualToString:@"(null)"] ||[_txtDob.text isEqualToString:@"--Please Select--"] || _txtDob.text.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Tanggal Lahir Pemegang Polis"
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
