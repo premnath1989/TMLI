@@ -454,7 +454,7 @@
 }
 
 - (void)passValidationCheck{
-    if(![NamaProduk.titleLabel.text isEqualToString:@"--Please Select--"] && ![LANameField.text isEqualToString:@""] && ![btnDOB.titleLabel.text isEqualToString:@"--Please Select--"] && ![_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] && ![btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] && !sexSegment.selected){
+    if(![NamaProduk.titleLabel.text isEqualToString:@"--Please Select--"] && ![LANameField.text isEqualToString:@""] && ![_txtDob.text isEqualToString:@"--Please Select--"] && ![_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] && ![_txtDob.text isEqualToString:@"--Please Select--"] && !sexSegment.selected){
             unsigned flags = NSDayCalendarUnit;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"dd/MM/yyyy"];
@@ -1192,7 +1192,7 @@
                                           numberBoolQuickQuote,@"QuickQuote",
                                           TanggalIllustrasi.titleLabel.text,@"SIDate",
                                           LANameField.text,@"PO_Name",
-                                          btnDOB.titleLabel.text,@"PO_DOB",
+                                          _txtDob.text,@"PO_DOB",
                                           sex,@"PO_Gender",
                                           LAAgeField.text,@"PO_Age",
                                           occuCode,@"PO_OccpCode",
@@ -1206,7 +1206,7 @@
     if (([relationDesc isEqualToString:@"DIRI SENDIRI"])||([relationDesc isEqualToString:@"SELF"])){
         [dictionaryNewLA setObject:numberIntClientProfile forKey:@"LA_ClientID"];
         [dictionaryNewLA setObject:LANameField.text forKey:@"LA_Name"];
-        [dictionaryNewLA setObject:btnDOB.titleLabel.text forKey:@"LA_DOB"];
+        [dictionaryNewLA setObject:_txtDob.text forKey:@"LA_DOB"];
         [dictionaryNewLA setObject:LAAgeField.text forKey:@"LA_Age"];
         [dictionaryNewLA setObject:sex forKey:@"LA_Gender"];
         [dictionaryNewLA setObject:relationDesc forKey:@"RelWithLA"];
@@ -1337,10 +1337,10 @@
         sexSegment.enabled = NO;
         
         btnDOB.enabled = NO;
-        self.btnDOB.titleLabel.textColor = [UIColor darkGrayColor];
+        _txtDob.textColor = [UIColor darkGrayColor];
         
         btnOccp.enabled = NO;
-        self.btnOccp.titleLabel.textColor = [UIColor darkGrayColor];
+        _txtDob.textColor = [UIColor darkGrayColor];
         
 		QQProspect = NO;
         QQProspect = FALSE;
@@ -1355,10 +1355,10 @@
 		smokerSegment.enabled = YES;
         
         btnDOB.enabled = YES;
-        self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         
         btnOccp.enabled = YES;
-        self.btnOccp.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         
         QQProspect = YES;
         QQProspect = TRUE;
@@ -1367,7 +1367,7 @@
     LANameField.text = @"";
     sexSegment.selectedSegmentIndex = UISegmentedControlNoSegment;
     smokerSegment.selectedSegmentIndex = UISegmentedControlNoSegment;
-    btnDOB.titleLabel.text = @"";
+    _txtDob.text = @"";
     LAAgeField.text = @"";
     btnCommDate.titleLabel.text = @"";
     btnOccp.titleLabel.text = @"";
@@ -3060,7 +3060,7 @@
             LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",bAge];
         }
         
-        self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         [self.dobPopover dismissPopoverAnimated:YES];
         date1 = NO;
     } else if (date2)
@@ -3078,7 +3078,7 @@
            // LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",bAge];
         }
     
-    self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+    _txtDob.textColor = [UIColor blackColor];
     [self.dobPopover dismissPopoverAnimated:YES];
     date1 = NO;
 }
