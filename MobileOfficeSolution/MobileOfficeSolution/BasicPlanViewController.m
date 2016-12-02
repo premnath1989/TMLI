@@ -461,7 +461,7 @@ bool WPTPD30RisDeleted = FALSE;
 
 - (void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(0, 0, 775, 1004);
+    self.view.frame = CGRectMake(0, 0, 1024, 1004);
     [super viewWillAppear:animated];
 }
 
@@ -1985,10 +1985,10 @@ bool WPTPD30RisDeleted = FALSE;
     for (UIView *view in [myScrollView subviews]) {
         if ([view isKindOfClass:[UITextField class]]) {
             UITextField *textField = (UITextField *)view;
-            textField.layer.borderColor=themeColour.CGColor;
-            textField.layer.borderWidth=1.0;
+//            textField.layer.borderColor=themeColour.CGColor;
+//            textField.layer.borderWidth=1.0;
             textField.delegate=self;
-            [textField setFont:font];
+//            [textField setFont:font];
             
             UIView *paddingView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 5, 20)];
             textField.leftView = paddingView;
@@ -1998,9 +1998,9 @@ bool WPTPD30RisDeleted = FALSE;
         if ([view isKindOfClass:[UIButton class]]) {
             UIButton *button = (UIButton *)view;
             button.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-            button.layer.borderColor=themeColour.CGColor;
-            button.layer.borderWidth=1.0;
-            [button.titleLabel setFont:font];
+//            button.layer.borderColor=themeColour.CGColor;
+//            button.layer.borderWidth=1.0;
+//            [button.titleLabel setFont:font];
         }
     }
 

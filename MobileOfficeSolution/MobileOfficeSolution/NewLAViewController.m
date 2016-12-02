@@ -3106,6 +3106,7 @@
     Relationship = selectedRship;
     
      [_BtnHubungan setTitle:Relationship forState:UIControlStateNormal];
+    _txtHubungan.text = Relationship;
     
     
       Relationship = [self.requestSmoker description];
