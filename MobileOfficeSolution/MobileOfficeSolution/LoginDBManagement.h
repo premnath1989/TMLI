@@ -37,6 +37,7 @@
 - (int)insertTableFromJSON:(NSDictionary*) params databasePath:(NSString *)dbName;
 - (int) ReferralSyncTable:(WebResponObj *)obj;
 - (BOOL) fullSyncTable:(WebResponObj *)obj;
+- (NSString *) dataVersion;
 
 //SPAJ Functions
 - (long long)SPAJAllocated;

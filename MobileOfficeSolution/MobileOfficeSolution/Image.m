@@ -59,6 +59,8 @@
         [self setContentMode:UIViewContentModeScaleAspectFill];
     }
 
+
+
 @end
 
 @implementation ImageViewLogoHorizontal

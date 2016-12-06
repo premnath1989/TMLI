@@ -5,6 +5,14 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="BPreplay_Bold.ttf">
+            <string>BPreplay-Bold</string>
+        </array>
+        <array key="BPreplay_Regular.otf">
+            <string>BPreplay</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Login Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -15,7 +23,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="ViewMain">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="P2P-Sb-lXF" customClass="ImageViewBackground"/>
@@ -53,6 +61,9 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7X-0a-0Uv" customClass="ButtonPhotoUnderline">
                                                 <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <segue destination="yHH-pR-s2J" kind="show" id="xR7-v9-Hp0"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -85,7 +96,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idy-cg-gUD" customClass="ButtonFormSecondary">
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="yHH-pR-s2J" kind="show" id="uZV-np-XTG"/>
+                                                    <action selector="btnLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JbF-nc-7uC"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -129,6 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="36" y="38.23088455772114"/>
         </scene>
         <!--Home Controller-->
         <scene sceneID="amu-aQ-5Qi">
@@ -139,7 +151,7 @@
                         <viewControllerLayoutGuide type="bottom" id="oEt-RU-aJO"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="HGS-PT-jCb" customClass="ViewMain">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TZn-cj-4AY" customClass="ViewProfile">
@@ -383,6 +395,148 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47P-MD-yE5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="973" y="40"/>
+        </scene>
+        <!--ChangePwd-->
+        <scene sceneID="1ef-hy-TxW">
+            <objects>
+                <viewController storyboardIdentifier="ChangePwd" title="ChangePwd" wantsFullScreenLayout="YES" id="yVm-uo-d7e" customClass="ChangePassword" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Py7-ar-V5f"/>
+                        <viewControllerLayoutGuide type="bottom" id="F4I-tT-NYf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="6Ua-g7-wt3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="500"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password Baru" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="40l-J5-4wz">
+                                <frame key="frameInset" minX="231" minY="214" width="298" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password Lama" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="qhm-Fu-ioV">
+                                <frame key="frameInset" minX="231" minY="175" width="298" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm password" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="K1M-pO-DFP">
+                                <frame key="frameInset" minX="231" minY="253" width="298" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fji-Wv-ahg">
+                                <frame key="frameInset" minX="231" minY="295" width="298" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99327123169999998" green="0.66896891589999996" blue="0.081517472859999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                <color key="tintColor" red="1" green="0.49803921569999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Simpan">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnChange:" destination="yVm-uo-d7e" eventType="touchUpInside" id="5qP-R2-4ob"/>
+                                </connections>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JAG-zs-pz1">
+                                <frame key="frameInset" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.71581763030000001" green="0.78642475609999996" blue="0.99927043910000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <items>
+                                    <navigationItem id="g5w-kH-4zB">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="QzF-Go-uKr">
+                                            <connections>
+                                                <action selector="btnCancel:" destination="yVm-uo-d7e" id="6Vv-Dp-t3W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="2XU-oU-d9q">
+                                            <connections>
+                                                <action selector="btnDone:" destination="yVm-uo-d7e" id="1d2-8V-m1D"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Password Lama" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="hW4-nr-YDe">
+                                <frame key="frameInset" minX="44" minY="180" width="108" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Password Baru" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="4vN-gc-1HI">
+                                <frame key="frameInset" minX="44" minY="219" width="115" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Confirm Password Baru" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="esV-ba-9xo">
+                                <frame key="frameInset" minX="44" minY="258" width="180" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Pengaturan - Ubah Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEu-uZ-paS">
+                                <frame key="frameInset" minX="160" width="278" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Kode Agent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V9f-gq-mpx">
+                                <frame key="frameInset" minX="44" minY="142" width="91" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Kode Agent" textAlignment="natural" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="6Rg-pu-rt2">
+                                <frame key="frameInset" minX="231" minY="138" width="298" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Tips Keamanan Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FM-OK-cMW">
+                                <frame key="frameInset" minX="44" minY="85" width="200" height="54"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                <color key="textColor" red="0.98920059199999999" green="0.41316801310000001" blue="0.031795684249999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="*Pastikan perangkat terhubung ke internet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GNg-Fd-Q9m">
+                                <frame key="frameInset" minX="44" minY="54" width="324" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
+                                <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="500"/>
+                    <connections>
+                        <outlet property="btnBarCancel" destination="QzF-Go-uKr" id="uOg-Nt-dcW"/>
+                        <outlet property="btnBarDone" destination="2XU-oU-d9q" id="Rlq-pm-VrU"/>
+                        <outlet property="lblTips" destination="3FM-OK-cMW" id="62a-VS-GqJ"/>
+                        <outlet property="outletSave" destination="fji-Wv-ahg" id="8mf-0o-dwH"/>
+                        <outlet property="txtAgentCode" destination="6Rg-pu-rt2" id="QbD-mw-FZP"/>
+                        <outlet property="txtConfirmPwd" destination="K1M-pO-DFP" id="Ff9-Hx-S8V"/>
+                        <outlet property="txtNewPwd" destination="40l-J5-4wz" id="rLG-T1-gWq"/>
+                        <outlet property="txtOldPwd" destination="qhm-Fu-ioV" id="2aa-2G-bcG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G45-aD-tM8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2354" y="-86"/>
         </scene>
     </scenes>
     <resources>

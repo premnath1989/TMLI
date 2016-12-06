@@ -20,7 +20,7 @@
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
-    RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"BCA_Rates.sqlite"]];
+    RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"TMLI_Rates.sqlite"]];
     RefDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"DataReferral.sqlite"]];
     
     return self;
@@ -46,10 +46,10 @@
     
     if([fileManager fileExistsAtPath:RatesDatabasePath] == FALSE ){
         
-        NSString *RatesPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BCA_Rates.sqlite"];
+        NSString *RatesPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"TMLI_Rates.sqlite"];
         success = [fileManager copyItemAtPath:RatesPath toPath:RatesDatabasePath error:&DBerror];
         if (!success) {
-            NSAssert1(0, @"Failed to create BCA Rates file with message '%@'.", [DBerror localizedDescription]);
+            NSAssert1(0, @"Failed to create TMLI Rates file with message '%@'.", [DBerror localizedDescription]);
         }
         RatesPath= Nil;
     }
@@ -167,6 +167,27 @@
         sqlite3_close(contactDB);
     }
     return agentStatusFlag;
+}
+
+- (NSString *) dataVersion{
+    sqlite3_stmt *statement;
+    NSString *DataVersion = @"";
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT Version FROM %@", TABLE_DATA_VERSION];
+        
+        if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
+            if (sqlite3_step(statement) == SQLITE_ROW) {
+                DataVersion = [[NSString alloc]
+                               initWithUTF8String:
+                               (const char *) sqlite3_column_text(statement, 0)];
+                NSLog(@"Data Version = %@",DataVersion);
+            }
+            sqlite3_finalize(statement);
+        }
+        sqlite3_close(contactDB);
+    }
+    return DataVersion;
 }
 
 - (int) AgentStatus:(NSString *)AgentID{

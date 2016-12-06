@@ -167,9 +167,7 @@
         SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SettingUserProfile"];
         UserProfileView.modalPresentationStyle = UIModalPresentationPageSheet;
         UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        UserProfileView.indexNo = self.indexNo;
         UserProfileView.getLatest = @"Yes";
-        //            [self presentModalViewController:UserProfileView animated:YES];
         [self presentViewController:UserProfileView animated:YES completion:nil];
         
         UserProfileView.view.superview.frame = CGRectMake(150, 50, 700, 748);

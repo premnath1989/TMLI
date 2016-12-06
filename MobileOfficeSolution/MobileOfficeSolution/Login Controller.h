@@ -14,12 +14,28 @@
 #import "User Interface.h"
 #import "Navigation Controller.h"
 #import "AppDelegate.h"
-
+#import "DBMigration.h"
+#import "Reachability.h"
+#import "SpinnerUtilities.h"
+#import "WebServiceUtilities.h"
+#import "LoginMacros.h"
+#import "EncryptDecryptWrapper.h"
+#import "SSKeychain.h"
+#import "FMDatabase.h"
+#import "ChangePassword.h"
 
 
 // INTERFACE
 
-@interface LoginController : UIViewController
+@interface LoginController : UIViewController<AgentWSSoapBindingResponseDelegate>{
+    LoginDBManagement *loginDB;
+    SpinnerUtilities *spinnerLoading;
+    BOOL ONLINE_PROCESS;
+    BOOL OFFLINE_PROCESS;
+    EncryptDecryptWrapper *encryptWrapper;
+    BOOL firstLogin;
+    ChangePassword * UserProfileView;
+}
 
     /* IMAGE VIEW */
 
@@ -41,6 +57,7 @@
     @property (nonatomic, weak) IBOutlet UIButton *buttonLogin;
     @property (nonatomic, weak) IBOutlet UIButton *buttonForgotPassword;
 
+
     /* LABEL */
 
     @property (nonatomic, weak) IBOutlet UILabel *labelSectionLogin;
@@ -49,7 +66,10 @@
     @property (nonatomic, weak) IBOutlet UILabel *labelParagraphInformation;
 
     /* OBJECT */
-
+    @property (nonatomic, copy, readwrite) IBOutlet UIStoryboard *storyboardMain;
     @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+    /* ACTION */
+- (IBAction)btnLogin:(id)sender;
 
 @end
