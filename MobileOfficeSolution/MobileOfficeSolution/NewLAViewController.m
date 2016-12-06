@@ -254,39 +254,39 @@
 
 - (void) setupUIElementsColor
 {
-    _ProdukBtn.layer.borderColor = [themeColour CGColor];
-    _ProdukBtn.layer.borderWidth = 1.0f;
-
-    LAAgeField.layer.borderColor = [themeColour CGColor];
-    LAAgeField.layer.borderWidth = 1.0f;
-
-    LANameField.layer.borderColor = [themeColour CGColor];
-    LANameField.layer.borderWidth = 1.0f;
-    
-    _SINumberBCA.layer.borderColor = [themeColour CGColor];
-    _SINumberBCA.layer.borderWidth = 1.0f;
-    
-    LAHbgTertanggung.layer.borderColor = [themeColour CGColor];
-    LAHbgTertanggung.layer.borderWidth = 1.0f;
-    
-    LAProductName.layer.borderColor = [themeColour CGColor];
-    LAProductName.layer.borderWidth = 1.0f;
-    
-    btnDOB.layer.borderColor = [themeColour CGColor];
-    btnDOB.layer.borderWidth = 1.0f;
-    
-    TanggalIllustrasi.layer.borderColor = [themeColour CGColor];
-    TanggalIllustrasi.layer.borderWidth = 1.0f;
-    
-    _BtnHubungan.layer.borderColor = [themeColour CGColor];
-    _BtnHubungan.layer.borderWidth = 1.0f;
-
-    btnOccp.layer.borderColor = [themeColour CGColor];
-    btnOccp.layer.borderWidth = 1.0f;
-    
-    //this button must always be enabled
-    btnCommDate.layer.borderColor = [themeColour CGColor];
-    btnCommDate.layer.borderWidth = 1.0f;
+//    _ProdukBtn.layer.borderColor = [themeColour CGColor];
+//    _ProdukBtn.layer.borderWidth = 1.0f;
+//
+//    LAAgeField.layer.borderColor = [themeColour CGColor];
+//    LAAgeField.layer.borderWidth = 1.0f;
+//
+//    LANameField.layer.borderColor = [themeColour CGColor];
+//    LANameField.layer.borderWidth = 1.0f;
+//    
+//    _SINumberBCA.layer.borderColor = [themeColour CGColor];
+//    _SINumberBCA.layer.borderWidth = 1.0f;
+//    
+//    LAHbgTertanggung.layer.borderColor = [themeColour CGColor];
+//    LAHbgTertanggung.layer.borderWidth = 1.0f;
+//    
+//    LAProductName.layer.borderColor = [themeColour CGColor];
+//    LAProductName.layer.borderWidth = 1.0f;
+//    
+//    btnDOB.layer.borderColor = [themeColour CGColor];
+//    btnDOB.layer.borderWidth = 1.0f;
+//    
+//    TanggalIllustrasi.layer.borderColor = [themeColour CGColor];
+//    TanggalIllustrasi.layer.borderWidth = 1.0f;
+//    
+//    _BtnHubungan.layer.borderColor = [themeColour CGColor];
+//    _BtnHubungan.layer.borderWidth = 1.0f;
+//
+//    btnOccp.layer.borderColor = [themeColour CGColor];
+//    btnOccp.layer.borderWidth = 1.0f;
+//    
+//    //this button must always be enabled
+//    btnCommDate.layer.borderColor = [themeColour CGColor];
+//    btnCommDate.layer.borderWidth = 1.0f;
 }
 
 -(void)processLifeAssured
@@ -454,7 +454,7 @@
 }
 
 - (void)passValidationCheck{
-    if(![NamaProduk.titleLabel.text isEqualToString:@"--Please Select--"] && ![LANameField.text isEqualToString:@""] && ![btnDOB.titleLabel.text isEqualToString:@"--Please Select--"] && ![_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] && ![btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] && !sexSegment.selected){
+    if(![NamaProduk.titleLabel.text isEqualToString:@"--Please Select--"] && ![LANameField.text isEqualToString:@""] && ![_txtDob.text isEqualToString:@"--Please Select--"] && ![_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] && ![_txtDob.text isEqualToString:@"--Please Select--"] && !sexSegment.selected){
             unsigned flags = NSDayCalendarUnit;
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"dd/MM/yyyy"];
@@ -502,7 +502,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(-5, 0, 778, 1004);
+  //  self.view.frame = CGRectMake(-5, 0, 778, 1004);
     [super viewWillAppear:animated];
     [quickQuoteFlag isOn];
 }
@@ -1192,7 +1192,7 @@
                                           numberBoolQuickQuote,@"QuickQuote",
                                           TanggalIllustrasi.titleLabel.text,@"SIDate",
                                           LANameField.text,@"PO_Name",
-                                          btnDOB.titleLabel.text,@"PO_DOB",
+                                          _txtDob.text,@"PO_DOB",
                                           sex,@"PO_Gender",
                                           LAAgeField.text,@"PO_Age",
                                           occuCode,@"PO_OccpCode",
@@ -1206,7 +1206,7 @@
     if (([relationDesc isEqualToString:@"DIRI SENDIRI"])||([relationDesc isEqualToString:@"SELF"])){
         [dictionaryNewLA setObject:numberIntClientProfile forKey:@"LA_ClientID"];
         [dictionaryNewLA setObject:LANameField.text forKey:@"LA_Name"];
-        [dictionaryNewLA setObject:btnDOB.titleLabel.text forKey:@"LA_DOB"];
+        [dictionaryNewLA setObject:_txtDob.text forKey:@"LA_DOB"];
         [dictionaryNewLA setObject:LAAgeField.text forKey:@"LA_Age"];
         [dictionaryNewLA setObject:sex forKey:@"LA_Gender"];
         [dictionaryNewLA setObject:relationDesc forKey:@"RelWithLA"];
@@ -1337,10 +1337,10 @@
         sexSegment.enabled = NO;
         
         btnDOB.enabled = NO;
-        self.btnDOB.titleLabel.textColor = [UIColor darkGrayColor];
+        _txtDob.textColor = [UIColor darkGrayColor];
         
         btnOccp.enabled = NO;
-        self.btnOccp.titleLabel.textColor = [UIColor darkGrayColor];
+        _txtDob.textColor = [UIColor darkGrayColor];
         
 		QQProspect = NO;
         QQProspect = FALSE;
@@ -1355,10 +1355,10 @@
 		smokerSegment.enabled = YES;
         
         btnDOB.enabled = YES;
-        self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         
         btnOccp.enabled = YES;
-        self.btnOccp.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         
         QQProspect = YES;
         QQProspect = TRUE;
@@ -1367,7 +1367,7 @@
     LANameField.text = @"";
     sexSegment.selectedSegmentIndex = UISegmentedControlNoSegment;
     smokerSegment.selectedSegmentIndex = UISegmentedControlNoSegment;
-    btnDOB.titleLabel.text = @"";
+    _txtDob.text = @"";
     LAAgeField.text = @"";
     btnCommDate.titleLabel.text = @"";
     btnOccp.titleLabel.text = @"";
@@ -2722,7 +2722,7 @@
         [LANameField becomeFirstResponder];
         return NO;
        
-    } else if ([btnDOB.titleLabel.text isEqualToString:@"(null)"] ||[btnDOB.titleLabel.text isEqualToString:@"--Please Select--"] || btnDOB.titleLabel.text.length == 0) {
+    } else if ([_txtDob.text isEqualToString:@"(null)"] ||[_txtDob.text isEqualToString:@"--Please Select--"] || _txtDob.text.length == 0) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Tanggal Lahir Pemegang Polis"
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
@@ -2904,10 +2904,10 @@
 	sexSegment.enabled = NO;
 	
 	btnDOB.enabled = NO;
-	self.btnDOB.titleLabel.textColor = [UIColor darkGrayColor];
+//	self.btnDOB.titleLabel.textColor = [UIColor darkGrayColor];
 	
 	btnOccp.enabled = NO;
-	self.btnOccp.titleLabel.textColor = [UIColor darkGrayColor];
+//	self.btnOccp.titleLabel.textColor = [UIColor darkGrayColor];
 	
 	QQProspect = NO;
 	   
@@ -3046,19 +3046,21 @@
     if (date1)
     {
         if (aDate == NULL) {
-            [btnDOB setTitle:dobtemp forState:UIControlStateNormal];
+//            [btnDOB setTitle:dobtemp forState:UIControlStateNormal];
+            _txtDob.text = dobtemp;
             DOB = dobtemp;
             [self calculateAge];
             LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",age];
             
         } else {
-            [btnDOB setTitle:aDate forState:UIControlStateNormal];
+//            [btnDOB setTitle:aDate forState:UIControlStateNormal];
+            _txtDob.text = aDate;
             DOB = aDate;
             [self calculateAge];
             LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",bAge];
         }
         
-        self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+        _txtDob.textColor = [UIColor blackColor];
         [self.dobPopover dismissPopoverAnimated:YES];
         date1 = NO;
     } else if (date2)
@@ -3076,7 +3078,7 @@
            // LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",bAge];
         }
     
-    self.btnDOB.titleLabel.textColor = [UIColor blackColor];
+    _txtDob.textColor = [UIColor blackColor];
     [self.dobPopover dismissPopoverAnimated:YES];
     date1 = NO;
 }
@@ -3104,6 +3106,7 @@
     Relationship = selectedRship;
     
      [_BtnHubungan setTitle:Relationship forState:UIControlStateNormal];
+    _txtHubungan.text = Relationship;
     
     
       Relationship = [self.requestSmoker description];

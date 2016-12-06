@@ -146,17 +146,17 @@ id dobtemp;
     
     UIColor *themeColour = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
 
-    nameField.layer.borderColor = [themeColour CGColor];
-    nameField.layer.borderWidth = 1.0f;
-    
-    _BtnTanggalLahir.layer.borderColor = [themeColour CGColor];
-    _BtnTanggalLahir.layer.borderWidth = 1.0f;
-    
-    btnOccp.layer.borderColor = [themeColour CGColor];
-    btnOccp.layer.borderWidth = 1.0f;
-    
-    ageField.layer.borderColor = [themeColour CGColor];
-    ageField.layer.borderWidth = 1.0f;
+//    nameField.layer.borderColor = [themeColour CGColor];
+//    nameField.layer.borderWidth = 1.0f;
+//    
+//    _BtnTanggalLahir.layer.borderColor = [themeColour CGColor];
+//    _BtnTanggalLahir.layer.borderWidth = 1.0f;
+//    
+//    btnOccp.layer.borderColor = [themeColour CGColor];
+//    btnOccp.layer.borderWidth = 1.0f;
+//    
+//    ageField.layer.borderColor = [themeColour CGColor];
+//    ageField.layer.borderWidth = 1.0f;
     
 //    [[UINavigationBar appearance] setTitleTextAttributes:@{
 //                                                           NSForegroundColorAttributeName: [UIColor colorWithRed:88.0f/255.0f green:89.0f/255.0f blue:92.0f/255.0f alpha:1],
@@ -230,7 +230,7 @@ id dobtemp;
         
         //nameField.text = @"TestDisable";
         //[nameField setBackgroundColor:[UIColor colorWithRed:237.0/255.0 green:237.0/255.0 blue:237.0/255.0 alpha:1.0]];
-        [nameField setBackgroundColor:[CustomColor colorWithHexString:@"EEEEEE"]];
+//        [nameField setBackgroundColor:[CustomColor colorWithHexString:@"EEEEEE"]];
         nameField.enabled = YES;
         _BtnTanggalLahir.enabled = YES;
         ageField.enabled = false;
