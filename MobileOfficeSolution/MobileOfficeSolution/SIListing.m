@@ -78,7 +78,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     sortedBy = @"sim.CreatedDate";
     sortMethod=@"DESC";
     
-    [NoIlustrasi setFont:[UIFont fontWithName:@"HelveticaLTStd-UltraComp" size:25]];
+//    [NoIlustrasi setFont:[UIFont fontWithName:@"HelveticaLTStd-UltraComp" size:25]];
     themeColour = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     fontType = [UIFont fontWithName:@"TreBuchet MS" size:16.0f];
     

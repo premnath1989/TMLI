@@ -402,7 +402,7 @@ int maxGycc = 0;
 
 - (void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(0, 0, 770, 1004);
+//    self.view.frame = CGRectMake(0, 0, 770, 1004);
     [super viewWillAppear:animated];
     getPlanChoose = [self.requestPlanChoose description];
 }

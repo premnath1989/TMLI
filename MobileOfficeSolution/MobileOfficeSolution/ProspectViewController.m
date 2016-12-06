@@ -3369,7 +3369,7 @@ BOOL NavShowP;
     if (![_txtMarital.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = %@", TABLE_MARITAL_STATUS, _txtMarital.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -3395,7 +3395,7 @@ BOOL NavShowP;
     if (![_txtSourceIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = %@",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -3408,7 +3408,7 @@ BOOL NavShowP;
     if (![_txtOccupation.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = %@", TABLE_OCCP, _txtOccupation.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -3422,7 +3422,7 @@ BOOL NavShowP;
     if (![txtReferralName.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = %@", TABLE_REFERRALSOURCE, txtReferralName.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {

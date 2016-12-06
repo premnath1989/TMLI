@@ -461,7 +461,7 @@ bool WPTPD30RisDeleted = FALSE;
 
 - (void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(0, 0, 1024, 1004);
+//    self.view.frame = CGRectMake(0, 0, 1024, 1004);
     [super viewWillAppear:animated];
 }
 

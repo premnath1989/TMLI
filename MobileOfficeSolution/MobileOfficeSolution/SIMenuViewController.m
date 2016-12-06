@@ -94,9 +94,9 @@ BOOL NavShow3;
     NavShow3 = NO;
      _SiScrollView.delegate = self;
     [_SiScrollView setScrollEnabled:YES];
-    _SiScrollView.contentSize = CGSizeMake(900, 1300);
+    _SiScrollView.contentSize = CGSizeMake(900, 900);
     
-    ScrollMenu.delegate = self;
+//    ScrollMenu.delegate = self;
     [ScrollMenu setScrollEnabled:YES];
     ScrollMenu.contentSize = CGSizeMake(1500, 72);
  
@@ -2975,7 +2975,7 @@ BOOL NavShow3;
              
              
              cell.IconPemegangPolis.image = [UIImage imageNamed:@"shape_guideright_complete"];
-             cell.PemegangPolis.backgroundColor = [UIColor redColor];
+//             cell.PemegangPolis.backgroundColor = [UIColor redColor];
            //  cell.PemengangPolisButton.backgroundColor = [UIColor redColor];
              cell.LabelOne.textColor = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
              
@@ -3010,6 +3010,7 @@ BOOL NavShow3;
         [cell.button1 setEnabled:false];
         [cell.button2 setEnabled:false];
         [cell.button3 setEnabled:false];
+        
     }
     else{
         if (lastIndexSelected != 2){
@@ -3095,9 +3096,11 @@ BOOL NavShow3;
                     self.BasicController = [self.storyboard instantiateViewControllerWithIdentifier:@"BasicPlanView"];
                     _BasicController.delegate = self;
                     [self.RightView addSubview:self.BasicController.view];
+                    [self.RightView bringSubviewToFront:self.BasicController.view];
                 }else{
                     [self.BasicController.view removeFromSuperview];
                     [self.RightView addSubview:self.BasicController.view];
+                    [self.RightView bringSubviewToFront:self.BasicController.view];
                 }
                 @try {
                     if([self.RiderController.view isDescendantOfView:self.RightView]) {
@@ -5552,7 +5555,7 @@ NSString *prevPlan;
         //isThin = NO;
         _btnChangeHeader.frame = CGRectMake(0, 105.0, 1024.0, 20.0);
         ScrollMenu.frame = CGRectMake(0, 125.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 197.0, 1024.0, 800.0);
+        _SiScrollView.frame = CGRectMake(0, 197.0, 1024.0, 600.0);
         
     }
     else {
@@ -5561,7 +5564,7 @@ NSString *prevPlan;
         //isThin = YES;
         _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
         ScrollMenu.frame = CGRectMake(0, 280.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 800.0);
+        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 600.0);
         
     }
     
