@@ -33,18 +33,17 @@
         _LblGroup.textColor = [UIColor blueColor];
         [_ViewScore setBackgroundColor:[UIColor blueColor]];
     }
-    else if (totalScore > 15 && totalScore < 23) {
+    else if (totalScore > 15 && totalScore < 24) {
         _LblGroup.text = @"WARM";
         _LblGroup.textColor = [UIColor orangeColor];
         [_ViewScore setBackgroundColor:[UIColor orangeColor]];
     }
-    else if (totalScore > 23 && totalScore < 31) {
+    else if (totalScore > 24 && totalScore < 31) {
         _LblGroup.text = @"HOT";
         _LblGroup.textColor = [UIColor redColor];
         [_ViewScore setBackgroundColor:[UIColor redColor]];
     }
    
-
 }
 
 - (void)didReceiveMemoryWarning {

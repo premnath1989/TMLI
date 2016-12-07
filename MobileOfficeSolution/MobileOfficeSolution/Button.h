@@ -50,6 +50,12 @@
 
 @end
 
+@interface ButtonBackPrimary : UIButton
+
+- (void)setupStyle;
+
+@end
+
 @interface ButtonProfile : UIButton
 
     - (void)setupStyle;

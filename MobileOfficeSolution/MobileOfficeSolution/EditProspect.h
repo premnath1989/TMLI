@@ -315,6 +315,8 @@
 
 @property (strong, nonatomic) IBOutlet UIView *ViewMenu1;
 
+- (IBAction)ActionGoBack:(id)sender;
+
 //Main
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;

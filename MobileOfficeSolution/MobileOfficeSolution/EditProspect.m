@@ -12120,16 +12120,16 @@ bool PolicyOwnerSigned = TRUE;
     //Age
     if (![txtDOB.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
-        if (age >34 && age <45) {
+        if (age >35 && age <45) {
             score = score + 5;
         }
         else if (age >45 && age <55) {
             score = score + 4;
         }
-        else if (age > 54) {
+        else if (age > 55) {
             score = score + 3;
         }
-        else if (age >24 && age <35) {
+        else if (age >25 && age <35) {
             score = score + 2;
         }
         else if (age >17 && age <25) {
@@ -12151,7 +12151,7 @@ bool PolicyOwnerSigned = TRUE;
     if (![_txtMarital.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS,  _txtMarital.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -12164,7 +12164,7 @@ bool PolicyOwnerSigned = TRUE;
     if (![txtAnnIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = '%@'", txtAnnIncome.text];
+        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = ?", txtAnnIncome.text];
         poin = 0;
         while ([result next]) {
             poin = [[result objectForColumnName:@"Poin"] intValue];
@@ -12177,7 +12177,7 @@ bool PolicyOwnerSigned = TRUE;
     if (![_txtSourceIncome.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'", TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -12204,7 +12204,7 @@ bool PolicyOwnerSigned = TRUE;
     if (![txtReferralName.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE,txtReferralName.text];
+        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
         result = [db executeQuery:query];
         poin = 0;
         while ([result next]) {
@@ -12227,6 +12227,7 @@ bool PolicyOwnerSigned = TRUE;
     
     [result close];
     [db close];
+
 }
 
 -(void)calculateAge:(NSString *)DOBdate
@@ -12383,4 +12384,10 @@ bool PolicyOwnerSigned = TRUE;
     // Release any retained subviews of the main view.
 }
 
+- (IBAction)ActionGoBack:(id)sender {
+    
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
+    
+}
 @end
