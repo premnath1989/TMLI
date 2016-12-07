@@ -1074,17 +1074,17 @@
     bgColorView.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
     [cell setSelectedBackgroundView:bgColorView];
 
-    [cell.labelSubtitle setHidden:NO];
-    
-    
-    [cell.labelNumber setText:[mutableArrayNumberListOfSubMenu objectAtIndex:indexPath.row]];
-    [cell.labelDesc setText:[mutableArrayListOfSubMenu objectAtIndex:indexPath.row]];
-    [cell.labelWide setText:@""];
-    [cell.labelSubtitle setText:[mutableArrayListOfSubTitleMenu objectAtIndex:indexPath.row]];
-    
-    [cell.button1 setEnabled:false];
-    [cell.button2 setEnabled:false];
-    [cell.button3 setEnabled:false];
+//    [cell.labelSubtitle setHidden:NO];
+//    
+//    
+//    [cell.labelNumber setText:[mutableArrayNumberListOfSubMenu objectAtIndex:indexPath.row]];
+//    [cell.labelDesc setText:[mutableArrayListOfSubMenu objectAtIndex:indexPath.row]];
+//    [cell.labelWide setText:@""];
+//    [cell.labelSubtitle setText:[mutableArrayListOfSubTitleMenu objectAtIndex:indexPath.row]];
+//    
+//    [cell.button1 setEnabled:false];
+//    [cell.button2 setEnabled:false];
+//    [cell.button3 setEnabled:false];
     
     if (boolPemegangPolis){
         if ([stringSIRelation isEqualToString:@"DIRI SENDIRI"]){

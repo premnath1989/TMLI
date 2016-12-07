@@ -98,7 +98,7 @@ BOOL NavShow3;
     
 //    ScrollMenu.delegate = self;
     [ScrollMenu setScrollEnabled:YES];
-    ScrollMenu.contentSize = CGSizeMake(1500, 72);
+    ScrollMenu.contentSize = CGSizeMake(2885, 72);
  
     self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
     _RiderController.delegate = self;
@@ -2974,10 +2974,10 @@ BOOL NavShow3;
 //             }
              
              
-             cell.IconPemegangPolis.image = [UIImage imageNamed:@"shape_guideright_complete"];
+//             cell.IconPemegangPolis.image = [UIImage imageNamed:@"shape_guideright_complete"];
 //             cell.PemegangPolis.backgroundColor = [UIColor redColor];
            //  cell.PemengangPolisButton.backgroundColor = [UIColor redColor];
-             cell.LabelOne.textColor = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
+//             cell.LabelOne.textColor = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
              
              //[UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
             
@@ -3002,32 +3002,29 @@ BOOL NavShow3;
     
     [cell setSelectedBackgroundView:bgColorView];
     
-    [cell.button1 addTarget:self action:@selector(showviewControllerFromCellView:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.button2 addTarget:self action:@selector(showviewControllerFromCellView:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.button3 addTarget:self action:@selector(showviewControllerFromCellView:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromCellView:) forControlEvents:UIControlEventTouchUpInside];
+   
     
     if (indexPath.row != 2){
-        [cell.button1 setEnabled:false];
-        [cell.button2 setEnabled:false];
-        [cell.button3 setEnabled:false];
+        [cell.btnPemegangPolis setEnabled:false];
+      
         
     }
     else{
         if (lastIndexSelected != 2){
-            [cell.button1 setEnabled:false];
-            [cell.button2 setEnabled:false];
-            [cell.button3 setEnabled:false];
+            [cell.btnPemegangPolis setEnabled:false];
+            
         }
         else{
             if (indexPath.row == 2){
-                [cell.button1 setEnabled:true];
+                [cell.btnPemegangPolis setEnabled:true];
                 if (([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])||([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])){
-                    [cell.button2 setEnabled:true];
+                    [cell.BtnTertanggung setEnabled:true];
                 }
                 else{
-                    [cell.button2 setEnabled:false];
+                    [cell.BtnTertanggung setEnabled:false];
                 }
-                [cell.button3 setEnabled:true];
+                [cell.BtnAsuransiDasar setEnabled:true];
             }
         }
     }
@@ -3742,14 +3739,12 @@ BOOL NavShow3;
     }
     
     if (lastIndexSelected==2){
-        [cell.button1 setEnabled:true];
-        [cell.button2 setEnabled:true];
-        [cell.button3 setEnabled:true];
+        [cell.btnPemegangPolis setEnabled:true];
+
     }
     else{
-        [cell.button1 setEnabled:false];
-        [cell.button2 setEnabled:false];
-        [cell.button3 setEnabled:false];
+        [cell.btnPemegangPolis setEnabled:false];
+
     }
 	//perform checking before going next page
     //temporary remark by faiz

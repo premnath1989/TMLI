@@ -680,9 +680,9 @@
         bgColorView.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
         [cell setSelectedBackgroundView:bgColorView];
         
-        [cell.labelNumber setText:[NumberListOfSubMenu objectAtIndex:indexPath.row]];
-        [cell.labelDesc setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
-        [cell.labelWide setText:@""];
+//        [cell.labelNumber setText:[NumberListOfSubMenu objectAtIndex:indexPath.row]];
+//        [cell.labelDesc setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
+//        [cell.labelWide setText:@""];
         
         if (boolPemegangPolis){
             if (boolTertanggung){
@@ -809,9 +809,9 @@
 //            [cell setBackgroundColor:[objectUserInterface generateUIColor:THEME_COLOR_ACTIVE_CELL floatOpacity:1.0]];
         }
         
-        [cell.button1 setEnabled:false];
-        [cell.button2 setEnabled:false];
-        [cell.button3 setEnabled:false];
+//        [cell.button1 setEnabled:false];
+//        [cell.button2 setEnabled:false];
+//        [cell.button3 setEnabled:false];
         
         return cell;
     }

@@ -43,11 +43,7 @@
         _LblGroup.textColor = [UIColor redColor];
         [_ViewScore setBackgroundColor:[UIColor redColor]];
     }
-    else {
-        _LblGroup.text = @"";
-        _LblGroup.textColor = [UIColor blueColor];
-        [_ViewScore setBackgroundColor:[UIColor blackColor]];
-    }
+   
 
 }
 
