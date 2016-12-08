@@ -12250,27 +12250,43 @@ bool PolicyOwnerSigned = TRUE;
 - (IBAction)ActionChangeHeader:(id)sender {
     
     if (isThin) {
-        _ViewThinHeader.hidden = NO;
-        _ViewThickHeader.hidden = YES;
-        isThin = NO;
-        _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
-        _scrollViewEditProspect .frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-        _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
-//        _DataPcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-//        _Alamatcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
-//        _Occcv.frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+         animateWithDuration: 0.25
+         animations:^
+         {
+             isThin = NO;
+             _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
+             _scrollViewEditProspect .frame = CGRectMake(0, 167.0, 1024.0, 600.0);
+             _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);         }
+         completion:^(BOOL finished)
+         {
+             _ViewThinHeader.hidden = NO;
+             _ViewThickHeader.hidden = YES;
+
+         }
+         ];
         
     }
     else {
-        _ViewThinHeader.hidden = YES;
-        _ViewThickHeader.hidden = NO;
-        isThin = YES;
-        _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
-         _scrollViewEditProspect .frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-        _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
-//        _DataPcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-//        _Alamatcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
-//        _Occcv.frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+        
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView
+         animateWithDuration: 0.25
+         animations:^
+         {
+             isThin = YES;
+             _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
+             _scrollViewEditProspect .frame = CGRectMake(0, 320.0, 1024.0, 600.0);
+             _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);      }
+         completion:^(BOOL finished)
+         {
+             _ViewThinHeader.hidden = YES;
+             _ViewThickHeader.hidden = NO;
+             
+         }
+         ];
+
     }
     
 }
