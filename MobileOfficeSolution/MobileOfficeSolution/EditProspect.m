@@ -9295,7 +9295,10 @@ bool PolicyOwnerSigned = TRUE;
     NSString *validationEmailWrong=@"Anda memasukkan email yang salah. Harap masukkan email yang benar.";
     NSString *validationEmailCharacter=@"Kesalahan panjang email. Hanya 40 karakter yang dibolehkan";
     
-    
+    //Address
+    NSString *validationNegara=@"Negara harus diisi";
+    NSString *homeCountry=txtHomeCountry.text;
+
     //textSumberData
     NSString *SumberData = txtReferralName.text;
     NSString *NamaDepan = _txtNamaDepan.text;
@@ -9343,7 +9346,11 @@ bool PolicyOwnerSigned = TRUE;
             return false;
         }
     }
-    
+    else if ([_switchCountryHome isOn] && ([validationSet containsObject:homeCountry]||homeCountry==NULL)){
+        [self createAlertViewAndShow:validationNegara tag:0];
+        [self BtnAlamatPressed:nil];
+        return false;
+    }
     return valid;
 }
 
@@ -12120,19 +12127,19 @@ bool PolicyOwnerSigned = TRUE;
     //Age
     if (![txtDOB.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
-        if (age >35 && age <45) {
+        if (age >35 && age < 46) {
             score = score + 5;
         }
-        else if (age >45 && age <55) {
+        else if (age > 45 && age < 56) {
             score = score + 4;
         }
         else if (age > 55) {
             score = score + 3;
         }
-        else if (age >25 && age <35) {
+        else if (age >25 && age < 36) {
             score = score + 2;
         }
-        else if (age >17 && age <25) {
+        else if (age > 17 && age < 26) {
             score = score + 1;
         }
     }

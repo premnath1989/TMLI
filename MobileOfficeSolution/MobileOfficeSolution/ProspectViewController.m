@@ -22,6 +22,7 @@
 #import "textFields.h"
 #import "User Interface.h"
 #import "String.h"
+#import "Button.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -216,6 +217,8 @@ BOOL NavShowP;
     Update_record = NO;
     IC_Hold_Alert = NO;
     OTHERID_Hold_Alert = NO;
+    
+
 	
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg10.jpg"]];
     [txtRigNO setKeyboardType:UIKeyboardTypeNumbersAndPunctuation];
@@ -805,13 +808,15 @@ BOOL NavShowP;
     NSString *validationEmailWrong=@"Anda memasukkan email yang salah. Harap masukkan email yang benar.";
     NSString *validationEmailCharacter=@"Kesalahan panjang email. Hanya 40 karakter yang dibolehkan";
 
-
+    //Address
+    NSString *validationNegara=@"Negara harus diisi";
     
     //textSumberData
     NSString *SumberData = outletReferralSource.titleLabel.text;
     NSString *NamaDepan = txtNamaDepan.text;
     NSString *NamaBelakang = txtNamaBelakang.text;
     NSString *HPno = _txtHPNo.text;
+    NSString *homeCountry=txtHomeCountry.text;
     
     
     if ([validationSet containsObject:SumberData]||SumberData==NULL){
@@ -860,6 +865,13 @@ BOOL NavShowP;
             return false;
         }
     }
+    else if ([_switchCountryHome isOn] && ([validationSet containsObject:homeCountry]||homeCountry==NULL)){
+        [self createAlertViewAndShow:validationNegara tag:0];
+        [self BtnAlamatPressed:nil];
+        return false;
+    }
+    
+    
     return valid;
 }
 
@@ -880,6 +892,9 @@ BOOL NavShowP;
     NSString *validationMerokok=@"Merokok harus diisi";
     NSString *validationKebangsaan=@"Kewarganegaraan harus diisi";
     
+    //Address
+    NSString *validationNegara=@"Negara harus diisi";
+    
     //textnamalengkap
     NSString* fullName=txtFullName.text;
     //segmen jenis kelamin
@@ -892,10 +907,9 @@ BOOL NavShowP;
     NSString* otheridtext=txtOtherIDType.text;
     //outletexpirydate
     NSString* outletexpirydate=outletExpiryDate.titleLabel.text;
-    //segmentsmoke
-    //segsmoke.selectedSegmentIndex
     //outletnationality
     NSString* outletnationality=outletNationality.titleLabel.text;
+    NSString *homeCountry=txtHomeCountry.text;
 
     if ([validationSet containsObject:fullName]||fullName==NULL){
         [self createAlertViewAndShow:validationNamaLengkap tag:0];
@@ -3338,19 +3352,19 @@ BOOL NavShowP;
     //Age
     if (![txtDOB.text isEqualToString:@""]){
         completeStatus = completeStatus + 1;
-        if (age >35 && age <45) {
+        if (age > 35 && age < 46) {
             score = score + 5;
         }
-        else if (age >45 && age <55) {
+        else if (age >45 && age < 56) {
             score = score + 4;
         }
         else if (age > 55) {
             score = score + 3;
         }
-        else if (age >25 && age <35) {
+        else if (age >25 && age < 36) {
             score = score + 2;
         }
-        else if (age >17 && age <25) {
+        else if (age > 17 && age < 26) {
             score = score + 1;
         }
     }
@@ -6835,11 +6849,22 @@ BOOL NavShowP;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavShowP = YES;
+//        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+        
+        
+        
+        
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        _btnNavigation.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
+        [_btnNavigation setTitle:@"" forState:UIControlStateNormal];
+        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavShowP = NO;
+        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
     }
     
 }
