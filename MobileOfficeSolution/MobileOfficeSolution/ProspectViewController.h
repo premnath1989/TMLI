@@ -34,6 +34,7 @@
 #import "Formatter.h"
 #import "AnnualIncomeTableViewController.h"
 #import "TimePicker.h"
+#import "Button.h"
 
 @class DataTable,DBController;
 @protocol ProspectViewControllerDelegate
