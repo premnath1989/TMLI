@@ -35,10 +35,27 @@
 @interface ButtonNavigation : UIButton
 
     - (void)setupStyle;
+    - (void)styleSelected;
+    - (void)styleNotSelected;
 
 @end
 
 @interface ButtonNavigation2 : UIButton
+
+    - (void)setupStyle;
+    - (void)styleSelected;
+    - (void)styleNotSelected;
+
+
+@end
+
+@interface ButtonCancelNavigationPrimary : UIButton
+
+- (void)setupStyle;
+
+@end
+
+@interface ButtonCancelNavigationSecondary : UIButton
 
 - (void)setupStyle;
 

@@ -109,6 +109,22 @@
         [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationshow_primary"] forState:UIControlStateNormal];
     }
 
+    - (void)styleSelected
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+        //    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+        [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+    }
+
+    - (void)styleNotSelected
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+        //    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+        [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationshow_secondary"] forState:UIControlStateNormal];
+    }
+
 @end
 
 @implementation ButtonNavigation2
@@ -130,6 +146,68 @@
     [self.heightAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
     [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationshow_secondary"] forState:UIControlStateNormal];
 }
+
+- (void)styleSelected
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+//    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+    [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+}
+
+- (void)styleNotSelected
+{
+   UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+//    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+    [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationshow_secondary"] forState:UIControlStateNormal];
+}
+
+@end
+
+@implementation ButtonCancelNavigationPrimary
+
+/* INITIALIZE */
+
+- (void)awakeFromNib{[self setupStyle];}
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
+    [self setTitle:@"" forState:UIControlStateNormal];
+    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
+    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
+    [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+}
+
+
+@end
+
+@implementation ButtonCancelNavigationSecondary
+
+/* INITIALIZE */
+
+- (void)awakeFromNib{[self setupStyle];}
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
+    [self setTitle:@"" forState:UIControlStateNormal];
+    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
+    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
+    [self setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_secondary"] forState:UIControlStateNormal];
+}
+
 
 @end
 

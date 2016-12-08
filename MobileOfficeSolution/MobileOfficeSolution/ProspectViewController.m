@@ -6849,16 +6849,10 @@ BOOL NavShowP;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavShowP = YES;
-//        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+
         
         
-        
-        
-        UserInterface *objectUserInterface = [[UserInterface alloc] init];
-        
-        _btnNavigation.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
-        [_btnNavigation setTitle:@"" forState:UIControlStateNormal];
-        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
