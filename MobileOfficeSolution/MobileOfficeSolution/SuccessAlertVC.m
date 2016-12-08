@@ -28,7 +28,7 @@
     _lblScore.text = [NSString stringWithFormat:@"%d", totalScore];
     
     
-    if (totalScore < 15) {
+    if (totalScore < 16) {
        _LblGroup.text = @"COLD";
         _LblGroup.textColor = [UIColor blueColor];
         [_ViewScore setBackgroundColor:[UIColor blueColor]];
@@ -38,7 +38,7 @@
         _LblGroup.textColor = [UIColor orangeColor];
         [_ViewScore setBackgroundColor:[UIColor orangeColor]];
     }
-    else if (totalScore > 24 && totalScore < 31) {
+    else if (totalScore > 23 && totalScore < 31) {
         _LblGroup.text = @"HOT";
         _LblGroup.textColor = [UIColor redColor];
         [_ViewScore setBackgroundColor:[UIColor redColor]];
