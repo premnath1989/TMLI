@@ -77,7 +77,7 @@ BUTTON_CANCEL = "Cancel";
 
 DECORATOR_DESCRIPTOR_HEADER = "PT Tokio Marine Life Insurance Indonesia";
 DECORATOR_DESCRIPTOR_WEBSITE = "tokiomarine.com";
-DECORATOR_DESCRIPTOR_DETAIL = "Lfe & Health | Property & Casualty";
+DECORATOR_DESCRIPTOR_DETAIL = "Life & Health | Property & Casualty";
 
 
 // NAVIGATION
