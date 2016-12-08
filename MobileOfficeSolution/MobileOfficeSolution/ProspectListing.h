@@ -99,6 +99,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnCancel;
 @property (strong, nonatomic) IBOutlet UIButton *btnDelete;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnShowNav;
+@property (strong, nonatomic) IBOutlet UIButton *btnHideNav;
 
 //sorting
 @property (strong, nonatomic) IBOutlet UIButton *btnSortFullName;

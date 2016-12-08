@@ -306,6 +306,10 @@
 
 //Header
 @property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
+@property (strong, nonatomic) IBOutlet UIButton *BtnHideNav;
+@property (strong, nonatomic) IBOutlet UIButton *btnHideNav2;
+@property (strong, nonatomic) IBOutlet UIButton *btnNav2;
+
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
 @property (strong, nonatomic) IBOutlet UIView *ViewThickHeader;
 @property (strong, nonatomic) IBOutlet UIButton *btnChangeHeader;

@@ -261,6 +261,10 @@
 - (IBAction)ActionChangeHeader:(id)sender;
 - (IBAction)ActionNavigationShow:(id)sender;
 - (IBAction)ActionBackTo:(id)sender;
+
+@property (strong, nonatomic) IBOutlet UIButton *btnHideNav;
+@property (strong, nonatomic) IBOutlet UIButton *BtnHideNav2;
+
 @property (strong, nonatomic) NSUserDefaults *UDScore;
 
 @property (strong, nonatomic) IBOutlet UIView *ViewMenu1;
@@ -273,6 +277,10 @@
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *GestureUp;
 - (IBAction)Gesture_UP:(id)sender;
 - (IBAction)Gesture_down:(id)sender;
+
+
+
+
 
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;

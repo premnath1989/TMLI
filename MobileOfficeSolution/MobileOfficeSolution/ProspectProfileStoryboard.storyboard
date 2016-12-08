@@ -39,11 +39,19 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2Y4-kT-REy" customClass="ButtonNavigation">
-                                        <rect key="frame" x="10" y="20" width="46" height="43"/>
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="ActionNavigationShow:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="EVC-k7-E3X"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="r2c-X4-LaC" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionNavigationShow:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="5ZM-3h-CCR"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="HwU-xA-mzO" userLabel="ButtonBack" customClass="ButtonBackPrimary">
@@ -113,6 +121,14 @@
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="ActionBackTo:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="6Zw-ok-82e"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mau-00-YJs" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionNavigationShow:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="82q-e7-zWa"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -957,6 +973,7 @@
                     <connections>
                         <outlet property="Alamatcv" destination="Ce4-AW-rya" id="jcY-vn-COA"/>
                         <outlet property="BtnAnnualIncome" destination="k00-D3-yUY" id="7sl-ye-upg"/>
+                        <outlet property="BtnHideNav2" destination="mau-00-YJs" id="alM-F0-aQ7"/>
                         <outlet property="DataPcv" destination="Khb-Na-QAz" id="UhV-yF-t51"/>
                         <outlet property="GestureDown" destination="9vR-Be-ik9" id="VNd-EF-ryR"/>
                         <outlet property="GestureUp" destination="UvR-hf-dwR" id="a7E-rz-mLD"/>
@@ -974,6 +991,7 @@
                         <outlet property="btnChangeHeader" destination="tby-iM-NRt" id="eGT-xX-MCw"/>
                         <outlet property="btnData" destination="QjK-gR-pdu" id="phB-qx-5Jw"/>
                         <outlet property="btnFavorite" destination="rrX-FR-1NS" id="lGv-7R-smW"/>
+                        <outlet property="btnHideNav" destination="r2c-X4-LaC" id="FOZ-k6-H62"/>
                         <outlet property="btnHomeCountry" destination="LRI-q6-1m6" id="WJE-bt-kaH"/>
                         <outlet property="btnNavigation" destination="2Y4-kT-REy" id="DCA-rq-9ze"/>
                         <outlet property="btnOcc" destination="diH-Vj-HeH" id="L1X-wQ-e6z"/>
@@ -2096,12 +2114,19 @@
                                         <rect key="frame" x="815" y="21" width="170" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vEP-W5-Bzk" customClass="ButtonNavigation">
-                                        <rect key="frame" x="10" y="20" width="46" height="43"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KDM-ti-QbV" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="ActionNavigationShow:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="LQE-aq-Ayh"/>
+                                            <action selector="ActionNavigationShow:" destination="Few-sZ-jKx" eventType="touchUpInside" id="MTB-Js-VT9"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vEP-W5-Bzk" customClass="ButtonNavigation">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
                                             <action selector="ActionNavigationShow:" destination="Few-sZ-jKx" eventType="touchUpInside" id="vFb-5w-urC"/>
                                         </connections>
                                     </button>
@@ -2131,12 +2156,19 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j7y-4G-eSM" customClass="ButtonNavigation">
-                                        <rect key="frame" x="10" y="20" width="46" height="43"/>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SrC-OK-yVQ" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="ActionNavigationShow:" destination="CEO-Xo-hVe" eventType="touchUpInside" id="MOY-lw-7gT"/>
+                                            <action selector="ActionNavigationShow:" destination="Few-sZ-jKx" eventType="touchUpInside" id="DNb-jh-VnF"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="j7y-4G-eSM" customClass="ButtonNavigation">
+                                        <rect key="frame" x="10" y="20" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
                                             <action selector="ActionNavigationShow:" destination="Few-sZ-jKx" eventType="touchUpInside" id="d4d-9Q-Xvo"/>
                                         </connections>
                                     </button>
@@ -2189,6 +2221,7 @@
                     <connections>
                         <outlet property="Alamatcv" destination="7bo-Yb-rMF" id="4wr-93-xSk"/>
                         <outlet property="BtnAnnualIncome" destination="Dq3-Tn-npC" id="fXx-Ny-hGG"/>
+                        <outlet property="BtnHideNav" destination="KDM-ti-QbV" id="R2o-Lh-92L"/>
                         <outlet property="DataPcv" destination="RJf-yD-TQs" id="ngT-tZ-xfo"/>
                         <outlet property="LblScore" destination="IFX-ip-UDx" id="oE9-WW-nDR"/>
                         <outlet property="MainView" destination="cwk-fL-cKg" id="jvz-HW-yyD"/>
@@ -2203,8 +2236,10 @@
                         <outlet property="btnChangeHeader" destination="Seo-cq-tGn" id="v4d-NJ-xc1"/>
                         <outlet property="btnData" destination="c2V-cg-jro" id="eUs-ip-I7o"/>
                         <outlet property="btnFavorite" destination="edN-VY-pch" id="CwJ-Nh-VpR"/>
+                        <outlet property="btnHideNav2" destination="SrC-OK-yVQ" id="TF9-2r-2y9"/>
                         <outlet property="btnHomeCountry" destination="6Ro-bL-IEa" id="aH6-MA-MQm"/>
-                        <outlet property="btnNavigation" destination="vEP-W5-Bzk" id="j2K-gA-Rk8"/>
+                        <outlet property="btnNav2" destination="vEP-W5-Bzk" id="dGB-dZ-ihz"/>
+                        <outlet property="btnNavigation" destination="j7y-4G-eSM" id="VYv-DN-Fpd"/>
                         <outlet property="btnOcc" destination="mbc-qb-zJ0" id="WYw-zp-oY2"/>
                         <outlet property="btnOtherIdType" destination="Oe7-hu-RAU" id="hwo-Bt-LkK"/>
                         <outlet property="btnSave2" destination="gwE-30-XV7" id="p6o-hT-tZY"/>
@@ -2371,11 +2406,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qpq-T5-yZJ" customClass="ButtonNavigation">
-                                        <rect key="frame" x="340" y="25" width="46" height="45"/>
+                                        <rect key="frame" x="340" y="25" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
                                             <action selector="navigationShow:" destination="5fZ-4t-RAR" eventType="touchUpInside" id="xSw-Pe-VeA"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EUP-wX-jSo" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="340" y="25" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="5fZ-4t-RAR" eventType="touchUpInside" id="ZbO-Wh-BC7"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mDP-9I-Np3" customClass="LabelPhotoDetail">
@@ -2409,6 +2452,7 @@
                     <connections>
                         <outlet property="buttonAddNew" destination="wT6-pr-hqT" id="QIi-o4-DIE"/>
                         <outlet property="buttonExistingList" destination="ksg-GI-hf5" id="R83-cj-GwE"/>
+                        <outlet property="buttonHideNavigation" destination="EUP-wX-jSo" id="aVN-5b-EBe"/>
                         <outlet property="buttonNavigation" destination="Qpq-T5-yZJ" id="Ysg-0H-488"/>
                         <outlet property="imageViewBackground" destination="d7P-9Q-jMn" id="uZa-6X-0gt"/>
                         <outlet property="labelPhotoDetail" destination="mDP-9I-Np3" id="Dn6-GQ-euo"/>
@@ -2509,6 +2553,14 @@
                                         <state key="normal" title="Show"/>
                                         <connections>
                                             <action selector="navigationShow:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="zCf-8z-7gf"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qIf-Ki-gbG" customClass="ButtonCancelNavigationSecondary">
+                                        <rect key="frame" x="27" y="10" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="Bpi-21-x4N"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="llW-zp-3ME" customClass="ButtonBack">
@@ -2728,7 +2780,9 @@
                         <outlet property="TxtPhoneNo" destination="fRK-05-G7H" id="nhS-ki-C35"/>
                         <outlet property="btnBackTo" destination="llW-zp-3ME" id="wSh-ga-xV5"/>
                         <outlet property="btnCancel" destination="LhM-wz-Ni5" id="w7T-hV-u1K"/>
+                        <outlet property="btnHideNav" destination="qIf-Ki-gbG" id="6mB-Ta-hPz"/>
                         <outlet property="btnSearch" destination="3JY-EG-KvX" id="vnv-Np-npX"/>
+                        <outlet property="btnShowNav" destination="a4b-e1-xsi" id="PQl-mG-My3"/>
                         <outlet property="btnSortDateCreated" destination="uvE-DF-GiG" id="Bbi-E1-kmX"/>
                         <outlet property="btnSortDateModified" destination="83r-o9-oqz" id="Krz-bB-Nhv"/>
                         <outlet property="btnSortFullName" destination="aK0-M2-EfF" id="tBB-Mg-Yh9"/>

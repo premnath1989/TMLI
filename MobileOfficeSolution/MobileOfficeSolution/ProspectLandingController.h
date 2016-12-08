@@ -42,6 +42,8 @@
 @property (nonatomic, weak) IBOutlet UIButton *buttonAddNew;
 @property (nonatomic, weak) IBOutlet UIButton *buttonExistingList;
 @property (nonatomic, weak) IBOutlet UIButton *buttonNavigation;
+@property (strong, nonatomic) IBOutlet UIButton *buttonHideNavigation;
+
 
 /* OBJECT */
 

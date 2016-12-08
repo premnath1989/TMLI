@@ -81,11 +81,15 @@ BOOL NavShow;
     if (!NavShow) {
         [_objectUserInterface navigationShow:self];
         NavShow = YES;
+        _buttonHideNavigation.hidden = NO;
 //        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : true];
+        
+        
     }else{
         [_objectUserInterface navigationHide:self];
 //        [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : false];
         NavShow = NO;
+        _buttonHideNavigation.hidden = YES;
     }
     
 }

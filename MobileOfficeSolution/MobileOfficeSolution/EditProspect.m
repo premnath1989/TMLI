@@ -12303,11 +12303,19 @@ bool PolicyOwnerSigned = TRUE;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavShowP = YES;
+        _BtnHideNav.hidden = NO;
+        _btnHideNav2.hidden = NO;
+        _btnNavigation.hidden = YES;
+        _btnNav2.hidden = YES;
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavShowP = NO;
+        _BtnHideNav.hidden = YES;
+        _btnHideNav2.hidden = YES;
+        _btnNavigation.hidden = NO;
+        _btnNav2.hidden = NO;
     }
     
 }

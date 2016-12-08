@@ -253,11 +253,15 @@ MBProgressHUD *HUD;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavIsShow = YES;
+        _btnHideNav.hidden = NO;
+        _btnShowNav.hidden = YES;
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavIsShow = NO;
+        _btnHideNav.hidden = YES;
+        _btnShowNav.hidden = NO;
     }
 }
 

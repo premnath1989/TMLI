@@ -6850,7 +6850,9 @@ BOOL NavShowP;
         [_objectUserInterface navigationShow:self];
         NavShowP = YES;
 
-        
+        _btnHideNav.hidden = NO;
+        _BtnHideNav2.hidden = NO;
+        _btnNavigation.hidden = YES;
         
 
     }
@@ -6858,7 +6860,9 @@ BOOL NavShowP;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavShowP = NO;
-        [_btnNavigation setBackgroundImage:[UIImage imageNamed:@"icon_navigationhide_primary"] forState:UIControlStateNormal];
+        _btnHideNav.hidden = YES;
+        _BtnHideNav2.hidden = YES;
+        _btnNavigation.hidden = NO;
     }
     
 }
