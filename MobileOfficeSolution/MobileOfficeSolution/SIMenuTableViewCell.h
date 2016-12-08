@@ -29,6 +29,12 @@
 @property (strong, nonatomic) IBOutlet UILabel *Lbl7;
 @property (strong, nonatomic) IBOutlet UILabel *Lbl8;
 
+@property (strong, nonatomic) IBOutlet UIView *view1;
+
+
+
+- (IBAction)GoToPemegangPolis:(id)sender;
+
 
 
 @end

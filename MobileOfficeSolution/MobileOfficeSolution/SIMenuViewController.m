@@ -108,7 +108,7 @@ BOOL NavShow3;
 
     dictionaryPOForInsert = [[NSMutableDictionary alloc]init];
     
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+//    [self.view setBackgroundColor:[UIColor darkGrayColor]];
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
@@ -135,7 +135,7 @@ BOOL NavShow3;
     
     myTableView.rowHeight = 84;
     [myTableView reloadData];
-    
+    [self.myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
 
     //testingTheAv
     
@@ -2938,7 +2938,7 @@ BOOL NavShow3;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SIMenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    UIView *bgColorView = [[UIView alloc] init];
+//    UIView *bgColorView = [[UIView alloc] init];
     if (indexPath.row<[arrayIntValidate count]){
         if ([[arrayIntValidate objectAtIndex:indexPath.row] isEqualToString:@"1"]){
 //            [cell setBackgroundColor:[UIColor colorWithRed:88.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1.0]];
@@ -2955,6 +2955,18 @@ BOOL NavShow3;
     
      if (indexPath.row == 0)
          {
+             
+             [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+             [cell.BtnTertanggung addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+             [cell.BtnAsuransiDasar addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+             
+             [cell.btnPemegangPolis setEnabled:YES];
+             [cell.BtnTertanggung setEnabled:YES];
+             [cell.BtnAsuransiDasar setEnabled:YES];
+             
+             
+             
+             
               //(0,0,342, 60)
 //             UIButton *scanQRCodeButton = [UIButton buttonWithType:UIButtonTypeSystem];
 //             scanQRCodeButton.frame = CGRectMake(0.0f, 0.0f, 85,85);
@@ -2998,35 +3010,59 @@ BOOL NavShow3;
         }
     }
     
+    [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnTertanggung addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnAsuransiDasar addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
+    UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
+    UIImage * ShapeGuide_onprogress = [UIImage imageNamed:@"shape_guideright_onprogress"];
+    UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
+    UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
+    
+    [cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+    cell.btnPemegangPolis.backgroundColor = [UIColor redColor];
+//    cell.btnPemegangPolis setBackgroundColor:[UIColor redColor];
+    [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+    [cell.BtnTertanggung setBackgroundColor:green];
+    
+    [cell.view1 setBackgroundColor:green];
+    
+    [cell.btnPemegangPolis setEnabled:YES];
+    [cell.BtnTertanggung setEnabled:YES];
+    [cell.BtnAsuransiDasar setEnabled:YES];
+
+    
 //    bgColorView.backgroundColor = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     
-    [cell setSelectedBackgroundView:bgColorView];
+//    [cell setSelectedBackgroundView:bgColorView];
     
-    [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromCellView:) forControlEvents:UIControlEventTouchUpInside];
+    
    
     
     if (indexPath.row != 2){
-        [cell.btnPemegangPolis setEnabled:false];
+//        [cell.btnPemegangPolis setEnabled:false];
       
         
     }
     else{
         if (lastIndexSelected != 2){
-            [cell.btnPemegangPolis setEnabled:false];
+//            [cell.btnPemegangPolis setEnabled:false];
             
         }
-        else{
-            if (indexPath.row == 2){
-                [cell.btnPemegangPolis setEnabled:true];
-                if (([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])||([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])){
-                    [cell.BtnTertanggung setEnabled:true];
-                }
-                else{
-                    [cell.BtnTertanggung setEnabled:false];
-                }
-                [cell.BtnAsuransiDasar setEnabled:true];
-            }
-        }
+//        else{
+//            if (indexPath.row == 2){
+//                [cell.btnPemegangPolis setEnabled:true];
+//                if (([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])||([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])){
+//                    [cell.BtnTertanggung setEnabled:true];
+//                }
+//                else{
+//                    [cell.BtnTertanggung setEnabled:false];
+//                }
+//                [cell.BtnAsuransiDasar setEnabled:true];
+//            }
+//        }
     }
 
     
@@ -3202,6 +3238,48 @@ BOOL NavShow3;
                 break;
         }
 }
+
+
+-(void)showviewControllerFromMenu:(UIButton *)sender{
+
+    //To change view in Menu
+    NSLog(@"Change Menu");
+    switch (sender.tag) {
+        case 0:
+            self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+            _LAController.delegate = self;
+            [self.RightView addSubview:self.LAController.view];
+            lastActiveController = self.LAController;
+            break;
+        case 1:
+            self.SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
+            _SecondLAController.delegate = self;
+            [self.RightView addSubview:self.SecondLAController.view];
+            lastActiveController = self.SecondLAController;
+            break;
+        case 2:
+            [self loadBasicPlanPage:YES];
+            break;
+        case 3:
+            [self.RightView bringSubviewToFront:self.BasicController.view];
+            break;
+        case 4:
+            [self.RightView bringSubviewToFront:self.BasicController.view];
+            break;
+        case 5:
+            [self.RightView bringSubviewToFront:self.BasicController.view];
+            break;
+        case 6:
+            [self.RightView bringSubviewToFront:self.BasicController.view];
+            break;
+        case 7:
+            [self.RightView bringSubviewToFront:self.BasicController.view];
+            break;
+        default:
+            break;
+    }
+}
+
 
 #pragma mark - delegate added by faiz
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan{

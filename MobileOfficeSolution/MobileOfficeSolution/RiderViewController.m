@@ -474,7 +474,7 @@ int maxGycc = 0;
 -(void)keyboardDidShow:(NSNotificationCenter *)notification
 {
 	Edit = TRUE;
-    self.myView.frame = CGRectMake(0, 44, 768, 453);
+//    self.myView.frame = CGRectMake(0, 44, 768, 453);
 //    self.myView.contentSize = CGSizeMake(768, 413);
     CGRect textFieldRect = [activeField frame];
     textFieldRect.origin.y += 10;
@@ -486,7 +486,7 @@ int maxGycc = 0;
     minDisplayLabel.text = @"";
     maxDisplayLabel.text = @"";
     
-    self.myView.frame = CGRectMake(0, 44, 768, 453);
+//    self.myView.frame = CGRectMake(0, 44, 768, 453);
 }
 
 -(void)textFieldDidChange:(UITextField*)textField
@@ -6439,8 +6439,6 @@ int maxGycc = 0;
     UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
     CriticalIlnessViewController *CriticalVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"CriticalIllnessVC"];
    // CriticalVC.delegate=self;
-    
-    
     CriticalVC.modalPresentationStyle = UIModalPresentationFormSheet;
     [self presentViewController:CriticalVC animated:YES completion:nil];
 
