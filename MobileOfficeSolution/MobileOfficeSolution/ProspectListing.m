@@ -411,13 +411,28 @@ MBProgressHUD *HUD;
 //            [cell1.labelTimeRemaining setText:DateRemaining];
             cell1.labelTimeRemaining.text = pp.ProspectStatus; //prospectStatus Image
             
-            if ([pp.Favorite isEqualToString:@"TRUE"]) {
-                cell1.FavImage.image = [UIImage imageNamed:@"icon_starenable_primary"];
-            }
-            else {
+//            pp.Favorite = @"0";
+            
+            if ([pp.Favorite isEqualToString:@"0"]) {
                 cell1.FavImage.image = [UIImage imageNamed:@"icon_stardisable_primary"];
             }
+            else if ([pp.Favorite isEqualToString:@"1"]) {
+                cell1.FavImage.image = [UIImage imageNamed:@"icon_starenable_primary"];
+            }
+            else if ([pp.Favorite isEqualToString:@"2"]) {
+                cell1.FavImage.image = [UIImage imageNamed:@"icon_starenable_primary"];
+                cell1.FavImage2.hidden = NO;
+                cell1.FavImage2.image = [UIImage imageNamed:@"icon_starenable_primary"];
+            }
+            else if ([pp.Favorite isEqualToString:@"3"]) {
+                cell1.FavImage.image = [UIImage imageNamed:@"icon_starenable_primary"];
+                cell1.FavImage2.hidden = NO;
+                cell1.FavImage2.image = [UIImage imageNamed:@"icon_starenable_primary"];
+                cell1.FavImage3.hidden = NO;
+                cell1.FavImage3.image = [UIImage imageNamed:@"icon_starenable_primary"];
+            }
         
+            
             
             
             

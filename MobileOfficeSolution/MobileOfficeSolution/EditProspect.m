@@ -60,7 +60,7 @@
     BOOL isStartTime;
     BOOL isEndTime;
     
-    BOOL isFavorite;
+    int isFavorite;
     
     BOOL isThin;
     BOOL NavShowP;
@@ -2241,18 +2241,33 @@ bool PolicyOwnerSigned = TRUE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
 
-    if ([pp.Favorite isEqualToString:@"TRUE"]) {
-        isFavorite = YES;
-    }
-    else {
-        isFavorite = NO;
-    }
+//    if ([pp.Favorite isEqualToString:@"TRUE"]) {
+//        isFavorite = YES;
+//    }
+//    else {
+//        isFavorite = NO;
+//    }
+    isFavorite = [pp.Favorite intValue];
     
-    if (isFavorite) {
-            [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    if (isFavorite == 0) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
     }
-    else {
-            [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    else  if (isFavorite == 1) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else  if (isFavorite == 2) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else  if (isFavorite == 3) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
     }
     
     _LblScore.text = pp.tScore;
@@ -4978,13 +4993,38 @@ bool PolicyOwnerSigned = TRUE;
 
 - (IBAction)ActionFavorite:(id)sender {
     
-    isFavorite = !(isFavorite) ;
-    
-    if (isFavorite) {
-        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    if (sender==_btnFavorite && isFavorite != 1){
+        isFavorite = 1;
+    }
+    else if (sender==_btnFavorite2 && isFavorite != 2){
+        isFavorite = 2;
+    }
+    else if (sender==_btnFavorite3 && isFavorite != 3){
+        isFavorite = 3;
     }
     else {
+        isFavorite = 0;
+    }
+    
+    if (isFavorite == 0) {
         [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 1) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 2) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 3) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
     }
     
     
@@ -7403,12 +7443,12 @@ bool PolicyOwnerSigned = TRUE;
         
         NSString *isforeignAdd = @"NO";
         
-        NSString *Fav;
-        if (isFavorite) {
-            Fav = @"TRUE";
-        }
-        else
-            Fav = @"FALSE";
+//        NSString *Fav;
+//        if (isFavorite) {
+//            Fav = @"TRUE";
+//        }
+//        else
+//            Fav = @"FALSE";
         
         [self CalculateScore];
         [self calculateAge:txtDOB.text];
@@ -7421,9 +7461,9 @@ bool PolicyOwnerSigned = TRUE;
         
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\", \"isFavorite\"=\"%@\", \"RTRW\"=\"%@\" where indexNo = \"%@\" "
+                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\", \"isFavorite\"=\"%d\", \"RTRW\"=\"%@\" where indexNo = \"%@\" "
                                     , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
-                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,Fav, _txtRTRW.text,pp.ProspectID];
+                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
 
         const char *Update_stmt = [insertSQL UTF8String];
         if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
@@ -11925,25 +11965,22 @@ bool PolicyOwnerSigned = TRUE;
     _DataPcv.hidden = NO;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = YES;
+    _AktivitiCV.hidden = YES;
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     
-    //    [_btnData.titleLabel setTextColor:[UIColor whiteColor]];
-    //    [_btnAlamat.titleLabel setTextColor:[UIColor blackColor]];
-    //    [_btnOcc.titleLabel setTextColor:[UIColor blackColor]];
-    
-    
     [_btnData setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAktiviti setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     
     [_btnData setBackgroundColor:green];
     [_btnAlamat setBackgroundColor:gray];
     [_btnOcc setBackgroundColor:gray];
-    
+    [_btnAktiviti setBackgroundColor:gray];
     
     
 }
@@ -11952,24 +11989,22 @@ bool PolicyOwnerSigned = TRUE;
     _DataPcv.hidden = YES;
     _Alamatcv.hidden = NO;
     _Occcv.hidden = YES;
+     _AktivitiCV.hidden = YES;
     
     UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     
-    //    [_btnData.titleLabel setTextColor:[UIColor blackColor]];
-    //    [_btnAlamat.titleLabel setTextColor:[UIColor whiteColor]];
-    //    [_btnOcc.titleLabel setTextColor:[UIColor blackColor]];
-    
     [_btnData setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnAlamat setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAktiviti setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
     [_btnData setBackgroundColor:gray];
     [_btnAlamat setBackgroundColor:green];
     [_btnOcc setBackgroundColor:gray];
-    
+    [_btnAktiviti setBackgroundColor:gray];
     
     
 }
@@ -11978,17 +12013,16 @@ bool PolicyOwnerSigned = TRUE;
     _DataPcv.hidden = YES;
     _Alamatcv.hidden = YES;
     _Occcv.hidden = NO;
+     _AktivitiCV.hidden = YES;
     
     UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
-    
-    //    [_btnData.titleLabel setTextColor:[UIColor blackColor]];
-    //    [_btnAlamat.titleLabel setTextColor:[UIColor blackColor]];
-    //    [_btnOcc.titleLabel setTextColor:[UIColor whiteColor]];
+
     
     [_btnData setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     [_btnOcc setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    [_btnAktiviti setImage:ShapeGuide_Disable forState:UIControlStateNormal];
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
@@ -11996,7 +12030,32 @@ bool PolicyOwnerSigned = TRUE;
     [_btnData setBackgroundColor:gray];
     [_btnAlamat setBackgroundColor:gray];
     [_btnOcc setBackgroundColor:green];
+    [_btnAktiviti setBackgroundColor:gray];
     
+}
+
+- (IBAction)btnActPressed:(id)sender {
+    
+    _DataPcv.hidden = YES;
+    _Alamatcv.hidden = YES;
+    _Occcv.hidden = YES;
+    _AktivitiCV.hidden = NO;
+    
+    UIImage * ShapeGuide_Disable = [UIImage imageNamed:@"shape_guideright_onprogress"];
+    UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
+    
+    [_btnData setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAlamat setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnOcc setImage:ShapeGuide_Disable forState:UIControlStateNormal];
+    [_btnAktiviti setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    
+    UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
+    UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];
+    
+    [_btnData setBackgroundColor:gray];
+    [_btnAlamat setBackgroundColor:gray];
+    [_btnOcc setBackgroundColor:gray];
+    [_btnAktiviti setBackgroundColor:green];
     
 }
 - (IBAction)ActionCallStart:(id)sender {

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -16,71 +19,79 @@
             <rect key="frame" x="0.0" y="0.0" width="1023" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="1023" height="44"/>
+                <rect key="frame" x="0.0" y="0.0" width="1023" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2wH-BZ-gYd">
-                        <frame key="frameInset" minY="-3" width="1024" height="50"/>
+                        <rect key="frame" x="0.0" y="-3" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTf-gd-odA">
-                                <frame key="frameInset" minX="6" minY="6" width="38" height="42"/>
+                                <rect key="frame" x="6" y="6" width="38" height="42"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803921568627" green="0.34901960784313724" blue="0.36078431372549019" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Nama" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="kG8-Ke-3s0">
-                                <frame key="frameInset" minX="50" minY="2" width="260" height="33"/>
+                                <rect key="frame" x="50" y="2" width="210" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Tanggal Lahir" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="VW7-sF-Mpf">
-                                <frame key="frameInset" minX="50" minY="29" width="260" height="18"/>
+                                <rect key="frame" x="50" y="29" width="260" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Nomor HP Utama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="xUp-Ie-uSx">
-                                <frame key="frameInset" minX="345" minY="-1" width="127" height="50"/>
+                                <rect key="frame" x="345" y="-1" width="127" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Kualitis Nasabah" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="7pF-7w-Q8B">
-                                <frame key="frameInset" minX="470" width="114" height="50"/>
+                                <rect key="frame" x="470" y="0.0" width="114" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Tanggal Pembuatan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="IDa-Ar-Mzk">
-                                <frame key="frameInset" minX="585" width="155" height="50"/>
+                                <rect key="frame" x="585" y="0.0" width="155" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Tanggal Terakhir Di Update" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="nlA-oh-DBM">
-                                <frame key="frameInset" minX="741" width="157" height="50"/>
+                                <rect key="frame" x="741" y="0.0" width="157" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Status" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="o0f-ip-rLP">
-                                <frame key="frameInset" minX="898" width="117" height="50"/>
+                                <rect key="frame" x="898" y="0.0" width="117" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="14"/>
                                 <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tp2-0N-R0a">
-                                <frame key="frameInset" minX="312" minY="9" width="33" height="33"/>
+                                <rect key="frame" x="326" y="9" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NF7-z7-wys">
+                                <rect key="frame" x="300" y="9" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="API-D5-b1u">
+                                <rect key="frame" x="274" y="9" width="33" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                         </subviews>
@@ -90,6 +101,8 @@
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
                 <outlet property="FavImage" destination="tp2-0N-R0a" id="tWL-hN-DJd"/>
+                <outlet property="FavImage2" destination="NF7-z7-wys" id="N2G-ep-pA6"/>
+                <outlet property="FavImage3" destination="API-D5-b1u" id="WUQ-Cq-4Zc"/>
                 <outlet property="labelBranchName" destination="7pF-7w-Q8B" id="gbT-h6-9Nx"/>
                 <outlet property="labelDOB" destination="VW7-sF-Mpf" id="7Jj-gx-Jnv"/>
                 <outlet property="labelDateCreated" destination="IDa-Ar-Mzk" id="W28-XM-SaP"/>

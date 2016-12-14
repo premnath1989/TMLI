@@ -17,7 +17,7 @@
 @synthesize labelDateModified =_labelDateModified;
 @synthesize labelTimeRemaining =_labelTimeRemaining;
 @synthesize labelidNum =_labelidNum;
-@synthesize FavImage;
+@synthesize FavImage, FavImage2, FavImage3;
 
 - (void)awakeFromNib {
 //    NSLog(@"test");

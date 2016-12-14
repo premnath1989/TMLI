@@ -440,6 +440,8 @@
 -(void)keyboardDidHide:(NSNotificationCenter *)notification;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite2;
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite3;
 - (IBAction)ActionFavorite:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *Score;
 

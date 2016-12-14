@@ -325,14 +325,18 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnData;
 @property (strong, nonatomic) IBOutlet UIButton *btnAlamat;
 @property (strong, nonatomic) IBOutlet UIButton *btnOcc;
+@property (strong, nonatomic) IBOutlet UIButton *btnAktiviti;
 
 - (IBAction)BtnDataPressed:(id)sender;
 - (IBAction)BtnAlamatPressed:(id)sender;
 - (IBAction)btnOccPressed:(id)sender;
+- (IBAction)btnActPressed:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UIView *DataPcv;
 @property (strong, nonatomic) IBOutlet UIView *Alamatcv;
 @property (strong, nonatomic) IBOutlet UIView *Occcv;
+@property (strong, nonatomic) IBOutlet UIView *AktivitiCV;
 
 //data pribadi View
 //SumberData
@@ -365,6 +369,9 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtAge;
 
 @property (strong, nonatomic) IBOutlet UIButton *btnFavorite;
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite2;
+@property (strong, nonatomic) IBOutlet UIButton *btnFavorite3;
+
 - (IBAction)ActionFavorite:(id)sender;
 
 

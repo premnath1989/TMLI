@@ -57,7 +57,7 @@
     
     bool isStartTime;
     bool isEndTime;
-    bool isFavorite;
+    int isFavorite;
     
     CGPoint _lastContentOffset;
 
@@ -197,7 +197,7 @@ BOOL NavShowP;
     isStartTime = NO;
     isEndTime = NO;
     
-    isFavorite = NO;
+    isFavorite = 0;
     isThin = NO;
     [self ActionChangeHeader:nil];
     
@@ -3190,13 +3190,13 @@ BOOL NavShowP;
                 } else {
                     
                     NSString *isForeign = @"NO";
-                    NSString *Fav;
-                    if (isFavorite) {
-                      Fav = @"TRUE";
-                    }
-                    else {
-                        Fav = @"FALSE";
-                    }
+//                    NSString *Fav;
+//                    if (isFavorite ) {
+//                      Fav = @"TRUE";
+//                    }
+//                    else {
+//                        Fav = @"FALSE";
+//                    }
                     
                     [self CalculateScore];
                     
@@ -3214,9 +3214,9 @@ BOOL NavShowP;
                     
                     insertSQL = [NSString stringWithFormat:
                                  @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
-                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%@\", \"%@\")",
+                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
                                  txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
-                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, Fav, _txtRTRW.text];
+                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
                     
                 }
                 
@@ -6790,14 +6790,43 @@ BOOL NavShowP;
 
 
 - (IBAction)ActionFavorite:(id)sender {
-    isFavorite = !(isFavorite) ;
+//    isFavorite = !(isFavorite) ;
     
-    if (isFavorite) {
-        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    if (sender==_btnFavorite && isFavorite != 1){
+        isFavorite = 1;
+    }
+    else if (sender==_btnFavorite2 && isFavorite != 2){
+        isFavorite = 2;
+    }
+    else if (sender==_btnFavorite3 && isFavorite != 3){
+        isFavorite = 3;
     }
     else {
-        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        isFavorite = 0;
     }
+    
+    if (isFavorite == 0) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 1) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 2) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_stardisable_primary"] forState:UIControlStateNormal];
+    }
+    else if (isFavorite == 3) {
+        [_btnFavorite setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite2 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+        [_btnFavorite3 setBackgroundImage:[UIImage imageNamed:@"icon_starenable_primary"] forState:UIControlStateNormal];
+    }
+    
+    
     
 }
 - (IBAction)ActionChangeHeader:(id)sender {
