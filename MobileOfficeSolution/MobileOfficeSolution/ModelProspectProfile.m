@@ -449,8 +449,11 @@
     if ([orderBy isEqualToString:@"DateCreated"]||[orderBy isEqualToString:@"DateModified"]){
          strQuery = [strQuery stringByAppendingFormat: @" order by datetime(%@) %@", orderBy, method];
     }
+    else if ([orderBy isEqualToString:@"PhoneNoHP"]){
+        strQuery = [strQuery stringByAppendingFormat: @" ORDER BY CAST(`PhoneNoHP` as integer) %@", method];
+    }
     else {
-         strQuery = [strQuery stringByAppendingFormat: @" order by LOWER(\"%@\") %@", orderBy, method];
+         strQuery = [strQuery stringByAppendingFormat: @" order by \"%@\" %@", orderBy, method];
     }
    
 

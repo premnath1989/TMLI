@@ -24,6 +24,10 @@
     NSMutableArray* arrayMSDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
+    [arrayMSCode addObject:@""];
+    [arrayMSDesc addObject:@"- SELECT -"];
+    [arrayStatus addObject:@""];
+    
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_MARITAL_STATUS];
     FMResultSet *s = [database executeQuery:query];
     while ([s next]) {

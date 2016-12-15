@@ -24,6 +24,10 @@
     NSMutableArray* arrayReligionDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
+    [arrayReligionCode addObject:@""];
+    [arrayReligionDesc addObject:@"- SELECT -"];
+    [arrayStatus addObject:@""];
+    
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_RELIGION];
     FMResultSet *s = [database executeQuery:query];
     while ([s next]) {

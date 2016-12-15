@@ -23,6 +23,10 @@
     NSMutableArray* arraySourceDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
     
+    [arraySourceCode addObject:@""];
+    [arraySourceDesc addObject:@"- SELECT -"];
+    [arrayStatus addObject:@""];
+    
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_SOURCEINCOME];
     FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
@@ -53,6 +57,10 @@
     NSMutableArray* arraySourceCode=[[NSMutableArray alloc] init];
     NSMutableArray* arraySourceDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
+    
+    [arraySourceCode addObject:@""];
+    [arraySourceDesc addObject:@"- SELECT -"];
+    [arrayStatus addObject:@""];
     
     FMResultSet *s = [database executeQuery:@"SELECT * FROM eProposal_AnnualIncome WHERE status = 'A'"];
     while ([s next]) {
@@ -114,6 +122,10 @@
     NSMutableArray* arrayReferCode=[[NSMutableArray alloc] init];
     NSMutableArray* arrayReferDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
+    
+    [arrayReferCode addObject:@""];
+    [arrayReferDesc addObject:@"- SELECT -"];
+    [arrayStatus addObject:@"A"];
     
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_REFERRALSOURCE];
     FMResultSet *s = [database executeQuery:query];
@@ -177,6 +189,11 @@
     NSMutableArray* arrayOccpDesc=[[NSMutableArray alloc] init];
     NSMutableArray* arrayOccpClass=[[NSMutableArray alloc] init];
     NSMutableArray* arrayStatus=[[NSMutableArray alloc] init];
+    
+    [arrayOccpCode addObject:@""];
+    [arrayOccpDesc addObject:@"- SELECT -"];
+    [arrayOccpClass addObject:@""];
+    [arrayStatus addObject:@""];
     
     NSString *query = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE status = 'A'", TABLE_OCCP];
     FMResultSet *s = [database executeQuery:query];

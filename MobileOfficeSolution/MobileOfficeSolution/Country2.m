@@ -34,6 +34,7 @@
 		NSString *strQuery;
 		
 		 _items = [NSMutableArray array];
+        [_items addObject:@"- SELECT -"];
 		
 		strQuery = [NSString stringWithFormat:@"select * from eProposal_Country WHERE Status = 'A'"];
 		

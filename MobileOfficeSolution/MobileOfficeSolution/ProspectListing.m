@@ -1360,10 +1360,10 @@ MBProgressHUD *HUD;
     }
     
     if (isSort){
-        sortMethod=@"ASC";
+        sortMethod=@"DESC";
     }
     else{
-        sortMethod=@"DESC";
+        sortMethod=@"ASC";
     }
     
     ProspectTableData=[modelProspectProfile searchProspectProfileByName:_txtFrontName.text LastName:_txtLastName.text DOB:_txtTanggalLahir.text HPNo:_TxtPhoneNo.text Order:sortedBy Method:sortMethod ID:txtIDNumber.text];
