@@ -44,6 +44,10 @@
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *SegProductType;
+
+- (IBAction)ActionSegChange:(id)sender;
+
 - (IBAction)goHome:(id)sender;
 - (IBAction)seePDF:(id)sender;
 

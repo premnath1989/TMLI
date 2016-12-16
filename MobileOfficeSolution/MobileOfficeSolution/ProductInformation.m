@@ -170,7 +170,11 @@ BOOL NavShow2;
     }
     NSLog(@"insert : %d",indexPath.row);
     
+    
+    
+    
     if([FTPItemsList count] != 0){
+
         NSMutableArray *itemCell =  [FTPItemsList objectAtIndex:indexPath.row];
         NSString *FileName = [itemCell objectAtIndex:1];
         NSString *FileType = [itemCell objectAtIndex:2];
@@ -191,6 +195,13 @@ BOOL NavShow2;
     [tableManagement TableRowInsert:[FTPItemsList objectAtIndex:indexPath.row] index:indexPath.row table:cell color:[UIColor colorWithRed:128.0f/255.0f green:130.0f/255.0f blue:133.0f/255.0f alpha:1]];
     
     return cell;
+}
+
+- (IBAction)ActionSegChange:(id)sender{
+
+    [self FTPFileListing];
+    NSLog(@"test");
+    
 }
 
 - (IBAction)goHome:(id)sender{
@@ -382,6 +393,7 @@ BOOL NavShow2;
 }
 
 - (void)insertIntoTableData:(NSString *)fileNameParam size:(NSString *)fileSizeParam index:(int)fileIndex{
+    
     NSArray* fullFileNameTemp = [fileNameParam componentsSeparatedByString: @"."];
     NSString *fileName = [fullFileNameTemp objectAtIndex:0];
     NSString *fileExt = [fullFileNameTemp objectAtIndex:1];
@@ -394,7 +406,12 @@ BOOL NavShow2;
         fileFormat = brochureLabel;
     }
     
-    [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,nil]];
+    
+    NSLog(@"index: %d, file %@", fileIndex, fileFormat);
+    if ((_SegProductType.selectedSegmentIndex == 0 && [fileFormat isEqualToString:@"brosur"]) || (_SegProductType.selectedSegmentIndex == 1 && [fileFormat isEqualToString:@"video"]) || (_SegProductType.selectedSegmentIndex == 2 && [fileFormat isEqualToString:@"video"])){
+        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,nil]];
+    }
+    
     
     [spinnerLoading stopLoadingSpinner];
     for(UIView *v in [self.view allSubViews]){
@@ -430,5 +447,7 @@ BOOL NavShow2;
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke FTP Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses FTP"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
+
+
 
 @end
