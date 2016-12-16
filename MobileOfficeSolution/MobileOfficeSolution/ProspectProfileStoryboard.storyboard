@@ -2962,7 +2962,7 @@
                                             <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="searchPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="1xT-u5-RKi"/>
+                                            <action selector="ActionRecalculating:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="tiP-mk-s5u"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -3097,6 +3097,7 @@
                         <outlet property="btnBackTo" destination="llW-zp-3ME" id="wSh-ga-xV5"/>
                         <outlet property="btnCancel" destination="LhM-wz-Ni5" id="w7T-hV-u1K"/>
                         <outlet property="btnHideNav" destination="qIf-Ki-gbG" id="6mB-Ta-hPz"/>
+                        <outlet property="btnRecalculating" destination="nEo-Fp-4pq" id="7Oa-t2-MRF"/>
                         <outlet property="btnSearch" destination="3JY-EG-KvX" id="vnv-Np-npX"/>
                         <outlet property="btnShowNav" destination="a4b-e1-xsi" id="PQl-mG-My3"/>
                         <outlet property="btnSortDateCreated" destination="uvE-DF-GiG" id="Bbi-E1-kmX"/>

@@ -102,6 +102,10 @@
 @property (strong, nonatomic) IBOutlet UIButton *btnShowNav;
 @property (strong, nonatomic) IBOutlet UIButton *btnHideNav;
 
+@property (strong, nonatomic) IBOutlet ButtonFormSecondary *btnRecalculating;
+- (IBAction)ActionRecalculating:(id)sender;
+
+
 //sorting
 @property (strong, nonatomic) IBOutlet UIButton *btnSortFullName;
 @property (strong, nonatomic) IBOutlet UIButton *btnSortNo;

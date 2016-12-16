@@ -24,4 +24,5 @@
 -(NSString *)getDataMobileAndPrefix:(NSString *)ContactCode IndexNo:(NSString *)IndexNo;
 
 -(NSString *)selectProspectData:(NSString *)stringColumnName ProspectIndex:(int)intIndexNo;
+-(NSString *)RecalculateScore;
 @end

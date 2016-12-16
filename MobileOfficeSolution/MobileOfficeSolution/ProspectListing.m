@@ -1756,4 +1756,14 @@ MBProgressHUD *HUD;
     
 }
 
+- (IBAction)ActionRecalculating:(id)sender {
+    
+    NSString *test;
+    test = [modelProspectProfile RecalculateScore];
+
+//    [ProspectTableData removeAllObjects];
+//    ProspectTableData=[modelProspectProfile getProspectProfile];
+  
+    [self.myTableView reloadData];
+}
 @end

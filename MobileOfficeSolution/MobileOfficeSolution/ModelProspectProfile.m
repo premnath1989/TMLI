@@ -11,6 +11,8 @@
 #import "String.h"
 
 @implementation ModelProspectProfile
+int newAge;
+
 -(NSMutableArray *)getProspectProfile{
     NSString *ProspectID = @"";
     NSString *NickName = @"";
@@ -117,11 +119,11 @@
         ProspectID = [NSString stringWithFormat:@"%i",ID];
         NickName = [s stringForColumn:@"PreferredName"];
         ProspectName = [s stringForColumn:@"ProspectName"];
-        ProspectDOB = [s stringForColumn:@"ProspectDOB"]; ;
-        ProspectGender = [s stringForColumn:@"ProspectGender"];;
-        ResidenceAddress1 = [s stringForColumn:@"ResidenceAddress1"];;
-        ResidenceAddress2 = [s stringForColumn:@"ResidenceAddress2"];;
-        ResidenceAddress3 = [s stringForColumn:@"ResidenceAddress3"];;
+        ProspectDOB = [s stringForColumn:@"ProspectDOB"];
+        ProspectGender = [s stringForColumn:@"ProspectGender"];
+        ResidenceAddress1 = [s stringForColumn:@"ResidenceAddress1"];
+        ResidenceAddress2 = [s stringForColumn:@"ResidenceAddress2"];
+        ResidenceAddress3 = [s stringForColumn:@"ResidenceAddress3"];
         ResidenceAddressTown = [s stringForColumn:@"ResidenceAddressTown"];;
         ResidenceAddressState = [s stringForColumn:@"ResidenceAddressState"];;
         ResidenceAddressPostCode = [s stringForColumn:@"ResidenceAddressPostCode"];;
@@ -865,5 +867,122 @@
     [database close];
     return stringReturn;
 }
+
+-(NSString *)RecalculateScore {
+    
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:path];
+    [database open];
+    
+    NSString *ProspectID;
+    NSString *ProspectDOB;
+    NSString *ProspectAge;
+    int oldAge;
+    int Score;
+    int NewScore;
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT IndexNo, ProspectDOB, prospectAge, Score FROM prospect_profile  WHERE QQFlag = 'false'"];
+    FMResultSet *s = [database executeQuery:query];
+    while ([s next]) {
+
+        int ID = [s intForColumn:@"IndexNo"];
+        ProspectID = [NSString stringWithFormat:@"%i",ID];
+//        Age = [s intForColumn:]
+        ProspectDOB = [s stringForColumn:@"ProspectDOB"];
+        Score = [s intForColumn:@"Score"];
+        ProspectAge = [s stringForColumn:@"ProspectAge"];
+        oldAge = [ProspectAge intValue];
+        
+        NewScore = 0;
+        newAge = 0;
+        
+        if (![ProspectDOB isEqualToString:@""]) {
+            NewScore = [self calculateAge:ProspectDOB OldAge:oldAge OldScore:Score];
+            NSLog(@"%d, oldScore %d", NewScore, Score);
+            if (NewScore != Score) {
+                NSString *queryB = [NSString stringWithFormat:@"UPDATE prospect_profile SET prospectAge = '%d', Score = '%d' WHERE IndexNo = '%@'", newAge, NewScore, ProspectID];
+                [database executeUpdate:queryB];
+                
+            }
+        }
+        
+    }
+    
+   return @"";
+}
+
+-(int)calculateAge:(NSString *)DOBdate OldAge:(int)OldAge OldScore:(int)OldScore
+{
+//    BOOL toUpdate = NO;
+    
+    
+    int newScore;
+    NSDate *todayDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *DOB2 = [dateFormatter dateFromString:DOBdate];
+    int time = [todayDate timeIntervalSinceDate:DOB2];
+    int allDays = (((time/60)/60)/24);
+    int days = allDays%365;
+    int years = (allDays-days)/365;
+    newAge = years;
+    
+    if (newAge == OldAge) {
+        newScore = OldScore;
+    }
+    else {
+        newScore = [self CheckNewScore:newAge OldAge:OldAge score:OldScore];
+        if (newScore == OldScore) {
+            newScore = OldScore;
+        }
+    }
+    
+    return newScore;
+}
+
+-(int)CheckNewScore:(int)newAge OldAge:(int)OldAge score:(int)score {
+    
+//    NSLog(@"%d, oldScore %d", NewScore, Score);
+   //minus old score
+    if (OldAge > 35 && OldAge < 46) {
+        score = score - 5;
+    }
+    else if (OldAge > 45 && OldAge < 56) {
+        score = score - 4;
+    }
+    else if (OldAge > 55) {
+        score = score - 3;
+    }
+    else if (OldAge >25 && OldAge < 36) {
+        score = score - 2;
+    }
+    else if (OldAge > 17 && OldAge < 26) {
+        score = score - 1;
+    }
+    
+    //Add new score
+    
+    if (newAge > 35 && newAge < 46) {
+        score = score + 5;
+    }
+    else if (newAge > 45 && newAge < 56) {
+        score = score + 4;
+    }
+    else if (newAge > 55) {
+        score = score + 3;
+    }
+    else if (newAge >25 && newAge < 36) {
+        score = score + 2;
+    }
+    else if (newAge > 17 && newAge < 26) {
+        score = score + 1;
+    }
+    
+   
+    return score;
+}
+
 
 @end
