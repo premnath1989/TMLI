@@ -227,33 +227,27 @@ bool PolicyOwnerSigned = TRUE;
     _tableCheckSameRecord = [_db  ExecuteQuery:sqlStmt2];
     //---------end
     
-    [txtEmail addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtIDType addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtOtherIDType addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtHomeAddr1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtNamaDepan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[_txtNamaBelakang addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[segGender addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtDOB addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtAge addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtHPNo addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[txtEmail addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[txtHomeAddr1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
     [txtHomeAddr2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
     [txtHomeAddr3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtHomeTown addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtHomeState addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	//[txtHomePostCode addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtOfficeAddr1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtOfficeAddr2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtOfficeAddr3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtOfficeTown addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtOfficeState addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtAddress4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[_txtRTRW addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[txtHomePostCode addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	//[txtOfficePostCode addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtrFullName addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [segGender addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[segSmoker addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [outletDOB addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_TxtKecamatan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtKelurahan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtKota addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtHomeProvince addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtHPRumah addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+//    [txtRemark addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    
 	
 	[txtRigNO addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	
@@ -7281,7 +7275,7 @@ bool PolicyOwnerSigned = TRUE;
         else {
             strDOB = txtDOB.text;
         }*/
-        strDOB = [outletDOB.titleLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+        strDOB = txtDOB.text;
         
         if (![outletGroup.titleLabel.text isEqualToString:@"- SELECT -"]) {
             group =   [outletGroup.titleLabel.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -7404,6 +7398,11 @@ bool PolicyOwnerSigned = TRUE;
 			IsGrrouping = @"N";
 			group = @"";
 		}
+        
+        if (strDOB == nil) {
+            strDOB = @"";
+            age = 0;
+        }
 		
 		NSString *CountryOfBirth = @"";
 		CountryOfBirth = _txtCountryOfBirth.text/*[BtnCountryOfBirth.titleLabel.text stringByReplacingOccurrencesOfString:@" " withString:@""]*/;
@@ -7411,25 +7410,25 @@ bool PolicyOwnerSigned = TRUE;
 		
         NSString *strExpiryDate = outletExpiryDate.titleLabel.text;
         
-        // Convert string to date object
-        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-        [dateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSDate *date = [dateFormat dateFromString:strDOB];
+//        // Convert string to date object
+//        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//        [dateFormat setDateFormat:@"dd MMM yyyy"];
+//        NSDate *date = [dateFormat dateFromString:strDOB];
+//        
+//        // Convert date object to desired output format
+//        [dateFormat setDateFormat:@"dd MMM yyyy"];
+//        NSString *newDOB = [dateFormat stringFromDate:date];
         
-        // Convert date object to desired output format
-        [dateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSString *newDOB = [dateFormat stringFromDate:date];
+//        NSDateFormatter *expiryDateFormat = [[NSDateFormatter alloc] init];
+//        [expiryDateFormat setDateFormat:@"yyyy-MM-dd"];
+//        NSDate *dateExpiry = [expiryDateFormat dateFromString:strExpiryDate];
         
-        NSDateFormatter *expiryDateFormat = [[NSDateFormatter alloc] init];
-        [expiryDateFormat setDateFormat:@"yyyy-MM-dd"];
-        NSDate *dateExpiry = [expiryDateFormat dateFromString:strExpiryDate];
+//        // Convert date object to desired output format
+//        [expiryDateFormat setDateFormat:@"dd MMM yyyy"];
+//        NSString *newExpiryDate = [expiryDateFormat stringFromDate:dateExpiry];
         
-        // Convert date object to desired output format
-        [expiryDateFormat setDateFormat:@"dd/MM/yyyy"];
-        NSString *newExpiryDate = [expiryDateFormat stringFromDate:dateExpiry];
-        
-        NSLog(@"strExpirydate %@",newExpiryDate);
-        NSLog(@"strDOB %@",newDOB);
+//        NSLog(@"strExpirydate %@",newExpiryDate);
+        NSLog(@"strDOB %@",strDOB);
         //Delete Group if empty:
 		[self DeleteGroup];
         
@@ -11879,7 +11878,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
 	[ClientProfile setObject:@"YES" forKey:@"isEdited"];*/
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"dd/MM/yyyy"];
+    [df setDateFormat:@"dd MMM yyyy"];
     
     NSDate *d = [NSDate date];
     NSDate* d2 = [df dateFromString:strDate];
@@ -11889,7 +11888,7 @@ bool PolicyOwnerSigned = TRUE;
     NSString        *clientDateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
+    [formatter setDateFormat:@"dd MMM yyyy"];
     
     NSDateFormatter* clientDateFormmater = [[NSDateFormatter alloc] init];
     [clientDateFormmater setDateFormat:@"yyyy-MM-dd"];
@@ -12475,9 +12474,18 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 - (IBAction)ActionGoBack:(id)sender {
+    if ([strChanges isEqualToString:@"Yes"] || edited) {
+        UIAlertView *back_alert = [[UIAlertView alloc] initWithTitle:@" "
+                                                             message:@"Save changes before continuing?" delegate:self cancelButtonTitle:@"Save" otherButtonTitles:@"Cancel", nil];
+        back_alert.tag = 5000;
+        [back_alert show];
+
+        
+    } else {
+        UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+        [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
+    }
     
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
     
 }
 @end

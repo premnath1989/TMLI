@@ -30,7 +30,7 @@
     if ((ProspectDOB != NULL)&&(![ProspectDOB isEqual:@"(null)"])) {
         @try {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+            [dateFormatter setDateFormat:@"dd MMM yyyy"];
             //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
@@ -62,7 +62,7 @@
     NSString        *dateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
+    [formatter setDateFormat:@"dd MMM yyyy"];
     
     dateString = [formatter stringFromDate:[NSDate date]];
     msg = dateString;
@@ -71,7 +71,7 @@
     if ((ProspectDOB != NULL)&&(![ProspectDOB isEqual:@"(null)"])) {
         @try {
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+            [dateFormatter setDateFormat:@"dd MMM yyyy"];
             //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
             NSDate *zzz = [dateFormatter dateFromString:ProspectDOB];
             [_outletDate setDate:zzz animated:YES ];
@@ -107,7 +107,7 @@
 - (IBAction)ActionDate:(id)sender {
     if (_delegate != Nil) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         
         NSString *pickerDate = [dateFormatter stringFromDate:[_outletDate date]];
         

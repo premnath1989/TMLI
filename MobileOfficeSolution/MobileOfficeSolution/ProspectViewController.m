@@ -82,6 +82,8 @@
     
     BOOL duplicateOK;
     BOOL idValidationChecker;
+    
+    BOOL isEdited;
 }
 
 @end
@@ -188,6 +190,7 @@ BOOL NavShowP;
     [_outletKota setTag:1];
     [_outletKotaOffice setTag:3];
     
+    isEdited = NO;
     _txtHPNo.delegate = self;
     _txtHPRumah.delegate = self;
     
@@ -258,20 +261,24 @@ BOOL NavShowP;
 
     
      
-     [txtFullName addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtContact4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [txtPrefix4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+     [txtNamaBelakang addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtNamaDepan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtAge addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtSourceIncome addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtHomeAddr1 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtHomeAddr2 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtHomeAddr3 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtEmail addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtAddress4 addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtRTRW addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
     [segGender addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[segSmoker addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-    [outletDOB addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
-	[txtAnnIncome addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventAllTouchEvents];
-	[txtBussinessType addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[_txtKelurahan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [txtDOB addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+	[_TxtKecamatan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventAllTouchEvents];
+	[_txtHPRumah addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    [_txtHPNo addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
+    
+    
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(CheckValidation) name:@"NewProfileValidate" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(btnSave) name:@"NewProfileSave" object:nil];
@@ -2581,6 +2588,9 @@ BOOL NavShowP;
 -(void)detectChanges:(id)sender {
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
 	[ClientProfile setObject:@"YES" forKey:@"isNew"];
+    
+    isEdited = YES;
+    
 }
 
 
@@ -2720,7 +2730,7 @@ BOOL NavShowP;
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *dateString;
     if ([outletDOB.titleLabel.text length]>0){
         dateString= outletDOB.titleLabel.text;
@@ -4191,27 +4201,30 @@ BOOL NavShowP;
     } else if(alertView.tag == 5000) { //YES
         bool exist =  [self record_exist];
         if(buttonIndex == 0) { //YES
-            if(IC_Hold_Alert || OTHERID_Hold_Alert) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                                message:@"Data Nasabah sudah ada." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                
-                alert.tag = 6000;
-                [alert show];
-                
-                IC_Hold_Alert = NO;
-                OTHERID_Hold_Alert = NO;
-				
-				NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-				[ClientProfile setObject:@"NO" forKey:@"isNew"];
-                
-            } else if(exist) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Semua perubahan akan diperbarui untuk berhubungan SI, CFF dan SPAJ. Apakah Anda ingin melanjutkan?" delegate:self cancelButtonTitle:@"Ya" otherButtonTitles:@"Tidak", nil];
-                [alert setTag:1004];
-                [alert show];
-                
-            } else {                
+//            if(IC_Hold_Alert || OTHERID_Hold_Alert) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
+//                                                                message:@"Data Nasabah sudah ada." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+//                
+//                alert.tag = 6000;
+//                [alert show];
+//                
+//                IC_Hold_Alert = NO;
+//                OTHERID_Hold_Alert = NO;
+//				
+//				NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+//				[ClientProfile setObject:@"NO" forKey:@"isNew"];
+//                
+//            } else if(exist) {
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Semua perubahan akan diperbarui untuk berhubungan SI, CFF dan SPAJ. Apakah Anda ingin melanjutkan?" delegate:self cancelButtonTitle:@"Ya" otherButtonTitles:@"Tidak", nil];
+//                [alert setTag:1004];
+//                [alert show];
+//                
+//            } else {                
                 [self btnSave];
-            }
+            
+            
+            
+//            }
         } else {
             [self resignFirstResponder];
             [self.view endEditing:YES];
@@ -4219,6 +4232,10 @@ BOOL NavShowP;
 			
 			NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
 			[ClientProfile setObject:@"NO" forKey:@"isNew"];
+            isEdited = NO;
+            
+            UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+            [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
         }
     } else if(alertView.tag == 5001) {
         btnHomeCountry.titleLabel.textColor = [UIColor redColor];
@@ -6148,7 +6165,7 @@ BOOL NavShowP;
 {
     DATE_OK = YES;
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
-    [df setDateFormat:@"dd/MM/yyyy"];
+    [df setDateFormat:@"dd MMM yyyy"];
 
     NSDate *d = [NSDate date];
     NSDate* d2 = [df dateFromString:strDate];
@@ -6158,7 +6175,7 @@ BOOL NavShowP;
     NSString        *clientDateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd/MM/yyyy"];
+    [formatter setDateFormat:@"dd MMM yyyy"];
     
     NSDateFormatter* clientDateFormmater = [[NSDateFormatter alloc] init];
     [clientDateFormmater setDateFormat:@"yyyy-MM-dd"];
@@ -6166,15 +6183,6 @@ BOOL NavShowP;
     dateString = [formatter stringFromDate:[NSDate date]];
     clientDateString = [clientDateFormmater stringFromDate:d2];
     
-    if(RegDatehandling == NO && isGSTDate) {
-        outletRigDate.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-        [outletRigDate setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@",strDate]forState:UIControlStateNormal];
-    }
-        
-    NSString *otherIDType_trim = [OtherIDType.titleLabel.text stringByTrimmingCharactersInSet:
-                                  [NSCharacterSet whitespaceCharacterSet]];
-    
-    //KY
     
     if (isDOBDate) {
         if ([d compare:d2] == NSOrderedAscending){
@@ -6193,23 +6201,6 @@ BOOL NavShowP;
         }
 	}
 
-    if (isExpiryDate) {
-        if ([d compare:d2] == NSOrderedDescending){
-            NSString *validationTanggalLahirFuture=@"Tanggal kadaluarsa Identitas tidak dapat lebih kecil dari tanggal hari ini";
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:validationTanggalLahirFuture delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil];
-            [alert show];
-        }
-        else{
-            outletDOB.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-            //[outletExpiryDate setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
-            [outletExpiryDate setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
-//            [outletExpiryDate setBackgroundColor:[UIColor clearColor]];
-        }
-    }
-
-
-    
     isDOBDate = NO;
 	isGSTDate = NO;
     
@@ -6842,6 +6833,7 @@ BOOL NavShowP;
              _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
              _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
              _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
+//             _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
          }
          completion:^(BOOL finished)
          {
@@ -6861,6 +6853,7 @@ BOOL NavShowP;
              _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
              _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
              _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
+//             _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
          }
          completion:^(BOOL finished)
          {
@@ -6898,9 +6891,18 @@ BOOL NavShowP;
 
 - (IBAction)ActionBackTo:(id)sender {
     
- 
-    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
-    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
+    NSString *isEditMsg = @"Save changes before continuing?";
+    if (isEdited) {
+        UIAlertView *back_alert = [[UIAlertView alloc] initWithTitle:@" "
+                                                             message:isEditMsg delegate:self cancelButtonTitle:@"Save" otherButtonTitles:@"Cancel", nil];
+        back_alert.tag = 5000;
+        [back_alert show];
+    }
+    else {
+        UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+        [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"ProspectLandingPage"] animated:YES completion: nil];
+    }
+   
     
 }
 
