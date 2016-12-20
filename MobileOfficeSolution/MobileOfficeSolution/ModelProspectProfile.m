@@ -900,7 +900,7 @@ int newAge;
         
         if (![ProspectDOB isEqualToString:@""]) {
             NewScore = [self calculateAge:ProspectDOB OldAge:oldAge OldScore:Score];
-            NSLog(@"%d, oldScore %d", NewScore, Score);
+//            NSLog(@"%d, oldScore %d", NewScore, Score);
             if (NewScore != Score) {
                 NSString *queryB = [NSString stringWithFormat:@"UPDATE prospect_profile SET prospectAge = '%d', Score = '%d' WHERE IndexNo = '%@'", newAge, NewScore, ProspectID];
                 [database executeUpdate:queryB];

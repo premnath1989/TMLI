@@ -656,6 +656,9 @@
                                                     <segment title="Pria"/>
                                                     <segment title="Wanita"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="ActionGender:" destination="CEO-Xo-hVe" eventType="valueChanged" id="Tvp-f3-0gt"/>
+                                                </connections>
                                             </segmentedControl>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="CFB-xi-oSD">
                                                 <rect key="frame" x="107" y="77" width="635" height="30"/>

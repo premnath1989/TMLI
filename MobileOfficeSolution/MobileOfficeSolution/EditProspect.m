@@ -4816,6 +4816,8 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 - (IBAction)actionProvinsiInfo:(UIButton *)sender{
+    
+    strChanges = @"Yes";
     [self resignFirstResponder];
     [self.view endEditing:YES];
     
@@ -5029,7 +5031,7 @@ bool PolicyOwnerSigned = TRUE;
 {
     [self resignFirstResponder];
     [self.view endEditing:YES];
-    
+    strChanges = @"Yes";
     Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
@@ -5694,6 +5696,9 @@ bool PolicyOwnerSigned = TRUE;
             [self resignFirstResponder];
             [self.view endEditing:YES];
             [self.navigationController popViewControllerAnimated:YES];
+            
+            UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+            [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"newClientListing"] animated:YES completion: nil];
 			
 			NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
 			[ClientProfile setObject:@"NO" forKey:@"isEdited"];
@@ -7479,7 +7484,7 @@ bool PolicyOwnerSigned = TRUE;
         sqlite3_close(contactDB);
     }
     
-    
+    strChanges = @"NO";
     //******** START ****************  UPDATE CLIENT OF LA1, LA2 (NOT PO) IN EAPP   *********************************
     
 	//Note: why only update LA_details when POFlag = N, need confirmation on this ##ENS
@@ -11222,6 +11227,7 @@ bool PolicyOwnerSigned = TRUE;
 
 
 -(void)selectedReferralSource:(NSString *)referralSource{
+    strChanges = @"Yes";
     outletReferralSource.titleLabel.text = referralSource;
     if([referralSource isEqualToString:@"- SELECT -"]) {
         outletReferralSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -11236,6 +11242,7 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 -(void)selectedSourceIncome:(NSString *)sourceIncome{
+    strChanges = @"Yes";
     _outletSourceIncome.titleLabel.text = sourceIncome;
     if([sourceIncome isEqualToString:@"- SELECT -"]) {
         _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -11250,6 +11257,7 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 -(void)GenerateDOB {
+    strChanges = @"Yes";
 	txtIDType.text = [txtIDType.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     
 	if(txtIDType.text.length == 12)
@@ -11406,6 +11414,7 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)Selected2Country:(NSString *)theCountry
 {
+    strChanges = @"Yes";
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
    
 //    if([theCountry isEqualToString:@"- SELECT -"]) {
@@ -11494,6 +11503,7 @@ bool PolicyOwnerSigned = TRUE;
 }
 -(void)selectedMaritalStatus:(NSString *)status
 {
+    strChanges = @"Yes";
     if([status isEqualToString:@"- SELECT -"]) {
         outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     } else {
@@ -11590,6 +11600,7 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)selectedReligion:(NSString *)setReligion
 {
+    strChanges = @"Yes";
     if([setReligion isEqualToString:@"- SELECT -"]) {
         outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     } else {
@@ -11627,6 +11638,7 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
 {
+    strChanges = @"Yes";
     ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
     if ([selectedIDType isEqualToString:@"- SELECT -"]) {
         OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -11710,6 +11722,7 @@ bool PolicyOwnerSigned = TRUE;
 
 - (void)OccupDescSelected:(NSString *)color
 {
+    strChanges = @"Yes";
     outletOccup.titleLabel.text = color;
     
     [self resignFirstResponder];
@@ -11841,6 +11854,7 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)DateSelected:(NSString *)strDate :(NSString *)dbDate
 {
+    strChanges = @"Yes";
     /*NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"yyyy-MM-dd"];
     NSDate *d = [NSDate date];
@@ -12089,6 +12103,8 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 -(void)TimeSelected:(NSString *)strDate :(NSString *)dbDate {
+    
+    strChanges = @"Yes";
     
     if (isStartTime) {
         _txtCallStart.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];

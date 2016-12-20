@@ -2621,6 +2621,7 @@ BOOL NavShowP;
 
 - (IBAction)ActionGender:(id)sender
 {
+    isEdited = YES;
     [self resignFirstResponder];
     [self.view endEditing:YES];
     
@@ -3331,7 +3332,7 @@ BOOL NavShowP;
     [db close];
     
     //********* END ***************  UPDATE CLIENT OF LA1, LA2, PO IN EAPP   *********************************
-    
+    isEdited = NO;
 }
 
 - (IBAction)ActionSave:(id)sender {
@@ -3963,6 +3964,7 @@ BOOL NavShowP;
 }
 
 - (IBAction)actionProvinsiInfo:(id)sender{
+    isEdited = YES;
     [self resignFirstResponder];
     [self.view endEditing:YES];
     
@@ -6063,6 +6065,8 @@ BOOL NavShowP;
 
 
 -(void)selectedReferralSource:(NSString *)referralSource{
+    
+    isEdited = YES;
     outletReferralSource.titleLabel.text = referralSource;
     if([referralSource isEqualToString:@"- SELECT -"]) {
         outletReferralSource.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -6076,6 +6080,7 @@ BOOL NavShowP;
 }
 
 -(void)selectedSourceIncome:(NSString *)sourceIncome{
+    isEdited = YES;
     _outletSourceIncome.titleLabel.text = sourceIncome;
     if([sourceIncome isEqualToString:@"- SELECT -"]) {
         _outletSourceIncome.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -6143,6 +6148,7 @@ BOOL NavShowP;
 
 -(void)selectedReligion:(NSString *)setReligion
 {
+    isEdited = YES;
     if([setReligion isEqualToString:@"- SELECT -"]) {
         outletReligion.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     } else {
@@ -6163,6 +6169,7 @@ BOOL NavShowP;
 
 -(void)DateSelected:(NSString *)strDate :(NSString *)dbDate
 {
+    isEdited = YES;
     DATE_OK = YES;
     NSDateFormatter* df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"dd MMM yyyy"];
@@ -6209,7 +6216,7 @@ BOOL NavShowP;
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
 {
-    
+    isEdited = YES;
     ColorHexCode *CustomColor = [[ColorHexCode alloc] init ];
     if ([selectedIDType isEqualToString:@"- SELECT -"]) {
         OtherIDType.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
@@ -6273,6 +6280,7 @@ BOOL NavShowP;
 
 - (void)OccupDescSelected:(NSString *)color
 {
+    isEdited = YES;
     [outletOccup setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", color]forState:UIControlStateNormal];
 //    [outletOccup setBackgroundColor:[UIColor clearColor]];
     _txtOccupation.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", color];
@@ -6324,6 +6332,7 @@ BOOL NavShowP;
 
 -(void)selectedMaritalStatus:(NSString *)status
 {
+    isEdited = YES;
     if([status isEqualToString:@"- SELECT -"]) {
         outletMaritalStatus.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     } else {
@@ -6367,7 +6376,7 @@ BOOL NavShowP;
 -(void)Selected2Country:(NSString *)theCountry
 {
 
-    
+    isEdited = YES;
     if([theCountry isEqualToString:@"- SELECT -"]) {
         btnHomeCountry.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     } else {
