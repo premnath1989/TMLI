@@ -62,7 +62,13 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7X-0a-0Uv" customClass="ButtonPhotoUnderline">
                                                 <state key="normal" title="Button"/>
                                                 <connections>
-                                                    <segue destination="yHH-pR-s2J" kind="show" id="xR7-v9-Hp0"/>
+                                                    <action selector="btnForgotPassword:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2de-PX-hH5"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4v-BJ-thc">
+                                                <state key="normal" title="Button"/>
+                                                <connections>
+                                                    <segue destination="yHH-pR-s2J" kind="show" id="DUV-1Q-W7g"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -91,7 +97,7 @@
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OJR-83-9ql" customClass="TextFieldPhotoGeneralPrimary">
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Idy-cg-gUD" customClass="ButtonFormSecondary">
                                                 <state key="normal" title="Button"/>

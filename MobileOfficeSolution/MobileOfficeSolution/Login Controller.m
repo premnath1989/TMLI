@@ -76,8 +76,9 @@
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
     [_buttonForgotPassword setTitle:NSLocalizedString(@"BUTTON_PHOTO_FORGOTPASSWORD", nil) forState:UIControlStateNormal];
     
-    textFieldUserCode.text = NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_USERCODE", nil);
-    textFieldUserPassword.text = NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_PASSWORD", nil);
+    UIColor *color = [UIColor whiteColor];
+    textFieldUserCode.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_USERCODE", nil) attributes:@{NSForegroundColorAttributeName: color}];
+    textFieldUserPassword.attributedPlaceholder = [[NSAttributedString alloc] initWithString:NSLocalizedString(@"PLACEHOLDER_TEXTFIELD_PASSWORD", nil) attributes:@{NSForegroundColorAttributeName: color}];
     
     AppDelegate *delegate= (AppDelegate*)[[UIApplication sharedApplication] delegate];
     if(![[[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"] containsString:@"UAT"])
@@ -376,7 +377,19 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 }
 
 - (IBAction)btnForgotPassword:(id)sender{
-    
+    if (textFieldUserCode.text.length <= 0) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
+                                                        message:@"Username harap diisi" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:Nil, nil ];
+        [alert show];
+        alert = Nil;
+    }
+    else {
+        [spinnerLoading startLoadingSpinner:self.view label:@"Loading"];
+        
+        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+        [webservice forgotPassword:textFieldUserCode.text delegate:self];
+    }
+
 }
 
 
