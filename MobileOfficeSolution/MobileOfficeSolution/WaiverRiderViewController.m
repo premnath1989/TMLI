@@ -67,7 +67,7 @@
     //currentCell.frame = CGRectMake(currentCell.frame.origin.x, currentCell.frame.origin.y, 750, currentCell.frame.size.height);
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *cellText = cell.textLabel.text;
-    
+    NSLog(@"click select with value : %@", cellText);
     
 }
 

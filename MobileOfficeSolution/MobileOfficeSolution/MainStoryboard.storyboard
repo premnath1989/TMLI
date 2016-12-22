@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="ds4-DI-v8U">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="ds4-DI-v8U">
     <dependencies>
         <deployment version="4096" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.ttf">
+        <array key="BPreplay_Bold.otf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -1069,7 +1069,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" image="login_box.png" translatesAutoresizingMaskIntoConstraints="NO" id="uid-T9-G8h">
-                                        <rect key="frame" x="19" y="207" width="1448" height="1198"/>
+                                        <rect key="frame" x="19" y="207" width="2472" height="1946"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4o-1F-YoA">

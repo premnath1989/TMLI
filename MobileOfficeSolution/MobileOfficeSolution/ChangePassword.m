@@ -534,29 +534,29 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                             });
                             // handle response
                             if(data != nil){
-                                NSMutableDictionary* json = [NSJSONSerialization
-                                                             JSONObjectWithData:data //1
-                                                             options:NSJSONReadingMutableContainers
-                                                             error:&error];
-                                NSMutableDictionary *ResponseDict = [[NSMutableDictionary alloc]init];
-                                NSMutableArray *jsonArray = [[NSMutableArray alloc]init];
+//                                NSMutableDictionary* json = [NSJSONSerialization
+//                                                             JSONObjectWithData:data //1
+//                                                             options:NSJSONReadingMutableContainers
+//                                                             error:&error];
+//                                NSMutableDictionary *ResponseDict = [[NSMutableDictionary alloc]init];
+//                                NSMutableArray *jsonArray = [[NSMutableArray alloc]init];
+//                                
+//                                
+//                                //set the date
+//                                NSDate *today = [NSDate date];
+//                                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//                                [dateFormat setDateFormat:@"dd/MM/yyyy"];
+//                                NSString *dateString = [dateFormat stringFromDate:today];
+//                                
+//                                [[json valueForKey:@"d"] setValue:dateString forKey:@"CreatedDate"];
+//                                [[json valueForKey:@"d"] setValue:dateString forKey:@"UpdatedDate"];
+//                                [[json valueForKey:@"d"] setValue:@"ACTIVE" forKey:@"Status"];
+//                                [[json valueForKey:@"d"] removeObjectForKey:@"__type"];
+//                                [jsonArray addObject:[json valueForKey:@"d"]];
+//                                [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
+//                                NSLog(@"%@",ResponseDict);
                                 
-                                
-                                //set the date
-                                NSDate *today = [NSDate date];
-                                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-                                [dateFormat setDateFormat:@"dd/MM/yyyy"];
-                                NSString *dateString = [dateFormat stringFromDate:today];
-                                
-                                [[json valueForKey:@"d"] setValue:dateString forKey:@"CreatedDate"];
-                                [[json valueForKey:@"d"] setValue:dateString forKey:@"UpdatedDate"];
-                                [[json valueForKey:@"d"] setValue:@"ACTIVE" forKey:@"Status"];
-                                [[json valueForKey:@"d"] removeObjectForKey:@"__type"];
-                                [jsonArray addObject:[json valueForKey:@"d"]];
-                                [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
-                                NSLog(@"%@",ResponseDict);
-                                
-                                [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
+//                                [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
                                
                             }else{
                                
@@ -574,7 +574,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 if([loginDB fullSyncTable:returnObj]){
                     [loginDB updateLoginDate];
-                    [self gotoCarousel];
+                    [self presentViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
                 }
             }else if([rateResponse.strStatus caseInsensitiveCompare:@"False"] == NSOrderedSame){
                 [spinnerLoading stopLoadingSpinner];

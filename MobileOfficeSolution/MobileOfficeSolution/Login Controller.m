@@ -375,6 +375,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
 }
 
+- (IBAction)btnForgotPassword:(id)sender{
+    
+}
+
 
 - (void) doOfflineLoginCheck
 {
@@ -433,9 +437,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDDB.sqlite"]];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-    
-    [db open];
     NSString *AgentName;
     NSString *AgentPassword;
     NSString *SupervisorCode;
@@ -443,53 +444,47 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSString *Admin;
     NSString *AdminPassword;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword  from Agent_profile"];
+    AgentName = [[loginDB getAgentCodeLevel] valueForKey:@"AgentCode"];
+    AgentPassword = [[loginDB getAgentCodeLevel] valueForKey:@"AgentPassword"];
     
-    while ([result1 next]) {
-        AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AgentPassword = [[result1 objectForColumnName:@"AgentPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        SupervisorCode = [[result1 objectForColumnName:@"DirectSupervisorCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        SupervisorPass = [[result1 objectForColumnName:@"DirectSupervisorPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        Admin = [[result1 objectForColumnName:@"Admin"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AdminPassword = [[result1 objectForColumnName:@"AdminPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        NSString *encryptedPass = [encryptWrapper encrypt:textFieldUserPassword.text];
-        if(!spvAdminBypass){
-            if ([textFieldUserCode.text isEqualToString:AgentName]) {
-                if ([encryptedPass isEqualToString:AgentPassword]) {
-                    successLog = TRUE;
-                }else{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    [alert show];
-                    successLog = FALSE;
-                }
+    SupervisorCode = [[loginDB getAgentCodeLevel] valueForKey:@"DirectSupervisorCode"];
+    SupervisorPass = [[loginDB getAgentCodeLevel] valueForKey:@"DirectSupervisorPassword"];
+    
+    Admin = [[loginDB getAgentCodeLevel] valueForKey:@"Admin"];
+    AdminPassword = [[loginDB getAgentCodeLevel] valueForKey:@"AdminPassword"];
+    
+    NSString *encryptedPass = [encryptWrapper encrypt:textFieldUserPassword.text];
+    if(!spvAdminBypass){
+        if ([textFieldUserCode.text isEqualToString:AgentName]) {
+            if ([encryptedPass isEqualToString:AgentPassword]) {
+                successLog = TRUE;
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
                 successLog = FALSE;
             }
         }else{
-            if([textFieldUserCode.text isEqualToString:AgentName] || [textFieldUserCode.text isEqualToString:SupervisorCode] || [textFieldUserCode.text isEqualToString:Admin]){
-                if (([textFieldUserCode.text isEqualToString:AgentName] && [encryptedPass isEqualToString:AgentPassword])
-                    ||([textFieldUserCode.text isEqualToString:SupervisorCode] && [encryptedPass isEqualToString:SupervisorPass])
-                    || ([textFieldUserCode.text isEqualToString:Admin] && [encryptedPass isEqualToString:AdminPassword])) {
-                    successLog = TRUE;
-                }else{
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                    [alert show];
-                    successLog = FALSE;
-                }
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            successLog = FALSE;
+        }
+    }else{
+        if([textFieldUserCode.text isEqualToString:AgentName] || [textFieldUserCode.text isEqualToString:SupervisorCode] || [textFieldUserCode.text isEqualToString:Admin]){
+            if (([textFieldUserCode.text isEqualToString:AgentName] && [encryptedPass isEqualToString:AgentPassword])
+                ||([textFieldUserCode.text isEqualToString:SupervisorCode] && [encryptedPass isEqualToString:SupervisorPass])
+                || ([textFieldUserCode.text isEqualToString:Admin] && [encryptedPass isEqualToString:AdminPassword])) {
+                successLog = TRUE;
             }else{
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
                 [alert show];
                 successLog = FALSE;
             }
+        }else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username/Password yang Anda masukkan salah" delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+            successLog = FALSE;
         }
     }
-    
-    [db close];
     
     return successLog;
 }
@@ -649,9 +644,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDDB.sqlite"]];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     
-    [db open];
     NSString *AgentName;
     NSString *AgentPassword;
     NSString *SupervisorCode;
@@ -660,19 +653,17 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSString *AdminPassword;
     NSString *UDID;
     
-    FMResultSet *result1 = [db executeQuery:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword, UDID  from Agent_profile"];
     
-    while ([result1 next]) {
-        AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AgentPassword = [[result1 objectForColumnName:@"AgentPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        SupervisorCode = [[result1 objectForColumnName:@"DirectSupervisorCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        SupervisorPass = [[result1 objectForColumnName:@"DirectSupervisorPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        Admin = [[result1 objectForColumnName:@"Admin"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AdminPassword = [[result1 objectForColumnName:@"AdminPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        UDID = [[result1 objectForColumnName:@"UDID"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    }
+    AgentName = [[loginDB getAgentCodeLevel] valueForKey:@"AgentCode"];
+    AgentPassword = [[loginDB getAgentCodeLevel] valueForKey:@"AgentPassword"];
+    
+    SupervisorCode = [[loginDB getAgentCodeLevel] valueForKey:@"DirectSupervisorCode"];
+    SupervisorPass = [[loginDB getAgentCodeLevel] valueForKey:@"DirectSupervisorPassword"];;
+    
+    Admin = [[loginDB getAgentCodeLevel] valueForKey:@"Admin"];
+    AdminPassword = [[loginDB getAgentCodeLevel] valueForKey:@"AdminPassword"];
+    UDID = [[loginDB getAgentCodeLevel] valueForKey:@"UDID"];
+
     
     if([textFieldUserCode.text isEqualToString:AgentName] ){
         
@@ -685,8 +676,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }else if([textFieldUserCode.text isEqualToString:Admin]){
         statusUsername = USERNAME_IS_ADMIN;
     }
-    
-    [db close];
     
     return statusUsername;
 }

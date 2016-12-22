@@ -90,7 +90,6 @@ NSString *ProceedStatus = @"";
     tap.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tap];
     
-    NSLog(@"devideId %@", [[[UIDevice currentDevice] identifierForVendor] UUIDString]);
     [self ShowLoginDate];
 
     outletLogin.hidden = FALSE;
@@ -274,7 +273,7 @@ static NSString *labelVers;
                 
                 NSString *encryptedPass = [encryptWrapper encrypt:txtPassword.text];
                 WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
-                [webservice ValidateLogin:txtUsername.text password:encryptedPass UUID:[[[UIDevice currentDevice] identifierForVendor] UUIDString] delegate:self];
+                [webservice ValidateLogin:txtUsername.text password:encryptedPass UUID:[self getUniqueDeviceIdentifierAsString] delegate:self];
             }else{
                 
                 NSString *appName=[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleNameKey];
@@ -757,11 +756,11 @@ static NSString *labelVers;
         [SSKeychain setPassword:strApplicationUUID forService:appName account:@"incodingLogin"];
         
         //change the udid
-        [webservice changeUDID:txtUsername.text udid:[SSKeychain passwordForService:appName account:@"incoding"] delegate:self];
+        [webservice changeUDID:txtUsername.text udid:[self getUniqueDeviceIdentifierAsString] delegate:self];
         
     }else{
         NSString *encryptedPass = [encryptWrapper encrypt:txtPassword.text];
-        [webservice ValidateLogin:txtUsername.text password:encryptedPass UUID:strApplicationUUID delegate:self];
+        [webservice ValidateLogin:txtUsername.text password:encryptedPass UUID:[self getUniqueDeviceIdentifierAsString] delegate:self];
     }
     return strApplicationUUID;
 }

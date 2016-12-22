@@ -169,6 +169,54 @@
     return agentStatusFlag;
 }
 
+- (NSMutableDictionary *)getAgentCodeLevel{
+    sqlite3_stmt *statement;
+    NSMutableDictionary *dictAgent = [[NSMutableDictionary alloc]init];
+    
+    NSString *querySQL = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword, UDID  from %@",TABLE_AGENT_PROFILE];
+    
+    NSLog(@"%@",querySQL);
+    
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        int rc = sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL);
+        
+        if (rc==SQLITE_OK)
+        {
+            while(sqlite3_step(statement) == SQLITE_ROW)
+            {
+                if((const char *) sqlite3_column_text(statement, 0) != NULL){
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 0)] forKey:@"AgentCode"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 1)] forKey:@"AgentPassword"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 2)] forKey:@"DirectSupervisorCode"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 3)] forKey:@"DirectSupervisorPassword"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 4)] forKey:@"Admin"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 5)] forKey:@"AdminPassword"];
+                    [dictAgent setValue: [[NSString alloc]
+                                           initWithUTF8String:
+                                           (const char *) sqlite3_column_text(statement, 6)] forKey:@"UDID"];
+                }
+            }
+        }
+        sqlite3_close(contactDB);
+    }
+
+    
+    return dictAgent;
+}
+
 - (NSString *) dataVersion{
     sqlite3_stmt *statement;
     NSString *DataVersion = @"";
@@ -1105,37 +1153,7 @@
 
 -(NSString *) AgentCodeLocal
 {
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
-    FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
-    
-    [db open];
-    NSString *AgentName;
-    NSString *AgentPassword;
-    NSString *SupervisorCode;
-    NSString *SupervisorPass;
-    NSString *Admin;
-    NSString *AdminPassword;
-    
-    NSString *query = [NSString stringWithFormat:@"select AgentCode, AgentPassword, DirectSupervisorCode, DirectSupervisorPassword, Admin, AdminPassword from  %@",TABLE_AGENT_PROFILE];
-    
-    FMResultSet *result1 = [db executeQuery:query];
-    
-    while ([result1 next]) {
-        AgentName = [[result1 objectForColumnName:@"AgentCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AgentPassword = [[result1 objectForColumnName:@"AgentPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        SupervisorCode = [[result1 objectForColumnName:@"DirectSupervisorCode"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        SupervisorPass = [[result1 objectForColumnName:@"DirectSupervisorPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        Admin = [[result1 objectForColumnName:@"Admin"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        AdminPassword = [[result1 objectForColumnName:@"AdminPassword"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    }
-    
-    [db close];
-    
-    return AgentName;
+    return [[self getAgentCodeLevel] valueForKey:@"AgentCode"];
 }
 
 //we store the UDID into the Keychain

@@ -32,6 +32,7 @@
 - (void) duplicateRow:(NSString *)tableName param:(NSString *)column
              oldValue:(NSString *)oldValue newValue:(NSString *)newValue;
 - (NSMutableDictionary *)getAgentDetails;
+- (NSMutableDictionary *)getAgentCodeLevel;
 
 //general functions
 - (int)insertTableFromJSON:(NSDictionary*) params databasePath:(NSString *)dbName;

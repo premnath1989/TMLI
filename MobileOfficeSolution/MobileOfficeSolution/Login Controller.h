@@ -71,5 +71,6 @@
 
     /* ACTION */
 - (IBAction)btnLogin:(id)sender;
+- (IBAction)btnForgotPassword:(id)sender;
 
 @end
