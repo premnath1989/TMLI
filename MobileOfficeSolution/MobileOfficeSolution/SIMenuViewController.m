@@ -3022,7 +3022,7 @@ BOOL NavShow3;
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
     [cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
-    cell.btnPemegangPolis.backgroundColor = [UIColor redColor];
+//    cell.btnPemegangPolis.backgroundColor = [UIColor redColor];
 //    cell.btnPemegangPolis setBackgroundColor:[UIColor redColor];
     [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
     [cell.BtnTertanggung setBackgroundColor:green];
