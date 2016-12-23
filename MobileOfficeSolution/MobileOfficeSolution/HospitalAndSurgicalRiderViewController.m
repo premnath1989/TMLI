@@ -70,6 +70,8 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     NSString *cellText = cell.textLabel.text;
     
+     [self dismissViewControllerAnimated:YES completion:nil];
+    
     
 }
 
