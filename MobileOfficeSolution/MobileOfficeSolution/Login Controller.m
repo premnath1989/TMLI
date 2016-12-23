@@ -273,8 +273,62 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
     NSDate *lastSync = [dateFormatter dateFromString:lastSyncDate];
-    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
-    lastSyncDate = [dateFormatter stringFromDate:lastSync];
+    
+    NSDateFormatter *day = [[NSDateFormatter alloc] init];
+    [day setDateFormat:@"dd"];
+    NSString *txtDay = [day stringFromDate:lastSync];
+    
+    NSDateFormatter *Month = [[NSDateFormatter alloc] init];
+    [Month setDateFormat:@"MM"];
+    NSString *txtMonth = [Month stringFromDate:lastSync];
+    switch ([[Month stringFromDate:lastSync] integerValue]) {
+        case 1:
+            txtMonth = @"Jan";
+            break;
+        case 2:
+            txtMonth = @"Feb";
+            break;
+        case 3:
+            txtMonth = @"Mar";
+            break;
+        case 4:
+            txtMonth = @"Apr";
+            break;
+        case 5:
+            txtMonth = @"May";
+            break;
+        case 6:
+            txtMonth = @"Jun";
+            break;
+        case 7:
+            txtMonth = @"Jul";
+            break;
+        case 8:
+            txtMonth = @"Aug";
+            break;
+        case 9:
+            txtMonth = @"Sep";
+            break;
+        case 10:
+            txtMonth = @"Oct";
+            break;
+        case 11:
+            txtMonth = @"Nov";
+            break;
+        case 12:
+            txtMonth = @"Dec";
+            break;
+
+        default:
+            break;
+    }
+    
+    NSDateFormatter *Year = [[NSDateFormatter alloc] init];
+    [Year setDateFormat:@"YYYY"];
+    NSString *txtYear = [Year stringFromDate:lastSync];
+    
+    lastSyncDate = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
+    
     return lastSyncDate;
 }
 
