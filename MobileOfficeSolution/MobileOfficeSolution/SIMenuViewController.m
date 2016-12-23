@@ -3260,13 +3260,16 @@ BOOL NavShow3;
         case 2:
         {
 //            [self loadBasicPlanPage:YES];
-            self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
-            [self.RiderController loadInitialRiderData];
-            [self.RightView addSubview:self.RiderController.view];
+            
+            
+            [self loadBasicPlanPage:YES];
+            
             break;
         }
         case 3:
-            [self.RightView bringSubviewToFront:self.BasicController.view];
+            self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
+            [self.RiderController loadInitialRiderData];
+            [self.RightView addSubview:self.RiderController.view];
             break;
         case 4:
             [self.RightView bringSubviewToFront:self.BasicController.view];

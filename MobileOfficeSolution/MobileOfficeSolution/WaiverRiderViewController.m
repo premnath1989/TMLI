@@ -69,6 +69,8 @@
     NSString *cellText = cell.textLabel.text;
     NSLog(@"click select with value : %@", cellText);
     
+     [self dismissViewControllerAnimated:YES completion:nil];
+    
 }
 
 
