@@ -51,8 +51,9 @@
         
         // LOCALIZABLE
         
-        _labelName.text = @"Andy Phan";
-        _labelPosition.text = @"sales executive";
+        LoginDBManagement *loginDB = [[LoginDBManagement alloc]init];
+        _labelName.text = [loginDB getAgentProperty:@"AgentName"];
+        _labelPosition.text = [loginDB getAgentProperty:@"Level"];
         
             /* NAVIGATION HEADER */
             
@@ -82,13 +83,23 @@
         NSLog(@"intScrollViewHeight : %d", intScrollViewHeight);
         int intScrollViewCoordinateX = 0;
         _scrollViewSliderNews.pagingEnabled = YES;
-        _arrayImage = [[NSArray alloc]initWithObjects:@"photo_news1_primary.png", @"photo_news2_primary.png", @"photo_news3_primary.png", nil];
+        
+        NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSString *imgnews1 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news1_primary.png"];
+        NSString *imgnews2 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news2_primary.png"];
+        NSString *imgnews3 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news3_primary.png"];
+        
+        _arrayImage = [[NSArray alloc]initWithObjects:imgnews1, imgnews2, imgnews3, nil];
         [_stackViewSliderController.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
         
         for (int i = 0; i < _arrayImage.count; i++)
         {
             UIImageView *imageNews = [[UIImageView alloc]initWithFrame:CGRectMake(intScrollViewCoordinateX, 0, floatScreenWidth, intScrollViewHeight)];
-            imageNews.image = [UIImage imageNamed:[_arrayImage objectAtIndex:i]];
+            
+            NSData *imgData = [NSData dataWithContentsOfFile:[_arrayImage objectAtIndex:i]];
+            UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
+            
+            imageNews.image = thumbNail;
             [imageNews setContentMode:UIViewContentModeScaleAspectFill];
             intScrollViewCoordinateX = intScrollViewCoordinateX + floatScreenWidth;
             [_scrollViewSliderNews addSubview:imageNews];
@@ -165,13 +176,10 @@
     {
         UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
         SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SettingUserProfile"];
-        UserProfileView.modalPresentationStyle = UIModalPresentationPageSheet;
+        UserProfileView.modalPresentationStyle = UIModalPresentationFullScreen;
         UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         UserProfileView.getLatest = @"Yes";
         [self presentViewController:UserProfileView animated:YES completion:nil];
-        
-        UserProfileView.view.superview.frame = CGRectMake(150, 50, 700, 748);
-        UserProfileView = nil;
     }
 
     - (IBAction)goToSalesIllustration:(id)sender {

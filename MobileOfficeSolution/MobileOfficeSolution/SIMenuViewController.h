@@ -210,6 +210,7 @@
 @property (strong, nonatomic) IBOutlet UIView *ViewThinHeader;
 @property (strong, nonatomic) IBOutlet UIView *ViewThickHeader;
 @property (strong, nonatomic) IBOutlet UIButton *btnChangeHeader;
+@property (strong, nonatomic) IBOutlet UIImageView *imgHeader;
 
 - (IBAction)ActionChangeHeader:(id)sender;
 - (IBAction)ActionNavigationShow:(id)sender;

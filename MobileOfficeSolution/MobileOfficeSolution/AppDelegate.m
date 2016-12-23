@@ -65,6 +65,11 @@ NSString *uatAgentCode;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
     
     [self copyJqueryLibstoDir];
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    backgroundImagesPath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+    [self createDirectory:backgroundImagesPath];
+    
+    
     ClearData *CleanData =[[ClearData alloc]init];
     [CleanData SPAJExpiredWipeOff];
     
@@ -116,15 +121,15 @@ NSString *uatAgentCode;
     if(jQueryBundleVerInt > jQueryDirVerInt){
         [[NSFileManager defaultManager] removeItemAtPath:fileJqueryLibsPath error:NULL];
     }
-    [self createDirectory];
+    [self createDirectory:fileJqueryLibsPath];
 }
 
-- (void)createDirectory{
+- (void)createDirectory:(NSString *)path{
     //create Directory
     NSError *error;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:fileJqueryLibsPath])	//Does directory already exist?
+    if (![[NSFileManager defaultManager] fileExistsAtPath:path])	//Does directory already exist?
     {
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:fileJqueryLibsPath
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:path
                                        withIntermediateDirectories:NO
                                                         attributes:nil
                                                              error:&error])

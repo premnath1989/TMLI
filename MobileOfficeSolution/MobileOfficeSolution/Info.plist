@@ -49,7 +49,7 @@
 	<key>Prod_Webservices</key>
 	<string>http://new-mpos-prod6912.cloudapp.net</string>
 	<key>UAT_Webservices</key>
-	<string>https://mposws.azurewebsites.net/tmliagentws</string>
+	<string>https://tmconnect.tokiomarine-life.co.id/TMLI_WebService</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>NewJune_Regular.ttf</string>

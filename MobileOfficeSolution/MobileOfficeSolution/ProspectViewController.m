@@ -164,6 +164,7 @@
 @synthesize segReferralType;
 @synthesize txtNPWPNo;
 @synthesize lastContentOffset;
+@synthesize imgHeader;
 
 @synthesize txtNamaDepan, txtNamaBelakang, UDScore;
 
@@ -221,6 +222,11 @@ BOOL NavShowP;
     IC_Hold_Alert = NO;
     OTHERID_Hold_Alert = NO;
     
+    NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_primary.png"];
+    NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
+    [imgHeader setImage:thumbNail];
 
 	
     self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg10.jpg"]];

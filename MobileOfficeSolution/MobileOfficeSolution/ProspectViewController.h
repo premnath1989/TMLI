@@ -118,6 +118,7 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *myScrollView;
 @property (nonatomic, strong) TitleViewController *TitlePicker;
 @property (strong, nonatomic) IBOutlet UIButton *btnTitle;
+@property (strong, nonatomic) IBOutlet UIImageView *imgHeader;
 
 
 @property (nonatomic, strong) Race *raceList;

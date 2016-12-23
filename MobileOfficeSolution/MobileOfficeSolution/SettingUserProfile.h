@@ -30,19 +30,28 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtAgentCode;
 @property (weak, nonatomic) IBOutlet UITextField *txtAgentName;
-@property (weak, nonatomic) IBOutlet UITextField *txtCabang;
-@property (weak, nonatomic) IBOutlet UITextField *txtKanwil;
-@property (weak, nonatomic) IBOutlet UITextField *txtKCU;
-@property (weak, nonatomic) IBOutlet UITextField *txtChannel;
-@property (weak, nonatomic) IBOutlet UITextField *txtDirectSupervisor;
+@property (weak, nonatomic) IBOutlet UITextField *txtAgentLvl;
 @property (weak, nonatomic) IBOutlet UITextField *txtAgentStatus;
-@property (weak, nonatomic) IBOutlet UITextField *txtLicenseStart;
-@property (weak, nonatomic) IBOutlet UITextField *txtLicenseEnd;
-@property (weak, nonatomic) IBOutlet UITextField *txtAddress1;
-@property (weak, nonatomic) IBOutlet UITextField *txtAddress2;
-@property (weak, nonatomic) IBOutlet UITextField *txtAddress3;
+@property (weak, nonatomic) IBOutlet UITextField *txtJenisKelamin;
+@property (weak, nonatomic) IBOutlet UITextField *txtBOD;
+@property (weak, nonatomic) IBOutlet UITextField *txtReligion;
+@property (weak, nonatomic) IBOutlet UITextField *txtMaritalStatus;
+@property (weak, nonatomic) IBOutlet UITextField *txtIDCard;
+@property (weak, nonatomic) IBOutlet UITextField *txtLicense;
 @property (weak, nonatomic) IBOutlet UITextField *txtMobileNumber;
+@property (weak, nonatomic) IBOutlet UITextField *txtBusinessNumber;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmail;
+@property (weak, nonatomic) IBOutlet UITextView *txtAddress;
+@property (weak, nonatomic) IBOutlet UITextField *txtPTKP;
+@property (weak, nonatomic) IBOutlet UITextField *txtNoRek;
+@property (weak, nonatomic) IBOutlet UITextField *txtBankName;
+@property (weak, nonatomic) IBOutlet UITextField *txtRekName;
+@property (weak, nonatomic) IBOutlet UITextField *txtDM;
+@property (weak, nonatomic) IBOutlet UITextField *txtRM;
+@property (weak, nonatomic) IBOutlet UITextField *txtRD;
+@property (weak, nonatomic) IBOutlet UITextField *txtNamaKantor;
+@property (weak, nonatomic) IBOutlet UITextField *txtAAJINo;
+@property (weak, nonatomic) IBOutlet UITextField *txtAAJIDate;
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *code;

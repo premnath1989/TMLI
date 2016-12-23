@@ -235,6 +235,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeTown;
 @property (weak, nonatomic) IBOutlet UITextField *txtHomeState;
+@property (weak, nonatomic) IBOutlet UIImageView *imgHeader;
 
 -(IBAction)textFieldDidChangeEditing:(UITextField *)sender;
 -(IBAction)textFieldNIPDidEndEditing:(UITextField *)sender;

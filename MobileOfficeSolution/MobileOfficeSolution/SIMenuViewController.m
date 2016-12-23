@@ -68,6 +68,7 @@
 id RiderCount;
 @synthesize isNewSI;
 @synthesize ScrollMenu, MenuView;
+@synthesize imgHeader;
 
 
 const NSString * SUM_MSG_HLACP = @"Guaranteed Yearly Income";
@@ -107,6 +108,12 @@ BOOL NavShow3;
     _SecondLAController.delegate = self;
 
     dictionaryPOForInsert = [[NSMutableDictionary alloc]init];
+    
+    NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_primary.png"];
+    NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
+    [imgHeader setImage:thumbNail];
     
 //    [self.view setBackgroundColor:[UIColor darkGrayColor]];
     

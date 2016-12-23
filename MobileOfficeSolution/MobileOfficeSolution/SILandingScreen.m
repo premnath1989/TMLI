@@ -35,9 +35,12 @@ BOOL NavShowOne;
     // DECLARATION
     _objectUserInterface = [[UserInterface alloc] init];
     
-    
+    NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_secondary.png"];
+    NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
     // LAYOUT
-    [_imageViewBackground setImage:[UIImage imageNamed:@"photo_spaj_secondary"]];
+    [_imageViewBackground setImage:thumbNail];
     
     /* INCLUDE */
     

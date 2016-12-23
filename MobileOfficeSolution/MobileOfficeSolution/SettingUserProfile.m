@@ -43,19 +43,28 @@
 @synthesize outletSyncSPAJNumber;
 @synthesize txtAgentCode;
 @synthesize txtAgentName;
-@synthesize txtCabang;
-@synthesize txtKanwil;
-@synthesize txtKCU;
-@synthesize txtChannel;
-@synthesize txtDirectSupervisor;
+@synthesize txtAgentLvl;
 @synthesize txtAgentStatus;
-@synthesize txtLicenseStart;
-@synthesize txtLicenseEnd;
-@synthesize txtAddress1;
-@synthesize txtAddress2;
-@synthesize txtAddress3;
+@synthesize txtJenisKelamin;
+@synthesize txtBOD;
+@synthesize txtReligion;
+@synthesize txtMaritalStatus;
+@synthesize txtIDCard;
+@synthesize txtLicense;
 @synthesize txtMobileNumber;
+@synthesize txtBusinessNumber;
 @synthesize txtEmail;
+
+@synthesize txtPTKP;
+@synthesize txtNoRek;
+@synthesize txtBankName;
+@synthesize txtRekName;
+@synthesize txtDM;
+@synthesize txtRM;
+@synthesize txtRD;
+@synthesize txtNamaKantor;
+@synthesize txtAAJINo;
+@synthesize txtAAJIDate;
 
 - (void)viewDidLoad
 {
@@ -81,10 +90,6 @@
     outletChgPassword.layer.cornerRadius = 10.0f;
     outletChgPassword.clipsToBounds = YES;
     
-    txtAddress1.delegate = self;
-    txtAddress2.delegate = self;
-    txtAddress3.delegate = self;
-    
     txtAgentCode.enabled = FALSE;
     txtAgentName.enabled = FALSE;
     btnContractDate.enabled = FALSE;
@@ -96,16 +101,6 @@
     
     txtAgentName.text = [agentDetails valueForKey:@"AgentName"];
     txtAgentName.enabled = NO;
-    txtCabang.text = [NSString stringWithFormat:@"%@ - %@",[agentDetails valueForKey:@"BranchCode"], [agentDetails valueForKey:@"BranchName"]];
-    txtCabang.enabled = NO;
-    txtKanwil.text = [NSString stringWithFormat:@"%@ - %@",[agentDetails valueForKey:@"KanwilCode"], [agentDetails valueForKey:@"Kanwil"]];
-    txtKanwil.enabled = NO;
-    txtKCU.text = [agentDetails valueForKey:@"KCU"];
-    txtKCU.enabled = NO;
-    txtChannel.text = [agentDetails valueForKey:@"ChannelName"];
-    txtChannel.enabled = NO;
-    txtDirectSupervisor.text = [NSString stringWithFormat:@"%@ - %@",[agentDetails valueForKey:@"DirectSupervisorCode"], [agentDetails valueForKey:@"DirectSupervisorName"]];
-    txtDirectSupervisor.enabled = NO;
     txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
     txtAgentStatus.enabled = NO;
     
@@ -115,16 +110,6 @@
     NSDate *endDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseExpiryDate"]];
     [dateFormatter setDateFormat:@"dd/MM/YYYY"];
     
-    txtLicenseStart.text = [dateFormatter stringFromDate:startDate];
-    txtLicenseStart.enabled = NO;
-    txtLicenseEnd.text = [dateFormatter stringFromDate:endDate];
-    txtLicenseEnd.enabled = NO;
-    txtAddress1.text = [agentDetails valueForKey:@"AgentAddr1"];
-    txtAddress1.enabled = NO;
-    txtAddress2.text = [agentDetails valueForKey:@"AgentAddr2"];
-    txtAddress2.enabled = NO;
-    txtAddress3.text = [agentDetails valueForKey:@"AgentAddr3"];
-    txtAddress3.enabled = NO;
     txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
     txtMobileNumber.enabled = NO;
     txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
@@ -148,6 +133,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    
+    self.myScrollView.frame = CGRectMake(0, 44, 1024, 800);
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
     
@@ -247,31 +234,11 @@
     return YES;
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-{
-    if (string.length == 0) {
-        return YES;
-    }
-    
-    if (textField == txtAddress1 || textField == txtAddress2 || textField == txtAddress3 ) {
-        if ([textField.text stringByReplacingOccurrencesOfString:@" " withString:@""].length > 31) {
-            return NO;
-        }
-        else{
-            return YES;
-        }
-    }
-    else{
-        return YES;
-    }
-    
-    
-}
 
 -(void)keyboardDidShow:(NSNotificationCenter *)notification
 {
-    self.myScrollView.frame = CGRectMake(0, 44, 768, 704-352);
-    self.myScrollView.contentSize = CGSizeMake(768, 605);
+    self.myScrollView.frame = CGRectMake(0, 44, 1024, 704-352);
+    self.myScrollView.contentSize = CGSizeMake(1024, 800);
     
     CGRect textFieldRect = [activeField frame];
     textFieldRect.origin.y += 30;
@@ -284,151 +251,7 @@
 
 -(void)keyboardDidHide:(NSNotificationCenter *)notification
 {
-    self.myScrollView.frame = CGRectMake(0, 44, 768, 704);
-}
-
-
-#pragma mark - validation
-
--(BOOL) Validation
-{
-    
-    if ([txtAgentCode.text isEqualToString:@""] || [txtAgentCode.text stringByReplacingOccurrencesOfString:@" " withString:@"" ].length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Agent Code is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        
-        [txtAgentCode becomeFirstResponder];
-        return FALSE;
-        
-    }
-    else {
-        if (txtAgentCode.text.length != 8) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Agent Code length. Agent Code length should be exact 8 characters long"
-                                                           delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            [txtAgentCode becomeFirstResponder];
-            return FALSE;
-        }
-        
-    }
-    
-    if ([txtAgentName.text isEqualToString:@""] || [txtAgentName.text stringByReplacingOccurrencesOfString:@" " withString:@"" ].length == 0 ) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Agent Name is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [txtAgentName becomeFirstResponder];
-        return FALSE;
-        
-        
-    }
-    else {
-        
-        BOOL valid;
-        NSString *strToBeTest = [txtAgentName.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] ;
-        
-        for (int i=0; i<strToBeTest.length; i++) {
-            int str1=(int)[strToBeTest characterAtIndex:i];
-            
-            if((str1 >96 && str1 <123)  || (str1 >64 && str1 <91)){
-                valid = TRUE;
-                
-            }else {
-                valid = FALSE;
-                break;
-            }
-        }
-        if (!valid) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Agent name is not valid" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [txtAgentName becomeFirstResponder];
-            return false;
-        }
-    }
-    
-    if(![[txtMobileNumber.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@"" ]){
-        if (txtMobileNumber.text.length > 11) {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Contact number length must be less than 11 digits" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            [txtMobileNumber becomeFirstResponder ];
-            return false;
-        }
-        
-        BOOL valid;
-        NSCharacterSet *alphaNums = [NSCharacterSet decimalDigitCharacterSet];
-        NSCharacterSet *inStringSet = [NSCharacterSet characterSetWithCharactersInString:txtMobileNumber.text];
-        valid = [alphaNums isSupersetOfSet:inStringSet];
-        if (!valid) {
-            
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Contact number must be numeric" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            [txtMobileNumber becomeFirstResponder];
-            return false;
-        }
-        
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Agent's Contact No is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [txtMobileNumber becomeFirstResponder];
-        return false;
-    }
-    
-    if (![[txtDirectSupervisor.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@""]) {
-        if (txtDirectSupervisor.text.length != 8) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"Invalid Immediate Leader Code length. Immediate Leader Code length should be 8 characters long" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            [txtDirectSupervisor becomeFirstResponder];
-            return false;
-        }
-    }
-    
-    if (contDate.length == 0 || [self.btnContractDate.titleLabel.text isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Agent's Contract Date is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        return false;
-    }
-    
-    if ([[txtAddress1.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@""]) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Agent's Correspendence Address is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        [txtAddress1 becomeFirstResponder];
-        return false;
-    }
-    //end
-    
-    if (![[txtEmail.text stringByReplacingOccurrencesOfString:@" " withString:@"" ] isEqualToString:@""]) {
-        if( [self NSStringIsValidEmail:txtEmail.text] == FALSE ){
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                            message:@"You have entered an invalid email" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-            
-            [txtEmail becomeFirstResponder];
-            return FALSE;
-        }
-        
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" "
-                                                        message:@"Email is required." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alert show];
-        
-        [txtEmail becomeFirstResponder];
-        return FALSE;
-    }
-    return TRUE;
+    self.myScrollView.frame = CGRectMake(0, 44, 1024, 800);
 }
 
 -(BOOL) NSStringIsValidEmail:(NSString *)checkString

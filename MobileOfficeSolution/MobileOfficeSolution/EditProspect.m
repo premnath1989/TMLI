@@ -151,6 +151,7 @@
 @synthesize txtNPWPNo;
 @synthesize txtHPNo, UDScore;
 @synthesize lastContentOffset;
+@synthesize imgHeader;
 
 CGPoint _lastContentOffset;
 
@@ -174,6 +175,12 @@ bool PolicyOwnerSigned = TRUE;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(returnTolisting) name:@"returnToListing" object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disableGroup) name:@"DismissGroup" object:nil];
 	
+    NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_primary.png"];
+    NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
+    [imgHeader setImage:thumbNail];
+    
     duplicateOK = NO;
     idValidationChecker = YES;
 	//AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];

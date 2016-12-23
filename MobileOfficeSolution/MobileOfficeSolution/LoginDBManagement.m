@@ -644,6 +644,29 @@
     return SPAJCount;
 }
 
+- (NSString *) getAgentProperty:(NSString *)property{
+    sqlite3_stmt *statement;
+    NSString *propertyString = @"";
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"SELECT %@ FROM %@",property, TABLE_AGENT_PROFILE];
+        
+        if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
+            if (sqlite3_step(statement) == SQLITE_ROW) {
+                if((const char *) sqlite3_column_text(statement, 0) != NULL){
+                    propertyString = [[NSString alloc]
+                              initWithUTF8String:
+                              (const char *) sqlite3_column_text(statement, 0)];
+                }
+            }
+            sqlite3_finalize(statement);
+        }
+        sqlite3_close(contactDB);
+    }
+    return propertyString;
+
+}
+
 
 -(long long)SPAJBalance{
     long long SPAJCount = 0;

@@ -54,8 +54,12 @@
     UserProfileView = [self.storyboard instantiateViewControllerWithIdentifier:@"ChangePwd"];
     
     // LAYOUT
-    
-    [_imageViewBackground setImage:[UIImage imageNamed:@"photo_login_tertiary"]];
+    NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_login_tertiary.png"];
+    NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
+    UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
+
+    [_imageViewBackground setImage:thumbNail];
     
     /* INCLUDE */
     
@@ -70,7 +74,10 @@
     _labelSectionInformation.text = NSLocalizedString(@"FORM_SECTION_INFORMATION", nil);
     _labelSectionLogin.text = NSLocalizedString(@"FORM_SECTION_LOGIN", nil);
     
-    NSString *appInformation = [NSString stringWithFormat:@"Online Login Terakhir : 23/11/2016 \n Sisa Waktu Online Login : 0 hari \n TMConnect Client 6.8 b2016 UAT \n B5CDFC2A-8543-447A-AD97-63F078C4FB4"];
+    NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    
+    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Client %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -251,6 +258,47 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }
         }
     }
+}
+
+- (NSString *) ShowLoginDate
+{
+    NSString *lastSyncDate = [self getLastSyncDate];
+    
+    NSLog(@"lastSyncDate %@", lastSyncDate);
+    if( [lastSyncDate compare:@""] == NSOrderedSame )
+    {
+        lastSyncDate = @"";
+    }
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
+    NSDate *lastSync = [dateFormatter dateFromString:lastSyncDate];
+    [dateFormatter setDateFormat:@"dd-MM-YYYY"];
+    lastSyncDate = [dateFormatter stringFromDate:lastSync];
+    return lastSyncDate;
+}
+
+- (NSString *) remainingDays{
+    
+    int dayRem = 0;
+    NSString *days;
+    
+    int differentDay = [self syncDaysLeft];
+    if(differentDay<0)
+    {
+        differentDay = differentDay * -1;
+    }
+    
+    
+    dayRem = 7 - differentDay;
+    if (dayRem<0) {
+        days = [NSString stringWithFormat:@"0"];
+    }
+    else {
+        days = [NSString stringWithFormat:@"%d", dayRem];
+    }
+    
+    return days;
 }
 
 

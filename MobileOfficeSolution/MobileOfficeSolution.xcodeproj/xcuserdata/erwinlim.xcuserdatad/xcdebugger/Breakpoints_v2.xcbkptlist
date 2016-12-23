@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/Login Controller.m"
-            timestampString = "504080225.976961"
+            timestampString = "504174764.316774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "370"
-            endingLineNumber = "370"
+            startingLineNumber = "418"
+            endingLineNumber = "418"
             landmarkName = "-loginAction"
             landmarkType = "7">
          </BreakpointContent>

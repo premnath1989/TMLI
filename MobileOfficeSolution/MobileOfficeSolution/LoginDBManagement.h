@@ -33,6 +33,8 @@
              oldValue:(NSString *)oldValue newValue:(NSString *)newValue;
 - (NSMutableDictionary *)getAgentDetails;
 - (NSMutableDictionary *)getAgentCodeLevel;
+- (NSString *) getAgentProperty:(NSString *)property;
+
 
 //general functions
 - (int)insertTableFromJSON:(NSDictionary*) params databasePath:(NSString *)dbName;
