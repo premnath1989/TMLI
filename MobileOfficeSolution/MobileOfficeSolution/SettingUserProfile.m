@@ -104,6 +104,28 @@
     txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
     txtAgentStatus.enabled = NO;
     
+    txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
+    txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
+    txtBOD.text = [loginDB getAgentProperty:@"CLTDOB"];
+    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
+    txtMaritalStatus.text = [loginDB getAgentProperty:@"MRRYD"];
+    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
+    txtLicense.text = [loginDB getAgentProperty:@"Level"];
+    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
+    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
+    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
+    
+    txtPTKP.text = [loginDB getAgentProperty:@"Level"];
+    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
+    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
+    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
+    txtDM.text = [loginDB getAgentProperty:@"Level"];
+    txtRM.text = [loginDB getAgentProperty:@"Level"];
+    txtRD.text = [loginDB getAgentProperty:@"Level"];
+    txtNamaKantor.text = [loginDB getAgentProperty:@"Level"];
+    txtAAJINo.text = [loginDB getAgentProperty:@"Level"];
+    txtAAJIDate.text = [loginDB getAgentProperty:@"Level"];
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
     NSDate *startDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseStartDate"]];
