@@ -251,7 +251,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SbK-xb-lBO">
                                         <rect key="frame" x="48" y="300" width="244" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <state key="normal" title="Change Password">
                                             <color key="titleColor" red="1" green="0.99997437000274658" blue="0.99999129772186279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -485,7 +485,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kjs-eG-Zzm">
                                         <rect key="frame" x="660" y="600" width="265" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.0" green="0.58823529411764708" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <color key="tintColor" red="0.99327123165130615" green="0.66896891593933105" blue="0.081517472863197327" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Synch with TMConnect Server">
@@ -549,11 +549,30 @@
                         <outlet property="myScrollView" destination="J6L-bp-dYG" id="fEX-qw-h7n"/>
                         <outlet property="outletChgPassword" destination="SbK-xb-lBO" id="jBz-5z-j5z"/>
                         <outlet property="outletSave" destination="Kjs-eG-Zzm" id="7Ni-VM-kJM"/>
+                        <outlet property="txtAAJIDate" destination="Umq-cb-wfo" id="ElK-qi-w4Z"/>
+                        <outlet property="txtAAJINo" destination="5iE-WU-Bdd" id="EYB-ad-xSW"/>
                         <outlet property="txtAddress" destination="rN8-Ve-tt1" id="d2e-AI-N7g"/>
                         <outlet property="txtAgentCode" destination="9hG-mx-i91" id="KPY-z5-mpZ"/>
+                        <outlet property="txtAgentLvl" destination="Bf7-JB-AB3" id="sh7-iL-CxW"/>
                         <outlet property="txtAgentName" destination="hiC-pS-7hB" id="nhi-DJ-Qxo"/>
+                        <outlet property="txtAgentStatus" destination="emz-Qj-1Nc" id="w63-uo-sGd"/>
+                        <outlet property="txtBOD" destination="GBz-1E-DJN" id="iSO-tI-Lmd"/>
+                        <outlet property="txtBankName" destination="D9f-38-6Kp" id="7LV-ha-LvQ"/>
+                        <outlet property="txtBusinessNumber" destination="Y5x-7y-pxO" id="5mr-jD-9Vq"/>
+                        <outlet property="txtDM" destination="qg3-2G-Ch9" id="lfB-wY-GLd"/>
                         <outlet property="txtEmail" destination="Jvm-Lf-yeP" id="mcx-a1-r1K"/>
+                        <outlet property="txtICNo" destination="520-Na-eL9" id="oVL-qh-fcT"/>
+                        <outlet property="txtIDCard" destination="2bx-63-0XH" id="aVO-r9-BE3"/>
+                        <outlet property="txtJenisKelamin" destination="FGD-7G-HOz" id="88M-li-0kd"/>
+                        <outlet property="txtMaritalStatus" destination="heN-Zs-PIe" id="4Ai-sm-ijU"/>
                         <outlet property="txtMobileNumber" destination="daL-Mj-PLR" id="TLJ-sI-7q2"/>
+                        <outlet property="txtNamaKantor" destination="Jt2-lv-Axg" id="UaH-EQ-Yqz"/>
+                        <outlet property="txtNoRek" destination="fp2-cL-4CT" id="G3l-y3-zKf"/>
+                        <outlet property="txtPTKP" destination="ZYE-f4-PHd" id="1E2-ec-euC"/>
+                        <outlet property="txtRD" destination="DQ1-Px-Upu" id="S6N-Iu-F6O"/>
+                        <outlet property="txtRM" destination="4UM-d4-NLu" id="abU-8X-7Vo"/>
+                        <outlet property="txtRekName" destination="SWL-re-dcL" id="gt0-jv-Q1P"/>
+                        <outlet property="txtReligion" destination="Bbi-mR-NKR" id="pmF-Bg-HVa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sgP-0B-tHw" userLabel="First Responder" sceneMemberID="firstResponder"/>
