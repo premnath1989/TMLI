@@ -3251,33 +3251,218 @@ BOOL NavShow3;
 
     //To change view in Menu
     NSLog(@"Change Menu");
+    
+     [self pullSIData];
     switch (sender.tag) {
         case 0:
-            self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
-            _LAController.delegate = self;
-            [self.RightView addSubview:self.LAController.view];
+            if (_LAController == nil) {
+                self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+                _LAController.delegate = self;
+                [self.RightView addSubview:self.LAController.view];
+            }else{
+                [self.LAController.view removeFromSuperview];
+                [self.RightView addSubview:self.LAController.view];
+            }
+            self.LAController.requestSINo = [dictionaryPOForInsert valueForKey:@"SINO"];
+            [self.RightView bringSubviewToFront:self.LAController.view];
+            
+            
             lastActiveController = self.LAController;
+            [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+            [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+            [arrayIntValidate replaceObjectAtIndex:0 withObject:@"0"];
+            
+//            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+//            lastIndexSelected = 0;
             break;
+
         case 1:
-            self.SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
-            _SecondLAController.delegate = self;
-            [self.RightView addSubview:self.SecondLAController.view];
-            lastActiveController = self.SecondLAController;
+            if ([_LAController validateSave]){
+                if ((![[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])&&(![[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
+                    [self loadSecondLAPage];
+                    lastIndexSelected = 1;
+                    [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                    [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                    [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                }
+                else{
+                    [self clearData2ndLA];
+                    [self loadBasicPlanPage:YES];
+                    [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                    [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                    [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                    lastIndexSelected=2;
+                }
+                @try {
+                    [self saveLAForTableDidSelect];
+                    [self saveBasicPlanForTableDidSelect];
+                    if([self.RiderController.view isDescendantOfView:self.RightView]) {
+                        [_RiderController localSaveRider];
+                    }
+                    
+                }
+                @catch (NSException *exception) {
+                    
+                }
+                @finally {
+                    
+                }
+                
+            }
+            else{
+                if (_LAController == nil) {
+                    self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+                    _LAController.delegate = self;
+                    [self.RightView addSubview:self.LAController.view];
+                }else{
+                    [self.LAController.view removeFromSuperview];
+                    [self.RightView addSubview:self.LAController.view];
+                }
+                [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:0 withObject:@"0"];
+                lastIndexSelected=0;
+                [self.RightView bringSubviewToFront:self.LAController.view];
+                lastActiveController = self.LAController;
+                
+//                [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            }
             break;
         case 2:
         {
-//            [self loadBasicPlanPage:YES];
-            
-            
-            [self loadBasicPlanPage:YES];
+            if ([_LAController validateSave]){
+                if (([[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
+                    lastIndexSelected=2;
+                    [self loadBasicPlanPage:YES];
+                    [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                    [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                    [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                }
+                else{
+                    if ([_SecondLAController validateSave]){
+                        lastIndexSelected=2;
+                        [self loadBasicPlanPage:YES];
+                        [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                        [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                    }
+                    else{
+                        lastIndexSelected=1;
+                        [self loadSecondLAPage];
+                        [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                    }
+                }
+                @try {
+                    [self saveLAForTableDidSelect];
+                    [self saveBasicPlanForTableDidSelect];
+                    if([self.RiderController.view isDescendantOfView:self.RightView]) {
+                        [_RiderController localSaveRider];
+                    }
+                    
+                }
+                @catch (NSException *exception) {
+                    
+                }
+                @finally {
+                    
+                }
+            }
+            else{
+                if (_LAController == nil) {
+                    self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+                    _LAController.delegate = self;
+                    [self.RightView addSubview:self.LAController.view];
+                }else{
+                    [self.LAController.view removeFromSuperview];
+                    [self.RightView addSubview:self.LAController.view];
+                }
+                lastIndexSelected=0;
+                [self.RightView bringSubviewToFront:self.LAController.view];
+                lastActiveController = self.LAController;
+                [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:0 withObject:@"0"];
+                
+//                [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+            }
             
             break;
+
         }
         case 3:
-            self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
-            [self.RiderController loadInitialRiderData];
-            [self.RightView addSubview:self.RiderController.view];
+            if ([_LAController validateSave]){
+                if ((![[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])&&(![[dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
+                    if ([_SecondLAController validateSave]){
+                        if ([_BasicController validationDataBasicPlan]) {
+                            [arrayIntValidate replaceObjectAtIndex:2 withObject:@"1"];
+                            [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                            [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                            lastIndexSelected=3;
+                            [self LoadIlustrationPage];
+//                            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+                            
+                        }
+                        else{
+                            [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                            [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                            [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                            lastIndexSelected=2;
+                            [self loadBasicPlanPage:YES];
+                        }
+                    }
+                    else{
+                        [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                        lastIndexSelected=1;
+                        [self loadSecondLAPage];
+                    }
+                    
+                }
+                else{
+                    if ([_BasicController validationDataBasicPlan]) {
+                        [arrayIntValidate replaceObjectAtIndex:2 withObject:@"1"];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                        [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                        lastIndexSelected=3;
+                        [self LoadIlustrationPage];
+//                        [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+                        
+                    }
+                    else{
+                        [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                        [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
+                        lastIndexSelected=2;
+                        [self loadBasicPlanPage:YES];
+                        [arrayIntValidate replaceObjectAtIndex:1 withObject:@"1"];
+                    }
+                }
+            }
+            else{
+                if (_LAController == nil) {
+                    self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+                    _LAController.delegate = self;
+                    [self.RightView addSubview:self.LAController.view];
+                }else{
+                    [self.LAController.view removeFromSuperview];
+                    [self.RightView addSubview:self.LAController.view];
+                }
+                lastIndexSelected=0;
+                [self.RightView bringSubviewToFront:self.LAController.view];
+                lastActiveController = self.LAController;
+                [arrayIntValidate replaceObjectAtIndex:2 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:1 withObject:@"0"];
+                [arrayIntValidate replaceObjectAtIndex:0 withObject:@"0"];
+                
+//                [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+                
+        }
+            
             break;
+
         case 4:
             [self.RightView bringSubviewToFront:self.BasicController.view];
             break;

@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <mutableArray key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
-        </mutableArray>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SPAJAddMenu">
@@ -58,24 +62,24 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8jP-cp-J10">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pi5-52-vFL" customClass="ViewPageHeader">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="64"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPX-eh-oab" customClass="LabelPageTitle">
-                            <rect key="frame" x="279" y="20" width="42" height="21"/>
+                            <rect key="frame" x="363" y="20.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="jPX-eh-oab" firstAttribute="centerX" secondItem="pi5-52-vFL" secondAttribute="centerX" id="I70-lh-f4K"/>
                         <constraint firstAttribute="height" constant="64" id="XAn-C1-8SL"/>
@@ -83,16 +87,16 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pi0-Ce-Ifd" customClass="ViewPageSubHeader">
-                    <rect key="frame" x="0.0" y="60" width="600" height="30"/>
+                    <rect key="frame" x="0.0" y="60" width="768" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NKd-r9-sYN" customClass="LabelMenuHint">
-                            <rect key="frame" x="20" y="4" width="42" height="21"/>
+                            <rect key="frame" x="20" y="4.5" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="NKd-r9-sYN" firstAttribute="centerY" secondItem="pi0-Ce-Ifd" secondAttribute="centerY" id="YOG-Xy-PqL"/>
                         <constraint firstAttribute="height" constant="30" id="f3Q-9Y-rkJ"/>
@@ -100,33 +104,33 @@
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tnk-va-LaM" customClass="StackViewGuideMenuContainer">
-                    <rect key="frame" x="0.0" y="90" width="600" height="300"/>
+                    <rect key="frame" x="0.0" y="90" width="768" height="300"/>
                     <subviews>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pDg-BU-x6G" customClass="ViewGuideMenuSelected">
-                            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDg-BU-x6G" customClass="ViewGuideMenuSelected">
+                            <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="xcY-qt-Kur" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="-11" width="580" height="52"/>
+                                    <rect key="frame" x="10" y="-0.5" width="748" height="51"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nag-pd-L6l" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="16" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="15.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="cTg-Xg-jdH" customClass="StackViewGuideMenuVertical">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="52"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="51"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oId-WE-NEh" customClass="LabelGuideMenuHeader">
-                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huj-pg-K2C" customClass="LabelGuideMenuDetail">
-                                                    <rect key="frame" x="0.0" y="31" width="42" height="21"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -134,14 +138,14 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lnZ-K4-H9p" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionGoToStep1:" destination="-1" eventType="touchUpInside" id="k4s-2c-myn"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="xcY-qt-Kur" secondAttribute="trailing" constant="10" id="9uN-lQ-Rle"/>
                                 <constraint firstItem="xcY-qt-Kur" firstAttribute="leading" secondItem="pDg-BU-x6G" secondAttribute="leading" constant="10" id="QKG-hs-7Qj"/>
@@ -152,31 +156,31 @@
                                 <constraint firstItem="lnZ-K4-H9p" firstAttribute="top" secondItem="pDg-BU-x6G" secondAttribute="top" id="zkx-9v-BLk"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Tv-IiQ" customClass="ViewGuideMenuSelected">
-                            <rect key="frame" x="0.0" y="50" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buI-Tv-IiQ" customClass="ViewGuideMenuSelected">
+                            <rect key="frame" x="0.0" y="50" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="utj-z3-yFg" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="-11" width="580" height="52"/>
+                                    <rect key="frame" x="10" y="-0.5" width="748" height="51"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCh-3K-1kP" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="16" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="15.5" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2i3-0V-fCE" customClass="StackViewGuideMenuVertical">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="52"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="51"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctD-fX-KFg" customClass="LabelGuideMenuHeader">
-                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5n-Wh-ZM3" customClass="LabelGuideMenuDetail">
-                                                    <rect key="frame" x="0.0" y="31" width="42" height="21"/>
+                                                    <rect key="frame" x="0.0" y="30.5" width="42" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -184,14 +188,14 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXD-ZI-9GH" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionGoToStep2:" destination="-1" eventType="touchUpInside" id="AjR-3g-veu"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="iXD-ZI-9GH" firstAttribute="leading" secondItem="buI-Tv-IiQ" secondAttribute="leading" id="0IH-Ny-0ek"/>
                                 <constraint firstItem="utj-z3-yFg" firstAttribute="centerY" secondItem="buI-Tv-IiQ" secondAttribute="centerY" id="7N1-eM-TqJ"/>
@@ -202,37 +206,37 @@
                                 <constraint firstAttribute="trailing" secondItem="iXD-ZI-9GH" secondAttribute="trailing" id="xqk-pb-mOa"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zi2-cg-J0b" customClass="ViewGuideMenuNotSelected">
-                            <rect key="frame" x="0.0" y="100" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zi2-cg-J0b" customClass="ViewGuideMenuNotSelected">
+                            <rect key="frame" x="0.0" y="100" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Wwg-Ai-VE5" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="7" width="580" height="21"/>
+                                    <rect key="frame" x="10" y="15" width="748" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="whH-HH-qKF" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE7-CU-KW2" customClass="LabelGuideMenuHeader">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9km-0G-NC9" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="34"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button">
-                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </state>
                                     <connections>
                                         <action selector="actionGoToStep3:" destination="-1" eventType="touchUpInside" id="82q-TS-XFz"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="9km-0G-NC9" firstAttribute="top" secondItem="zi2-cg-J0b" secondAttribute="top" id="0NR-pU-QK1"/>
                                 <constraint firstItem="Wwg-Ai-VE5" firstAttribute="leading" secondItem="zi2-cg-J0b" secondAttribute="leading" constant="10" id="0kH-3S-z18"/>
@@ -243,35 +247,35 @@
                                 <constraint firstAttribute="trailing" secondItem="Wwg-Ai-VE5" secondAttribute="trailing" constant="10" id="XGY-Wg-kdx"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gc9-mq-FYk" customClass="ViewGuideMenuNotSelected">
-                            <rect key="frame" x="0.0" y="150" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gc9-mq-FYk" customClass="ViewGuideMenuNotSelected">
+                            <rect key="frame" x="0.0" y="150" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="dOF-z7-Jim" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="5" width="580" height="21"/>
+                                    <rect key="frame" x="10" y="15" width="748" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ocx-ma-1hF" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRV-4c-Lyw" customClass="LabelGuideMenuHeader">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MsA-Lq-Ivf" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionGoToStep4:" destination="-1" eventType="touchUpInside" id="ffa-VA-kCD"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="dOF-z7-Jim" secondAttribute="trailing" constant="10" id="55e-BF-fa1"/>
                                 <constraint firstItem="dOF-z7-Jim" firstAttribute="centerY" secondItem="Gc9-mq-FYk" secondAttribute="centerY" id="5Ww-RM-iRQ"/>
@@ -282,35 +286,35 @@
                                 <constraint firstItem="dOF-z7-Jim" firstAttribute="leading" secondItem="Gc9-mq-FYk" secondAttribute="leading" constant="10" id="ftG-L1-fTp"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-kW-VHN" customClass="ViewGuideMenuNotSelected">
-                            <rect key="frame" x="0.0" y="200" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2M-kW-VHN" customClass="ViewGuideMenuNotSelected">
+                            <rect key="frame" x="0.0" y="200" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ImS-fB-fCt" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="5" width="580" height="21"/>
+                                    <rect key="frame" x="10" y="15" width="748" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F51-dK-I8L" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Pb-il-ZWz" customClass="LabelGuideMenuHeader">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfC-nK-9xE" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionGoToStep5:" destination="-1" eventType="touchUpInside" id="QXY-BV-wd9"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="ImS-fB-fCt" secondAttribute="trailing" constant="10" id="0Cr-SJ-mlO"/>
                                 <constraint firstAttribute="bottom" secondItem="YfC-nK-9xE" secondAttribute="bottom" id="G82-18-DED"/>
@@ -321,35 +325,35 @@
                                 <constraint firstItem="YfC-nK-9xE" firstAttribute="leading" secondItem="t2M-kW-VHN" secondAttribute="leading" id="icW-Xq-aw9"/>
                             </constraints>
                         </view>
-                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuF-oE-bKo" customClass="ViewGuideMenuNotSelected">
-                            <rect key="frame" x="0.0" y="250" width="600" height="50"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuF-oE-bKo" customClass="ViewGuideMenuNotSelected">
+                            <rect key="frame" x="0.0" y="250" width="768" height="50"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="aXq-OH-dDb" customClass="StackViewGuideMenuHorizontal">
-                                    <rect key="frame" x="10" y="5" width="580" height="21"/>
+                                    <rect key="frame" x="10" y="15" width="748" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qqq-Ho-jj3" customClass="LabelGuideMenuStep">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z3N-fQ-Qvd" customClass="LabelGuideMenuHeader">
-                                            <rect key="frame" x="62" y="0.0" width="518" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="686" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O9R-cJ-7AK" customClass="ButtonGuideMenu">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="50"/>
                                     <state key="normal" title="Button"/>
                                     <connections>
                                         <action selector="actionGoToStep6:" destination="-1" eventType="touchUpInside" id="hkh-Kq-dWO"/>
                                     </connections>
                                 </button>
                             </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="aXq-OH-dDb" firstAttribute="leading" secondItem="cuF-oE-bKo" secondAttribute="leading" constant="10" id="3br-6d-N9J"/>
                                 <constraint firstItem="O9R-cJ-7AK" firstAttribute="top" secondItem="cuF-oE-bKo" secondAttribute="top" id="5kp-Xp-C3q"/>
@@ -385,105 +389,105 @@
                     </constraints>
                 </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qLA-Ph-RKi" customClass="ButtonConfirmSPAJ">
-                    <rect key="frame" x="0.0" y="274" width="600" height="30"/>
+                    <rect key="frame" x="0.0" y="390" width="768" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
                         <action selector="actionConfirmAndAssignSPAJNumber:" destination="-1" eventType="touchUpInside" id="Bxf-7d-vuT"/>
                     </connections>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zh-Ka-Pyq">
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6Zh-Ka-Pyq">
                     <rect key="frame" x="60" y="344" width="480" height="226"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9i-1R-axA" customClass="LabelInformationHeader">
-                            <rect key="frame" x="20" y="20" width="42" height="21"/>
+                            <rect key="frame" x="20" y="20" width="42" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="UhE-1C-2IB">
-                            <rect key="frame" x="20" y="61" width="440" height="145"/>
+                            <rect key="frame" x="20" y="60.5" width="608" height="142.5"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wHK-iD-v1W">
-                                    <rect key="frame" x="0.0" y="0.0" width="104" height="21"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="104" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQw-Kc-oSj" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZ5-N2-8gn" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="62" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-CY-vj4">
-                                    <rect key="frame" x="0.0" y="31" width="104" height="21"/>
+                                    <rect key="frame" x="0.0" y="30.5" width="104" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1c-rj-UBu" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Za-gc-OSp" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="62" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ye9-IS-77H">
-                                    <rect key="frame" x="0.0" y="62" width="104" height="21"/>
+                                    <rect key="frame" x="0.0" y="61" width="104" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rT9-s5-3QD" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqa-oQ-gSp" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="62" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="M67-5k-7aC">
-                                    <rect key="frame" x="0.0" y="93" width="104" height="21"/>
+                                    <rect key="frame" x="0.0" y="91.5" width="104" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p13-u7-RIP" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-gz-wAc" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="62" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yN2-Jm-9uh">
-                                    <rect key="frame" x="0.0" y="124" width="104" height="21"/>
+                                    <rect key="frame" x="0.0" y="122" width="104" height="20.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfH-0M-wHx" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ayp-Zi-nZW" customClass="LabelInformationDetail">
-                                            <rect key="frame" x="62" y="0.0" width="42" height="21"/>
+                                            <rect key="frame" x="62" y="0.0" width="42" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -492,13 +496,14 @@
                         </stackView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks1-hZ-biZ">
                             <rect key="frame" x="338" y="11" width="122" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Test generate pdf"/>
                             <connections>
                                 <action selector="actionGeneratePDF:" destination="-1" eventType="touchUpInside" id="2HF-0Z-YvU"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="x9i-1R-axA" firstAttribute="top" secondItem="6Zh-Ka-Pyq" secondAttribute="top" constant="20" id="EZo-AO-cmY"/>
                         <constraint firstAttribute="trailing" secondItem="UhE-1C-2IB" secondAttribute="trailing" constant="20" id="JZ9-Q2-Z9E"/>
@@ -509,38 +514,26 @@
                     </constraints>
                 </view>
                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqI-nw-hgs">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                     <subviews>
                         <view alpha="0.55000001192092896" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="04B-Qc-Xs6">
-                            <rect key="frame" x="0.0" y="0.0" width="601" height="600"/>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                <rect key="frame" x="0.0" y="0.0" width="801" height="800"/>
-                            </variation>
+                            <rect key="frame" x="0.0" y="0.0" width="801" height="603"/>
+                            <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hzq-G5-rPQ">
-                            <rect key="frame" x="180" y="258" width="240" height="84"/>
+                            <rect key="frame" x="280" y="258" width="240" height="87"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Data" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHm-jK-yud">
-                                    <rect key="frame" x="0.0" y="57" width="240" height="21"/>
+                                    <rect key="frame" x="0.0" y="57" width="240" height="24"/>
                                     <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
-                                    <variation key="widthClass=regular" misplaced="YES">
-                                        <rect key="frame" x="0.0" y="70" width="240" height="21"/>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                        <rect key="frame" x="0.0" y="291" width="240" height="19"/>
-                                    </variation>
                                 </label>
                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="VKO-Ri-kxe">
-                                    <rect key="frame" x="102" y="8" width="37" height="37"/>
-                                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                        <rect key="frame" x="102" y="8" width="37" height="271"/>
-                                    </variation>
+                                    <rect key="frame" x="102" y="8" width="37" height="41"/>
                                 </activityIndicatorView>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="VKO-Ri-kxe" firstAttribute="top" secondItem="hzq-G5-rPQ" secondAttribute="topMargin" id="0iX-8k-M5b"/>
                                 <constraint firstItem="VKO-Ri-kxe" firstAttribute="centerY" secondItem="hzq-G5-rPQ" secondAttribute="centerY" id="11h-hN-cJy"/>
@@ -610,12 +603,9 @@
                                     <include reference="Fl7-WP-drD"/>
                                 </mask>
                             </variation>
-                            <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                                <rect key="frame" x="280" y="257" width="240" height="287"/>
-                            </variation>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="04B-Qc-Xs6" firstAttribute="leading" secondItem="WqI-nw-hgs" secondAttribute="leading" id="0RO-D2-dz2"/>
                         <constraint firstAttribute="bottom" secondItem="hzq-G5-rPQ" secondAttribute="bottom" constant="513" id="6DL-Bo-xsS"/>
@@ -704,12 +694,9 @@
                             <exclude reference="wql-AF-SWv"/>
                         </mask>
                     </variation>
-                    <variation key="heightClass=regular-widthClass=regular" misplaced="YES">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
-                    </variation>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="WqI-nw-hgs" firstAttribute="trailing" secondItem="pi5-52-vFL" secondAttribute="trailing" id="1ML-mW-9Zc"/>
                 <constraint firstAttribute="bottom" secondItem="WqI-nw-hgs" secondAttribute="bottom" id="6TW-ih-BvJ"/>
