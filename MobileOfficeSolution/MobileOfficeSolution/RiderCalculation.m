@@ -268,7 +268,8 @@
     NSDecimalNumber *DecimalMDBKK = [[NSDecimalNumber alloc]initWithDouble:MDBKK];
     NSDecimalNumber *DecimalMDBKKLoading = [[NSDecimalNumber alloc]initWithDouble:MDBKKLoading];
 
-    NSDecimalNumber *result = [waiverDecimal decimalNumberByDividingBy:waiverDecimalDivide];
+//    NSDecimalNumber *result = [waiverDecimal decimalNumberByDividingBy:waiverDecimalDivide];
+    NSDecimalNumber *result = waiverDecimalDivide;
     NSDecimalNumber *premiDecimal = [DecimalMDBKK decimalNumberByAdding:DecimalMDBKKLoading];
     //NSDecimalNumber *totalResult = [result decimalNumberByMultiplyingBy:premiDecimal withBehavior:roundUp];
     NSDecimalNumber *totalResult = [result decimalNumberByMultiplyingBy:premiDecimal];

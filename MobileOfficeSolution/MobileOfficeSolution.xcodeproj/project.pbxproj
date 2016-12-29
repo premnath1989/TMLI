@@ -17,6 +17,7 @@
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
+		C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */; };
 		C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */; };
 		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		C3E969741DDAE9FA002C26BD /* ProspectLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E969731DDAE9FA002C26BD /* ProspectLandingController.m */; };
@@ -566,6 +567,8 @@
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		C32E03FA1DD41DFD00A76D6F /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
+		C33D9FDE1E13AE86005C98C5 /* InvestmentTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentTypeViewController.h; sourceTree = "<group>"; };
+		C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvestmentTypeViewController.m; sourceTree = "<group>"; };
 		C3CFB3991DE42AE50067A160 /* SuccessAlertVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuccessAlertVC.h; sourceTree = "<group>"; };
 		C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuccessAlertVC.m; sourceTree = "<group>"; };
 		C3DB75A71DCAE491001D532F /* AnnualIncomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnnualIncomeTableViewController.h; sourceTree = "<group>"; };
@@ -1423,6 +1426,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C33D9FDD1E13AE37005C98C5 /* InvestmentType */ = {
+			isa = PBXGroup;
+			children = (
+				C33D9FDE1E13AE86005C98C5 /* InvestmentTypeViewController.h */,
+				C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */,
+			);
+			name = InvestmentType;
+			sourceTree = "<group>";
+		};
 		DE1168431DD0350F007DDA9B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1689,6 +1701,7 @@
 		DEDC5C8F1DAE34F40033FE37 /* SalesIllustration */ = {
 			isa = PBXGroup;
 			children = (
+				C33D9FDD1E13AE37005C98C5 /* InvestmentType */,
 				DE5F7AFB1DB0EC00006DC32F /* IllustrationHTML */,
 				DEDC5F041DAE48130033FE37 /* TableViewCell */,
 				DEDC5E471DAE44B40033FE37 /* RATESDBModel */,
@@ -3248,7 +3261,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = W4KPZMHY29;
+						DevelopmentTeam = 2YT8E2D9X6;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3772,6 +3785,7 @@
 				DEDC5F2B1DAE48980033FE37 /* NSString+DDXML.m in Sources */,
 				DEDC5E121DAE41FC0033FE37 /* NewGroupListing.m in Sources */,
 				DE1169131DD179B2007DDA9B /* SPAJ Add New Controller.m in Sources */,
+				C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */,
 				DEDC5DF11DAE41B30033FE37 /* NewLAViewController.m in Sources */,
 				DEDC5F201DAE486A0033FE37 /* DDXMLDocument.m in Sources */,
 				171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */,
@@ -3965,7 +3979,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W4KPZMHY29;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -3997,7 +4011,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = W4KPZMHY29;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",

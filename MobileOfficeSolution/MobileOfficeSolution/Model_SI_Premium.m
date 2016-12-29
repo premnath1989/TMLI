@@ -20,16 +20,17 @@
     
 //    CREATE TABLE "SI_Premium" ("ID" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "SINO" VARCHAR NOT NULL , "Sum_Assured" VARCHAR, "Payment_Term" VARCHAR, "Payment_Frequency" VARCHAR, "Payment_Currency" VARCHAR, "Premi_TopUp" VARCHAR, "Produk_Name" VARCHAR, "ExtraPremiumTerm" NUMERIC, "Total_Premi" VARCHAR, "TotalPremiumLoading" VARCHAR, "SubTotalPremium" DOUBLE, "CreatedDate" DATETIME, "UpdatedDate" DATETIME, "PurchaseNumber" INTEGER, "Discount" VARCHAR);
     
-    BOOL success = [database executeUpdate:@"insert into SI_Premium (SINO, Sum_Assured, Payment_Term, Payment_Frequency,PremiumPolicyA,ExtraPremiumPercentage,ExtraPremiumSum,ExtraPremiumTerm,ExtraPremiumPolicy,TotalPremiumLoading,SubTotalPremium,CreatedDate,UpdatedDate,PurchaseNumber,Discount) values (?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?,?)" ,
+//    BOOL success = [database executeUpdate:@"insert into SI_Premium (SINO, Sum_Assured, Payment_Term, Payment_Frequency,PremiumPolicyA,ExtraPremiumPercentage,ExtraPremiumSum,ExtraPremiumTerm,ExtraPremiumPolicy,TotalPremiumLoading,SubTotalPremium,CreatedDate,UpdatedDate,PurchaseNumber,Discount) values (?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?,?)" ,
+    BOOL success = [database executeUpdate:@"insert into SI_Premium (SINO, Sum_Assured, Payment_Term, Payment_Frequency,ExtraPremiumTerm,TotalPremiumLoading,SubTotalPremium,CreatedDate,UpdatedDate,PurchaseNumber,Discount) values (?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?,?)" ,
                     [dataPremium valueForKey:@"SINO"],
                     [dataPremium valueForKey:@"Sum_Assured"],
                     [dataPremium valueForKey:@"Payment_Term"],
                     [dataPremium valueForKey:@"Payment_Frequency"],
-                    [dataPremium valueForKey:@"PremiumPolicyA"],
-                    [dataPremium valueForKey:@"ExtraPremiumPercentage"],
-                    [dataPremium valueForKey:@"ExtraPremiumSum"],
+                    //[dataPremium valueForKey:@"PremiumPolicyA"],
+//                    [dataPremium valueForKey:@"ExtraPremiumPercentage"],
+//                    [dataPremium valueForKey:@"ExtraPremiumSum"],
                     [dataPremium valueForKey:@"ExtraPremiumTerm"],
-                    [dataPremium valueForKey:@"ExtraPremiumPolicy"],
+//                    [dataPremium valueForKey:@"ExtraPremiumPolicy"],
                     [dataPremium valueForKey:@"TotalPremiumLoading"],
                     [dataPremium valueForKey:@"SubTotalPremium"],
                     [dataPremium valueForKey:@"PurchaseNumber"],
