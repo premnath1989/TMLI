@@ -6214,9 +6214,9 @@ int maxGycc = 0;
     @try {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             NSMutableDictionary* dictForCalculate=[[NSMutableDictionary alloc]initWithDictionary:[arrayDataRiders objectAtIndex:2]];
-            [dictForCalculate setObject:_extraPremiPercentField.text forKey:@"ExtraPremiPerCent"];
-            [dictForCalculate setObject:_extraPremiNumberField.text forKey:@"ExtraPremiPerMil"];
-            [dictForCalculate setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
+            [dictForCalculate setObject:_extraPremiPercentField.text?:@"0" forKey:@"ExtraPremiPerCent"];
+            [dictForCalculate setObject:_extraPremiNumberField.text?:@"0" forKey:@"ExtraPremiPerMil"];
+            [dictForCalculate setObject:_masaExtraPremiField.text?:@"0" forKey:@"MasaExtraPremi"];
             
             if (([[_dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])||([[_dictionaryPOForInsert valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])){
                 [self tiePersonType:1];
@@ -6245,11 +6245,9 @@ int maxGycc = 0;
             
             [dictBebasPremi setObject:riderPremiFormatted forKey:@"PremiRp"];
             [dictBebasPremi setObject:riderPremiLoadingFormatted forKey:@"ExtraPremiRp"];
-            [dictBebasPremi setObject:_extraPremiPercentField.text forKey:@"ExtraPremiPerCent"];
-            [dictBebasPremi setObject:_extraPremiNumberField.text forKey:@"ExtraPremiPerMil"];
-            [dictBebasPremi setObject:_masaExtraPremiField.text forKey:@"MasaExtraPremi"];
-            
-
+            [dictBebasPremi setObject:_extraPremiPercentField.text?:@"0" forKey:@"ExtraPremiPerCent"];
+            [dictBebasPremi setObject:_extraPremiNumberField.text?:@"0" forKey:@"ExtraPremiPerMil"];
+            [dictBebasPremi setObject:_masaExtraPremiField.text?:@"0" forKey:@"MasaExtraPremi"];
             
            
             [myTableView reloadData];

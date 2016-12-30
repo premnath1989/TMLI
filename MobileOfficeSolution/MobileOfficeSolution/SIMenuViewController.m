@@ -3550,6 +3550,11 @@ BOOL NavShow3;
     [self.myTableView reloadData];
     if ([[dataPO valueForKey:@"LA_Name"] length] > 0){
         selfRelation = YES;
+        
+        if ([dictionaryPOForInsert valueForKey:@"SINO"] == nil) {
+            NSString *newSiNo = [self generateSINO];
+            [dictionaryPOForInsert setValue:newSiNo forKey:@"SINO"];
+        }
         [self clearData2ndLA];
         dictionaryPOForInsert = [NSMutableDictionary dictionaryWithDictionary:dataPO];
         dictionaryMasterForInsert = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[dictionaryPOForInsert valueForKey:@"SINO"],@"SINO",@"1.1",@"SI_Version",@"Not Created",@"ProposalStatus", nil];
@@ -3674,6 +3679,7 @@ BOOL NavShow3;
         }
     }
     else{
+        
         NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
         f.numberStyle = NSNumberFormatterDecimalStyle;
         NSNumber *myNumber = [f numberFromString:[newDictionaryForBasicPlan valueForKey:@"Sum_Assured"]];
@@ -3749,10 +3755,15 @@ BOOL NavShow3;
     NSMutableDictionary *mutableMDBKK=[[NSMutableDictionary alloc]initWithDictionary:dictMDBKK];
     NSMutableDictionary *mutableMDKK=[[NSMutableDictionary alloc]initWithDictionary:dictMDKK];
     NSMutableDictionary *mutableBP=[[NSMutableDictionary alloc]initWithDictionary:dictBasicPremi];
+    NSString *newSiNo;
+     if ([dictionaryPOForInsert valueForKey:@"SINO"] == nil) {
+          newSiNo = [self generateSINO];
+         [dictionaryPOForInsert setValue:newSiNo forKey:@"SINO"];
+     }
     
-    [mutableMDBKK setObject:[dictionaryPOForInsert valueForKey:@"SINO"] forKey:@"SINO"];
-    [mutableMDKK setObject:[dictionaryPOForInsert valueForKey:@"SINO"] forKey:@"SINO"];
-    [mutableBP setObject:[dictionaryPOForInsert valueForKey:@"SINO"] forKey:@"SINO"];
+    [mutableMDBKK setObject:[dictionaryPOForInsert valueForKey:@"SINO"]?:newSiNo forKey:@"SINO"];
+    [mutableMDKK setObject:[dictionaryPOForInsert valueForKey:@"SINO"]?:newSiNo forKey:@"SINO"];
+    [mutableBP setObject:[dictionaryPOForInsert valueForKey:@"SINO"]?:newSiNo forKey:@"SINO"];
     if ([_modelSIRider getRiderCount:[dictionaryPOForInsert valueForKey:@"SINO"] RiderCode:[dictMDBKK valueForKey:@"RiderCode"]]<=0){
         [_modelSIRider saveRider:mutableMDBKK];
     }
@@ -4740,6 +4751,8 @@ BOOL NavShow3;
     
     
     return [NSString stringWithFormat:@"%@%@",_AgentCode,dateString];
+    
+    
 }
 
 

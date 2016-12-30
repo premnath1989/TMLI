@@ -732,7 +732,7 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(-5, 0, 785, 1004);
+//    self.view.frame = CGRectMake(-5, 0, 785, 1004);
     [super viewWillAppear:animated];
     [self setMHIMessage];
 }

@@ -79,7 +79,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     sortMethod=@"DESC";
     
 //    [NoIlustrasi setFont:[UIFont fontWithName:@"HelveticaLTStd-UltraComp" size:25]];
-    themeColour = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
+//    themeColour = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     fontType = [UIFont fontWithName:@"TreBuchet MS" size:16.0f];
     
 	AppDelegate *appDel= (AppDelegate*)[[UIApplication sharedApplication] delegate ];
@@ -90,8 +90,8 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     outletDateFrom.property = 1;
     outletDateTo.property = 1;
     
-    UIElementsManagement *uiManagement = [[UIElementsManagement alloc]init:self.view themeColour:themeColour font:fontType];
-    [uiManagement setupUI];
+//    UIElementsManagement *uiManagement = [[UIElementsManagement alloc]init:self.view themeColour:themeColour font:fontType];
+//    [uiManagement setupUI];
     
     //set TableView header design
     [self setupTableColumn];
