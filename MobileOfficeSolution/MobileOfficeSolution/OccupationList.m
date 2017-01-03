@@ -56,7 +56,10 @@
     sqlite3_stmt *statement;
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){        
 		//NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpCode, OccpDesc, Class FROM Adm_Occp_Loading_Penta where status = 'A' ORDER BY OccpDesc ASC"];
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT occp_Code, OccpDesc, OccpClass FROM %@ where status = 'A' ORDER BY OccpDesc ASC", TABLE_OCCP];
+        
+        //modified by Faiz
+        //NSString *querySQL = [NSString stringWithFormat:@"SELECT occp_Code, OccpDesc, OccpClass FROM %@ where status = 'A' ORDER BY OccpDesc ASC", TABLE_OCCP];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT occp_Code, OccpDesc, COALESCE(OccpClass,NULL,0) as OccpClass FROM %@ where status = 'A' ORDER BY OccpDesc ASC", TABLE_OCCP];
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
         {
@@ -66,7 +69,7 @@
             while (sqlite3_step(statement) == SQLITE_ROW){
                 OccpCode = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
                 OccpDesc = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
-                OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)];
+                OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 2)]?:@"";
                 
                 [_OccupDesc addObject:OccpDesc];
                 [_OccupCode addObject:OccpCode];
