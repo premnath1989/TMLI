@@ -2805,7 +2805,7 @@ BOOL NavShowP;
 //    [self.SIDatePopover presentPopoverFromRect:[sender bounds]  inView:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
 }
 
-- (IBAction)btnOccup:(id)sender
+- (IBAction)btnOccup:(UIButton *)sender
 {
     [self resignFirstResponder];
     [self.view endEditing:YES];

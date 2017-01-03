@@ -42,6 +42,9 @@
     NSMutableDictionary* newDictionaryForBasicPlan;
     bool selfRelation;
     int lastIndexSelected;
+    
+    //added by Faiz for New Machanasime in save data
+    NSMutableDictionary* dictParentPOLAData;
 }
 
 @end
@@ -225,6 +228,8 @@ BOOL NavShow3;
         [self LoadViewController];
     }
     isFirstLoad = NO;
+    
+    [self setInitialPOLADictionary];
 }
 
 
@@ -2818,6 +2823,56 @@ BOOL NavShow3;
     }
 }
 
+#pragma mark changeSection
+-(IBAction)actionShowPolicyHolder:(id)sender{
+    if (_LAController == nil) {
+        self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
+        _LAController.delegate = self;
+        self.LAController.requestSINo = [self.requestSINo description];
+        self.LAController.requesteProposalStatus = eProposalStatus;
+        self.LAController.EAPPorSI = [self.EAPPorSI description];
+        [self.RightView addSubview:self.LAController.view];
+    }else{
+        self.LAController.requestSINo = [self.requestSINo description];
+        self.LAController.requesteProposalStatus = eProposalStatus;
+        self.LAController.EAPPorSI = [self.EAPPorSI description];
+        [self.LAController.view removeFromSuperview];
+        [self.RightView addSubview:self.LAController.view];
+    }
+}
+
+-(IBAction)actionShowLifeAssured:(id)sender{
+    if (!_SecondLAController) {
+        self.SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
+        _SecondLAController.delegate = self;
+        self.SecondLAController.requestLAIndexNo = getLAIndexNo;
+        self.SecondLAController.EAPPorSI = [self.EAPPorSI description];
+        self.SecondLAController.requestCommDate = getCommDate;
+        self.SecondLAController.requesteProposalStatus = eProposalStatus;
+        [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
+        self.SecondLAController.requestSINo = [self.requestSINo description];
+        [self.RightView addSubview:self.SecondLAController.view];
+    } else {
+        [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
+        self.SecondLAController.requestSINo = [self.requestSINo description];
+        [self.RightView addSubview:self.SecondLAController.view];
+    }
+}
+
+-(IBAction)actionShowBasicPlan:(id)sender{
+    if (!_BasicController) {
+        self.BasicController = [self.storyboard instantiateViewControllerWithIdentifier:@"BasicPlanView"];
+        _BasicController.delegate = self;
+        self.BasicController.EAPPorSI = [self.EAPPorSI description];
+        [self.BasicController loadData];
+        [self.RightView addSubview:self.BasicController.view];
+    } else {
+        self.BasicController.EAPPorSI = [self.EAPPorSI description];
+        [self.BasicController loadData];
+        [self.RightView addSubview:self.BasicController.view];
+    }
+}
+
 #pragma mark - table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -2852,174 +2907,17 @@ BOOL NavShow3;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"cell last index %i",lastIndexSelected);
-	/*static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.textLabel.numberOfLines = 0;
-    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    if (PlanEmpty) {        
-        cell.textLabel.text = [ListOfSubMenu objectAtIndex:indexPath.row];        
-    } else {
-        if (indexPath.row == 5) {
-            //change the rider count on the left tab bar
-            cell.textLabel.text = [[ListOfSubMenu objectAtIndex:indexPath.row] stringByAppendingFormat:@"(%@)", RiderCount ];
-        } else {
-            cell.textLabel.text = [ListOfSubMenu objectAtIndex:indexPath.row];
-        }
-    }
-        
-    //--detail text label
 	
-    if (indexPath.row == 0) {
-       if (NameLA.length != 0)
-        {
-//            NSString *str = [[NSString alloc] initWithFormat:@"1.Pemegang Polis"];
-//            str = [str substringToIndex:MIN(30, [str length])];
-//            cell.detailTextLabel.text = str;
-        } else {
-           // cell.detailTextLabel.text = @"";
-        }
-    } else if (indexPath.row == 1) {
-        if (Name2ndLA.length != 0) {
-            NSString *str = [[NSString alloc] initWithFormat:@"%@",Name2ndLA];
-            str = [str substringToIndex:MIN(30, [str length])];
-			
-            cell.detailTextLabel.text = str;
-        } else {
-            cell.detailTextLabel.text = @"";
-        }
-    } else if (indexPath.row == 2) {
-        if (NamePayor.length != 0) {
-            NSString *str = [[NSString alloc] initWithFormat:@"%@",NamePayor];
-            str = [str substringToIndex:MIN(30, [str length])];
-            cell.detailTextLabel.text = str;
-        } else {
-            cell.detailTextLabel.text = @"";
-        }
-    } else {
-        cell.detailTextLabel.text = @"";
-    }
-    
-    cell.textLabel.textColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor clearColor];
-    
-    UIView *bgColorView = [[UIView alloc] init];
-    bgColorView.backgroundColor = [UIColor orangeColor];
-    [cell setSelectedBackgroundView:bgColorView];
-    
-    if (cell.textLabel.text.length > 25) {
-        cell.textLabel.font = [UIFont fontWithName:@"Trebuchet MS" size:15];
-    } else {
-        cell.textLabel.font = [UIFont fontWithName:@"Trebuchet MS" size:18];
-    }
-    cell.textLabel.textAlignment = NSTextAlignmentLeft;
-    
-    cell.detailTextLabel.textColor = [UIColor whiteColor];
-    cell.detailTextLabel.font = [UIFont fontWithName:@"Trebuchet MS" size:12];
-    cell.detailTextLabel.textAlignment = NSTextAlignmentLeft;
-    
-	if (self.myTableView.frame.size.height < 400.00 && indexPath.row == 3 ) {
-		cell.textLabel.backgroundColor = [UIColor clearColor];
-		cell.detailTextLabel.backgroundColor = [UIColor clearColor ];
-		cell.contentView.backgroundColor = [UIColor clearColor];
-//		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-	} else {
-//		cell.selectionStyle = UITableViewCellSelectionStyleBlue;
-	}
-    
-    UIView *lineView = [[UIView alloc]initWithFrame:CGRectMake(0.0f, cell.contentView.bounds.size.height - 1.0f, cell.contentView.bounds.size.width, 1.0f)];
-    lineView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    lineView.backgroundColor = [UIColor blackColor];
-     
-     
-    
-    [cell.contentView addSubview:lineView];*/
-    
-    
     static NSString *CellIdentifier = @"Cell";
     SIMenuTableViewCell *cell = (SIMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SIMenuTableViewCell" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-//    UIView *bgColorView = [[UIView alloc] init];
-    if (indexPath.row<[arrayIntValidate count]){
-        if ([[arrayIntValidate objectAtIndex:indexPath.row] isEqualToString:@"1"]){
-//            [cell setBackgroundColor:[UIColor colorWithRed:88.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1.0]];
-        }
-        else{
-//            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
-        }
-    }
-    else{
-//            [cell setBackgroundColor:[UIColor colorWithRed:204.0/255.0 green:203.0/255.0 blue:205.0/255.0 alpha:1.0]];
-    }
     
-    
-    
-     if (indexPath.row == 0)
-         {
-             
-             [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-             [cell.BtnTertanggung addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-             [cell.BtnAsuransiDasar addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-             
-             [cell.btnPemegangPolis setEnabled:YES];
-             [cell.BtnTertanggung setEnabled:YES];
-             [cell.BtnAsuransiDasar setEnabled:YES];
-             
-             
-             
-             
-              //(0,0,342, 60)
-//             UIButton *scanQRCodeButton = [UIButton buttonWithType:UIButtonTypeSystem];
-//             scanQRCodeButton.frame = CGRectMake(0.0f, 0.0f, 85,85);
-//             UIImage *img = [UIImage imageNamed:@"shape_guideright_complete"];
-//             [scanQRCodeButton setBackgroundImage:img forState:UIControlStateNormal];
-//             [scanQRCodeButton setTitle:@"" forState:UIControlStateNormal];
-//             [cell addSubview:scanQRCodeButton];
-             
-//             if (cell.accessoryView == nil)
-//             {
-//                 
-//                 ButtontoClick = [UIButton buttonWithType:UIButtonTypeCustom];
-//                 UIImage *btnImage = [UIImage imageNamed:@"shape_guideright_complete"];
-//                 [ButtontoClick setImage:btnImage forState:UIControlStateNormal];
-//    
-//                 cell.accessoryView = ButtontoClick;
-//             }
-             
-             
-//             cell.IconPemegangPolis.image = [UIImage imageNamed:@"shape_guideright_complete"];
-//             cell.PemegangPolis.backgroundColor = [UIColor redColor];
-           //  cell.PemengangPolisButton.backgroundColor = [UIColor redColor];
-//             cell.LabelOne.textColor = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
-             
-             //[UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
-            
- //            [cell.imageView setFrame:CGRectMake(-70.0,0,self.view.frame.size.width,self.view.frame.size.width)];
-  //           [cell setBackgroundColor: [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0]];
- //
-             
-             
-             
-         }
-    
-    if (indexPath.row == 1){
-        if (selfRelation){
-            [cell setUserInteractionEnabled:NO];
-        }
-        else{
-            [cell setUserInteractionEnabled:YES];
-        }
-    }
-    
-    [cell.btnPemegangPolis addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.BtnTertanggung addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.BtnAsuransiDasar addTarget:self action:@selector(showviewControllerFromMenu:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.btnPemegangPolis addTarget:self action:@selector(actionShowPolicyHolder:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnTertanggung addTarget:self action:@selector(actionShowLifeAssured:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnAsuransiDasar addTarget:self action:@selector(actionShowBasicPlan:) forControlEvents:UIControlEventTouchUpInside];
     
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
@@ -3039,56 +2937,6 @@ BOOL NavShow3;
     [cell.btnPemegangPolis setEnabled:YES];
     [cell.BtnTertanggung setEnabled:YES];
     [cell.BtnAsuransiDasar setEnabled:YES];
-
-    
-//    bgColorView.backgroundColor = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
-    
-//    [cell setSelectedBackgroundView:bgColorView];
-    
-    
-   
-    
-    if (indexPath.row != 2){
-//        [cell.btnPemegangPolis setEnabled:false];
-      
-        
-    }
-    else{
-        if (lastIndexSelected != 2){
-//            [cell.btnPemegangPolis setEnabled:false];
-            
-        }
-//        else{
-//            if (indexPath.row == 2){
-//                [cell.btnPemegangPolis setEnabled:true];
-//                if (([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])||([[dictionaryPOForInsert valueForKey:@"ProductName"] isEqualToString:@"BCA Life Keluargaku"])){
-//                    [cell.BtnTertanggung setEnabled:true];
-//                }
-//                else{
-//                    [cell.BtnTertanggung setEnabled:false];
-//                }
-//                [cell.BtnAsuransiDasar setEnabled:true];
-//            }
-//        }
-    }
-
-    
-    
-    
-    if ([[_NumberListOfSubMenu objectAtIndex:indexPath.row] isEqualToString:@"0"]){
-//        [cell.labelNumber setText:@""];
-//        [cell.labelDesc setText:@""];
-//        [cell.labelWide setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
-        
-        
-        
-    }
-    else{
-//        [cell.labelNumber setText:[_NumberListOfSubMenu objectAtIndex:indexPath.row]];
-//        [cell.labelDesc setText:[ListOfSubMenu objectAtIndex:indexPath.row]];
-//        [cell.labelWide setText:@""];
-    }
-    
     return cell;
 }
 
@@ -5885,4 +5733,31 @@ NSString *prevPlan;
     [self LoadIlustrationPage];
 }
 
+#pragma mark New Save Method
+-(NSString *)getRunnigSINumber{
+    if (!self.requestSINo){
+        self.requestSINo = [self generateSINO];
+    }
+    return self.requestSINo;
+}
+
+-(void)setInitialPOLADictionary{
+    dictParentPOLAData = [[NSMutableDictionary alloc]initWithDictionary:[_modelSIPOData getPOLADataFor:[self.requestSINo description]]];
+}
+
+-(void)setPOLADictionary:(NSMutableDictionary *)dictPOLAData{
+    dictParentPOLAData = [[NSMutableDictionary alloc]initWithDictionary:dictPOLAData];
+}
+
+-(NSMutableDictionary *)getPOLADictionary{
+    return dictParentPOLAData ;
+}
+
+#pragma mark Save SIMaster
+
+-(void)saveSIMaster{
+    NSMutableDictionary *dictionaryMasterInsert = [[NSMutableDictionary alloc]initWithObjectsAndKeys:[[self getPOLADictionary] valueForKey:@"SINO"],@"SINO",@"1.1",@"SI_Version",@"Not Created",@"ProposalStatus", nil];
+    
+    [_modelSIMaster saveSIMaster:dictionaryMasterInsert];
+}
 @end

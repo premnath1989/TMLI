@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
-
+#import "String.h"
 
 @protocol OccupationListDelegate
 - (void)OccupDescSelected:(NSString *) OccupDesc;

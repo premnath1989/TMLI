@@ -28,6 +28,9 @@
 -(void)setIsSecondLaNeeded:(BOOL)temp;
 -(NSDictionary *)getDataPO;
 -(void)saveSecondLA:(NSDictionary *)dataLA;
+
+-(void)setPOLADictionary:(NSMutableDictionary *)NSDictionary;
+-(NSMutableDictionary *)getPOLADictionary;
 @end
 
 @interface SecondLAViewController : UIViewController <ListingTbViewControllerDelegate,UIPopoverControllerDelegate, DateViewControllerDelegate, OccupationListDelegate, UITextFieldDelegate> {

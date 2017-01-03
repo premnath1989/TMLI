@@ -33,6 +33,12 @@
 -(void)setQuickQuoteValue:(BOOL)value;
 -(void)saveNewLA:(NSDictionary *)dataPO;
 -(void)setPODictionaryWhenLoadFromList:(NSDictionary *)dataPO;
+
+-(void)setPOLADictionary:(NSMutableDictionary *)NSDictionary;
+-(NSMutableDictionary *)getPOLADictionary;
+-(void)saveSIMaster;
+-(NSString *)getRunnigSINumber;
+
 @end
 
 @interface NewLAViewController : UIViewController<UITextFieldDelegate,UIPopoverControllerDelegate,ListingTbViewControllerDelegate,DateViewControllerDelegate,OccupationListDelegate,PlanListDelegate>{

@@ -13,9 +13,12 @@
 #import "TabValidation.h"
 #import "UIView+viewRecursion.h"
 #import "String.h"
-
+#import "Formatter.h"
+#import "Alert.h"
 #import "LoginDBManagement.h"
 @interface SecondLAViewController (){
+    Formatter* formatter;
+    Alert* alert;
     ColorHexCode *CustomColor;
     int clientProfileID;
 }
@@ -56,7 +59,8 @@ id dobtemp;
     appDelegate = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
 	
     _modelSIPOData = [[ModelSIPOData alloc]init];
-    
+    formatter = [[Formatter alloc]init];
+    alert = [[Alert alloc]init];
     self.view.backgroundColor=[UIColor whiteColor];//[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg10.jpg"]];
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
@@ -457,7 +461,7 @@ id dobtemp;
 }
 
 #pragma mark - Data Load from listing added by faiz
--(void)loadDataFromList{
+/*-(void)loadDataFromList{
     @try {
         _modelSIPOData = [[ModelSIPOData alloc]init];
         NSDictionary* dictPOData=[[NSDictionary alloc]initWithDictionary:[_modelSIPOData getPO_DataFor:[self.requestSINo description]]];
@@ -507,7 +511,7 @@ id dobtemp;
     @finally {
         
     }
-}
+}*/
 
 - (void)passValidationCheck{
     if(![_BtnTanggalLahir.titleLabel.text isEqualToString:@"--Please Select--"] && ![nameField.text isEqualToString:@""]&& ![btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] && !sexSegment.selected){
@@ -1693,21 +1697,7 @@ id dobtemp;
 
 -(BOOL)validateSave
 {
-    /*if (nameField.text.length <= 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"2nd Life Assured Name is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-    } else if (OccpCode.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Please select an Occupation Description." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-    } else if (smoker.length == 0) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Smoker is required." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-    } else if (age < 16) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Age must be at least 16 years old." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-        [alert show];
-    } else {
-        return YES;
-    }*/
+    
     if (_quickQuoteEnabled){
         return [self validationDataLifeAssured];
     }
@@ -1716,6 +1706,151 @@ id dobtemp;
     }
     return NO;
 }
+
+#pragma mark save with new method
+-(BOOL)ValidateSave{
+    NSString *namaTertanggung = nameField.text;
+    NSString *tanggalLahir = DOBField.text;
+    //jenis kelamin
+    //perokok
+    //NSString *pekerjaan = buttonOccupation.currentTitle;
+    
+    NSString *alertNamaTertanggung = @"Nama Tertanggung harus diisi.";
+    NSString *alertTanggalLahir = @"Tanggal Lahir Tertanggung harus diisi";
+    NSString *alertJenisKelamin = @"Jenis kelamin Tertanggung harus diisi.";
+    NSString *alertPerokok = @"Status Merokok Tertanggung harus diisi.";
+    NSString *alertPekerjaan = @"Pekerjaan Tertanggung harus diisi.";
+    NSString *alertLAAge=@"Usia tidak boleh kurang dari 180 hari atau lebih dari 70 tahun";
+    
+    UIAlertController *alertvalidation;
+    
+    int laAge = [formatter calculateAge:DOBField.text];
+    int differenceDay = [formatter calculateDifferenceDay:DOBField.text];
+    
+    if ([namaTertanggung length]<=0){
+        alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertNamaTertanggung];
+        [self presentViewController:alertvalidation animated:YES completion:nil];
+        return false;
+    }
+    if ([tanggalLahir isEqualToString:@"(null)"]||[tanggalLahir isEqualToString:@" - SELECT -"]||[tanggalLahir isEqualToString:@"- SELECT -"]||[tanggalLahir isEqualToString:@"--Please Select--"] ||[tanggalLahir length]<=0){
+        alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertTanggalLahir];
+        [self presentViewController:alertvalidation animated:YES completion:nil];
+        return false;
+    }
+    if ((differenceDay<180)||(laAge>70)){
+        UIAlertController *alertEmptyImage = [alert alertInformation:@"Peringatan" stringMessage:alertLAAge];
+        [self presentViewController:alertEmptyImage animated:YES completion:nil];
+        return false;
+    }
+    if (sexSegment.selectedSegmentIndex == UISegmentedControlNoSegment){
+        alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertJenisKelamin];
+        [self presentViewController:alertvalidation animated:YES completion:nil];
+        return false;
+    }
+    /*if (segmentSmoker.selectedSegmentIndex == UISegmentedControlNoSegment){
+        alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertPerokok];
+        [self presentViewController:alertvalidation animated:YES completion:nil];
+        return false;
+    }*/
+    /*if ([pekerjaan isEqualToString:@"(null)"]||[pekerjaan isEqualToString:@" - SELECT -"]||[pekerjaan isEqualToString:@"- SELECT -"]||[pekerjaan isEqualToString:@"--Please Select--"] ||[pekerjaan length]<=0){
+        alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertPekerjaan];
+        [self presentViewController:alertvalidation animated:YES completion:nil];
+        return false;
+    }*/
+    
+    return true;
+}
+
+-(void)loadDataFromList{
+    NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]init];
+    dictPOLAData = [_delegate getPOLADictionary];
+    NSNumber* numberBoolQuickQuote;
+    if ([dictPOLAData count]!=0){
+        numberBoolQuickQuote = [NSNumber numberWithInt:[[dictPOLAData valueForKey:@"QuickQuote"] intValue]];
+        
+        /*if ([numberBoolQuickQuote intValue]==0){
+            [self QuickQuoteFunc:false];
+        }
+        else{
+            [self QuickQuoteFunc:true];
+        }*/
+        
+        ageField.text = [dictPOLAData valueForKey:@"LA_Age"];
+        nameField.text = [dictPOLAData valueForKey:@"LA_Name"];
+        [btnDOB setTitle:[dictPOLAData valueForKey:@"LA_DOB"] forState:UIControlStateNormal];
+        [DOBField setText:[dictPOLAData valueForKey:@"LA_DOB"]];
+        //[buttonOccupation setTitle:[dictPOLAData valueForKey:@"LA_Occp"] forState:UIControlStateNormal];
+        
+        
+        sex = [dictPOLAData valueForKey:@"LA_Gender"];
+        smoker = [dictPOLAData valueForKey:@"LA_Smoker"];
+        
+        if ([sex isEqualToString:@"MALE"]){
+            [sexSegment setSelectedSegmentIndex:0];
+        }
+        else if ([sex isEqualToString:@"FEMALE"]){
+            [sexSegment setSelectedSegmentIndex:1];
+        }
+        else{
+            [sexSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
+        }
+        
+        /*if ([smoker isEqualToString:@"Y"]){
+            [smokerSegment setSelectedSegmentIndex:0];
+        }
+        else{
+            [smokerSegment setSelectedSegmentIndex:1];
+        }*/
+        
+        //occupationDesc = [dictPOLAData valueForKey:@"LA_Occp"];
+        //occupationCode = [dictPOLAData valueForKey:@"LA_OccpCode"];
+        clientProfileID = [[dictPOLAData valueForKey:@"LA_ClientID"] intValue];
+        //productCode = [dictPOLAData valueForKey:@"ProductCode"];
+        //relWithLA = [dictPOLAData valueForKey:@"RelWithLA"];
+        
+        /*if ([occupationDesc isEqualToString:@""]){
+            [buttonDOB setTitle:@"--Please Select--" forState:UIControlStateNormal];
+            [buttonOccupation setTitle:@"--Please Select--" forState:UIControlStateNormal];
+            [segmentSmoker setSelectedSegmentIndex:UISegmentedControlNoSegment];
+            [segmentSex setSelectedSegmentIndex:UISegmentedControlNoSegment];
+        }*/
+    }
+    else{
+        //[textIllustrationNumber setText:[delegate getRunnigSINumber]];
+        
+    }
+}
+
+-(void)setPOLADictionary{
+    NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]initWithDictionary:[_delegate getPOLADictionary]];
+    [dictPOLAData setObject:[NSNumber numberWithInt:clientProfileID] forKey:@"LA_ClientID"];
+    [dictPOLAData setObject:nameField.text forKey:@"LA_Name"];
+    [dictPOLAData setObject:DOBField.text forKey:@"LA_DOB"];
+    [dictPOLAData setObject:ageField.text forKey:@"LA_Age"];
+    [dictPOLAData setObject:sex forKey:@"LA_Gender"];
+    [dictPOLAData setObject:@"" forKey:@"LA_OccpCode"];
+    [dictPOLAData setObject:@"" forKey:@"LA_Occp"];
+    
+    [dictPOLAData setObject:@"" forKey:@"LA_Smoker"];
+    [dictPOLAData setObject:@"" forKey:@"LA_CommencementDate"];
+    [dictPOLAData setObject:@"" forKey:@"LA_MonthlyIncome"];
+    
+    [_delegate setPOLADictionary:dictPOLAData];
+}
+
+-(IBAction)actionSaveData:(UIButton *)sender{
+    if ([self ValidateSave]){
+        //set the updated data to parent
+        [self setPOLADictionary];
+        
+        //get updated data from parent and save it.
+        [_modelSIPOData savePOLAData:[_delegate getPOLADictionary]];
+        
+        //changePage
+        //[delegate showUnitLinkModuleAtIndex:[NSIndexPath indexPathForRow:2 inSection:0]];
+    }
+}
+
 #pragma mark - STORE 2nd LA BEFORE SAVE INTO DATABASE
 -(BOOL)performUpdateData//update second la while looping all section
 {
