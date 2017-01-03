@@ -16,6 +16,7 @@
 		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
+		433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
 		C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */; };
 		C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */; };
@@ -565,6 +566,8 @@
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
+		433CB4121E1B8F1400D6D4E9 /* ModelSIBasicPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIBasicPlan.h; sourceTree = "<group>"; };
+		433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIBasicPlan.m; sourceTree = "<group>"; };
 		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		C32E03FA1DD41DFD00A76D6F /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		C33D9FDE1E13AE86005C98C5 /* InvestmentTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentTypeViewController.h; sourceTree = "<group>"; };
@@ -1903,6 +1906,7 @@
 				DEDC5DB81DAE41680033FE37 /* Illustration Signature */,
 				DEDC5DB61DAE41570033FE37 /* Heritage Calculation */,
 				DEDC5DB91DAE417A0033FE37 /* BasicPlanViewController.h */,
+				DEDC5DBC1DAE417A0033FE37 /* BasicPlanViewController.m */,
 				172DEF871DD55D0C00CDED49 /* CriticalIlnessViewController.h */,
 				172DEF881DD55D0C00CDED49 /* CriticalIlnessViewController.m */,
 				172DEF8A1DD573FC00CDED49 /* HospitalCashPlanViewController.h */,
@@ -1915,7 +1919,6 @@
 				171BD3B61DDEDB7E005CC058 /* WaiverRiderViewController.m */,
 				DEDC5DBA1DAE417A0033FE37 /* IlustrationViewController.h */,
 				DEDC5DBB1DAE417A0033FE37 /* IlustrationViewController.m */,
-				DEDC5DBC1DAE417A0033FE37 /* BasicPlanViewController.m */,
 				DEDC5DBD1DAE417A0033FE37 /* HLViewController.h */,
 				DEDC5DBE1DAE417A0033FE37 /* HLViewController.m */,
 				DEDC5DBF1DAE417A0033FE37 /* PremiumViewController.h */,
@@ -2136,6 +2139,8 @@
 		DEDC5CE01DAE39270033FE37 /* MOSDB Model */ = {
 			isa = PBXGroup;
 			children = (
+				433CB4121E1B8F1400D6D4E9 /* ModelSIBasicPlan.h */,
+				433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */,
 				DEDC5CE11DAE39420033FE37 /* ModelCFFAnswers.h */,
 				DEDC5CE21DAE39420033FE37 /* ModelCFFAnswers.m */,
 				DEDC5CE31DAE39420033FE37 /* Model_SI_Premium.m */,
@@ -3552,6 +3557,7 @@
 				DEDC5D981DAE3FBB0033FE37 /* SpinnerUtilities.m in Sources */,
 				DEDC5F6B1DAE49AE0033FE37 /* ReaderThumbQueue.m in Sources */,
 				DEDC5DF81DAE41B30033FE37 /* Pembelianke.m in Sources */,
+				433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */,
 				17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */,
 				DEDC5E4A1DAE44C60033FE37 /* RateModel.m in Sources */,
 				DEDC5DB21DAE40880033FE37 /* FSVerticalTabBarButton.m in Sources */,

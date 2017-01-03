@@ -18,6 +18,7 @@
 #import "UIView+viewRecursion.h"
 #import "LoginDBManagement.h"
 #import "String.h"
+#import "ModelSIBasicPlan.h"
 
 @interface BasicPlanViewController (){
     ColorHexCode *CustomColor;
@@ -98,6 +99,8 @@ bool WPTPD30RisDeleted = FALSE;
     riderCalculation = [[RiderCalculation alloc]init];
     classFormatter=[[Formatter alloc]init];
     heritageCalculation = [[HeritageCalculation alloc]init];
+    modelSIBasicPlan = [[ModelSIBasicPlan alloc]init];
+    
     discountPembelian = 0;
 
     CustomColor = [[ColorHexCode alloc] init ];
@@ -6374,4 +6377,49 @@ bool WPTPD30RisDeleted = FALSE;
     [self.planPopover setPopoverContentSize:CGSizeMake(350.0f, 200.0f)];
     [self.planPopover presentPopoverFromRect:rect  inView:self.view permittedArrowDirections:UIPopoverArrowDirectionDown animated:YES];
 }
+
+#pragma mark saveData New Method
+-(void)setBasicPlanDictionary{
+    NSMutableDictionary* dictBasicPlanData = [[NSMutableDictionary alloc]init];
+    [dictBasicPlanData setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+    [dictBasicPlanData setObject:@"" forKey:@"PaymentMode"];
+    [dictBasicPlanData setObject:@"" forKey:@"PreferredPremium"];
+    [dictBasicPlanData setObject:_PremiTopUpRegularField.text forKey:@"RegularTopUp"];
+    [dictBasicPlanData setObject:_basicPremiField.text forKey:@"Premium"];
+    [dictBasicPlanData setObject:yearlyIncomeField.text forKey:@"SumAssured"];
+    [dictBasicPlanData setObject:@"" forKey:@"PremiumHolidayTerm"];
+    [dictBasicPlanData setObject:@"" forKey:@"TotalUnAppliedPremium"];
+    [dictBasicPlanData setObject:@"" forKey:@"TargetValue"];
+    [dictBasicPlanData setObject:@"" forKey:@"ExtraPremiumPercentage"];
+    [dictBasicPlanData setObject:@"" forKey:@"ExtraPremiumMil"];
+    [dictBasicPlanData setObject:@"" forKey:@"ExtraPremiumTerm"];
+    [dictBasicPlanData setObject:_TotalPremiField.text forKey:@"TotalPremium"];
+    [dictBasicPlanData setObject:_RencanaButton.currentTitle forKey:@"Payment_Term"];
+    [dictBasicPlanData setObject:_frekuensiPembayaranButton.currentTitle forKey:@"Payment_Frequency"];
+    [dictBasicPlanData setObject:_MataUangPembayaran.currentTitle forKey:@"PaymentCurrency"];
+    [_delegate setBasicPlanDictionary:dictBasicPlanData];
+}
+
+
+-(IBAction)actionSaveData:(UIBarButtonItem *)sender{
+    Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
+    id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
+    [activeInstance performSelector:@selector(dismissKeyboard)];
+    
+    //if ([self validateSave]){
+    //    if ([self ExtraPremiPercentEditingEnd:textExtraPremiPercentField] && [self ExtraPremiNumberEditingEnd:textExtraPremiNumberField]){
+            //if ([self ValidateSave]){
+                //set the updated data to parent
+                [self setBasicPlanDictionary];
+                
+                //get updated data from parent and save it.
+                [modelSIBasicPlan saveBasicPlanData:[_delegate getBasicPlanDictionary]];
+                
+                //change to next page
+                //[delegate showUnitLinkModuleAtIndex:[NSIndexPath indexPathForRow:3 inSection:0]];
+            //}
+    //    }
+    //}
+}
+
 @end
