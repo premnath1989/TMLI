@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface InvestmentTypeViewController : UIViewController
+@class InvestmentTypeViewController;
+@protocol InvestmentTypeViewControllerDelegate
+
+@end
+@interface InvestmentTypeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>{
+    id <InvestmentTypeViewControllerDelegate> _delegate;
+    
+    NSMutableArray *FundList;
+}
+
+@property (strong, nonatomic) IBOutlet UITableView *FundTypeTableView;
+@property (strong, nonatomic) IBOutlet UITableView *InvestasiTableView;
+
+@property (strong, nonatomic) NSMutableArray *FundList;
+
 
 @end

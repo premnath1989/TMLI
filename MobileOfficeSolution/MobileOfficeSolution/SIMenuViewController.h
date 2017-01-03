@@ -39,6 +39,7 @@
 #import "IlustrationViewController.h"
 #import "PremiumKeluargaku.h"
 #import "PremiumViewControllerDelegate.h"
+#import "InvestmentTypeViewController.h"
 
 
 @class SIMenuViewController;
@@ -46,7 +47,7 @@
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -155,6 +156,8 @@
 @property (nonatomic, retain) BasicPlanViewController *BasicController;
 @property (nonatomic,retain) RiderViewController *RiderController;
 @property (nonatomic,retain) HLViewController *HLController;
+@property (nonatomic,retain) InvestmentTypeViewController *InvestmentController;
+//@property (nonatomic,retain) InvestType *RiderController;
 @property (nonatomic,retain) FSVerticalTabBarController *FS;
 
 @property (retain, nonatomic) NSMutableArray *NumberListOfSubMenu;

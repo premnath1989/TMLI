@@ -27,6 +27,7 @@
 #import "BrowserViewController.h"
 #import "String.h"
 #import "User Interface.h"
+#import "InvestmentTypeViewController.h"
 
 #define TRAD_PAYOR_FIRSTLA  @"0"
 #define TRAD_PAYOR_SECONDLA  @"1"
@@ -62,6 +63,7 @@
 @synthesize PayorController = _PayorController;
 @synthesize SecondLAController = _SecondLAController;
 @synthesize BasicController = _BasicController;
+@synthesize InvestmentController = _InvestmentController;
 @synthesize getIdPay,getIdProf,getPayAge,getPayDOB,getPayOccp,getPaySex,getPaySmoker;
 @synthesize get2ndLAAge,get2ndLADOB,get2ndLAOccp,get2ndLASex,get2ndLASmoker,getOccpClass;
 @synthesize getMOP,getbasicHL,getPlanCode,getAdvance,requestSINo2;
@@ -3323,7 +3325,7 @@ BOOL NavShow3;
             [self.RightView bringSubviewToFront:self.BasicController.view];
             break;
         case 7:
-            [self.RightView bringSubviewToFront:self.BasicController.view];
+            [self LoadIlustrationPage];
             break;
         default:
             break;
@@ -5018,14 +5020,15 @@ BOOL NavShow3;
     }
     else
     {
-        PremiumKeluargaku *premiK = [[PremiumKeluargaku alloc]initWithNibName:@"PremiumKeluargaku"
-                                                                       bundle:nil SINO:[dictionaryPOForInsert valueForKey:@"SINO"]];
-        premiK.delegate = self;
-        [premiK setDictionaryPOForInsert:dictionaryPOForInsert];
-        [premiK setDictionaryForBasicPlan:newDictionaryForBasicPlan];
-        [self addChildViewController:premiK];
-        [self.RightView addSubview:premiK.view];
-        [self.RightView bringSubviewToFront:premiK.view];
+       // UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+
+    
+        self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
+       // _InvestmentController.delegate = self;
+        [self.RightView addSubview:self.InvestmentController.view];
+    
+        
+
     }
 }
 
