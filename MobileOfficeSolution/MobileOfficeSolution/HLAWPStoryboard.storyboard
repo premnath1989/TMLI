@@ -14,7 +14,7 @@
         <array key="BPreplay_Italics.ttf">
             <string>BPreplay-Italic</string>
         </array>
-        <array key="BPreplay_Regular.ttf">
+        <array key="BPreplay_Regular.otf">
             <string>BPreplay</string>
         </array>
         <array key="NewJune_Bold.ttf">
@@ -3815,10 +3815,10 @@
             </objects>
             <point key="canvasLocation" x="-1058.5599999999999" y="1428.48"/>
         </scene>
-        <!--Premium View Controller-->
+        <!--Investment Type View Controller-->
         <scene sceneID="MK6-oo-Iqs">
             <objects>
-                <viewController storyboardIdentifier="premiumView" id="ejT-Sa-vKM" customClass="PremiumViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InvestmentType" id="ejT-Sa-vKM" customClass="InvestmentTypeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vJg-xz-Ems">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -3840,8 +3840,8 @@
                                         <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="dataSource" destination="3S8-gN-yGY" id="YII-eO-Mfx"/>
-                                            <outlet property="delegate" destination="3S8-gN-yGY" id="xI3-gA-K17"/>
+                                            <outlet property="dataSource" destination="ejT-Sa-vKM" id="oYT-aH-TlU"/>
+                                            <outlet property="delegate" destination="ejT-Sa-vKM" id="e1g-8M-goL"/>
                                         </connections>
                                     </tableView>
                                     <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="ICB-5D-fPF">
@@ -3850,8 +3850,8 @@
                                         <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
-                                            <outlet property="dataSource" destination="3S8-gN-yGY" id="Jpf-oP-VyK"/>
-                                            <outlet property="delegate" destination="3S8-gN-yGY" id="GBN-2A-2dw"/>
+                                            <outlet property="dataSource" destination="ejT-Sa-vKM" id="REw-on-rfh"/>
+                                            <outlet property="delegate" destination="ejT-Sa-vKM" id="OP9-aS-6dk"/>
                                         </connections>
                                     </tableView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Nama Investasi                                       Komposisi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jJF-xh-rU9">
@@ -3884,6 +3884,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3f8-Ay-YeA">
+                                        <rect key="frame" x="393" y="474" width="239" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.45882352939999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="NewJune-Bold" family="NewJuneBold" pointSize="15"/>
+                                        <state key="normal" title="SAVE">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doSavePlan:" destination="Bg9-Wf-jjW" eventType="touchUpInside" id="A1F-ej-9bx"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.80392156859999997" green="0.80000000000000004" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
@@ -3899,15 +3911,6 @@
                                     <navigationItem title="JENIS INVESTASI" id="1jy-eu-FC1">
                                         <barButtonItem key="leftBarButtonItem" id="k9Y-O7-U6C">
                                             <color key="tintColor" red="0.94901960780000005" green="0.4431372549" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="ActionEAPP:" destination="3S8-gN-yGY" id="QaZ-bB-owc"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="Bj5-Hi-Yns">
-                                            <color key="tintColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="doSaveRider:" destination="3S8-gN-yGY" id="tPg-WO-v19"/>
-                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -3917,10 +3920,84 @@
                     </view>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="FundTypeTableView" destination="p2y-DI-q3k" id="cJi-By-QJT"/>
+                        <outlet property="InvestasiTableView" destination="ICB-5D-fPF" id="fdf-h1-yHn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPg-G8-9uc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="634" y="256"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="T6R-Sz-6xy">
+            <objects>
+                <viewController id="Fdt-r5-RrK" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="olB-4x-xha">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" misplaced="YES" id="Tp4-q4-YyR">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="PENAMBAHAN / PENARIKAN DANA TUNGGAL" id="D3J-BQ-8bi"/>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fgj-I2-5W7">
+                                <rect key="frame" x="20" y="131" width="985" height="419"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" misplaced="YES" id="MbB-oA-6YJ">
+                                <rect key="frame" x="20" y="71" width="985" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tahun" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BZM-wS-C1L">
+                                        <rect key="frame" x="23" y="21" width="155" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Penambahan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jyB-Pn-MHk">
+                                        <rect key="frame" x="380" y="21" width="155" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Penarikan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xKI-SY-2GP">
+                                        <rect key="frame" x="754" y="21" width="155" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="25"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.25101745130000003" green="0.5907619596" blue="0.67238336799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Catatan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="a3v-LG-bN1">
+                                <rect key="frame" x="20" y="575" width="155" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" text="test" textAlignment="natural" id="72Z-1h-gip">
+                                <rect key="frame" x="20" y="620" width="984" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eba-7F-zfm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="631" y="1491"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uVz-gz-aF6">
@@ -4880,119 +4957,61 @@
             </objects>
             <point key="canvasLocation" x="1678" y="256"/>
         </scene>
-        <!--Investment Type View Controller-->
-        <scene sceneID="Dx9-1B-aaF">
+        <!--Fund Percent-->
+        <scene sceneID="Dgo-Dt-NGH">
             <objects>
-                <viewController storyboardIdentifier="InvestmentType" modalTransitionStyle="crossDissolve" id="3S8-gN-yGY" customClass="InvestmentTypeViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uAx-Ld-iX0">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <viewController title="Fund Percent" id="Y6K-eB-8UB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wWg-YZ-0BL">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="YA2-oc-aDh">
-                                <rect key="frame" x="-4" y="44" width="1024" height="522"/>
+                            <view contentMode="scaleToFill" id="8Oe-Ig-Mmb">
+                                <rect key="frame" x="0.0" y="-14" width="600" height="66"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ILH-03-eVQ">
-                                        <rect key="frame" x="360" y="-45" width="379" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fund Percentase" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sW4-or-zjI">
+                                        <rect key="frame" x="8" y="32" width="384" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="13"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="Y9G-Sa-4fa">
-                                        <rect key="frame" x="8" y="104" width="369" height="337"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="3S8-gN-yGY" id="pJV-my-cbt"/>
-                                            <outlet property="delegate" destination="3S8-gN-yGY" id="smw-0f-1RF"/>
-                                        </connections>
-                                    </tableView>
-                                    <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="sWi-gl-dbK">
-                                        <rect key="frame" x="385" y="103" width="619" height="337"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.87450980389999999" green="0.87450980389999999" blue="0.87450980389999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="3S8-gN-yGY" id="FG1-GH-z3d"/>
-                                            <outlet property="delegate" destination="3S8-gN-yGY" id="KU2-0A-eJo"/>
-                                        </connections>
-                                    </tableView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Nama Investasi                                       Komposisi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TLj-94-1Y1">
-                                        <rect key="frame" x="385" y="55" width="619" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66274509800000003" green="0.68627450980000004" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                    Jenis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F5l-ME-wON">
-                                        <rect key="frame" x="8" y="53" width="369" height="52"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.66274509800000003" green="0.68627450980000004" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pilih Fund Anda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S7H-6u-slr" customClass="LabelFormParagraph">
-                                        <rect key="frame" x="8" y="8" width="369" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Pilihan Anda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HRo-Hb-2FB" customClass="LabelFormParagraph">
-                                        <rect key="frame" x="385" y="8" width="369" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="NewJune-Bold" family="NewJuneBold" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.80392156859999997" green="0.80000000000000004" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.25101745130000003" green="0.5907619596" blue="0.67238336799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <navigationBar contentMode="scaleToFill" id="lTu-as-vje">
-                                <rect key="frame" x="-4" y="0.0" width="1028" height="44"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FundName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r9y-u9-71M">
+                                <rect key="frame" x="20" y="121" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.90696310999999996" green="0.90693598990000002" blue="0.90695130830000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <textAttributes key="titleTextAttributes">
-                                    <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="20"/>
-                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </textAttributes>
-                                <items>
-                                    <navigationItem title="JENIS INVESTASI" id="BdC-ix-Bnv">
-                                        <barButtonItem key="leftBarButtonItem" id="BhZ-TH-77C">
-                                            <color key="tintColor" red="0.94901960780000005" green="0.4431372549" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="ActionEAPP:" destination="3S8-gN-yGY" id="zkH-be-aMS"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Done" id="Fgw-BS-me1">
-                                            <color key="tintColor" red="0.85490196080000003" green="0.19215686269999999" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <connections>
-                                                <action selector="doSaveRider:" destination="3S8-gN-yGY" id="vot-4w-w0r"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Jm0-XU-dT8">
+                                <rect key="frame" x="332" y="112" width="248" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="XTJ-Ku-GzA">
+                                <rect key="frame" x="157" y="192" width="93" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="OK"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="MT3-Dh-UfY">
+                                <rect key="frame" x="292" y="192" width="101" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Cancel"/>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.80392156859999997" green="0.80000000000000004" blue="0.82745098039999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="yJD-Dh-pg8"/>
-                    <connections>
-                        <outlet property="minDisplayLabel" destination="ILH-03-eVQ" id="heX-fz-uxn"/>
-                        <outlet property="myTableView" destination="Y9G-Sa-4fa" id="cnD-jA-s8h"/>
-                        <outlet property="myTableViewNama" destination="sWi-gl-dbK" id="Tsc-Aw-Mcl"/>
-                        <outlet property="myView" destination="YA2-oc-aDh" id="KUy-vd-guf"/>
-                        <outlet property="outletDone" destination="Fgw-BS-me1" id="56j-Oc-JS9"/>
-                        <outlet property="outletEAPP" destination="BhZ-TH-77C" id="yxX-GU-QQr"/>
-                    </connections>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="300"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HlO-YY-a9Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8yz-IF-39g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2330" y="1768"/>
+            <point key="canvasLocation" x="422" y="867"/>
         </scene>
     </scenes>
     <resources>
@@ -5002,7 +5021,7 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
-        <image name="photo_spaj_primary" width="2048" height="1536"/>
+        <image name="photo_spaj_primary" width="72" height="72"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>
