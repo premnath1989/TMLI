@@ -32,6 +32,7 @@
 #import "ModelSIPOData.h"
 #import "Model_SI_Master.h"
 #import "Model_SI_Premium.h"
+#import "ModelSIBasicPlan.h"
 #import "ModelSIRider.h"
 #import "Formatter.h"
 #import "RiderCalculation.h"
@@ -65,6 +66,7 @@
     
     ModelSIRider *_modelSIRider;
     Model_SI_Premium *_modelSIPremium;
+    ModelSIBasicPlan *modelSIBasicPlan;
     Model_SI_Master *_modelSIMaster;
     ModelSIPOData *_modelSIPOData;
     NewLAViewController *_LAController;

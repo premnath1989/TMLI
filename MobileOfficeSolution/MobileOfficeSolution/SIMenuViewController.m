@@ -46,6 +46,7 @@
     
     //added by Faiz for New Machanasime in save data
     NSMutableDictionary* dictParentPOLAData;
+    NSMutableDictionary* dictParentULBasicPlanData;
 }
 
 @end
@@ -96,6 +97,7 @@ BOOL NavShow3;
     _modelSIPOData = [[ModelSIPOData alloc]init];
     _modelSIMaster = [[Model_SI_Master alloc]init];
     _modelSIRider = [[ModelSIRider alloc]init];
+    modelSIBasicPlan = [[ModelSIBasicPlan alloc]init];
     
     NavShow3 = NO;
      _SiScrollView.delegate = self;
@@ -5744,7 +5746,21 @@ NSString *prevPlan;
     [self LoadIlustrationPage];
 }
 
-#pragma mark New Save Method
+#pragma mark new save method for basic plan
+-(void)setInitialULBasicPlanDictionary{
+    dictParentULBasicPlanData = [[NSMutableDictionary alloc]initWithDictionary:[modelSIBasicPlan getBasicPlanDataFor:[self.requestSINo description]]];
+}
+
+-(void)setBasicPlanDictionary:(NSMutableDictionary *)dictULBasicPlanData{
+    dictParentULBasicPlanData = [[NSMutableDictionary alloc]initWithDictionary:dictULBasicPlanData];
+}
+
+-(NSMutableDictionary *)getBasicPlanDictionary{
+    return dictParentULBasicPlanData ;
+}
+
+
+#pragma mark New Save Method For SIPOData
 -(NSString *)getRunnigSINumber{
     if (!self.requestSINo){
         self.requestSINo = [self generateSINO];

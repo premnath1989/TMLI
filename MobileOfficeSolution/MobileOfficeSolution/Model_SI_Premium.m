@@ -192,7 +192,7 @@
 }
 
 -(int)getPremiumCount:(NSString *)SINo{
-    int count;
+    int count = 0;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
@@ -210,6 +210,23 @@
     [database close];
     return count;
 }
+
+-(void)saveBasicPlanData:(NSMutableDictionary *)dictBasicPlanData{
+    modelSIMaster = [[Model_SI_Master alloc]init];
+    //cek the SINO exist or not
+    int exist = [self getPremiumCount:[dictBasicPlanData valueForKey:@"SINO"]];
+    
+    if (exist>0){
+        //update data
+        [self updatePremium:dictBasicPlanData];
+    }
+    else{
+        //insert data
+        [self savePremium:dictBasicPlanData];
+    }
+    //[modelSIMaster updateIlustrationSumAssured:[dictBasicPlanData valueForKey:@"SumAssured"] SINO:[dictBasicPlanData valueForKey:@"SINO"]];
+}
+
 
 
 @end

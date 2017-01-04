@@ -27,6 +27,7 @@
 #import "RiderCalculation.h"
 #import "HeritageCalculation.h"
 #import "RencanaViewController.h"
+#import "ModelSIBasicPlan.h"
 
 @class BasicPlanViewController;
 @protocol BasicPlanViewControllerDelegate
@@ -43,12 +44,16 @@
 -(void)brngSubview:(NSString *)view;
 -(void)saveBasicPlan:(NSDictionary *)basicPlan;
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan;
+
+-(void)setBasicPlanDictionary:(NSMutableDictionary *)dictULBasicPlanData;
+-(NSMutableDictionary *)getBasicPlanDictionary;
+-(NSString *)getRunnigSINumber;
 @end
 
 @interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,RencanaListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate,FrekuensiListDelegate>{
     Formatter* classFormatter;
     HeritageCalculation* heritageCalculation;
-    
+    ModelSIBasicPlan* modelSIBasicPlan;
     NSString *databasePath;
     NSString *RatesDatabasePath;
     sqlite3 *contactDB;

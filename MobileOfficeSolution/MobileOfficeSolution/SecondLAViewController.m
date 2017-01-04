@@ -1710,7 +1710,8 @@ id dobtemp;
 #pragma mark save with new method
 -(BOOL)ValidateSave{
     NSString *namaTertanggung = nameField.text;
-    NSString *tanggalLahir = DOBField.text;
+    //NSString *tanggalLahir = DOBField.text;
+    NSString *tanggalLahir = _BtnTanggalLahir.currentTitle;
     //jenis kelamin
     //perokok
     //NSString *pekerjaan = buttonOccupation.currentTitle;
@@ -1724,8 +1725,8 @@ id dobtemp;
     
     UIAlertController *alertvalidation;
     
-    int laAge = [formatter calculateAge:DOBField.text];
-    int differenceDay = [formatter calculateDifferenceDay:DOBField.text];
+    int laAge = [formatter calculateAge:tanggalLahir];
+    int differenceDay = [formatter calculateDifferenceDay:tanggalLahir];
     
     if ([namaTertanggung length]<=0){
         alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertNamaTertanggung];
@@ -1825,7 +1826,7 @@ id dobtemp;
     NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]initWithDictionary:[_delegate getPOLADictionary]];
     [dictPOLAData setObject:[NSNumber numberWithInt:clientProfileID] forKey:@"LA_ClientID"];
     [dictPOLAData setObject:nameField.text forKey:@"LA_Name"];
-    [dictPOLAData setObject:DOBField.text forKey:@"LA_DOB"];
+    [dictPOLAData setObject:_BtnTanggalLahir.currentTitle forKey:@"LA_DOB"];
     [dictPOLAData setObject:ageField.text forKey:@"LA_Age"];
     [dictPOLAData setObject:sex forKey:@"LA_Gender"];
     [dictPOLAData setObject:@"" forKey:@"LA_OccpCode"];
