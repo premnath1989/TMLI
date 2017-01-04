@@ -67,7 +67,6 @@
         cell.textLabel.text = [FundList objectAtIndex:indexPath.row];
     }
     
-   
     return cell;
     
 }
@@ -85,4 +84,8 @@
 
 
 
+- (IBAction)DoSave:(id)sender {
+    
+
+}
 @end
