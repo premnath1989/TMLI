@@ -3120,7 +3120,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="doSave:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="5fM-jD-s6H"/>
+                                            <action selector="actionSaveData:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="Cig-Ht-LSO"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PW5-uL-WsP" customClass="TextFieldFormGeneralPrimary">
@@ -3551,7 +3551,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="doSavePlan:" destination="Bg9-Wf-jjW" eventType="touchUpInside" id="zkg-bH-O8I"/>
+                                            <action selector="actionSaveData:" destination="Bg9-Wf-jjW" eventType="touchUpInside" id="UVB-EF-cai"/>
                                         </connections>
                                     </button>
                                     <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="b5L-Ze-a2d">
@@ -4135,7 +4135,7 @@
                                         <color key="backgroundColor" red="0.10588235294117647" green="0.45882352941176469" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Next"/>
                                         <connections>
-                                            <action selector="doSave:" destination="dE2-cD-TzV" eventType="touchUpInside" id="PIl-Rf-wfi"/>
+                                            <action selector="actionSaveData:" destination="dE2-cD-TzV" eventType="touchUpInside" id="6RQ-0Z-Ka3"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Usia " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="cgE-UP-VVM" customClass="LabelFormQuestion">

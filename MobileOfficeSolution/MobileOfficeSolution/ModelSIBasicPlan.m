@@ -43,7 +43,7 @@
         //insert data
         [self insertToDBBasicPlanData:dictBasicPlanData];
     }
-    [modelSIMaster updateIlustrationSumAssured:[dictBasicPlanData valueForKey:@"SumAssured"] SINO:[dictBasicPlanData valueForKey:@"SINO"]];
+    //[modelSIMaster updateIlustrationSumAssured:[dictBasicPlanData valueForKey:@"SumAssured"] SINO:[dictBasicPlanData valueForKey:@"SINO"]];
 }
 
 -(void)insertToDBBasicPlanData:(NSMutableDictionary *)dictBasicPlanData{

@@ -6385,7 +6385,7 @@ bool WPTPD30RisDeleted = FALSE;
     [dictBasicPlanData setObject:@"" forKey:@"PaymentMode"];
     [dictBasicPlanData setObject:@"" forKey:@"PreferredPremium"];
     [dictBasicPlanData setObject:_PremiTopUpRegularField.text forKey:@"RegularTopUp"];
-    [dictBasicPlanData setObject:_basicPremiField.text forKey:@"Premium"];
+    [dictBasicPlanData setObject:_BasicPremiiField.text forKey:@"Premium"];
     [dictBasicPlanData setObject:yearlyIncomeField.text forKey:@"SumAssured"];
     [dictBasicPlanData setObject:@"" forKey:@"PremiumHolidayTerm"];
     [dictBasicPlanData setObject:@"" forKey:@"TotalUnAppliedPremium"];
@@ -6401,7 +6401,7 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 
--(IBAction)actionSaveData:(UIBarButtonItem *)sender{
+-(IBAction)actionSaveData:(UIButton *)sender{
     Class UIKeyboardImpl = NSClassFromString(@"UIKeyboardImpl");
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
