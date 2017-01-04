@@ -31,6 +31,7 @@
 
 -(void)setPOLADictionary:(NSMutableDictionary *)NSDictionary;
 -(NSMutableDictionary *)getPOLADictionary;
+-(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
 
 @interface SecondLAViewController : UIViewController <ListingTbViewControllerDelegate,UIPopoverControllerDelegate, DateViewControllerDelegate, OccupationListDelegate, UITextFieldDelegate> {
@@ -165,5 +166,6 @@
 -(void)setPODictionaryFromRoot:(NSMutableDictionary *)dictionaryRootPO originalRelation:(NSString *)OriginalRelation;
 -(void)setPODictionaryRegular:(NSMutableDictionary *)dictionaryRootPO;
 -(NSMutableDictionary *)setDictionarySecondLA;
+
 //end of added by faiz
 @end

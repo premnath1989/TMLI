@@ -1778,7 +1778,7 @@ id dobtemp;
         
         ageField.text = [dictPOLAData valueForKey:@"LA_Age"];
         nameField.text = [dictPOLAData valueForKey:@"LA_Name"];
-        [btnDOB setTitle:[dictPOLAData valueForKey:@"LA_DOB"] forState:UIControlStateNormal];
+        [_BtnTanggalLahir setTitle:[dictPOLAData valueForKey:@"LA_DOB"] forState:UIControlStateNormal];
         [DOBField setText:[dictPOLAData valueForKey:@"LA_DOB"]];
         //[buttonOccupation setTitle:[dictPOLAData valueForKey:@"LA_Occp"] forState:UIControlStateNormal];
         
@@ -1848,7 +1848,7 @@ id dobtemp;
         [_modelSIPOData savePOLAData:[_delegate getPOLADictionary]];
         
         //changePage
-        //[delegate showUnitLinkModuleAtIndex:[NSIndexPath indexPathForRow:2 inSection:0]];
+        [_delegate showNextPageAfterSave:self];
     }
 }
 

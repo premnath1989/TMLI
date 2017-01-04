@@ -46,8 +46,11 @@
 -(void)setBasicPlanDictionaryWhenLoadFromList:(NSDictionary *)basicPlan;
 
 -(void)setBasicPlanDictionary:(NSMutableDictionary *)dictULBasicPlanData;
+-(void)setPOLADictionary:(NSMutableDictionary *)NSDictionary;
 -(NSMutableDictionary *)getBasicPlanDictionary;
+-(NSMutableDictionary *)getPOLADictionary;
 -(NSString *)getRunnigSINumber;
+-(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
 
 @interface BasicPlanViewController : UIViewController <UITextFieldDelegate,PlanListDelegate,CurrencyListDelegate,RencanaListDelegate,MasaPembayaranDelegate,FrekeunsiDelegate,PembeliaKeDelegate,FrekuensiListDelegate>{

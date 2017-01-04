@@ -100,6 +100,7 @@ bool WPTPD30RisDeleted = FALSE;
     classFormatter=[[Formatter alloc]init];
     heritageCalculation = [[HeritageCalculation alloc]init];
     modelSIBasicPlan = [[ModelSIBasicPlan alloc]init];
+    _modelSIPOData = [[ModelSIPOData alloc]init];
     
     discountPembelian = 0;
 
@@ -6379,6 +6380,17 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 #pragma mark saveData New Method
+-(void)setPOLADictionary{
+    NSMutableDictionary* originalDictPOLAData = [[NSMutableDictionary alloc]init];
+    originalDictPOLAData = [_delegate getPOLADictionary];
+   
+    [originalDictPOLAData setObject:@"" forKey:@"ProductCode"];
+    [originalDictPOLAData setObject:_masaPembayaranButton.currentTitle forKey:@"ProductName"];
+    
+    
+    [_delegate setPOLADictionary:originalDictPOLAData];
+}
+
 -(void)setBasicPlanDictionary{
     NSMutableDictionary* dictBasicPlanData = [[NSMutableDictionary alloc]init];
     [dictBasicPlanData setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
@@ -6410,13 +6422,17 @@ bool WPTPD30RisDeleted = FALSE;
     //    if ([self ExtraPremiPercentEditingEnd:textExtraPremiPercentField] && [self ExtraPremiNumberEditingEnd:textExtraPremiNumberField]){
             //if ([self ValidateSave]){
                 //set the updated data to parent
+                [self setPOLADictionary];
+    
                 [self setBasicPlanDictionary];
                 
                 //get updated data from parent and save it.
                 [modelSIBasicPlan saveBasicPlanData:[_delegate getBasicPlanDictionary]];
-                
+    
+                [_modelSIPOData savePOLAData:[_delegate getPOLADictionary]];
+    
                 //change to next page
-                //[delegate showUnitLinkModuleAtIndex:[NSIndexPath indexPathForRow:3 inSection:0]];
+                [_delegate showNextPageAfterSave:self];
             //}
     //    }
     //}

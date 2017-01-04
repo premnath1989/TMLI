@@ -57,10 +57,13 @@ NSString *uatAgentCode;
     checkLoginStatus = YES;
     
     HomeIndex = 0;
-    ProspectListingIndex = 1;
-    SIListingIndex = 2;
-    NewSIIndex = 3;
-    ExitIndex = 4;
+    //ProspectListingIndex = 1;
+    //SIListingIndex = 2;
+    //NewSIIndex = 3;
+    //ExitIndex = 4;
+    SIListingIndex = 1;
+    NewSIIndex = 2;
+    ExitIndex = 3;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidTimeout:) name:kApplicationDidTimeoutNotification object:nil];
     

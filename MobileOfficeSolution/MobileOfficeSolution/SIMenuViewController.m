@@ -47,6 +47,13 @@
     //added by Faiz for New Machanasime in save data
     NSMutableDictionary* dictParentPOLAData;
     NSMutableDictionary* dictParentULBasicPlanData;
+    
+    BOOL isPOFilled;
+    BOOL isLAFilled;
+    BOOL isBasicPlanFilled;
+    BOOL isRiderFilled;
+    BOOL isFundAllocationFilled;
+    BOOL isSpecialOptionFilled;
 }
 
 @end
@@ -183,6 +190,8 @@ BOOL NavShow3;
     CustomColor = nil;
     
     [self geteProposalStatus];
+    [self setInitialPOLADictionary];
+    [self setInitialULBasicPlanDictionary];
     
     if (![[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
         if ([eProposalStatus isEqualToString:@"Confirmed"] || [eProposalStatus isEqualToString:@"Submitted"] || [eProposalStatus isEqualToString:@"Received"] || [eProposalStatus isEqualToString:@"Failed"]  ) {
@@ -233,7 +242,7 @@ BOOL NavShow3;
     }
     isFirstLoad = NO;
     
-    [self setInitialPOLADictionary];
+    [self setBOOLSectionFilled];
 }
 
 
@@ -2877,6 +2886,25 @@ BOOL NavShow3;
     }
 }
 
+-(IBAction)actionShowFundAllocation:(id)sender{
+
+}
+
+-(IBAction)actionShowTopUpWithdraw:(id)sender{
+   
+}
+
+-(void)showNextPageAfterSave:(UIViewController *)currentVC{
+    if (currentVC == _LAController){
+        [self actionShowLifeAssured:nil];
+    }
+    else if (currentVC == _SecondLAController){
+        [self actionShowBasicPlan:nil];
+    }
+    else if (currentVC == _BasicController){
+        NSLog(@"next page not setted yet");
+    }
+}
 #pragma mark - table view
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -2922,6 +2950,8 @@ BOOL NavShow3;
     [cell.btnPemegangPolis addTarget:self action:@selector(actionShowPolicyHolder:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnTertanggung addTarget:self action:@selector(actionShowLifeAssured:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnAsuransiDasar addTarget:self action:@selector(actionShowBasicPlan:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnInvestasi addTarget:self action:@selector(actionShowFundAllocation:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnPenambahan addTarget:self action:@selector(actionShowTopUpWithdraw:) forControlEvents:UIControlEventTouchUpInside];
     
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
@@ -2930,11 +2960,40 @@ BOOL NavShow3;
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
-    [cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
-//    cell.btnPemegangPolis.backgroundColor = [UIColor redColor];
-//    cell.btnPemegangPolis setBackgroundColor:[UIColor redColor];
-    [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-    [cell.BtnTertanggung setBackgroundColor:green];
+    if (isPOFilled){
+        [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else{
+        [cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+    }
+    
+    if (isLAFilled){
+        [cell.BtnTertanggung setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else{
+        if (isPOFilled){
+            [cell.BtnTertanggung setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        }
+        else{
+            [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+        }
+    }
+    
+    if (isBasicPlanFilled){
+        [cell.BtnAsuransiDasar setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else{
+        if (isLAFilled){
+            [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        }
+        else{
+            [cell.BtnAsuransiDasar setImage:ShapeGuide_disable forState:UIControlStateNormal];
+        }
+    }
+    
+    //[cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+    //[cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+    //[cell.BtnTertanggung setBackgroundColor:green];
     
     [cell.view1 setBackgroundColor:green];
     
@@ -5737,6 +5796,50 @@ NSString *prevPlan;
     [self setSaveAsMode:[dictionaryPOForInsert valueForKey:@"SINO"]];
     [self LoadIlustrationPage];
 }
+
+#pragma mark check section filled
+-(void)setBOOLSectionFilled{
+    isPOFilled = false;
+    isLAFilled = false;
+    isBasicPlanFilled = false;
+    isRiderFilled = false;
+    isFundAllocationFilled = false;
+    isSpecialOptionFilled = false;
+    
+    if ([dictParentPOLAData count]>0){
+        isPOFilled = true;
+        if ([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"]){
+            isLAFilled = true;
+        }
+        else {
+            if ([[dictParentPOLAData valueForKey:@"LA_Name"] isEqualToString:@""]){
+                isLAFilled = false;
+            }
+            else{
+                isLAFilled = true;
+            }
+            
+        }
+        
+    }
+    if ([dictParentULBasicPlanData count]>0){
+        isBasicPlanFilled = true;
+    }
+    /*if ([dictParentULFundAllocationData count]>0){
+        isFundAllocationFilled = true;
+    }
+    
+    if ([arrayRiderData count]>0){
+        isRiderFilled = true;
+    }
+    
+    if ([arraySpecialOptionData count]>0){
+        isSpecialOptionFilled = true;
+    }*/
+    
+    [myTableView reloadData];
+}
+
 
 #pragma mark new save method for basic plan
 -(void)setInitialULBasicPlanDictionary{

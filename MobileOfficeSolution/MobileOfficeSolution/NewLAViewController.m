@@ -210,7 +210,7 @@
     _SecondLAController =[self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
     if([sender isOn])
     {
-        [btnDOB setTitle:@"--Please Select--" forState:UIControlStateNormal];
+        //[btnDOB setTitle:@"--Please Select--" forState:UIControlStateNormal];
         [sexSegment setSelectedSegmentIndex:-1];
         [btnOccp setTitle:@"--Please Select--" forState:UIControlStateNormal];
         LAAgeField.enabled = FALSE;
@@ -232,7 +232,7 @@
     }
     else
     {
-        [btnDOB setTitle:@"--Please Select--" forState:UIControlStateNormal];
+        //[btnDOB setTitle:@"--Please Select--" forState:UIControlStateNormal];
         [sexSegment setSelectedSegmentIndex:-1];
         [btnOccp setTitle:@"--Please Select--" forState:UIControlStateNormal];
         LAAgeField.enabled = FALSE;
@@ -868,46 +868,65 @@
 
 #pragma mark - Data Load from listing added by faiz
 -(void)loadDataFromList{
-    _modelSIPOData = [[ModelSIPOData alloc]init];
-    dictPOData=[[NSDictionary alloc]initWithDictionary:[_modelSIPOData getPO_DataFor:requestSINo]];
-    if ([dictPOData count]!=0){
-        NSNumber *numberBoolQuickQuote =[NSNumber numberWithInt:[[dictPOData valueForKey:@"QuickQuote"] intValue]];
-        if ([numberBoolQuickQuote intValue]==0){
+    NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]init];
+    dictPOLAData = [_delegate getPOLADictionary];
+    NSNumber* numberBoolQuickQuote;
+    if ([dictPOLAData count]!=0 && [dictPOLAData objectForKey:@"ProductName"]){
+        numberBoolQuickQuote = [NSNumber numberWithInt:[[dictPOLAData valueForKey:@"QuickQuote"] intValue]];
+        
+        /*if ([numberBoolQuickQuote intValue]==0){
             [quickQuoteFlag setOn:false];
         }
         else{
             [quickQuoteFlag setOn:true];
         }
-        [self QuickQuoteFunc:quickQuoteFlag];
+        [self QuickQuoteFunc:quickQuoteFlag];*/
         
-        ilustrationProductCode = [dictPOData valueForKey:@"ProductCode"];
-        occuCode = [dictPOData valueForKey:@"PO_OccpCode"];
-        clientProfileID = [[dictPOData valueForKey:@"PO_ClientID"] intValue];
-        [_SINumberBCA setText:[dictPOData valueForKey:@"SINO"]];
-        [LANameField setText:[dictPOData valueForKey:@"PO_Name"]];
-        [LAAgeField setText:[dictPOData valueForKey:@"PO_Age"]];
-        [NamaProduk setTitle:[dictPOData valueForKey:@"ProductName"] forState:UIControlStateNormal];
-        [TanggalIllustrasi setTitle:[dictPOData valueForKey:@"SIDate"] forState:UIControlStateNormal];
-        [btnDOB setTitle:[dictPOData valueForKey:@"PO_DOB"] forState:UIControlStateNormal];
-        [btnOccp setTitle:[dictPOData valueForKey:@"PO_Occp"] forState:UIControlStateNormal];
-        [_BtnHubungan setTitle:[dictPOData valueForKey:@"RelWithLA"] forState:UIControlStateNormal];
+        //        textIllustrationNumber.text = [dictPOLAData valueForKey:@"SINO"];
+        LAAgeField.text = [dictPOLAData valueForKey:@"PO_Age"];
+        LANameField.text = [dictPOLAData valueForKey:@"PO_Name"];
+        //[buttonPlan setTitle:[dictPOLAData valueForKey:@"ProductName"] forState:UIControlStateNormal];
+        //[buttonIllustrationDate setTitle:[dictPOLAData valueForKey:@"SIDate"] forState:UIControlStateNormal];
+        //[btnDOB setTitle:[dictPOLAData valueForKey:@"PO_DOB"] forState:UIControlStateNormal];
+        _txtDob.text = [dictPOLAData valueForKey:@"PO_DOB"];
+        //[buttonOccupation setTitle:[dictPOLAData valueForKey:@"PO_Occp"] forState:UIControlStateNormal];
+        //[_BtnHubungan setTitle:[dictPOLAData valueForKey:@"RelWithLA"] forState:UIControlStateNormal];
+        [_txtHubungan setText:[dictPOLAData valueForKey:@"RelWithLA"]];
         
-        sex=[[NSString alloc]initWithString:[dictPOData valueForKey:@"PO_Gender"]];
+        sex = [dictPOLAData valueForKey:@"PO_Gender"];
+        smoker = [dictPOLAData valueForKey:@"PO_Smoker"];
+        
         if ([sex isEqualToString:@"MALE"]){
             [sexSegment setSelectedSegmentIndex:0];
         }
-        else{
+        else if ([sex isEqualToString:@"FEMALE"]){
             [sexSegment setSelectedSegmentIndex:1];
         }
+        else{
+            [sexSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
+        }
         
-        if ([ilustrationProductCode isEqualToString:@"BCALHST"]){
-            numberIntInternalStaff = [NSNumber numberWithInt:1];
+        if ([smoker isEqualToString:@"Y"]){
+            [smokerSegment setSelectedSegmentIndex:0];
+        }
+        else if ([smoker isEqualToString:@"N"]){
+            [smokerSegment setSelectedSegmentIndex:1];
         }
         else{
-            numberIntInternalStaff = [NSNumber numberWithInt:0];
+            [smokerSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
         }
-
-        [_delegate setPODictionaryWhenLoadFromList:dictPOData];
+        
+        //occupationDesc = [dictPOLAData valueForKey:@"PO_Occp"];
+        //occupationCode = [dictPOLAData valueForKey:@"PO_OccpCode"];
+        clientProfileID = [[dictPOLAData valueForKey:@"PO_ClientID"] intValue];
+        //productCode = [dictPOLAData valueForKey:@"ProductCode"];
+        //relWithLA = [dictPOLAData valueForKey:@"RelWithLA"];
+    }
+    else{
+        //[textIllustrationNumber setText:[delegate getRunnigSINumber]];
+        //productCode = @"BCALUL";
+        //[buttonPlan setTitle:@"BCA Life Unit Linked" forState:UIControlStateNormal];
+        //[buttonPlan setTitle:@"BCA Life Proteksi & Investasiku" forState:UIControlStateNormal];
     }
 }
 
@@ -2771,7 +2790,7 @@
 //        return NO;
 //    }
 //    
-    else if ([_BtnHubungan.titleLabel.text isEqualToString:@"(null)"] ||[_BtnHubungan.titleLabel.text isEqualToString:@"--Please Select--"] ||[_BtnHubungan.titleLabel.text isEqualToString:@"- SELECT -"] || _BtnHubungan.titleLabel.text.length == 0)
+    else if ([_txtHubungan.text isEqualToString:@"(null)"] ||[_txtHubungan.text isEqualToString:@"--Please Select--"] ||[_txtHubungan.text isEqualToString:@"- SELECT -"] || _txtHubungan.text.length == 0)
     {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Hubungan Dengan Tertannggung harus diisi"
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
@@ -2861,69 +2880,6 @@
 }
 
 #pragma mark new method for saveData
--(void)loadDataFromListNewMethod{
-    NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]init];
-    dictPOLAData = [_delegate getPOLADictionary];
-    NSNumber* numberBoolQuickQuote;
-    if ([dictPOLAData count]!=0 && [dictPOLAData objectForKey:@"ProductName"]){
-        numberBoolQuickQuote = [NSNumber numberWithInt:[[dictPOLAData valueForKey:@"QuickQuote"] intValue]];
-        
-        if ([numberBoolQuickQuote intValue]==0){
-            [quickQuoteFlag setOn:false];
-        }
-        else{
-            [quickQuoteFlag setOn:true];
-        }
-        [self QuickQuoteFunc:quickQuoteFlag];
-        
-//        textIllustrationNumber.text = [dictPOLAData valueForKey:@"SINO"];
-        LAAgeField.text = [dictPOLAData valueForKey:@"PO_Age"];
-        LANameField.text = [dictPOLAData valueForKey:@"PO_Name"];
-        //[buttonPlan setTitle:[dictPOLAData valueForKey:@"ProductName"] forState:UIControlStateNormal];
-        //[buttonIllustrationDate setTitle:[dictPOLAData valueForKey:@"SIDate"] forState:UIControlStateNormal];
-        [btnDOB setTitle:[dictPOLAData valueForKey:@"PO_DOB"] forState:UIControlStateNormal];
-        _txtDob.text = [dictPOLAData valueForKey:@"PO_DOB"];
-        //[buttonOccupation setTitle:[dictPOLAData valueForKey:@"PO_Occp"] forState:UIControlStateNormal];
-        [_BtnHubungan setTitle:[dictPOLAData valueForKey:@"RelWithLA"] forState:UIControlStateNormal];
-        [_txtHubungan setText:[dictPOLAData valueForKey:@"RelWithLA"]];
-        
-        sex = [dictPOLAData valueForKey:@"PO_Gender"];
-        smoker = [dictPOLAData valueForKey:@"PO_Smoker"];
-        
-        if ([sex isEqualToString:@"MALE"]){
-            [sexSegment setSelectedSegmentIndex:0];
-        }
-        else if ([sex isEqualToString:@"FEMALE"]){
-            [sexSegment setSelectedSegmentIndex:1];
-        }
-        else{
-            [sexSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
-        }
-        
-        if ([smoker isEqualToString:@"Y"]){
-            [smokerSegment setSelectedSegmentIndex:0];
-        }
-        else if ([smoker isEqualToString:@"N"]){
-            [smokerSegment setSelectedSegmentIndex:1];
-        }
-        else{
-            [smokerSegment setSelectedSegmentIndex:UISegmentedControlNoSegment];
-        }
-        
-        //occupationDesc = [dictPOLAData valueForKey:@"PO_Occp"];
-        //occupationCode = [dictPOLAData valueForKey:@"PO_OccpCode"];
-        clientProfileID = [[dictPOLAData valueForKey:@"PO_ClientID"] intValue];
-        //productCode = [dictPOLAData valueForKey:@"ProductCode"];
-        //relWithLA = [dictPOLAData valueForKey:@"RelWithLA"];
-    }
-    else{
-        //[textIllustrationNumber setText:[delegate getRunnigSINumber]];
-        //productCode = @"BCALUL";
-        //[buttonPlan setTitle:@"BCA Life Unit Linked" forState:UIControlStateNormal];
-        //[buttonPlan setTitle:@"BCA Life Proteksi & Investasiku" forState:UIControlStateNormal];
-    }
-}
-
 
 -(NSNumber *)getQuickQuoteState{
     NSNumber *numberBoolQuickQuote;
@@ -3011,7 +2967,7 @@
         //save SIMaster
         [_delegate saveSIMaster];
         
-        
+        [_delegate showNextPageAfterSave:self];
     }
 }
 

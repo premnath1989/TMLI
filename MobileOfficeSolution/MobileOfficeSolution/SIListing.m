@@ -7,6 +7,7 @@
 //
 
 #import "SIListing.h"
+#import "SIMenuViewController.h"
 #import "ColorHexCode.h"
 #import "NewLAViewController.h"
 #import "MainScreen.h"
@@ -751,16 +752,21 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
         item = Nil;
         
     } else {
-        AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+        /*AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
         
         MainScreen *main = [self.storyboard instantiateViewControllerWithIdentifier:@"Main"];
-		main.tradOrEver = TradOrEver;
+		//main.tradOrEver = TradOrEver;
+        main.tradOrEver = @"TRAD";
         main.IndexTab = appdlg.NewSIIndex ;
         main.requestSINo = [SINO objectAtIndex:indexPath.row];
 		[self presentViewController:main animated:NO completion:nil];
 		
 		appdlg = Nil;
-        main = Nil;
+        main = Nil;*/
+        UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+        SIMenuViewController *menuSIPage = [cpStoryboard instantiateViewControllerWithIdentifier:@"SIPageView"];
+        menuSIPage.requestSINo = [SINO objectAtIndex:indexPath.row];
+        [self presentViewController:menuSIPage animated:YES completion: nil];
     }
     
 }

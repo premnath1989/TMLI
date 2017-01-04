@@ -38,7 +38,7 @@
 -(NSMutableDictionary *)getPOLADictionary;
 -(void)saveSIMaster;
 -(NSString *)getRunnigSINumber;
-
+-(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
 
 @interface NewLAViewController : UIViewController<UITextFieldDelegate,UIPopoverControllerDelegate,ListingTbViewControllerDelegate,DateViewControllerDelegate,OccupationListDelegate,PlanListDelegate>{

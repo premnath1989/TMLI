@@ -51,15 +51,15 @@
     [controllersToAdd addObject:carouselPage];
     viewControllers = [NSArray arrayWithArray:controllersToAdd];
     
-//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
-//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"mainClient"];
-//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    mainClient.IndexTab = appdlg.ProspectListingIndex;
-//    image = [UIImage imageNamed:@"btn_prospect_off.png"];
-//    mainClient.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Client" image:image selectedImage:image];
-//    [controllersToAdd addObject:mainClient];
-//    viewControllers = [NSArray arrayWithArray:controllersToAdd];
+    /*UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:Nil];
+    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
+    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"mainClient"];
+    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
+    mainClient.IndexTab = appdlg.ProspectListingIndex;
+    image = [UIImage imageNamed:@"btn_prospect_off.png"];
+    mainClient.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Client" image:image selectedImage:image];
+    [controllersToAdd addObject:mainClient];
+    viewControllers = [NSArray arrayWithArray:controllersToAdd];*/
     
     SIListing* SIListingPage = [self.storyboard instantiateViewControllerWithIdentifier:@"SIListing"];
 	SIListingPage.TradOrEver = tradOrEver;
