@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 
+
 @class InvestmentTypeViewController;
 @protocol InvestmentTypeViewControllerDelegate
 
@@ -24,5 +25,7 @@
 
 @property (strong, nonatomic) NSMutableArray *FundList;
 
+@property (strong, nonatomic) IBOutlet UIButton *DoSave;
+- (IBAction)DoSave:(id)sender;
 
 @end

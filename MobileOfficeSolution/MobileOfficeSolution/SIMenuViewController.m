@@ -5030,6 +5030,14 @@ BOOL NavShow3;
     }
 }
 
+-(void)SaveInvestmentType {
+    
+    self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
+    // _InvestmentController.delegate = self;
+    [self.RightView addSubview:self.InvestmentController.view];
+    
+}
+
 #pragma mark - delegate FSVerticalTabBarController
 
 - (void)tabBarController:(FSVerticalTabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController

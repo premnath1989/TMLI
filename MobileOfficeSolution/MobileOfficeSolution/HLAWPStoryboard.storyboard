@@ -3444,7 +3444,7 @@
                                         <color key="textColor" red="0.94901960780000005" green="0.4431372549" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Total Premi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="E47-z2-5PL" customClass="LabelFormQuestion">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Premi Total " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="E47-z2-5PL" customClass="LabelFormQuestion">
                                         <rect key="frame" x="46" y="277" width="234" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3479,7 +3479,7 @@
                                             <action selector="actionMataUang:" destination="Bg9-Wf-jjW" eventType="touchUpInside" id="oed-0a-ALi"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Uang Pertanggungan Dasar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="OEk-SG-bbD" customClass="LabelFormQuestion">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Uang Pertanggungan" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="OEk-SG-bbD" customClass="LabelFormQuestion">
                                         <rect key="frame" x="46" y="365" width="388" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3522,8 +3522,8 @@
                                         <color key="textColor" red="0.94901960780000005" green="0.4431372549" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Rencana * (Max : 5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="cHU-w0-bNU" customClass="LabelFormQuestion">
-                                        <rect key="frame" x="46" y="453" width="234" height="30"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Rencana Masa Pembayaran Premi * (Max : 5)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" adjustsFontSizeToFit="NO" id="cHU-w0-bNU" customClass="LabelFormQuestion">
+                                        <rect key="frame" x="46" y="453" width="393" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3893,6 +3893,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
+                                            <action selector="DoSave:" destination="ejT-Sa-vKM" eventType="touchUpInside" id="IUC-qu-NXf"/>
                                             <action selector="doSavePlan:" destination="Bg9-Wf-jjW" eventType="touchUpInside" id="A1F-ej-9bx"/>
                                         </connections>
                                     </button>
@@ -3921,6 +3922,7 @@
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="DoSave" destination="3f8-Ay-YeA" id="Ay9-vf-YzR"/>
                         <outlet property="FundTypeTableView" destination="p2y-DI-q3k" id="cJi-By-QJT"/>
                         <outlet property="InvestasiTableView" destination="ICB-5D-fPF" id="fdf-h1-yHn"/>
                     </connections>
@@ -3929,10 +3931,10 @@
             </objects>
             <point key="canvasLocation" x="634" y="256"/>
         </scene>
-        <!--View Controller-->
+        <!--Topup Withdraw View Controller-->
         <scene sceneID="T6R-Sz-6xy">
             <objects>
-                <viewController id="Fdt-r5-RrK" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TopupWithdrawVC" id="Fdt-r5-RrK" customClass="TopupWithdrawViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="olB-4x-xha">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4960,7 +4962,7 @@
         <!--Fund Percent-->
         <scene sceneID="Dgo-Dt-NGH">
             <objects>
-                <viewController title="Fund Percent" id="Y6K-eB-8UB" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FundPercent" title="Fund Percent" id="Y6K-eB-8UB" customClass="FundPercentController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wWg-YZ-0BL">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5021,7 +5023,7 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
-        <image name="photo_spaj_primary" width="72" height="72"/>
+        <image name="photo_spaj_primary" width="2048" height="1536"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>
