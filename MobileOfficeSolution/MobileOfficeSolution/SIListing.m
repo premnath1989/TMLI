@@ -95,7 +95,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
 //    [uiManagement setupUI];
     
     //set TableView header design
-    [self setupTableColumn];
+    //[self setupTableColumn];
     
     outletDone.hidden = true;
     
@@ -107,7 +107,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     //[self LoadAllResult];
     
     CGRect tableRect = myTableView.frame;
-    myTableView.frame = CGRectMake(tableRect.origin.x, tableRect.origin.y, self.view.frame.size.width-75.0f, tableRect.size.height);
+    myTableView.frame = CGRectMake(tableRect.origin.x, tableRect.origin.y, self.view.frame.size.width, tableRect.size.height);
     myTableView.rowHeight = 50;
     myTableView.backgroundColor = [UIColor clearColor];
     myTableView.opaque = NO;
@@ -531,6 +531,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
         cell = [nib objectAtIndex:0];
     }
     if (indexPath.row < [SINO count]){
+        [cell.labelRowNo setText:[NSString stringWithFormat:@"%i",indexPath.row+1]];
         [cell.buttonShowIlustrasi setTag:indexPath.row];
         [cell.buttonShowIlustrasi addTarget:self action:@selector(showIlustrasi:) forControlEvents:UIControlEventTouchUpInside];
         [cell.buttonShowIlustrasi setHidden:YES];
@@ -565,164 +566,14 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
             [cell.imageShowIlustrasi setHidden:NO];
         }
         [cell.labelStatus setText:status];
-    }
-    /*UITableViewCell *cell = [self.myTableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    [[cell.contentView viewWithTag:1001] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1002] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1003] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1004] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1005] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1006] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1007] removeFromSuperview ];
-    [[cell.contentView viewWithTag:1008] removeFromSuperview ];
-    
-    ColorHexCode *CustomColor = [[ColorHexCode alloc]init ];
- 
-    
-    if (isFilter == false) {
-        //NSArray *arrayOfData = [NSArray arrayWithObjects:SINO, DateCreated, Name, PlanName, SIValidStatus,BasicSA,SIVersion,nil];
-        NSArray *arrayOfData = [NSArray arrayWithObjects:SINO, DateCreated, Name, PlanName, SIStatus,@"0",SIVersion,nil];
-        [tableManagement TableRowInsert:arrayOfData index:indexPath.row table:cell];
-//        CGRect frame=CGRectMake(headerOriginX,0, DataRowTableWidth, 50);
-//        UILabel *label1=[[UILabel alloc]init];            
-//        label1.frame=frame;
-//        label1.text= [SINO objectAtIndex:indexPath.row];
-//        label1.tag = 1001;
-//        label1.textAlignment = NSTextAlignmentCenter;
-//        [cell.contentView addSubview:label1];
-//        headerOriginX += DataRowTableWidth + 10.0f;
-//        
-//        CGRect frame2=CGRectMake(headerOriginX+5.0f,0, DataRowTableWidth, 50);
-//        UILabel *label2=[[UILabel alloc]init];
-//        label2.frame=frame2;
-//        label2.text= [DateCreated objectAtIndex:indexPath.row];
-//        label2.textAlignment = NSTextAlignmentCenter;    
-//        label2.tag = 1002;
-//        [cell.contentView addSubview:label2];
-//        headerOriginX += DataRowTableWidth + 10.0f;
-//        
-//        CGRect frame3=CGRectMake(headerOriginX+7.0f,0, DataRowTableWidth, 50);
-//        UILabel *label3=[[UILabel alloc]init];            
-//        label3.frame=frame3;
-//        label3.text= [Name objectAtIndex:indexPath.row];
-//        label3.tag = 1003;
-//        [cell.contentView addSubview:label3];
-//        headerOriginX += DataRowTableWidth;
-//        
-//        CGRect frame4=CGRectMake(headerOriginX,0, DataRowTableWidth, 50);
-//        UILabel *label4=[[UILabel alloc]init];
-//        label4.frame=frame4;
-//        label4.text= [PlanName objectAtIndex:indexPath.row];
-//        label4.textAlignment = NSTextAlignmentCenter;    
-//        label4.tag = 1004;
-//        [cell.contentView addSubview:label4];
-//        headerOriginX += DataRowTableWidth + 10.0f;
-//        
-//        CGRect frame5=CGRectMake(headerOriginX,0, DataRowTableWidth, 50);
-//        UILabel *label5=[[UILabel alloc]init];            
-//        label5.frame=frame5;
-//		label5.text = [NSString stringWithFormat:@"%.2f\n%@", [[BasicSA objectAtIndex:indexPath.row] doubleValue ], [SIValidStatus objectAtIndex:indexPath.row]];
-//        label5.tag = 1005;
-//        label5.textAlignment = NSTextAlignmentCenter;
-//		label5.numberOfLines = 2;
-//        [cell.contentView addSubview:label5];
-//        headerOriginX += DataRowTableWidth + 10.0f;
-//        
-//        CGRect frame6=CGRectMake(headerOriginX,0, DataRowTableWidth, 50);
-//        UILabel *label6=[[UILabel alloc]init];	
-//        label6.frame=frame6;
-//		label6.text = [NSString stringWithFormat:@"%@\n%@", [SIStatus objectAtIndex:indexPath.row], [SIVersion objectAtIndex:indexPath.row]];
-//        label6.textAlignment = NSTextAlignmentCenter;
-//        label6.tag = 1006;
-//		label6.numberOfLines = 2;
-//        [cell.contentView addSubview:label6];
-//        headerOriginX += DataRowTableWidth + 10.0f;
-//        
-//        label1.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-//        label2.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-//        label3.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-//        label4.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-//        label5.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-//        label6.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-    } else {
-        CGRect frame=CGRectMake(0,0, 170, 50);
-        UILabel *label1=[[UILabel alloc]init];            
-        label1.frame=frame;
-        label1.text= [FilteredSINO objectAtIndex:indexPath.row];
-        label1.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label1];
-        label1.backgroundColor = [UIColor lightGrayColor];
         
-        CGRect frame2=CGRectMake(170,0, 150, 50);
-        UILabel *label2=[[UILabel alloc]init];
-        label2.frame=frame2;
-        label2.text= [FilteredDateCreated objectAtIndex:indexPath.row];
-        label2.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label2];
-        
-        CGRect frame3=CGRectMake(320,0, 180, 50);
-        UILabel *label3=[[UILabel alloc]init];            
-        label3.frame=frame3;
-        label3.text= [FilteredName objectAtIndex:indexPath.row];
-        label3.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label3];
-        
-        CGRect frame4=CGRectMake(500,0, 150, 50);
-        UILabel *label4=[[UILabel alloc]init];
-        label4.frame=frame4;
-        label4.text= [FilteredPlanName objectAtIndex:indexPath.row];
-        label4.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label4];
-        
-        CGRect frame5=CGRectMake(650,0, 150, 50);
-        UILabel *label5=[[UILabel alloc]init];            
-        label5.frame=frame5;
-        label5.text= [FilteredBasicSA objectAtIndex:indexPath.row];
-        label5.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label5];
-        
-        CGRect frame6=CGRectMake(800,0, 150, 50);
-        UILabel *label6=[[UILabel alloc]init];
-        label6.frame=frame6;
-        label6.text= [FilteredSIStatus objectAtIndex:indexPath.row];
-        label6.textAlignment = NSTextAlignmentCenter;
-        [cell.contentView addSubview:label6];
-		
-        if (indexPath.row % 2 == 0) {
-            label1.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            label2.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            label3.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            label4.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            label5.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            label6.backgroundColor = [CustomColor colorWithHexString:@"D0D8E8"];
-            
-            label1.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label2.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label3.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label4.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label5.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label6.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-        } else {
-            label1.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            label2.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            label3.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            label4.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            label5.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            label6.backgroundColor = [CustomColor colorWithHexString:@"E9EDF4"];
-            
-            label1.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label2.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label3.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label4.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label5.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
-            label6.font = [UIFont fontWithName:@"TreBuchet MS" size:16];
+        if ((indexPath.row % 2) == 0){
+            [cell setBackgroundColor:[UIColor whiteColor]];
+        }
+        else{
+            [cell setBackgroundColor:[UIColor colorWithRed:231.0/255.0 green:233.0/255.0 blue:234.0/255.0 alpha:1.0]];
         }
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleGray;
-    CustomColor = Nil;*/
     
     return cell;
 }
