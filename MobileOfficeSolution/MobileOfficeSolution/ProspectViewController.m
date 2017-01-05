@@ -735,7 +735,9 @@ BOOL NavShowP;
         
         NSString *validationDuplicate=@"Data Nasabah sudah ada";
         
-        if (![[modelProspectProfile checkDuplicateData:txtFullName.text Gender:gender DOB:outletDOB.titleLabel.text] isEqualToString:@"(null)"]){
+        NSString *test = [modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text];
+        
+        if (![test isEqualToString:@"(null)"]){
             [self createAlertTwoOptionViewAndShow:validationDuplicate tag:18];
             return false;
         }
@@ -2934,7 +2936,7 @@ BOOL NavShowP;
 
 -(NSString *)checkDuplicateData:(NSString *)Name Gender:(NSString *)genderProspect DOB:(NSString *)dob{
     NSString* duplicateIndex;
-    duplicateIndex=[modelProspectProfile checkDuplicateData:Name Gender:genderProspect DOB:dob];
+    duplicateIndex=[modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text];
     NSLog(@"duplicate %@",duplicateIndex);
     return duplicateIndex;
 }
@@ -4082,7 +4084,7 @@ BOOL NavShowP;
             [CATransaction setCompletionBlock:^{
                 // handle completion here
                 if (_delegate != Nil) {
-                    [_delegate selectDataForEdit:[modelProspectProfile checkDuplicateData:txtFullName.text Gender:gender DOB:outletDOB.titleLabel.text]];
+                    [_delegate selectDataForEdit:[modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text]];
                 }
             }];
             [self.navigationController popViewControllerAnimated:YES];
@@ -5628,6 +5630,11 @@ BOOL NavShowP;
     bool returnBool = YES;
     
     returnBool = [self validationCompulsoryValue];
+    
+    if (returnBool) {
+        bool validDataDuplicate=[self validationDuplicate];
+        returnBool=validDataDuplicate;
+    }
     
 //    bool validDateRef=[self  validationDataReferral];
 //    returnBool=validDateRef;

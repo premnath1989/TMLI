@@ -575,7 +575,7 @@ int newAge;
     return ProspectTableData;
 }
 
--(NSString *)checkDuplicateData:(NSString *)Name Gender:(NSString *)gender DOB:(NSString *)dob{
+-(NSString *)checkDuplicateData:(NSString *)IDType IDNo:(NSString *)IDNo Gender:(NSString *)gender DOB:(NSString *)dob{
     NSString *SINo;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
@@ -583,9 +583,9 @@ int newAge;
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select IndexNo from prospect_profile where ProspectName = \"%@\"and ProspectDOB = \"%@\" and ProspectGender = \"%@\"",Name,dob,gender]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select IndexNo from prospect_profile where  OtherIDType = \"%@\" and   OtherIDTypeNo = \"%@\" and ProspectDOB = \"%@\" and ProspectGender = \"%@\"",IDType, IDNo,  dob , gender]];
     
-    NSLog(@"query %@",[NSString stringWithFormat:@"select IndexNo from prospect_profile where ProspectName = \"%@\"and ProspectDOB = \"%@\" and ProspectGender = \"%@\"",Name,dob,gender]);
+    NSLog(@"query %@",[NSString stringWithFormat:@"select IndexNo from prospect_profile where  OtherIDType = \"%@\" and   OtherIDTypeNo = \"%@\" and ProspectDOB = \"%@\" and ProspectGender = \"%@\"",IDType, IDNo,  dob , gender]);
     
     SINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IndexNo"]];
     while ([s next]) {
