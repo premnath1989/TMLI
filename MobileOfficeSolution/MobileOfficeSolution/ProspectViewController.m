@@ -23,6 +23,7 @@
 #import "User Interface.h"
 #import "String.h"
 #import "Button.h"
+#import "ProspectProfile.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -738,11 +739,41 @@ BOOL NavShowP;
         NSString *test = [modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text];
         
         if (![test isEqualToString:@"(null)"]){
-            [self createAlertTwoOptionViewAndShow:validationDuplicate tag:18];
+            int indexNo = [test intValue];
+            [self RetrieveOldData:indexNo];
             return false;
         }
         return valid;
     }
+}
+
+-(void)RetrieveOldData:(int)indexNo{
+    ProspectProfile* pp;
+     NSMutableArray *newPP = [[NSMutableArray alloc] init];
+
+    newPP = [modelProspectProfile searchProspectProfileByID:indexNo];
+
+//    pp = [ProspectTableData objectAtIndex:0];
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    
+    
+    if (_EditProspect == Nil) {
+        self.EditProspect = [cpStoryboard instantiateViewControllerWithIdentifier:@"EditProspect"];
+        
+        _EditProspect.delegate = self;
+        
+    }
+    _EditProspect.pp = [newPP objectAtIndex:0];
+    
+    @try {
+        //        [self.navigationController pushViewController:_EditProspect animated:YES];
+        [self presentViewController:_EditProspect animated:NO completion:Nil];
+        _EditProspect.navigationItem.title = @"Edit";
+    } @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+    } @finally {
+    }
+    pp = Nil;
 }
 
 - (bool)validationDataReferral{
