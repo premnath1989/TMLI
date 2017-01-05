@@ -54,6 +54,7 @@
 @synthesize txtMobileNumber;
 @synthesize txtBusinessNumber;
 @synthesize txtEmail;
+@synthesize txtAddress;
 
 @synthesize txtPTKP;
 @synthesize txtNoRek;
@@ -103,6 +104,11 @@
     txtAgentName.enabled = NO;
     txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
     txtAgentStatus.enabled = NO;
+    
+    NSString *address = [NSString stringWithFormat:@"%@ %@ %@", [agentDetails valueForKey:@"AgentAddr1"],[agentDetails valueForKey:@"AgentAddr2"],[agentDetails valueForKey:@"AgentAddr3"]];
+    txtAddress.text = address;
+    txtAddress.layer.borderWidth = 1.0f;
+    txtAddress.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];

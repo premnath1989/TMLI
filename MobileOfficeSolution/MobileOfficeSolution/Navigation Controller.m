@@ -11,6 +11,7 @@
 
 #import "Navigation Controller.h"
 #import "SettingUserProfile.h"
+#import "ProductInformation.h"
 
 
 // INTERFACE
@@ -94,6 +95,13 @@
         - (IBAction)goToLogin: (id) sender
         {
             [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"LoginPage"] animated:YES completion: nil];
+        }
+
+        - (IBAction)goToELibrary:(id)sender {
+            
+            ProductInformation *view = [[ProductInformation alloc] initWithNibName:@"ProductInformation" bundle:nil];
+            view.modalTransitionStyle = UIModalPresentationFullScreen;
+            [self presentViewController:view animated:NO completion:nil];
         }
 
         - (IBAction)goToAgentProfile:(id)sender

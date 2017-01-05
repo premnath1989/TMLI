@@ -147,6 +147,9 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="fmr-e6-KXW"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_elibrary_primary"/>
+                                    <connections>
+                                        <action selector="goToELibrary:" destination="-1" eventType="touchUpInside" id="1la-sB-f3h"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZz-JR-REE" customClass="ButtonNavigationVerticalHeader">
                                     <constraints>
