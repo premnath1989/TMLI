@@ -66,6 +66,7 @@
 @synthesize txtNamaKantor;
 @synthesize txtAAJINo;
 @synthesize txtAAJIDate;
+@synthesize txtICNo;
 
 - (void)viewDidLoad
 {
@@ -100,7 +101,13 @@
     txtAgentCode.text = [agentDetails valueForKey:@"AgentCode"];
     txtAgentCode.enabled = NO;
     
-    txtAgentName.text = [agentDetails valueForKey:@"AgentName"];
+    NSString *fullName;
+    if([agentDetails valueForKey:@"LGIVNAME"] == nil){
+        fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], @""];
+    }else{
+        fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], [agentDetails valueForKey:@"LGIVNAME"]];
+    }
+    txtAgentName.text = fullName;
     txtAgentName.enabled = NO;
     txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
     txtAgentStatus.enabled = NO;
@@ -110,12 +117,42 @@
     txtAddress.layer.borderWidth = 1.0f;
     txtAddress.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
+    txtICNo.text = [loginDB getAgentProperty:@"XREFNO"];
+    
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
     
+    txtBOD.text = [self DateFormatter:[loginDB getAgentProperty:@"CLTDOB"]];
+    
+    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
+    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
+    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
+    txtLicense.text = [loginDB getAgentProperty:@"Level"];
+    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
+    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
+    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
+    
+    txtPTKP.text = [loginDB getAgentProperty:@"TAXMETH"];
+    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
+    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
+    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
+    txtDM.text = @"";
+    txtRM.text = @"";
+    txtRD.text = @"";
+    txtNamaKantor.text = @"";
+    txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
+    txtAAJIDate.text = [self DateFormatter:[loginDB getAgentProperty:@"TLICEXPDT"]];
+    
+    txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
+    txtMobileNumber.enabled = NO;
+    txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
+    txtEmail.enabled = NO;
+}
+
+- (NSString *)DateFormatter:(NSString *)BareDate{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    NSDate *dateDOB = [dateFormatter dateFromString:[loginDB getAgentProperty:@"CLTDOB"]];
+    NSDate *dateDOB = [dateFormatter dateFromString:BareDate];
     
     NSDateFormatter *day = [[NSDateFormatter alloc] init];
     [day setDateFormat:@"dd"];
@@ -170,36 +207,7 @@
     [Year setDateFormat:@"YYYY"];
     NSString *txtYear = [Year stringFromDate:dateDOB];
     
-    txtBOD.text = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
-    
-    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
-    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
-    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
-    txtLicense.text = [loginDB getAgentProperty:@"Level"];
-    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
-    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
-    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
-    
-    txtPTKP.text = [loginDB getAgentProperty:@"Level"];
-    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
-    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
-    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
-    txtDM.text = [loginDB getAgentProperty:@"Level"];
-    txtRM.text = [loginDB getAgentProperty:@"Level"];
-    txtRD.text = [loginDB getAgentProperty:@"Level"];
-    txtNamaKantor.text = [loginDB getAgentProperty:@"Level"];
-    txtAAJINo.text = [loginDB getAgentProperty:@"Level"];
-    txtAAJIDate.text = [loginDB getAgentProperty:@"Level"];
-    
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
-    NSDate *startDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseStartDate"]];
-    NSDate *endDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseExpiryDate"]];
-    [dateFormatter setDateFormat:@"dd/MM/YYYY"];
-    
-    txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
-    txtMobileNumber.enabled = NO;
-    txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
-    txtEmail.enabled = NO;
+    return [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -946,6 +954,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     //[cffAPIController apiCallHtmlTable:@"http://mpos-sino-uat.cloudapp.net/SPAJHTMLForm.svc/GetAllData" JSONKey:arrayJSONKey TableDictionary:dictCFFTable DictionaryDuplicateChecker:dictDuplicateChecker WebServiceModule:@"SPAJ"];
 }
 
+-(void)getBackgroundImagesFile{
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL:
+                        kLatestKivaLoansURL];
+        [self performSelectorOnMainThread:@selector(create:)
+                               withObject:data waitUntilDone:YES];
+    });
+}
 
 -(void)getCFFHTMLFile{
     dispatch_async(kBgQueue, ^{

@@ -14,4 +14,6 @@
 -(void)apiCallHtmlTable:(NSString *)URL JSONKey:(NSArray *)jsonKey TableDictionary:(NSDictionary *)tableDictionary DictionaryDuplicateChecker:(NSDictionary *)dictDuplicate WebServiceModule:(NSString *)stringWebService;
 -(void)apiCallCrateHtmlFile:(NSString *)URL RootPathFolder:(NSString *)rootPathFolder;
 - (void)createDirectory:(NSString *)documentRootDirectory;
+- (void)createImageFiles;
+-(NSData *)dataFromBase64EncodedString:(NSString *)string;
 @end

@@ -132,8 +132,8 @@ BOOL NavShow2;
 
 - (void)setupTableColumn{
     //we call the table management to design the table
-    ColumnHeaderStyle *ilustrasi = [[ColumnHeaderStyle alloc]init:@" No. " alignment:NSTextAlignmentLeft button:FALSE width:0.05];
-    ColumnHeaderStyle *nama = [[ColumnHeaderStyle alloc]init:@"Nama" alignment:NSTextAlignmentCenter button:TRUE width:0.50];
+    ColumnHeaderStyle *ilustrasi = [[ColumnHeaderStyle alloc]init:@" No. " alignment:NSTextAlignmentCenter button:FALSE width:0.25];
+    ColumnHeaderStyle *nama = [[ColumnHeaderStyle alloc]init:@"Nama" alignment:NSTextAlignmentCenter button:TRUE width:0.40];
     ColumnHeaderStyle *type = [[ColumnHeaderStyle alloc]init:@"Kategori" alignment:NSTextAlignmentCenter button:TRUE width:0.15];
     ColumnHeaderStyle *size = [[ColumnHeaderStyle alloc]init:@"Ukuran" alignment:NSTextAlignmentCenter button:TRUE width:0.10];
     ColumnHeaderStyle *download = [[ColumnHeaderStyle alloc]init:downloadMacro alignment:NSTextAlignmentCenter button:TRUE width:0.10];
@@ -142,7 +142,7 @@ BOOL NavShow2;
     columnHeadersContent = [NSArray arrayWithObjects:ilustrasi, nama, type, size, download, nil];
     tableManagement = [[TableManagement alloc]init:self.view themeColour:themeColour themeFont:fontType];
     TableHeader =[tableManagement TableHeaderSetupXY:columnHeadersContent
-                                         positionY:250.0f positionX:0.0f];
+                                         positionY:252.0f positionX:0.0f];
     
     [self.view addSubview:TableHeader];
     

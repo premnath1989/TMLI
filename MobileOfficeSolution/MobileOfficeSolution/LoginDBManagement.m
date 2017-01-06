@@ -439,8 +439,26 @@
 }
 
 -(BOOL)fullSyncTable:(WebResponObj *)obj{
-    return [self SyncTable:obj dbString:databasePath];
+    BOOL SyncProcess = [self SyncTable:obj dbString:databasePath];
+    
+    //this is bandaid for license Expiry Date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate *dateDOB = [dateFormatter dateFromString:[self getAgentProperty:@"TLICEXPDT"]];
+    
+    NSDateFormatter *day = [[NSDateFormatter alloc] init];
+    [day setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
+    NSString *expiredDate = [day stringFromDate:dateDOB];
+    [self setAgentProperty:@"LicenseExpiryDate" value:expiredDate];
+    
+    return SyncProcess;
 }
+
+- (void) replicateExpiryDate{
+    
+    [self getAgentProperty:@"TLICEXPDT"];
+}
+
 
 -(BOOL)SyncTable:(WebResponObj *)obj dbString:(NSString *)DB{
     BOOL insertProc = FALSE;
@@ -644,6 +662,26 @@
     return SPAJCount;
 }
 
+- (NSString *) setAgentProperty:(NSString *)property value:(NSString *)valueProp{
+    NSString *propertyString = @"";
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"UPDATE %@ SET %@ = \"%@\"",TABLE_AGENT_PROFILE, property, valueProp];
+        
+        if (sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, NULL) == SQLITE_OK)
+        {
+            NSLog(@"Status update!");
+            
+        } else {
+            NSLog(@"Status update Failed!");
+        }
+        sqlite3_close(contactDB);
+    }
+    return propertyString;
+    
+}
+
+
 - (NSString *) getAgentProperty:(NSString *)property{
     sqlite3_stmt *statement;
     NSString *propertyString = @"";
@@ -716,8 +754,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
-    
-    sqlite3_stmt *statement;
     
     if (sqlite3_open([databasePath UTF8String], &contactDB) == SQLITE_OK)
     {

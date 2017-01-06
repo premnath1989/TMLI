@@ -32,7 +32,7 @@
 - (UIView *) TableHeaderSetupXY:(NSArray *)columnHeaders positionY:(float)originY positionX:(float)originX{
     TableHeader = [[UIView alloc]initWithFrame:
                    CGRectMake(originX,
-                              originY, ParentView.frame.size.width+132.0f, 41.0f)];
+                              originY, ParentView.frame.size.width+258.0f, 41.0f)];
     [TableHeader setBackgroundColor:themeColour];
     [self TableHeaderColumn:columnHeaders];
     return TableHeader;

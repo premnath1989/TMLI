@@ -103,6 +103,26 @@
             }] resume];
 }
 
+-(void)getBGImagesFile{
+    
+    NSString *kLatestKivaLoansURL = [NSString stringWithFormat:@"%@/Service2.svc/getAllData", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
+    
+    dispatch_async(kBgQueue, ^{
+        NSData* data ;
+        data = [NSData dataWithContentsOfURL:[NSURL URLWithString:kLatestKivaLoansURL]];
+        
+        
+        NSLog(@"respond getCFFHTMLFile exceeded");
+        if(data != nil)
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                //[self doSomething:1 b:2 c:3 d:4 e:5];
+                [self putBGImagesFile:data];
+            });
+        //[self performSelectorOnMainThread:@selector(createHTMLFile:) withObject:data waitUntilDone:YES];
+    });
+}
+
+
 -(void)getCFFHTMLFile :(NSString *)stringWebService{
     
     NSString *kLatestKivaLoansURL = [NSString stringWithFormat:@"%@/Service2.svc/getAllData", [(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL]];
@@ -259,12 +279,40 @@
             }] resume];
 }
 
+-(void)putBGImagesFile:(NSData *)jsonData{
+    @try {
+        NSError *error =  nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+        
+        if ([[json valueForKeyPath:@"d"] isKindOfClass:[NSArray class]] && error == nil){
+            NSArray *items = [json valueForKeyPath:@"d"];
+            NSEnumerator *enumerator = [items objectEnumerator];
+            NSDictionary* item;
+            while (item = (NSDictionary*)[enumerator nextObject]) {
+                NSString* base64String = [NSString stringWithFormat:@"%@",[item objectForKey:@"Base64ImageString"]];
+                NSString* fileName = [NSString stringWithFormat:@"%@",[item objectForKey:@"FileName"]];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *filePathApp = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+                
+                NSData *DecodedData = [self dataFromBase64EncodedString:base64String];
+                [DecodedData writeToFile:[NSString stringWithFormat:@"%@/%@",filePathApp,fileName] options:NSDataWritingAtomic error:&error];
+            }
+        }
+    } @catch (NSException *exception) {
+        
+    } @finally {
+        
+    }
+}
+
+
 -(void)createHTMLFile:(NSData *)jsonData RootPathFolder:(NSString *)rootPathFolder{
     @try {
         NSError *error =  nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
         
-        if ([[json valueForKeyPath:@"d"] isKindOfClass:[NSArray class]]){
+        if (error == nil){
             NSArray *items = [json valueForKeyPath:@"d"];
             NSEnumerator *enumerator = [items objectEnumerator];
             NSDictionary* item;
