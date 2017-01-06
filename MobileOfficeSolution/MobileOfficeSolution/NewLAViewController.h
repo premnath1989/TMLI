@@ -102,6 +102,7 @@
     id dobtemp;
     id dobtanngal;
 }
+-(void)loadDataFromList;
 
 @property (nonatomic, strong) RelationshipPopoverViewController *RshipTypePicker;
 @property (nonatomic, strong) UIPopoverController *RshipTypePickerPopover;

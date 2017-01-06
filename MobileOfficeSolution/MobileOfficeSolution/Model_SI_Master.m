@@ -106,10 +106,10 @@
     NSMutableArray* arrayEdit=[[NSMutableArray alloc] init];
     NSMutableArray* arraySigned=[[NSMutableArray alloc] init];
     
-   // FMResultSet *s = [database executeQuery:@"SELECT sim.*, po.ProductName,po.PO_Name,premi.Sum_Assured FROM SI_master sim, SI_PO_Data po,SI_Premium premi WHERE sim.SINO = po.SINO and sim.SINO = premi.SINO"];
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) as Sum_Assured, po.QuickQuote FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]];
+   // FMResultSet *s = [database executeQuery:@"SELECT sim.*, po.ProductName,po.PO_Name,premi.SumAssured FROM SI_master sim, SI_PO_Data po,SI_BasicPlan premi WHERE sim.SINO = po.SINO and sim.SINO = premi.SINO"];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) as SumAssured, po.QuickQuote FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]];
     
-    NSLog(@"query %@",[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]);
+    NSLog(@"query %@",[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]);
     
     while ([s next]) {
         NSString *stringSINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SINO"]];
@@ -118,7 +118,7 @@
         NSString *stringProductName = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProductName"]];
         NSString *stringProposalStatus = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProposalStatus"]];
         NSString *stringSIVersion = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SI_Version"]];
-        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"Sum_Assured"]];
+        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SumAssured"]];
         NSString *qqStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"QuickQuote"]];
         NSString *editStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"EnableEditing"]];
         NSString *signedStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IllustrationSigned"]];
@@ -136,7 +136,7 @@
         [arrayEdit addObject:editStr];
         [arraySigned addObject:signedStr];
     }
-    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"Sum_Assured", arraySIQQ, @"QuickQuote",arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
+    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"SumAssured", arraySIQQ, @"QuickQuote",arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
     
     [results close];
     [database close];
@@ -163,7 +163,7 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-       // FMResultSet *s = [database executeQuery:@"SELECT sim.*, po.ProductName,po.PO_Name,premi.Sum_Assured FROM SI_master sim, SI_PO_Data po,SI_Premium premi WHERE sim.SINO = po.SINO and sim.SINO = premi.SINO"];
+       // FMResultSet *s = [database executeQuery:@"SELECT sim.*, po.ProductName,po.PO_Name,premi.SumAssured FROM SI_master sim, SI_PO_Data po,SI_BasicPlan premi WHERE sim.SINO = po.SINO and sim.SINO = premi.SINO"];
     FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select * FROM SI_master where SINO = \"%@\"",SINO]];
     
     while ([s next]) {
@@ -173,14 +173,14 @@
         stringProductName = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProductName"]];
         stringProposalStatus = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProposalStatus"]];
         stringSIVersion = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SI_Version"]];
-        sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"Sum_Assured"]];
+        sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SumAssured"]];
         qqStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"QuickQuote"]];
         editStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"EnableEditing"]];
         signedStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IllustrationSigned"]];
         
         NSLog(@"sumassured %@",sumAssured);
 }
-    dict = [[NSDictionary alloc] initWithObjectsAndKeys:stringSINo,@"SINO", stringCreatedDate,@"CreatedDate", stringPOName,@"PO_Name",stringProductName,@"ProductName",stringProposalStatus,@"ProposalStatus",stringSIVersion,@"SI_Version",sumAssured,@"Sum_Assured", qqStr, @"QuickQuote",editStr, @"EnableEditing",signedStr,@"IllustrationSigned", nil];
+    dict = [[NSDictionary alloc] initWithObjectsAndKeys:stringSINo,@"SINO", stringCreatedDate,@"CreatedDate", stringPOName,@"PO_Name",stringProductName,@"ProductName",stringProposalStatus,@"ProposalStatus",stringSIVersion,@"SI_Version",sumAssured,@"SumAssured", qqStr, @"QuickQuote",editStr, @"EnableEditing",signedStr,@"IllustrationSigned", nil];
     
     [results close];
     [database close];
@@ -208,9 +208,9 @@
     NSMutableArray* arrayEdit=[[NSMutableArray alloc] init];
     NSMutableArray* arraySigned=[[NSMutableArray alloc] init];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) as Sum_Assured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO where sim.IllustrationSigned=0 and po.QuickQuote=0 and po.SINO not in (select SPAJSINO from SPAJTransaction) group by sim.ID order by %@ %@",orderBy,sortMethod]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) as SumAssured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO where sim.IllustrationSigned=0 and po.QuickQuote=0 and po.SINO not in (select SPAJSINO from SPAJTransaction) group by sim.ID order by %@ %@",orderBy,sortMethod]];
     
-    NSLog(@"query %@",[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]);
+    NSLog(@"query %@",[NSString stringWithFormat:@"select sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) FROM SI_master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO group by sim.ID order by %@ %@",orderBy,sortMethod]);
     
     while ([s next]) {
         NSString *stringSINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SINO"]];
@@ -219,7 +219,7 @@
         NSString *stringProductName = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProductName"]];
         NSString *stringProposalStatus = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProposalStatus"]];
         NSString *stringSIVersion = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SI_Version"]];
-        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"Sum_Assured"]];
+        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SumAssured"]];
         NSString *qqStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"QuickQuote"]];
         NSString *editStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"EnableEditing"]];
         NSString *signedStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IllustrationSigned"]];
@@ -237,7 +237,7 @@
         [arrayEdit addObject:editStr];
         [arraySigned addObject:signedStr];
     }
-    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"Sum_Assured", arraySIQQ, @"QuickQuote",arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
+    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"SumAssured", arraySIQQ, @"QuickQuote",arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
     
     [results close];
     [database close];
@@ -288,11 +288,11 @@
         NSMutableString* dateToNew=[[NSMutableString alloc]initWithString:dateTo];
         [dateFromNew appendString:@" 00:00:00"];
         [dateToNew appendString:@" 24:00:00"];
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) as Sum_Assured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" and sim.CreatedDate between \"%@\" and \"%@\" group by sim.ID order by %@ %@",SINO,poName,dateFromNew,dateToNew,orderBy,method]];
-        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) FROM SI_Master sim join SI_PO_Data po on sim.SINO=po.SINO join SI_Premium sip on sim.SINO=sip.SINO where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" and sim.CreatedDate between \"%@\" and \"%@\" group by sim.ID order by %@ %@",SINO,poName,dateFromNew,dateToNew,orderBy,method]);
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) as SumAssured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" and sim.CreatedDate between \"%@\" and \"%@\" group by sim.ID order by %@ %@",SINO,poName,dateFromNew,dateToNew,orderBy,method]];
+        NSLog(@"query %@",[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) FROM SI_Master sim join SI_PO_Data po on sim.SINO=po.SINO join SI_BasicPlan sip on sim.SINO=sip.SINO where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" and sim.CreatedDate between \"%@\" and \"%@\" group by sim.ID order by %@ %@",SINO,poName,dateFromNew,dateToNew,orderBy,method]);
     }
     else{
-        s = [database executeQuery:[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.Sum_Assured,0) as Sum_Assured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_Premium sip on sim.SINO=sip.SINO  where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" group by sim.ID order by %@ %@",SINO,poName,orderBy,method]];
+        s = [database executeQuery:[NSString stringWithFormat:@"SELECT sim.*, po.ProductName,po.PO_Name,ifnull(sip.SumAssured,0) as SumAssured, po.QuickQuote FROM SI_Master sim left join SI_PO_Data po on sim.SINO=po.SINO left join SI_BasicPlan sip on sim.SINO=sip.SINO  where sim.SINO like \"%%%@%%\" and po.PO_Name like \"%%%@%%\" group by sim.ID order by %@ %@",SINO,poName,orderBy,method]];
     }
 
     while ([s next]) {
@@ -304,7 +304,7 @@
         NSString *stringProductName = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProductName"]];
         NSString *stringProposalStatus = [NSString stringWithFormat:@"%@",[s stringForColumn:@"ProposalStatus"]];
         NSString *stringSIVersion = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SI_Version"]];
-        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"Sum_Assured"]];
+        NSString *sumAssured = [NSString stringWithFormat:@"%@",[s stringForColumn:@"SumAssured"]];
         NSString *qqStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"QuickQuote"]];
         NSString *editStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"EnableEditing"]];
         NSString *signedStr = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IllustrationSigned"]];
@@ -320,7 +320,7 @@
         [arrayEdit addObject:editStr];
         [arraySigned addObject:signedStr];
     }
-    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"Sum_Assured",arrayQQ, @"QuickQuote", arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
+    dict = [[NSDictionary alloc] initWithObjectsAndKeys:arraySINo,@"SINO", arrayCreatedDate,@"CreatedDate", arrayPOName,@"PO_Name",arrayProductName,@"ProductName",arrayProposalStatus,@"ProposalStatus",arraySIVersion,@"SI_Version",arraySumAssured,@"SumAssured",arrayQQ, @"QuickQuote", arrayEdit, @"EnableEditing",arraySigned,@"IllustrationSigned", nil];
     
     [results close];
     [database close];

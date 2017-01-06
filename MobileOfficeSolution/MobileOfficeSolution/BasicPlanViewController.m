@@ -477,6 +477,7 @@ bool WPTPD30RisDeleted = FALSE;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
     
     [self checkEditingMode];
+    [self loadDataFromList];
 }
 
 - (void) checkEditingMode {
@@ -2011,41 +2012,33 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 -(void)loadDataFromList{
-    _modelSIPremium = [[Model_SI_Premium alloc]init];
-    NSDictionary* dictPremiData=[[NSDictionary alloc]initWithDictionary:[_modelSIPremium getPremium_For:[self.requestSINo description]]];
+    NSDictionary* dictPremiData=[[NSDictionary alloc]init];
+    NSDictionary* dictPOLAData = [[NSDictionary alloc]init];
+    dictPremiData = [_delegate getBasicPlanDictionary];
+    dictPOLAData = [_delegate getPOLADictionary];
     if ([dictPremiData count]!=0){
-        premiType = [self getPremiType:[dictPremiData valueForKey:@"Payment_Term"]];
-        [yearlyIncomeField setText:[dictPremiData valueForKey:@"Sum_Assured"]];
-        [_basicPremiField setText:[dictPremiData valueForKey:@"PremiumPolicyA"]];
-        [_extraPremiPercentField setText:[dictPremiData valueForKey:@"ExtraPremiumPercentage"]];
-        [_extraPremiNumberField setText:[dictPremiData valueForKey:@"ExtraPremiumSum"]];
-        [_masaExtraPremiField setText:[dictPremiData valueForKey:@"ExtraPremiumTerm"]];
-        [_extraBasicPremiField setText:[dictPremiData valueForKey:@"ExtraPremiumPolicy"]];
-        [_totalPremiWithLoadingField setText:[dictPremiData valueForKey:@"TotalPremiumLoading"]];
-        [_masaPembayaranButton setTitle:[dictPremiData valueForKey:@"Payment_Term"] forState:UIControlStateNormal];
+        [_BasicPremiiField setText:[dictPremiData valueForKey:@"Premium"]];
+        [yearlyIncomeField setText:[dictPremiData valueForKey:@"SumAssured"]];
+        [_TotalPremiField setText:[dictPremiData valueForKey:@"TotalPremium"]];
+        [_RencanaButton setTitle:[dictPremiData valueForKey:@"Payment_Term"] forState:UIControlStateNormal];
         [_frekuensiPembayaranButton setTitle:[dictPremiData valueForKey:@"Payment_Frequency"] forState:UIControlStateNormal];
-        FRekeunsiPembayaranMode = [dictPremiData valueForKey:@"Payment_Frequency"];
-        [_KKLKPembelianKeBtn setTitle:[dictPremiData valueForKey:@"PurchaseNumber"] forState:UIControlStateNormal];
-        [_KKLKDiskaunBtn setText:[dictPremiData valueForKey:@"Discount"]];
-        [_basicPremiFieldAfterDiscount setText:[dictPremiData valueForKey:@"SubTotalPremium"]];
         
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-        f.numberStyle = NSNumberFormatterDecimalStyle;
-        //NSNumber *myNumber = [f numberFromString:[dictPremiData valueForKey:@"Sum_Assured"]];
-        NSNumber *myNumber = [classFormatter convertAnyNonDecimalNumberToString:[dictPremiData valueForKey:@"Sum_Assured"]];
-        
-        BasisSumAssured = [myNumber longLongValue];
-
-        if ([[dictPremiData valueForKey:@"PurchaseNumber"] intValue]>=2){
-            discountPembelian=0.05;
-        }
-        else{
-            discountPembelian=0;
-        }
-        PembelianKEString =[dictPremiData valueForKey:@"PurchaseNumber"];
-        PaymentDescMDKK = FRekeunsiPembayaranMode;
-        [_delegate setBasicPlanDictionaryWhenLoadFromList:dictPremiData];
+        [_MataUangPembayaran setTitle:[dictPremiData valueForKey:@"PaymentCurrency"] forState:UIControlStateNormal];
+        [_masaPembayaranButton setTitle:[dictPOLAData valueForKey:@"ProductName"] forState:UIControlStateNormal];
     }
+    else{
+        [_MataUangPembayaran setTitle:@"--Pelase Select--" forState:UIControlStateNormal];
+        [_frekuensiPembayaranButton setTitle:@"--Pelase Select--" forState:UIControlStateNormal];
+        [_masaPembayaranButton setTitle:@"--Pelase Select--" forState:UIControlStateNormal];
+        [_RencanaButton setTitle:@"--Pelase Select--" forState:UIControlStateNormal];
+        [_BasicPremiiField setText:@""];
+        [yearlyIncomeField setText:@""];
+    }
+    //FRekeunsiPembayaranMode
+    //BasisSumAssured
+    //discountPembelian
+    //PembelianKEString
+
 }
 //end of added by faiz
 
@@ -4443,11 +4436,12 @@ bool WPTPD30RisDeleted = FALSE;
         }
     }
     
-    if ([self validateExistingRider] == TRUE) {
+    /*if ([self validateExistingRider] == TRUE) {
         return YES;
     } else {
         return NO;
-    }
+    }*/
+    return NO;
 }
 
 -(void)checkExistRider
@@ -4486,7 +4480,7 @@ bool WPTPD30RisDeleted = FALSE;
     [_delegate RiderAdded];
 }
 
--(BOOL)validateExistingRider
+/*-(BOOL)validateExistingRider
 {    
     BOOL dodelete = NO;
     int RTerm;
@@ -4641,7 +4635,7 @@ bool WPTPD30RisDeleted = FALSE;
     }
     
     return TRUE;
-}
+}*/
 
 -(void)deleteSpecificRider:(NSString *)SiNo  WithRiderCode:(NSString *)triderCode {
     sqlite3_stmt *statement;

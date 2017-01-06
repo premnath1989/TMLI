@@ -2844,17 +2844,13 @@ BOOL NavShow3;
         self.LAController.requestSINo = [self.requestSINo description];
         self.LAController.requesteProposalStatus = eProposalStatus;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
-        _SiScrollView.contentSize = CGSizeMake(self.LAController.view.frame.size.width, 514.0);
         [self.RightView addSubview:self.LAController.view];
-        [self.LAController loadDataFromList];
     }else{
         self.LAController.requestSINo = [self.requestSINo description];
         self.LAController.requesteProposalStatus = eProposalStatus;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
         [self.LAController.view removeFromSuperview];
-        _SiScrollView.contentSize = CGSizeMake(self.LAController.view.frame.size.width, 514.0);
         [self.RightView addSubview:self.LAController.view];
-        [self.LAController loadDataFromList];
     }
 }
 
@@ -2868,15 +2864,11 @@ BOOL NavShow3;
         self.SecondLAController.requesteProposalStatus = eProposalStatus;
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
-        _SiScrollView.contentSize = CGSizeMake(self.SecondLAController.view.frame.size.width, 455.0);
         [self.RightView addSubview:self.SecondLAController.view];
-        [self.SecondLAController loadDataFromList];
     } else {
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
-        _SiScrollView.contentSize = CGSizeMake(self.SecondLAController.view.frame.size.width, 455.0);
         [self.RightView addSubview:self.SecondLAController.view];
-        [self.SecondLAController loadDataFromList];
     }
 }
 
@@ -2886,40 +2878,20 @@ BOOL NavShow3;
         _BasicController.delegate = self;
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
-        _SiScrollView.contentSize = CGSizeMake(self.BasicController.view.frame.size.width, 724.0);
         [self.RightView addSubview:self.BasicController.view];
-        [self.BasicController loadDataFromList];
     } else {
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
-        _SiScrollView.contentSize = CGSizeMake(self.BasicController.view.frame.size.width, 724.0);
         [self.RightView addSubview:self.BasicController.view];
-        [self.BasicController loadDataFromList];
-    }
-}
-
--(IBAction)actionShowRider:(id)sender{
-    if(!_RiderController) {
-        _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
-        [self.RightView addSubview:self.RiderController.view];
-    } else {
-        _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
-        [self.RightView addSubview:self.RiderController.view];
     }
 }
 
 -(IBAction)actionShowFundAllocation:(id)sender{
 
-    self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
-    // _InvestmentController.delegate = self;
-    [self.RightView addSubview:self.InvestmentController.view];
-    
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
-    self.FundPercentController = [self.storyboard instantiateViewControllerWithIdentifier:@"FundPercent"];
-    // _InvestmentController.delegate = self;
-    [self.RightView addSubview:self.FundPercentController.view];
+   
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -2930,13 +2902,7 @@ BOOL NavShow3;
         [self actionShowBasicPlan:nil];
     }
     else if (currentVC == _BasicController){
-        [self actionShowRider:nil];
-    }
-    else if (currentVC == _InvestmentController) {
-        [self actionShowFundAllocation:nil];
-    }
-    else if (currentVC == _FundPercentController) {
-        [self actionShowTopUpWithdraw:nil];
+        NSLog(@"next page not setted yet");
     }
 }
 #pragma mark - table view
@@ -2984,7 +2950,6 @@ BOOL NavShow3;
     [cell.btnPemegangPolis addTarget:self action:@selector(actionShowPolicyHolder:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnTertanggung addTarget:self action:@selector(actionShowLifeAssured:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnAsuransiDasar addTarget:self action:@selector(actionShowBasicPlan:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.BtnAsuransiTamb addTarget:self action:@selector(actionShowRider:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnInvestasi addTarget:self action:@selector(actionShowFundAllocation:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnPenambahan addTarget:self action:@selector(actionShowTopUpWithdraw:) forControlEvents:UIControlEventTouchUpInside];
     
@@ -5805,7 +5770,8 @@ NSString *prevPlan;
         //isThin = YES;
         _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
         ScrollMenu.frame = CGRectMake(0, 280.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 428.0);
+        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 600.0);
+        
     }
     
 }

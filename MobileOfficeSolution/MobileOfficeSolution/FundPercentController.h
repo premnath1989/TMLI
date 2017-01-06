@@ -8,6 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FundPercentController : UIViewController
+@class FundPercentController;
+@protocol FundPercentControllerDelegate
+
+@end
+
+
+@interface FundPercentController : UIViewController <UITableViewDelegate,UITableViewDataSource>{
+    id <FundPercentControllerDelegate> _delegate;
+    
+    NSMutableArray *FundPercentList;
+}
+
 
 @end
