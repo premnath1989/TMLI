@@ -4436,11 +4436,12 @@ bool WPTPD30RisDeleted = FALSE;
         }
     }
     
-    if ([self validateExistingRider] == TRUE) {
+    /*if ([self validateExistingRider] == TRUE) {
         return YES;
     } else {
         return NO;
-    }
+    }*/
+    return NO;
 }
 
 -(void)checkExistRider
@@ -4479,7 +4480,7 @@ bool WPTPD30RisDeleted = FALSE;
     [_delegate RiderAdded];
 }
 
--(BOOL)validateExistingRider
+/*-(BOOL)validateExistingRider
 {    
     BOOL dodelete = NO;
     int RTerm;
@@ -4634,7 +4635,7 @@ bool WPTPD30RisDeleted = FALSE;
     }
     
     return TRUE;
-}
+}*/
 
 -(void)deleteSpecificRider:(NSString *)SiNo  WithRiderCode:(NSString *)triderCode {
     sqlite3_stmt *statement;
