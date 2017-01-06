@@ -173,7 +173,7 @@
     txtBOD.text = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
     
     txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
-    txtMaritalStatus.text = [loginDB getAgentProperty:@"MRRYD"];
+    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
     txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
     txtLicense.text = [loginDB getAgentProperty:@"Level"];
     txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
