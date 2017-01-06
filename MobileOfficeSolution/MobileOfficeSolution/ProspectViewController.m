@@ -2976,11 +2976,19 @@ BOOL NavShowP;
 {
 	clickDone = 1;
     bool exist =  [self record_exist];
-    if(exist) {
+    
+    if(exist)
+    {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Semua perubahan akan diperbarui untuk berhubungan SI, CFF dan SPAJ. Apakah Anda ingin melanjutkan?" delegate:self cancelButtonTitle:@"Ya" otherButtonTitles:@"Tidak", nil];
         [alert setTag:1004];
         [alert show];
-    } else {
+    }
+    else
+    {
+        NSLog(@"Button Save !");
+        
+        
+        
         [self btnSave];
     }
 }
@@ -3206,87 +3214,161 @@ BOOL NavShowP;
                 CountryOfBirth = _txtCountryOfBirth.text;//btnCoutryOfBirth.titleLabel.text;
                 //CountryOfBirth = [self getCountryCode:CountryOfBirth];
                 
-                if(Update_record == YES) {
-                    //GET PP  CHANGES COUNTER
+                
+                
+                // BHIMBIM'S QUICK FIX - START
+                
+                FMDatabase *databaseManager = [FMDatabase databaseWithPath:databasePath];
+                [databaseManager open];
+                NSLog(@"Database Manager - Open");
+                
+                NSLog(@"Search with gender -> %@, date of birth -> %@, id type -> %@ and id number -> %@", gender, strDOB, _txtTypeID.text, _txtIdNumber.text);
+                NSString *querySelectProspect = [NSString stringWithFormat:@"SELECT COUNT(*) as COUNT, IndexNo FROM prospect_profile WHERE ProspectGender = '%@' AND ProspectDOB = '%@' AND OtherIDType = '%@' AND OtherIDTypeNo = '%@'", gender, strDOB, othertype, _txtIdNumber.text];
+                NSLog(@"Query select prospect -> %@", querySelectProspect);
+                FMResultSet *resultSelectProspect = [databaseManager executeQuery:querySelectProspect];
+                int intCount = 0;
+                
+                while ([resultSelectProspect next])
+                {
+                    intCount = [resultSelectProspect intForColumn:@"COUNT"];
+                    NSLog(@"row | index no -> %@", [resultSelectProspect stringForColumn:@"IndexNo"]);
+                }
+                
+                if(intCount > 0)
+                {
+                    NSLog(@"Count !, count -> %d and it's dupplicate !", intCount);
                     
-                    FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
-                    [db open];
-                    FMResultSet *result = [db executeQuery:@"SELECT ProspectProfileChangesCounter from prospect_profile WHERE indexNo = ?", pp.ProspectID];
-                    while ([result next]) {
-                        counter =  [result intForColumn:@"ProspectProfileChangesCounter"];
-                    }
-                    [result close];
+                    UIAlertController *alertController =
+                    [
+                         UIAlertController
+                         alertControllerWithTitle:NSLocalizedString(@"Kemungkinan Data Ganda", nil)
+                         message: @"Data yang anda masukkan sudah ada sebelumnya, apakah anda ingin tetap tambah atau lihat data yang sudah ada ?"
+                         preferredStyle:UIAlertControllerStyleAlert
+                    ];
                     
-                    counter = counter+1;
+                    UIAlertAction * actionPositive =
+                    [
+                         UIAlertAction
+                         actionWithTitle:@"Tetap tambah"
+                         style:UIAlertActionStyleDefault
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alertController dismissViewControllerAnimated:YES completion:nil];
+                         }
+                     ];
                     
-                    NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
-                    NSString *prosID = prospectprofile.ProspectID;
+                    UIAlertAction *actionCancel =
+                    [
+                         UIAlertAction
+                         actionWithTitle:@"Lihat data yang sudah ada"
+                         style:UIAlertActionStyleCancel
+                         handler:^(UIAlertAction * action)
+                         {
+                             [alertController dismissViewControllerAnimated:YES completion:nil];
+                         }
+                    ];
                     
-                    if (prospectprofile.ProspectID == Nil) {
-                        NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-                        prospectprofile.ProspectID = [ClientProfile objectForKey:@"LastID"];
-                        prosID = [ClientProfile objectForKey:@"LastID"];
-                    }
+                    [alertController addAction:actionPositive];
+                    [alertController addAction:actionCancel];
                     
-                    if ([db close]) {
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
+                else
+                {
+                    NSLog(@"Count !, count -> %d and it's unique !", intCount);
+                    
+                    // I DONT KNOW WHOSE CODE IS THIS - START
+                    
+                    if(Update_record == YES) {
+                        //GET PP  CHANGES COUNTER
+                        
+                        FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
                         [db open];
-                    }
-                    
-                    
-                    insertSQL = [NSString stringWithFormat:
-                                 @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
-                                 txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
-                    
-                } else {
-                    
-                    NSString *isForeign = @"NO";
-//                    NSString *Fav;
-//                    if (isFavorite ) {
-//                      Fav = @"TRUE";
-//                    }
-//                    else {
-//                        Fav = @"FALSE";
-//                    }
-                    
-                    [self CalculateScore];
-                    
-                    
-                    [self calculateAge:txtDOB.text];
-                    if (strDOB == nil) {
-                        strDOB = @"";
-                        age = 0;
-                    }
-                    
-                    NSString *strScore = [NSString stringWithFormat:@"%d", score];
-                    UDScore = [NSUserDefaults standardUserDefaults];
-                    [UDScore setObject:strScore forKey:@"Score"];
-                    [UDScore synchronize];
-                    
-                    insertSQL = [NSString stringWithFormat:
-                                 @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
-                                 "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
-                                 txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
-                                 @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
-                    
-                }
-                
-                const char *insert_stmt = [insertSQL UTF8String];
-                if(sqlite3_prepare_v2(contactDB, insert_stmt, -1, &statement, NULL) == SQLITE_OK) {
-                    if (sqlite3_step(statement) == SQLITE_DONE) {
-                        [self GetLastID];
+                        FMResultSet *result = [db executeQuery:@"SELECT ProspectProfileChangesCounter from prospect_profile WHERE indexNo = ?", pp.ProspectID];
+                        while ([result next]) {
+                            counter =  [result intForColumn:@"ProspectProfileChangesCounter"];
+                        }
+                        [result close];
+                        
+                        counter = counter+1;
+                        
+                        NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
+                        NSString *prosID = prospectprofile.ProspectID;
+                        
+                        if (prospectprofile.ProspectID == Nil) {
+                            NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
+                            prospectprofile.ProspectID = [ClientProfile objectForKey:@"LastID"];
+                            prosID = [ClientProfile objectForKey:@"LastID"];
+                        }
+                        
+                        if ([db close]) {
+                            [db open];
+                        }
+                        
+                        
+                        insertSQL = [NSString stringWithFormat:
+                                     @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
+                                     txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
+                        
                     } else {
-                        UIAlertView *failAlert = [[UIAlertView alloc] initWithTitle:@" " message:@"Fail in inserting into profile table" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                        [failAlert show];
+                        
+                        NSString *isForeign = @"NO";
+                        //                    NSString *Fav;
+                        //                    if (isFavorite ) {
+                        //                      Fav = @"TRUE";
+                        //                    }
+                        //                    else {
+                        //                        Fav = @"FALSE";
+                        //                    }
+                        
+                        [self CalculateScore];
+                        
+                        
+                        [self calculateAge:txtDOB.text];
+                        if (strDOB == nil) {
+                            strDOB = @"";
+                            age = 0;
+                        }
+                        
+                        NSString *strScore = [NSString stringWithFormat:@"%d", score];
+                        UDScore = [NSUserDefaults standardUserDefaults];
+                        [UDScore setObject:strScore forKey:@"Score"];
+                        [UDScore synchronize];
+                        NSLog(@"Insert Start !!");
+                        insertSQL = [NSString stringWithFormat:
+                                     @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
+                                     "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
+                                     txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
+                                     @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
+                        NSLog(@"Insert End !!");
+                        
                     }
-                    sqlite3_finalize(statement);
-                }
-                else{
-                    NSLog(@"query insert %@",insertSQL);
-                    NSLog(@"could not prepare statement: %s", sqlite3_errmsg(contactDB));
+                    
+                    const char *insert_stmt = [insertSQL UTF8String];
+                    if(sqlite3_prepare_v2(contactDB, insert_stmt, -1, &statement, NULL) == SQLITE_OK) {
+                        if (sqlite3_step(statement) == SQLITE_DONE) {
+                            [self GetLastID];
+                        } else {
+                            UIAlertView *failAlert = [[UIAlertView alloc] initWithTitle:@" " message:@"Fail in inserting into profile table" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                            [failAlert show];
+                        }
+                        sqlite3_finalize(statement);
+                    }
+                    else{
+                        NSLog(@"query insert %@",insertSQL);
+                        NSLog(@"could not prepare statement: %s", sqlite3_errmsg(contactDB));
+                    }
+                    
+                    sqlite3_close(contactDB);
+                    insertSQL = Nil, insert_stmt = Nil;
+                    
+                    // I DONT KNOW WHOSE CODE IS THIS - END
                 }
                 
-                sqlite3_close(contactDB);
-                insertSQL = Nil, insert_stmt = Nil;
+                [databaseManager close];
+                NSLog(@"Database Manager - Close");
+                
+                // BHIMBIM'S QUICK FIX - END
             }
             
             statement = Nil;

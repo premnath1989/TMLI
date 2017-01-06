@@ -301,22 +301,18 @@
         [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_NAVIGATION_HEADER]];
         [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0] forState:UIControlStateNormal];
         [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-        [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        self.titleLabel.numberOfLines = 2;
-        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [self.titleLabel setFrame:CGRectMake(0, 0, NAVIGATION_WIDTH_HEADER - (GENERAL_SPACE_LITTLE * 2), 45)];
+        [self.titleLabel setNumberOfLines : 2];
+        [self.titleLabel setLineBreakMode : NSLineBreakByWordWrapping];
+        [self.titleLabel setTextAlignment : NSTextAlignmentCenter];
         // CGSize sizeTitle = [self.titleLabel.text sizeWithAttributes: @{NSFontAttributeName:self.titleLabel.font}];
-        self.titleLabel.frame = CGRectMake(0, 0, NAVIGATION_WIDTH_HEADER - (GENERAL_SPACE_LITTLE * 2), 45);
-        [self.titleLabel sizeToFit];
         CGSize sizeTitle = self.titleLabel.frame.size;
         self.titleEdgeInsets = UIEdgeInsetsMake(GENERAL_SPACE_ENORMOUS, - GENERAL_SPACE_LITTLE - ICON_SIZE_MEDIUM + (NAVIGATION_WIDTH_HEADER / 2) - (sizeTitle.width / 2) , 0, 0);
-        self.imageEdgeInsets = UIEdgeInsetsMake(-GENERAL_SPACE_HUGE, (NAVIGATION_WIDTH_HEADER - GENERAL_SPACE_LITTLE - ICON_SIZE_MEDIUM) / 2, 0, 0);
+        self.imageEdgeInsets = UIEdgeInsetsMake(-GENERAL_SPACE_HUGE, ((NAVIGATION_WIDTH_HEADER - ICON_SIZE_MEDIUM) / 2)  - GENERAL_SPACE_LITTLE, 0, 0);
         self.contentEdgeInsets = UIEdgeInsetsMake(GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE);
         self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0].CGColor;
         self.layer.borderWidth = GENERAL_WIDTH_THIN;
-        self.titleLabel.numberOfLines = 2;
-        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
     }
 
 @end
@@ -339,21 +335,20 @@
         [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_NAVIGATION_DETAIL]];
         [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0] forState:UIControlStateNormal];
         [self setContentVerticalAlignment:UIControlContentVerticalAlignmentCenter];
-        [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+        [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
+        [self.titleLabel setFrame : CGRectMake(0, 0, NAVIGATION_WIDTH_DETAIL - (GENERAL_SPACE_LITTLE * 2), 45)];
+        [self.titleLabel setNumberOfLines : 2];
+        [self.titleLabel setLineBreakMode : NSLineBreakByWordWrapping];
+        [self.titleLabel setTextAlignment : NSTextAlignmentCenter];
         // CGSize sizeTitle = [self.titleLabel.text sizeWithAttributes: @{NSFontAttributeName:self.titleLabel.font}];
-        self.titleLabel.numberOfLines = 2;
-        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        self.titleLabel.textAlignment = NSTextAlignmentCenter;
-        self.titleLabel.frame = CGRectMake(0, 0, NAVIGATION_WIDTH_DETAIL - (GENERAL_SPACE_LITTLE * 2), 45);
-        [self.titleLabel sizeToFit];
         CGSize sizeTitle = self.titleLabel.frame.size;
         self.titleEdgeInsets = UIEdgeInsetsMake(GENERAL_SPACE_ENORMOUS, - GENERAL_SPACE_LITTLE - ICON_SIZE_MEDIUM + (NAVIGATION_WIDTH_DETAIL / 2) - (sizeTitle.width / 2), 0, 0);
         self.imageEdgeInsets = UIEdgeInsetsMake
         (
-            -GENERAL_SPACE_HUGE + (ICON_SIZE_MEDIUM - ICON_SIZE_SMALL) / 2,
-            (NAVIGATION_WIDTH_DETAIL - GENERAL_SPACE_MEDIUM - ICON_SIZE_MEDIUM) / 2 + (ICON_SIZE_MEDIUM - ICON_SIZE_SMALL) / 2,
-            0,
-            44
+         -GENERAL_SPACE_HUGE + (ICON_SIZE_MEDIUM - ICON_SIZE_SMALL) / 2,
+         (NAVIGATION_WIDTH_DETAIL - GENERAL_SPACE_MEDIUM - ICON_SIZE_MEDIUM) / 2 + (ICON_SIZE_MEDIUM - ICON_SIZE_SMALL) / 2,
+         0,
+         44
          );
         self.contentEdgeInsets = UIEdgeInsetsMake(GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE, GENERAL_SPACE_LITTLE);
         self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_DARK floatOpacity:1.0].CGColor;
@@ -667,7 +662,7 @@
 {
     UserInterface *objectUserInterface = [[UserInterface alloc] init];
     
-    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:0.0];
     [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTHEADER_HEADER]];
     self.titleLabel.textAlignment = NSTextAlignmentCenter;
     [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0] forState:UIControlStateNormal];
