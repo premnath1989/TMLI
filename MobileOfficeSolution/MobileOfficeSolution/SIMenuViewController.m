@@ -2886,12 +2886,24 @@ BOOL NavShow3;
     }
 }
 
+-(IBAction)actionShowRider:(id)sender{
+    self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
+    _RiderController.delegate = self;
+    [self.RightView addSubview:self.RiderController.view];
+}
+
 -(IBAction)actionShowFundAllocation:(id)sender{
 
+    self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
+    // _InvestmentController.delegate = self;
+    [self.RightView addSubview:self.InvestmentController.view];
+    
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
-   
+    self.FundPercentController = [self.storyboard instantiateViewControllerWithIdentifier:@"FundPercent"];
+    // _InvestmentController.delegate = self;
+    [self.RightView addSubview:self.FundPercentController.view];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -2902,7 +2914,13 @@ BOOL NavShow3;
         [self actionShowBasicPlan:nil];
     }
     else if (currentVC == _BasicController){
-        NSLog(@"next page not setted yet");
+        [self actionShowRider:nil];
+    }
+    else if (currentVC == _InvestmentController) {
+        [self actionShowFundAllocation:nil];
+    }
+    else if (currentVC == _FundPercentController) {
+        [self actionShowTopUpWithdraw:nil];
     }
 }
 #pragma mark - table view
