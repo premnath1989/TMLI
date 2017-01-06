@@ -60,7 +60,7 @@
     int prevIndexNo;
     NSDictionary* dictionaryPO;
 }
-
+-(void)loadDataFromList;
 @property (strong, nonatomic)NSDictionary *poDictionaryPO;
 
 @property (nonatomic,strong) BasicPlanHandler *basicHand;

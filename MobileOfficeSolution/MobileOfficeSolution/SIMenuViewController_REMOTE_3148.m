@@ -2845,14 +2845,12 @@ BOOL NavShow3;
         self.LAController.requesteProposalStatus = eProposalStatus;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
         [self.RightView addSubview:self.LAController.view];
-        [self.LAController loadDataFromList];
     }else{
         self.LAController.requestSINo = [self.requestSINo description];
         self.LAController.requesteProposalStatus = eProposalStatus;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
         [self.LAController.view removeFromSuperview];
         [self.RightView addSubview:self.LAController.view];
-        [self.LAController loadDataFromList];
     }
 }
 
@@ -2867,12 +2865,10 @@ BOOL NavShow3;
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
         [self.RightView addSubview:self.SecondLAController.view];
-        [self.SecondLAController loadDataFromList];
     } else {
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
         [self.RightView addSubview:self.SecondLAController.view];
-        [self.SecondLAController loadDataFromList];
     }
 }
 
@@ -2883,21 +2879,17 @@ BOOL NavShow3;
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
         [self.RightView addSubview:self.BasicController.view];
-        [self.BasicController loadDataFromList];
     } else {
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
         [self.RightView addSubview:self.BasicController.view];
-        [self.BasicController loadDataFromList];
     }
 }
 
 -(IBAction)actionShowRider:(id)sender{
-    if(!_RiderController) {
-        [self.RightView addSubview:self.RiderController.view];
-    } else {
-        [self.RightView addSubview:self.RiderController.view];
-    }
+    self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
+    _RiderController.delegate = self;
+    [self.RightView addSubview:self.RiderController.view];
 }
 
 -(IBAction)actionShowFundAllocation:(id)sender{
@@ -2976,7 +2968,6 @@ BOOL NavShow3;
     [cell.btnPemegangPolis addTarget:self action:@selector(actionShowPolicyHolder:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnTertanggung addTarget:self action:@selector(actionShowLifeAssured:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnAsuransiDasar addTarget:self action:@selector(actionShowBasicPlan:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.BtnAsuransiTamb addTarget:self action:@selector(actionShowRider:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnInvestasi addTarget:self action:@selector(actionShowFundAllocation:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnPenambahan addTarget:self action:@selector(actionShowTopUpWithdraw:) forControlEvents:UIControlEventTouchUpInside];
     

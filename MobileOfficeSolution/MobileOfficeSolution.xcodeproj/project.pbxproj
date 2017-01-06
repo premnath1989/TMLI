@@ -17,6 +17,10 @@
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */; };
+		C31AF5031E1F2BDC00A037EF /* topupWidthrawViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */; };
+		C31AF5041E1F2BDC00A037EF /* topupWidthrawViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */; };
+		C31AF5051E1F2BDC00A037EF /* TopupWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF5021E1F2BDC00A037EF /* TopupWithdrawViewController.m */; };
+		C31AF5081E1F2C5600A037EF /* FundPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF5071E1F2C5600A037EF /* FundPercentViewController.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
 		C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */; };
 		C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */; };
@@ -568,6 +572,13 @@
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		433CB4121E1B8F1400D6D4E9 /* ModelSIBasicPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIBasicPlan.h; sourceTree = "<group>"; };
 		433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIBasicPlan.m; sourceTree = "<group>"; };
+		C31AF4FE1E1F2BDC00A037EF /* topupWidthrawViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topupWidthrawViewCell.h; sourceTree = "<group>"; };
+		C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topupWidthrawViewCell.m; sourceTree = "<group>"; };
+		C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topupWidthrawViewCell.xib; sourceTree = "<group>"; };
+		C31AF5011E1F2BDC00A037EF /* TopupWithdrawViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopupWithdrawViewController.h; sourceTree = "<group>"; };
+		C31AF5021E1F2BDC00A037EF /* TopupWithdrawViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopupWithdrawViewController.m; sourceTree = "<group>"; };
+		C31AF5061E1F2C5600A037EF /* FundPercentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FundPercentViewController.h; sourceTree = "<group>"; };
+		C31AF5071E1F2C5600A037EF /* FundPercentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FundPercentViewController.m; sourceTree = "<group>"; };
 		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
 		C32E03FA1DD41DFD00A76D6F /* TimePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimePicker.m; sourceTree = "<group>"; };
 		C33D9FDE1E13AE86005C98C5 /* InvestmentTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvestmentTypeViewController.h; sourceTree = "<group>"; };
@@ -1432,8 +1443,15 @@
 		C33D9FDD1E13AE37005C98C5 /* InvestmentType */ = {
 			isa = PBXGroup;
 			children = (
+				C31AF4FE1E1F2BDC00A037EF /* topupWidthrawViewCell.h */,
+				C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */,
+				C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */,
+				C31AF5011E1F2BDC00A037EF /* TopupWithdrawViewController.h */,
+				C31AF5021E1F2BDC00A037EF /* TopupWithdrawViewController.m */,
 				C33D9FDE1E13AE86005C98C5 /* InvestmentTypeViewController.h */,
 				C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */,
+				C31AF5061E1F2C5600A037EF /* FundPercentViewController.h */,
+				C31AF5071E1F2C5600A037EF /* FundPercentViewController.m */,
 			);
 			name = InvestmentType;
 			sourceTree = "<group>";
@@ -3266,7 +3284,7 @@
 				TargetAttributes = {
 					DEDC5C551DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = W4KPZMHY29;
+						DevelopmentTeam = 2YT8E2D9X6;
 					};
 					DEDC5C6E1DAE347E0033FE37 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -3438,6 +3456,7 @@
 				DEDC60CE1DAF747D0033FE37 /* btn_prospect_on.png in Resources */,
 				DEDC60961DAF69100033FE37 /* client_profile@2x_20141118.png in Resources */,
 				DEDC5FB61DAE49BD0033FE37 /* Reader-Print.png in Resources */,
+				C31AF5041E1F2BDC00A037EF /* topupWidthrawViewCell.xib in Resources */,
 				DEDC5F181DAE48290033FE37 /* ProspectListingTableViewCell.xib in Resources */,
 				DEDC61191DAF796E0033FE37 /* MultipleImageIDTableViewCell.xib in Resources */,
 				DEDC60A51DAF69100033FE37 /* White-Header.png in Resources */,
@@ -3716,6 +3735,7 @@
 				DEDC5DFB1DAE41B30033FE37 /* TabValidation.m in Sources */,
 				DEDC5D2F1DAE39420033FE37 /* ModelSPAJTransaction.m in Sources */,
 				DE1169121DD179B2007DDA9B /* SPAJ Landing Controller.m in Sources */,
+				C31AF5081E1F2C5600A037EF /* FundPercentViewController.m in Sources */,
 				DEDC5F351DAE49390033FE37 /* CFFAPIController.m in Sources */,
 				DEDC5E311DAE43580033FE37 /* AFHTTPClient.m in Sources */,
 				DEDC5D791DAE3CDD0033FE37 /* NSDate+ISO8601Parsing.m in Sources */,
@@ -3797,6 +3817,8 @@
 				171BD3B41DDED0CB005CC058 /* PzyorWaiverViewController.m in Sources */,
 				DEDC5DF31DAE41B30033FE37 /* PayorViewController.m in Sources */,
 				DEDC60FC1DAF79350033FE37 /* SPAJIDCapturedViewController.m in Sources */,
+				C31AF5031E1F2BDC00A037EF /* topupWidthrawViewCell.m in Sources */,
+				C31AF5051E1F2BDC00A037EF /* TopupWithdrawViewController.m in Sources */,
 				DEDC61001DAF79350033FE37 /* SPAJ Add Menu.m in Sources */,
 				DEDC5CCF1DAE38830033FE37 /* DBController.m in Sources */,
 				DEDC5E7E1DAE46850033FE37 /* DateViewController.m in Sources */,
@@ -3986,7 +4008,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = W4KPZMHY29;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",
@@ -4019,7 +4041,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = W4KPZMHY29;
+				DEVELOPMENT_TEAM = 2YT8E2D9X6;
 				ENABLE_BITCODE = NO;
 				HEADER_SEARCH_PATHS = (
 					"\"$(SDKROOT)/usr/include/libxml2\"",

@@ -31,7 +31,7 @@
 }
 
 -(void)saveBasicPlanData:(NSMutableDictionary *)dictBasicPlanData{
-    modelSIMaster = [[Model_SI_Master alloc]init];
+    //modelSIMaster = [[Model_SI_Master alloc]init];
     //cek the SINO exist or not
     int exist = [self getBasicPlanDataCount:[dictBasicPlanData valueForKey:@"SINO"]];
     

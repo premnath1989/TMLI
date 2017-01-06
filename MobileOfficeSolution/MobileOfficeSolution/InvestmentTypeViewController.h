@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "FundPercentViewController.h"
 
 
 @class InvestmentTypeViewController;
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *InvestasiTableView;
 
 @property (strong, nonatomic) NSMutableArray *FundList;
+
+@property (retain, nonatomic) NSString *cellText;
 
 @property (strong, nonatomic) IBOutlet UIButton *DoSave;
 - (IBAction)DoSave:(id)sender;

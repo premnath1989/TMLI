@@ -40,6 +40,7 @@
 #import "PremiumKeluargaku.h"
 #import "PremiumViewControllerDelegate.h"
 #import "InvestmentTypeViewController.h"
+#import "FundPercentController.h"
 
 
 @class SIMenuViewController;
@@ -47,7 +48,7 @@
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate, FundPercentControllerDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -74,6 +75,8 @@
     SecondLAViewController *_SecondLAController;
     BasicPlanViewController *_BasicController;
     RiderViewController *_RiderController;
+    InvestmentTypeViewController *_InvestmentTypeController;
+    FundPercentController *_FundPercentController;
 	FSVerticalTabBarController *_FS;
     HLViewController *_HLController;
     NSIndexPath *selectedPath;
@@ -157,7 +160,8 @@
 @property (nonatomic,retain) RiderViewController *RiderController;
 @property (nonatomic,retain) HLViewController *HLController;
 @property (nonatomic,retain) InvestmentTypeViewController *InvestmentController;
-//@property (nonatomic,retain) InvestType *RiderController;
+@property (nonatomic,retain) FundPercentController *FundPercentController;
+
 @property (nonatomic,retain) FSVerticalTabBarController *FS;
 
 @property (retain, nonatomic) NSMutableArray *NumberListOfSubMenu;

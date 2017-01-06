@@ -2900,6 +2900,12 @@ BOOL NavShow3;
     }
 }
 
+-(IBAction)actionShowRider:(id)sender{
+    self.RiderController = [self.storyboard instantiateViewControllerWithIdentifier:@"RiderView"];
+    _RiderController.delegate = self;
+    [self.RightView addSubview:self.RiderController.view];
+}
+
 -(IBAction)actionShowFundAllocation:(id)sender{
 
     self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
@@ -2923,12 +2929,15 @@ BOOL NavShow3;
     }
     else if (currentVC == _BasicController){
         [self actionShowRider:nil];
+<<<<<<< HEAD
+=======
     }
     else if (currentVC == _InvestmentController) {
         [self actionShowFundAllocation:nil];
     }
     else if (currentVC == _FundPercentController) {
         [self actionShowTopUpWithdraw:nil];
+>>>>>>> cd921624d275500e82eea06339da76564a95c066
     }
 }
 #pragma mark - table view
