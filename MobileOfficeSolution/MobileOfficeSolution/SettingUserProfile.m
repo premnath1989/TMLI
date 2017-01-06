@@ -112,9 +112,68 @@
     
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
-    txtBOD.text = [loginDB getAgentProperty:@"CLTDOB"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate *dateDOB = [dateFormatter dateFromString:[loginDB getAgentProperty:@"CLTDOB"]];
+    
+    NSDateFormatter *day = [[NSDateFormatter alloc] init];
+    [day setDateFormat:@"dd"];
+    NSString *txtDay = [day stringFromDate:dateDOB];
+    
+    NSDateFormatter *Month = [[NSDateFormatter alloc] init];
+    [Month setDateFormat:@"MM"];
+    NSString *txtMonth = [Month stringFromDate:dateDOB];
+    switch ([[Month stringFromDate:dateDOB] integerValue]) {
+        case 1:
+            txtMonth = @"Jan";
+            break;
+        case 2:
+            txtMonth = @"Feb";
+            break;
+        case 3:
+            txtMonth = @"Mar";
+            break;
+        case 4:
+            txtMonth = @"Apr";
+            break;
+        case 5:
+            txtMonth = @"May";
+            break;
+        case 6:
+            txtMonth = @"Jun";
+            break;
+        case 7:
+            txtMonth = @"Jul";
+            break;
+        case 8:
+            txtMonth = @"Aug";
+            break;
+        case 9:
+            txtMonth = @"Sep";
+            break;
+        case 10:
+            txtMonth = @"Oct";
+            break;
+        case 11:
+            txtMonth = @"Nov";
+            break;
+        case 12:
+            txtMonth = @"Dec";
+            break;
+            
+        default:
+            break;
+    }
+    
+    NSDateFormatter *Year = [[NSDateFormatter alloc] init];
+    [Year setDateFormat:@"YYYY"];
+    NSString *txtYear = [Year stringFromDate:dateDOB];
+    
+    txtBOD.text = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
+    
     txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
-    txtMaritalStatus.text = [loginDB getAgentProperty:@"MRRYD"];
+    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
     txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
     txtLicense.text = [loginDB getAgentProperty:@"Level"];
     txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
@@ -132,7 +191,6 @@
     txtAAJINo.text = [loginDB getAgentProperty:@"Level"];
     txtAAJIDate.text = [loginDB getAgentProperty:@"Level"];
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
     NSDate *startDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseStartDate"]];
     NSDate *endDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseExpiryDate"]];
