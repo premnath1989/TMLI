@@ -715,7 +715,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     PlanName = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"ProductName"]];
     SIStatus = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"ProposalStatus"]];
     SIVersion = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"SI_Version"]];
-    BasicSA = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"Sum_Assured"]];
+    BasicSA = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"SumAssured"]];
     SIQQStatus =[[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"QuickQuote"]];
     SIEditStatus = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"EnableEditing"]];
     SISignedStatus = [[NSMutableArray alloc] initWithArray:[dictIlustrationData valueForKey:@"IllustrationSigned"]];
@@ -1387,7 +1387,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
         sortedBy=@"po.ProductName";
     }
     else if (sender==_btnSortSumAssured){
-        sortedBy=@"sip.Sum_Assured";
+        sortedBy=@"sip.SumAssured";
     }
     
     if ([sortMethod isEqualToString:@"ASC"]){

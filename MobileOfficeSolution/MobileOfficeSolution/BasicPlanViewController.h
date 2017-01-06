@@ -124,6 +124,7 @@
     IBOutlet UILabel* labelTotalPremi;
     
 }
+-(void)loadDataFromList;
 
 - (IBAction)RencanaBasicPlan:(id)sender;
 - (IBAction)RencanaBasicPlanDRpDown:(id)sender;

@@ -109,7 +109,6 @@
     
     TanggalIllustrasi.enabled = NO;
 
-    [self loadDataFromList];
     [_delegate setQuickQuoteValue:[quickQuoteFlag isOn]];
     
     ProspectName = [NSArray arrayWithObjects:@"Prem",@"Emi", nil];
@@ -520,6 +519,8 @@
     //test disable the fields
     [self checkEditingMode];
     [quickQuoteFlag isOn];
+    
+    [self loadDataFromList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

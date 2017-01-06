@@ -168,7 +168,7 @@ id dobtemp;
 //                                                           }];
     
     
-    [self loadDataFromList];
+    
 }
 
 - (void) checkEditingMode {
@@ -279,6 +279,7 @@ id dobtemp;
     [super viewDidAppear:animated];
     [self setElementActive:_quickQuoteEnabled];
     [self checkEditingMode];
+    [self loadDataFromList];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
