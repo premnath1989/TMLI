@@ -25,6 +25,7 @@
 #import "HospitalAndSurgicalRiderViewController.h"
 #import "PzyorWaiverViewController.h"
 #import "WaiverRiderViewController.h"
+#import "RiderValueInputViewController.h"
 
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
@@ -35,7 +36,7 @@
 -(void) saveAll;
 @end
 
-@interface RiderViewController : UIViewController <RiderPTypeTbViewControllerDelegate,RiderListTbViewControllerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,RiderDeducTbDelegate,RiderPlanTbDelegate>
+@interface RiderViewController : UIViewController <RiderPTypeTbViewControllerDelegate,RiderListTbViewControllerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,RiderDeducTbDelegate,RiderPlanTbDelegate,RiderValueInputViewControllerDelegate>
 {
     ModelSIRider *_modelSIRider;
     RiderCalculation *riderCalculation;
@@ -49,6 +50,7 @@
     UIPopoverController *_RiderListPopover;
     UIPopoverController *_planPopover;
     UIPopoverController *_deducPopover;
+    RiderValueInputViewController* riderValueInputVC;
     RiderPTypeTbViewController *_PTypeList;
     RiderListTbViewController *_RiderList;
     RiderPlanTb *_planList;
@@ -89,6 +91,10 @@
     double doubleSumAssured;
     NSMutableArray* arrayDataRiders;
     NSMutableArray *RiderListTMLI;
+    
+    IBOutlet UITableView *tableRiderType;
+    IBOutlet UITableView *tableRiderName;
+    IBOutlet UITableView *tableRiderDetail;
 }
 -(void)localSaveRider;
 -(void)loadInitialRiderData;

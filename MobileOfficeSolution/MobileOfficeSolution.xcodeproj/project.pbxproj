@@ -17,6 +17,10 @@
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
 		433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */; };
+		434DA94E1E1FA68800120131 /* RiderValueInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434DA94C1E1FA68800120131 /* RiderValueInputViewController.m */; };
+		434DA94F1E1FA68800120131 /* RiderValueInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434DA94D1E1FA68800120131 /* RiderValueInputViewController.xib */; };
+		434DA9531E1FB09700120131 /* RiderValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 434DA9511E1FB09700120131 /* RiderValueTableViewCell.m */; };
+		434DA9541E1FB09700120131 /* RiderValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434DA9521E1FB09700120131 /* RiderValueTableViewCell.xib */; };
 		C31AF5031E1F2BDC00A037EF /* topupWidthrawViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */; };
 		C31AF5041E1F2BDC00A037EF /* topupWidthrawViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */; };
 		C31AF5051E1F2BDC00A037EF /* TopupWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF5021E1F2BDC00A037EF /* TopupWithdrawViewController.m */; };
@@ -572,6 +576,12 @@
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
 		433CB4121E1B8F1400D6D4E9 /* ModelSIBasicPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIBasicPlan.h; sourceTree = "<group>"; };
 		433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIBasicPlan.m; sourceTree = "<group>"; };
+		434DA94B1E1FA68800120131 /* RiderValueInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderValueInputViewController.h; sourceTree = "<group>"; };
+		434DA94C1E1FA68800120131 /* RiderValueInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderValueInputViewController.m; sourceTree = "<group>"; };
+		434DA94D1E1FA68800120131 /* RiderValueInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RiderValueInputViewController.xib; sourceTree = "<group>"; };
+		434DA9501E1FB09700120131 /* RiderValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderValueTableViewCell.h; sourceTree = "<group>"; };
+		434DA9511E1FB09700120131 /* RiderValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderValueTableViewCell.m; sourceTree = "<group>"; };
+		434DA9521E1FB09700120131 /* RiderValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RiderValueTableViewCell.xib; sourceTree = "<group>"; };
 		C31AF4FE1E1F2BDC00A037EF /* topupWidthrawViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topupWidthrawViewCell.h; sourceTree = "<group>"; };
 		C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topupWidthrawViewCell.m; sourceTree = "<group>"; };
 		C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topupWidthrawViewCell.xib; sourceTree = "<group>"; };
@@ -1914,6 +1924,9 @@
 				DEDC5FCB1DAE52BF0033FE37 /* RiderPlanTb.m */,
 				DEDC5FCC1DAE52BF0033FE37 /* RiderDeducTb.h */,
 				DEDC5FCD1DAE52BF0033FE37 /* RiderDeducTb.m */,
+				434DA94B1E1FA68800120131 /* RiderValueInputViewController.h */,
+				434DA94C1E1FA68800120131 /* RiderValueInputViewController.m */,
+				434DA94D1E1FA68800120131 /* RiderValueInputViewController.xib */,
 			);
 			name = Rider;
 			sourceTree = "<group>";
@@ -2605,6 +2618,9 @@
 				DEDC5F0E1DAE48290033FE37 /* ProspectListingTableViewCell.h */,
 				DEDC5F0F1DAE48290033FE37 /* ProspectListingTableViewCell.m */,
 				DEDC5F101DAE48290033FE37 /* ProspectListingTableViewCell.xib */,
+				434DA9501E1FB09700120131 /* RiderValueTableViewCell.h */,
+				434DA9511E1FB09700120131 /* RiderValueTableViewCell.m */,
+				434DA9521E1FB09700120131 /* RiderValueTableViewCell.xib */,
 			);
 			name = TableViewCell;
 			sourceTree = "<group>";
@@ -3361,6 +3377,7 @@
 				DEDC60B91DAF69100033FE37 /* tickCheckBox.png in Resources */,
 				DEDC60A81DAF69100033FE37 /* HeaderHLA.png in Resources */,
 				DEDC612E1DAF797E0033FE37 /* SPAJ Add Signature.xib in Resources */,
+				434DA9541E1FB09700120131 /* RiderValueTableViewCell.xib in Resources */,
 				DEDC5F9D1DAE49BD0033FE37 /* AppIcon-144.png in Resources */,
 				DE5F7B051DB0EC97006DC32F /* LogoBCALife.jpg in Resources */,
 				DEDC61961DAF7D3E0033FE37 /* eSignController.xib in Resources */,
@@ -3519,6 +3536,7 @@
 				DEDC60201DAF4FDB0033FE37 /* HTMLResources.bundle in Resources */,
 				DEDC613C1DAF797E0033FE37 /* SPAJEAppListStoryBoard.storyboard in Resources */,
 				DEDC60771DAF69100033FE37 /* undo@2x.png in Resources */,
+				434DA94F1E1FA68800120131 /* RiderValueInputViewController.xib in Resources */,
 				DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */,
 				DEDC5FAE1DAE49BD0033FE37 /* Reader-Export@2x.png in Resources */,
 				DEDC60731DAF69100033FE37 /* cancel@2x.png in Resources */,
@@ -3598,6 +3616,7 @@
 				DEDC60FF1DAF79350033FE37 /* SPAJ Add Detail.m in Sources */,
 				DE1168F41DD1749E007DDA9B /* Login Controller.m in Sources */,
 				171BD3B71DDEDB7E005CC058 /* WaiverRiderViewController.m in Sources */,
+				434DA94E1E1FA68800120131 /* RiderValueInputViewController.m in Sources */,
 				DEDC5DB31DAE40880033FE37 /* FSVerticalTabBarController.m in Sources */,
 				DEDC5FD51DAE52C90033FE37 /* RiderCalculation.m in Sources */,
 				DEDC5E0D1DAE41FC0033FE37 /* GroupViewVC.m in Sources */,
@@ -3703,6 +3722,7 @@
 				DEDC61BE1DAF7DB40033FE37 /* SnapGen.m in Sources */,
 				DEDC610E1DAF79350033FE37 /* FormTenagaPenjualViewController.m in Sources */,
 				DEDC5DA51DAE402B0033FE37 /* EncryptDecryptWrapper.m in Sources */,
+				434DA9531E1FB09700120131 /* RiderValueTableViewCell.m in Sources */,
 				DEDC61081DAF79350033FE37 /* SPAJ Add Signature.m in Sources */,
 				DEDC61951DAF7D3E0033FE37 /* eSignController.m in Sources */,
 				DEDC5F221DAE486A0033FE37 /* DDXMLNode.m in Sources */,

@@ -695,7 +695,7 @@ bool PolicyOwnerSigned = TRUE;
             [self createAlertTwoOptionViewAndShow:validationDuplicate tag:18];
             return false;
         }
-        return valid;
+        return valid;NSLog(@"Save Changes !");
     }
 }*/
 
@@ -7724,7 +7724,7 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)SaveChanges
 {
-    
+    NSLog(@"Save Changes !");
 	clickDone = 1;
 	bool exist =  [self record_exist];
 	bool confirmCase =  [self confirm_case];
@@ -8208,7 +8208,7 @@ bool PolicyOwnerSigned = TRUE;
     bool valid=true;
     NSArray* validationSet=[[NSArray alloc]initWithObjects:@"",@"- SELECT -",@"- Select -", @"(null)", nil];
     NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
-    
+    NSLog(@"Validation Compulsory Value");
     //validation message data refferal
     NSString *validateSumberData = @"Sumber data harus diisi";
     NSString *validateNamaDepan = @"Nama Depan harus diisi";
@@ -11028,7 +11028,7 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 - (IBAction)ActionSave:(id)sender {
-    
+    NSLog(@"Action Save !");
     [self btnSave:nil];
 }
 
