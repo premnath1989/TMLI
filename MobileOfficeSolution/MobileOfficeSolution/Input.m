@@ -29,9 +29,9 @@
         {
             return CGRectMake
             (
-                bounds.origin.x + GENERAL_SPACE_TINY, bounds.origin.y + GENERAL_SPACE_TINY,
-                bounds.size.width + GENERAL_SPACE_LITTLE, bounds.size.height - GENERAL_SPACE_LITTLE
-            );
+             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+             );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -60,6 +60,45 @@
 
     @end
 
+    @implementation TextFieldFormGeneralSecondary
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self setupStyle]; }
+
+        - (CGRect)textRectForBounds:(CGRect)bounds
+        {
+            return CGRectMake
+            (
+             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+             );
+        }
+
+        - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
+
+
+        /* FUNCTION */
+
+        - (void)setupStyle
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            
+            [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
+            [self setTextAlignment : NSTextAlignmentLeft];
+            self.textColor = [_objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+            [self setFont:[UIFont fontWithName:THEME_FONT_PRIMARY size:FONTSIZE_TEXTFIELD_FORM]];
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:0.2];
+            self.borderStyle = UITextBorderStyleNone;
+            self.layer.cornerRadius = INPUT_RADIUS_BORDER;
+            self.layer.masksToBounds = YES;
+            self.autocorrectionType = UITextAutocorrectionTypeNo;
+        }
+
+    @end
+
     /* FORM */
 
     @implementation TextFieldPhotoGeneralPrimary
@@ -72,9 +111,9 @@
         {
             return CGRectMake
             (
-                bounds.origin.x + GENERAL_SPACE_TINY, bounds.origin.y + GENERAL_SPACE_TINY,
-                bounds.size.width + GENERAL_SPACE_LITTLE, bounds.size.height - GENERAL_SPACE_LITTLE
-            );
+             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+             );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -96,6 +135,8 @@
             self.borderStyle = UITextBorderStyleNone;
             self.layer.cornerRadius = INPUT_RADIUS_BORDER;
             self.layer.masksToBounds = YES;
+            self.autocorrectionType = UITextAutocorrectionTypeNo;
+            // [self setValue:[_objectUserInterface generateUIColor:THEME_COLOR_ERROR floatOpacity:1.0] forKeyPath:@"_placeholderLabel.textColor"];
         }
 
     @end

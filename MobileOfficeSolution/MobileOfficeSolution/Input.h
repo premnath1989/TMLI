@@ -30,6 +30,18 @@
 
     @end
 
+    @interface TextFieldFormGeneralSecondary : UITextField<UITextFieldDelegate>
+
+        @property (nonatomic, copy, readwrite) UserInterface* objectUserInterface;
+
+        - (void)setupStyle;
+        - (void)styleValid;
+        - (void)styleInvalid;
+        - (void)styleDisable;
+        - (void)styleEnable;
+
+    @end
+
     /* PHOTO */
 
     @interface TextFieldPhotoGeneralPrimary : UITextField<UITextFieldDelegate>

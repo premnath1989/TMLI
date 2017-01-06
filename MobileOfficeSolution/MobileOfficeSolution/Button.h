@@ -175,3 +175,24 @@
     - (void)styleDisable;
 
 @end
+
+
+// TABLE
+
+@interface ButtonTableHeader : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonFormCircleSmall : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonFormCircleMedium : UIButton
+
+    - (void)setupStyle;
+
+@end

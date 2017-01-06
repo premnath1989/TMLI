@@ -7,6 +7,7 @@
 //
 
 #import "InvestmentTypeViewController.h"
+#import "FundPercentViewController.h"
 
 @interface InvestmentTypeViewController ()
 
@@ -42,8 +43,13 @@
 
 - (NSInteger)tableView:(UITableView *)myTableView numberOfRowsInSection:(NSInteger)section
 {
+    if([myTableView isEqual:_FundTypeTableView]) {
+        return [FundList count];
+    }
+    else {
+        return 0;
+    }
     
-    return [FundList count];
 }
 
 
@@ -66,12 +72,33 @@
     {
         cell.textLabel.text = [FundList objectAtIndex:indexPath.row];
     }
+    else if ([tableView isEqual:_InvestasiTableView])
+    {
+        cell.textLabel.text = @"test               100%";
+    }
+    
+
     
     return cell;
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    _cellText = cell.textLabel.text;
+    
+    [self FundPercent];
+    
+}
 
+-(void) FundPercent {
+    
+    UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
+    FundPercentViewController *FundVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"FundPercent"];
+    
+    [self presentViewController:FundVC animated:YES completion:nil];
+}
 
 
 - (void)didReceiveMemoryWarning {

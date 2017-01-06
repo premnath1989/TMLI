@@ -650,3 +650,77 @@
     }
 
 @end
+
+
+// MASKING
+
+@implementation ButtonTableHeader
+
+/* INITIALIZE */
+
+- (void)awakeFromNib{[self setupStyle];}
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0];
+    [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTHEADER_HEADER]];
+    self.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0] forState:UIControlStateNormal];
+}
+
+@end
+
+@implementation ButtonFormCircleSmall
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib
+    {
+        [self setupStyle];
+    }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:0.0];
+        [self.heightAnchor constraintEqualToConstant:BUTTON_SIZE_SMALL].active = true;
+        [self.widthAnchor constraintEqualToConstant:BUTTON_SIZE_SMALL].active = true;
+        [self setTitle:@"" forState:UIControlStateNormal];
+        self.layer.cornerRadius = BUTTON_SIZE_SLIDER / 2;
+    }
+
+@end
+
+@implementation ButtonFormCircleMedium
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib
+    {
+        [self setupStyle];
+    }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:0.0];
+        [self.heightAnchor constraintEqualToConstant:BUTTON_SIZE_MEDIUM].active = true;
+        [self.widthAnchor constraintEqualToConstant:BUTTON_SIZE_MEDIUM].active = true;
+        [self setTitle:@"" forState:UIControlStateNormal];
+        self.layer.cornerRadius = BUTTON_SIZE_SLIDER / 2;
+    }
+
+@end

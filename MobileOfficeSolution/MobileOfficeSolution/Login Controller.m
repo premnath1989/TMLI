@@ -77,7 +77,7 @@
     NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Client %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
+    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -895,12 +895,35 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
 - (void) keyboardShow: (NSNotification *) notificationKeyboard
 {
-    [_objectUserInterface keyboardShow:notificationKeyboard viewMain:_viewMain];
+    [self keyboardDidShow:notificationKeyboard];
 }
 
 - (void) keyboardHide: (NSNotification *) notificationKeyboard
 {
     [_objectUserInterface keyboardHide:notificationKeyboard viewMain:_viewMain];
 }
+
+-(void)keyboardDidShow:(NSNotification *)notification
+{
+    NSDictionary* info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint buttonOrigin = self.buttonLogin.frame.origin;
+    CGFloat buttonHeight = self.buttonLogin.frame.size.height;
+    CGRect visibleRect = self.view.frame;
+    
+    visibleRect.size.height -= keyboardSize.height;
+
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView
+     animateWithDuration:0.25
+     animations:^
+     {
+         CGRect rectangleViewMain = _viewMain.frame;
+         rectangleViewMain.origin.y = buttonOrigin.y - visibleRect.size.height + buttonHeight;
+         _viewMain.frame = rectangleViewMain;
+     }
+     ];
+}
+
 
 @end

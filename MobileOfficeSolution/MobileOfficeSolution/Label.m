@@ -294,6 +294,72 @@
 @end
 
 
+// LIST
+
+@implementation LabelTableHeader
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_LIST_HEADER]];
+    self.numberOfLines = 1;
+    self.textAlignment = NSTextAlignmentLeft;
+}
+
+@end
+
+@implementation LabelTableDetail
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LIST_DETAIL]];
+    self.numberOfLines = 1;
+    self.textAlignment = NSTextAlignmentLeft;
+}
+
+@end
+
+@implementation LabelTableResult
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LIST_RESULT]];
+    self.numberOfLines = 1;
+    self.textAlignment = NSTextAlignmentLeft;
+}
+
+@end
+
+
 // NAVIGATION
 
 @implementation LabelProfileHeader

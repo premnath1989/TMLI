@@ -95,6 +95,27 @@
 @end
 
 
+// TABLE
+
+@interface LabelTableHeader : UILabel
+
+- (void)setupStyle;
+
+@end
+
+@interface LabelTableDetail : UILabel
+
+- (void)setupStyle;
+
+@end
+
+@interface LabelTableResult : UILabel
+
+- (void)setupStyle;
+
+@end
+
+
 // NAVIGATION
 
     /* PROFILE */

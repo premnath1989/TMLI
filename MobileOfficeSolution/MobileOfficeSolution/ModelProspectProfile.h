@@ -16,7 +16,7 @@
 -(NSMutableArray *)getProspectProfile;
 -(NSMutableArray *)getDataMobileAndPrefix:(NSString *)DataToReturn ProspectTableData:(NSMutableArray *)prospectTableData;
 -(NSMutableArray *)searchProspectProfileByName:(NSString *)searchName LastName:(NSString *)LastName DOB:(NSString *)dateOfBirth HPNo:(NSString *)HPNo Order:(NSString *)orderBy Method:(NSString *)method ID:(NSString *)IDNumber;
--(NSString *)checkDuplicateData:(NSString *)Name Gender:(NSString *)gender DOB:(NSString *)dob;
+-(NSString *)checkDuplicateData:(NSString *)IDType IDNo:(NSString *)IDNo Gender:(NSString *)gender DOB:(NSString *)dob;
 -(NSMutableArray *)searchProspectProfileByID:(int)prospectID;
 
 -(NSMutableArray *)getColumnNames:(NSString *)stringTableName;

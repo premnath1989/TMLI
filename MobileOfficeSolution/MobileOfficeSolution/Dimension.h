@@ -125,6 +125,8 @@
 // BUTTON
 
 extern int const BUTTON_RADIUS_BORDER;
+extern int const BUTTON_SIZE_SMALL;
+extern int const BUTTON_SIZE_MEDIUM;
 
 
 // GUIDE

@@ -2902,10 +2902,16 @@ BOOL NavShow3;
 
 -(IBAction)actionShowFundAllocation:(id)sender{
 
+    self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
+    // _InvestmentController.delegate = self;
+    [self.RightView addSubview:self.InvestmentController.view];
+    
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
-   
+    self.FundPercentController = [self.storyboard instantiateViewControllerWithIdentifier:@"FundPercent"];
+    // _InvestmentController.delegate = self;
+    [self.RightView addSubview:self.FundPercentController.view];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -2917,6 +2923,12 @@ BOOL NavShow3;
     }
     else if (currentVC == _BasicController){
         [self actionShowRider:nil];
+    }
+    else if (currentVC == _InvestmentController) {
+        [self actionShowFundAllocation:nil];
+    }
+    else if (currentVC == _FundPercentController) {
+        [self actionShowTopUpWithdraw:nil];
     }
 }
 #pragma mark - table view

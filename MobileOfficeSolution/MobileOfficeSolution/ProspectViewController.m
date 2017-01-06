@@ -23,6 +23,7 @@
 #import "User Interface.h"
 #import "String.h"
 #import "Button.h"
+#import "ProspectProfile.h"
 
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
@@ -735,12 +736,44 @@ BOOL NavShowP;
         
         NSString *validationDuplicate=@"Data Nasabah sudah ada";
         
-        if (![[modelProspectProfile checkDuplicateData:txtFullName.text Gender:gender DOB:outletDOB.titleLabel.text] isEqualToString:@"(null)"]){
-            [self createAlertTwoOptionViewAndShow:validationDuplicate tag:18];
+        NSString *test = [modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text];
+        
+        if (![test isEqualToString:@"(null)"]){
+            int indexNo = [test intValue];
+            [self RetrieveOldData:indexNo];
             return false;
         }
         return valid;
     }
+}
+
+-(void)RetrieveOldData:(int)indexNo{
+    ProspectProfile* pp;
+     NSMutableArray *newPP = [[NSMutableArray alloc] init];
+
+    newPP = [modelProspectProfile searchProspectProfileByID:indexNo];
+
+//    pp = [ProspectTableData objectAtIndex:0];
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
+    
+    
+    if (_EditProspect == Nil) {
+        self.EditProspect = [cpStoryboard instantiateViewControllerWithIdentifier:@"EditProspect"];
+        
+        _EditProspect.delegate = self;
+        
+    }
+    _EditProspect.pp = [newPP objectAtIndex:0];
+    
+    @try {
+        //        [self.navigationController pushViewController:_EditProspect animated:YES];
+        [self presentViewController:_EditProspect animated:NO completion:Nil];
+        _EditProspect.navigationItem.title = @"Edit";
+    } @catch (NSException * e) {
+        NSLog(@"Exception: %@", e);
+    } @finally {
+    }
+    pp = Nil;
 }
 
 - (bool)validationDataReferral{
@@ -2934,7 +2967,7 @@ BOOL NavShowP;
 
 -(NSString *)checkDuplicateData:(NSString *)Name Gender:(NSString *)genderProspect DOB:(NSString *)dob{
     NSString* duplicateIndex;
-    duplicateIndex=[modelProspectProfile checkDuplicateData:Name Gender:genderProspect DOB:dob];
+    duplicateIndex=[modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text];
     NSLog(@"duplicate %@",duplicateIndex);
     return duplicateIndex;
 }
@@ -4082,7 +4115,7 @@ BOOL NavShowP;
             [CATransaction setCompletionBlock:^{
                 // handle completion here
                 if (_delegate != Nil) {
-                    [_delegate selectDataForEdit:[modelProspectProfile checkDuplicateData:txtFullName.text Gender:gender DOB:outletDOB.titleLabel.text]];
+                    [_delegate selectDataForEdit:[modelProspectProfile checkDuplicateData:_txtTypeID.text IDNo:_txtIdNumber.text Gender:gender DOB:txtDOB.text]];
                 }
             }];
             [self.navigationController popViewControllerAnimated:YES];
@@ -5628,6 +5661,11 @@ BOOL NavShowP;
     bool returnBool = YES;
     
     returnBool = [self validationCompulsoryValue];
+    
+    if (returnBool) {
+        bool validDataDuplicate=[self validationDuplicate];
+        returnBool=validDataDuplicate;
+    }
     
 //    bool validDateRef=[self  validationDataReferral];
 //    returnBool=validDateRef;

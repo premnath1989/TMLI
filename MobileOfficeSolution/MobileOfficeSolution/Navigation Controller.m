@@ -10,6 +10,8 @@
 // IMPORT
 
 #import "Navigation Controller.h"
+#import "SettingUserProfile.h"
+#import "ProductInformation.h"
 
 
 // INTERFACE
@@ -41,9 +43,9 @@
         
         
         // LOCALIZABLE
-        
-        _labelName.text = @"Andy Phan";
-        _labelPosition.text = @"sales executive";
+        LoginDBManagement *loginDB = [[LoginDBManagement alloc]init];
+        _labelName.text = [loginDB getAgentProperty:@"AgentName"];
+        _labelPosition.text = [loginDB getAgentProperty:@"Level"];
         
             /* NAVIGATION HEADER */
             
@@ -94,6 +96,24 @@
         {
             [self presentViewController:[_storyboardMain instantiateViewControllerWithIdentifier:@"LoginPage"] animated:YES completion: nil];
         }
+
+        - (IBAction)goToELibrary:(id)sender {
+            
+            ProductInformation *view = [[ProductInformation alloc] initWithNibName:@"ProductInformation" bundle:nil];
+            view.modalTransitionStyle = UIModalPresentationFullScreen;
+            [self presentViewController:view animated:NO completion:nil];
+        }
+
+        - (IBAction)goToAgentProfile:(id)sender
+        {
+            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
+            SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SettingUserProfile"];
+            UserProfileView.modalPresentationStyle = UIModalPresentationFullScreen;
+            UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            UserProfileView.getLatest = @"Yes";
+            [self presentViewController:UserProfileView animated:YES completion:nil];
+        }
+
 
         /* NAVIGATION */
 

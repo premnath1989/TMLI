@@ -71,6 +71,18 @@ extern CGFloat const FONTSIZE_SEGMENTEDCONTROL_FORM;
     extern CGFloat const FONTSIZE_NAVIGATION_DETAIL;
 
 
+// LIST
+
+extern CGFloat const FONTSIZE_LIST_HEADER;
+extern CGFloat const FONTSIZE_LIST_DETAIL;
+extern CGFloat const FONTSIZE_LIST_RESULT;
+
+extern CGFloat const FONTSIZE_LISTHEADER_HEADER;
+extern CGFloat const FONTSIZE_LISTHEADER_DETAIL;
+extern CGFloat const FONTSIZE_LISTITEM_HEADER;
+extern CGFloat const FONTSIZE_LISTITEM_DETAIL;
+
+
 // BUTTON
 
 extern CGFloat const FONTSIZE_BUTTON_FORM;

@@ -12,6 +12,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "User Interface.h"
+#import "LoginDBManagement.h"
 
 
 // INTERFACE
@@ -55,5 +56,6 @@
 
     @property (nonatomic, copy, readwrite) IBOutlet UIStoryboard *storyboardMain;
     @property (nonatomic, copy, readwrite) IBOutlet UIStoryboard *storyboardSPAJ;
+
 
 @end
