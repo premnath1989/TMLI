@@ -556,6 +556,27 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         
         /****
+         * is it AgentWS_GetAgentHierarcyResponse
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAgentHierarcyResponse class]]) {
+            AgentWS_GetAgentHierarcyResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAgentHierarcyResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            [loginDB setAgentHierarchy:returnObj];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                 [self presentViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
+            });
+            
+        }
+
+        
+        /****
          * is it AgentWS_ReceiveFirstLoginResponse
          ****/
         else if([bodyPart isKindOfClass:[AgentWS_ReceiveFirstLoginResponse class]]) {
@@ -614,7 +635,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 if([loginDB fullSyncTable:returnObj]){
                     [loginDB updateLoginDate];
-                    [self presentViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
+                    dispatch_async(dispatch_get_global_queue(
+                                                             DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                            [webservice getAgentHierarchy:@"60000133" delegate:self];
+                        });
+                    });
                 }
             }else if([rateResponse.strStatus caseInsensitiveCompare:@"False"] == NSOrderedSame){
                 [spinnerLoading stopLoadingSpinner];

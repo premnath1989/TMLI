@@ -662,6 +662,52 @@
     return SPAJCount;
 }
 
+- (void)setAgentHierarchy:(WebResponObj *)hierarchySet{
+    [self deleteOlderHierarchy];
+    
+    for(dataCollection *data in [hierarchySet getDataWrapper]){
+        
+        NSString* Level = [data.dataRows valueForKey:@"Level"];
+        NSString* SPVName = [data.dataRows valueForKey:@"AgentName"];
+        [self insertHierarchy:Level SPVName:SPVName];
+    }
+}
+
+- (void)insertHierarchy:(NSString *)level SPVName:(NSString *)SPVName{
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"INSERT INTO TMLI_Agent_Hierarchy (level, Name) VALUES ('%@','%@')", level, SPVName];
+        
+        if (sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, NULL) == SQLITE_OK)
+        {
+            NSLog(@"Status update!");
+            
+        } else {
+            NSLog(@"Status update Failed!");
+        }
+        sqlite3_close(contactDB);
+    }
+}
+
+
+
+- (void)deleteOlderHierarchy{
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"DELETE FROM TMLI_Agent_Hierarchy"];
+        
+        if (sqlite3_exec(contactDB, [querySQL UTF8String], NULL, NULL, NULL) == SQLITE_OK)
+        {
+            NSLog(@"Status update!");
+            
+        } else {
+            NSLog(@"Status update Failed!");
+        }
+        sqlite3_close(contactDB);
+    }
+}
+
+
 - (NSString *) setAgentProperty:(NSString *)property value:(NSString *)valueProp{
     NSString *propertyString = @"";
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
@@ -683,18 +729,27 @@
 
 
 - (NSString *) getAgentProperty:(NSString *)property{
+    return [self getTableProperty:property tableName:TABLE_AGENT_PROFILE condition:@""];
+
+}
+
+- (NSString *) getTableProperty:(NSString *)property tableName:(NSString *)tableName condition:(NSString *)condition{
     sqlite3_stmt *statement;
     NSString *propertyString = @"";
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
-        NSString *querySQL = [NSString stringWithFormat: @"SELECT %@ FROM %@",property, TABLE_AGENT_PROFILE];
+        NSString *querySQL = @"";
+        if([condition compare:@""] == NSOrderedSame)
+            querySQL = [NSString stringWithFormat: @"SELECT %@ FROM %@",property, tableName];
+        else
+            querySQL = [NSString stringWithFormat: @"SELECT %@ FROM %@ WHERE %@",property, tableName, condition];
         
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
             if (sqlite3_step(statement) == SQLITE_ROW) {
                 if((const char *) sqlite3_column_text(statement, 0) != NULL){
                     propertyString = [[NSString alloc]
-                              initWithUTF8String:
-                              (const char *) sqlite3_column_text(statement, 0)];
+                                      initWithUTF8String:
+                                      (const char *) sqlite3_column_text(statement, 0)];
                 }
             }
             sqlite3_finalize(statement);
@@ -702,7 +757,6 @@
         sqlite3_close(contactDB);
     }
     return propertyString;
-
 }
 
 
@@ -953,12 +1007,6 @@
                 {
                     createSQL = @"DROP TABLE tmp";
                     [self sqlStatement:createSQL];
-                    
-                    //                    if (success) {
-                    //                        createSQL = [NSString stringWithFormat:@"UPDATE %@ SET CustCode=\"%@\" WHERE CustCode='0'",tableName,nextCustCode];
-                    //
-                    //                        [self sqlStatement:createSQL];
-                    //                    }
                 }
             }
             

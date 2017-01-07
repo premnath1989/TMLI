@@ -20,6 +20,9 @@
 @class AgentWS_GetAllBackgroundImage;
 @class AgentWS_GetAllBackgroundImageResponse;
 @class AgentWS_GetAllBackgroundImageResult;
+@class AgentWS_GetAgentHierarcy;
+@class AgentWS_GetAgentHierarcyResponse;
+@class AgentWS_GetAgentHierarcyImageResult;
 @class AgentWS_ChangePassword;
 @class AgentWS_ChangePasswordResponse;
 @class AgentWS_FullSyncTable;
@@ -374,6 +377,61 @@
 /* elements */
 @property (retain) AgentWS_ReceiveFirstLoginResult * ReceiveFirstLoginResult;
 @property (retain) NSString * strStatus;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface AgentWS_GetAgentHierarcy : NSObject {
+    
+    /* elements */
+    NSString * strAgentCode;
+    /* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAgentHierarcy *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) NSString * strAgentCode;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface AgentWS_GetAgentHierarcyResult : NSObject {
+    /* elements */
+    NSString * xmlDetails;
+    /* attributes */
+}
+@property (retain) NSString * xmlDetails;
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAgentHierarcyResult *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+
+
+@interface AgentWS_GetAgentHierarcyResponse : NSObject {
+    
+    /* elements */
+    AgentWS_GetAgentHierarcyResult * GetAgentHierarcyResult;
+    /* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAgentHierarcyResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) AgentWS_GetAgentHierarcyResult * GetAgentHierarcyResult;
 /* attributes */
 - (NSDictionary *)attributes;
 @end
@@ -1015,6 +1073,9 @@
 - (void)SyncDataVersionAsyncUsingParameters:(AgentWS_SyncDataVersion *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
 - (AgentWSSoapBindingResponse *)GetAllBackgroundImageUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters ;
 - (void)GetAllBackgroundImageAsyncUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
+- (AgentWSSoapBindingResponse *)GetAgentHierarcyUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters ;
+- (void)GetAgentHierarcyAsyncUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
+
 @end
 @interface AgentWSSoapBindingOperation : NSOperation {
     AgentWSSoapBinding *binding;
@@ -1174,6 +1235,14 @@
            parameters:(AgentWS_SyncDataVersion *)aParameters
 ;
 @end
+@interface AgentWSSoapBinding_GetAgentHierarcy : AgentWSSoapBindingOperation {
+    AgentWS_GetAgentHierarcy * parameters;
+}
+@property (retain) AgentWS_GetAgentHierarcy * parameters;
+- (id)initWithBinding:(AgentWSSoapBinding *)aBinding delegate:(id<AgentWSSoapBindingResponseDelegate>)aDelegate
+           parameters:(AgentWS_GetAgentHierarcy *)aParameters
+;
+@end
 @interface AgentWSSoapBinding_envelope : NSObject {
 }
 + (AgentWSSoapBinding_envelope *)sharedInstance;
@@ -1247,6 +1316,9 @@
 - (void)SyncDataVersionAsyncUsingParameters:(AgentWS_SyncDataVersion *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
 - (AgentWSSoap12BindingResponse *)GetAllBackgroundImageUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters ;
 - (void)GetAllBackgroundImageAsyncUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
+- (AgentWSSoap12BindingResponse *)GetAgentHierarcyUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters ;
+- (void)GetAgentHierarcyAsyncUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
+
 @end
 @interface AgentWSSoap12BindingOperation : NSOperation {
     AgentWSSoap12Binding *binding;
@@ -1404,6 +1476,14 @@
 @property (retain) AgentWS_SyncDataVersion * parameters;
 - (id)initWithBinding:(AgentWSSoap12Binding *)aBinding delegate:(id<AgentWSSoap12BindingResponseDelegate>)aDelegate
            parameters:(AgentWS_SyncDataVersion *)aParameters
+;
+@end
+@interface AgentWSSoap12Binding_GetAgentHierarcy : AgentWSSoap12BindingOperation {
+    AgentWS_GetAgentHierarcy * parameters;
+}
+@property (retain) AgentWS_GetAgentHierarcy * parameters;
+- (id)initWithBinding:(AgentWSSoap12Binding *)aBinding delegate:(id<AgentWSSoap12BindingResponseDelegate>)aDelegate
+           parameters:(AgentWS_GetAgentHierarcy *)aParameters
 ;
 @end
 @interface AgentWSSoap12Binding_envelope : NSObject {

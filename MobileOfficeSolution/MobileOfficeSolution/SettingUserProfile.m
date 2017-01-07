@@ -136,9 +136,9 @@
     txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
     txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
     txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
-    txtDM.text = @"";
-    txtRM.text = @"";
-    txtRD.text = @"";
+    txtDM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
+    txtRM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
+    txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
     txtNamaKantor.text = @"";
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
     txtAAJIDate.text = [self DateFormatter:[loginDB getAgentProperty:@"TLICEXPDT"]];
@@ -474,10 +474,76 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         
         /****
+         * is it AgentWS_getBGimages
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAllBackgroundImageResponse class]]) {
+            
+            AgentWS_GetAllBackgroundImageResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAllBackgroundImageResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            for(dataCollection *data in [returnObj getDataWrapper]){
+                
+                NSString* base64String = [data.dataRows valueForKey:@"FileBase64String"];
+                NSString* fileName = [data.dataRows valueForKey:@"FileName"];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *filePathApp = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+                
+                CFFAPIController *decode64 = [[CFFAPIController alloc]init];
+                NSError *error =  nil;
+                NSData *DecodedData = [decode64 dataFromBase64EncodedString:base64String];
+                [DecodedData writeToFile:[NSString stringWithFormat:@"%@/%@",filePathApp,fileName]
+                                 options:NSDataWritingAtomic error:&error];
+                
+            }
+            
+            dispatch_async(dispatch_get_global_queue(
+                                                     DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                    [webservice getAgentHierarchy:@"60000133" delegate:self];
+                });
+            });
+
+            
+        }
+        
+        /****
+         * is it AgentWS_GetAgentHierarcyResponse
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAgentHierarcyResponse class]]) {
+            AgentWS_GetAgentHierarcyResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAgentHierarcyResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            [loginDB setAgentHierarchy:returnObj];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [spinnerLoading stopLoadingSpinner];
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Sync telah selesai" message:@"" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
+                [alert show];
+            });
+
+
+        }
+
+        
+        /****
          * is it AgentWS_SyncdatareferralResponse
          ****/
         else if([bodyPart isKindOfClass:[AgentWS_SyncdatareferralResponse class]]) {
-            [spinnerLoading stopLoadingSpinner];
+            
             AgentWS_SyncdatareferralResponse* rateResponse = bodyPart;
             if([rateResponse.strstatus caseInsensitiveCompare:@"TRUE"]== NSOrderedSame){
                 
@@ -491,13 +557,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 int result = [loginDB ReferralSyncTable:returnObj];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_global_queue(
+                                                         DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     
-                    [spinnerLoading stopLoadingSpinner];
-                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Sync telah selesai" message:@"" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
-                    [alert show];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                        [webservice getBGImages:self];
+                    });
                 });
-                
             }else{
                 
             }

@@ -224,7 +224,7 @@ BOOL NavShowP;
     OTHERID_Hold_Alert = NO;
     
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_primary.png"];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/ProspectFormHeader.png"];
     NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
     UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
     [imgHeader setImage:thumbNail];

@@ -55,7 +55,7 @@
     
     // LAYOUT
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_login_tertiary.png"];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/LoginPage.png"];
     NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
     UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
 
