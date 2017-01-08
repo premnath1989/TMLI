@@ -90,6 +90,12 @@ MBProgressHUD *HUD;
     [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
     
     
+    // BHIMBIM'S QUICK FIX - Start
+    
+    _objectUserInterface = [[UserInterface alloc] init];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     [self setTextfieldBorder];
     
@@ -436,9 +442,18 @@ MBProgressHUD *HUD;
             }
         
             
+            // BHIMBIM'S QUICK FIX - Start
             
+            if (indexPath.row % 2)
+            {
+                cell1.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+            }
+            else
+            {
+                cell1.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+            }
             
-            
+            // BHIMBIM'S QUICK FIX - End
             
             
             return cell1;
@@ -1470,7 +1485,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:NO animated:TRUE];
         deleteBtn.hidden = true;
         deleteBtn.enabled = false;
-        [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
+        // [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
         
         ItemToBeDeleted = [[NSMutableArray alloc] init];
         indexPaths = [[NSMutableArray alloc] init];

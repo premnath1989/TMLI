@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.otf">
+        <array key="BPreplay_Bold.ttf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
     </customFonts>
@@ -228,7 +228,7 @@
                                                     <constraint firstAttribute="width" constant="48" id="WZs-xZ-log"/>
                                                     <constraint firstAttribute="height" constant="48" id="wN6-Lc-ErJ"/>
                                                 </constraints>
-                                                <state key="normal" title="Button" image="icon_agent_primary"/>
+                                                <state key="normal" title="Button" image="icon_agent_navigation"/>
                                                 <connections>
                                                     <action selector="goToAgentProfile:" destination="yHH-pR-s2J" eventType="touchUpInside" id="BYN-Z4-rLF"/>
                                                 </connections>
@@ -611,7 +611,7 @@
     </scenes>
     <resources>
         <image name="icon_activitymanagement_primary" width="48" height="48"/>
-        <image name="icon_agent_primary" width="48" height="48"/>
+        <image name="icon_agent_navigation" width="48" height="48"/>
         <image name="icon_calendar_primary" width="48" height="48"/>
         <image name="icon_elibrary_primary" width="48" height="48"/>
         <image name="icon_epayment_primary" width="48" height="48"/>

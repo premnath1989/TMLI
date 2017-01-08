@@ -7252,9 +7252,14 @@ BOOL NavShowP;
          animations:^
          {
              isThin = NO;
-             _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
-             _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
-             _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
+//             _btnChangeHeader.frame = CGRectMake(0, 85.0, 1024.0, 20.0);
+//             _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
+//             _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
+             
+             _btnChangeHeader.frame = CGRectMake(0, 105, 1024.0, 20.0);
+             _ViewMenu1.frame = CGRectMake(0, 126, 1024.0, 60.0);
+             _ScrollViewProspect.frame = CGRectMake(0, 186, 1024.0, 800.0);
+             
 //             _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
          }
          completion:^(BOOL finished)
@@ -7272,6 +7277,10 @@ BOOL NavShowP;
          animations:^
          {
              isThin = YES;
+//             _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
+//             _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
+//             _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
+             
              _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
              _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
              _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);

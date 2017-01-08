@@ -716,6 +716,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setContentHorizontalAlignment : UIControlContentHorizontalAlignmentCenter];
@@ -732,7 +735,5 @@
         
         // [menu setSelectedSegmentIndex:UISegmentedControlNoSegment];
     }
-
-
 
 @end
