@@ -10,9 +10,11 @@
 
 @interface FundPercentViewController : UIViewController
 
-
+@property (strong, nonatomic) NSUserDefaults *UDInvest;
 @property (strong, nonatomic) IBOutlet UILabel *lblFundName;
 @property (strong, nonatomic) IBOutlet UITextField *TxtPercentage;
+
+@property (strong, nonatomic) NSMutableArray *InvestList;
 
 - (IBAction)ActionOK:(id)sender;
 - (IBAction)ActionCancel:(id)sender;

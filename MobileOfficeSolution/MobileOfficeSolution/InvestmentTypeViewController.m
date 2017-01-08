@@ -14,26 +14,87 @@
 @end
 
 @implementation InvestmentTypeViewController
+@synthesize UDInvest, FundList, InvestList, lblTotal;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoadInvestTable) name:@"LoadInvestTable" object:nil];
     // Do any additional setup after loading the view.
+    UDInvest = [NSUserDefaults standardUserDefaults];
     
+    [self loadFundData];
     
-    FundList = [NSMutableArray arrayWithObjects:@"TMBalanceFund",@"TMEquityFund",@"TMCashFund",@"TMEquityAggressiveFund", nil];
+    //not sure this needed or not, but need to clear if new, call back from DB if edit
+    InvestList = [NSMutableArray array];
+    [InvestList removeAllObjects];
+     [UDInvest setObject:InvestList forKey:@"InvestArray"];
     
-    [_FundTypeTableView reloadData];
-    
+    lblTotal.text = @"Total: 0%";
+
     
 }
 
 -(void)loadFundData
 {
 
+    //temp set product type:
+    NSString *productType = @"TM Link (Wealth Enhancement)";
     
-     FundList = [NSMutableArray arrayWithObjects:@"TMBalanceFund",@"TMEquityFund",@"TMCashFund",@"TMEquityAggressiveFund", nil];
+    if ([productType isEqualToString:@""]) {
+        FundList = [NSMutableArray arrayWithObjects:@"TMBalanceFund",@"TMEquityFund",@"TMCashFund",@"TMEquityAggressiveFund", nil];
+    }
+    else if ([productType isEqualToString:@"ProteksiKu"]) {
+        FundList = [NSMutableArray arrayWithObjects:@"TM Bond Fund",
+                    @"TM Equity Fund",
+                    @"TM Equity Aggressive Fund",
+                    @"TM Balanced Fund",
+                    @"TM Cash Fund", nil];
+    }
+    else if ([productType isEqualToString:@"InvestasiKu"]) {
+        FundList = [NSMutableArray arrayWithObjects:@"TM Bond Fund",
+                    @"TM Equity Fund",
+                    @"TM Equity Aggressive Fund",
+                    @"TM Balanced Fund",
+                    @"TM Cash Fund", nil];
+    }
+    else if ([productType isEqualToString:@"TM Link (Wealth Enhancement)"]) {
+        FundList = [NSMutableArray arrayWithObjects:@"TM syCash Fund",
+                    @"TM syEquity Fund",
+                    @"TM syBond Fund",
+                    @"TM syManaged Fund",
+                    @"TM Equity Fund",
+                    @"TM Equity Aggressive Fund",
+                    @"TM Bond Fund",
+                    @"TM Balanced Fund",
+                    @"TM Cash Fund", nil];
+    }
+    
     
     [_FundTypeTableView reloadData];
+}
+
+-(void) LoadInvestTable {
+ 
+    UDInvest = [NSUserDefaults standardUserDefaults];
+    InvestList = [NSMutableArray array];
+    [InvestList removeAllObjects];
+    InvestList = [UDInvest objectForKey:@"InvestArray"];
+    
+    [_InvestasiTableView reloadData];
+    
+    [self CalculateTotal];
+    
+}
+
+-(void) CalculateTotal {
+    int Total = 0;
+    int komp =0;
+    for (int i = 0; i <= InvestList.count-1; i++) {
+        komp = [[[InvestList objectAtIndex:i] objectForKey:@"Komposisi"] intValue];
+        Total = Total + komp;
+    }
+    lblTotal.text = [NSString stringWithFormat:@"Total: %d %%", Total];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -45,6 +106,9 @@
 {
     if([myTableView isEqual:_FundTypeTableView]) {
         return [FundList count];
+    }
+    else if([myTableView isEqual:_InvestasiTableView]) {
+        return [InvestList count];
     }
     else {
         return 0;
@@ -74,7 +138,29 @@
     }
     else if ([tableView isEqual:_InvestasiTableView])
     {
-        cell.textLabel.text = @"test               100%";
+        
+        CGRect frame=CGRectMake(25,0, 230, 55);
+        UILabel *label1=[[UILabel alloc]init];
+        label1.frame=frame;
+        label1.textAlignment = NSTextAlignmentLeft;
+        label1.tag = 13001;
+        label1.backgroundColor = [UIColor clearColor];
+        [label1 setFont:[UIFont systemFontOfSize:15]];
+        [cell.contentView addSubview:label1];
+        
+
+        label1.text = [[InvestList objectAtIndex:indexPath.row] objectForKey:@"FundName"];
+        
+        CGRect frame2=CGRectMake(400,0, 100, 55);
+        UILabel *label2=[[UILabel alloc]init];
+        label2.frame=frame2;
+        label2.textAlignment = NSTextAlignmentRight;
+        label2.tag = 13002;
+        label2.backgroundColor = [UIColor clearColor];
+        [label2 setFont:[UIFont systemFontOfSize:15]];
+        [cell.contentView addSubview:label2];
+        
+        label2.text = [NSString stringWithFormat:@"%@ %%", [[InvestList objectAtIndex:indexPath.row] objectForKey:@"Komposisi"]];
     }
     
 
@@ -88,6 +174,18 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     _cellText = cell.textLabel.text;
     
+    UDInvest =  [NSUserDefaults standardUserDefaults];
+    
+    if([tableView isEqual:_FundTypeTableView]) {
+        
+        [UDInvest setObject:_cellText forKey:@"FundName"];
+        
+    }
+    else if ([tableView isEqual:_InvestasiTableView])
+    {
+        [UDInvest setObject:[[InvestList objectAtIndex:indexPath.row] objectForKey:@"FundName"] forKey:@"FundName"];
+    }
+
     [self FundPercent];
     
 }
@@ -98,6 +196,8 @@
     FundPercentViewController *FundVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"FundPercent"];
     
     [self presentViewController:FundVC animated:YES completion:nil];
+    
+    
 }
 
 
