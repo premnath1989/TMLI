@@ -507,7 +507,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
-                    [webservice getAgentHierarchy:@"60000133" delegate:self];
+                    [webservice getAgentHierarchy:[agentDetails valueForKey:@"AgentCode"] delegate:self];
                 });
             });
 
