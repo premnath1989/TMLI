@@ -2772,7 +2772,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="a4b-e1-xsi" customClass="ButtonNavigation2">
-                                        <rect key="frame" x="30" y="20" width="48" height="48"/>
+                                        <rect key="frame" x="30" y="25" width="48" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Show"/>
                                         <connections>
@@ -2780,7 +2780,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qIf-Ki-gbG" customClass="ButtonCancelNavigationSecondary">
-                                        <rect key="frame" x="30" y="20" width="46" height="48"/>
+                                        <rect key="frame" x="30" y="25" width="46" height="48"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
@@ -2788,7 +2788,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="llW-zp-3ME" customClass="ButtonBack">
-                                        <rect key="frame" x="31" y="85" width="48" height="48"/>
+                                        <rect key="frame" x="36" y="93" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
@@ -2796,21 +2796,21 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loren IpsumLorem ipsum dolor sit amet, consectetur adipiscing elit." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TGT-Xc-rRS" customClass="LabelTableDetail">
-                                        <rect key="frame" x="121" y="60" width="589" height="23.5"/>
+                                        <rect key="frame" x="108" y="55" width="589" height="23.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Daftar Prospect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4fg-1T-Fgx" customClass="LabelTableHeader">
-                                        <rect key="frame" x="121" y="26" width="589" height="29.5"/>
+                                        <rect key="frame" x="108" y="20" width="589" height="29.5"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Depan" minimumFontSize="18" clearButtonMode="whileEditing" id="oSz-xL-qwq" customClass="TextFieldFormGeneralSecondary">
-                                        <rect key="frame" x="121" y="105" width="240" height="30"/>
+                                        <rect key="frame" x="108" y="104" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
@@ -2818,15 +2818,27 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nama Belakang" minimumFontSize="18" clearButtonMode="whileEditing" id="m2g-0m-aVG" customClass="TextFieldFormGeneralSecondary">
-                                        <rect key="frame" x="386" y="105" width="240" height="30"/>
+                                        <rect key="frame" x="368" y="104" width="240" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tanggal Lahir" minimumFontSize="18" clearButtonMode="whileEditing" id="v2c-08-Cr6" customClass="TextFieldFormGeneralSecondary">
-                                        <rect key="frame" x="386" y="148" width="240" height="36"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rHH-aD-WzN">
+                                        <rect key="frame" x="386" y="146" width="240" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="btnDOB:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="WCG-ys-Xt2"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Tanggal Lahir" minimumFontSize="18" clearButtonMode="whileEditing" id="v2c-08-Cr6" customClass="DateFormGeneralSecondary">
+                                        <rect key="frame" x="368" y="154" width="240" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
@@ -2834,38 +2846,13 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nomor HP" minimumFontSize="18" clearButtonMode="whileEditing" id="fRK-05-G7H" customClass="TextFieldFormGeneralSecondary">
-                                        <rect key="frame" x="121" y="148" width="240" height="36"/>
+                                        <rect key="frame" x="108" y="154" width="240" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.39607843139999999" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="18"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3JY-EG-KvX" customClass="ButtonFormSecondary">
-                                        <rect key="frame" x="650" y="148" width="80" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
-                                        <state key="normal" title="Find">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="searchPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="K0L-a1-TDW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LhM-wz-Ni5" customClass="ButtonFormCircleSmall">
-                                        <rect key="frame" x="754" y="148" width="36" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" image="icon_clear_secondary">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="resetPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="ej2-hR-S9M"/>
-                                        </connections>
-                                    </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7gx-fn-Cly" customClass="ButtonFormSecondary">
                                         <rect key="frame" x="853" y="8" width="130" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -2891,21 +2878,33 @@
                                             <action selector="editPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="fSp-W8-4y8"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="rHH-aD-WzN">
-                                        <rect key="frame" x="345" y="197" width="400" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="3JY-EG-KvX" customClass="ButtonFormSecondary">
+                                        <rect key="frame" x="628" y="154" width="80" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
-                                        <state key="normal" image="Expand Arrow.png">
-                                            <color key="titleColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="16"/>
+                                        <state key="normal" title="Find">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="btnDOB:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="WCG-ys-Xt2"/>
+                                            <action selector="searchPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="K0L-a1-TDW"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="LhM-wz-Ni5" customClass="ButtonFormCircleSmall">
+                                        <rect key="frame" x="732" y="154" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="icon_clear_secondary">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="resetPressed:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="ej2-hR-S9M"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nEo-Fp-4pq" customClass="ButtonFormCircleSmall">
-                                        <rect key="frame" x="816" y="148" width="36" height="36"/>
+                                        <rect key="frame" x="794" y="154" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.78823529410000004" green="0.83137254900000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" image="icon_recalculate_secondary">
@@ -2935,23 +2934,15 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Ygk-Od-9CU" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="0.0" y="0.0" width="146.5" height="36"/>
+                                        <rect key="frame" x="3" y="0.0" width="146.5" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Nomor"/>
                                         <connections>
                                             <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="k60-cm-tSH"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aK0-M2-EfF" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="145" y="0.0" width="146" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Nama"/>
-                                        <connections>
-                                            <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="lj0-KB-dxV"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="c46-Nj-MOg" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="279" y="0.0" width="146" height="36"/>
+                                        <rect key="frame" x="454" y="0.0" width="146" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Skor"/>
                                         <connections>
@@ -2959,7 +2950,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uvE-DF-GiG" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="568" y="0.0" width="146.5" height="36"/>
+                                        <rect key="frame" x="584" y="0.0" width="146.5" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Tanggal Pembuatan"/>
                                         <connections>
@@ -2967,7 +2958,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="83r-o9-oqz" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="723" y="0.0" width="146" height="36"/>
+                                        <rect key="frame" x="745" y="0.0" width="146" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Tanggal Update"/>
                                         <connections>
@@ -2975,7 +2966,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obk-aw-EvY" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="877" y="0.0" width="146.5" height="36"/>
+                                        <rect key="frame" x="882" y="0.0" width="146.5" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Status"/>
                                         <connections>
@@ -2983,11 +2974,19 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8KF-AZ-PSS" customClass="ButtonTableHeader">
-                                        <rect key="frame" x="407" y="0.0" width="146.5" height="36"/>
+                                        <rect key="frame" x="347" y="0.0" width="146.5" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Nomor HP"/>
                                         <connections>
                                             <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="8ZL-cc-g0F"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aK0-M2-EfF" customClass="ButtonTableHeader">
+                                        <rect key="frame" x="162" y="0.0" width="146" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Nama"/>
+                                        <connections>
+                                            <action selector="btnSortBy:" destination="pfa-Zt-HM6" eventType="touchUpInside" id="lj0-KB-dxV"/>
                                         </connections>
                                     </button>
                                 </subviews>

@@ -29,9 +29,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -44,6 +44,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];
@@ -58,6 +61,11 @@
             self.autocorrectionType = UITextAutocorrectionTypeNo;
         }
 
+        - (void) styleEnable {}
+        - (void) styleValid {}
+        - (void) styleInvalid {}
+        - (void) styleDisable {}
+
     @end
 
     @implementation TextFieldFormGeneralSecondary
@@ -70,9 +78,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -85,6 +93,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];
@@ -97,13 +108,18 @@
             self.autocorrectionType = UITextAutocorrectionTypeNo;
         }
 
+        - (void) styleEnable {}
+        - (void) styleValid {}
+        - (void) styleInvalid {}
+        - (void) styleDisable {}
+
     @end
 
     /* PHOTO */
 
     @implementation TextFieldPhotoGeneralPrimary
 
-        /* INITIALIZE */
+    /* INITIALIZE */
 
         - (void)awakeFromNib { [self setupStyle]; }
 
@@ -111,9 +127,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -126,6 +142,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];
@@ -138,6 +157,11 @@
             self.autocorrectionType = UITextAutocorrectionTypeNo;
             // [self setValue:[_objectUserInterface generateUIColor:THEME_COLOR_ERROR floatOpacity:1.0] forKeyPath:@"_placeholderLabel.textColor"];
         }
+
+        - (void) styleEnable {}
+        - (void) styleValid {}
+        - (void) styleInvalid {}
+        - (void) styleDisable {}
 
     @end
 
@@ -156,9 +180,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -171,6 +195,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -205,9 +232,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -220,6 +247,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -254,9 +284,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -269,6 +299,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -307,9 +340,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -322,6 +355,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -356,9 +392,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -371,6 +407,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -405,9 +444,9 @@
     {
         return CGRectMake
         (
-         bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-         bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-         );
+            bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+            bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+        );
     }
 
     - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -420,6 +459,9 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+        CGRect rectFrame = self.frame;
+        rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+        [self setFrame : rectFrame];
         
         [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
         [self setTextAlignment : NSTextAlignmentLeft];
@@ -458,9 +500,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -473,6 +515,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];
@@ -507,9 +552,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -522,6 +567,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];
@@ -556,9 +604,9 @@
         {
             return CGRectMake
             (
-             bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
-             bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
-             );
+                bounds.origin.x + GENERAL_SPACE_SMALL, bounds.origin.y + GENERAL_SPACE_TINY,
+                bounds.size.width + (GENERAL_SPACE_SMALL * 2), bounds.size.height - (GENERAL_SPACE_TINY * 2)
+            );
         }
 
         - (CGRect)editingRectForBounds:(CGRect)bounds { return [self textRectForBounds:bounds]; }
@@ -571,6 +619,9 @@
             _objectUserInterface = [[UserInterface alloc] init];
             
             [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            CGRect rectFrame = self.frame;
+            rectFrame.size.height = GENERAL_HEIGHT_SINGLE;
+            [self setFrame : rectFrame];
             
             [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
             [self setTextAlignment : NSTextAlignmentLeft];

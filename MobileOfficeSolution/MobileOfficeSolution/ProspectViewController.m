@@ -3236,85 +3236,92 @@ BOOL NavShowP;
                     intCount = [resultSelectProspect intForColumn:@"COUNT"];
                     NSLog(@"row | index no -> %@", [resultSelectProspect stringForColumn:@"IndexNo"]);
                     
-                    objectProspectProfile = [[ProspectProfile alloc] initWithName:
-                        [resultSelectProspect stringForColumn:@"PreferredName"]
-                        AndProspectID:[resultSelectProspect stringForColumn:@"IndexNo"]
-                        AndProspectName:[resultSelectProspect stringForColumn:@"ProspectName"]
-                        AndProspecGender:[resultSelectProspect stringForColumn:@"ProspectGender"]
-                        AndResidenceAddress1:[resultSelectProspect stringForColumn:@"ResidenceAddress1"]
-                        AndResidenceAddress2:[resultSelectProspect stringForColumn:@"ResidenceAddress2"]
-                        AndResidenceAddress3:[resultSelectProspect stringForColumn:@"ResidenceAddress3"]
-                        AndResidenceAddressTown:[resultSelectProspect stringForColumn:@"ResidenceAddressTown"]
-                        AndResidenceAddressState:[resultSelectProspect stringForColumn:@"ResidenceAddressState"]
-                        AndResidenceAddressPostCode:[resultSelectProspect stringForColumn:@"ResidenceAddressPostCode"]
-                        AndResidenceAddressCountry:[resultSelectProspect stringForColumn:@"ResidenceAddressCountry"]
-                        AndOfficeAddress1:[resultSelectProspect stringForColumn:@"OfficeAddress1"]
-                        AndOfficeAddress2:[resultSelectProspect stringForColumn:@"OfficeAddress2"]
-                        AndOfficeAddress3:[resultSelectProspect stringForColumn:@"OfficeAddress3"]
-                        AndOfficeAddressTown:[resultSelectProspect stringForColumn:@"OfficeAddressTown"]
-                        AndOfficeAddressState:[resultSelectProspect stringForColumn:@"OfficeAddressState"]
-                        AndOfficeAddressPostCode:[resultSelectProspect stringForColumn:@"OfficeAddressPostCode"]
-                        AndOfficeAddressCountry:[resultSelectProspect stringForColumn:@"OfficeAddressCountry"]
-                        AndProspectEmail:[resultSelectProspect stringForColumn:@"ProspectEmail"]
-                        AndProspectRemark:[resultSelectProspect stringForColumn:@"ProspectRemark"]
-                        AndDateCreated:[resultSelectProspect stringForColumn:@"DateCreated"]
-                        AndDateModified:[resultSelectProspect stringForColumn:@"DateModified"]
-                        AndCreatedBy:[resultSelectProspect stringForColumn:@"CreatedBy"]
-                        AndModifiedBy:[resultSelectProspect stringForColumn:@"ModifiedBy"]
-                        AndProspectOccupationCode:[resultSelectProspect stringForColumn:@"ProspectOccupationCode"]
-                        AndProspectDOB:[resultSelectProspect stringForColumn:@"ProspectDOB"]
-                        AndExactDuties:[resultSelectProspect stringForColumn:@"ExactDuties"]
-                        AndGroup:[resultSelectProspect stringForColumn:@"ProspectGroup"]
-                        AndTitle:[resultSelectProspect stringForColumn:@"ProspectTitle"]
-                        AndIDTypeNo:[resultSelectProspect stringForColumn:@"IDTypeNo"]
-                        AndOtherIDType:[resultSelectProspect stringForColumn:@"OtherIDType"]
-                        AndOtherIDTypeNo:[resultSelectProspect stringForColumn:@"OtherIDTypeNo"]
-                        AndSmoker:[resultSelectProspect stringForColumn:@"Smoker"]
-                        AndAnnIncome:[resultSelectProspect stringForColumn:@"AnnualIncome"]
-                        AndBussType:[resultSelectProspect stringForColumn:@"BussinesType"]
-                        AndRace:[resultSelectProspect stringForColumn:@"Race"]
-                        AndMaritalStatus:[resultSelectProspect stringForColumn:@"MaritalStatus"]
-                        AndReligion:[resultSelectProspect stringForColumn:@"Religion"]
-                        AndNationality:[resultSelectProspect stringForColumn:@"Nationality"]
-                        AndRegistrationNo:[resultSelectProspect stringForColumn:@"GST_registrationNo"]
-                        AndRegistration:[resultSelectProspect stringForColumn:@"GST_registered"] //
-                        AndRegistrationDate:[resultSelectProspect stringForColumn:@"GST_registration_date"]
-                        AndRegistrationExempted:[resultSelectProspect stringForColumn:@"GST_exempted"]
-                        AndProspect_IsGrouping:[resultSelectProspect stringForColumn:@"Prospect_IsGrouping"]
-                        AndCountryOfBirth:[resultSelectProspect stringForColumn:@"CountryOfBirth"]
-                        AndNIP:[resultSelectProspect stringForColumn:@"NIP"]
-                        AndBranchCode:[resultSelectProspect stringForColumn:@"BranchCode"]
-                        AndBranchName:[resultSelectProspect stringForColumn:@"BranchName"]
-                        AndKCU:[resultSelectProspect stringForColumn:@"KCU"]
-                        AndReferralSource:[resultSelectProspect stringForColumn:@"ReferralSource"]
-                        AndReferralName:[resultSelectProspect stringForColumn:@"ReferralName"]
-                        AndIdentitySubmitted:[resultSelectProspect stringForColumn:@"IdentitySubmitted"]
-                        AndIDExpirityDate:[resultSelectProspect stringForColumn:@"IDExpiryDate"]
-                        AndNPWPNo:[resultSelectProspect stringForColumn:@"NPWPNo"]
-                        AndKanwil:[resultSelectProspect stringForColumn:@"Kanwil"]
-                        AndHomeVillage:[resultSelectProspect stringForColumn:@"ResidenceVillage"]
-                        AndHomeDistrict:[resultSelectProspect stringForColumn:@"ResidenceDistrict"]
-                        AndHomeProvince:[resultSelectProspect stringForColumn:@"ResidenceProvince"]
-                        AndOfficeVillage:[resultSelectProspect stringForColumn:@"OfficeVillate"]
-                        AndOfficeDistrict:[resultSelectProspect stringForColumn:@"OfficeDistrict"]
-                        AndOfficePorvince:[resultSelectProspect stringForColumn:@"OfficeProvince"]
-                        AndSourceIncome:[resultSelectProspect stringForColumn:@"SourceIncome"]
-                        AndClientSegmentation:[resultSelectProspect stringForColumn:@"ClientSegmentation"]
-                        AndtScore:[resultSelectProspect stringForColumn:@"Score"]
-                        AndProspectLastName:[resultSelectProspect stringForColumn:@"ProspectLastName"]
-                        AndProspectAge:[resultSelectProspect stringForColumn:@"ProspectAge"]
-                        AndPhoneHomeNo:[resultSelectProspect stringForColumn:@"PhoneHoHome"]
-                        AndPhoneNoHP:[resultSelectProspect stringForColumn:@"PhoneNoHp"]
-                        AndAddress4:[resultSelectProspect stringForColumn:@"ResidenceAddress4"]
-                        AndKelurahan:[resultSelectProspect stringForColumn:@"ResidenceKelurahan"]
-                        AndKecamatan:[resultSelectProspect stringForColumn:@"ResidenceKecamatan"]
-                        AndCallStartTime:[resultSelectProspect stringForColumn:@"CallTimeStart"]
-                        AndCallEndTime:[resultSelectProspect stringForColumn:@"CallTimeEnd"]
-                        AndisForeignAdd:[resultSelectProspect stringForColumn:@"IsForeignAddress"]
-                        AndProspectStatus:[resultSelectProspect stringForColumn:@"ProspectStatus"]
-                        AndFavorite:[resultSelectProspect stringForColumn:@"isFavorite"]
-                        AndRTRW:[resultSelectProspect stringForColumn:@"RTRW"]
-                    ];
+                    if (intCount > 0)
+                    {
+                        objectProspectProfile = [[ProspectProfile alloc] initWithName:
+                            [resultSelectProspect stringForColumn:@"PreferredName"]
+                            AndProspectID:[resultSelectProspect stringForColumn:@"IndexNo"]
+                            AndProspectName:[resultSelectProspect stringForColumn:@"ProspectName"]
+                            AndProspecGender:[resultSelectProspect stringForColumn:@"ProspectGender"]
+                            AndResidenceAddress1:[resultSelectProspect stringForColumn:@"ResidenceAddress1"]
+                            AndResidenceAddress2:[resultSelectProspect stringForColumn:@"ResidenceAddress2"]
+                            AndResidenceAddress3:[resultSelectProspect stringForColumn:@"ResidenceAddress3"]
+                            AndResidenceAddressTown:[resultSelectProspect stringForColumn:@"ResidenceAddressTown"]
+                            AndResidenceAddressState:[resultSelectProspect stringForColumn:@"ResidenceAddressState"]
+                            AndResidenceAddressPostCode:[resultSelectProspect stringForColumn:@"ResidenceAddressPostCode"]
+                            AndResidenceAddressCountry:[resultSelectProspect stringForColumn:@"ResidenceAddressCountry"]
+                            AndOfficeAddress1:[resultSelectProspect stringForColumn:@"OfficeAddress1"]
+                            AndOfficeAddress2:[resultSelectProspect stringForColumn:@"OfficeAddress2"]
+                            AndOfficeAddress3:[resultSelectProspect stringForColumn:@"OfficeAddress3"]
+                            AndOfficeAddressTown:[resultSelectProspect stringForColumn:@"OfficeAddressTown"]
+                            AndOfficeAddressState:[resultSelectProspect stringForColumn:@"OfficeAddressState"]
+                            AndOfficeAddressPostCode:[resultSelectProspect stringForColumn:@"OfficeAddressPostCode"]
+                            AndOfficeAddressCountry:[resultSelectProspect stringForColumn:@"OfficeAddressCountry"]
+                            AndProspectEmail:[resultSelectProspect stringForColumn:@"ProspectEmail"]
+                            AndProspectRemark:[resultSelectProspect stringForColumn:@"ProspectRemark"]
+                            AndDateCreated:[resultSelectProspect stringForColumn:@"DateCreated"]
+                            AndDateModified:[resultSelectProspect stringForColumn:@"DateModified"]
+                            AndCreatedBy:[resultSelectProspect stringForColumn:@"CreatedBy"]
+                            AndModifiedBy:[resultSelectProspect stringForColumn:@"ModifiedBy"]
+                            AndProspectOccupationCode:[resultSelectProspect stringForColumn:@"ProspectOccupationCode"]
+                            AndProspectDOB:[resultSelectProspect stringForColumn:@"ProspectDOB"]
+                            AndExactDuties:[resultSelectProspect stringForColumn:@"ExactDuties"]
+                            AndGroup:[resultSelectProspect stringForColumn:@"ProspectGroup"]
+                            AndTitle:[resultSelectProspect stringForColumn:@"ProspectTitle"]
+                            AndIDTypeNo:[resultSelectProspect stringForColumn:@"IDTypeNo"]
+                            AndOtherIDType:[resultSelectProspect stringForColumn:@"OtherIDType"]
+                            AndOtherIDTypeNo:[resultSelectProspect stringForColumn:@"OtherIDTypeNo"]
+                            AndSmoker:[resultSelectProspect stringForColumn:@"Smoker"]
+                            AndAnnIncome:[resultSelectProspect stringForColumn:@"AnnualIncome"]
+                            AndBussType:[resultSelectProspect stringForColumn:@"BussinesType"]
+                            AndRace:[resultSelectProspect stringForColumn:@"Race"]
+                            AndMaritalStatus:[resultSelectProspect stringForColumn:@"MaritalStatus"]
+                            AndReligion:[resultSelectProspect stringForColumn:@"Religion"]
+                            AndNationality:[resultSelectProspect stringForColumn:@"Nationality"]
+                            AndRegistrationNo:[resultSelectProspect stringForColumn:@"GST_registrationNo"]
+                            AndRegistration:[resultSelectProspect stringForColumn:@"GST_registered"] //
+                            AndRegistrationDate:[resultSelectProspect stringForColumn:@"GST_registration_date"]
+                            AndRegistrationExempted:[resultSelectProspect stringForColumn:@"GST_exempted"]
+                            AndProspect_IsGrouping:[resultSelectProspect stringForColumn:@"Prospect_IsGrouping"]
+                            AndCountryOfBirth:[resultSelectProspect stringForColumn:@"CountryOfBirth"]
+                            AndNIP:[resultSelectProspect stringForColumn:@"NIP"]
+                            AndBranchCode:[resultSelectProspect stringForColumn:@"BranchCode"]
+                            AndBranchName:[resultSelectProspect stringForColumn:@"BranchName"]
+                            AndKCU:[resultSelectProspect stringForColumn:@"KCU"]
+                            AndReferralSource:[resultSelectProspect stringForColumn:@"ReferralSource"]
+                            AndReferralName:[resultSelectProspect stringForColumn:@"ReferralName"]
+                            AndIdentitySubmitted:[resultSelectProspect stringForColumn:@"IdentitySubmitted"]
+                            AndIDExpirityDate:[resultSelectProspect stringForColumn:@"IDExpiryDate"]
+                            AndNPWPNo:[resultSelectProspect stringForColumn:@"NPWPNo"]
+                            AndKanwil:[resultSelectProspect stringForColumn:@"Kanwil"]
+                            AndHomeVillage:[resultSelectProspect stringForColumn:@"ResidenceVillage"]
+                            AndHomeDistrict:[resultSelectProspect stringForColumn:@"ResidenceDistrict"]
+                            AndHomeProvince:[resultSelectProspect stringForColumn:@"ResidenceProvince"]
+                            AndOfficeVillage:[resultSelectProspect stringForColumn:@"OfficeVillate"]
+                            AndOfficeDistrict:[resultSelectProspect stringForColumn:@"OfficeDistrict"]
+                            AndOfficePorvince:[resultSelectProspect stringForColumn:@"OfficeProvince"]
+                            AndSourceIncome:[resultSelectProspect stringForColumn:@"SourceIncome"]
+                            AndClientSegmentation:[resultSelectProspect stringForColumn:@"ClientSegmentation"]
+                            AndtScore:[resultSelectProspect stringForColumn:@"Score"]
+                            AndProspectLastName:[resultSelectProspect stringForColumn:@"ProspectLastName"]
+                            AndProspectAge:[resultSelectProspect stringForColumn:@"ProspectAge"]
+                            AndPhoneHomeNo:[resultSelectProspect stringForColumn:@"PhoneHoHome"]
+                            AndPhoneNoHP:[resultSelectProspect stringForColumn:@"PhoneNoHp"]
+                            AndAddress4:[resultSelectProspect stringForColumn:@"ResidenceAddress4"]
+                            AndKelurahan:[resultSelectProspect stringForColumn:@"ResidenceKelurahan"]
+                            AndKecamatan:[resultSelectProspect stringForColumn:@"ResidenceKecamatan"]
+                            AndCallStartTime:[resultSelectProspect stringForColumn:@"CallTimeStart"]
+                            AndCallEndTime:[resultSelectProspect stringForColumn:@"CallTimeEnd"]
+                            AndisForeignAdd:[resultSelectProspect stringForColumn:@"IsForeignAddress"]
+                            AndProspectStatus:[resultSelectProspect stringForColumn:@"ProspectStatus"]
+                            AndFavorite:[resultSelectProspect stringForColumn:@"isFavorite"]
+                            AndRTRW:[resultSelectProspect stringForColumn:@"RTRW"]
+                        ];
+                    }
+                    else
+                    {
+                        
+                    }
                 }
                 
                 /* CHECK - the query result and trigger alert controller */
@@ -3359,8 +3366,9 @@ BOOL NavShowP;
                              
                              if(Update_record == YES)
                              {
-                                 //GET PP  CHANGES COUNTER
+                                 // GET PP  CHANGES COUNTER
                                  
+                                 NSLog(@"Update Start - dupplicate prospect !!");
                                  FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
                                  [db open];
                                  FMResultSet *result = [db executeQuery:@"SELECT ProspectProfileChangesCounter from prospect_profile WHERE indexNo = ?", pp.ProspectID];
@@ -3392,9 +3400,12 @@ BOOL NavShowP;
                                     [NSString stringWithFormat:
                                       @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
                                       txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
+                                 
+                                 NSLog(@"Update End  - dupplicate prospect!!");
                              }
                              else
                              {
+                                 NSLog(@"Insert Start - dupplicate prospect !!");
                                  
                                  NSString *isForeign = @"NO";
                                  /* NSString *Fav;
@@ -3421,15 +3432,14 @@ BOOL NavShowP;
                                  [UDScore setObject:strScore forKey:@"Score"];
                                  [UDScore synchronize];
                                  
-                                 NSLog(@"Insert Start !!");
                                  insertSQL =
                                     [NSString stringWithFormat:
                                       @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
                                       "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
                                       txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
                                       @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
-                                 NSLog(@"Insert End !!");
                                  
+                                 NSLog(@"Insert End !! - dupplicate prospect");
                              }
                              
                              const char *insert_stmt = [insertSQL UTF8String];
@@ -3520,6 +3530,7 @@ BOOL NavShowP;
                     {
                         //GET PP  CHANGES COUNTER
                         
+                        NSLog(@"Update Start - unique prospect!!");
                         FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
                         [db open];
                         FMResultSet *result = [db executeQuery:@"SELECT ProspectProfileChangesCounter from prospect_profile WHERE indexNo = ?", pp.ProspectID];
@@ -3551,9 +3562,12 @@ BOOL NavShowP;
                                  @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
                                  txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
                         
+                        NSLog(@"Update End - unique prospect !!");
                     }
                     else
                     {
+                        NSLog(@"Insert Start - unique prospect !!");
+                        
                         NSString *isForeign = @"NO";
                         /* NSString *Fav;
                         if (isFavorite )
@@ -3579,14 +3593,13 @@ BOOL NavShowP;
                         [UDScore setObject:strScore forKey:@"Score"];
                         [UDScore synchronize];
                         
-                        NSLog(@"Insert Start !!");
                         insertSQL =
                             [NSString stringWithFormat:
                                  @"INSERT INTO prospect_profile(\'ProspectName\', \"ProspectDOB\",\"ProspectGender\", \"ResidenceAddress1\", \"ResidenceAddress2\", \"ResidenceAddress3\", \"ResidenceAddressTown\", \"ResidenceAddressState\",\"ResidenceAddressPostCode\", \"ResidenceAddressCountry\", \"ResidenceProvince\",  \"ProspectEmail\",\"ProspectOccupationCode\", \"ProspectRemark\", \"DateCreated\", \"CreatedBy\", \"DateModified\",\"ModifiedBy\", \"ProspectGroup\", \"ProspectTitle\", \"IDTypeNo\", \"OtherIDType\", \"OtherIDTypeNo\", \"Smoker\", \"AnnualIncome\", \"SourceIncome\", \"BussinessType\", \"Race\", \"MaritalStatus\", \"Religion\", \"Nationality\", \"QQFlag\",\"ProspectProfileChangesCounter\",\"prospect_IsGrouping\", \"CountryOfBirth\", \"NIP\", \"BranchCode\", \"BranchName\", \"KCU\", \"Kanwil\",\"ReferralSource\", \"ReferralName\", \"IDExpiryDate\", \"NPWPNo\", \"ProspectLastName\", \"ResidenceAddress4\", \"PhoneNoHome\", \"PhoneNoHP\", \"CallTimeStart\", \"CallTimeEnd\", \"ResidenceKelurahan\", \"ResidenceKecamatan\", \"isForeignAddress\", \"ProspectStatus\", \"Score\", \"ProspectAge\", \"isFavorite\", \"RTRW\") "
                                  "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
                                  txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
                                  @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
-                        NSLog(@"Insert End !!");
+                        NSLog(@"Insert End - unique prospect !!");
                     }
                     
                     const char *insert_stmt = [insertSQL UTF8String];
@@ -3814,19 +3827,43 @@ BOOL NavShowP;
         
     }
     
+    
     //reference
-    if (![txtReferralName.text isEqualToString:@""]){
+    
+    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated vlalue.
+    
+    if (![txtReferralName.text isEqualToString:@""])
+    {
+        NSLog(@"Calculate Score - Referral name | name -> %@", txtReferralName.text);
+        
         completeStatus = completeStatus + 1;
         result = nil;
         NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
         result = [db executeQuery:query];
         poin = 0;
-        while ([result next]) {
+        while ([result next])
+        {
             poin = [[result objectForColumnName:@"Poin"] intValue];
+            NSLog(@"Calculate Score - Referral name | poin -> %d", poin);
+            
+            if (poin != 0)
+            {
+                break;
+            }
+            else
+            {
+                
+            }
         }
         score = score + poin;
-        
     }
+    else
+    
+    {
+    }
+    
+    // BHIMBIMS'S QUICK FIX - End
+    
     
     //status
     score = score + 1; //new additional

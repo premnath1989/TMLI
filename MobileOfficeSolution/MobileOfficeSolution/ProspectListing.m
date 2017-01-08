@@ -297,6 +297,9 @@ MBProgressHUD *HUD;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     //change
+    
+    NSLog(@"Prospect Existing List - Row, count -> %d", ProspectTableData.count);
+    
     if (ProspectTableData.count != 0) {
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -412,7 +415,7 @@ MBProgressHUD *HUD;
             cell1.labelTimeRemaining.text = pp.ProspectStatus; //prospectStatus Image
             
 //            pp.Favorite = @"0";
-            
+            NSLog(@"Prospect Existing List - Row, indexNo -> %@", pp.ProspectID);
             if ([pp.Favorite isEqualToString:@"0"]) {
                 cell1.FavImage.image = [UIImage imageNamed:@"icon_stardisable_primary"];
             }
@@ -944,6 +947,7 @@ MBProgressHUD *HUD;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
+        NSLog(@"Prospect Existing List - Query, id -> %@", ppindex);
         NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM prospect_profile WHERE IndexNo = %@", ppindex];
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
