@@ -3841,18 +3841,20 @@ BOOL NavShowP;
         NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
         result = [db executeQuery:query];
         poin = 0;
+        
         while ([result next])
         {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-            NSLog(@"Calculate Score - Referral name | poin -> %d", poin);
+            poin = [result columnIsNull:@"Poin"];
             
-            if (poin != 0)
+            if (poin == true)
             {
-                break;
+                NSLog(@"Calculate Score - Referral name | poin -> null");
             }
             else
             {
-                
+                poin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Referral name | poin -> %d", poin);
+                break;
             }
         }
         score = score + poin;
