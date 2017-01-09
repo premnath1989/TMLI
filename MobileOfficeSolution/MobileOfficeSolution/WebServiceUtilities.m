@@ -178,4 +178,21 @@
     return 1;
 }
 
+- (int)getBGImages:(id)delegate{
+    AgentWSSoapBinding *binding = [AgentWS AgentWSSoapBinding];
+    binding.logXMLInOut = YES;
+    AgentWS_GetAllBackgroundImage *agentCodea = [[AgentWS_GetAllBackgroundImage alloc]init];
+    [binding GetAllBackgroundImageAsyncUsingParameters:agentCodea delegate:delegate];
+    return 1;
+}
+
+- (int)getAgentHierarchy:(NSString *)AgentCode delegate:(id)delegate{
+    AgentWSSoapBinding *binding = [AgentWS AgentWSSoapBinding];
+    binding.logXMLInOut = YES;
+    AgentWS_GetAgentHierarcy *agentCodea = [[AgentWS_GetAgentHierarcy alloc]init];
+    agentCodea.strAgentCode = AgentCode;
+    [binding GetAgentHierarcyAsyncUsingParameters:agentCodea delegate:delegate];
+    return 1;
+}
+
 @end

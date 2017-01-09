@@ -39,7 +39,7 @@ BOOL NavShow;
     _objectUserInterface = [[UserInterface alloc] init];
     
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_secondary.png"];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/ProspectModulePage.png"];
     NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
     UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
 

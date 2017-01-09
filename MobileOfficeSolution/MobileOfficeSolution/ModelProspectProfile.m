@@ -111,7 +111,16 @@ int newAge;
     NSMutableArray* ProspectTableData=[[NSMutableArray alloc]init];
     //results = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by LOWER(ProspectName) ASC LIMIT 20)", Nil];
     //FMResultSet *s = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by DateModified DESC LIMIT 20"];
-    NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
+    // NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.IdentityCode or pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start, to escape dupplicate query.
+    
+    NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.IdentityCode  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     FMResultSet *s = [database executeQuery:query];
     while ([s next]) {
         //occpToEnableSection = [results stringForColumn:@"OccpCode"];
@@ -220,6 +229,8 @@ int newAge;
                                                             AndExactDuties:ExactDuties AndGroup:ProspectGroup AndTitle:ProspectTitle AndIDTypeNo:IDTypeNo AndOtherIDType:OtherIDType AndOtherIDTypeNo:OtherIDTypeNo AndSmoker:Smoker AndAnnIncome:AnnIncome AndBussType:BussinessType AndRace:Race AndMaritalStatus:MaritalStatus AndReligion:Religion AndNationality:Nationality AndRegistrationNo:registrationNo AndRegistration:registration AndRegistrationDate:registrationDate AndRegistrationExempted:exempted AndProspect_IsGrouping:isGrouping AndCountryOfBirth:COB AndNIP:NIP AndBranchCode:BranchCode AndBranchName:BranchName AndKCU:KCU AndReferralSource:ReferralSource AndReferralName:ReferralName AndIdentitySubmitted:IdentitySubmitted AndIDExpirityDate:IDExpirityDate AndNPWPNo:NPWPNo AndKanwil:Kanwil AndHomeVillage:HomeVillage AndHomeDistrict:HomeDistrict AndHomeProvince:HomeProvicne AndOfficeVillage:OfficeVillage AndOfficeDistrict:OfficeDistrict AndOfficePorvince:OfficeProvicne AndSourceIncome:SourceIncome AndClientSegmentation:ClientSegmentation
                                                                 AndtScore:tScore AndProspectLastName:ProspectLastName AndProspectAge:ProspectAge AndPhoneHomeNo:PhoneHomeNo AndPhoneNoHP:PhoneNoHP AndAddress4:Address4 AndKelurahan:Kelurahan AndKecamatan:Kecamatan AndCallStartTime:CallStartTime AndCallEndTime:CallEndTime AndisForeignAdd:isForeignAdd AndProspectStatus:ProspectStatus AndFavorite:Favorite AndRTRW:RTRW
                                       ]];
+        
+        NSLog(@"Model Prospect Profile - Get prospect profile | id -> %d", ID);
     }
     [results close];
     [database close];

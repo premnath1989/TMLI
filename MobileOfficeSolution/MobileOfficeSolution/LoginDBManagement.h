@@ -34,6 +34,7 @@
 - (NSMutableDictionary *)getAgentDetails;
 - (NSMutableDictionary *)getAgentCodeLevel;
 - (NSString *) getAgentProperty:(NSString *)property;
+- (void)setAgentHierarchy:(WebResponObj *)hierarchySet;
 
 
 //general functions
@@ -41,6 +42,7 @@
 - (int) ReferralSyncTable:(WebResponObj *)obj;
 - (BOOL) fullSyncTable:(WebResponObj *)obj;
 - (NSString *) dataVersion;
+- (NSString *) getTableProperty:(NSString *)property tableName:(NSString *)tableName condition:(NSString *)condition;
 
 //SPAJ Functions
 - (long long)SPAJAllocated;

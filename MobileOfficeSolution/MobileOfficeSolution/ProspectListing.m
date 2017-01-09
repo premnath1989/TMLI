@@ -90,6 +90,12 @@ MBProgressHUD *HUD;
     [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
     
     
+    // BHIMBIM'S QUICK FIX - Start
+    
+    _objectUserInterface = [[UserInterface alloc] init];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     [self setTextfieldBorder];
     
@@ -297,6 +303,9 @@ MBProgressHUD *HUD;
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     //change
+    
+    NSLog(@"Prospect Existing List - Row, count -> %d", ProspectTableData.count);
+    
     if (ProspectTableData.count != 0) {
         static NSString *CellIdentifier = @"Cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
@@ -412,7 +421,7 @@ MBProgressHUD *HUD;
             cell1.labelTimeRemaining.text = pp.ProspectStatus; //prospectStatus Image
             
 //            pp.Favorite = @"0";
-            
+            NSLog(@"Prospect Existing List - Row, indexNo -> %@", pp.ProspectID);
             if ([pp.Favorite isEqualToString:@"0"]) {
                 cell1.FavImage.image = [UIImage imageNamed:@"icon_stardisable_primary"];
             }
@@ -433,9 +442,18 @@ MBProgressHUD *HUD;
             }
         
             
+            // BHIMBIM'S QUICK FIX - Start
             
+            if (indexPath.row % 2)
+            {
+                cell1.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+            }
+            else
+            {
+                cell1.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+            }
             
-            
+            // BHIMBIM'S QUICK FIX - End
             
             
             return cell1;
@@ -944,6 +962,7 @@ MBProgressHUD *HUD;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK)
     {
+        NSLog(@"Prospect Existing List - Query, id -> %@", ppindex);
         NSString *querySQL = [NSString stringWithFormat:@"SELECT * FROM prospect_profile WHERE IndexNo = %@", ppindex];
         const char *query_stmt = [querySQL UTF8String];
         if (sqlite3_prepare_v2(contactDB, query_stmt, -1, &statement, NULL) == SQLITE_OK)
@@ -1466,7 +1485,7 @@ MBProgressHUD *HUD;
         [self.myTableView setEditing:NO animated:TRUE];
         deleteBtn.hidden = true;
         deleteBtn.enabled = false;
-        [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
+        // [editBtn setTitle:@"Delete" forState:UIControlStateNormal ];
         
         ItemToBeDeleted = [[NSMutableArray alloc] init];
         indexPaths = [[NSMutableArray alloc] init];

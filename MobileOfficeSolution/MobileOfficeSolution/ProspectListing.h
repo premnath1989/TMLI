@@ -19,6 +19,7 @@
 #import "Model_SI_Master.h"
 #import "Model_SI_Premium.h"
 #import "ModelSIRider.h"
+#import "User Interface.h"
 
 @interface ProspectListing : UIViewController<EditProspectDelegate, ProspectViewControllerDelegate,UITableViewDelegate,UITableViewDataSource,GroupDelegate, ClientProfileListingDelegate, UITabBarDelegate, UITextFieldDelegate,SIDateDelegate>
 {
@@ -140,5 +141,12 @@
 -(void) ReloadTableData;
 -(void) Clear;
  
+
+// BHIMBIM'S QUICK FIX - Start
+
+@property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+// BHIMBIM'S QUICK FIX - End
+
 
 @end

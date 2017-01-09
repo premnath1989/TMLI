@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -34,18 +37,22 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7M-q2-J60" customClass="LabelProfileHeader">
+                    <rect key="frame" x="20" y="30" width="335" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-rb-cCN" customClass="LabelProfileDetail">
+                    <rect key="frame" x="20" y="60.5" width="335" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyM-2w-uwk">
+                    <rect key="frame" x="20" y="101" width="144" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o52-xU-bL1" customClass="ButtonProfile">
+                            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="gpT-Br-Sna"/>
                                 <constraint firstAttribute="width" constant="48" id="iHZ-Ax-bC8"/>
@@ -56,16 +63,18 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bsw-fq-wNL" customClass="ButtonProfile">
+                            <rect key="frame" x="48" y="0.0" width="48" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="KCK-g3-Jdo"/>
                                 <constraint firstAttribute="width" constant="48" id="uPs-WJ-Jad"/>
                             </constraints>
-                            <state key="normal" title="Button" image="icon_agent_primary"/>
+                            <state key="normal" title="Button" image="icon_agent_navigation"/>
                             <connections>
                                 <action selector="goToAgentProfile:" destination="-1" eventType="touchUpInside" id="Gsd-Rc-hko"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qdB-wK-CtB" customClass="ButtonProfile">
+                            <rect key="frame" x="96" y="0.0" width="48" height="48"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="48" id="hnJ-pk-5Fl"/>
                                 <constraint firstAttribute="width" constant="48" id="pr4-n7-3x3"/>
@@ -78,10 +87,13 @@
                     </subviews>
                 </stackView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOH-uI-h7J">
+                    <rect key="frame" x="0.0" y="169" width="375" height="498"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Ch-Ac-Ewu">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-NZ-C3s" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="2Fz-hT-jdE"/>
                                     </constraints>
@@ -91,12 +103,14 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34V-22-lO6" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="70" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="Crb-VJ-TP0"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_calendar_primary"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foO-Sx-6Mc" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="140" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="DKR-hn-Yjp"/>
                                     </constraints>
@@ -106,43 +120,52 @@
                                     </connections>
                                 </button>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bdP-wY-twZ" customClass="StackViewNavigationDetail">
+                                    <rect key="frame" x="0.0" y="210" width="375" height="240"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVl-uq-iMi" customClass="ButtonNavigationVerticalDetail">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <state key="normal" title="Button" image="icon_prospect_primary"/>
                                             <connections>
                                                 <action selector="goToProspectLanding:" destination="-1" eventType="touchUpInside" id="9G1-Zh-5kZ"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ks0-3p-GMj" customClass="ButtonNavigationVerticalDetail">
+                                            <rect key="frame" x="0.0" y="48" width="375" height="48"/>
                                             <state key="normal" title="Button" image="icon_financialneedsanalysis_primary"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D4d-zP-bQb" customClass="ButtonNavigationVerticalDetail">
+                                            <rect key="frame" x="0.0" y="96" width="375" height="48"/>
                                             <state key="normal" title="Button" image="icon_salesillustration_primary"/>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LH8-mV-DxU" customClass="ButtonNavigationVerticalDetail">
+                                            <rect key="frame" x="0.0" y="144" width="375" height="48"/>
                                             <state key="normal" title="Button" image="icon_spaj_primary"/>
                                             <connections>
                                                 <action selector="goToSPAJLanding:" destination="-1" eventType="touchUpInside" id="zYo-He-j2s"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kp2-VP-ijq" customClass="ButtonNavigationVerticalDetail">
+                                            <rect key="frame" x="0.0" y="192" width="375" height="48"/>
                                             <state key="normal" title="Button" image="icon_policyreceipt_primary"/>
                                         </button>
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4f1-K2-fm4" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="450" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="ZSD-jj-FuI"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_activitymanagement_primary"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRu-t9-NoO" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="520" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="eyG-oQ-r9l"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_epayment_primary"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94p-lL-A1F" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="590" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="fmr-e6-KXW"/>
                                     </constraints>
@@ -152,6 +175,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZz-JR-REE" customClass="ButtonNavigationVerticalHeader">
+                                    <rect key="frame" x="0.0" y="660" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="qWS-t5-5dp"/>
                                     </constraints>
@@ -188,7 +212,7 @@
     </objects>
     <resources>
         <image name="icon_activitymanagement_primary" width="48" height="48"/>
-        <image name="icon_agent_primary" width="48" height="48"/>
+        <image name="icon_agent_navigation" width="48" height="48"/>
         <image name="icon_calendar_primary" width="48" height="48"/>
         <image name="icon_elibrary_primary" width="48" height="48"/>
         <image name="icon_epayment_primary" width="48" height="48"/>

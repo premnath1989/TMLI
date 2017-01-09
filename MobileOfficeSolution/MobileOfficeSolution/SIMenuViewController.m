@@ -127,7 +127,7 @@ BOOL NavShow3;
     dictionaryPOForInsert = [[NSMutableDictionary alloc]init];
     
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_spaj_primary.png"];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/SIFormHeader.png"];
     NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
     UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
     [imgHeader setImage:thumbNail];

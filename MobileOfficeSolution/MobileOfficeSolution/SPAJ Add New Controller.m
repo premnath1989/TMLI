@@ -65,7 +65,7 @@
         
         // LAYOUT
         
-        [_imageViewHeader setImage:[UIImage imageNamed:@"photo_spaj_primary"]];
+        [_imageViewHeader setImage:[UIImage imageNamed:@"SPAJFormHeader"]];
         
             /* INCLUDE */
             

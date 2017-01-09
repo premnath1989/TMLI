@@ -115,6 +115,30 @@
 
 @end
 
+@interface LabelTableHeaderHeader : UILabel
+
+- (void)setupStyle;
+
+@end
+
+@interface LabelTableHeaderDetail : UILabel
+
+- (void)setupStyle;
+
+@end
+
+@interface LabelTableItemHeader : UILabel
+
+- (void)setupStyle;
+
+@end
+
+@interface LabelTableItemDetail : UILabel
+
+- (void)setupStyle;
+
+@end
+
 
 // NAVIGATION
 

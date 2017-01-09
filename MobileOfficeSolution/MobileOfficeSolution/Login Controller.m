@@ -55,7 +55,7 @@
     
     // LAYOUT
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_login_tertiary.png"];
+    NSString *imgPath = [documentdir stringByAppendingPathComponent:@"backgroundImages/LoginPage.png"];
     NSData *imgData = [NSData dataWithContentsOfFile:imgPath];
     UIImage *thumbNail = [[UIImage alloc] initWithData:imgData];
 
@@ -105,7 +105,7 @@
     [loginDB makeDBCopy];
     
     DBMigration *migration = [[DBMigration alloc]init];
-    [migration updateDatabaseUseNewDB:@"MOSDDB.sqlite"];
+    [migration updateDatabaseUseNewDB:@"MOSDB.sqlite"];
     [migration hardUpdateDatabase:@"TMLI_Rates.sqlite" versionNumber:[NSString stringWithFormat:
                                                                      @"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"dbVersion"]]];
     [migration hardUpdateDatabase:@"DataReferral.sqlite"versionNumber:[NSString stringWithFormat:
@@ -548,10 +548,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 -(BOOL) CredentialChecking:(BOOL)spvAdminBypass
 {
     BOOL successLog = FALSE;
-    
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDDB.sqlite"]];
+
     NSString *AgentName;
     NSString *AgentPassword;
     NSString *SupervisorCode;
@@ -755,10 +752,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 -(int) UsernameUDIDChecking
 {
     int statusUsername = 0;
-    
-    NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDDB.sqlite"]];
     
     NSString *AgentName;
     NSString *AgentPassword;

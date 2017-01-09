@@ -66,6 +66,7 @@
 @synthesize txtNamaKantor;
 @synthesize txtAAJINo;
 @synthesize txtAAJIDate;
+@synthesize txtICNo;
 
 - (void)viewDidLoad
 {
@@ -100,7 +101,13 @@
     txtAgentCode.text = [agentDetails valueForKey:@"AgentCode"];
     txtAgentCode.enabled = NO;
     
-    txtAgentName.text = [agentDetails valueForKey:@"AgentName"];
+    NSString *fullName;
+    if([agentDetails valueForKey:@"LGIVNAME"] == nil){
+        fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], @""];
+    }else{
+        fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], [agentDetails valueForKey:@"LGIVNAME"]];
+    }
+    txtAgentName.text = fullName;
     txtAgentName.enabled = NO;
     txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
     txtAgentStatus.enabled = NO;
@@ -110,12 +117,42 @@
     txtAddress.layer.borderWidth = 1.0f;
     txtAddress.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
+    txtICNo.text = [loginDB getAgentProperty:@"XREFNO"];
+    
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
     
+    txtBOD.text = [self DateFormatter:[loginDB getAgentProperty:@"CLTDOB"]];
+    
+    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
+    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
+    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
+    txtLicense.text = [loginDB getAgentProperty:@"Level"];
+    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
+    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
+    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
+    
+    txtPTKP.text = [loginDB getAgentProperty:@"TAXMETH"];
+    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
+    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
+    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
+    txtDM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
+    txtRM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
+    txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
+    txtNamaKantor.text = @"";
+    txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
+    txtAAJIDate.text = [self DateFormatter:[loginDB getAgentProperty:@"TLICEXPDT"]];
+    
+    txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
+    txtMobileNumber.enabled = NO;
+    txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
+    txtEmail.enabled = NO;
+}
+
+- (NSString *)DateFormatter:(NSString *)BareDate{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    NSDate *dateDOB = [dateFormatter dateFromString:[loginDB getAgentProperty:@"CLTDOB"]];
+    NSDate *dateDOB = [dateFormatter dateFromString:BareDate];
     
     NSDateFormatter *day = [[NSDateFormatter alloc] init];
     [day setDateFormat:@"dd"];
@@ -170,36 +207,7 @@
     [Year setDateFormat:@"YYYY"];
     NSString *txtYear = [Year stringFromDate:dateDOB];
     
-    txtBOD.text = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
-    
-    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
-    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
-    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
-    txtLicense.text = [loginDB getAgentProperty:@"Level"];
-    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
-    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
-    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
-    
-    txtPTKP.text = [loginDB getAgentProperty:@"Level"];
-    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
-    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
-    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
-    txtDM.text = [loginDB getAgentProperty:@"Level"];
-    txtRM.text = [loginDB getAgentProperty:@"Level"];
-    txtRD.text = [loginDB getAgentProperty:@"Level"];
-    txtNamaKantor.text = [loginDB getAgentProperty:@"Level"];
-    txtAAJINo.text = [loginDB getAgentProperty:@"Level"];
-    txtAAJIDate.text = [loginDB getAgentProperty:@"Level"];
-    
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
-    NSDate *startDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseStartDate"]];
-    NSDate *endDate = [dateFormatter dateFromString:[agentDetails valueForKey:@"LicenseExpiryDate"]];
-    [dateFormatter setDateFormat:@"dd/MM/YYYY"];
-    
-    txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
-    txtMobileNumber.enabled = NO;
-    txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
-    txtEmail.enabled = NO;
+    return [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -466,10 +474,76 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         
         /****
+         * is it AgentWS_getBGimages
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAllBackgroundImageResponse class]]) {
+            
+            AgentWS_GetAllBackgroundImageResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAllBackgroundImageResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            for(dataCollection *data in [returnObj getDataWrapper]){
+                
+                NSString* base64String = [data.dataRows valueForKey:@"FileBase64String"];
+                NSString* fileName = [data.dataRows valueForKey:@"FileName"];
+                
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *filePathApp = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+                
+                CFFAPIController *decode64 = [[CFFAPIController alloc]init];
+                NSError *error =  nil;
+                NSData *DecodedData = [decode64 dataFromBase64EncodedString:base64String];
+                [DecodedData writeToFile:[NSString stringWithFormat:@"%@/%@",filePathApp,fileName]
+                                 options:NSDataWritingAtomic error:&error];
+                
+            }
+            
+            dispatch_async(dispatch_get_global_queue(
+                                                     DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                    [webservice getAgentHierarchy:[agentDetails valueForKey:@"AgentCode"] delegate:self];
+                });
+            });
+
+            
+        }
+        
+        /****
+         * is it AgentWS_GetAgentHierarcyResponse
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAgentHierarcyResponse class]]) {
+            AgentWS_GetAgentHierarcyResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAgentHierarcyResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            [loginDB setAgentHierarchy:returnObj];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [spinnerLoading stopLoadingSpinner];
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Sync telah selesai" message:@"" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
+                [alert show];
+            });
+
+
+        }
+
+        
+        /****
          * is it AgentWS_SyncdatareferralResponse
          ****/
         else if([bodyPart isKindOfClass:[AgentWS_SyncdatareferralResponse class]]) {
-            [spinnerLoading stopLoadingSpinner];
+            
             AgentWS_SyncdatareferralResponse* rateResponse = bodyPart;
             if([rateResponse.strstatus caseInsensitiveCompare:@"TRUE"]== NSOrderedSame){
                 
@@ -483,13 +557,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 int result = [loginDB ReferralSyncTable:returnObj];
                 
-                dispatch_async(dispatch_get_main_queue(), ^{
+                dispatch_async(dispatch_get_global_queue(
+                                                         DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     
-                    [spinnerLoading stopLoadingSpinner];
-                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Sync telah selesai" message:@"" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
-                    [alert show];
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                        [webservice getBGImages:self];
+                    });
                 });
-                
             }else{
                 
             }
@@ -946,6 +1021,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     //[cffAPIController apiCallHtmlTable:@"http://mpos-sino-uat.cloudapp.net/SPAJHTMLForm.svc/GetAllData" JSONKey:arrayJSONKey TableDictionary:dictCFFTable DictionaryDuplicateChecker:dictDuplicateChecker WebServiceModule:@"SPAJ"];
 }
 
+-(void)getBackgroundImagesFile{
+    dispatch_async(kBgQueue, ^{
+        NSData* data = [NSData dataWithContentsOfURL:
+                        kLatestKivaLoansURL];
+        [self performSelectorOnMainThread:@selector(create:)
+                               withObject:data waitUntilDone:YES];
+    });
+}
 
 -(void)getCFFHTMLFile{
     dispatch_async(kBgQueue, ^{

@@ -416,12 +416,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                     dispatch_async(dispatch_get_global_queue(
                                                              DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                         
-                        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
-                        NSString *encryptedNewPass = [encryptWrapper encrypt:txtNewPwd.text];
-                        NSString *encryptedOldPass = [encryptWrapper encrypt:txtOldPwd.text];
-                        
                         dispatch_async(dispatch_get_main_queue(), ^{
-                            [webservice FirstTimeLogin:self AgentCode:txtAgentCode.text password:encryptedOldPass newPassword:encryptedNewPass UUID:[loginDB getUniqueDeviceIdentifierAsString]];
+                            WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                            [webservice getBGImages:self];
                         });
                     });
                 });
@@ -440,6 +437,48 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
             }
         }
+        
+        /****
+         * is it AgentWS_getBGimages
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAllBackgroundImageResponse class]]) {
+            AgentWS_GetAllBackgroundImageResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAllBackgroundImageResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            for(dataCollection *data in [returnObj getDataWrapper]){
+                        
+                NSString* base64String = [data.dataRows valueForKey:@"FileBase64String"];
+                NSString* fileName = [data.dataRows valueForKey:@"FileName"];
+    
+                NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                NSString *filePathApp = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+    
+                CFFAPIController *decode64 = [[CFFAPIController alloc]init];
+                NSError *error =  nil;
+                NSData *DecodedData = [decode64 dataFromBase64EncodedString:base64String];
+                [DecodedData writeToFile:[NSString stringWithFormat:@"%@/%@",filePathApp,fileName]
+                                 options:NSDataWritingAtomic error:&error];
+                
+            }
+            
+            dispatch_async(dispatch_get_global_queue(
+                                                     DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                NSString *encryptedNewPass = [encryptWrapper encrypt:txtNewPwd.text];
+                NSString *encryptedOldPass = [encryptWrapper encrypt:txtOldPwd.text];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                [webservice FirstTimeLogin:self AgentCode:txtAgentCode.text password:encryptedOldPass newPassword:encryptedNewPass UUID:[loginDB getUniqueDeviceIdentifierAsString]];
+                    });
+            });
+            
+        }
+
         
         
         /****
@@ -497,6 +536,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                                 
                                 
                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                     
                                     //we update the referral data serially
                                     WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
                                     [webservice dataReferralSync:[loginDB getLastUpdateReferral] delegate:self];
@@ -514,6 +554,27 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [alert show];
             }
         }
+        
+        /****
+         * is it AgentWS_GetAgentHierarcyResponse
+         ****/
+        else if([bodyPart isKindOfClass:[AgentWS_GetAgentHierarcyResponse class]]) {
+            AgentWS_GetAgentHierarcyResponse* rateResponse = bodyPart;
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAgentHierarcyResult.xmlDetails options:0 error:nil];
+            
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [self parseXML:root objBuff:returnObj index:0];
+            
+            [loginDB setAgentHierarchy:returnObj];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                 [self presentViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
+            });
+            
+        }
+
         
         /****
          * is it AgentWS_ReceiveFirstLoginResponse
@@ -574,7 +635,14 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 if([loginDB fullSyncTable:returnObj]){
                     [loginDB updateLoginDate];
-                    [self presentViewController:[[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"HomePage"] animated:YES completion: nil];
+                    dispatch_async(dispatch_get_global_queue(
+                                                             DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+                            [webservice getAgentHierarchy:[[loginDB getAgentDetails] valueForKey:@"AgentCode"] delegate:self];
+                        });
+                    });
                 }
             }else if([rateResponse.strStatus caseInsensitiveCompare:@"False"] == NSOrderedSame){
                 [spinnerLoading stopLoadingSpinner];

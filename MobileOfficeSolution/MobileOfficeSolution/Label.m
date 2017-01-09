@@ -181,7 +181,18 @@
         
         [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
         [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_FORM_PARAGRAPH]];
-        self.numberOfLines = 8;
+        [self setNumberOfLines : 8];
+        [self setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        [paragraphStyle setLineSpacing : 1.25];
+        [paragraphStyle setLineHeightMultiple : 1.25];
+        [paragraphStyle setParagraphSpacing : 1.25];
+        [paragraphStyle setAlignment : self.textAlignment];
+        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:self.text];
+        [attributeString addAttribute:NSFontAttributeName value: self.font range: NSMakeRange(0, attributeString.length)];
+        [attributeString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, attributeString.length)];
+        [self setAttributedText : attributeString];
     }
 
 @end
@@ -355,6 +366,90 @@
     [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LIST_RESULT]];
     self.numberOfLines = 1;
     self.textAlignment = NSTextAlignmentLeft;
+}
+
+@end
+
+@implementation LabelTableHeaderHeader
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTHEADER_HEADER]];
+    self.numberOfLines = 2;
+    self.textAlignment = NSTextAlignmentCenter;
+}
+
+@end
+
+@implementation LabelTableHeaderDetail
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTHEADER_DETAIL]];
+    self.numberOfLines = 2;
+    self.textAlignment = NSTextAlignmentCenter;
+}
+
+@end
+
+@implementation LabelTableItemHeader
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTITEM_HEADER]];
+    self.numberOfLines = 2;
+    self.textAlignment = NSTextAlignmentCenter;
+}
+
+@end
+
+@implementation LabelTableItemDetail
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    UserInterface *objectUserInterface = [[UserInterface alloc] init];
+    
+    [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+    [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_LISTITEM_DETAIL]];
+    self.numberOfLines = 2;
+    self.textAlignment = NSTextAlignmentCenter;
 }
 
 @end

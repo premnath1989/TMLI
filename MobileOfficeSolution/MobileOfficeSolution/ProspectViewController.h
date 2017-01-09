@@ -453,4 +453,11 @@
 - (IBAction)ActionSave:(id)sender;
 
 
+// BHIMBIM'S QUICK FIX - START
+
+@property (assign, nonatomic, readwrite) Boolean booleanAddAnyway;
+
+// BHIMBIM'S QUICK FIX - END
+
+
 @end

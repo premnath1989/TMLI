@@ -19,13 +19,17 @@
     id <InvestmentTypeViewControllerDelegate> _delegate;
     
     NSMutableArray *FundList;
+    NSMutableArray *InvestList;
 }
 
+@property (strong, nonatomic) NSUserDefaults *UDInvest;
 @property (strong, nonatomic) IBOutlet UITableView *FundTypeTableView;
 @property (strong, nonatomic) IBOutlet UITableView *InvestasiTableView;
 
 @property (strong, nonatomic) NSMutableArray *FundList;
+@property (strong, nonatomic) NSMutableArray *InvestList;
 
+@property (strong, nonatomic) IBOutlet UILabel *lblTotal;
 @property (retain, nonatomic) NSString *cellText;
 
 @property (strong, nonatomic) IBOutlet UIButton *DoSave;

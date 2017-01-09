@@ -85,9 +85,9 @@
         _scrollViewSliderNews.pagingEnabled = YES;
         
         NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        NSString *imgnews1 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news1_primary.png"];
-        NSString *imgnews2 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news2_primary.png"];
-        NSString *imgnews3 = [documentdir stringByAppendingPathComponent:@"backgroundImages/photo_news3_primary.png"];
+        NSString *imgnews1 = [documentdir stringByAppendingPathComponent:@"backgroundImages/FirstLandingPage.png"];
+        NSString *imgnews2 = [documentdir stringByAppendingPathComponent:@"backgroundImages/SecondLandingPage.png"];
+        NSString *imgnews3 = [documentdir stringByAppendingPathComponent:@"backgroundImages/ThirdLandingPage.png"];
         
         _arrayImage = [[NSArray alloc]initWithObjects:imgnews1, imgnews2, imgnews3, nil];
         [_stackViewSliderController.subviews makeObjectsPerformSelector: @selector(removeFromSuperview)];
