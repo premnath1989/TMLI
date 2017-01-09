@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TopupWithdrawViewController : UIViewController
+@class TopupWithdrawViewController;
+@protocol TopupWithdrawViewControllerDelegate
+
+@end
+@interface TopupWithdrawViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>{
+    id <TopupWithdrawViewControllerDelegate> _delegate;
+}
 
 @end

@@ -33,6 +33,13 @@
     ProductInfoItems *FTPitems;
     NSString *filePath;
     SpinnerUtilities *spinnerLoading;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSMutableArray *arrayListRAW;
+    
+    // BHIMBIM'S QUICK FIX - End
 }
 
 

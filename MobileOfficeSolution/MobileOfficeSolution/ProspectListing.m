@@ -83,14 +83,14 @@ MBProgressHUD *HUD;
     deleteBtn.layer.cornerRadius = 5;
     deleteBtn.layer.masksToBounds = YES;
     
-    UIColor * grey70 = [UIColor colorWithWhite: 0.70 alpha:1];
-    [_txtFrontName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_txtLastName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_txtTanggalLahir setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    
-    
+
     // BHIMBIM'S QUICK FIX - Start
+    
+    //    UIColor * grey70 = [UIColor colorWithWhite: 0.70 alpha:1];
+    //    [_txtFrontName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_txtLastName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_txtTanggalLahir setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
     
     _objectUserInterface = [[UserInterface alloc] init];
     
@@ -1190,6 +1190,7 @@ MBProgressHUD *HUD;
     {
         pp = [ProspectTableData objectAtIndex:indexPath.row];
     }
+    NSLog(@"Did select row - other id type : %@, other id type no %@", pp.OtherIDType, pp.OtherIDTypeNo);
     zzz.pp = pp;
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];

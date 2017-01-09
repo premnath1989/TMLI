@@ -99,8 +99,8 @@ BOOL NavShow2;
     
 }
 
-- (void)directoryFileListing{
-    
+- (void)directoryFileListing
+{
     FTPItemsList = [[NSMutableArray alloc]init];
     NSURL *directoryURL = [NSURL fileURLWithPath:filePath
                                      isDirectory:YES];
@@ -110,6 +110,19 @@ BOOL NavShow2;
                           includingPropertiesForKeys:@[NSURLFileSizeKey, NSURLIsDirectoryKey]
                                              options:0
                                                error:&contentsError];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start, dummy for query test.
+    
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"1", @"HRD Training", @"PDF", @"10 Mb",@"true",nil]];
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"2", @"Developer Training", @"PDF", @"8 Mb",@"true",nil]];
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"3", @"Underwriting Training", @"PDF", @"12 Mb",@"true",nil]];
+    
+    [FTPItemsList removeAllObjects];
+    FTPItemsList = [[NSMutableArray alloc] initWithObjects:arrayListRAW, nil];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     int index = 1;
     for (NSURL *fileURL in contents) {
@@ -121,6 +134,9 @@ BOOL NavShow2;
                                error:&sizeError];
         
         [self insertIntoTableData:[fileURL lastPathComponent] size:[fileSizeNumber stringValue] index:index];
+        
+        
+        
         index++;
     }
     [spinnerLoading stopLoadingSpinner];
@@ -203,6 +219,25 @@ BOOL NavShow2;
     NSLog(@"test");
     
 }
+
+
+// BHIMBIM'S QUICK FIX - Start
+
+- (IBAction)actionFind:(id)sender
+{
+    [FTPItemsList removeAllObjects];
+    
+    for (int i = 0; i < arrayListRAW.count; i++)
+    {
+        [[arrayListRAW objectAtIndex:i] objectAtIndex:1];
+        NSLog(@"actionFind -> name = %@, at index -> %d", [[arrayListRAW objectAtIndex:i] objectAtIndex:1], i);
+    }
+    
+    [myTableView reloadData];
+}
+
+// BHIMBIM'S QUICK FIX - End
+
 
 - (IBAction)goHome:(id)sender{
     UIStoryboard *carouselStoryboard = [UIStoryboard storyboardWithName:@"CarouselStoryboard" bundle:Nil];
@@ -411,6 +446,9 @@ BOOL NavShow2;
     if ((_SegProductType.selectedSegmentIndex == 0 && [fileFormat isEqualToString:@"brosur"]) || (_SegProductType.selectedSegmentIndex == 1 && [fileFormat isEqualToString:@"video"]) || (_SegProductType.selectedSegmentIndex == 2 && [fileFormat isEqualToString:@"video"])){
         [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,nil]];
     }
+    
+    
+    
     
     
     [spinnerLoading stopLoadingSpinner];
