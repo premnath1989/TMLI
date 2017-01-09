@@ -42,6 +42,7 @@
 #import "PremiumViewControllerDelegate.h"
 #import "InvestmentTypeViewController.h"
 #import "FundPercentController.h"
+#import "TopupWithdrawViewController.h"
 
 
 @class SIMenuViewController;
@@ -49,7 +50,7 @@
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate, FundPercentControllerDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate, FundPercentControllerDelegate, TopupWithdrawViewControllerDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -78,6 +79,7 @@
     BasicPlanViewController *_BasicController;
     RiderViewController *_RiderController;
     InvestmentTypeViewController *_InvestmentTypeController;
+    TopupWithdrawViewController *_TopupController;
     FundPercentController *_FundPercentController;
 	FSVerticalTabBarController *_FS;
     HLViewController *_HLController;
@@ -163,6 +165,7 @@
 @property (nonatomic,retain) HLViewController *HLController;
 @property (nonatomic,retain) InvestmentTypeViewController *InvestmentController;
 @property (nonatomic,retain) FundPercentController *FundPercentController;
+@property (nonatomic,retain) TopupWithdrawViewController *TopupController;
 
 @property (nonatomic,retain) FSVerticalTabBarController *FS;
 

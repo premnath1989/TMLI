@@ -2937,9 +2937,9 @@ BOOL NavShow3;
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
-    self.FundPercentController = [self.storyboard instantiateViewControllerWithIdentifier:@"FundPercent"];
+    self.TopupController = [self.storyboard instantiateViewControllerWithIdentifier:@"TopupWithdrawVC"];
     // _InvestmentController.delegate = self;
-    [self.RightView addSubview:self.FundPercentController.view];
+    [self.RightView addSubview:self.TopupController.view];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
