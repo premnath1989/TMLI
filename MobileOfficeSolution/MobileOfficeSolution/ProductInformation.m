@@ -111,6 +111,18 @@ BOOL NavShow2;
                                              options:0
                                                error:&contentsError];
     
+    // BHIMBIM'S QUICK FIX - Start, dummy for query test
+    
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"1", @"HRD Training", @"PDF", @"10 Mb",@"true",nil]];
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"2", @"Developer Training", @"PDF", @"8 Mb",@"true",nil]];
+    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"3", @"Underwriting Training", @"PDF", @"12 Mb",@"true",nil]];
+    
+    [FTPItemsList removeAllObjects];
+    [FTPItemsList setArray:arrayListRAW];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     int index = 1;
     for (NSURL *fileURL in contents) {
         // Enumerate each file in directory
@@ -121,6 +133,9 @@ BOOL NavShow2;
                                error:&sizeError];
         
         [self insertIntoTableData:[fileURL lastPathComponent] size:[fileSizeNumber stringValue] index:index];
+        
+        
+        
         index++;
     }
     [spinnerLoading stopLoadingSpinner];
@@ -203,6 +218,24 @@ BOOL NavShow2;
     NSLog(@"test");
     
 }
+
+
+// BHIMBIM'S QUICK FIX - Start
+
+- (IBAction)actionFind:(id)sender
+{
+    [FTPItemsList removeAllObjects];
+    
+    for (int i = 0; i < arrayListRAW.count; i++)
+    {
+        //[arrayListRAW objectAtIndex:i]
+    }
+    
+    [myTableView reloadData];
+}
+
+// BHIMBIM'S QUICK FIX - End
+
 
 - (IBAction)goHome:(id)sender{
     UIStoryboard *carouselStoryboard = [UIStoryboard storyboardWithName:@"CarouselStoryboard" bundle:Nil];
@@ -411,6 +444,9 @@ BOOL NavShow2;
     if ((_SegProductType.selectedSegmentIndex == 0 && [fileFormat isEqualToString:@"brosur"]) || (_SegProductType.selectedSegmentIndex == 1 && [fileFormat isEqualToString:@"video"]) || (_SegProductType.selectedSegmentIndex == 2 && [fileFormat isEqualToString:@"video"])){
         [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,nil]];
     }
+    
+    
+    
     
     
     [spinnerLoading stopLoadingSpinner];
