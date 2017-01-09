@@ -5824,14 +5824,43 @@ bool PolicyOwnerSigned = TRUE;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
         //NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, Class FROM Adm_Occp_Loading_Penta where OccpCode = \"%@\"", pp.ProspectOccupationCode];
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM %@ where occp_Code = \"%@\"",TABLE_OCCP, pp.ProspectOccupationCode];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM %@ where Occp_Code = \"%@\"",TABLE_OCCP, pp.ProspectOccupationCode];
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK)
         {
             NSString *OccpDesc;
             NSString *OccpClass;
-            while (sqlite3_step(statement) == SQLITE_ROW){
+            while (sqlite3_step(statement) == SQLITE_ROW)
+            {
                 OccpDesc = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
+                /* OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)]; */
+                
+                
+                // BHIMBIM'S QUICK FIX - Start.
+                
+                const char *charOccupationDescription = (const char *)sqlite3_column_text(statement, 0);
+                
+                if (charOccupationDescription == NULL)
+                {
+                    OccpDesc = @"";
+                }
+                else
+                {
+                    OccpDesc = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
+                }
+                
+                const char *charOccupationClass = (const char *)sqlite3_column_text(statement, 1);
+                
+                if (charOccupationClass == NULL)
+                {
+                    OccpClass = @"";
+                }
+                else
+                {
+                    OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
+                }
+                
+                // BHIMBIM'S QUICK FIX - End.
+                
                 
                 OccupCodeSelected = pp.ProspectOccupationCode;
                 if([OccpDesc isEqualToString:@""])
