@@ -7,6 +7,7 @@
 //
 
 #import "RiderDeducTb.h"
+#import "String.h"
 
 @interface RiderDeducTb ()
 
@@ -23,7 +24,7 @@
     if (self != nil) {
         NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsDir = [dirPaths objectAtIndex:0];
-        databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+        databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
         
         requestCondition = [NSString stringWithFormat:@"%@",stringCode];
         requestSA = [strSum doubleValue];

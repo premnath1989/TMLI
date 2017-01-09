@@ -8,6 +8,7 @@
 
 #import "NewGroupListing.h"
 #import "FMDatabase.h"
+#import "String.h"
 
 @interface NewGroupListing () {
     FMDatabase *db;
@@ -39,7 +40,7 @@
     nonMember = [NSMutableArray array];
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     FMResultSet *result = [db executeQuery:@"select IndexNo, ProspectName from prospect_profile where ProspectGroup = ? order by ProspectName ASC", [self.data objectForKey:@"id"]];
@@ -154,7 +155,7 @@
         if (!db) {
             NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *docsDir = [dirPaths objectAtIndex:0];
-            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
             db = [FMDatabase databaseWithPath:databasePath];
         }
         [db open];
@@ -176,7 +177,7 @@
         if (!db) {
             NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *docsDir = [dirPaths objectAtIndex:0];
-            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
             db = [FMDatabase databaseWithPath:databasePath];
         }
         [db open];

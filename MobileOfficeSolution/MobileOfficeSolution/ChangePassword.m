@@ -78,7 +78,7 @@
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     loginDB = [[LoginDBManagement alloc]init];
     btnBarDone.enabled = NO;
@@ -594,7 +594,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 //                            //                                [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
 //                            //                                NSLog(@"%@",ResponseDict);
 //                            
-//                            //                                [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
+//                            //                                [loginDB insertTableFromJSON:ResponseDict databasePath:DATABASE_MAIN_NAME];
 //                            
 //                        }else{
 //                            

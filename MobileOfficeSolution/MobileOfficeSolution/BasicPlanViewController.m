@@ -119,7 +119,7 @@ bool WPTPD30RisDeleted = FALSE;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     RatesDatabasePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BCA_Rates.sqlite"];
     
 	if ([requesteProposalStatus isEqualToString:@"Failed"] || [requesteProposalStatus isEqualToString:@"Submitted"] ||
@@ -2281,7 +2281,7 @@ bool WPTPD30RisDeleted = FALSE;
         
         NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsPath2 = [paths2 objectAtIndex:0];
-        NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        NSString *path2 = [docsPath2 stringByAppendingPathComponent:DATABASE_MAIN_NAME];
         
         
         FMDatabase *database = [FMDatabase databaseWithPath:path2];

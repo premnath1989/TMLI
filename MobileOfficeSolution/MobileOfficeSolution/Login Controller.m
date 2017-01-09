@@ -16,6 +16,7 @@
 #import "DDXMLDocument.h"
 #import "DDXMLElementAdditions.h"
 #import "DDXMLNode.h"
+#import "String.h"
 
 
 // INTERFACE
@@ -105,7 +106,7 @@
     [loginDB makeDBCopy];
     
     DBMigration *migration = [[DBMigration alloc]init];
-    [migration updateDatabaseUseNewDB:@"MOSDB.sqlite"];
+    [migration updateDatabaseUseNewDB:DATABASE_MAIN_NAME];
     [migration hardUpdateDatabase:@"TMLI_Rates.sqlite" versionNumber:[NSString stringWithFormat:
                                                                      @"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"dbVersion"]]];
     [migration hardUpdateDatabase:@"DataReferral.sqlite"versionNumber:[NSString stringWithFormat:

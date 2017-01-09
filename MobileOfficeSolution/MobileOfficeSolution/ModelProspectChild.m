@@ -7,12 +7,13 @@
 //
 
 #import "ModelProspectChild.h"
+#import "String.h"
 
 @implementation ModelProspectChild
 
 -(void)saveProspectChild:(NSDictionary *)dictProspectChild{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -41,7 +42,7 @@
 
 -(void)updateProspectChild:(NSDictionary *)dictProspectChild{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -71,7 +72,7 @@
 
 -(void)deleteProspectChildByCFFTransID:(int)cffTransactionID{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -105,7 +106,7 @@
     NSString* childCFFTransactionID;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -155,7 +156,7 @@
     
     int countData;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

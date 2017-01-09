@@ -13,7 +13,7 @@
 
 -(void)saveCFFTransaction:(NSDictionary *)cffTransactionDictionary{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -46,7 +46,7 @@
 
 -(void)deleteCFFTransaction:(int)cffTransactionID{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -91,7 +91,7 @@
     
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -185,7 +185,7 @@
     int CFFID;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -261,7 +261,7 @@
 
 -(void)updateCFFDateModified:(int)cffTransactionID{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -278,7 +278,7 @@
 
 -(void)updateCFFStatu:(NSString *)stringCFFStatus CFFTransactionID:(int)intCFFTransactionID{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

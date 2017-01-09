@@ -65,7 +65,7 @@ id dobtemp;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
 	if ([requesteProposalStatus isEqualToString:@"Failed"] ||
 		[requesteProposalStatus isEqualToString:@"Confirmed"] || [requesteProposalStatus isEqualToString:@"Submitted"] ||
@@ -1232,7 +1232,7 @@ id dobtemp;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     db = [FMDatabase databaseWithPath:path];
     [db open];

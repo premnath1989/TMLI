@@ -469,7 +469,7 @@ int rrr;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     Login *mainLogin = [self.storyboard instantiateViewControllerWithIdentifier:@"Login"];
     mainLogin.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -552,7 +552,7 @@ int rrr;
         NSString *OtherIDTypeNo;
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsPath = [paths objectAtIndex:0];
-        NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
         
         FMDatabase *database = [FMDatabase databaseWithPath:path];
         [database open];

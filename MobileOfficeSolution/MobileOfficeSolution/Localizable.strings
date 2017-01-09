@@ -126,10 +126,10 @@ HEADER_SI_MODULE = "Sales Illustration Module";
 
 /* DETAIL */
 
-DETAIL_SPAJ_LANDING = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
-DETAIL_SPAJ_ADDNEW = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
-DETAIL_SPAJ_EXISTINGLIST = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
-DETAIL_SPAJ_MODULE = "loren ipsum dolores o riordan\nsimple dummy text";
+DETAIL_SPAJ_LANDING = "";
+DETAIL_SPAJ_ADDNEW = "";
+DETAIL_SPAJ_EXISTINGLIST = "";
+DETAIL_SPAJ_MODULE = "";
 
 
 // GUIDE

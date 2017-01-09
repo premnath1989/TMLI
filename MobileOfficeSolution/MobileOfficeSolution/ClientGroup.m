@@ -10,6 +10,7 @@
 #import "GroupClass.h"
 #import "FMDatabase.h"
 #import "ColorHexCode.h"
+#import "String.h"
 
 @interface ClientGroup ()
 
@@ -43,7 +44,7 @@ NSMutableArray *DelGroupArr;
 	
 	NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsDir = [dirPaths objectAtIndex:0];
-	NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+	NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 	db = [FMDatabase databaseWithPath:databasePath];
 	
 	itemToBeDeleted = [NSMutableArray array];

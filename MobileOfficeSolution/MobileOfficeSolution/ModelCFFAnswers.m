@@ -7,13 +7,14 @@
 //
 
 #import "ModelCFFAnswers.h"
+#import "String.h"
 
 @implementation ModelCFFAnswers
 
 
 -(void)deleteCFFAnswerByCFFTransID:(int)cffTransactionID{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -32,7 +33,7 @@
     int count;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -50,7 +51,7 @@
 -(int)voidGetDuplicateRowID:(NSDictionary *)dictionaryCFFAnswers{
     int IndexNo;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

@@ -147,7 +147,7 @@ NSString* const stateIMGGeneration = @"IMG";
     {
         NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         databasePath = [[NSString alloc] initWithString:
-                        [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+                        [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
         
         //define the webview coordinate
         webview=[[UIWebView alloc]initWithFrame:CGRectMake(5, 0, 960,728)];

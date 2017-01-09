@@ -7,13 +7,14 @@
 //
 
 #import "Model_SI_Premium.h"
+#import "String.h"
 
 
 @implementation Model_SI_Premium
 
 -(void)savePremium:(NSDictionary *)dataPremium{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -46,7 +47,7 @@
 
 -(void)updatePremium:(NSDictionary *)dataPremium{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -90,7 +91,7 @@
 
 -(void)updatePremiumDate:(NSString *)SINO{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -109,7 +110,7 @@
 
 -(void)deletePremium:(NSString *)siNo{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -142,7 +143,7 @@
     NSString *Discount;
 
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -195,7 +196,7 @@
     int count = 0;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

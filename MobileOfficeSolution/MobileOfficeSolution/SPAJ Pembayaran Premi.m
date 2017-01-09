@@ -7,6 +7,7 @@
 //
 
 #import "SPAJ Pembayaran Premi.h"
+#import "String.h"
 
 @interface SPAJ_Pembayaran_Premi ()
 
@@ -37,7 +38,7 @@
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString:
-                    [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+                    [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     //define the webview coordinate
     webview=[[UIWebView alloc]initWithFrame:CGRectMake(5, 0, 745,728)];

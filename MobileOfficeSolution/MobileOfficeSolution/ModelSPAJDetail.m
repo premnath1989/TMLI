@@ -7,11 +7,12 @@
 //
 
 #import "ModelSPAJDetail.h"
+#import "String.h"
 
 @implementation ModelSPAJDetail
 -(void)saveSPAJDetail:(NSDictionary *)spajDetailDictionary{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -35,7 +36,7 @@
 
 -(void)updateSPAJDetail:(NSString *)setString{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -54,7 +55,7 @@
 -(bool)voidDetailCaptured:(int)intTransactionSPAJID{
     int signatureCaptured = 0;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -79,7 +80,7 @@
 -(bool)voidCertainDetailCaptured:(int)intTransactionSPAJID DetailParty:(NSString *)stringDetailSPAJ{
     int DetailCaptured = 0;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

@@ -136,7 +136,7 @@ BOOL NavShow3;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     //--for table view
     //self.myTableView.backgroundColor = [UIColor darkGrayColor];
@@ -4696,7 +4696,7 @@ BOOL NavShow3;
     
     NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath2 = [paths2 objectAtIndex:0];
-    NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path2 = [docsPath2 stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     
     NSString *query = [NSString stringWithFormat:@"select AgentCode,AgentName from %@",TABLE_AGENT_PROFILE];

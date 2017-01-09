@@ -52,6 +52,8 @@
     NSString* const COLUMN_SPAJHEADER_SUBMITTEDON = @"submittedon";
     NSString* const COLUMN_SPAJHEADER_STATE = @"state";
 
+    // Database Name
+    NSString* const DATABASE_MAIN_NAME = @"MOSDB.sqlite";
 
     // Tables Name
     NSString* const TABLE_AGENT_PROFILE = @"TMLI_Agent_profile";

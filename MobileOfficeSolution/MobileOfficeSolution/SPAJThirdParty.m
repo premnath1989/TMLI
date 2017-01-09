@@ -23,6 +23,7 @@
 #import "AllAboutPDFGeneration.h"
 #import "Alert.h"
 #import "SIDate.h"
+#import "String.h"
 
 #define IS_RETINA ([[UIScreen mainScreen] respondsToSelector:@selector(displayLinkWithTarget:selector:)] && ([UIScreen mainScreen].scale == 2.0))
 
@@ -113,7 +114,7 @@
 - (void)viewDidLoad {
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString:
-                    [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+                    [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     webview=[[UIWebView alloc]initWithFrame:CGRectMake(5, 0, 960,728)];
     webview.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;

@@ -14,6 +14,7 @@
 #import "SessionManagement.h"
 #import "Login.h"
 #import "Login Controller.h"
+#import "String.h"
 #import <CoreData/CoreData.h>
 
 @implementation AppDelegate
@@ -45,7 +46,7 @@ NSString *uatAgentCode;
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    databasePath = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    databasePath = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     
     NSLog(@"db path %@",databasePath);

@@ -236,13 +236,13 @@ BOOL NavShowP;
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     txtRemark.layer.borderWidth = 1.0f;
     txtRemark.layer.borderColor = [[UIColor grayColor] CGColor];
     
     txtRigDate.userInteractionEnabled=FALSE;
     //easysqlite---------start
-    self.db = [DBController sharedDatabaseController:@"MOSDB.sqlite"];
+    self.db = [DBController sharedDatabaseController:DATABASE_MAIN_NAME];
     NSString *sqlStmt1 = [NSString stringWithFormat:@"SELECT IndexNo, IDtypeNo, otheridtype and otheridtypeno FROM prospect_profile where idtypeno and otheridtype is not null"];
     _tableDB = [_db  ExecuteQuery:sqlStmt1];
     
@@ -3736,7 +3736,7 @@ BOOL NavShowP;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];
     FMResultSet *result;
@@ -3976,7 +3976,7 @@ BOOL NavShowP;
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:dbPath];
 	}
 	if ([db close]) {
@@ -5614,7 +5614,7 @@ BOOL NavShowP;
 {
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
@@ -6811,7 +6811,7 @@ BOOL NavShowP;
     country = [country stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];
     FMResultSet *result = [db executeQuery:@"SELECT CountryDesc FROM eProposal_Country WHERE CountryCode = ?", country];

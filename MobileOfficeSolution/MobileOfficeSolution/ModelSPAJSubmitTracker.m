@@ -7,12 +7,13 @@
 //
 
 #import "ModelSPAJSubmitTracker.h"
+#import "String.h"
 
 @implementation ModelSPAJSubmitTracker
 
 -(void)saveSPAJSubmitDate:(NSString *)stringSPAJNumber SubmitDate:(NSString *)stringDate{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -29,7 +30,7 @@
 -(bool)voidMaximumSubmitReached:(NSString *)stringSubmitDate{
     int countSubmit = 0;
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];

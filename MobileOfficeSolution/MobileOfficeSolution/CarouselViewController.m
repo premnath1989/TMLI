@@ -84,7 +84,7 @@ const int numberOfModule = 7;
     
     NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath2 = [paths2 objectAtIndex:0];
-    NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path2 = [docsPath2 stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path2];
     [database open];
@@ -101,7 +101,7 @@ const int numberOfModule = 7;
 
 #ifdef UAT_BUILD
 - (NSString *) getAgentCode {
-    NSString *databasePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *databasePath = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     sqlite3 *hladb;
     NSString *ac;
     if (sqlite3_open([databasePath UTF8String ], &hladb) == SQLITE_OK) {
@@ -221,7 +221,7 @@ const int numberOfModule = 7;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     sqlite3_stmt *statement;
     
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
@@ -436,7 +436,7 @@ const int numberOfModule = 7;
     NSString *databasePath;
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
         
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

@@ -16,6 +16,7 @@
 #import "ColorHexCode.h"
 #import "GDataXMLNode.h"
 #import "PDFView.h"
+#import "String.h"
 
 @interface eSignController (){
     BOOL issigned;
@@ -1780,7 +1781,7 @@ NSString *Signer_type = @"";
 	//    NSString *documentsDirectory = [paths objectAtIndex :0];
     
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *db = [FMDatabase databaseWithPath:path];
 
@@ -2165,7 +2166,7 @@ NSString *Signer_type = @"";
     
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsPath = [paths objectAtIndex:0];
-	NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+	NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     NSString *isAllSignAlready;
 	
@@ -2314,7 +2315,7 @@ NSString *Signer_type = @"";
 	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsPath = [paths objectAtIndex:0];
-	NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+	NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
 	
 	FMDatabase *db = [FMDatabase databaseWithPath:path];
 	[db open];
@@ -2551,7 +2552,7 @@ NSString *Signer_type = @"";
 	
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *docsPath = [paths objectAtIndex:0];
-	NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+	NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
 	
 	FMDatabase *db = [FMDatabase databaseWithPath:path];
 	[db open];

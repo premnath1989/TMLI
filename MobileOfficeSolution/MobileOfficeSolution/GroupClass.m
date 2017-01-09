@@ -8,6 +8,7 @@
 
 #import "GroupClass.h"
 #import "FMDatabase.h"
+#import "String.h"
 
 @interface GroupClass ()
 
@@ -37,7 +38,7 @@
 	
     _group = [NSMutableArray array];
 
-	NSString *databasePath = [documentsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+	NSString *databasePath = [documentsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
 	FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
 	[db open];
 	NSString *strQuery;
