@@ -47,6 +47,7 @@
     //added by Faiz for New Machanasime in save data
     NSMutableDictionary* dictParentPOLAData;
     NSMutableDictionary* dictParentULBasicPlanData;
+    NSMutableArray* arrayRiderData;
     
     BOOL isPOFilled;
     BOOL isLAFilled;
@@ -104,12 +105,14 @@ BOOL NavShow3;
     _modelSIPOData = [[ModelSIPOData alloc]init];
     _modelSIMaster = [[Model_SI_Master alloc]init];
     _modelSIRider = [[ModelSIRider alloc]init];
+    model_SI_Rider = [[Model_SI_Rider alloc]init];
     modelSIBasicPlan = [[ModelSIBasicPlan alloc]init];
     
     NavShow3 = NO;
      _SiScrollView.delegate = self;
     [_SiScrollView setScrollEnabled:YES];
     _SiScrollView.contentSize = CGSizeMake(900, 900);
+    [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 514)];
     
 //    ScrollMenu.delegate = self;
     [ScrollMenu setScrollEnabled:YES];
@@ -192,6 +195,7 @@ BOOL NavShow3;
     [self geteProposalStatus];
     [self setInitialPOLADictionary];
     [self setInitialULBasicPlanDictionary];
+    [self setInitialRiderArray];
     
     if (![[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
         if ([eProposalStatus isEqualToString:@"Confirmed"] || [eProposalStatus isEqualToString:@"Submitted"] || [eProposalStatus isEqualToString:@"Received"] || [eProposalStatus isEqualToString:@"Failed"]  ) {
@@ -2845,6 +2849,7 @@ BOOL NavShow3;
         self.LAController.requesteProposalStatus = eProposalStatus;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
         _SiScrollView.contentSize = CGSizeMake(self.LAController.view.frame.size.width, 514.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.LAController.view.frame.size.width, 514.0)];
         [self.RightView addSubview:self.LAController.view];
         [self.LAController loadDataFromList];
     }else{
@@ -2853,6 +2858,7 @@ BOOL NavShow3;
         self.LAController.EAPPorSI = [self.EAPPorSI description];
         [self.LAController.view removeFromSuperview];
         _SiScrollView.contentSize = CGSizeMake(self.LAController.view.frame.size.width, 514.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.LAController.view.frame.size.width, 514.0)];
         [self.RightView addSubview:self.LAController.view];
         [self.LAController loadDataFromList];
     }
@@ -2868,13 +2874,17 @@ BOOL NavShow3;
         self.SecondLAController.requesteProposalStatus = eProposalStatus;
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
-        _SiScrollView.contentSize = CGSizeMake(self.SecondLAController.view.frame.size.width, 455.0);
+        _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
+
         [self.RightView addSubview:self.SecondLAController.view];
         [self.SecondLAController loadDataFromList];
     } else {
         [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
         self.SecondLAController.requestSINo = [self.requestSINo description];
-        _SiScrollView.contentSize = CGSizeMake(self.SecondLAController.view.frame.size.width, 455.0);
+        _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
+
         [self.RightView addSubview:self.SecondLAController.view];
         [self.SecondLAController loadDataFromList];
     }
@@ -2887,12 +2897,16 @@ BOOL NavShow3;
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
         _SiScrollView.contentSize = CGSizeMake(self.BasicController.view.frame.size.width, 724.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.BasicController.view.frame.size.width, 724.0)];
+
         [self.RightView addSubview:self.BasicController.view];
         [self.BasicController loadDataFromList];
     } else {
         self.BasicController.EAPPorSI = [self.EAPPorSI description];
         [self.BasicController loadData];
         _SiScrollView.contentSize = CGSizeMake(self.BasicController.view.frame.size.width, 724.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.BasicController.view.frame.size.width, 724.0)];
+
         [self.RightView addSubview:self.BasicController.view];
         [self.BasicController loadDataFromList];
     }
@@ -2901,10 +2915,16 @@ BOOL NavShow3;
 -(IBAction)actionShowRider:(id)sender{
     if(!_RiderController) {
         _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
+
         [self.RightView addSubview:self.RiderController.view];
+        [_RiderController loadDataFromList];
     } else {
         _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
+
         [self.RightView addSubview:self.RiderController.view];
+        [_RiderController loadDataFromList];
     }
 }
 
@@ -5882,6 +5902,18 @@ NSString *prevPlan;
     [myTableView reloadData];
 }
 
+#pragma mark save method Rider
+-(void)setInitialRiderArray{
+    arrayRiderData = [[NSMutableArray alloc]initWithArray:[model_SI_Rider getRiderDataFor:self.requestSINo]];
+}
+
+-(void)setRiderDictionary:(NSMutableArray *)arrayULRiderData{
+    arrayRiderData = [[NSMutableArray alloc]initWithArray:arrayULRiderData];
+}
+
+-(NSMutableArray *)getRiderArray{
+    return arrayRiderData ;
+}
 
 #pragma mark new save method for basic plan
 -(void)setInitialULBasicPlanDictionary{

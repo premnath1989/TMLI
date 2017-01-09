@@ -34,6 +34,7 @@
 #import "Model_SI_Premium.h"
 #import "ModelSIBasicPlan.h"
 #import "ModelSIRider.h"
+#import "Model_SI_Rider.h"
 #import "Formatter.h"
 #import "RiderCalculation.h"
 #import "IlustrationViewController.h"
@@ -69,6 +70,7 @@
     Model_SI_Premium *_modelSIPremium;
     ModelSIBasicPlan *modelSIBasicPlan;
     Model_SI_Master *_modelSIMaster;
+    Model_SI_Rider *model_SI_Rider;
     ModelSIPOData *_modelSIPOData;
     NewLAViewController *_LAController;
     PayorViewController *_PayorController;

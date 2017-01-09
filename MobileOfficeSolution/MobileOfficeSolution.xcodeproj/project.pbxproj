@@ -21,6 +21,7 @@
 		434DA94F1E1FA68800120131 /* RiderValueInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434DA94D1E1FA68800120131 /* RiderValueInputViewController.xib */; };
 		434DA9531E1FB09700120131 /* RiderValueTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 434DA9511E1FB09700120131 /* RiderValueTableViewCell.m */; };
 		434DA9541E1FB09700120131 /* RiderValueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434DA9521E1FB09700120131 /* RiderValueTableViewCell.xib */; };
+		4381D5411E23001D00AA1DE6 /* Model_SI_Rider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */; };
 		C31AF5031E1F2BDC00A037EF /* topupWidthrawViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */; };
 		C31AF5041E1F2BDC00A037EF /* topupWidthrawViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */; };
 		C31AF5051E1F2BDC00A037EF /* TopupWithdrawViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF5021E1F2BDC00A037EF /* TopupWithdrawViewController.m */; };
@@ -582,6 +583,8 @@
 		434DA9501E1FB09700120131 /* RiderValueTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderValueTableViewCell.h; sourceTree = "<group>"; };
 		434DA9511E1FB09700120131 /* RiderValueTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RiderValueTableViewCell.m; sourceTree = "<group>"; };
 		434DA9521E1FB09700120131 /* RiderValueTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RiderValueTableViewCell.xib; sourceTree = "<group>"; };
+		4381D53F1E23001D00AA1DE6 /* Model_SI_Rider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_SI_Rider.h; sourceTree = "<group>"; };
+		4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model_SI_Rider.m; sourceTree = "<group>"; };
 		C31AF4FE1E1F2BDC00A037EF /* topupWidthrawViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = topupWidthrawViewCell.h; sourceTree = "<group>"; };
 		C31AF4FF1E1F2BDC00A037EF /* topupWidthrawViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = topupWidthrawViewCell.m; sourceTree = "<group>"; };
 		C31AF5001E1F2BDC00A037EF /* topupWidthrawViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = topupWidthrawViewCell.xib; sourceTree = "<group>"; };
@@ -2230,6 +2233,8 @@
 				DEDC5D181DAE39420033FE37 /* ModelSPAJSubmitTracker.m */,
 				DEDC5D191DAE39420033FE37 /* ModelOccupation.h */,
 				DEDC5D1A1DAE39420033FE37 /* ModelOccupation.m */,
+				4381D53F1E23001D00AA1DE6 /* Model_SI_Rider.h */,
+				4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */,
 			);
 			name = "MOSDB Model";
 			sourceTree = "<group>";
@@ -3838,6 +3843,7 @@
 				DEDC5DF31DAE41B30033FE37 /* PayorViewController.m in Sources */,
 				DEDC60FC1DAF79350033FE37 /* SPAJIDCapturedViewController.m in Sources */,
 				C31AF5031E1F2BDC00A037EF /* topupWidthrawViewCell.m in Sources */,
+				4381D5411E23001D00AA1DE6 /* Model_SI_Rider.m in Sources */,
 				C31AF5051E1F2BDC00A037EF /* TopupWithdrawViewController.m in Sources */,
 				DEDC61001DAF79350033FE37 /* SPAJ Add Menu.m in Sources */,
 				DEDC5CCF1DAE38830033FE37 /* DBController.m in Sources */,

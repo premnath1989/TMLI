@@ -29,11 +29,11 @@
 
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
--(void)saveRider:(NSDictionary *)dictMDBKK MDKK:(NSDictionary *)dictMDKK BP:(NSDictionary *)dictBasicPremi;
--(void)dismissEApp;
--(void) RiderAdded;
--(void) BasicSARevised:(NSString *)aabasicSA;
--(void) saveAll;
+-(NSString *)getRunnigSINumber;
+-(NSMutableDictionary *)getBasicPlanDictionary;
+-(void)setRiderDictionary:(NSMutableArray *)arrayRiderData;
+-(NSMutableArray *)getRiderArray;
+-(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
 
 @interface RiderViewController : UIViewController <RiderPTypeTbViewControllerDelegate,RiderListTbViewControllerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,RiderDeducTbDelegate,RiderPlanTbDelegate,RiderValueInputViewControllerDelegate>
@@ -96,6 +96,7 @@
     IBOutlet UITableView *tableRiderName;
     IBOutlet UITableView *tableRiderDetail;
 }
+-(void)loadDataFromList;
 -(void)localSaveRider;
 -(void)loadInitialRiderData;
 -(void)loadInitialRiderDataFromDatabase;
