@@ -17,8 +17,12 @@
 #import "UIView+viewRecursion.h"
 #import "LoginDBManagement.h"
 #import "RiderValueTableViewCell.h"
+#import "Model_SI_Rider.h"
 
 @interface RiderViewController (){
+    Model_SI_Rider *model_SI_Rider;
+    
+    NSMutableArray* arrayRiderData;
     
     NSMutableArray* arrayRiderType;
     NSMutableArray* arrayRiderName;
@@ -46,7 +50,8 @@ int maxGycc = 0;
     CustomColor = [[ColorHexCode alloc]init];
     formatter = [[Formatter alloc]init];
     _modelSIRider = [[ModelSIRider alloc]init];
-
+    model_SI_Rider = [[Model_SI_Rider alloc]init];
+    
     riderValueInputVC = [[RiderValueInputViewController alloc]initWithNibName:@"RiderValueInputViewController" bundle:nil];
     [riderValueInputVC setDelegate:self];
     
@@ -57,6 +62,20 @@ int maxGycc = 0;
 
     [self setDictionaryRiderName];
     [super viewDidLoad];
+}
+
+-(void)loadDataFromList{
+    arrayRiderData=[[NSMutableArray alloc]init];
+    arrayRiderData = [_delegate getRiderArray];
+    [self setRiderDetailFromDelegate:arrayRiderData];
+    
+    if ([arrayRiderData count]<=0){
+    }
+    else{
+        [self refreshRiderData];
+        [tableRiderDetail reloadData];
+    }
+    //[self clearRiderDataDetail];
 }
 
 -(NSMutableArray *)getArrayType{
@@ -78,6 +97,13 @@ int maxGycc = 0;
     [dictRiderName setObject:arrRiderNameType3 forKey:@"Rider Type 3"];
     [dictRiderName setObject:arrRiderNameType4 forKey:@"Rider Type 4"];
     [dictRiderName setObject:arrRiderNameType5 forKey:@"Rider Type 5"];
+}
+
+-(void)setRiderDetailFromDelegate:(NSMutableArray *)arrayRider{
+    for (int i=0;i<[arrayRider count];i++){
+        [arrayRiderNameDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"RiderDesc"]];
+        [arrayRiderValueDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SumAssured"]];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -157,8 +183,62 @@ int maxGycc = 0;
     [tableRiderDetail reloadData];
 }
 
-#pragma mark - Table view data source
+-(void)setRiderDictionary{
+    arrayRiderData = [[NSMutableArray alloc]init];
+    for (int i=0;i<[arrayRiderNameDetail count];i++){
+        NSMutableDictionary* dictRiderData = [[NSMutableDictionary alloc]init];
+        [dictRiderData setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+        [dictRiderData setObject:@"" forKey:@"RiderCode"];
+        [dictRiderData setObject:[arrayRiderNameDetail objectAtIndex:i] forKey:@"RiderDesc"];
+        [dictRiderData setObject:[arrayRiderValueDetail objectAtIndex:i] forKey:@"SumAssured"];
+        [dictRiderData setObject:@"" forKey:@"Term"];
+        [dictRiderData setObject:@"" forKey:@"ExtraPremiMil"];
+        [dictRiderData setObject:@"" forKey:@"ExtraPremiMilTerm"];
+        [dictRiderData setObject:@"" forKey:@"ExtraPremiPercent"];
+        [dictRiderData setObject:@"" forKey:@"ExtraPremiPercentTerm"];
+        
+        [arrayRiderData addObject:dictRiderData];
+    }
+    [_delegate setRiderDictionary:arrayRiderData];
+}
 
+-(void)refreshRiderData{
+    //set the updated data to parent
+    [self setRiderDictionary];
+    
+    //delete first
+    [model_SI_Rider deleteRiderData:[_delegate getRunnigSINumber]];
+    
+    //get updated data from parent and save it.
+    NSMutableArray* arrayRiderForInsert = [[NSMutableArray alloc]initWithArray:[_delegate getRiderArray]];
+    for (int i=0;i<[arrayRiderForInsert count];i++){
+        NSMutableDictionary *dictForInsert = [[NSMutableDictionary alloc]initWithDictionary:[arrayRiderForInsert objectAtIndex:i]];
+        [dictForInsert setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+        
+        [model_SI_Rider saveRiderData:dictForInsert];
+    }
+    
+}
+
+-(IBAction)actionSaveData:(UIButton *)sender{
+    //set the updated data to parent
+    [self setRiderDictionary];
+    
+    //delete first
+    [model_SI_Rider deleteRiderData:[_delegate getRunnigSINumber]];
+    
+    //get updated data from parent and save it.
+    NSMutableArray* arrayRiderForInsert = [[NSMutableArray alloc]initWithArray:[_delegate getRiderArray]];
+    for (int i=0;i<[arrayRiderForInsert count];i++){
+        NSMutableDictionary *dictForInsert = [[NSMutableDictionary alloc]initWithDictionary:[arrayRiderForInsert objectAtIndex:i]];
+        [dictForInsert setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+        
+        [model_SI_Rider saveRiderData:dictForInsert];
+    }
+    [_delegate showNextPageAfterSave:self];
+}
+
+#pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
