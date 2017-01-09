@@ -105,7 +105,7 @@
     if([agentDetails valueForKey:@"LGIVNAME"] == nil){
         fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], @""];
     }else{
-        fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], [agentDetails valueForKey:@"LGIVNAME"]];
+        fullName = [NSString stringWithFormat:@"%@ %@", [agentDetails valueForKey:@"LGIVNAME"],[agentDetails valueForKey:@"AgentName"]];
     }
     txtAgentName.text = fullName;
     txtAgentName.enabled = NO;
@@ -131,6 +131,7 @@
     txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
     txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
     txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
+    [txtEmail sizeToFit];
     
     txtPTKP.text = [loginDB getAgentProperty:@"TAXMETH"];
     txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
@@ -145,7 +146,6 @@
     
     txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
     txtMobileNumber.enabled = NO;
-    txtEmail.text = [agentDetails valueForKey:@"AgentEmail"];
     txtEmail.enabled = NO;
 }
 
