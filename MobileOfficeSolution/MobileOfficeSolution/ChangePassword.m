@@ -559,6 +559,49 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
          * is it AgentWS_GetAgentHierarcyResponse
          ****/
         else if([bodyPart isKindOfClass:[AgentWS_GetAgentHierarcyResponse class]]) {
+            
+//            NSString *serverURL = [NSString stringWithFormat:@"%@/Service2.svc/AllocateSpajForAgent?agentCode=%@",[(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL], [loginDB AgentCodeLocal]];
+//            
+//            NSURLSession *session = [NSURLSession sharedSession];
+//            [[session dataTaskWithURL:[NSURL URLWithString:serverURL]
+//                    completionHandler:^(NSData *data,
+//                                        NSURLResponse *response,
+//                                        NSError *error) {
+//                        dispatch_async(dispatch_get_main_queue(), ^{
+//                            [spinnerLoading stopLoadingSpinner];
+//                        });
+//                        // handle response
+//                        if(data != nil){
+//                            //                                NSMutableDictionary* json = [NSJSONSerialization
+//                            //                                                             JSONObjectWithData:data //1
+//                            //                                                             options:NSJSONReadingMutableContainers
+//                            //                                                             error:&error];
+//                            //                                NSMutableDictionary *ResponseDict = [[NSMutableDictionary alloc]init];
+//                            //                                NSMutableArray *jsonArray = [[NSMutableArray alloc]init];
+//                            //
+//                            //
+//                            //                                //set the date
+//                            //                                NSDate *today = [NSDate date];
+//                            //                                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+//                            //                                [dateFormat setDateFormat:@"dd/MM/yyyy"];
+//                            //                                NSString *dateString = [dateFormat stringFromDate:today];
+//                            //
+//                            //                                [[json valueForKey:@"d"] setValue:dateString forKey:@"CreatedDate"];
+//                            //                                [[json valueForKey:@"d"] setValue:dateString forKey:@"UpdatedDate"];
+//                            //                                [[json valueForKey:@"d"] setValue:@"ACTIVE" forKey:@"Status"];
+//                            //                                [[json valueForKey:@"d"] removeObjectForKey:@"__type"];
+//                            //                                [jsonArray addObject:[json valueForKey:@"d"]];
+//                            //                                [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
+//                            //                                NSLog(@"%@",ResponseDict);
+//                            
+//                            //                                [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
+//                            
+//                        }else{
+//                            
+//                        }
+//                    }] resume];
+
+            
             AgentWS_GetAgentHierarcyResponse* rateResponse = bodyPart;
             DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
                                   rateResponse.GetAgentHierarcyResult.xmlDetails options:0 error:nil];
@@ -582,48 +625,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         else if([bodyPart isKindOfClass:[AgentWS_ReceiveFirstLoginResponse class]]) {
             AgentWS_ReceiveFirstLoginResponse* rateResponse = bodyPart;
             if([rateResponse.strStatus caseInsensitiveCompare:@"True"] == NSOrderedSame){
-                
-                NSString *serverURL = [NSString stringWithFormat:@"%@/Service2.svc/AllocateSpajForAgent?agentCode=%@",[(AppDelegate*)[[UIApplication sharedApplication] delegate] serverURL], [loginDB AgentCodeLocal]];
-                
-                NSURLSession *session = [NSURLSession sharedSession];
-                [[session dataTaskWithURL:[NSURL URLWithString:serverURL]
-                        completionHandler:^(NSData *data,
-                                            NSURLResponse *response,
-                                            NSError *error) {
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                [spinnerLoading stopLoadingSpinner];
-                            });
-                            // handle response
-                            if(data != nil){
-//                                NSMutableDictionary* json = [NSJSONSerialization
-//                                                             JSONObjectWithData:data //1
-//                                                             options:NSJSONReadingMutableContainers
-//                                                             error:&error];
-//                                NSMutableDictionary *ResponseDict = [[NSMutableDictionary alloc]init];
-//                                NSMutableArray *jsonArray = [[NSMutableArray alloc]init];
-//                                
-//                                
-//                                //set the date
-//                                NSDate *today = [NSDate date];
-//                                NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-//                                [dateFormat setDateFormat:@"dd/MM/yyyy"];
-//                                NSString *dateString = [dateFormat stringFromDate:today];
-//                                
-//                                [[json valueForKey:@"d"] setValue:dateString forKey:@"CreatedDate"];
-//                                [[json valueForKey:@"d"] setValue:dateString forKey:@"UpdatedDate"];
-//                                [[json valueForKey:@"d"] setValue:@"ACTIVE" forKey:@"Status"];
-//                                [[json valueForKey:@"d"] removeObjectForKey:@"__type"];
-//                                [jsonArray addObject:[json valueForKey:@"d"]];
-//                                [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
-//                                NSLog(@"%@",ResponseDict);
-                                
-//                                [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
-                               
-                            }else{
-                               
-                            }
-                        }] resume];
-
                 
                 flagFirstLogin = false;
                 // create XMLDocument object
