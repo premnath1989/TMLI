@@ -116,7 +116,7 @@ int newAge;
     
     // BHIMBIM'S QUICK FIX - Start, to escape dupplicate query.
     
-    NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.IdentityCode  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
+    NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
     
     // BHIMBIM'S QUICK FIX - End
     

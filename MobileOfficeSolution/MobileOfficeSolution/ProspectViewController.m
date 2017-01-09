@@ -3238,6 +3238,8 @@ BOOL NavShowP;
                     
                     if (intCount > 0)
                     {
+                        NSLog(@"get existing - idtypeno : %@, otheridtype : %@ and otheridtypeno %@", [resultSelectProspect stringForColumn:@"IDTypeNo"], [resultSelectProspect stringForColumn:@"OtherIDType"], [resultSelectProspect stringForColumn:@"OtherIDTypeNo"]);
+                        
                         objectProspectProfile = [[ProspectProfile alloc] initWithName:
                             [resultSelectProspect stringForColumn:@"PreferredName"]
                             AndProspectID:[resultSelectProspect stringForColumn:@"IndexNo"]

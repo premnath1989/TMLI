@@ -99,8 +99,8 @@ BOOL NavShow2;
     
 }
 
-- (void)directoryFileListing{
-    
+- (void)directoryFileListing
+{
     FTPItemsList = [[NSMutableArray alloc]init];
     NSURL *directoryURL = [NSURL fileURLWithPath:filePath
                                      isDirectory:YES];
@@ -111,14 +111,15 @@ BOOL NavShow2;
                                              options:0
                                                error:&contentsError];
     
-    // BHIMBIM'S QUICK FIX - Start, dummy for query test
+    
+    // BHIMBIM'S QUICK FIX - Start, dummy for query test.
     
     [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"1", @"HRD Training", @"PDF", @"10 Mb",@"true",nil]];
     [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"2", @"Developer Training", @"PDF", @"8 Mb",@"true",nil]];
     [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"3", @"Underwriting Training", @"PDF", @"12 Mb",@"true",nil]];
     
     [FTPItemsList removeAllObjects];
-    [FTPItemsList setArray:arrayListRAW];
+    FTPItemsList = [[NSMutableArray alloc] initWithObjects:arrayListRAW, nil];
     
     // BHIMBIM'S QUICK FIX - End
     
@@ -228,7 +229,8 @@ BOOL NavShow2;
     
     for (int i = 0; i < arrayListRAW.count; i++)
     {
-        //[arrayListRAW objectAtIndex:i]
+        [[arrayListRAW objectAtIndex:i] objectAtIndex:1];
+        NSLog(@"actionFind -> name = %@, at index -> %d", [[arrayListRAW objectAtIndex:i] objectAtIndex:1], i);
     }
     
     [myTableView reloadData];
