@@ -7258,9 +7258,15 @@ BOOL NavShowP;
 //             _ViewMenu1.frame = CGRectMake(0, 105.0, 1024.0, 60.0);
 //             _ScrollViewProspect.frame = CGRectMake(0, 167.0, 1024.0, 800.0);
              
-             _btnChangeHeader.frame = CGRectMake(0, 105, 1024.0, 20.0);
-             _ViewMenu1.frame = CGRectMake(0, 126, 1024.0, 60.0);
-             _ScrollViewProspect.frame = CGRectMake(0, 186, 1024.0, 800.0);
+             
+             // BHIMBIM'S QUICK FIX - Start
+             
+             _btnChangeHeader.frame = CGRectMake(0, 110, 1024.0, 20.0);
+             _ViewMenu1.frame = CGRectMake(0, 130, 1024.0, 60.0);
+             _ScrollViewProspect.frame = CGRectMake(0, 202, 1024.0, 800.0);
+             
+             // BHIMBIM'S QUICK FIX - End
+             
              
 //             _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
          }
@@ -7283,9 +7289,16 @@ BOOL NavShowP;
 //             _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
 //             _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
              
-             _btnChangeHeader.frame = CGRectMake(0, 240.0, 1024.0, 20.0);
-             _ViewMenu1.frame = CGRectMake(0, 260.0, 1024.0, 60.0);
-             _ScrollViewProspect.frame = CGRectMake(0, 320.0, 1024.0, 800.0);
+             
+             // BHIMBIM'S QUICK FIX - Start
+             
+             _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
+             _ViewMenu1.frame = CGRectMake(0, 280, 1024.0, 60.0);
+             _ScrollViewProspect.frame = CGRectMake(0, 352.0, 1024.0, 800.0);
+             
+             // BHIMBIM'S QUICK FIX - End
+             
+             
 //             _ScrollViewProspect.contentSize = CGSizeMake(900, 1300);
          }
          completion:^(BOOL finished)
