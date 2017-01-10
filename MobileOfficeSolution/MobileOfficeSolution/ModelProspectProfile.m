@@ -617,9 +617,9 @@ int newAge;
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName = \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName like \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]];
     
-    NSLog(@"query %@",[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName = \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]);
+    NSLog(@"query %@",[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName like \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]);
     
     SINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IndexNo"]];
     while ([s next]) {

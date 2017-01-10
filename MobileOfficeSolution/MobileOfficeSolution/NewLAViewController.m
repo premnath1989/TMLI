@@ -85,6 +85,7 @@
     btnProspect.enabled = NO;
     LANameField.enabled = YES;
     
+    QuickQuoteBool = YES;
     NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
 
 //    [[UINavigationBar appearance] setTitleTextAttributes:@{
@@ -2934,6 +2935,11 @@
     
     if ([self validateSave]){
         //set the updated data to parent
+        BOOL isExist = NO;
+        if (QuickQuoteBool) {
+           isExist =  [self ValidateExistingData];
+        }
+        
         [self setPOLADictionary];
         
         //get updated data from parent and save it.
@@ -2951,7 +2957,9 @@
     
     modelProspectProfile=[[ModelProspectProfile alloc]init];
   
-    exist = [modelProspectProfile checkExistingData:@"" Gender:@"" DOB:@""];
+    NSString *name = LANameField.text;
+
+    exist = [modelProspectProfile checkExistingData:name Gender:sex DOB:_txtDob.text];
 
 
     return exist;
@@ -2963,6 +2971,8 @@
 
 -(void)listing:(ListingTbViewController *)inController didSelectIndex:(NSString *)aaIndex andName:(NSString *)aaName andDOB:(NSString *)aaDOB andGender:(NSString *)aaGender andMaritalStatus:(NSString *)aaMaritalStatus;
 {
+    
+    QuickQuoteBool = NO;
     int selectedIndex = [aaIndex intValue];
 
     clientProfileID = [aaIndex intValue];
@@ -3123,7 +3133,7 @@
 {
     NSLog(@"date %@ age %@ bAge %i anb %i",aDate,aAge,bAge,aANB);
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MM yyyy"];
     NSString *selectDate = aDate;
     NSDate *startDate = [dateFormatter dateFromString:selectDate];
     
