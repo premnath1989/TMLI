@@ -28,11 +28,11 @@
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
 #define CHARACTER_LIMIT_PC_F 12
-#define CHARACTER_LIMIT_FULLNAME 40
+#define CHARACTER_LIMIT_FULLNAME 81
 #define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
 #define CHARACTER_LIMIT_ExactDuties 40
-#define CHARACTER_LIMIT_Address 30
+#define CHARACTER_LIMIT_Address 40
 #define CHARACTER_LIMIT_POSTCODE 6
 #define CHARACTER_LIMIT_FOREIGN_POSTCODE 12
 #define CHARACTER_LIMIT_ANNUALINCOME 15
@@ -486,6 +486,7 @@ BOOL NavShowP;
     [txtHomeAddr1 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr2 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr3 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
+    [_txtAddress4 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeVillage addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeDistrict addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeProvince addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
@@ -1037,6 +1038,8 @@ BOOL NavShowP;
     NSString *texthomeaddress2=txtHomeAddr2.text;
     //texthomeaddress3
     NSString *texthomeaddress3=txtHomeAddr3.text;
+    //texthomeaddress4
+    NSString *texthomeaddress4=_txtAddress4.text;
     //textprefix1
     NSString *textprefix1=txtPrefix1.text;
     //txtcontact1
@@ -1252,6 +1255,7 @@ BOOL NavShowP;
     NSString *home1 = [txtHomeAddr1.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *home2 = [txtHomeAddr2.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *home3 = [txtHomeAddr3.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *home4 = [_txtAddress4.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     NSString *office1 = [txtOfficeAddr1.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *office2 = [txtOfficeAddr2.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -1983,6 +1987,9 @@ BOOL NavShowP;
     else if (textField == txtHomeAddr3) {
         [txtHomePostCode becomeFirstResponder];
     }
+    else if (textField == _txtAddress4) {
+        [_txtAddress4 becomeFirstResponder];
+    }
     else if (textField == txtHomePostCode) {
         [txtHomeVillage becomeFirstResponder];
     }
@@ -2063,13 +2070,13 @@ BOOL NavShowP;
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= 15));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     if ((textField == _txtHPRumah)||(textField == _txtHPRumah)){
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= 15));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     
     if((checked && textField == txtHomePostCode ) || (checked2 && textField == txtOfficePostcode)) {
@@ -2309,7 +2316,7 @@ BOOL NavShowP;
         return ((newLength <= CHARACTER_LIMIT_Bussiness));
     }
     
-    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || txtOfficeAddr1 ||txtOfficeAddr2 ||txtOfficeAddr3) {
+    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || textField == _txtAddress4 || textField == txtOfficeAddr1 ||textField == txtOfficeAddr2 ||textField == txtOfficeAddr3) {
         return ((newLength <= CHARACTER_LIMIT_Address));
     }
     

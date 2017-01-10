@@ -22,11 +22,11 @@
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
 #define CHARACTER_LIMIT_PC_F 12
-#define CHARACTER_LIMIT_FULLNAME 40
-#define CHARACTER_LIMIT_OtherID 30
+#define CHARACTER_LIMIT_FULLNAME 81
+#define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
 #define CHARACTER_LIMIT_ExactDuties 40
-#define CHARACTER_LIMIT_Address 30
+#define CHARACTER_LIMIT_Address 40
 #define CHARACTER_LIMIT_POSTCODE 6
 #define CHARACTER_LIMIT_FOREIGN_POSTCODE 12
 #define CHARACTER_LIMIT_ANNUALINCOME 15
@@ -2788,12 +2788,15 @@ bool PolicyOwnerSigned = TRUE;
     
     NSUInteger newLength = [textView.text length] + [text length] - range.length;
     
-    if (textView == txtExactDuties) {
-        
-		
-        return ((newLength <= CHARACTER_LIMIT_ExactDuties));
-    }
-    return YES;
+//    if (textView == txtExactDuties) {
+//        
+//		
+//        return ((newLength <= CHARACTER_LIMIT_ExactDuties));
+//    }
+//    return YES;
+    
+    activeView = textView;
+    return (newLength <= 500);//textView.text.length + (text.length - range.length) <= 500   ;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -2822,13 +2825,13 @@ bool PolicyOwnerSigned = TRUE;
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     if ((textField == _txtHPRumah)||(textField == _txtHPRumah)){
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     
     if((checked && textField == txtHomePostCode ) || (checked2 && textField == txtOfficePostCode)) {
