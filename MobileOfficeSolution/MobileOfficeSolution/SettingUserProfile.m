@@ -135,7 +135,15 @@
     
     txtPTKP.text = [loginDB getAgentProperty:@"TAXMETH"];
     txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
-    txtBankName.text = [loginDB getAgentProperty:@"BANKKEY"];
+    
+    NSString *bankcodeCondition = @"";
+    if([[loginDB getAgentProperty:@"BANKKEY"] compare:@""] != NSOrderedSame ||
+       [[loginDB getAgentProperty:@"BANKKEY"] compare:@"(null)"] != NSOrderedSame ){
+        bankcodeCondition = [NSString stringWithFormat:@"Bank_Code = '%@'", [loginDB getAgentProperty:@"BANKKEY"]];
+    }
+    
+    NSString *bankDesc = [loginDB getTableProperty:@"Bank_Desc" tableName:@"TMLI_Bank" condition:bankcodeCondition];
+    txtBankName.text = [self stringByTrimmingLeadingWhitespace:bankDesc];
     txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
     txtDM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
     txtRM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
@@ -147,6 +155,16 @@
     txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
     txtMobileNumber.enabled = NO;
     txtEmail.enabled = NO;
+}
+
+-(NSString*)stringByTrimmingLeadingWhitespace:(NSString*)unTrimmedString {
+    NSInteger i = 0;
+    
+    while ((i < [unTrimmedString length])
+           && [[NSCharacterSet whitespaceCharacterSet] characterIsMember:[unTrimmedString characterAtIndex:i]]) {
+        i++;
+    }
+    return [unTrimmedString substringFromIndex:i];
 }
 
 - (NSString *)DateFormatter:(NSString *)BareDate{
