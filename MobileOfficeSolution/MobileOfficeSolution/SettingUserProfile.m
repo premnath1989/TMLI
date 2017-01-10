@@ -165,13 +165,15 @@
 }
 
 -(NSString*)stringByTrimmingLeadingWhitespace:(NSString*)unTrimmedString {
-    NSInteger i = 0;
-    
-    while ((i < [unTrimmedString length])
-           && [[NSCharacterSet whitespaceCharacterSet] characterIsMember:[unTrimmedString characterAtIndex:i]]) {
-        i++;
+    NSArray* words = [unTrimmedString componentsSeparatedByCharactersInSet :[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *value = @"";
+    NSString* nospacestring = @"";
+    for(value in words){
+        if([value compare:@""] != NSOrderedSame){
+            nospacestring = [NSString stringWithFormat:@"%@ %@",nospacestring, value];
+        }
     }
-    return [unTrimmedString substringFromIndex:i];
+    return nospacestring;
 }
 
 
