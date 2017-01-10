@@ -394,27 +394,26 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
 - (IBAction)btnLogin:(id)sender {
     
-    [self openHome];
     
-//    if (textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length <=0 ) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username dan password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else if(textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length != 0 ){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else if(textFieldUserCode.text.length != 0 && textFieldUserPassword.text.length <= 0 ){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else{
-//        if(firstLogin && ![self connected]){
-//            [self FirstTimeAlert:@"Informasi"];
-//        }else{
-//            [self loginAction];
-//        }
-//    }
+    if (textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length <=0 ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username dan password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else if(textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length != 0 ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else if(textFieldUserCode.text.length != 0 && textFieldUserPassword.text.length <= 0 ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else{
+        if(firstLogin && ![self connected]){
+            [self FirstTimeAlert:@"Informasi"];
+        }else{
+            [self loginAction];
+        }
+    }
 }
 
 

@@ -60,6 +60,7 @@
 		DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514D91DB4A80800C429A2 /* Reachability.m */; };
 		DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */ = {isa = PBXBuildFile; fileRef = DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */; };
 		DE1514DF1DB4AAEF00C429A2 /* AppDisclaimer.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */; };
+		DE2B23F31E2495130060941B /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = DE2B23F21E2495130060941B /* DateFormatter.m */; };
 		DE49AD751DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DE49AD731DC09B7D00018B9C /* Bless_SPAJ.xcdatamodeld */; };
 		DE5F7AE41DB08ED2006DC32F /* database in Resources */ = {isa = PBXBuildFile; fileRef = DE5F7AE31DB08ED2006DC32F /* database */; };
 		DE5F7AE61DB090B1006DC32F /* MOSDB.sqlite.sql in Resources */ = {isa = PBXBuildFile; fileRef = DE5F7AE51DB090B1006DC32F /* MOSDB.sqlite.sql */; };
@@ -651,6 +652,8 @@
 		DE1514DB1DB4AAEF00C429A2 /* AppDisclaimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDisclaimer.h; sourceTree = "<group>"; };
 		DE1514DC1DB4AAEF00C429A2 /* AppDisclaimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDisclaimer.m; sourceTree = "<group>"; };
 		DE1514DD1DB4AAEF00C429A2 /* AppDisclaimer.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppDisclaimer.xib; sourceTree = "<group>"; };
+		DE2B23F11E2495050060941B /* DateFormatter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DateFormatter.h; sourceTree = "<group>"; };
+		DE2B23F21E2495130060941B /* DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter.m; sourceTree = "<group>"; };
 		DE49AD741DC09B7D00018B9C /* Bless_SPAJ.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bless_SPAJ.xcdatamodel; sourceTree = "<group>"; };
 		DE5F7AE31DB08ED2006DC32F /* database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = database; sourceTree = "<group>"; };
 		DE5F7AE51DB090B1006DC32F /* MOSDB.sqlite.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = MOSDB.sqlite.sql; path = database/query/MOSDB.sqlite.sql; sourceTree = "<group>"; };
@@ -1887,6 +1890,8 @@
 				DEDC5D931DAE3FBB0033FE37 /* SpinnerUtilities.m */,
 				DEDC5D941DAE3FBB0033FE37 /* DBMigration.h */,
 				DEDC5D951DAE3FBB0033FE37 /* DBMigration.m */,
+				DE2B23F11E2495050060941B /* DateFormatter.h */,
+				DE2B23F21E2495130060941B /* DateFormatter.m */,
 			);
 			name = LoginUtilities;
 			sourceTree = "<group>";
@@ -3772,6 +3777,7 @@
 				DEDC5E721DAE46460033FE37 /* PagesController.m in Sources */,
 				DEDC5E321DAE43580033FE37 /* AFHTTPRequestOperation.m in Sources */,
 				DEDC5DC81DAE417A0033FE37 /* BasicPlanViewController.m in Sources */,
+				DE2B23F31E2495130060941B /* DateFormatter.m in Sources */,
 				DEDC5CDB1DAE38B60033FE37 /* Constants.m in Sources */,
 				DEDC5D401DAE39DB0033FE37 /* LoginVar.m in Sources */,
 				DEDC5EB41DAE47570033FE37 /* KodePosInfo.m in Sources */,
