@@ -3734,139 +3734,301 @@ BOOL NavShowP;
     [self presentViewController:AlertPage animated:YES completion:nil];
 }
 
--(void) CalculateScore {
-    
+-(void) CalculateScore
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
     NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];
     FMResultSet *result;
-   
-    int poin;
+    
+    int intPoin;
     score = 0;
     completeStatus = 0;
-    //Age
-    if (![txtDOB.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        if (age > 35 && age < 46) {
-            score = score + 5;
-        }
-        else if (age >45 && age < 56) {
-            score = score + 4;
-        }
-        else if (age > 55) {
-            score = score + 3;
-        }
-        else if (age >25 && age < 36) {
-            score = score + 2;
-        }
-        else if (age > 17 && age < 26) {
-            score = score + 1;
-        }
-    }
-    
-    //gender
-    if (segGender.selectedSegmentIndex == 0) {
-        score = score + 2;
-        completeStatus = completeStatus + 1;
-    }
-    else {
-        score = score + 1;
-        completeStatus = completeStatus + 1;
-    }
-
-    //marital
-    if (![_txtMarital.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"poin"] intValue];
-        }
-        score = score + poin;
-    }
-    
-    //income
-    if (![txtAnnIncome.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = ?", txtAnnIncome.text];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-        
-    }
-    
-    //sourceIncome
-    if (![_txtSourceIncome.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-    }
-    
-    //occ
-    if (![_txtOccupation.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-        
-    }
     
     
-    //reference
     
-    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated vlalue.
     
-    if (![txtReferralName.text isEqualToString:@""])
+    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated value and i didn't change your current variable name, i also add some log to easily detect the scoring mistake.
+    
+    /* INITIALIZATION */
+    
+    Boolean booleanColumnEmpty = false;
+    NSString *stringInputValue = @"";
+    NSString *stringQuery = @"";
+    
+    /* AGE */
+    
+    if (![txtDOB.text isEqualToString:@""])
     {
-        NSLog(@"Calculate Score - Referral name | name -> %@", txtReferralName.text);
+        /* INITIALIZATION */
         
+        stringInputValue = @"";
+        completeStatus = completeStatus + 1;
+        
+        /* CONDITION */
+        
+        if (age > 35 && age < 46)
+        {
+            intPoin = 5;
+            stringInputValue = @"35 < age < 45";
+        }
+        else if (age >45 && age < 56)
+        {
+            intPoin = 4;
+            stringInputValue = @"45 < age < 56";
+        }
+        else if (age > 55)
+        {
+            intPoin =  3;
+            stringInputValue = @"35 < age < 45";
+        }
+        else if (age >25 && age < 36)
+        {
+            intPoin = 2;
+            stringInputValue = @"25 < age < 36";
+        }
+        else if (age > 17 && age < 26)
+        {
+            intPoin = 1;
+            stringInputValue = @"17 < age < 26";
+        }
+        else
+        {
+            
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, score, intPoin);
+    }
+    
+    
+    /* GENDER */
+    
+    stringInputValue = @"";
+    intPoin = 0;
+    
+    /* CONDITION */
+    
+    if (segGender.selectedSegmentIndex == 0)
+    {
+        intPoin = 2;
+        completeStatus = completeStatus + 1;
+        stringInputValue = @"MALE";
+    }
+    else
+    {
+        intPoin = 1;
+        completeStatus = completeStatus + 1;
+        stringInputValue = @"FEMALE";
+    }
+    
+    /* RESULT */
+    
+    score += intPoin;
+    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, score, intPoin);
+
+    
+    /* MARITAL STATUS */
+    
+    if (![_txtMarital.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
-        result = [db executeQuery:query];
-        poin = 0;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
+        result = [db executeQuery:stringQuery];
+        intPoin = 0;
         
         while ([result next])
         {
-            poin = [result columnIsNull:@"Poin"];
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
             
-            if (poin == true)
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Marital status | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"poin"] intValue];
+                NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", _txtMarital.text, score, intPoin);
+    }
+    
+    /* ANNUAL INCOME */
+    
+    if (![txtAnnIncome.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE AnnDesc = '%@'",  TABLE_EPROPOSAL_ANNUALINCOME,txtAnnIncome.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Annual income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Annual income | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", txtAnnIncome.text, score, intPoin);
+    }
+    
+    /* SOURCE INCOME */
+    
+    if (![_txtSourceIncome.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Source income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Source income | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", _txtSourceIncome.text, score, intPoin);
+    }
+    
+    /* OCUUPATION */
+    
+    if (![_txtOccupation.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Occupation | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Occupation | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", _txtOccupation.text, score, intPoin);
+    }
+    
+    /* REFERENCE */
+    
+    if (![txtReferralName.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
             {
                 NSLog(@"Calculate Score - Referral name | poin -> null");
             }
             else
             {
-                poin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Referral name | poin -> %d", poin);
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Referral name | poin -> %d", intPoin);
                 break;
             }
         }
-        score = score + poin;
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", txtReferralName.text, score, intPoin);
     }
     else
-    
     {
+        
     }
     
     // BHIMBIMS'S QUICK FIX - End
+    
+    
     
     
     //status

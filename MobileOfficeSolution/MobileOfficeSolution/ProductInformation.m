@@ -120,6 +120,7 @@ BOOL NavShow2;
     
     [FTPItemsList removeAllObjects];
     FTPItemsList = [[NSMutableArray alloc] initWithObjects:arrayListRAW, nil];
+    NSLog(@"FTP items list -> count : %d", FTPItemsList.count);
     
     // BHIMBIM'S QUICK FIX - End
     

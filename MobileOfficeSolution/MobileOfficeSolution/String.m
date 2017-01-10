@@ -75,3 +75,4 @@
     NSString* const TABLE_ZIPCODE = @"TMLI_kodepos";
     NSString* const TABLE_MASTER_INFO = @"TMLI_Master_Info";
     NSString* const TABLE_ERRORCODE = @"TMLI_Ref_ErrorCode";
+    NSString* const TABLE_EPROPOSAL_ANNUALINCOME = @"eProposal_AnnualIncome";
