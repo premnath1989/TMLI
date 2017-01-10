@@ -817,11 +817,12 @@ static NSString *labelVers;
     
     if(dateDifference > 7)
     {
-        if(dateDifference > 14){
+        if(dateDifference > 120){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 14 hari, semua data nasabah telah terhapus."
+                                                            message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
+            
         }else{
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
                                                         message:@"Anda tidak melakukan online login selama 7 hari, pastikan perangkat terhubung ke internet untuk login."
