@@ -458,7 +458,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         if(dateDifference > 120){
             [loginDB DeleteAgentProfile];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 14 hari, semua data nasabah telah terhapus."
+                                                            message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }else{
