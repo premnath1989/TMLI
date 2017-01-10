@@ -10,7 +10,7 @@
 
 @implementation DateFormatter
 
-- (NSString *)DateFormatter:(NSString *)BareDate{
+- (NSString *)DateMonthName:(NSString *)BareDate{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     NSDate *dateDOB = [dateFormatter dateFromString:BareDate];

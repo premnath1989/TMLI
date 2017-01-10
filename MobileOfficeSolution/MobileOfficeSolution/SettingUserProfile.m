@@ -24,6 +24,9 @@
 
 #import "CFFAPIController.h"
 #import "String.h"
+#import "DateFormatter.h"
+
+
 @interface SettingUserProfile ()
 
 @end
@@ -122,7 +125,7 @@
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
     
-    txtBOD.text = [self DateFormatter:[loginDB getAgentProperty:@"CLTDOB"]];
+    txtBOD.text = [[[DateFormatter alloc]init] DateMonthName:[loginDB getAgentProperty:@"CLTDOB"]];
     
     txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
     txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
@@ -150,7 +153,8 @@
     txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
     txtNamaKantor.text = @"";
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
-    txtAAJIDate.text = [self DateFormatter:[loginDB getAgentProperty:@"TLICEXPDT"]];
+    txtAAJIDate.text = [[[DateFormatter alloc]init]
+                        DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"]];
     
     txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
     txtMobileNumber.enabled = NO;
@@ -167,66 +171,6 @@
     return [unTrimmedString substringFromIndex:i];
 }
 
-- (NSString *)DateFormatter:(NSString *)BareDate{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    NSDate *dateDOB = [dateFormatter dateFromString:BareDate];
-    
-    NSDateFormatter *day = [[NSDateFormatter alloc] init];
-    [day setDateFormat:@"dd"];
-    NSString *txtDay = [day stringFromDate:dateDOB];
-    
-    NSDateFormatter *Month = [[NSDateFormatter alloc] init];
-    [Month setDateFormat:@"MM"];
-    NSString *txtMonth = [Month stringFromDate:dateDOB];
-    switch ([[Month stringFromDate:dateDOB] integerValue]) {
-        case 1:
-            txtMonth = @"Jan";
-            break;
-        case 2:
-            txtMonth = @"Feb";
-            break;
-        case 3:
-            txtMonth = @"Mar";
-            break;
-        case 4:
-            txtMonth = @"Apr";
-            break;
-        case 5:
-            txtMonth = @"May";
-            break;
-        case 6:
-            txtMonth = @"Jun";
-            break;
-        case 7:
-            txtMonth = @"Jul";
-            break;
-        case 8:
-            txtMonth = @"Aug";
-            break;
-        case 9:
-            txtMonth = @"Sep";
-            break;
-        case 10:
-            txtMonth = @"Oct";
-            break;
-        case 11:
-            txtMonth = @"Nov";
-            break;
-        case 12:
-            txtMonth = @"Dec";
-            break;
-            
-        default:
-            break;
-    }
-    
-    NSDateFormatter *Year = [[NSDateFormatter alloc] init];
-    [Year setDateFormat:@"YYYY"];
-    NSString *txtYear = [Year stringFromDate:dateDOB];
-    
-    return [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
-}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
