@@ -661,13 +661,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
     
-//    if(firstLogin){
-//        UserProfileView.modalPresentationStyle = UIModalPresentationFormSheet;
-//        UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        [UserProfileView setDelegate:self firstLogin:firstLogin];
-//        UserProfileView.preferredContentSize = CGSizeMake(600, 500);
-//        [self presentViewController:UserProfileView animated:YES completion:nil];
-//    }
+    if(firstLogin){
+        UserProfileView.modalPresentationStyle = UIModalPresentationFormSheet;
+        UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [UserProfileView setDelegate:self firstLogin:firstLogin];
+        UserProfileView.preferredContentSize = CGSizeMake(600, 500);
+        [self presentViewController:UserProfileView animated:YES completion:nil];
+    }
     
     //we do some version checker over here
     [self appVersionChecker];
