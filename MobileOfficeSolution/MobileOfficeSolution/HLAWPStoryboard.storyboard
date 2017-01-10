@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
-    <device id="ipad9_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" colorMatched="YES">
+    <device id="ipad9_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BPreplay_Bold.otf">
+        <array key="BPreplay_Bold.ttf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Italics.otf">
+        <array key="BPreplay_Italics.ttf">
             <string>BPreplay-Italic</string>
         </array>
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
         <array key="NewJune_Bold.ttf">
@@ -30,7 +30,7 @@
             <objects>
                 <viewController storyboardIdentifier="SIPageView" id="geq-zo-2Ih" customClass="SIMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LwU-rL-ZUw">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="OXt-6s-JuY">
@@ -157,6 +157,7 @@
                         <outlet property="btnChangeHeader" destination="wvR-XM-0Hy" id="xSP-0g-qVQ"/>
                         <outlet property="btnNavigation" destination="aaG-6h-8mi" id="umP-GU-Wfe"/>
                         <outlet property="imgHeader" destination="FK4-r7-jFi" id="BeD-aW-p4t"/>
+                        <outlet property="mainView" destination="LwU-rL-ZUw" id="jEU-NK-evM"/>
                         <outlet property="myTableView" destination="Dmj-H4-hpd" id="R5u-Ck-emB"/>
                     </connections>
                 </viewController>
@@ -169,7 +170,7 @@
             <objects>
                 <viewController storyboardIdentifier="Main" title="Main" id="b7I-0E-pxP" customClass="MainScreen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="67U-mK-eKY">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -183,7 +184,7 @@
             <objects>
                 <viewController storyboardIdentifier="FSVertical" title="FSVertical" id="uem-r2-8TL" customClass="FSVerticalTabBarController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q0j-Wv-0aI">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -197,7 +198,7 @@
             <objects>
                 <viewController storyboardIdentifier="Browser" title="Browser" id="Tro-yW-H5V" customClass="BrowserViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n7E-e3-3f2">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -211,7 +212,7 @@
             <objects>
                 <viewController storyboardIdentifier="SalesIlustration" id="hyY-qz-y3i" customClass="IlustrationViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9a7-5U-d1s">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" scalesPageToFit="YES" id="3Tj-db-vyv">
@@ -597,7 +598,7 @@
             <objects>
                 <viewController storyboardIdentifier="EditProspect" title="EditProspect" id="Iz4-6t-bhg" customClass="EditProspect" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9Ga-4o-cz4">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="tPn-SI-1iC">
@@ -2764,7 +2765,7 @@
             <objects>
                 <viewController storyboardIdentifier="newClientListing" title="Client Listing" id="wxI-wq-IhM" customClass="ProspectListing" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nsh-ac-XxT">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="TeV-EC-O8B">
@@ -3743,7 +3744,7 @@
             <objects>
                 <viewController storyboardIdentifier="HealthLoadView" id="iNw-RG-YYL" customClass="HLViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vzx-M5-nIH">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Health Loading  (Per 1k SA) :" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="P03-V8-x1s">
@@ -4175,7 +4176,7 @@
             <objects>
                 <viewController storyboardIdentifier="payorView" modalTransitionStyle="crossDissolve" id="O1D-FY-YIm" customClass="PayorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B0M-Cl-dJ0">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="IRq-Bm-g7X">
@@ -4837,7 +4838,7 @@
             <objects>
                 <viewController restorationIdentifier="SPAJLandingPage" storyboardIdentifier="SILandingPage" title="SILandingPage" id="rwS-ir-vd0" customClass="SILandingScreen" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvL-iq-tWT" customClass="ViewMain">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="6jI-R5-x5Z">
@@ -5026,7 +5027,7 @@
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>

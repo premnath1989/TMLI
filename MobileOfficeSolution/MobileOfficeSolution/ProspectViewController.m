@@ -3784,12 +3784,12 @@ BOOL NavShowP;
             intPoin =  3;
             stringInputValue = @"35 < age < 45";
         }
-        else if (age >25 && age < 36)
+        else if (age > 25 && age < 36)
         {
             intPoin = 2;
             stringInputValue = @"25 < age < 36";
         }
-        else if (age > 17 && age < 26)
+        else if (age > 16 && age < 26)
         {
             intPoin = 1;
             stringInputValue = @"17 < age < 26";
@@ -3802,7 +3802,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, score, intPoin);
+        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
     }
     
     
@@ -3829,7 +3829,7 @@ BOOL NavShowP;
     /* RESULT */
     
     score += intPoin;
-    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, score, intPoin);
+    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
 
     
     /* MARITAL STATUS */
@@ -3867,7 +3867,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", _txtMarital.text, score, intPoin);
+        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", _txtMarital.text, intPoin, score);
     }
     
     /* ANNUAL INCOME */
@@ -3905,7 +3905,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", txtAnnIncome.text, score, intPoin);
+        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", txtAnnIncome.text, intPoin, score);
     }
     
     /* SOURCE INCOME */
@@ -3943,7 +3943,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", _txtSourceIncome.text, score, intPoin);
+        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", _txtSourceIncome.text, intPoin, score);
     }
     
     /* OCUUPATION */
@@ -3981,7 +3981,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", _txtOccupation.text, score, intPoin);
+        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", _txtOccupation.text, intPoin, score);
     }
     
     /* REFERENCE */
@@ -4019,7 +4019,7 @@ BOOL NavShowP;
         /* RESULT */
         
         score += intPoin;
-        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", txtReferralName.text, score, intPoin);
+        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", txtReferralName.text, intPoin, score);
     }
     else
     {
