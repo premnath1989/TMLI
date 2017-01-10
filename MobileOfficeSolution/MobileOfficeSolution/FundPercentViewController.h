@@ -7,10 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@protocol FundPercentViewControllerDelegate
+    -(void)LoadInvestTable:(NSMutableDictionary *)dictUDInvest;
+@end
 
-@interface FundPercentViewController : UIViewController
-
-@property (strong, nonatomic) NSUserDefaults *UDInvest;
+@interface FundPercentViewController : UIViewController{
+}
+@property (nonatomic,strong) id <FundPercentViewControllerDelegate> delegate;
+@property (strong, nonatomic) NSMutableDictionary *UDInvest;
 @property (strong, nonatomic) IBOutlet UILabel *lblFundName;
 @property (strong, nonatomic) IBOutlet UITextField *TxtPercentage;
 

@@ -13,26 +13,29 @@
 @end
 
 @implementation FundPercentViewController
-@synthesize UDInvest, InvestList;
+@synthesize UDInvest, InvestList,delegate;
 
 NSString *FundName;
 NSString *Komposisi;
 
+-(void)viewWillAppear:(BOOL)animated{
+    FundName = [UDInvest valueForKey:@"FundName"];
+    
+    _lblFundName.text = FundName;
+
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UDInvest = [NSUserDefaults standardUserDefaults];
+    UDInvest = [[NSMutableDictionary alloc]init];
     
-    FundName = [UDInvest stringForKey:@"FundName"];
-    
-    _lblFundName.text = FundName;
     
 }
 
 - (IBAction)ActionOK:(id)sender {
     
-    UDInvest = [NSUserDefaults standardUserDefaults];
+    //UDInvest = [NSUserDefaults standardUserDefaults];
     
     InvestList = [NSMutableArray array];
     
@@ -46,7 +49,8 @@ NSString *Komposisi;
     
     [UDInvest setObject:InvestList forKey:@"InvestArray"];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadInvestTable" object:nil];
+    //[[NSNotificationCenter defaultCenter] postNotificationName:@"LoadInvestTable" object:nil];
+    [delegate LoadInvestTable:UDInvest];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -8,31 +8,36 @@
 
 #import "InvestmentTypeViewController.h"
 #import "FundPercentViewController.h"
+#import "ModelSIFundAllocation.h"
 
-@interface InvestmentTypeViewController ()
+@interface InvestmentTypeViewController ()<FundPercentViewControllerDelegate>{
+    ModelSIFundAllocation *modelSIFundAllocation;
+}
 
 @end
 
 @implementation InvestmentTypeViewController
-@synthesize UDInvest, FundList, InvestList, lblTotal;
+@synthesize  FundList, InvestList, lblTotal;
+@synthesize _delegate;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(LoadInvestTable) name:@"LoadInvestTable" object:nil];
     // Do any additional setup after loading the view.
-    UDInvest = [NSUserDefaults standardUserDefaults];
+    UDInvest = [[NSMutableDictionary alloc]init];
     
-    [self loadFundData];
+    
     
     //not sure this needed or not, but need to clear if new, call back from DB if edit
-    InvestList = [NSMutableArray array];
-    [InvestList removeAllObjects];
+    InvestList = [[NSMutableArray alloc]init];
+    modelSIFundAllocation = [[ModelSIFundAllocation alloc]init];
+    //[InvestList removeAllObjects];
      [UDInvest setObject:InvestList forKey:@"InvestArray"];
     
     lblTotal.text = @"Total: 0%";
 
-    
+    [self loadFundData];
 }
 
 -(void)loadFundData
@@ -74,12 +79,12 @@
     [_FundTypeTableView reloadData];
 }
 
--(void) LoadInvestTable {
+-(void)LoadInvestTable:(NSMutableDictionary *)dictUDInvest{
  
-    UDInvest = [NSUserDefaults standardUserDefaults];
-    InvestList = [NSMutableArray array];
-    [InvestList removeAllObjects];
-    InvestList = [UDInvest objectForKey:@"InvestArray"];
+    UDInvest = dictUDInvest;[NSUserDefaults standardUserDefaults];
+    //InvestList = [[NSMutableArray alloc]init];
+    //[InvestList removeAllObjects];
+    InvestList = [[NSMutableArray alloc]initWithArray:[UDInvest valueForKey:@"InvestArray"]];
     
     [_InvestasiTableView reloadData];
     
@@ -90,9 +95,11 @@
 -(void) CalculateTotal {
     int Total = 0;
     int komp =0;
-    for (int i = 0; i <= InvestList.count-1; i++) {
-        komp = [[[InvestList objectAtIndex:i] objectForKey:@"Komposisi"] intValue];
-        Total = Total + komp;
+    if (InvestList.count>0){
+        for (int i = 0; i <= InvestList.count-1; i++) {
+            komp = [[[InvestList objectAtIndex:i] objectForKey:@"Komposisi"] intValue];
+            Total = Total + komp;
+        }
     }
     lblTotal.text = [NSString stringWithFormat:@"Total: %d %%", Total];
 }
@@ -116,7 +123,24 @@
     
 }
 
-
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Remove seperator inset
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    // Prevent the cell from inheriting the Table View's margin settings
+    if ([cell respondsToSelector:@selector(setPreservesSuperviewLayoutMargins:)]) {
+        [cell setPreservesSuperviewLayoutMargins:NO];
+    }
+    
+    // Explictly set your cell's layout margins
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
+    
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -131,7 +155,8 @@
         
     }
     
-    
+    UIView* selectedView = [[UIView alloc] initWithFrame:cell.frame];
+    [selectedView setBackgroundColor:[UIColor colorWithRed:27.0/255.0 green:117.0/255.0 blue:134.0/255.0 alpha:1.0]];
     if([tableView isEqual:_FundTypeTableView])
     {
         cell.textLabel.text = [FundList objectAtIndex:indexPath.row];
@@ -164,17 +189,52 @@
     }
     
 
+    [cell.textLabel setFont:[UIFont fontWithName:@"NewJune-Regular" size:14.0]];
+    [cell setSelectedBackgroundView:selectedView];
     
+    if ((indexPath.row % 2) == 0){
+        [cell setBackgroundColor:[UIColor whiteColor]];
+    }
+    else{
+        [cell setBackgroundColor:[UIColor colorWithRed:231.0/255.0 green:233.0/255.0 blue:234.0/255.0 alpha:1.0]];
+    }
+
     return cell;
     
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return YES if you want the specified item to be editable.
+    if (tableView == _FundTypeTableView){
+        return NO;
+    }
+    else if (tableView == _InvestasiTableView){
+        return YES;
+    }
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (tableView == _InvestasiTableView){
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            [InvestList removeObjectAtIndex:indexPath.row];
+            [_InvestasiTableView beginUpdates];
+            [_InvestasiTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+                                    withRowAnimation:UITableViewRowAnimationFade];
+            [_InvestasiTableView endUpdates];
+            
+            [self CalculateTotal];
+        }
+    }
+}
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     _cellText = cell.textLabel.text;
     
-    UDInvest =  [NSUserDefaults standardUserDefaults];
+    //UDInvest =  [NSUserDefaults standardUserDefaults];
     
     if([tableView isEqual:_FundTypeTableView]) {
         
@@ -194,10 +254,11 @@
     
     UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:nil];
     FundPercentViewController *FundVC = [secondStoryBoard instantiateViewControllerWithIdentifier:@"FundPercent"];
-    
+    [FundVC setDelegate:self];
+    FundVC.preferredContentSize = CGSizeMake(600, 182);
+    [FundVC setModalPresentationStyle:UIModalPresentationFormSheet];
     [self presentViewController:FundVC animated:YES completion:nil];
-    
-    
+    FundVC.UDInvest = UDInvest;
 }
 
 
@@ -206,13 +267,37 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)setInvestmentDictionary{
+    NSMutableArray *arrayInvestList = [[NSMutableArray alloc]init];
+    for (int i=0;i<[InvestList count];i++){
+        NSMutableDictionary* dictInvestListData = [[NSMutableDictionary alloc]init];
+        [dictInvestListData setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+        [dictInvestListData setObject:@"" forKey:@"FundID"];
+        [dictInvestListData setObject:[[InvestList objectAtIndex:i] valueForKey:@"FundName"] forKey:@"FundName"];
+        [dictInvestListData setObject:[[InvestList objectAtIndex:i] valueForKey:@"Komposisi"] forKey:@"FundValue"];
+        
+        
+        [arrayInvestList addObject:dictInvestListData];
+    }
+    [_delegate setInvestmentListDictionary:arrayInvestList];
+}
 
-
-
-
-
-- (IBAction)DoSave:(id)sender {
+- (IBAction)actionSaveData:(UIButton *)sender {
+    //set the updated data to parent
+    [self setInvestmentDictionary];
     
+    //delete first
+    [modelSIFundAllocation deleteFundAllocationData:[_delegate getRunnigSINumber]];
+    
+    //get updated data from parent and save it.
+    NSMutableArray* arrayFundAllocationForInsert = [[NSMutableArray alloc]initWithArray:[_delegate getInvestmentArray]];
+    for (int i=0;i<[arrayFundAllocationForInsert count];i++){
+        NSMutableDictionary *dictForInsert = [[NSMutableDictionary alloc]initWithDictionary:[arrayFundAllocationForInsert objectAtIndex:i]];
+        [dictForInsert setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+        
+        [modelSIFundAllocation saveFundAllocationData:dictForInsert];
+    }
+    [_delegate showNextPageAfterSave:self];
 
 }
 @end

@@ -100,6 +100,8 @@ int maxGycc = 0;
 }
 
 -(void)setRiderDetailFromDelegate:(NSMutableArray *)arrayRider{
+    arrayRiderNameDetail = [[NSMutableArray alloc]init];
+    arrayRiderValueDetail = [[NSMutableArray alloc]init];
     for (int i=0;i<[arrayRider count];i++){
         [arrayRiderNameDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"RiderDesc"]];
         [arrayRiderValueDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SumAssured"]];
