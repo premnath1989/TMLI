@@ -151,6 +151,9 @@
     NSMutableDictionary* dictBebasPremi;
     //end of added by faiz
 }
+
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+
 @property (strong, nonatomic) IBOutlet UIButton *outletSaveAs;
 
 @property (nonatomic, assign) id<SIMenuDelegate> delegate;
