@@ -34,6 +34,8 @@
 #import "Model_SI_Premium.h"
 #import "ModelSIBasicPlan.h"
 #import "ModelSIRider.h"
+#import "ModelSIFundAllocation.h"
+#import "ModelSITopUpWithDraw.h"
 #import "Model_SI_Rider.h"
 #import "Formatter.h"
 #import "RiderCalculation.h"
@@ -44,13 +46,12 @@
 #import "FundPercentController.h"
 #import "TopupWithdrawViewController.h"
 
-
 @class SIMenuViewController;
 @protocol SIMenuDelegate
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeViewControllerDelegate, FundPercentControllerDelegate, TopupWithdrawViewControllerDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeControllerDelegate, FundPercentControllerDelegate,TopupWithdrawControllerDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -73,13 +74,14 @@
     Model_SI_Master *_modelSIMaster;
     Model_SI_Rider *model_SI_Rider;
     ModelSIPOData *_modelSIPOData;
+    ModelSIFundAllocation* modelSIFundAllocation;
+    ModelSITopUpWithDraw* modelSITopUpWithDraw;
     NewLAViewController *_LAController;
     PayorViewController *_PayorController;
     SecondLAViewController *_SecondLAController;
     BasicPlanViewController *_BasicController;
     RiderViewController *_RiderController;
     InvestmentTypeViewController *_InvestmentTypeController;
-    TopupWithdrawViewController *_TopupController;
     FundPercentController *_FundPercentController;
 	FSVerticalTabBarController *_FS;
     HLViewController *_HLController;
@@ -165,7 +167,6 @@
 @property (nonatomic,retain) HLViewController *HLController;
 @property (nonatomic,retain) InvestmentTypeViewController *InvestmentController;
 @property (nonatomic,retain) FundPercentController *FundPercentController;
-@property (nonatomic,retain) TopupWithdrawViewController *TopupController;
 
 @property (nonatomic,retain) FSVerticalTabBarController *FS;
 

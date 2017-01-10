@@ -12,17 +12,25 @@
 
 
 @class InvestmentTypeViewController;
-@protocol InvestmentTypeViewControllerDelegate
 
+@protocol InvestmentTypeControllerDelegate
+-(NSString *)getRunnigSINumber;
+-(NSMutableDictionary *)getBasicPlanDictionary;
+-(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData;
+-(NSMutableArray *)getInvestmentArray;
+-(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
+
 @interface InvestmentTypeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>{
-    id <InvestmentTypeViewControllerDelegate> _delegate;
+    
     
     NSMutableArray *FundList;
     NSMutableArray *InvestList;
+    
+    NSMutableDictionary *UDInvest;
 }
 
-@property (strong, nonatomic) NSUserDefaults *UDInvest;
+@property (strong, nonatomic) id <InvestmentTypeControllerDelegate> _delegate;
 @property (strong, nonatomic) IBOutlet UITableView *FundTypeTableView;
 @property (strong, nonatomic) IBOutlet UITableView *InvestasiTableView;
 

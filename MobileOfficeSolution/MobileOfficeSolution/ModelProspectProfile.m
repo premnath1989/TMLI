@@ -608,6 +608,30 @@ int newAge;
 
 }
 
+-(BOOL)checkExistingData:(NSString *)FrontName  Gender:(NSString *)gender DOB:(NSString *)dob{
+    NSString *SINo;
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    
+    BOOL exist = NO;
+    FMDatabase *database = [FMDatabase databaseWithPath:path];
+    [database open];
+    
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName like \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]];
+    
+    NSLog(@"query %@",[NSString stringWithFormat:@"select IndexNo from prospect_profile where  ProspectName like \"%@\"  and ProspectDOB = \"%@\" and ProspectGender = \"%@\"", FrontName,  dob , gender]);
+    
+    SINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IndexNo"]];
+    while ([s next]) {
+        SINo = [NSString stringWithFormat:@"%@",[s stringForColumn:@"IndexNo"]];
+        exist = YES;
+    }
+    [results close];
+    [database close];
+    return exist;
+    
+}
+
 -(NSMutableArray *)searchProspectProfileByID:(int)prospectID{
     NSString *ProspectID = @"";
     NSString *NickName = @"";

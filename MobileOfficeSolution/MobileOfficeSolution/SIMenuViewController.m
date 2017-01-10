@@ -29,6 +29,7 @@
 #import "User Interface.h"
 #import "InvestmentTypeViewController.h"
 
+
 #define TRAD_PAYOR_FIRSTLA  @"0"
 #define TRAD_PAYOR_SECONDLA  @"1"
 #define TRAD_PAYOR_PAYOR  @"2"
@@ -37,6 +38,7 @@
 
 @interface SIMenuViewController (){
     PremiumViewController *_PremiumController;
+    TopupWithdrawViewController* topUpWithDrawVC;
     NSMutableArray* arrayIntValidate;
     NSMutableDictionary* dictionaryPOForInsert;
     NSMutableDictionary* dictionaryMasterForInsert;
@@ -48,6 +50,8 @@
     NSMutableDictionary* dictParentPOLAData;
     NSMutableDictionary* dictParentULBasicPlanData;
     NSMutableArray* arrayRiderData;
+    NSMutableArray* arrayFundAllocationData;
+    NSMutableArray* arrayTopUpWithDrawData;
     
     BOOL isPOFilled;
     BOOL isLAFilled;
@@ -105,6 +109,8 @@ BOOL NavShow3;
     _modelSIPOData = [[ModelSIPOData alloc]init];
     _modelSIMaster = [[Model_SI_Master alloc]init];
     _modelSIRider = [[ModelSIRider alloc]init];
+    modelSIFundAllocation = [[ModelSIFundAllocation alloc]init];
+    modelSITopUpWithDraw = [[ModelSITopUpWithDraw alloc]init];
     model_SI_Rider = [[Model_SI_Rider alloc]init];
     modelSIBasicPlan = [[ModelSIBasicPlan alloc]init];
     
@@ -124,6 +130,9 @@ BOOL NavShow3;
     _SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
     _SecondLAController.delegate = self;
 
+    topUpWithDrawVC = [[TopupWithdrawViewController alloc]initWithNibName:@"TopupWithdrawViewController" bundle:nil];
+    [topUpWithDrawVC setDelegate:self];
+    
     dictionaryPOForInsert = [[NSMutableDictionary alloc]init];
     
     NSString *documentdir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -136,7 +145,7 @@ BOOL NavShow3;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
     
     //--for table view
     //self.myTableView.backgroundColor = [UIColor darkGrayColor];
@@ -2926,20 +2935,23 @@ BOOL NavShow3;
         [self.RightView addSubview:self.RiderController.view];
         [_RiderController loadDataFromList];
     }
+    _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
+    [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
 }
 
 -(IBAction)actionShowFundAllocation:(id)sender{
 
     self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
-    // _InvestmentController.delegate = self;
+    self.InvestmentController._delegate = self;
     [self.RightView addSubview:self.InvestmentController.view];
-    
+    _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
+    [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
-    self.TopupController = [self.storyboard instantiateViewControllerWithIdentifier:@"TopupWithdrawVC"];
-    // _InvestmentController.delegate = self;
-    [self.RightView addSubview:self.TopupController.view];
+    [self.RightView addSubview:topUpWithDrawVC.view];
+    _SiScrollView.contentSize = CGSizeMake(topUpWithDrawVC.view.frame.size.width, 412.0);
+    [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -2952,12 +2964,15 @@ BOOL NavShow3;
     else if (currentVC == _BasicController){
         [self actionShowRider:nil];
     }
-    else if (currentVC == _InvestmentController) {
+    else if (currentVC == _RiderController){
         [self actionShowFundAllocation:nil];
     }
-    else if (currentVC == _FundPercentController) {
+    else if (currentVC == _InvestmentController) {
         [self actionShowTopUpWithdraw:nil];
     }
+    /*else if (currentVC == _FundPercentController) {
+        [self actionShowTopUpWithdraw:nil];
+    }*/
 }
 #pragma mark - table view
 
@@ -4696,7 +4711,7 @@ BOOL NavShow3;
     
     NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath2 = [paths2 objectAtIndex:0];
-    NSString *path2 = [docsPath2 stringByAppendingPathComponent:DATABASE_MAIN_NAME];
+    NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
     
     
     NSString *query = [NSString stringWithFormat:@"select AgentCode,AgentName from %@",TABLE_AGENT_PROFILE];
@@ -5901,6 +5916,33 @@ NSString *prevPlan;
     
     [myTableView reloadData];
 }
+
+#pragma mark save method TopUpWithDraw
+-(void)setInitialTopUpWithdrawArray{
+    arrayTopUpWithDrawData = [[NSMutableArray alloc]initWithArray:[modelSITopUpWithDraw getTopUpWithDrawDataFor:self.requestSINo]];
+}
+
+-(void)setTopUpWithDrawDictionary:(NSMutableArray *)arrayTopUpWithDraw{
+    arrayTopUpWithDrawData = [[NSMutableArray alloc]initWithArray:arrayTopUpWithDraw];
+}
+
+-(NSMutableArray *)getTopUpWithDrawArray{
+    return arrayTopUpWithDrawData;
+}
+
+#pragma mark save method FundAllocation
+-(void)setInitialInvestmentArray{
+    arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:[modelSIFundAllocation getFundAllocationDataFor:self.requestSINo]];
+}
+
+-(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData{
+    arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:arrayInvestmentListData];
+}
+
+-(NSMutableArray *)getInvestmentArray{
+    return arrayFundAllocationData ;
+}
+
 
 #pragma mark save method Rider
 -(void)setInitialRiderArray{
