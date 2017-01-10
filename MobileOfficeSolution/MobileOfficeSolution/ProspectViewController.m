@@ -3742,8 +3742,6 @@ BOOL NavShowP;
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];
     FMResultSet *result;
-    
-    int intPoin;
     score = 0;
     completeStatus = 0;
     
@@ -3757,6 +3755,7 @@ BOOL NavShowP;
     Boolean booleanColumnEmpty = false;
     NSString *stringInputValue = @"";
     NSString *stringQuery = @"";
+    int intPoin;
     
     /* AGE */
     
@@ -3844,7 +3843,7 @@ BOOL NavShowP;
         
         /* QUERY */
         
-        stringQuery = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
         result = [db executeQuery:stringQuery];
         intPoin = 0;
         
@@ -3858,7 +3857,7 @@ BOOL NavShowP;
             }
             else
             {
-                intPoin = [[result objectForColumnName:@"poin"] intValue];
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
                 break;
             }
@@ -3920,7 +3919,7 @@ BOOL NavShowP;
         
         /* QUERY */
         
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
         result = [db executeQuery: stringQuery];
         intPoin = 0;
         
@@ -3958,7 +3957,7 @@ BOOL NavShowP;
         
         /* QUERY */
         
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
         result = [db executeQuery: stringQuery];
         intPoin = 0;
         
@@ -3996,7 +3995,7 @@ BOOL NavShowP;
         
         /* QUERY */
         
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
         result = [db executeQuery: stringQuery];
         intPoin = 0;
         
