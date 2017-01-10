@@ -52,12 +52,13 @@
         // LOCALIZABLE
         
         LoginDBManagement *loginDB = [[LoginDBManagement alloc]init];
+        NSMutableDictionary *agentDetails =[loginDB getAgentDetails];
         
         NSString *fullName;
-        if([loginDB valueForKey:@"LGIVNAME"] == nil){
-            fullName = [NSString stringWithFormat:@"%@ %@",[loginDB valueForKey:@"AgentName"], @""];
+        if([agentDetails valueForKey:@"LGIVNAME"] == nil){
+            fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], @""];
         }else{
-            fullName = [NSString stringWithFormat:@"%@ %@", [loginDB valueForKey:@"LGIVNAME"],[loginDB valueForKey:@"AgentName"]];
+            fullName = [NSString stringWithFormat:@"%@ %@", [agentDetails valueForKey:@"LGIVNAME"],[agentDetails valueForKey:@"AgentName"]];
         }
         
         _labelName.text = fullName;

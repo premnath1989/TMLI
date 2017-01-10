@@ -11,6 +11,6 @@
 @interface DateFormatter : NSObject{
 }
 
-- (NSString *)DateMonthName:(NSString *)BareDate;
+- (NSString *)DateMonthName:(NSString *)BareDate prevFormat:(NSDateFormatter *) prevFormat;
 
 @end

@@ -125,7 +125,10 @@
     txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
     txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
     
-    txtBOD.text = [[[DateFormatter alloc]init] DateMonthName:[loginDB getAgentProperty:@"CLTDOB"]];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    txtBOD.text = [[[DateFormatter alloc]init]
+                   DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
     
     txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
     txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
@@ -154,7 +157,7 @@
     txtNamaKantor.text = @"";
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
     txtAAJIDate.text = [[[DateFormatter alloc]init]
-                        DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"]];
+                        DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
     
     txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
     txtMobileNumber.enabled = NO;

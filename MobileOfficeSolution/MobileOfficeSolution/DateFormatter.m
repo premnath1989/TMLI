@@ -10,10 +10,8 @@
 
 @implementation DateFormatter
 
-- (NSString *)DateMonthName:(NSString *)BareDate{
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    NSDate *dateDOB = [dateFormatter dateFromString:BareDate];
+- (NSString *)DateMonthName:(NSString *)BareDate prevFormat:(NSDateFormatter *) prevFormat{
+    NSDate *dateDOB = [prevFormat dateFromString:BareDate];
     
     NSDateFormatter *day = [[NSDateFormatter alloc] init];
     [day setDateFormat:@"dd"];
