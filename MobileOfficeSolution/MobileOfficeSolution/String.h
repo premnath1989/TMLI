@@ -52,6 +52,9 @@
     extern NSString *const COLUMN_SPAJHEADER_SUBMITTEDON;
     extern NSString *const COLUMN_SPAJHEADER_STATE;
 
+    // Databases Name
+    extern NSString* const DATABASE_MAIN_NAME;
+
     // Tables Name
     extern NSString* const TABLE_AGENT_PROFILE;
     extern NSString* const TABLE_CHANNEL;

@@ -18,6 +18,7 @@
 #import "SecondLAViewController.h"
 #import "ModelSIPOData.h"
 #import "RelationshipPopoverViewController.h"
+#import "ModelProspectProfile.h"
 
 @class NewLAViewController;
 @protocol NewLAViewControllerDelegate
@@ -42,6 +43,7 @@
 @end
 
 @interface NewLAViewController : UIViewController<UITextFieldDelegate,UIPopoverControllerDelegate,ListingTbViewControllerDelegate,DateViewControllerDelegate,OccupationListDelegate,PlanListDelegate>{
+    FMResultSet *results;
     NSString *databasePath;
     sqlite3 *contactDB;
     UITextField *activeField;
@@ -61,6 +63,8 @@
     DateViewController *_LADate;
     OccupationList *_OccupationList;
     id <NewLAViewControllerDelegate> _delegate;
+    
+    ModelProspectProfile* modelProspectProfile;
     BOOL Saved;
     BOOL Inserted;
     BOOL useExist;

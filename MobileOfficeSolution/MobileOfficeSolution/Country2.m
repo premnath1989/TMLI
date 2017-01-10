@@ -8,6 +8,7 @@
 
 #import "Country2.h"
 #import "FMDatabase.h"
+#import "String.h"
 
 @interface Country2 ()
 
@@ -28,7 +29,7 @@
 		NSArray *paths = NSSearchPathForDirectoriesInDomains (NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *documentsPath = [paths objectAtIndex:0];
 		
-		databasePath = [documentsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+		databasePath = [documentsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
 		FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
 		[db open];
 		NSString *strQuery;

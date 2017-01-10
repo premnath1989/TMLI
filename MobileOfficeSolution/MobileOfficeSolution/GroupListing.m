@@ -11,6 +11,7 @@
 #import "FMDatabase.h"
 #import "NewGroupListing.h"
 #import "GroupVC.h"
+#import "String.h"
 
 @interface GroupListing () {
      UIColor *borderColor;
@@ -31,7 +32,7 @@
 	UDGroup = [NSUserDefaults standardUserDefaults];
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     //self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"bg10.jpg"]];
     self.myTableView.backgroundColor = [UIColor clearColor];

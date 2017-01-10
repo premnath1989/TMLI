@@ -17,6 +17,7 @@
 #import "Formatter.h"
 #import "SPAJSubmissionFiles.h"
 #import "AppDelegate.h"
+#import "String.h"
 
 
 @implementation SPAJDisNumber{
@@ -212,7 +213,7 @@
                     [ResponseDict setValue:jsonArray forKey:@"SPAJPackNumber"];
                     NSLog(@"%@",ResponseDict);
                     
-                    [loginDB insertTableFromJSON:ResponseDict databasePath:@"MOSDB.sqlite"];
+                    [loginDB insertTableFromJSON:ResponseDict databasePath:DATABASE_MAIN_NAME];
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [self viewDidLoad];

@@ -243,14 +243,14 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
-    // remove left over MOSDB.sqlite from temporary folder
+    // remove left over DATABASE_MAIN_NAME from temporary folder
     if ([fileManager removeItemAtPath:tempDirStr error:&error] != YES) {
         if (error.code != 4) {
             NSLog(@"%@ - Removing item from temporary directory.",[error localizedDescription]);
         }
     }
     
-    // copy MOSDB.sqlite from document folder to temporary folder
+    // copy DATABASE_MAIN_NAME from document folder to temporary folder
     if ([fileManager copyItemAtPath:defaultDBPathStr toPath:tempDirStr error:&error] != YES) {
         NSLog(@"%@ - Copy item from default to temporary directory.",[error localizedDescription]);
     }
@@ -270,14 +270,14 @@
 {
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSError *error;
-    // remove MOSDB.sqlite from default folder
+    // remove DATABASE_MAIN_NAME from default folder
     if ([fileManager removeItemAtPath:defaultDBPathStr error:&error] != YES) {
         if (error.code != 4) {
             NSLog(@"%@ - Removing item from default directory.",[error localizedDescription]);
         }
     }
     
-    // replace the MOSDB.sqlite by moving the database in the temporary folder to the default folder
+    // replace the DATABASE_MAIN_NAME by moving the database in the temporary folder to the default folder
     if ([fileManager moveItemAtPath:tempDirStr toPath:defaultDBPathStr error:&error] != YES) {
         NSLog(@"%@ - Moving item from temporary to default directory.",[error localizedDescription]);
     }

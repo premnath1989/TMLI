@@ -83,14 +83,14 @@ MBProgressHUD *HUD;
     deleteBtn.layer.cornerRadius = 5;
     deleteBtn.layer.masksToBounds = YES;
     
-    UIColor * grey70 = [UIColor colorWithWhite: 0.70 alpha:1];
-    [_txtFrontName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_txtLastName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_txtTanggalLahir setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
-    
-    
+
     // BHIMBIM'S QUICK FIX - Start
+    
+    //    UIColor * grey70 = [UIColor colorWithWhite: 0.70 alpha:1];
+    //    [_txtFrontName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_txtLastName setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_txtTanggalLahir setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
+    //    [_TxtPhoneNo setValue:grey70 forKeyPath:@"_placeholderLabel.textColor"];
     
     _objectUserInterface = [[UserInterface alloc] init];
     
@@ -773,7 +773,7 @@ MBProgressHUD *HUD;
 - (void) getTotal
 {
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     if ([db close]) {
         [db open];
@@ -910,7 +910,7 @@ MBProgressHUD *HUD;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
@@ -1190,6 +1190,7 @@ MBProgressHUD *HUD;
     {
         pp = [ProspectTableData objectAtIndex:indexPath.row];
     }
+    NSLog(@"Did select row - other id type : %@, other id type no %@", pp.OtherIDType, pp.OtherIDTypeNo);
     zzz.pp = pp;
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];
@@ -1540,7 +1541,7 @@ MBProgressHUD *HUD;
     int RecCount = 0;
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     for (UITableViewCell *cell in [self.myTableView visibleCells])
     {

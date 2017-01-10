@@ -119,7 +119,7 @@ bool WPTPD30RisDeleted = FALSE;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     RatesDatabasePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"BCA_Rates.sqlite"];
     
 	if ([requesteProposalStatus isEqualToString:@"Failed"] || [requesteProposalStatus isEqualToString:@"Submitted"] ||
@@ -2281,7 +2281,7 @@ bool WPTPD30RisDeleted = FALSE;
         
         NSArray *paths2 = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsPath2 = [paths2 objectAtIndex:0];
-        NSString *path2 = [docsPath2 stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        NSString *path2 = [docsPath2 stringByAppendingPathComponent:DATABASE_MAIN_NAME];
         
         
         FMDatabase *database = [FMDatabase databaseWithPath:path2];
@@ -5345,182 +5345,7 @@ bool WPTPD30RisDeleted = FALSE;
 }
 
 
-- (bool)validationDataBasicPlan
-{
-    bool valid=true;
-    NSArray* validationSet=[[NSArray alloc]initWithObjects:@"",@"- SELECT -",@"- Select -",@"--Please Select--", nil];
-    
-    //validation message data refferal
-    NSString *validationUangPertanggunganDasar=@"Uang Pertanggungan dasar harus diisi";
-    NSString *validationMasaPembayaran=@"Masa Pembayaran harus diisi";
-    NSString *validationFrekuensiPembayaran=@"Frekuensi Pembayaran harus diisi";
-    NSString *validationMasaExtraPremi=@"Masa Extra Premi harus diisi";
-    NSString *validationEmptyExtraPremi=@"Extra Premi harus diisi";
-    NSString *validationDiskonLebih=@"Diskon untuk produk ini tidak boleh lebih dari 0. Tekan tombol OK untuk melakukan penghitungan ulang";
-    NSString *validationUanglebih;
-    
-    NSString *validationUanglebihkk=@"Uang Pertangungan Dasar Min:Rp30,000,000 Max:Rp1,500,000,000";
-    NSString *validationExtraPremi=@"Extra Premi harus 25%,50%,75%,100%.....300%";
-    NSString *validationExtraNumber=@"Extra Premi 0/100 harus 1-10";
-    NSString *validationPembelianKe=@"Pembelian Ke tidak boleh sama dengan 0";
-    
-    NSString* uangPertanggunganDasar=yearlyIncomeField.text;
-    NSString* masaPembayaran=_masaPembayaranButton.titleLabel.text;
-    NSString* frekuensiPembayaran=_frekuensiPembayaranButton.titleLabel.text;
-    NSString* masaEktraPremi=_masaExtraPremiField.text;
-    
-    
-    NSString* BasicPremiTotal=_BasicPremiiField.text;
-    NSString* PremiTopupTotal=_PremiTopUpRegularField.text;
-    NSString* UangPertanggunganTotal = yearlyIncomeField.text;
-    
-   // MinBasicPremiValue
-    
-    
-    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    //NSNumber *myNumber = [f numberFromString:uangPertanggunganDasar];
-    NSNumber *myNumber = [classFormatter convertAnyNonDecimalNumberToString: BasicPremiTotal];
-    NSNumber *myNumberBasicPremiTotal = [classFormatter convertAnyNonDecimalNumberToString: MinBasicPremiValue];
-    NSNumber *myNumberTopUp = [classFormatter convertAnyNonDecimalNumberToString: PremiTopupTotal];
-    NSNumber *myNumberPremiTopUpTotal = [classFormatter convertAnyNonDecimalNumberToString: MinTopUpRegularValue];
-   
-    NSNumber *myNumberUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: UangPertanggunganTotal];
-    NSNumber *myNumberPremiUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: SumTotalUangPertanggungan];
-    
- //Sample//
-    long long sumBasicPremiTotal = [myNumber longLongValue];
-    long long sumMinBasicPremiValue = [myNumberBasicPremiTotal longLongValue];
-    long long sumBasicPremiTopUpTotal = [myNumberTopUp longLongValue];
-    long long sumMinBasicPremiTopUpValue = [myNumberPremiTopUpTotal longLongValue];
-    long long sumMinBasicPremiUangPertanggunganTotal = [myNumberUangPertanggunganTotal longLongValue];
-    long long sumMinBasicPremiUangPertanggunganTotalValue = [myNumberPremiUangPertanggunganTotal longLongValue];
-    
-    long long maxNumber = 300000000000;
-    long long minNumber;
-    int IsInternalStaff =[[_dictionaryPOForInsert valueForKey:@"IsInternalStaff"] intValue];
-    NSNumber* diskonPremi = [classFormatter convertAnyNonDecimalNumberToString:_KKLKDiskaunBtn.text];
-    if (IsInternalStaff==0){
-        //minNumber= 1000000000;
-        //validationUanglebih=@"Uang Pertangungan Dasar Min:Rp1,000,000,000 Max:Rp300,000,000,000";
-        minNumber= 500000000;
-        validationUanglebih=@"Uang Pertangungan Dasar Min:Rp500,000,000 Max:Rp300,000,000,000";
-    }
-    else{
-        minNumber= 500000000;
-        validationUanglebih=@"Uang Pertangungan Dasar Min:Rp500,000,000 Max:Rp300,000,000,000";
-    }
-    
-    
-    long long maxNumberkk = 1500000000;
-    long long minNumberkk = 30000000;
-    
-    NSLog(@"%lld",sumBasicPremiTotal);
-    NSLog(@"%lld",sumMinBasicPremiValue);
-    
-    //Sample//
-    
-    
-    //TMLI Validation
-    
-    NSString *NamaProduk=@"Nama Produk harus diisi";
-    NSString *MAtaUang=@"Mata Uang harus DiIsi";
-    NSString *FrekuensiPembayaran1 =@"Frekuensi Pembayaran harus diisi";
-    NSString *BasicPremi =@"Basic Premi harus diisi";
-    NSString *PremiTopUpRegularField =@"Premi Top Up Regular harus diisi";
-    NSString *RencanaField =@"Rencana harus diisi";
-    NSString *RencanaFieldValue =@"Rencana Max : 5";
-    
-    NSString *ValidationPremiDasar;
-    NSString *ValidationPremiTopUp;
-    NSString *ValidationPremiTotalSum;
-    
-    if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
-    {
-    ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinBasicPremiValue];
-    ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinTopUpRegularValue];
-    ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",SumTotalUangPertanggungan];
-    }
-    else
-    {
-    ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinBasicPremiValue];
-    ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinTopUpRegularValue];
-    ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",SumTotalUangPertanggungan];
-    }
-    
-      NSLog(@"topUpRegular %@",_PremiTopUpRegularField.text);
-    
-    if ([validationSet containsObject:_masaPembayaranButton.titleLabel.text]||_masaPembayaranButton.titleLabel.text==NULL)
-    {
-        [self createAlertViewAndShow:NamaProduk tag:0];
-        [_masaPembayaranButton setBackgroundColor:[UIColor redColor]];
-        return false;
-    }
-    
-    else if([validationSet containsObject:_MataUangPembayaran.titleLabel.text]||_MataUangPembayaran.titleLabel.text==NULL)
-    {
-        [self createAlertViewAndShow:MAtaUang tag:0];
-        [_MataUangPembayaran setBackgroundColor:[UIColor redColor]];
 
-        return false;
-    }
-    
-    else if([validationSet containsObject:_frekuensiPembayaranButton.titleLabel.text]||_frekuensiPembayaranButton.titleLabel.text==NULL)
-    {
-        [self createAlertViewAndShow:FrekuensiPembayaran1 tag:0];
-        [_frekuensiPembayaranButton setBackgroundColor:[UIColor redColor]];
-
-        return false;
-    }
-    
-    else if ([_BasicPremiiField.text isEqualToString:@""]||_BasicPremiiField.text==NULL)
-    {
-        [self createAlertViewAndShow:BasicPremi tag:0];
-        [_BasicPremiiField becomeFirstResponder];
-        return false;
-    }
-    
-    else if (sumBasicPremiTotal < sumMinBasicPremiValue)
-    {
-        [self createAlertViewAndShow:ValidationPremiDasar tag:0];
-       [_BasicPremiiField becomeFirstResponder];
-        return false;
-    }
- //Premi-TopUp is not mandatory
-//    else if ([_PremiTopUpRegularField.text isEqualToString:@""]||_PremiTopUpRegularField.text==NULL)
-//    {
-//        [self createAlertViewAndShow:PremiTopUpRegularField tag:0];
-//        [_PremiTopUpRegularField becomeFirstResponder];
-//        return false;
-//    }
-    
-    
-//    else if (_PremiTopUpRegularField.text ==nil && _PremiTopUpRegularField.text.length  0 ) //&& sumBasicPremiTopUpTotal < sumMinBasicPremiTopUpValue)
-//    {
-//        [self createAlertViewAndShow:ValidationPremiTopUp tag:0];
-//        [_PremiTopUpRegularField becomeFirstResponder];
-//        return false;
-//    }
-    
-    else if (sumMinBasicPremiUangPertanggunganTotal < sumMinBasicPremiUangPertanggunganTotalValue)
-    {
-        [self createAlertViewAndShow:ValidationPremiTotalSum tag:0];
-        [yearlyIncomeField becomeFirstResponder];
-        return false;
-    }
-    
-    else if ([validationSet containsObject:_RencanaButton.titleLabel.text]||_RencanaButton.titleLabel.text==NULL)
-    {
-        [self createAlertViewAndShow:RencanaField tag:0];
-        [_RencanaButton setBackgroundColor:[UIColor redColor]];
-        return false;
-    }
-
-
-
-
-    return valid;
-}
     
 //    if([PlanType isEqualToString:@"BCA Life Keluargaku"])
 //    {
@@ -5928,6 +5753,125 @@ bool WPTPD30RisDeleted = FALSE;
         }
     }
     return validatePasses;
+}
+
+- (bool)validationDataBasicPlan
+{
+    bool valid=true;
+    NSArray* validationSet=[[NSArray alloc]initWithObjects:@"",@"- SELECT -",@"- Select -",@"--Please Select--", nil];
+    
+    //validation message data refferal
+    
+    
+    NSString* BasicPremiTotal=_BasicPremiiField.text;
+    NSString* PremiTopupTotal=_PremiTopUpRegularField.text;
+    NSString* UangPertanggunganTotal = yearlyIncomeField.text;
+    
+    // MinBasicPremiValue
+    
+    
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    f.numberStyle = NSNumberFormatterDecimalStyle;
+ 
+    NSNumber *myNumber = [classFormatter convertAnyNonDecimalNumberToString: BasicPremiTotal];
+    NSNumber *myNumberBasicPremiTotal = [classFormatter convertAnyNonDecimalNumberToString: MinBasicPremiValue];
+    
+    NSNumber *myNumberUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: UangPertanggunganTotal];
+    NSNumber *myNumberPremiUangPertanggunganTotal = [classFormatter convertAnyNonDecimalNumberToString: SumTotalUangPertanggungan];
+    
+    //Sample//
+    long long sumBasicPremiTotal = [myNumber longLongValue];
+    long long sumMinBasicPremiValue = [myNumberBasicPremiTotal longLongValue];
+    long long sumMinBasicPremiUangPertanggunganTotal = [myNumberUangPertanggunganTotal longLongValue];
+    long long sumMinBasicPremiUangPertanggunganTotalValue = [myNumberPremiUangPertanggunganTotal longLongValue];
+
+    
+    //Sample//
+    
+    
+    //TMLI Validation
+    
+    NSString *NamaProduk=@"Nama Produk harus diisi";
+    NSString *MAtaUang=@"Mata Uang harus DiIsi";
+    NSString *FrekuensiPembayaran1 =@"Frekuensi Pembayaran harus diisi";
+    NSString *BasicPremi =@"Basic Premi harus diisi";
+    NSString *PremiTopUpRegularField =@"Premi Top Up Regular harus diisi";
+    NSString *RencanaField =@"Rencana harus diisi";
+    //    NSString *RencanaFieldValue =@"Rencana Max : 5";
+    
+    NSString *ValidationPremiDasar;
+    NSString *ValidationPremiTopUp;
+    NSString *ValidationPremiTotalSum;
+    
+    if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
+    {
+        ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinBasicPremiValue];
+        ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinTopUpRegularValue];
+        ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",SumTotalUangPertanggungan];
+    }
+    else
+    {
+        ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinBasicPremiValue];
+        ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",MinTopUpRegularValue];
+        ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:USD %@",SumTotalUangPertanggungan];
+    }
+    
+    NSLog(@"topUpRegular %@",_PremiTopUpRegularField.text);
+    
+    if ([validationSet containsObject:_masaPembayaranButton.titleLabel.text]||_masaPembayaranButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:NamaProduk tag:0];
+        [_masaPembayaranButton setBackgroundColor:[UIColor grayColor]];
+        return false;
+    }
+    
+    else if([validationSet containsObject:_MataUangPembayaran.titleLabel.text]||_MataUangPembayaran.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:MAtaUang tag:0];
+        [_MataUangPembayaran setBackgroundColor:[UIColor grayColor]];
+        
+        return false;
+    }
+    
+    else if([validationSet containsObject:_frekuensiPembayaranButton.titleLabel.text]||_frekuensiPembayaranButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:FrekuensiPembayaran1 tag:0];
+        [_frekuensiPembayaranButton setBackgroundColor:[UIColor grayColor]];
+        
+        return false;
+    }
+    
+    else if ([_BasicPremiiField.text isEqualToString:@""]||_BasicPremiiField.text==NULL)
+    {
+        [self createAlertViewAndShow:BasicPremi tag:0];
+        [_BasicPremiiField becomeFirstResponder];
+        return false;
+    }
+    
+    else if (sumBasicPremiTotal < sumMinBasicPremiValue)
+    {
+        [self createAlertViewAndShow:ValidationPremiDasar tag:0];
+        [_BasicPremiiField becomeFirstResponder];
+        return false;
+    }
+    
+    
+    else if (sumMinBasicPremiUangPertanggunganTotal < sumMinBasicPremiUangPertanggunganTotalValue)
+    {
+        [self createAlertViewAndShow:ValidationPremiTotalSum tag:0];
+        [yearlyIncomeField becomeFirstResponder];
+        return false;
+    }
+    
+    else if ([validationSet containsObject:_RencanaButton.titleLabel.text]||_RencanaButton.titleLabel.text==NULL)
+    {
+        [self createAlertViewAndShow:RencanaField tag:0];
+        [_RencanaButton setBackgroundColor:[UIColor grayColor]];
+        return false;
+    }
+    
+
+    return valid;
 }
 
 -(BOOL)isBasicPlanSelected
@@ -6412,7 +6356,7 @@ bool WPTPD30RisDeleted = FALSE;
     id activeInstance = [UIKeyboardImpl performSelector:@selector(activeInstance)];
     [activeInstance performSelector:@selector(dismissKeyboard)];
     
-    //if ([self validateSave]){
+    if ([self validationDataBasicPlan]){
     //    if ([self ExtraPremiPercentEditingEnd:textExtraPremiPercentField] && [self ExtraPremiNumberEditingEnd:textExtraPremiNumberField]){
             //if ([self ValidateSave]){
                 //set the updated data to parent
@@ -6428,8 +6372,20 @@ bool WPTPD30RisDeleted = FALSE;
                 //change to next page
                 [_delegate showNextPageAfterSave:self];
             //}
-    //    }
+        }
     //}
 }
+
+//-(BOOL) validationDataBasic {
+//    
+//    NSString *stringTextPlanName = buttonPlanName.currentTitle;
+//    if ([stringTextPlanName length]==0){
+//        return NO;
+//    }
+//    return YES;
+//    
+//    
+//    
+//}
 
 @end

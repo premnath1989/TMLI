@@ -220,12 +220,12 @@ bool PolicyOwnerSigned = TRUE;
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     txtRemark.layer.borderWidth = 1.0f;
     txtRemark.layer.borderColor = borderColor.CGColor;
     
     //easysqlite---------start
-	self.db = [DBController sharedDatabaseController:@"MOSDB.sqlite"];
+	self.db = [DBController sharedDatabaseController:DATABASE_MAIN_NAME];
     NSString *sqlStmt1 = [NSString stringWithFormat:@"SELECT IndexNo, IDtypeNo, otheridtype and otheridtypeno FROM prospect_profile where idtypeno and otheridtype is not null"];
     _tableDB = [_db  ExecuteQuery:sqlStmt1];
     
@@ -1353,7 +1353,7 @@ bool PolicyOwnerSigned = TRUE;
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
 		
-		databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		
 		FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
 		[db open];
@@ -4628,7 +4628,7 @@ bool PolicyOwnerSigned = TRUE;
 {
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     const char *dbpath = [databasePath UTF8String];
     sqlite3_stmt *statement;
@@ -5824,14 +5824,43 @@ bool PolicyOwnerSigned = TRUE;
     
     if (sqlite3_open(dbpath, &contactDB) == SQLITE_OK){
         //NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, Class FROM Adm_Occp_Loading_Penta where OccpCode = \"%@\"", pp.ProspectOccupationCode];
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM %@ where occp_Code = \"%@\"",TABLE_OCCP, pp.ProspectOccupationCode];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT OccpDesc, OccpClass FROM %@ where Occp_Code = \"%@\"",TABLE_OCCP, pp.ProspectOccupationCode];
         if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK)
         {
             NSString *OccpDesc;
             NSString *OccpClass;
-            while (sqlite3_step(statement) == SQLITE_ROW){
+            while (sqlite3_step(statement) == SQLITE_ROW)
+            {
                 OccpDesc = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
-                OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
+                /* OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)]; */
+                
+                
+                // BHIMBIM'S QUICK FIX - Start.
+                
+                const char *charOccupationDescription = (const char *)sqlite3_column_text(statement, 0);
+                
+                if (charOccupationDescription == NULL)
+                {
+                    OccpDesc = @"";
+                }
+                else
+                {
+                    OccpDesc = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 0)];
+                }
+                
+                const char *charOccupationClass = (const char *)sqlite3_column_text(statement, 1);
+                
+                if (charOccupationClass == NULL)
+                {
+                    OccpClass = @"";
+                }
+                else
+                {
+                    OccpClass = [[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 1)];
+                }
+                
+                // BHIMBIM'S QUICK FIX - End.
+                
                 
                 OccupCodeSelected = pp.ProspectOccupationCode;
                 if([OccpDesc isEqualToString:@""])
@@ -7181,7 +7210,7 @@ bool PolicyOwnerSigned = TRUE;
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:dbPath];
 	}
 	 if ([db close]) {
@@ -7212,7 +7241,7 @@ bool PolicyOwnerSigned = TRUE;
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:dbPath];
 	}
 	if ([db close]) {
@@ -7314,7 +7343,7 @@ bool PolicyOwnerSigned = TRUE;
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:dbPath];
 	}
 	if ([db close]) {
@@ -8284,7 +8313,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 	
     NSString *ErrMsg = @"";
 	NSUserDefaults *ClientProfile = [NSUserDefaults standardUserDefaults];
@@ -11069,7 +11098,7 @@ bool PolicyOwnerSigned = TRUE;
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];
     FMResultSet *result;

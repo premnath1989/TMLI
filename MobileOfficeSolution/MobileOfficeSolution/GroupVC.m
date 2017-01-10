@@ -10,6 +10,7 @@
 
 #import "ColorHexCode.h"
 #import "ListingTbViewController.h"
+#import "String.h"
 
 @interface GroupVC (){
      UIColor *borderColor;
@@ -65,7 +66,7 @@
 		
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		
 		db = [FMDatabase databaseWithPath:databasePath];
 		[db open];
@@ -102,7 +103,7 @@
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:databasePath];
 	}
 	[db open];
@@ -213,7 +214,7 @@
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
     {
         NSString *querySQL = [NSString stringWithFormat: @"SELECT name FROM prospect_groups"];
@@ -253,7 +254,7 @@
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:databasePath];
 	}
 	[db open];
@@ -591,7 +592,7 @@
 	if (!db) {
 		NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 		NSString *docsDir = [dirPaths objectAtIndex:0];
-		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+		NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
 		db = [FMDatabase databaseWithPath:databasePath];
 	}
         
@@ -729,7 +730,7 @@
         if (!db) {
             NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *docsDir = [dirPaths objectAtIndex:0];
-            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+            NSString *databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
             db = [FMDatabase databaseWithPath:databasePath];
         }
         

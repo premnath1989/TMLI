@@ -118,7 +118,7 @@ NSString *ProceedStatus = @"";
     [loginDB makeDBCopy];
     
     DBMigration *migration = [[DBMigration alloc]init];
-    [migration updateDatabaseUseNewDB:@"MOSDB.sqlite"];
+    [migration updateDatabaseUseNewDB:DATABASE_MAIN_NAME];
     [migration hardUpdateDatabase:@"BCA_Rates.sqlite" versionNumber:[NSString stringWithFormat:
                             @"%@",[[[NSBundle mainBundle] infoDictionary] objectForKey:@"dbVersion"]]];
     [migration hardUpdateDatabase:@"DataReferral.sqlite"versionNumber:[NSString stringWithFormat:
@@ -956,7 +956,7 @@ static NSString *labelVers;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     
     [db open];
@@ -1012,7 +1012,7 @@ static NSString *labelVers;
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     
     [db open];

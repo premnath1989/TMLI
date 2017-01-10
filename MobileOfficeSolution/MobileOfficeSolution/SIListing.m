@@ -102,7 +102,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString:
-                    [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+                    [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     //[self LoadAllResult];
     
@@ -744,7 +744,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     } else {
         /*NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *docsDir = [dirPaths objectAtIndex:0];
-        databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+        databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
         
         sqlite3_stmt *statement;
         const char *dbpath = [databasePath UTF8String];
@@ -989,7 +989,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
             
             /*NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
             NSString *docsDir = [dirPaths objectAtIndex:0];
-            databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+            databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
             
             sqlite3_stmt *statement;
             sqlite3_stmt *statement2;

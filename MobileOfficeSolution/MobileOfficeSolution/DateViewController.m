@@ -22,7 +22,7 @@ id msg, ComDate;
 -(void)viewDidAppear:(BOOL)animated{
     if ((msgDate != NULL)&&(![msgDate isEqualToString:@"--Please Select--"])) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         //[dateFormatter setDateFormat:@"yyyy-MM-dd"];
         NSDate *zzz = [dateFormatter dateFromString:msgDate];
         [_datePickerView setDate:zzz animated:YES ];
@@ -34,7 +34,7 @@ id msg, ComDate;
     [super viewDidLoad];
     if ((msgDate != NULL)&&(![msgDate isEqualToString:@"--Please Select--"])) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSDate *date = [dateFormatter dateFromString:msgDate];
         [_datePickerView setDate:date animated:YES ];
     }
@@ -50,7 +50,7 @@ id msg, ComDate;
 {
     if (_delegate != Nil) {
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *pickerDate = [dateFormatter stringFromDate:[_datePickerView date]];
         
         
@@ -132,7 +132,7 @@ id msg, ComDate;
         ANB = 1;
     }
     
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     
     if ((yearN<yearB)||(yearN==yearB && monthN<monthB)||(yearN==yearB && monthN==monthB && dayN<dayB)) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Tanggal yang dimasukkan tidak boleh melebihi tanggal hari ini" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -147,17 +147,17 @@ id msg, ComDate;
 {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     
-    NSArray *comm = [dateString componentsSeparatedByString: @"/"];
+    NSArray *comm = [dateString componentsSeparatedByString: @" "];
     NSString *commDay = [comm objectAtIndex:0];
     NSString *commMonth = [comm objectAtIndex:1];
     NSString *commYear = [comm objectAtIndex:2];
     
     
-    NSArray *foo = [msgDate componentsSeparatedByString: @"/"];
+    NSArray *foo = [msgDate componentsSeparatedByString: @" "];
     NSString *birthDay = [foo objectAtIndex: 0];
     NSString *birthMonth = [foo objectAtIndex: 1];
     NSString *birthYear = [foo objectAtIndex: 2];
@@ -198,7 +198,7 @@ id msg, ComDate;
         Age = newALB;
         ANB = newANB;
     } else if (yearN == yearB) {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = msgDate;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -213,7 +213,7 @@ id msg, ComDate;
         Age = 0;
         ANB = 1;
     } else {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = msgDate;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -227,7 +227,7 @@ id msg, ComDate;
         ANB = 1;
     }
     
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *selectDate = msgDate;
     NSDate *startDate = [dateFormatter dateFromString:selectDate];
     
@@ -246,7 +246,7 @@ id msg, ComDate;
 {
     if ((msgDate==NULL)||([msgDate isEqualToString:@"--Please Select--"])){
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *pickerDate = [dateFormatter stringFromDate:[_datePickerView date]];
         
         msgDate = [NSString stringWithFormat:@"%@",pickerDate];

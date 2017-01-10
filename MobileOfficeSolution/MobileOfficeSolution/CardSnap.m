@@ -166,7 +166,7 @@ bool checkIndex;
     NSString *comcase = @"No";
     // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -196,7 +196,7 @@ bool checkIndex;
     NSString *comcase = @"No";
     // NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -1152,7 +1152,7 @@ bool checkIndex;
 
     
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *db = [FMDatabase databaseWithPath:path];
     [db open];

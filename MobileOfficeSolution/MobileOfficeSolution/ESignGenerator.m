@@ -66,7 +66,7 @@
     
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
    // NSString *agentName;
@@ -577,11 +577,11 @@
 //    [dic setObject:[NSNumber numberWithBool:NO] forKey:kCustomerSign];
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:@"MOSDB.sqlite"];
+    NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:DATABASE_MAIN_NAME];
     FMDatabase* db = [FMDatabase databaseWithPath:writableDBPath];
     [db open];
     NSString *POOtherIDType;

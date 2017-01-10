@@ -44,6 +44,18 @@ NSString *Komposisi;
     
     Komposisi = _TxtPercentage.text;
     
+    //check if same fund name already exist
+    if ([InvestList count] != 0) {
+        int count = InvestList.count-1;
+        for (int i = 0; i <= count; i++) {
+            NSString *strFundName = [[InvestList objectAtIndex:i] objectForKey:@"FundName"];
+            if ([FundName isEqualToString:strFundName]) {
+                [InvestList removeObjectAtIndex:i];
+            }
+        }
+    }
+    
+    
     NSDictionary *tempData = [[NSDictionary alloc] initWithObjectsAndKeys:FundName, @"FundName", Komposisi, @"Komposisi", nil];
     [InvestList addObject:[tempData copy]];
     

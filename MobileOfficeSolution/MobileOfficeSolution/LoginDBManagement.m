@@ -19,7 +19,7 @@
 - (instancetype)init{
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     RatesDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"TMLI_Rates.sqlite"]];
     RefDatabasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"DataReferral.sqlite"]];
     
@@ -35,7 +35,7 @@
     success = [fileManager fileExistsAtPath:databasePath];
     if (!success) {
         
-        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:DATABASE_MAIN_NAME];
         success = [fileManager copyItemAtPath:defaultDBPath toPath:databasePath error:&DBerror];
         if (!success) {
             NSAssert1(0, @"Failed to create writable database file with message '%@'.", [DBerror localizedDescription]);
@@ -1225,7 +1225,7 @@
     
     NSArray *dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *docsDir = [dirPaths objectAtIndex:0];
-    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: @"MOSDB.sqlite"]];
+    NSString *dbPath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     FMDatabase *db = [FMDatabase databaseWithPath:dbPath];
     
     [db open];

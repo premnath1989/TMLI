@@ -7,7 +7,7 @@
 //
 
 #import "SIUtilities.h"
-
+#import "String.h"
 
 static sqlite3 *contactDB = nil;
 
@@ -23,7 +23,7 @@ static sqlite3 *contactDB = nil;
     if (success) return YES;
     
     if (!success) {
-        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOSDB.sqlite"];
+        NSString *defaultDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:DATABASE_MAIN_NAME];
         success = [fileManager copyItemAtPath:defaultDBPath toPath:path error:&error];
         if (!success) {
             NSAssert1(0, @"Failed to create writable database file with message '%@'.", [error localizedDescription]);
