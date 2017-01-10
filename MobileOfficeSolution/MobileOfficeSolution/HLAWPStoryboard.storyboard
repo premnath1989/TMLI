@@ -14,7 +14,7 @@
         <array key="BPreplay_Italics.ttf">
             <string>BPreplay-Italic</string>
         </array>
-        <array key="BPreplay_Regular.otf">
+        <array key="BPreplay_Regular.ttf">
             <string>BPreplay</string>
         </array>
         <array key="NewJune_Bold.ttf">
@@ -3007,7 +3007,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="bezel" minimumFontSize="16" clearButtonMode="whileEditing" id="cLX-v8-mxG" customClass="TextFieldFormGeneralPrimary">
-                                        <rect key="frame" x="47" y="106" width="899" height="30"/>
+                                        <rect key="frame" x="47" y="106" width="835" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3053,23 +3053,8 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hPv-sx-1L3">
-                                        <rect key="frame" x="954" y="104" width="34" height="34"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="14"/>
-                                        <state key="normal" backgroundImage="prospect_100_2.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="selectProspect:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="0Hg-be-qyP"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1PY-O3-CgR">
-                                        <rect key="frame" x="47" y="191" width="370" height="30"/>
+                                        <rect key="frame" x="47" y="191" width="370" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3091,7 +3076,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qOw-4P-g5a">
-                                        <rect key="frame" x="47" y="404" width="467" height="30"/>
+                                        <rect key="frame" x="47" y="404" width="467" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3139,6 +3124,14 @@
                                             <outlet property="delegate" destination="gBu-Hz-A8j" id="m2m-4P-W1y"/>
                                         </connections>
                                     </searchBar>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="SpQ-BT-Brk">
+                                        <rect key="frame" x="879" y="95" width="50" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="prospect_100_2.png"/>
+                                        <connections>
+                                            <action selector="selectProspect:" destination="gBu-Hz-A8j" eventType="touchUpInside" id="586-Ek-ATc"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </scrollView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="PEMEGANG POLIS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="h7q-4e-Lgs">
@@ -3167,7 +3160,6 @@
                         <outlet property="LAAgeField" destination="oTO-s8-vO6" id="DuQ-ZU-kTb"/>
                         <outlet property="LANameField" destination="cLX-v8-mxG" id="CWx-37-dr1"/>
                         <outlet property="btnDOB" destination="1PY-O3-CgR" id="hZL-oq-aeF"/>
-                        <outlet property="btnProspect" destination="hPv-sx-1L3" id="FUE-VN-9sF"/>
                         <outlet property="scrollLA" destination="9q7-6a-XHh" id="Toc-Xq-vYl"/>
                         <outlet property="searchDisplayController" destination="T41-4c-XeM" id="6Qm-I6-mS7"/>
                         <outlet property="sexSegment" destination="afS-7k-o9O" id="iVL-lH-Qhb"/>
@@ -5074,7 +5066,7 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
-        <image name="photo_spaj_primary" width="2048" height="1536"/>
+        <image name="photo_spaj_primary" width="44" height="43"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>

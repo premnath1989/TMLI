@@ -139,6 +139,9 @@
     else if ([tableView isEqual:_InvestasiTableView])
     {
         
+        [[cell.contentView viewWithTag:13001] removeFromSuperview ];
+        [[cell.contentView viewWithTag:13002] removeFromSuperview ];
+        
         CGRect frame=CGRectMake(25,0, 230, 55);
         UILabel *label1=[[UILabel alloc]init];
         label1.frame=frame;

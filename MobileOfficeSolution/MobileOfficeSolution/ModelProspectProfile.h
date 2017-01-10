@@ -19,6 +19,7 @@
 -(NSString *)checkDuplicateData:(NSString *)IDType IDNo:(NSString *)IDNo Gender:(NSString *)gender DOB:(NSString *)dob;
 -(NSMutableArray *)searchProspectProfileByID:(int)prospectID;
 
+-(BOOL)checkExistingData:(NSString *)FrontName  Gender:(NSString *)gender DOB:(NSString *)dob;
 -(NSMutableArray *)getColumnNames:(NSString *)stringTableName;
 -(NSMutableArray *)getColumnValue:(NSString *)stringProspectID ColumnCount:(int)intColumnCount;
 -(NSString *)getDataMobileAndPrefix:(NSString *)ContactCode IndexNo:(NSString *)IndexNo;

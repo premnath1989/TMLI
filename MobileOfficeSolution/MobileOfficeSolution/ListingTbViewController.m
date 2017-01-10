@@ -94,7 +94,7 @@
 		}
         else{
             [querySQL appendString: @"SELECT IndexNo, ProspectName, ProspectDOB, ProspectGender, ProspectOccupationCode, "
-                                    "Smoker, OtherIDType, OtherIDTypeNo, IDTypeNo, MaritalStatus FROM prospect_profile WHERE QQFlag = 'false' "];
+                                    " OtherIDType, OtherIDTypeNo, MaritalStatus FROM prospect_profile WHERE QQFlag = 'false' "];
             if (_needFiltered) {
                 [querySQL appendFormat:@"AND (IDTypeNo NOT IN %@ OR OtherIdType NOT IN %@ OR OtherIDTypeNo NOT IN %@)",
                  self.blacklistedIndentificationNos, self.blacklistedOtherIDType, self.blacklistedOtherID];
@@ -121,12 +121,6 @@
                 [_GenderList addObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 3)]];
                 [_OccpCodeList addObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 4)]];
                 // Change by Benjamin on 14/10/2013 for bug 2622
-                if (sqlite3_column_text(statement, 5) != NULL) {
-                    [_SmokerList addObject:[[NSString alloc] initWithUTF8String:(const char *) sqlite3_column_text(statement, 5)]];
-                }
-                else {
-                    [_SmokerList addObject:@" "];
-                }
                 
                 if (sqlite3_column_text(statement, 6)) {
                     [_OtherIDTypeList addObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 6)]];
@@ -143,12 +137,7 @@
                     [_OtherIDList addObject:@""];
                 }
                 
-                if (sqlite3_column_text(statement, 8) != NULL) {
-                    [_IDList addObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 8)]];
-                }
-                else{
-                    [_IDList addObject:@" "];
-                }
+              
             
                 if (sqlite3_column_text(statement, 9) != NULL) {
                     [_MaritalStatus addObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 9)]];
@@ -195,10 +184,10 @@
     cell.detailTextLabel.numberOfLines = 2;
     if (isFiltered == false) {
         cell.textLabel.text = [_NameList objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", [_IDList objectAtIndex:indexPath.row], [_OtherIDList objectAtIndex:indexPath.row]];
-        if ([[_IDList objectAtIndex:indexPath.row] isEqualToString:@""]) {
-            cell.detailTextLabel.text = [_OtherIDList objectAtIndex:indexPath.row];
-        }
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [_OtherIDList objectAtIndex:indexPath.row]];
+//        if ([[_IDList objectAtIndex:indexPath.row] isEqualToString:@""]) {
+//            cell.detailTextLabel.text = [_OtherIDList objectAtIndex:indexPath.row];
+//        }
 
         if ([[textFields trimWhiteSpaces:[_OtherIDTypeList objectAtIndex:indexPath.row]] caseInsensitiveCompare:@"EDD"] == NSOrderedSame) {
             cell.detailTextLabel.text = [textFields trimWhiteSpaces:[_DOBList objectAtIndex:indexPath.row]];
@@ -206,7 +195,7 @@
     }
     else {
         cell.textLabel.text = [FilteredName objectAtIndex:indexPath.row];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@\n%@", [FilteredID objectAtIndex:indexPath.row], [FilteredOtherID objectAtIndex:indexPath.row]];
+        cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [FilteredOtherID objectAtIndex:indexPath.row]];
         if ([[FilteredID objectAtIndex:indexPath.row] isEqualToString:@""]) {
             cell.detailTextLabel.text = [FilteredOtherID objectAtIndex:indexPath.row];
         }
@@ -320,15 +309,13 @@
                    andName:[_NameList objectAtIndex:selectedIndex]
                     andDOB:[_DOBList objectAtIndex:selectedIndex]
                  andGender:[_GenderList objectAtIndex:selectedIndex]
-               andOccpCode:[_OccpCodeList objectAtIndex:selectedIndex]
-                 andSmoker:[_SmokerList objectAtIndex:selectedIndex]
           andMaritalStatus:[_MaritalStatus objectAtIndex:selectedIndex]];
     }
     else {
         [self resignFirstResponder];
         [self.view endEditing:TRUE];
         
-        [_delegate listing:self didSelectIndex:[FilteredIndex objectAtIndex:selectedIndex] andName:[FilteredName objectAtIndex:selectedIndex] andDOB:[FilteredDOB objectAtIndex:selectedIndex] andGender:[FilteredGender objectAtIndex:selectedIndex] andOccpCode:[FilteredOccp objectAtIndex:selectedIndex] andSmoker:[FilteredSmoker objectAtIndex:selectedIndex] andMaritalStatus:[FilteredMaritalStatus objectAtIndex:selectedIndex]];
+        [_delegate listing:self didSelectIndex:[FilteredIndex objectAtIndex:selectedIndex] andName:[FilteredName objectAtIndex:selectedIndex] andDOB:[FilteredDOB objectAtIndex:selectedIndex] andGender:[FilteredGender objectAtIndex:selectedIndex]  andMaritalStatus:[FilteredMaritalStatus objectAtIndex:selectedIndex]];
     }
     
     [tableView reloadData];

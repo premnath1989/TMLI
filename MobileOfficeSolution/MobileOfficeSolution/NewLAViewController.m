@@ -21,6 +21,7 @@
 #import "LoginDBManagement.h"
 #import "String.h"
 
+
 @interface NewLAViewController (){
     NSString *ilustrationProductCode;
     int clientProfileID;
@@ -1504,45 +1505,19 @@
 
 -(int)getAgeFromDOB:(NSString *)dob CommDate:(NSString *)cDate
 {    
-    NSArray *comm = [cDate componentsSeparatedByString: @"/"];
-    NSString *commDay = [comm objectAtIndex:0];
-    int dayN = [commDay intValue];
+    NSDate *todayDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *DOB2 = [dateFormatter dateFromString:dob];
+    int time = [todayDate timeIntervalSinceDate:DOB2];
+    int allDays = (((time/60)/60)/24);
+    int days = allDays%365;
+    int years = (allDays-days)/365;
     
-    NSString *commMonth = [comm objectAtIndex:1];
-    int monthN = [commMonth intValue];
-    
-    NSString *commYear = [comm objectAtIndex:2];
-    int yearN = [commYear intValue];    
-    
-    NSArray *foo = [dob componentsSeparatedByString: @"/"];
-    NSString *birthDay = [foo objectAtIndex: 0];    
-    int dayB = [birthDay intValue];
-    
-    NSString *birthMonth = [foo objectAtIndex: 1];
-    int monthB = [birthMonth intValue];
-    
-    NSString *birthYear = [foo objectAtIndex: 2];
-    int yearB = [birthYear intValue];
-    
-    int ALB = yearN - yearB;
-    
-    int currentAge = 0;
-    
-    if (yearN > yearB) {
-        if (monthN < monthB) {
-            currentAge = ALB - 1;
-        } else if (monthN == monthB && dayN < dayB) {
-            currentAge = ALB - 1;
-        } else if (monthN == monthB && dayN == dayB) { //edited by heng
-            currentAge = ALB ;  //edited by heng
-        } else {
-            currentAge = ALB;            
-        }
-        
-    } else  {        
-        currentAge = 0;
-    }
-    return currentAge;
+    //    NSLog(@"You live since %i years and %i days",years,days);
+    age = years;
+
+    return age;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -1593,14 +1568,13 @@
     EDDCase = FALSE;
     AgeExceed189Days = NO;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        
-    NSArray *comm = [commDate componentsSeparatedByString: @"/"];
+   
+    NSArray *comm = [commDate componentsSeparatedByString: @" "];
     NSString *commDay = [comm objectAtIndex:0];
     NSString *commMonth = [comm objectAtIndex:1];
     NSString *commYear = [comm objectAtIndex:2];
-
     
-    NSArray *foo = [DOB componentsSeparatedByString: @"/"];
+    NSArray *foo = [DOB componentsSeparatedByString: @" "];
     NSString *birthDay = [foo objectAtIndex: 0];
     NSString *birthMonth = [foo objectAtIndex: 1];
     NSString *birthYear = [foo objectAtIndex: 2];
@@ -2972,18 +2946,31 @@
     }
 }
 
+-(BOOL) ValidateExistingData {
+    BOOL exist = NO;
+    
+    modelProspectProfile=[[ModelProspectProfile alloc]init];
+  
+    exist = [modelProspectProfile checkExistingData:@"" Gender:@"" DOB:@""];
+
+
+    return exist;
+}
+
+
+
 #pragma mark - delegate
 
--(void)listing:(ListingTbViewController *)inController didSelectIndex:(NSString *)aaIndex andName:(NSString *)aaName andDOB:(NSString *)aaDOB andGender:(NSString *)aaGender andOccpCode:(NSString *)aaCode andSmoker:(NSString *)aaSmoker andMaritalStatus:(NSString *)aaMaritalStatus;
+-(void)listing:(ListingTbViewController *)inController didSelectIndex:(NSString *)aaIndex andName:(NSString *)aaName andDOB:(NSString *)aaDOB andGender:(NSString *)aaGender andMaritalStatus:(NSString *)aaMaritalStatus;
 {
     int selectedIndex = [aaIndex intValue];
 
     clientProfileID = [aaIndex intValue];
-    tempSmoker = smoker;
+//    tempSmoker = smoker;
     tempSex = sex;
     tempDOB = DOB;
     tempAge =age;
-    tempOccCode = occuCode;
+//    tempOccCode = occuCode;
     tempIndexNo = IndexNo;
     tempCommDate = commDate;
     tempIdProfile = idProfile;
@@ -2992,7 +2979,7 @@
         
     NSDate *currDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *dateString = [dateFormatter stringFromDate:currDate];
     NSLog(@"%@",dateString);
     
@@ -3076,22 +3063,23 @@
                 sex = @"FEMALE";
             }
             
-            if ([aaSmoker isEqualToString:@"N"] || EDDCase == TRUE) {
-                smokerSegment.selectedSegmentIndex = 1;
-            } else {
-                smokerSegment.selectedSegmentIndex = 0;
-            }
+//            if ([aaSmoker isEqualToString:@"N"] || EDDCase == TRUE) {
+//                smokerSegment.selectedSegmentIndex = 1;
+//            } else {
+//                smokerSegment.selectedSegmentIndex = 0;
+//            }
         }
 		
-        [btnDOB setTitle:DOB forState:UIControlStateNormal];
+//        [btnDOB setTitle:DOB forState:UIControlStateNormal];
+        _txtDob.text = DOB;
         LAAgeField.text = [[NSString alloc] initWithFormat:@"%d",age];
         [self.btnCommDate setTitle:commDate forState:UIControlStateNormal];
         
-        if (EDDCase == TRUE) {
-            occuCode = @"OCC01360";
-        } else {
-            occuCode = aaCode;
-        }        
+//        if (EDDCase == TRUE) {
+//            occuCode = @"OCC01360";
+//        } else {
+//            occuCode = aaCode;
+//        }        
         
         [self getOccLoadExist];
         [btnOccp setTitle:occuDesc forState:UIControlStateNormal];
