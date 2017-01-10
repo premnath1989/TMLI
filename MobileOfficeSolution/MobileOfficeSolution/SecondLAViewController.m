@@ -270,8 +270,8 @@ id dobtemp;
 
 - (void)viewWillAppear:(BOOL)animated
 {    
-    self.view.frame = CGRectMake(-5, 0, 778, 1004);
-    [super viewWillAppear:animated];
+//    self.view.frame = CGRectMake(-5, 0, 778, 1004);
+//    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -792,17 +792,17 @@ id dobtemp;
 {
   
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     
-    NSArray *comm = [dateString componentsSeparatedByString: @"/"];
+    NSArray *comm = [dateString componentsSeparatedByString: @" "];
     NSString *commDay = [comm objectAtIndex:0];
     NSString *commMonth = [comm objectAtIndex:1];
     NSString *commYear = [comm objectAtIndex:2];
     
     
-    NSArray *foo = [DOB componentsSeparatedByString: @"/"];
+    NSArray *foo = [DOB componentsSeparatedByString: @" "];
     NSString *birthDay = [foo objectAtIndex: 0];
     NSString *birthMonth = [foo objectAtIndex: 1];
     NSString *birthYear = [foo objectAtIndex: 2];
@@ -843,7 +843,7 @@ id dobtemp;
         age = newALB;
         ANB = newANB;
     } else if (yearN == yearB) {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = DOB;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -858,7 +858,7 @@ id dobtemp;
         age = 0;
         ANB = 1;
     } else {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = DOB;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -872,7 +872,7 @@ id dobtemp;
         ANB = 1;
     }
     
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *selectDate = DOB;
     NSDate *startDate = [dateFormatter dateFromString:selectDate];
     
@@ -935,7 +935,7 @@ id dobtemp;
 
 #pragma mark - delegate
 
--(void)listing:(ListingTbViewController *)inController didSelectIndex:(NSString *)aaIndex andName:(NSString *)aaName andDOB:(NSString *)aaDOB andGender:(NSString *)aaGender andOccpCode:(NSString *)aaCode andSmoker:(NSString *)aaSmoker andMaritalStatus:(NSString *)aaMaritalStatus;
+-(void)listing:(ListingTbViewController *)inController didSelectIndex:(NSString *)aaIndex andName:(NSString *)aaName andDOB:(NSString *)aaDOB andGender:(NSString *)aaGender andMaritalStatus:(NSString *)aaMaritalStatus;
 {
     if([aaDOB length]==0)
     {
@@ -950,9 +950,9 @@ id dobtemp;
     
     if (sex != NULL) {
         sex = nil;
-        smoker = nil;
+//        smoker = nil;
     }
-    smoker = @"N";
+//    smoker = @"N";
     prevIndexNo = IndexNo;
     BOOL isValid = TRUE;
     if (getLAIndexNo == [aaIndex intValue]) {
@@ -1002,17 +1002,17 @@ id dobtemp;
             isValid = [self calculateAge];
             ageField.text = [[NSString alloc] initWithFormat:@"%d",age];
             
-            OccpCode = aaCode;
-            occuCode = aaCode;
-            [self getOccLoadExist];
-            OccpField.text = [[NSString alloc] initWithFormat:@"%@",OccpDesc];
-            [btnOccp setTitle:OccpDesc forState:UIControlStateNormal];
+//            OccpCode = aaCode;
+//            occuCode = aaCode;
+//            [self getOccLoadExist];
+//            OccpField.text = [[NSString alloc] initWithFormat:@"%@",OccpDesc];
+//            [btnOccp setTitle:OccpDesc forState:UIControlStateNormal];
            
             
             [_delegate saved:YES];
         }
         
-                [_delegate setIsSecondLaNeeded:YES];
+//        [_delegate setIsSecondLaNeeded:YES]; //not sure about this (remove)
         [_prospectPopover dismissPopoverAnimated:YES];
         
     }
