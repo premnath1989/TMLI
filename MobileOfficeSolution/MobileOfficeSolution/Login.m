@@ -574,7 +574,16 @@ static NSString *labelVers;
             case AGENT_IS_INACTIVE:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINERESIGN", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -590,7 +599,16 @@ static NSString *labelVers;
             case AGENT_IS_TERMINATED:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINETERMINATE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -817,7 +835,7 @@ static NSString *labelVers;
     
     if(dateDifference > 7)
     {
-        if(dateDifference > 120){
+        /* if(dateDifference > 120){
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
                                                             message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -829,8 +847,43 @@ static NSString *labelVers;
                                                        delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
+        [spinnerLoading stopLoadingSpinner]; */
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        NSString *stringMessage = @"";
+        
+        if(dateDifference > 120)
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
+        }
+        else if (dateDifference > 30)
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil);
+        }
+        else
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE7DAYS", nil);
+        }
+        
+        UIAlertController *alertController =
+        [
+            UIAlertController
+            alertControllerWithTitle:@"Informasi"
+            message: stringMessage
+            preferredStyle:UIAlertControllerStyleAlert
+         ];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         [spinnerLoading stopLoadingSpinner];
-    }else
+        
+        // BHIMBIM'S QUICK FIX - End
+        
+        
+    }
+    else
     {
         
         if ([self OfflineLogin]) {

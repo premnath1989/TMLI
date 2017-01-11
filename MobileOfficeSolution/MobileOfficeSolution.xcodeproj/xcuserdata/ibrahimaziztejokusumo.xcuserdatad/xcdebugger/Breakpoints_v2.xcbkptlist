@@ -9,13 +9,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileOfficeSolution/ProspectListing.m"
-            timestampString = "505580723.271789"
+            filePath = "MobileOfficeSolution/ProspectViewController.m"
+            timestampString = "505740287.799626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1481"
-            endingLineNumber = "1481"
-            landmarkName = "-editPressed:"
+            startingLineNumber = "7509"
+            endingLineNumber = "7509"
+            landmarkName = "-ActionBackTo:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MobileOfficeSolution/EditProspect.m"
+            timestampString = "505803407.317063"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "6285"
+            endingLineNumber = "6285"
+            landmarkName = "-saveToDB"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
