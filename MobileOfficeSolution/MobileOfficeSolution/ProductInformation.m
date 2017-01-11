@@ -118,7 +118,6 @@ BOOL NavShow2;
     
     // BHIMBIM'S QUICK FIX - End
     
-    
     int index = 1;
     for (NSURL *fileURL in contents) {
         // Enumerate each file in directory
@@ -375,6 +374,8 @@ BOOL NavShow2;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+//delegate for list dir completion
 - (void)itemsList:(NSMutableArray *)ftpItems{
     NSLog(@"ftp itemlist");
     int index = 1;
