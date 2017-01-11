@@ -455,20 +455,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if(dateDifference > 7)
     {
-        /* if(dateDifference > 120){
-            [loginDB DeleteAgentProfile];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di nomor 021-xxxxxxxx pada jam kerja atau email ke helpdesk_tmconnect@tokiomarine-life.co.id"
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 7 hari, pastikan perangkat terhubung ke internet untuk login."
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        [spinnerLoading stopLoadingSpinner]; */
-        
         
         // BHIMBIM'S QUICK FIX - Start
         
@@ -476,11 +462,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         
         if(dateDifference > 120)
         {
+            [loginDB DeleteAgentProfile];
             stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
-        }
-        else if (dateDifference > 30)
-        {
-            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil);
         }
         else
         {
