@@ -234,6 +234,8 @@ bool PolicyOwnerSigned = TRUE;
     _tableCheckSameRecord = [_db  ExecuteQuery:sqlStmt2];
     //---------end
     
+    
+    
     [_txtNamaDepan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	[_txtNamaBelakang addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	[segGender addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
@@ -11618,7 +11620,24 @@ bool PolicyOwnerSigned = TRUE;
     // Release any retained subviews of the main view.
 }
 
-- (IBAction)ActionGoBack:(id)sender {
+- (IBAction)ActionGoBack:(id)sender
+{
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSLog(@"Favorite - Input favorite -> %d, on load favorite -> %d", isFavorite, [pp.Favorite intValue]);
+    
+    if (isFavorite == [pp.Favorite intValue])
+    {
+        
+    }
+    else
+    {
+        [self detectChanges:self];
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if ([strChanges isEqualToString:@"Yes"] || edited) {
         UIAlertView *back_alert = [[UIAlertView alloc] initWithTitle:@" "
                                                              message:@"Save changes before continuing?" delegate:self cancelButtonTitle:@"Save" otherButtonTitles:@"Cancel", nil];

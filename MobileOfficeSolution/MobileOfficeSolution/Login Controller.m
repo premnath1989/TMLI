@@ -79,7 +79,7 @@
     NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
+    NSString *appInformation = [NSString stringWithFormat:@"Last Online Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -478,12 +478,24 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         
         UIAlertController *alertController =
         [
-         UIAlertController
-         alertControllerWithTitle:@"Informasi"
-         message: stringMessage
-         preferredStyle:UIAlertControllerStyleAlert
-         ];
+             UIAlertController
+             alertControllerWithTitle:@"Informasi"
+             message: stringMessage
+             preferredStyle:UIAlertControllerStyleAlert
+        ];
         
+        UIAlertAction * actionPositive =
+        [
+             UIAlertAction
+             actionWithTitle:NSLocalizedString(@"BUTTON_OK", nil)
+             style:UIAlertActionStyleDefault
+             handler:^(UIAlertAction * action)
+             {
+                 [alertController dismissViewControllerAnimated:YES completion:nil];
+             }
+        ];
+        
+        [alertController addAction:actionPositive];
         [self presentViewController:alertController animated:YES completion:nil];
         
         [spinnerLoading stopLoadingSpinner];
@@ -636,8 +648,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         switch ([[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]] compare:[NSDate date]]) {
             case NSOrderedAscending:
-            {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            {                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"dd/MM/yyyy"];
                 int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]]];
                 if(daysElapsed > 30 && ![self connected] && OFFLINE_PROCESS){
@@ -646,7 +657,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                     [alert show];
                     validFlag = false;
                 }
-
                 break;
             }
             default:

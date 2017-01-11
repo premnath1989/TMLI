@@ -619,8 +619,7 @@ static NSString *labelVers;
         switch ([[dateFormatter dateFromString:[loginDB expiryDate:txtUsername.text]] compare:[NSDate date]]) {
                 
             case NSOrderedAscending:
-            {
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            {                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"dd/MM/yyyy"];
                 int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:txtUsername.text]]];
                 if(daysElapsed > 30){
@@ -879,8 +878,20 @@ static NSString *labelVers;
             alertControllerWithTitle:@"Informasi"
             message: stringMessage
             preferredStyle:UIAlertControllerStyleAlert
-         ];
+        ];
         
+        UIAlertAction * actionPositive =
+        [
+             UIAlertAction
+             actionWithTitle:NSLocalizedString(@"BUTTON_OK", nil)
+             style:UIAlertActionStyleDefault
+             handler:^(UIAlertAction * action)
+             {
+                 [alertController dismissViewControllerAnimated:YES completion:nil];
+             }
+        ];
+        
+        [alertController addAction:actionPositive];
         [self presentViewController:alertController animated:YES completion:nil];
         
         [spinnerLoading stopLoadingSpinner];
