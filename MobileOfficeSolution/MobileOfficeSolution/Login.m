@@ -620,7 +620,12 @@ static NSString *labelVers;
             case NSOrderedAscending:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -873,8 +878,20 @@ static NSString *labelVers;
             alertControllerWithTitle:@"Informasi"
             message: stringMessage
             preferredStyle:UIAlertControllerStyleAlert
-         ];
+        ];
         
+        UIAlertAction * actionPositive =
+        [
+             UIAlertAction
+             actionWithTitle:NSLocalizedString(@"BUTTON_OK", nil)
+             style:UIAlertActionStyleDefault
+             handler:^(UIAlertAction * action)
+             {
+                 [alertController dismissViewControllerAnimated:YES completion:nil];
+             }
+        ];
+        
+        [alertController addAction:actionPositive];
         [self presentViewController:alertController animated:YES completion:nil];
         
         [spinnerLoading stopLoadingSpinner];

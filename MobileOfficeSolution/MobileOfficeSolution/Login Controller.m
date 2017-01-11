@@ -79,7 +79,7 @@
     NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
+    NSString *appInformation = [NSString stringWithFormat:@"Last Online Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -489,12 +489,24 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         
         UIAlertController *alertController =
         [
-         UIAlertController
-         alertControllerWithTitle:@"Informasi"
-         message: stringMessage
-         preferredStyle:UIAlertControllerStyleAlert
-         ];
+             UIAlertController
+             alertControllerWithTitle:@"Informasi"
+             message: stringMessage
+             preferredStyle:UIAlertControllerStyleAlert
+        ];
         
+        UIAlertAction * actionPositive =
+        [
+             UIAlertAction
+             actionWithTitle:NSLocalizedString(@"BUTTON_OK", nil)
+             style:UIAlertActionStyleDefault
+             handler:^(UIAlertAction * action)
+             {
+                 [alertController dismissViewControllerAnimated:YES completion:nil];
+             }
+        ];
+        
+        [alertController addAction:actionPositive];
         [self presentViewController:alertController animated:YES completion:nil];
         
         [spinnerLoading stopLoadingSpinner];
@@ -649,7 +661,16 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             case NSOrderedAscending:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
