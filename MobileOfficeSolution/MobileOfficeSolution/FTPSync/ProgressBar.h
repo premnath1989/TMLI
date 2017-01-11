@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "ProductInfoItems.h"
 #import "ProgressBarDelegate.h"
+#import "BCHTTPTransfer.h"
 
 @interface ProgressBar : UIViewController<ProductInfoItemsDelegate>{
     ProductInfoItems *FTPitems;
+    BCHTTPTransfer *HTTPitems;
 }
 
-@property (nonatomic, strong) UIProgressView *progressView;
+@property (nonatomic,strong)UIProgressView *progressView;
 @property (nonatomic,retain)NSString *TitleFileName;
 @property (nonatomic,retain)NSString *TitleProgressBar;
 @property (nonatomic,retain)NSString *ftpFunction;
@@ -22,6 +24,7 @@
 @property (nonatomic,retain)NSString *ftpfiletoDownload;
 @property (nonatomic,retain)NSString *ftpfolderdestination;
 @property float TotalFileSize;
+@property int TransferMode;
 
 @property (nonatomic, assign) id<ProgressBarDelegate>  progressDelegate;
 @end

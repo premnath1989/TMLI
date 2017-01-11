@@ -623,11 +623,11 @@ static NSString *labelVers;
                 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"dd/MM/yyyy"];
                 int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:txtUsername.text]]];
-                if(daysElapsed < 30){
-                [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                [alert show];
-                validFlag = false;
+                if(daysElapsed > 30){
+                    [spinnerLoading stopLoadingSpinner];
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                    validFlag = false;
                 }
                 break;
             }

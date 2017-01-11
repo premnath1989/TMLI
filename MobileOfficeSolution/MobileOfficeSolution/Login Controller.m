@@ -79,7 +79,7 @@
     NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
+    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -300,7 +300,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         days = [NSString stringWithFormat:@"%d", dayRem];
     }
     
-    return days;
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = dayRem;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    
+    return [[[DateFormatter alloc] init] DateMonthNoFormat:nextDate];
 }
 
 

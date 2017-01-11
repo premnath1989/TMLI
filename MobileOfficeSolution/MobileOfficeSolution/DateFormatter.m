@@ -13,14 +13,19 @@
 - (NSString *)DateMonthName:(NSString *)BareDate prevFormat:(NSDateFormatter *) prevFormat{
     NSDate *dateDOB = [prevFormat dateFromString:BareDate];
     
+    return [self DateMonthNoFormat:dateDOB];
+}
+
+
+- (NSString *)DateMonthNoFormat:(NSDate *)BareDate{
     NSDateFormatter *day = [[NSDateFormatter alloc] init];
     [day setDateFormat:@"dd"];
-    NSString *txtDay = [day stringFromDate:dateDOB];
+    NSString *txtDay = [day stringFromDate:BareDate];
     
     NSDateFormatter *Month = [[NSDateFormatter alloc] init];
     [Month setDateFormat:@"MM"];
-    NSString *txtMonth = [Month stringFromDate:dateDOB];
-    switch ([[Month stringFromDate:dateDOB] integerValue]) {
+    NSString *txtMonth = [Month stringFromDate:BareDate];
+    switch ([[Month stringFromDate:BareDate] integerValue]) {
         case 1:
             txtMonth = @"Jan";
             break;
@@ -64,10 +69,10 @@
     
     NSDateFormatter *Year = [[NSDateFormatter alloc] init];
     [Year setDateFormat:@"YYYY"];
-    NSString *txtYear = [Year stringFromDate:dateDOB];
+    NSString *txtYear = [Year stringFromDate:BareDate];
     
     return [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
-}
 
+}
 
 @end
