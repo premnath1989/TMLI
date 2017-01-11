@@ -295,6 +295,7 @@ bool PolicyOwnerSigned = TRUE;
     txtHomeAddr1.delegate = self;
     txtHomeAddr2.delegate = self;
     txtHomeAddr3.delegate = self;
+    _txtAddress4.delegate = self;
     
     txtOfficeAddr1.delegate = self;
     txtOfficeAddr2.delegate = self;
@@ -408,6 +409,7 @@ bool PolicyOwnerSigned = TRUE;
     [txtHomeAddr1 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr2 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr3 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
+    [_txtAddress4 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeVillage addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeDistrict addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeProvince addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
@@ -879,6 +881,8 @@ bool PolicyOwnerSigned = TRUE;
     NSString *texthomeaddress2=txtHomeAddr2.text;
     //texthomeaddress3
     NSString *texthomeaddress3=txtHomeAddr3.text;
+    //texthomeaddress3
+    NSString *texthomeaddress4=_txtAddress4.text;
     //textprefix1
     NSString *textprefix1=txtPrefix1.text;
     //txtcontact1
@@ -1230,6 +1234,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtHomeAddr1.text forKey:@"txtHomeAddr1"];
 	[ClientProfile setObject:txtHomeAddr2.text forKey:@"txtHomeAddr2"];
 	[ClientProfile setObject:txtHomeAddr3.text forKey:@"txtHomeAddr3"];
+    [ClientProfile setObject:_txtAddress4.text forKey:@"_txtAddress4"];
 	[ClientProfile setObject:txtHomePostCode.text forKey:@"txtHomePostCode"];
 	[ClientProfile setObject:txtHomeTown.text forKey:@"txtHomeTown"];
 	[ClientProfile setObject:HomeCountry forKey:@"HomeCountry"];
@@ -1307,6 +1312,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSString *HomeAddr1 = [ClientProfile stringForKey:@"txtHomeAddr1"];
 	NSString *HomeAddr2 = [ClientProfile stringForKey:@"txtHomeAddr2"];
 	NSString *HomeAddr3 = [ClientProfile stringForKey:@"txtHomeAddr3"];
+    NSString *HomeAddr4 = [ClientProfile stringForKey:@"_txtAddress4"];
 	NSString *HomeTown = [ClientProfile stringForKey:@"txtHomeTown"];
 	SelectedStateCode = [ClientProfile stringForKey:@"SelectedStateCode"];
 	NSString *HomePostCode = [ClientProfile stringForKey:@"txtHomePostCode"];
@@ -1379,8 +1385,8 @@ bool PolicyOwnerSigned = TRUE;
 		
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\"   where indexNo = \"%@\" "
-                               "", FullName, strDOB, gender, HomeAddr1, HomeAddr2, HomeAddr3, HomeTown, SelectedStateCode, HomePostCode, HomeCountry, OfficeAddr1, OfficeAddr2, OfficeAddr3, OfficeTown, SelectedOfficeStateCode, OfficePostCode, OffCountry, Email, OccupCodeSelected, ExactDuties, Remark, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, IDType, IDTypeCodeSelected, OtherIDType2, ClientSmoker, AnnIncome, BussinessType,race, marital, nation, religion,str_counter,ProspectID];
+                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\"   where indexNo = \"%@\" "
+                               "", FullName, strDOB, gender, HomeAddr1, HomeAddr2, HomeAddr3, HomeAddr4, HomeTown, SelectedStateCode, HomePostCode, HomeCountry, OfficeAddr1, OfficeAddr2, OfficeAddr3, OfficeTown, SelectedOfficeStateCode, OfficePostCode, OffCountry, Email, OccupCodeSelected, ExactDuties, Remark, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, IDType, IDTypeCodeSelected, OtherIDType2, ClientSmoker, AnnIncome, BussinessType,race, marital, nation, religion,str_counter,ProspectID];
 		
         NSLog(@"Save from user default - update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
 		bool success = [db executeUpdate:insertSQL];
@@ -1858,6 +1864,9 @@ bool PolicyOwnerSigned = TRUE;
     NSString *home3 = [txtHomeAddr3.text stringByTrimmingCharactersInSet:
                        [NSCharacterSet whitespaceCharacterSet]];
     
+    NSString *home4 = [_txtAddress4.text stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceCharacterSet]];
+    
     NSString *home_postcode = [txtHomePostCode.text stringByTrimmingCharactersInSet:
                                [NSCharacterSet whitespaceCharacterSet]];
     
@@ -1958,6 +1967,11 @@ bool PolicyOwnerSigned = TRUE;
     {
         edited = YES;
 		[ClientProfile setObject:@"YES" forKey:@"isEdited"];
+    }
+    else if(![home4 isEqualToString:pp.Address4])
+    {
+        edited = YES;
+        [ClientProfile setObject:@"YES" forKey:@"isEdited"];
     }
     else if(![home_postcode isEqualToString:pp.ResidenceAddressPostCode])
     {
@@ -3590,6 +3604,7 @@ bool PolicyOwnerSigned = TRUE;
             txtHomeAddr1.text = @"";
             txtHomeAddr2.text = @"";
             txtHomeAddr3.text = @"";
+            _txtAddress4.text = @"";
             _txtHomeVillage.text = @"";
             _txtHomeDistrict.text = @"";
             _txtHomeProvince.text = @"";
@@ -4221,7 +4236,15 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 -(void)detectFilled:(UITextField *)sender{
-    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
+    // NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtAddress4,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,_txtOfficeVillage,_txtOfficeDistrict,txtOfficeTown,_txtOfficeProvince, nil];
     
@@ -4277,6 +4300,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtHomeAddr1.text forKey:@"txtHomeAddr1"];
 	[ClientProfile setObject:txtHomeAddr2.text forKey:@"txtHomeAddr2"];
 	[ClientProfile setObject:txtHomeAddr3.text forKey:@"txtHomeAddr3"];
+    [ClientProfile setObject:_txtAddress4.text forKey:@"_txtAddress4"];
 	[ClientProfile setObject:txtHomePostCode.text forKey:@"txtHomePostCode"];
 	[ClientProfile setObject:txtHomeTown.text forKey:@"txtHomeTown"];
 	
@@ -5088,6 +5112,13 @@ bool PolicyOwnerSigned = TRUE;
         txtHomeAddr3.text = @"";
     }
     
+    if (![prospectprofile.Address4 isEqualToString:@"(null)"] || prospectprofile.Address4 != NULL) {
+        _txtAddress4.text = prospectprofile.Address4;
+    }
+    else {
+        _txtAddress4.text = @"";
+    }
+    
     if (![prospectprofile.ResidenceAddressCountry isEqualToString:@"(null)"] || prospectprofile.ResidenceAddressCountry != NULL) {
         txtHomeCountry.text = [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
 		prospectprofile.ResidenceAddressCountry =   [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
@@ -5582,6 +5613,9 @@ bool PolicyOwnerSigned = TRUE;
                 txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
                 txtHomeAddr3.enabled = NO;
                 
+                _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+                _txtAddress4.enabled = NO;
+                
                 txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
                 txtHomePostCode.enabled = NO;
                 
@@ -5743,6 +5777,7 @@ bool PolicyOwnerSigned = TRUE;
         txtHomeAddr1.text = @"";
         txtHomeAddr2.text = @"";
         txtHomeAddr3.text = @"";
+        _txtAddress4.text = @"";
         
         txtOfficeAddr1.text = @"";
         txtOfficeAddr2.text =@"";
@@ -5759,6 +5794,9 @@ bool PolicyOwnerSigned = TRUE;
         
         txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
         txtHomeAddr3.enabled = NO;
+        
+        _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+        _txtAddress4.enabled = NO;
         
         txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
         txtHomePostCode.enabled = NO;
@@ -6479,7 +6517,7 @@ bool PolicyOwnerSigned = TRUE;
 				gender = @"F";
 			}
 			
-            NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+            NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceAddress4\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
                                       TABLE_LA_DETAILS,
 									  TitleCodeSelected,
                                       txtrFullName.text,
@@ -6500,6 +6538,7 @@ bool PolicyOwnerSigned = TRUE;
                                       txtHomeAddr1.text,
                                       txtHomeAddr2.text,
                                       txtHomeAddr3.text,
+                                      _txtAddress4.text,
                                       
                                       txtHomeTown.text,
                                       SelectedStateCode,
@@ -6749,7 +6788,7 @@ bool PolicyOwnerSigned = TRUE;
 			
 			if (count > 0) {
 				update_query = @"";
-				update_query = [NSString stringWithFormat:@"Update CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\";",
+				update_query = [NSString stringWithFormat:@"Update CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingAddress4\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\";",
 								
 								txtrFullName.text,
 								gender,
@@ -6767,6 +6806,7 @@ bool PolicyOwnerSigned = TRUE;
 								txtHomeAddr1.text,
 								txtHomeAddr2.text,
 								txtHomeAddr3.text,
+                                _txtAddress4.text,
 								
 								txtHomeTown.text,
 								SelectedStateCode,
@@ -6807,7 +6847,7 @@ bool PolicyOwnerSigned = TRUE;
 		ProposalToUpdate = [ProposalCount objectAtIndex: i];
 		
 		if (count > 0) {
-            update_query  = [NSString stringWithFormat:@"Update eProposal_CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\" AND eProposalNo = \"%@\" ;",
+            update_query  = [NSString stringWithFormat:@"Update eProposal_CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingAddress4\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\" AND eProposalNo = \"%@\" ;",
 									   
 									   txtrFullName.text,
 									   gender,
@@ -6825,6 +6865,7 @@ bool PolicyOwnerSigned = TRUE;
 									   txtHomeAddr1.text,
 									   txtHomeAddr2.text,
 									   txtHomeAddr3.text,
+                                    _txtAddress4.text,
 									   
 									   txtHomeTown.text,
 									   SelectedStateCode,
@@ -6851,11 +6892,12 @@ bool PolicyOwnerSigned = TRUE;
 		//Update address in nominee (If Nominee address set same as PO)
 		
 		if (proposalNoCount > 0) {
-			NSString *update_query  = [NSString stringWithFormat:@"Update eProposal_NM_Details SET \"NMCRAddress1\" = \"%@\", \"NMCRAddress2\" = \"%@\", \"NMCRAddress3\" = \"%@\", \"NMCRTown\" = \"%@\", \"NMCRState\" = \"%@\", \"NMCRPostCode\" = \"%@\", \"NMCRCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and NMSamePOAddress = 'same';",
+			NSString *update_query  = [NSString stringWithFormat:@"Update eProposal_NM_Details SET \"NMCRAddress1\" = \"%@\", \"NMCRAddress2\" = \"%@\", \"NMCRAddress3\" = \"%@\", \"NMCRAddress4\" = \"%@\", \"NMCRTown\" = \"%@\", \"NMCRState\" = \"%@\", \"NMCRPostCode\" = \"%@\", \"NMCRCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and NMSamePOAddress = 'same';",
 									   
 									   txtHomeAddr1.text,
 									   txtHomeAddr2.text,
 									   txtHomeAddr3.text,
+                                       _txtAddress4.text,
 									   
 									   txtHomeTown.text,
 									   SelectedStateCode,
@@ -6866,11 +6908,12 @@ bool PolicyOwnerSigned = TRUE;
 			
 			//Update trustee address if set as same as PO
 			update_query = @"";
-			update_query  = [NSString stringWithFormat:@"Update eProposal_Trustee_Details SET \"TrusteeAddress1\" = \"%@\", \"TrusteeAddress2\" = \"%@\", \"TrusteeAddress3\" = \"%@\", \"TrusteeTown\" = \"%@\", \"TrusteeState\" = \"%@\", \"TrusteePostcode\" = \"%@\", \"TrusteeCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and TrusteeSameAsPO = 'Y';",
+			update_query  = [NSString stringWithFormat:@"Update eProposal_Trustee_Details SET \"TrusteeAddress1\" = \"%@\", \"TrusteeAddress2\" = \"%@\", \"TrusteeAddress3\" = \"%@\", \"TrusteeAddress4\" = \"%@\", \"TrusteeTown\" = \"%@\", \"TrusteeState\" = \"%@\", \"TrusteePostcode\" = \"%@\", \"TrusteeCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and TrusteeSameAsPO = 'Y';",
 							 
 							 txtHomeAddr1.text,
 							 txtHomeAddr2.text,
 							 txtHomeAddr3.text,
+                             _txtAddress4.text,
 							 
 							 txtHomeTown.text,
 							 SelectedStateCode,
@@ -7986,6 +8029,9 @@ bool PolicyOwnerSigned = TRUE;
         [txtHomeAddr3 becomeFirstResponder];
     }
     else if (textField == txtHomeAddr3) {
+        [_txtAddress4 becomeFirstResponder];
+    }
+    else if (textField == _txtAddress4) {
         [txtHomePostCode becomeFirstResponder];
     }
     else if (textField == txtHomePostCode) {
@@ -8154,8 +8200,8 @@ bool PolicyOwnerSigned = TRUE;
             }
 						
             NSString *insertSQL = [NSString stringWithFormat:
-                                   @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\" , \"QQFlag\"=\"%@\", \"CountryOfBirth\"=\"%@\"  where indexNo = \"%@\" "
-                                   "", txtrFullName.text, strDOB, gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion,@"false" , CountryOfBirth ,pp.ProspectID];
+                                   @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\" , \"QQFlag\"=\"%@\", \"CountryOfBirth\"=\"%@\"  where indexNo = \"%@\" "
+                                   "", txtrFullName.text, strDOB, gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtAddress4.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion,@"false" , CountryOfBirth ,pp.ProspectID];
             
 			NSLog(@"Save changes 2 - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
             const char *Update_stmt = [insertSQL UTF8String];
@@ -8654,15 +8700,21 @@ bool PolicyOwnerSigned = TRUE;
             return ErrMsg;
             
         }
-        else if ( (home1_trim.length!=0 || ![txtHomeAddr2.text isEqualToString:@""] || ![txtHomeAddr3.text isEqualToString:@""])&& homePostcode_trim.length==0)
+        else if
+        (
+            (
+                home1_trim.length!=0 ||
+                ![txtHomeAddr2.text isEqualToString:@""] ||
+                ![txtHomeAddr3.text isEqualToString:@""] ||
+                ![_txtAddress4.text isEqualToString:@""]
+            ) && homePostcode_trim.length==0
+        )
         {
             if(checked == NO)
             {
 				ErrMsg = @"Postcode for residential address is required.";
                 return ErrMsg;
             }
-            
-            
         }
         else  if ( home1_trim.length==0 && ![txtHomePostCode.text isEqualToString:@""])
         {
@@ -11617,6 +11669,7 @@ bool PolicyOwnerSigned = TRUE;
     [self setTxtHomeAddr1:nil];
     [self setTxtHomeAddr2:nil];
     [self setTxtHomeAddr3:nil];
+    [self setTxtAddress4:nil];
     [self setTxtHomePostCode:nil];
     [self setTxtHomeTown:nil];
     [self setTxtHomeState:nil];
