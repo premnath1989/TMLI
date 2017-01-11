@@ -20,7 +20,7 @@
 #import "UIView+viewRecursion.h"
 #import "LoginDBManagement.h"
 #import "String.h"
-
+#import "User Interface.h"
 
 @interface NewLAViewController (){
     NSString *ilustrationProductCode;
@@ -496,6 +496,7 @@
 	aaTextField.enabled = FALSE;
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
 	return YES;
@@ -506,6 +507,7 @@
   //  self.view.frame = CGRectMake(-5, 0, 778, 1004);
     [super viewWillAppear:animated];
     [quickQuoteFlag isOn];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

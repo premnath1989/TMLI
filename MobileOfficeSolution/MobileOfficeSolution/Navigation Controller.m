@@ -44,7 +44,17 @@
         
         // LOCALIZABLE
         LoginDBManagement *loginDB = [[LoginDBManagement alloc]init];
-        _labelName.text = [loginDB getAgentProperty:@"AgentName"];
+        
+        NSMutableDictionary *agentDetails =[loginDB getAgentDetails];
+        
+        NSString *fullName;
+        if([agentDetails valueForKey:@"LGIVNAME"] == nil){
+            fullName = [NSString stringWithFormat:@"%@ %@",[agentDetails valueForKey:@"AgentName"], @""];
+        }else{
+            fullName = [NSString stringWithFormat:@"%@ %@", [agentDetails valueForKey:@"LGIVNAME"],[agentDetails valueForKey:@"AgentName"]];
+        }
+        
+        _labelName.text = fullName;
         _labelPosition.text = [loginDB getAgentProperty:@"Level"];
         
             /* NAVIGATION HEADER */

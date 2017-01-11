@@ -251,11 +251,13 @@
                                            initWithUTF8String:
                                            (const char *) sqlite3_column_text(statement, 0)];
                 NSLog(@"%@",strFirstLogin);
-                if([strFirstLogin caseInsensitiveCompare:@"A"] == NSOrderedSame){
+                if([strFirstLogin caseInsensitiveCompare:@"Active"] == NSOrderedSame){
                     agentStatusFlag = AGENT_IS_ACTIVE;
-                }else if([strFirstLogin caseInsensitiveCompare:@"I"] == NSOrderedSame){
+                }else if([strFirstLogin caseInsensitiveCompare:@"Suspend"] == NSOrderedSame){
                     agentStatusFlag = AGENT_IS_INACTIVE;
-                }else if([strFirstLogin caseInsensitiveCompare:@"T"] == NSOrderedSame){
+                }else if([strFirstLogin caseInsensitiveCompare:@"Terminate"] == NSOrderedSame){
+                    agentStatusFlag = AGENT_IS_TERMINATED;
+                }else if([strFirstLogin caseInsensitiveCompare:@"Resign"] == NSOrderedSame){
                     agentStatusFlag = AGENT_IS_TERMINATED;
                 }
             }else{

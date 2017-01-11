@@ -22,11 +22,11 @@
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
 #define CHARACTER_LIMIT_PC_F 12
-#define CHARACTER_LIMIT_FULLNAME 40
-#define CHARACTER_LIMIT_OtherID 30
+#define CHARACTER_LIMIT_FULLNAME 81
+#define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
 #define CHARACTER_LIMIT_ExactDuties 40
-#define CHARACTER_LIMIT_Address 30
+#define CHARACTER_LIMIT_Address 40
 #define CHARACTER_LIMIT_POSTCODE 6
 #define CHARACTER_LIMIT_FOREIGN_POSTCODE 12
 #define CHARACTER_LIMIT_ANNUALINCOME 15
@@ -2788,12 +2788,15 @@ bool PolicyOwnerSigned = TRUE;
     
     NSUInteger newLength = [textView.text length] + [text length] - range.length;
     
-    if (textView == txtExactDuties) {
-        
-		
-        return ((newLength <= CHARACTER_LIMIT_ExactDuties));
-    }
-    return YES;
+//    if (textView == txtExactDuties) {
+//        
+//		
+//        return ((newLength <= CHARACTER_LIMIT_ExactDuties));
+//    }
+//    return YES;
+    
+    activeView = textView;
+    return (newLength <= 500);//textView.text.length + (text.length - range.length) <= 500   ;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -2822,13 +2825,13 @@ bool PolicyOwnerSigned = TRUE;
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     if ((textField == _txtHPRumah)||(textField == _txtHPRumah)){
         NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:NUMBERS_ONLY] invertedSet];
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
         
-        return (([string isEqualToString:filtered])&&(newLength <= CHARACTER_LIMIT_POSTCODE));
+        return (([string isEqualToString:filtered])&&(newLength <= 16));
     }
     
     if((checked && textField == txtHomePostCode ) || (checked2 && textField == txtOfficePostCode)) {
@@ -11103,105 +11106,290 @@ bool PolicyOwnerSigned = TRUE;
     [db open];
     FMResultSet *result;
     
-    int poin;
-    score = 0;
-    completeStatus = 0;
-    //Age
-    if (![txtDOB.text isEqualToString:@""]){
+    
+    
+    
+    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated value and i didn't change your current variable name, i also add some log to easily detect the scoring mistake.
+    
+    /* INITIALIZATION */
+    
+    Boolean booleanColumnEmpty = false;
+    NSString *stringInputValue = @"";
+    NSString *stringQuery = @"";
+    int intPoin;
+    
+    /* AGE */
+    
+    if (![txtDOB.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        stringInputValue = @"";
         completeStatus = completeStatus + 1;
-        if (age >35 && age < 46) {
-            score = score + 5;
+        
+        /* CONDITION */
+        
+        if (age > 35 && age < 46)
+        {
+            intPoin = 5;
+            stringInputValue = @"35 < age < 45";
         }
-        else if (age > 45 && age < 56) {
-            score = score + 4;
+        else if (age >45 && age < 56)
+        {
+            intPoin = 4;
+            stringInputValue = @"45 < age < 56";
         }
-        else if (age > 55) {
-            score = score + 3;
+        else if (age > 55)
+        {
+            intPoin =  3;
+            stringInputValue = @"35 < age < 45";
         }
-        else if (age >25 && age < 36) {
-            score = score + 2;
+        else if (age > 25 && age < 36)
+        {
+            intPoin = 2;
+            stringInputValue = @"25 < age < 36";
         }
-        else if (age > 17 && age < 26) {
-            score = score + 1;
+        else if (age > 16 && age < 26)
+        {
+            intPoin = 1;
+            stringInputValue = @"17 < age < 26";
         }
+        else
+        {
+            
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
     }
     
-    //gender
-    if (segGender.selectedSegmentIndex == 0) {
-        score = score + 2;
+    
+    /* GENDER */
+    
+    stringInputValue = @"";
+    intPoin = 0;
+    
+    /* CONDITION */
+    
+    if (segGender.selectedSegmentIndex == 0)
+    {
+        intPoin = 2;
         completeStatus = completeStatus + 1;
+        stringInputValue = @"MALE";
     }
-    else {
-        score = score + 1;
+    else
+    {
+        intPoin = 1;
         completeStatus = completeStatus + 1;
+        stringInputValue = @"FEMALE";
     }
     
-    //marital
-    if (![_txtMarital.text isEqualToString:@""]){
+    /* RESULT */
+    
+    score += intPoin;
+    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
+    
+    
+    /* MARITAL STATUS */
+    
+    if (![_txtMarital.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
         completeStatus = completeStatus + 1;
         result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT poin FROM %@ WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"poin"] intValue];
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
+        result = [db executeQuery:stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Marital status | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
+                break;
+            }
         }
-        score = score + poin;
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", _txtMarital.text, intPoin, score);
     }
     
-    //income
-    if (![txtAnnIncome.text isEqualToString:@""]){
+    /* ANNUAL INCOME */
+    
+    if (![txtAnnIncome.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
         completeStatus = completeStatus + 1;
         result = nil;
-        result = [db executeQuery:@"SELECT Poin FROM eProposal_AnnualIncome WHERE AnnDesc = ?", txtAnnIncome.text];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE AnnDesc = '%@'",  TABLE_EPROPOSAL_ANNUALINCOME,txtAnnIncome.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Annual income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Annual income | poin -> %d", intPoin);
+                break;
+            }
         }
-        score = score + poin;
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", txtAnnIncome.text, intPoin, score);
+    }
+    
+    /* SOURCE INCOME */
+    
+    if (![_txtSourceIncome.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Source income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Source income | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", _txtSourceIncome.text, intPoin, score);
+    }
+    
+    /* OCUUPATION */
+    
+    if (![_txtOccupation.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Occupation | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Occupation | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", _txtOccupation.text, intPoin, score);
+    }
+    
+    /* REFERENCE */
+    
+    if (![txtReferralName.text isEqualToString:@""])
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        completeStatus = completeStatus + 1;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
+        result = [db executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Referral name | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Referral name | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        score += intPoin;
+        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", txtReferralName.text, intPoin, score);
+    }
+    else
+    {
         
     }
     
-    //sourceIncome
-    if (![_txtSourceIncome.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-    }
+    // BHIMBIMS'S QUICK FIX - End
     
-    //occ
-    if (![_txtOccupation.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-        
-    }
     
-    //reference
-    if (![txtReferralName.text isEqualToString:@""]){
-        completeStatus = completeStatus + 1;
-        result = nil;
-        NSString *query = [NSString stringWithFormat:@"SELECT Poin FROM %@ WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
-        result = [db executeQuery:query];
-        poin = 0;
-        while ([result next]) {
-            poin = [[result objectForColumnName:@"Poin"] intValue];
-        }
-        score = score + poin;
-        
-    }
+    
     
     //status
     score = score + 1; //new additional

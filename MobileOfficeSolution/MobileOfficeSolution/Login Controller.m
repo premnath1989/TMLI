@@ -17,6 +17,7 @@
 #import "DDXMLElementAdditions.h"
 #import "DDXMLNode.h"
 #import "String.h"
+#import "DateFormatter.h"
 
 
 // INTERFACE
@@ -273,62 +274,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"];
-    NSDate *lastSync = [dateFormatter dateFromString:lastSyncDate];
     
-    NSDateFormatter *day = [[NSDateFormatter alloc] init];
-    [day setDateFormat:@"dd"];
-    NSString *txtDay = [day stringFromDate:lastSync];
-    
-    NSDateFormatter *Month = [[NSDateFormatter alloc] init];
-    [Month setDateFormat:@"MM"];
-    NSString *txtMonth = [Month stringFromDate:lastSync];
-    switch ([[Month stringFromDate:lastSync] integerValue]) {
-        case 1:
-            txtMonth = @"Jan";
-            break;
-        case 2:
-            txtMonth = @"Feb";
-            break;
-        case 3:
-            txtMonth = @"Mar";
-            break;
-        case 4:
-            txtMonth = @"Apr";
-            break;
-        case 5:
-            txtMonth = @"May";
-            break;
-        case 6:
-            txtMonth = @"Jun";
-            break;
-        case 7:
-            txtMonth = @"Jul";
-            break;
-        case 8:
-            txtMonth = @"Aug";
-            break;
-        case 9:
-            txtMonth = @"Sep";
-            break;
-        case 10:
-            txtMonth = @"Oct";
-            break;
-        case 11:
-            txtMonth = @"Nov";
-            break;
-        case 12:
-            txtMonth = @"Dec";
-            break;
-
-        default:
-            break;
-    }
-    
-    NSDateFormatter *Year = [[NSDateFormatter alloc] init];
-    [Year setDateFormat:@"YYYY"];
-    NSString *txtYear = [Year stringFromDate:lastSync];
-    
-    lastSyncDate = [NSString stringWithFormat:@"%@-%@-%@", txtDay,txtMonth,txtYear];
+    lastSyncDate = [[[DateFormatter alloc] init] DateMonthName:lastSyncDate prevFormat:dateFormatter];
     
     return lastSyncDate;
 }
@@ -394,27 +341,26 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
 - (IBAction)btnLogin:(id)sender {
     
-    [self openHome];
     
-//    if (textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length <=0 ) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username dan password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else if(textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length != 0 ){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else if(textFieldUserCode.text.length != 0 && textFieldUserPassword.text.length <= 0 ){
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-//        alert.tag = USERNAME_PASSWORD_VALIDATION;
-//        [alert show];
-//    }else{
-//        if(firstLogin && ![self connected]){
-//            [self FirstTimeAlert:@"Informasi"];
-//        }else{
-//            [self loginAction];
-//        }
-//    }
+    if (textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length <=0 ) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username dan password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else if(textFieldUserCode.text.length <= 0 && textFieldUserPassword.text.length != 0 ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Username harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else if(textFieldUserCode.text.length != 0 && textFieldUserPassword.text.length <= 0 ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Password harap diisi" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        alert.tag = USERNAME_PASSWORD_VALIDATION;
+        [alert show];
+    }else{
+        if(firstLogin && ![self connected]){
+            [self FirstTimeAlert:@"Informasi"];
+        }else{
+            [self loginAction];
+        }
+    }
 }
 
 
@@ -509,9 +455,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if(dateDifference > 7)
     {
-        if(dateDifference > 14){
+        if(dateDifference > 120){
+            [loginDB DeleteAgentProfile];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 14 hari, semua data nasabah telah terhapus."
+                                                            message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }else{
@@ -715,13 +662,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardDidHideNotification object:nil];
     
-//    if(firstLogin){
-//        UserProfileView.modalPresentationStyle = UIModalPresentationFormSheet;
-//        UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//        [UserProfileView setDelegate:self firstLogin:firstLogin];
-//        UserProfileView.preferredContentSize = CGSizeMake(600, 500);
-//        [self presentViewController:UserProfileView animated:YES completion:nil];
-//    }
+    if(firstLogin){
+        UserProfileView.modalPresentationStyle = UIModalPresentationFormSheet;
+        UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [UserProfileView setDelegate:self firstLogin:firstLogin];
+        UserProfileView.preferredContentSize = CGSizeMake(600, 500);
+        [self presentViewController:UserProfileView animated:YES completion:nil];
+    }
     
     //we do some version checker over here
     [self appVersionChecker];

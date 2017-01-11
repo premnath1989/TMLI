@@ -108,6 +108,10 @@
 }
 -(void)loadDataFromList;
 
+
+@property (strong, nonatomic) IBOutlet UIView *mainView;
+
+
 @property (nonatomic, strong) RelationshipPopoverViewController *RshipTypePicker;
 @property (nonatomic, strong) UIPopoverController *RshipTypePickerPopover;
 @property (nonatomic, retain) SIObj* siObj;

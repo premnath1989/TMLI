@@ -75,3 +75,4 @@
     extern NSString* const TABLE_ZIPCODE;
     extern NSString* const TABLE_MASTER_INFO;
     extern NSString* const TABLE_ERRORCODE;
+    extern NSString* const TABLE_EPROPOSAL_ANNUALINCOME;

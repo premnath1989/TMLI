@@ -28,6 +28,7 @@
 #import "String.h"
 #import "User Interface.h"
 #import "InvestmentTypeViewController.h"
+#import "User Interface.h"
 
 
 #define TRAD_PAYOR_FIRSTLA  @"0"
@@ -278,6 +279,8 @@ BOOL NavShow3;
     [super viewWillAppear:animated];
     self.view.autoresizesSubviews = NO;
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardHide:) name:UIKeyboardWillHideNotification object:nil];
  
     
     if ([[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
@@ -4465,7 +4468,22 @@ BOOL NavShow3;
 	[activeInstance performSelector:@selector(dismissKeyboard)];
     
 }
+- (void) keyboardShow: (NSNotification *) notificationKeyboard
+{
+    
+    if (_ViewThickHeader.hidden == YES) {
+        [self ActionChangeHeader:nil];
+    }
+    
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardShow:notificationKeyboard viewMain:_mainView];
+}
 
+- (void) keyboardHide: (NSNotification *) notificationKeyboard
+{
+    UserInterface *_objectUserInterface = [[UserInterface alloc] init];
+    [_objectUserInterface keyboardHide:notificationKeyboard viewMain:_mainView];
+}
 
 - (void) checkMandatoryField{
     
