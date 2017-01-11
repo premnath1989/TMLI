@@ -626,10 +626,44 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 validFlag = false;
                 break;
             }
+            case AGENT_IS_SUSPEND :
+            {
+                [spinnerLoading stopLoadingSpinner];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINESUSPEND", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
+                [alert show];
+                validFlag = false;
+                break;
+                
+            }
+
+            case AGENT_IS_RESIGN :
+            {
+                [spinnerLoading stopLoadingSpinner];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINERESIGN", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
+                [alert show];
+                validFlag = false;
+                break;
+
+            }
             case AGENT_IS_TERMINATED:
             {
                 [spinnerLoading stopLoadingSpinner];
-                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 
                 
                 // BHIMBIM'S QUICK FIX - Start

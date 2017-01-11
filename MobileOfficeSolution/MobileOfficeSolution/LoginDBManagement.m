@@ -254,11 +254,11 @@
                 if([strFirstLogin caseInsensitiveCompare:@"Active"] == NSOrderedSame){
                     agentStatusFlag = AGENT_IS_ACTIVE;
                 }else if([strFirstLogin caseInsensitiveCompare:@"Suspend"] == NSOrderedSame){
-                    agentStatusFlag = AGENT_IS_INACTIVE;
+                    agentStatusFlag = AGENT_IS_SUSPEND;
                 }else if([strFirstLogin caseInsensitiveCompare:@"Terminate"] == NSOrderedSame){
                     agentStatusFlag = AGENT_IS_TERMINATED;
                 }else if([strFirstLogin caseInsensitiveCompare:@"Resign"] == NSOrderedSame){
-                    agentStatusFlag = AGENT_IS_TERMINATED;
+                    agentStatusFlag = AGENT_IS_RESIGN;
                 }
             }else{
                 agentStatusFlag = AGENT_IS_NOT_FOUND;
