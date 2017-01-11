@@ -3770,6 +3770,7 @@ BOOL NavShowP;
     {
         /* INITIALIZATION */
         
+        intPoin = 0;
         stringInputValue = @"";
         completeStatus = completeStatus + 1;
         

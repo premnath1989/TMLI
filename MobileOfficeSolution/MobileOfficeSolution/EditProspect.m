@@ -11156,6 +11156,7 @@ bool PolicyOwnerSigned = TRUE;
     {
         /* INITIALIZATION */
         
+        intPoin = 0;
         stringInputValue = @"";
         completeStatus = completeStatus + 1;
         
