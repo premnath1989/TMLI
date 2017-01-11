@@ -300,7 +300,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         days = [NSString stringWithFormat:@"%d", dayRem];
     }
     
-    return days;
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = dayRem;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    
+    return [[[DateFormatter alloc] init] DateMonthNoFormat:nextDate];
 }
 
 
@@ -455,20 +461,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if(dateDifference > 7)
     {
-        /* if(dateDifference > 120){
-            [loginDB DeleteAgentProfile];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di nomor 021-xxxxxxxx pada jam kerja atau email ke helpdesk_tmconnect@tokiomarine-life.co.id"
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 7 hari, pastikan perangkat terhubung ke internet untuk login."
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        [spinnerLoading stopLoadingSpinner]; */
-        
         
         // BHIMBIM'S QUICK FIX - Start
         
@@ -476,11 +468,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         
         if(dateDifference > 120)
         {
+            [loginDB DeleteAgentProfile];
             stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
-        }
-        else if (dateDifference > 30)
-        {
-            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil);
         }
         else
         {
@@ -659,20 +648,15 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         switch ([[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]] compare:[NSDate date]]) {
             case NSOrderedAscending:
-            {
-                [spinnerLoading stopLoadingSpinner];
-                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                
-                
-                // BHIMBIM'S QUICK FIX - Start
-                
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                
-                // BHIMBIM'S QUICK FIX - End
-                
-                
-                [alert show];
-                validFlag = false;
+            {                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"dd/MM/yyyy"];
+                int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]]];
+                if(daysElapsed > 30 && ![self connected] && OFFLINE_PROCESS){
+                    [spinnerLoading stopLoadingSpinner];
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                    validFlag = false;
+                }
                 break;
             }
             default:

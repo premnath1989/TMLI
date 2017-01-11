@@ -12,5 +12,6 @@
 }
 
 - (NSString *)DateMonthName:(NSString *)BareDate prevFormat:(NSDateFormatter *) prevFormat;
+- (NSString *)DateMonthNoFormat:(NSDate *)BareDate;
 
 @end

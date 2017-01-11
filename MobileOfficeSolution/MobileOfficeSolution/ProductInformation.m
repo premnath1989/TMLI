@@ -118,7 +118,6 @@ BOOL NavShow2;
     
     // BHIMBIM'S QUICK FIX - End
     
-    
     int index = 1;
     for (NSURL *fileURL in contents) {
         // Enumerate each file in directory
@@ -229,6 +228,20 @@ BOOL NavShow2;
     }
     
     [myTableView reloadData];
+    
+    NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
+                                                         URLForResource:@"xibLibrary" withExtension:@"bundle"]];
+    
+//    ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
+//    progressBar.TitleFileName = @"test download";
+//    progressBar.TitleProgressBar=@"test download";
+//    progressBar.progressDelegate = self;
+//    progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
+//    progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    progressBar.preferredContentSize = CGSizeMake(600, 200);
+//    progressBar.ftpFunction = @"download";
+//    progressBar.TransferMode = kBRHTTPMode;
+//    [self presentViewController:progressBar animated:YES completion:nil];
 }
 
 // BHIMBIM'S QUICK FIX - End
@@ -262,6 +275,7 @@ BOOL NavShow2;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
             progressBar.ftpFunction = @"download";
+            progressBar.TransferMode = kBRHTTPMode;
             [self presentViewController:progressBar animated:YES completion:nil];
             
         }else{
@@ -375,6 +389,8 @@ BOOL NavShow2;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+//delegate for list dir completion
 - (void)itemsList:(NSMutableArray *)ftpItems{
     NSLog(@"ftp itemlist");
     int index = 1;
@@ -480,7 +496,6 @@ BOOL NavShow2;
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke FTP Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses FTP"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
-
 
 
 @end
