@@ -455,10 +455,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if(dateDifference > 7)
     {
-        if(dateDifference > 120){
+        /* if(dateDifference > 120){
             [loginDB DeleteAgentProfile];
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
+                                                            message:@"Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di nomor 021-xxxxxxxx pada jam kerja atau email ke helpdesk_tmconnect@tokiomarine-life.co.id"
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }else{
@@ -467,8 +467,43 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                                                            delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
+        [spinnerLoading stopLoadingSpinner]; */
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        NSString *stringMessage = @"";
+        
+        if(dateDifference > 120)
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
+        }
+        else if (dateDifference > 30)
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil);
+        }
+        else
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE7DAYS", nil);
+        }
+        
+        UIAlertController *alertController =
+        [
+         UIAlertController
+         alertControllerWithTitle:@"Informasi"
+         message: stringMessage
+         preferredStyle:UIAlertControllerStyleAlert
+         ];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         [spinnerLoading stopLoadingSpinner];
-    }else
+        
+        // BHIMBIM'S QUICK FIX - End
+        
+        
+    }
+    else
     {
         
         if ([self OfflineLogin]) {
@@ -568,7 +603,16 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             case AGENT_IS_INACTIVE:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINERESIGN", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -584,7 +628,16 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             case AGENT_IS_TERMINATED:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINETERMINATE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;

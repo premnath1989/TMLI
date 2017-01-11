@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MobileOfficeSolution/ProspectListing.m"
-            timestampString = "505580723.271789"
+            filePath = "MobileOfficeSolution/ProspectViewController.m"
+            timestampString = "505807708.364945"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1481"
-            endingLineNumber = "1481"
-            landmarkName = "-editPressed:"
+            startingLineNumber = "7510"
+            endingLineNumber = "7510"
+            landmarkName = "-ActionBackTo:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

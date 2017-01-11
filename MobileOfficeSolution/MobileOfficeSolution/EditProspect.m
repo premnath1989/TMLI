@@ -1173,7 +1173,7 @@ bool PolicyOwnerSigned = TRUE;
 		TitleCodeSelected = @"";
 	if (IDTypeCodeSelected == NULL || [IDTypeCodeSelected isEqualToString:@"(NULL)"] || [IDTypeCodeSelected isEqualToString:@"(null)"])
 		IDTypeCodeSelected = @"";
-	
+	NSLog(@"Save to User Default - ID type code selected -> %@", IDTypeCodeSelected);
 	
 	if (HomeCountry == NULL || [HomeCountry isEqualToString:@"(NULL)"] || [HomeCountry isEqualToString:@"(null)"])
 		HomeCountry = @"";
@@ -1198,6 +1198,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtIDType.text forKey:@"IC"];
 	
 	[ClientProfile setObject:IDTypeCodeSelected forKey:@"IDTypeCodeSelected"];
+    NSLog(@"Save to User Default - ID type code selected for client profile -> %@", IDTypeCodeSelected);
 	
 	if ([IDTypeCodeSelected isEqualToString:@""]) {
 		[ClientProfile setObject:@"" forKey:@"txtOtherIDType"];
@@ -1205,6 +1206,8 @@ bool PolicyOwnerSigned = TRUE;
 	else
 		[ClientProfile setObject:txtOtherIDType.text forKey:@"txtOtherIDType"];
 	
+    NSLog(@"Save to User Defauult - ID type code selected after validation -> %@", IDTypeCodeSelected);
+    
 	[ClientProfile setObject:strDOB forKey:@"strDOB"];
 	[ClientProfile setObject:gender forKey:@"gender"];
 	
@@ -1329,6 +1332,7 @@ bool PolicyOwnerSigned = TRUE;
 	
 	NSString *IDType = [ClientProfile stringForKey:@"IC"];
 	IDTypeCodeSelected = [ClientProfile stringForKey:@"IDTypeCodeSelected"];
+    NSLog(@"Save from User Default - ID type code selected -> %@", IDTypeCodeSelected);
 	NSString *OtherIDType2 = [ClientProfile stringForKey:@"txtOtherIDType"];
 	
 	ClientSmoker = [ClientProfile stringForKey:@"ClientSmoker"];
@@ -1376,6 +1380,7 @@ bool PolicyOwnerSigned = TRUE;
                                @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\"   where indexNo = \"%@\" "
                                "", FullName, strDOB, gender, HomeAddr1, HomeAddr2, HomeAddr3, HomeTown, SelectedStateCode, HomePostCode, HomeCountry, OfficeAddr1, OfficeAddr2, OfficeAddr3, OfficeTown, SelectedOfficeStateCode, OfficePostCode, OffCountry, Email, OccupCodeSelected, ExactDuties, Remark, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, IDType, IDTypeCodeSelected, OtherIDType2, ClientSmoker, AnnIncome, BussinessType,race, marital, nation, religion,str_counter,ProspectID];
 		
+        NSLog(@"Save from user default - update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
 		bool success = [db executeUpdate:insertSQL];
 		if (success) {
 			[self GetLastID];
@@ -2299,6 +2304,8 @@ bool PolicyOwnerSigned = TRUE;
     if ([IDTypeCodeSelected isEqualToString:@""] || (IDTypeCodeSelected == NULL)) {
         IDTypeCodeSelected = pp.OtherIDType;
     }
+    
+    NSLog(@"View Will Appear - ID type code selected -> %@", IDTypeCodeSelected);
     
     _txtTypeID.text = pp.OtherIDType;
     _txtIdNumber.text = pp.OtherIDTypeNo;
@@ -6275,10 +6282,20 @@ bool PolicyOwnerSigned = TRUE;
         counter = counter+1;
 		
 		//eliminate empty or null value
+        
+        NSLog(@"Save to DB - ID type code selected before get id type code -> %@", IDTypeCodeSelected);
+        // [self getIDTypeDesc : IDTypeCodeSelected];
+        // IDTypeCodeSelected = _txtTypeID.text;
         [self getIDTypeCode:_txtTypeID.text];
+        NSLog(@"Save to DB - Get id type code -> %@", _txtTypeID.text);
+        NSLog(@"Save to DB - ID type code selected before validation -> %@", IDTypeCodeSelected);
+        
+        
         if (IDTypeCodeSelected == NULL || [IDTypeCodeSelected isEqualToString:@"(NULL)"] || [IDTypeCodeSelected isEqualToString:@"(null)"]) {
 			IDTypeCodeSelected = @"";
         }
+        
+        NSLog(@"Save to DB - ID type code selected -> %@", IDTypeCodeSelected);
         
         if (OffCountry == NULL || [OffCountry isEqualToString:@"(NULL)"] || [OffCountry isEqualToString:@"(null)"]) {
 			OffCountry = @"";
@@ -6380,6 +6397,7 @@ bool PolicyOwnerSigned = TRUE;
                                     , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
                             /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
 
+        NSLog(@"Save to DB - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
         const char *Update_stmt = [insertSQL UTF8String];
         if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
             if (sqlite3_step(statement) == SQLITE_DONE)
@@ -6490,7 +6508,7 @@ bool PolicyOwnerSigned = TRUE;
             
             [db executeUpdate:update_query];
             
-            
+            NSLog(@"Save to DB - Update SQL, query -> %@", update_query);
         }
     }
     [result close];
@@ -7670,8 +7688,17 @@ bool PolicyOwnerSigned = TRUE;
 				desc = @"";
 			}
 			else {
-				desc = IDtype;
-				[self getIDTypeCode:IDtype];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+				// desc = IDtype;
+				// [self getIDTypeCode:IDtype];
+                [self getIDTypeCode:desc];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
 			}
 		}
 	}
@@ -7683,7 +7710,8 @@ bool PolicyOwnerSigned = TRUE;
     NSString *code = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
-    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM %@ WHERE IdentityDesc = %@", TABLE_IDENTIFICATION,IDtype];
+    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM '%@' WHERE IdentityDesc = '%@'", TABLE_IDENTIFICATION,IDtype];
+    NSLog(@"Get ID Type Code - ID Type : O%@O", IDtype);
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     FMResultSet *result = [db executeQuery:query];
@@ -8101,7 +8129,7 @@ bool PolicyOwnerSigned = TRUE;
                                    @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\" , \"QQFlag\"=\"%@\", \"CountryOfBirth\"=\"%@\"  where indexNo = \"%@\" "
                                    "", txtrFullName.text, strDOB, gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion,@"false" , CountryOfBirth ,pp.ProspectID];
             
-			
+			NSLog(@"Save changes 2 - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
             const char *Update_stmt = [insertSQL UTF8String];
             if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
                 if (sqlite3_step(statement) == SQLITE_DONE)
@@ -8341,6 +8369,7 @@ bool PolicyOwnerSigned = TRUE;
 	TitleCodeSelected = [ClientProfile stringForKey:@"TitleCodeSelected"];
 	NSString *IDType = [ClientProfile stringForKey:@"IC"];
 	IDTypeCodeSelected = [ClientProfile stringForKey:@"IDTypeCodeSelected"];
+    NSLog(@"Validation 2 - ID type code selected -> %@", IDTypeCodeSelected);
 	NSString *OtherIDType2 = [ClientProfile stringForKey:@"txtOtherIDType"];
 	newDOB = [ClientProfile stringForKey:@"strDOB"];
 	gender = [ClientProfile stringForKey:@"gender"];
@@ -8405,7 +8434,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSString *Email = [ClientProfile stringForKey:@"txtEmail"];
 	
 	int annual_income =  [AnnIncome integerValue];
-    
+    NSLog(@"Validation 2 - ID type code selected for trimmed -> %@", IDTypeCodeSelected);
 	NSString *otherIDType_trim = IDTypeCodeSelected;
 	NSString *home1_trim = HomeAddr1;
 	NSString *homePostcode_trim = HomePostCode;
@@ -9158,6 +9187,7 @@ bool PolicyOwnerSigned = TRUE;
         
         //Other ID Type as ‘SINGAPOREAN IDENTIFICATION NUMBER’, then the “Nationality” must be “Singaporean”.
 		NSString *otherIDtype = IDTypeCodeSelected;
+        NSLog(@"Validation 2 - ID type code selected for last -> %@", IDTypeCodeSelected);
         
         if ([otherIDtype isEqualToString:@"SID"] && ![nation isEqualToString:@"SINGAPOREAN"]  )
         {
@@ -10540,11 +10570,13 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)IDTypeCodeSelected:(NSString *)IDTypeCode {
     IDTypeCodeSelected = IDTypeCode;
+    NSLog(@"ID Type Code Selected - ID type code selected -> %@", IDTypeCodeSelected);
 }
 
 - (void)IDTypeCodeSelectedWithIdentifier:(NSString *) IDTypeCode Identifier:(NSString *)identifier{
     IDTypeCodeSelected = identifier;
     IDTypeIdentifierSelected = identifier;
+    NSLog(@"ID Type Code Selected With Identifier - ID type code selected -> %@", IDTypeCodeSelected);
 }
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
@@ -11124,6 +11156,7 @@ bool PolicyOwnerSigned = TRUE;
     {
         /* INITIALIZATION */
         
+        intPoin = 0;
         stringInputValue = @"";
         completeStatus = completeStatus + 1;
         
