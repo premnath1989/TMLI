@@ -2351,9 +2351,18 @@ bool PolicyOwnerSigned = TRUE;
     txtRemark.text = pp.ProspectRemark;
     
     
+    // BHIMBIM'S QUICK FIX - Start
+
+    if ([pp.isForeignAdd isEqualToString:@"NO"] == true)
+    {
+        [_switchCountryHome setOn:false];
+    }
+    else
+    {
+        [_switchCountryHome setOn:true];
+    }
     
-    
-    
+    // BHIMBIM'S QUICK FIX - End
     
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -3080,7 +3089,7 @@ bool PolicyOwnerSigned = TRUE;
         return ((newLength <= CHARACTER_LIMIT_Bussiness));
     }
     
-    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || txtOfficeAddr1 ||txtOfficeAddr2 ||txtOfficeAddr3) {
+    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || textField == _txtAddress4 || textField == txtOfficeAddr1 || textField == txtOfficeAddr2 || textField == txtOfficeAddr3) {
         return ((newLength <= CHARACTER_LIMIT_Address));
     }
     
@@ -6375,7 +6384,24 @@ bool PolicyOwnerSigned = TRUE;
         }
         
         
-        NSString *isforeignAdd = @"NO";
+        // NSString *isforeignAdd = @"NO";
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        NSString *isForeignAdd = @"NO";
+        
+        if ([[self switchCountryHome] isOn] == true)
+        {
+            isForeignAdd = @"YES";
+        }
+        else
+        {
+            
+        }
+        
+        // BHIMBIM'S QUICK FIX - End
+        
         
 //        NSString *Fav;
 //        if (isFavorite) {
@@ -6397,7 +6423,7 @@ bool PolicyOwnerSigned = TRUE;
         NSString *insertSQL = [NSString stringWithFormat:
                                @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\", \"isFavorite\"=\"%d\", \"RTRW\"=\"%@\" where indexNo = \"%@\" "
                                     , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
-                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
+                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isForeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
 
         NSLog(@"Save to DB - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
         const char *Update_stmt = [insertSQL UTF8String];
@@ -11445,16 +11471,38 @@ bool PolicyOwnerSigned = TRUE;
 -(void)calculateAge:(NSString *)DOBdate
 {
     
-    NSDate *todayDate = [NSDate date];
+    /* NSDate *todayDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     int time = [todayDate timeIntervalSinceDate:[dateFormatter dateFromString:DOBdate]];
     int allDays = (((time/60)/60)/24);
     int days = allDays%365;
-    int years = (allDays-days)/365;
+    int years = (allDays-days)/365; */
     
     //    NSLog(@"You live since %i years and %i days",years,days);
-    age = years;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSDate* dateNow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
+    NSDateComponents* dateComponentsAge =
+    [
+     [NSCalendar currentCalendar]
+     components:NSCalendarUnitYear
+     fromDate:dateBirth
+     toDate:dateNow
+     options:0
+     ];
+    NSInteger intAge = [dateComponentsAge year];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    // age = years;
+    age = intAge;
     _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
 }

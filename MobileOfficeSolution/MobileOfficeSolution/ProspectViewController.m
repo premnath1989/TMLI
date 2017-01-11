@@ -3335,6 +3335,23 @@ BOOL NavShowP;
                 
                 /* CHECK - the query result and trigger alert controller */
                 
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                NSString *isForeign = @"NO";
+                
+                if ([[self switchCountryHome] isOn] == true)
+                {
+                    isForeign = @"YES";
+                }
+                else
+                {
+                    
+                }
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 if(intCount > 0)
                 {
                     NSLog(@"Count !, count -> %d and it's dupplicate !", intCount);
@@ -3416,8 +3433,9 @@ BOOL NavShowP;
                              {
                                  NSLog(@"Insert Start - dupplicate prospect !!");
                                  
-                                 NSString *isForeign = @"NO";
-                                 /* NSString *Fav;
+                                 /* NSString *isForeign = @"NO";
+                                 
+                                 NSString *Fav;
                                  if (isFavorite )
                                  {
                                    Fav = @"TRUE";
@@ -3577,8 +3595,8 @@ BOOL NavShowP;
                     {
                         NSLog(@"Insert Start - unique prospect !!");
                         
-                        NSString *isForeign = @"NO";
-                        /* NSString *Fav;
+                        /* NSString *isForeign = @"NO";
+                        NSString *Fav;
                         if (isFavorite )
                         {
                           Fav = @"TRUE";
@@ -4056,20 +4074,40 @@ BOOL NavShowP;
 -(void)calculateAge:(NSString *)DOBdate
 {
 
-    NSDate *todayDate = [NSDate date];
+    /* NSDate *todayDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSDate *DOB2 = [dateFormatter dateFromString:DOBdate];
     int time = [todayDate timeIntervalSinceDate:DOB2];
     int allDays = (((time/60)/60)/24);
     int days = allDays%365;
-    int years = (allDays-days)/365;
+    int years = (allDays-days)/365; */
     
 //    NSLog(@"You live since %i years and %i days",years,days);
-    age = years;
-    _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
-   
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSDate* dateNow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
+    NSDateComponents* dateComponentsAge =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitYear
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    NSInteger intAge = [dateComponentsAge year];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    // age = years;
+    age = intAge;
+    _txtAge.text = [NSString stringWithFormat:@"%d", age];
 }
 
 
