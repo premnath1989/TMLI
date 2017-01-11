@@ -16,7 +16,7 @@
 @protocol InvestmentTypeControllerDelegate
 -(NSString *)getRunnigSINumber;
 -(NSMutableDictionary *)getBasicPlanDictionary;
--(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData;
+-(void)setInvestmentListArray:(NSMutableArray *)arrayInvestmentListData;
 -(NSMutableArray *)getInvestmentArray;
 -(void)showNextPageAfterSave:(UIViewController *)currentVC;
 @end
@@ -29,6 +29,7 @@
     
     NSMutableDictionary *UDInvest;
 }
+-(void)loadDataFromList;
 
 @property (strong, nonatomic) id <InvestmentTypeControllerDelegate> _delegate;
 @property (strong, nonatomic) IBOutlet UITableView *FundTypeTableView;

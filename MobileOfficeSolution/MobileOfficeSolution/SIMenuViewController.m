@@ -205,6 +205,8 @@ BOOL NavShow3;
     [self setInitialPOLADictionary];
     [self setInitialULBasicPlanDictionary];
     [self setInitialRiderArray];
+    [self setInitialInvestmentArray];
+    [self setInitialTopUpWithdrawArray];
     
     if (![[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
         if ([eProposalStatus isEqualToString:@"Confirmed"] || [eProposalStatus isEqualToString:@"Submitted"] || [eProposalStatus isEqualToString:@"Received"] || [eProposalStatus isEqualToString:@"Failed"]  ) {
@@ -2944,6 +2946,7 @@ BOOL NavShow3;
     self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
     self.InvestmentController._delegate = self;
     [self.RightView addSubview:self.InvestmentController.view];
+    [self.InvestmentController loadDataFromList];
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
 }
@@ -2952,6 +2955,7 @@ BOOL NavShow3;
     [self.RightView addSubview:topUpWithDrawVC.view];
     _SiScrollView.contentSize = CGSizeMake(topUpWithDrawVC.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
+    [topUpWithDrawVC loadDataFromList];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -5935,7 +5939,7 @@ NSString *prevPlan;
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:[modelSIFundAllocation getFundAllocationDataFor:self.requestSINo]];
 }
 
--(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData{
+-(void)setInvestmentListArray:(NSMutableArray *)arrayInvestmentListData{
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:arrayInvestmentListData];
 }
 

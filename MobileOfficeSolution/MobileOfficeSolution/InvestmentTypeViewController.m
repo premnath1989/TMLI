@@ -40,6 +40,26 @@
     [self loadFundData];
 }
 
+-(void)loadDataFromList{
+    NSMutableArray* arrayRawFundAllocation = [[NSMutableArray alloc]initWithArray:[_delegate getInvestmentArray]];
+    [self setInvestListFromDelegate:arrayRawFundAllocation];
+    
+    if ([arrayRawFundAllocation count]<=0){
+    }
+    else{
+        //[self refreshRiderData];
+        [_InvestasiTableView reloadData];
+    }
+}
+
+-(void)setInvestListFromDelegate:(NSMutableArray *)arrayInvestment{
+    InvestList = [[NSMutableArray alloc]init];
+    for (int i=0;i<[arrayInvestment count];i++){
+        NSDictionary* dictInvestData = [[NSDictionary alloc]initWithObjectsAndKeys:[[arrayInvestment objectAtIndex:i] valueForKey:@"FundName"],@"FundName",[[arrayInvestment objectAtIndex:i] valueForKey:@"FundValue"],@"Komposisi", nil];
+        [InvestList addObject:dictInvestData];
+    }
+}
+
 -(void)loadFundData
 {
 
@@ -282,7 +302,7 @@
         
         [arrayInvestList addObject:dictInvestListData];
     }
-    [_delegate setInvestmentListDictionary:arrayInvestList];
+    [_delegate setInvestmentListArray:arrayInvestList];
 }
 
 - (IBAction)actionSaveData:(UIButton *)sender {

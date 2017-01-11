@@ -7,8 +7,11 @@
 //
 
 #import "FundPercentViewController.h"
+#import "Formatter.h"
 
-@interface FundPercentViewController ()
+@interface FundPercentViewController ()<UITextFieldDelegate>{
+    Formatter* formatter;
+}
 
 @end
 
@@ -27,12 +30,28 @@ NSString *Komposisi;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    formatter = [[Formatter alloc]init];
     UDInvest = [[NSMutableDictionary alloc]init];
     
-    
+    [_TxtPercentage setDelegate:self];
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSUInteger newLength = [textField.text length] + [string length] - range.length;
+    
+//    if ((textField == textFixedIncome)||(textField == textEquityIncome ))
+//    {
+        //KY - IMPORTANT - PUT THIS LINE TO DETECT THE FIRST CHARACTER PRESSED....
+        //This method is being called before the content of textField.text is changed.
+        NSCharacterSet *cs = [[NSCharacterSet characterSetWithCharactersInString:@"0123456789"] invertedSet];
+        NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+        
+        return (([string isEqualToString:filtered])&&(newLength <= 3));
+        
+//    }
+    return YES;
+}
 - (IBAction)ActionOK:(id)sender {
     
     //UDInvest = [NSUserDefaults standardUserDefaults];
