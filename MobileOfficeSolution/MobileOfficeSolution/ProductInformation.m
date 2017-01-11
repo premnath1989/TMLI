@@ -229,18 +229,21 @@ BOOL NavShow2;
     
     [myTableView reloadData];
     
-    NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
-                                                         URLForResource:@"xibLibrary" withExtension:@"bundle"]];
-    
+//    NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
+//                                                         URLForResource:@"xibLibrary" withExtension:@"bundle"]];
+//    
 //    ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
 //    progressBar.TitleFileName = @"test download";
 //    progressBar.TitleProgressBar=@"test download";
+//    
 //    progressBar.progressDelegate = self;
 //    progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
 //    progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
 //    progressBar.preferredContentSize = CGSizeMake(600, 200);
-//    progressBar.ftpFunction = @"download";
+//    progressBar.TransferFunction = @"download";
 //    progressBar.TransferMode = kBRHTTPMode;
+//    progressBar.HTTPURLFilePath = @"https://tmconnect.tokiomarine-life.co.id/ProductRoot/ProductInformation/10067025.pdf";
+//    progressBar.HTTPLocalFilePath = @"10067025.pdf";
 //    [self presentViewController:progressBar animated:YES completion:nil];
 }
 
@@ -274,7 +277,7 @@ BOOL NavShow2;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
-            progressBar.ftpFunction = @"download";
+            progressBar.TransferFunction = @"download";
             progressBar.TransferMode = kBRHTTPMode;
             [self presentViewController:progressBar animated:YES completion:nil];
             
@@ -291,7 +294,7 @@ BOOL NavShow2;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
-            progressBar.ftpFunction = @"download";
+            progressBar.TransferFunction = @"download";
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
             [self seeVideo:[NSString stringWithFormat: @"%@.%@",fileName.text, videoExt]];

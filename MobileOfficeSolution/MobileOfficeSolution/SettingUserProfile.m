@@ -156,6 +156,8 @@
     txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
     txtNamaKantor.text = @"";
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
+    
+    if([[loginDB getAgentProperty:@"TLICEXPDT"] compare:@""] != NSOrderedSame)
     txtAAJIDate.text = [[[DateFormatter alloc]init]
                         DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
     

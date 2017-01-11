@@ -183,7 +183,7 @@ MESSAGE_INFO_OFFLINE30DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMC
 MESSAGE_INFO_OFFLINE7DAYS = "Mohon maaf Anda tidak dapat mengakases aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 7 hari sudah berakhir. \nSilahkan melakukan koneksi internet untuk dapat mengakses TMConnect.";
 
 MESSAGE_INFO_ONLINE120DAYS = "";
-MESSAGE_INFO_ONLINE30DAYS = "Masa berlaku lisensi Anda telah berakhir. Mohon segera melakukan Perpanjangan";
+MESSAGE_INFO_ONLINE30DAYS = "Masa berlaku lisensi Anda telah berakhir. Mohon segera melakukan perpanjangan";
 MESSAGE_INFO_ONLINE7DAYS = "";
 MESSAGE_INFO_ONLINETERMINATE = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnet. \nStatus keagenan Anda terminate.";
 MESSAGE_INFO_ONLINERESIGN = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnet. \nStatus keagenan Anda resign.";

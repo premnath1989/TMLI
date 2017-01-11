@@ -16,15 +16,22 @@
     BCHTTPTransfer *HTTPitems;
 }
 
+//general properties
 @property (nonatomic,strong)UIProgressView *progressView;
 @property (nonatomic,retain)NSString *TitleFileName;
 @property (nonatomic,retain)NSString *TitleProgressBar;
-@property (nonatomic,retain)NSString *ftpFunction;
+@property (nonatomic,retain)NSString *TransferFunction;
+@property int TransferMode;
+
+//ftp properties
 @property (nonatomic,retain)NSString *ftpfiletoUpload;
 @property (nonatomic,retain)NSString *ftpfiletoDownload;
 @property (nonatomic,retain)NSString *ftpfolderdestination;
-@property float TotalFileSize;
-@property int TransferMode;
+
+//http properties
+@property (nonatomic,retain)NSString *HTTPURLFilePath;
+@property (nonatomic,retain)NSString *HTTPLocalFilePath;
+@property float HTTPFileSize;
 
 @property (nonatomic, assign) id<ProgressBarDelegate>  progressDelegate;
 @end
