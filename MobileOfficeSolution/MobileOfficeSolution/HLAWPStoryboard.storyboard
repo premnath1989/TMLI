@@ -11,10 +11,10 @@
         <array key="BPreplay_Bold.ttf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Italics.ttf">
+        <array key="BPreplay_Italics.otf">
             <string>BPreplay-Italic</string>
         </array>
-        <array key="BPreplay_Regular.ttf">
+        <array key="BPreplay_Regular.otf">
             <string>BPreplay</string>
         </array>
         <array key="NewJune_Bold.ttf">
@@ -3070,7 +3070,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="1PY-O3-CgR">
-                                        <rect key="frame" x="47" y="191" width="370" height="30"/>
+                                        <rect key="frame" x="47" y="191" width="370" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3092,7 +3092,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qOw-4P-g5a">
-                                        <rect key="frame" x="47" y="404" width="467" height="30"/>
+                                        <rect key="frame" x="47" y="404" width="467" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.40000000000000002" blue="0.46274509800000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
@@ -3168,7 +3168,6 @@
                         <outlet property="LAAgeField" destination="oTO-s8-vO6" id="DuQ-ZU-kTb"/>
                         <outlet property="LANameField" destination="cLX-v8-mxG" id="CWx-37-dr1"/>
                         <outlet property="btnDOB" destination="1PY-O3-CgR" id="hZL-oq-aeF"/>
-                        <outlet property="btnProspect" destination="hPv-sx-1L3" id="FUE-VN-9sF"/>
                         <outlet property="scrollLA" destination="9q7-6a-XHh" id="Toc-Xq-vYl"/>
                         <outlet property="searchDisplayController" destination="T41-4c-XeM" id="6Qm-I6-mS7"/>
                         <outlet property="sexSegment" destination="afS-7k-o9O" id="iVL-lH-Qhb"/>
@@ -3710,7 +3709,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="ASURANSI DASAR" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="j8K-Wu-Y9w">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="ASURANSI TAMBAHAN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="j8K-Wu-Y9w">
                                 <rect key="frame" x="0.0" y="0.0" width="1024" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -4074,21 +4073,6 @@
                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gj8-0h-F9A">
-                                        <rect key="frame" x="933" y="106" width="35" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" backgroundImage="prospect_100_2.png">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="doSelectProspect:" destination="dE2-cD-TzV" eventType="touchUpInside" id="cuT-U0-BGT"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Tanggal Lahir " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="cRW-G7-BJh" customClass="LabelFormQuestion">
                                         <rect key="frame" x="37" y="153" width="297" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4097,7 +4081,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" minimumFontSize="16" clearButtonMode="whileEditing" id="r64-FN-5a6" customClass="TextFieldFormGeneralPrimary">
-                                        <rect key="frame" x="34" y="106" width="878" height="30"/>
+                                        <rect key="frame" x="34" y="106" width="788" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" red="0.34509803919999998" green="0.34901960780000002" blue="0.36078431370000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4135,6 +4119,21 @@
                                         <color key="textColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gj8-0h-F9A">
+                                        <rect key="frame" x="830" y="97" width="46" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" backgroundImage="prospect_100_2.png">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="doSelectProspect:" destination="dE2-cD-TzV" eventType="touchUpInside" id="cuT-U0-BGT"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="tintColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -4163,7 +4162,6 @@
                         <outlet property="BtnTanggalLahir" destination="hcj-zB-uKM" id="AhW-3H-4si"/>
                         <outlet property="ageField" destination="JBR-Ql-7sA" id="vMh-FJ-zEt"/>
                         <outlet property="nameField" destination="r64-FN-5a6" id="DNr-eX-L8m"/>
-                        <outlet property="outletProspect" destination="gj8-0h-F9A" id="zqs-mi-Bfm"/>
                         <outlet property="sexSegment" destination="2J6-Tz-0og" id="EhC-PQ-9WW"/>
                     </connections>
                 </viewController>

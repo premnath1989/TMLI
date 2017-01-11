@@ -180,14 +180,14 @@
     BOOL AgeExceed189Days = NO;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     
-    NSString* commDate=[self getDateToday:@"dd/MM/yyyy"];
-    NSArray *comm = [commDate componentsSeparatedByString: @"/"];
+    NSString* commDate=[self getDateToday:@"dd MMM yyyy"];
+    NSArray *comm = [commDate componentsSeparatedByString: @" "];
     NSString *commDay = [comm objectAtIndex:0];
     NSString *commMonth = [comm objectAtIndex:1];
     NSString *commYear = [comm objectAtIndex:2];
     
     
-    NSArray *foo = [DOB componentsSeparatedByString: @"/"];
+    NSArray *foo = [DOB componentsSeparatedByString: @" "];
     NSString *birthDay = [foo objectAtIndex: 0];
     NSString *birthMonth = [foo objectAtIndex: 1];
     NSString *birthYear = [foo objectAtIndex: 2];
@@ -230,7 +230,7 @@
         age = newALB;
         ANB = newANB;
     } else if (yearN == yearB) {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = DOB;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -266,17 +266,17 @@
 {
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];
     
     
-    NSArray *comm = [dateString componentsSeparatedByString: @"/"];
+    NSArray *comm = [dateString componentsSeparatedByString: @" "];
     NSString *commDay = [comm objectAtIndex:0];
     NSString *commMonth = [comm objectAtIndex:1];
     NSString *commYear = [comm objectAtIndex:2];
     
     
-    NSArray *foo = [DOB componentsSeparatedByString: @"/"];
+    NSArray *foo = [DOB componentsSeparatedByString: @" "];
     NSString *birthDay = [foo objectAtIndex: 0];
     NSString *birthMonth = [foo objectAtIndex: 1];
     NSString *birthYear = [foo objectAtIndex: 2];
@@ -316,7 +316,7 @@
         //age = newALB;
         //ANB = newANB;
     } else if (yearN == yearB) {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = DOB;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -329,7 +329,7 @@
         //age = 0;
         //ANB = 1;
     } else {
-        [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+        [dateFormatter setDateFormat:@"dd MMM yyyy"];
         NSString *selectDate = DOB;
         NSDate *startDate = [dateFormatter dateFromString:selectDate];
         
@@ -343,7 +343,7 @@
         //ANB = 1;
     }
     
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    [dateFormatter setDateFormat:@"dd MMM yyyy"];
     NSString *selectDate = DOB;
     NSDate *startDate = [dateFormatter dateFromString:selectDate];
     
