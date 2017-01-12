@@ -944,7 +944,7 @@ bool PolicyOwnerSigned = TRUE;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }
@@ -8460,7 +8460,7 @@ bool PolicyOwnerSigned = TRUE;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }

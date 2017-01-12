@@ -31,7 +31,7 @@
 #define CHARACTER_LIMIT_FULLNAME 81
 #define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
-#define CHARACTER_LIMIT_ExactDuties 40
+#define CHARACTER_LIMIT_ExactDuties 50
 #define CHARACTER_LIMIT_Address 40
 #define CHARACTER_LIMIT_POSTCODE 6
 #define CHARACTER_LIMIT_FOREIGN_POSTCODE 12
@@ -924,7 +924,7 @@ BOOL NavShowP;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }
@@ -1101,7 +1101,7 @@ BOOL NavShowP;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }
