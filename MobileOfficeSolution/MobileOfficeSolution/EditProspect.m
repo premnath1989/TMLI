@@ -278,6 +278,22 @@ bool PolicyOwnerSigned = TRUE;
 	[txtIDType addTarget:self action:@selector(IDValidation) forControlEvents:UIControlEventEditingDidEnd];
     [txtOtherIDType addTarget:self action:@selector(OtheriDDidChange:) forControlEvents:UIControlEventEditingDidEnd];
 		
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    _txtNamaDepan.delegate = self;
+    _txtNamaBelakang.delegate = self;
+    _txtKelurahan.delegate = self;
+    _TxtKecamatan.delegate = self;
+    _txtKota.delegate = self;
+    _txtHPRumah.delegate = self;
+    txtHPNo.delegate = self;
+    _txtRTRW.delegate = self;
+    _txtIdNumber.delegate = self;
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     txtRemark.delegate = self;
     txtExactDuties.delegate = self;
     txtEmail.delegate = self;
@@ -3034,6 +3050,44 @@ bool PolicyOwnerSigned = TRUE;
         return ((newLength <= 40));
     }
     
+    
+    // BHIMBIM'S QUICK FIX - Start, the namin convention is inconsistent.
+    
+    if (textField == _txtNamaDepan) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtNamaBelakang) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtKelurahan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _TxtKecamatan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtKota) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtRTRW) {
+        return ((newLength <= 10));
+    }
+    
+    if (textField == _txtHPRumah) {
+        return ((newLength <= 16));
+    }
+    
+    if (textField == _txtIdNumber) {
+        return ((newLength <= 20));
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if (textField == _txtCountryOfBirth) {
         return ((newLength <= 40));
     }
@@ -4243,10 +4297,19 @@ bool PolicyOwnerSigned = TRUE;
     
     NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtAddress4,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
     
+    if ([_switchCountryHome isOn] == true)
+    {
+        [txtHomeCountry setText:@""];
+    }
+    else
+    {
+        [txtHomeCountry setText:@"INDONESIA"];
+    }
+    
     // BHIMBIM'S QUICK FIX - End
     
     
-    NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,_txtOfficeVillage,_txtOfficeDistrict,txtOfficeTown,_txtOfficeProvince, nil];
+    /* NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,_txtOfficeVillage,_txtOfficeDistrict,txtOfficeTown,_txtOfficeProvince, nil];
     
     if ([arrayTxtHome containsObject:sender]){
         if (!checked) {
@@ -4276,8 +4339,7 @@ bool PolicyOwnerSigned = TRUE;
                 }
             }
         }
-    }
-    
+    } */
 }
 
 
