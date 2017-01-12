@@ -28,7 +28,7 @@
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
 #define CHARACTER_LIMIT_PC_F 12
-#define CHARACTER_LIMIT_FULLNAME 81
+#define CHARACTER_LIMIT_FULLNAME 121
 #define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
 #define CHARACTER_LIMIT_ExactDuties 50
@@ -2112,7 +2112,7 @@ BOOL NavShowP;
         NSString *filtered = [[string componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];*/
         
         //return (([string isEqualToString:filtered])&&(newLength <= 20));
-        return (newLength <= 20);
+        return (newLength <= 30);
     }
     
     if (textField == txtPrefix1) {
@@ -2284,11 +2284,11 @@ BOOL NavShowP;
     
     
     if (textField == txtNamaDepan) {
-        return ((newLength <= 40));
+        return ((newLength <= 60));
     }
     
     if (textField == txtNamaBelakang) {
-        return ((newLength <= 40));
+        return ((newLength <= 60));
     }
     
     if (textField == _txtKelurahan) {
@@ -2307,12 +2307,8 @@ BOOL NavShowP;
         return ((newLength <= 10));
     }
     
-    if (textField == _txtHPRumah) {
-        return ((newLength <= 16));
-    }
-    
     if (textField == _txtIdNumber) {
-        return ((newLength <= 20));
+        return ((newLength <= 24));
     }
     
     // BHIMBIM'S QUICK FIX - End
@@ -4161,7 +4157,8 @@ BOOL NavShowP;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
-    NSDateComponents* dateComponentsAge =
+    
+    NSDateComponents* dateComponentsYear =
     [
         [NSCalendar currentCalendar]
         components:NSCalendarUnitYear
@@ -4169,7 +4166,27 @@ BOOL NavShowP;
         toDate:dateNow
         options:0
     ];
-    NSInteger intAge = [dateComponentsAge year];
+    
+    NSDateComponents* dateComponentsMonth =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitMonth
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    
+    NSInteger intAge = [dateComponentsYear year];
+    NSInteger intMonth = [dateComponentsMonth month];
+    
+    if(intMonth%12 > 5)
+    {
+        intAge += 1;
+    }
+    else
+    {
+        
+    }
     
     // BHIMBIM'S QUICK FIX - End
     
