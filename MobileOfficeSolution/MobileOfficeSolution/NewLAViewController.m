@@ -1206,7 +1206,7 @@
     
     
     NSString *occupationDesc=btnOccp.titleLabel.text;
-    NSString *relationDesc=_BtnHubungan.titleLabel.text;
+    NSString *relationDesc=_txtHubungan.text;
     NSString *productName=NamaProduk.titleLabel.text;
     NSString *originalRelation = [originalDictionaryPO valueForKey:@"RelWithLA"];
     NSMutableDictionary *dictionaryNewLA=[[NSMutableDictionary alloc]initWithObjectsAndKeys:
@@ -3217,7 +3217,7 @@
     
     Relationship = selectedRship;
     
-     [_BtnHubungan setTitle:Relationship forState:UIControlStateNormal];
+//     [_BtnHubungan setTitle:Relationship forState:UIControlStateNormal];
     _txtHubungan.text = Relationship;
     
     
