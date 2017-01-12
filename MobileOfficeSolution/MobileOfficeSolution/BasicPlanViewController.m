@@ -5805,9 +5805,9 @@ bool WPTPD30RisDeleted = FALSE;
     
     if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
     {
-        ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinBasicPremiValue];
-        ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",MinTopUpRegularValue];
-        ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:IDR %@",SumTotalUangPertanggungan];
+        ValidationPremiDasar = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:Rp %@",MinBasicPremiValue];
+        ValidationPremiTopUp = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:Rp %@",MinTopUpRegularValue];
+        ValidationPremiTotalSum = [NSString stringWithFormat:@"Uang Pertangungan Dasar Min:Rp %@",SumTotalUangPertanggungan];
     }
     else
     {

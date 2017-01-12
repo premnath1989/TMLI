@@ -3053,7 +3053,7 @@ BOOL NavShow3;
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
-    [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+   
     
     if (isPOFilled){
         [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
@@ -3086,26 +3086,33 @@ BOOL NavShow3;
         }
     }
     
-    //[cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
-    //[cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-    //[cell.BtnTertanggung setBackgroundColor:green];
+     [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     
-    [cell.BtnTertanggung setEnabled:YES];
-    if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"]) || ([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@""]) || ([dictParentPOLAData valueForKey:@"RelWithLA"] == nil)){
+    if ((([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@""]) || ([dictParentPOLAData valueForKey:@"RelWithLA"] == nil))){
         [cell.BtnTertanggung setEnabled:NO];
-        [cell.BtnTertanggung setBackgroundColor:green];
+        [cell.BtnTertanggung setBackgroundColor:gray];
+        [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+        
+    }
+    else if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
+        [cell.BtnTertanggung setEnabled:YES];
+        [cell.BtnTertanggung setBackgroundColor:gray];
         [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
         
     }
     else {
         [cell.BtnTertanggung setEnabled:YES];
+        [cell.BtnTertanggung setBackgroundColor:green];
+        [cell.BtnTertanggung setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
 
     [cell.view1 setBackgroundColor:green];
     
     [cell.btnPemegangPolis setEnabled:YES];
-    
+//    [cell.BtnTertanggung setEnabled:YES];
     [cell.BtnAsuransiDasar setEnabled:YES];
+    
+    
     return cell;
 }
 
