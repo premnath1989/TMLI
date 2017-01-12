@@ -3110,6 +3110,9 @@ BOOL NavShowP;
 //    [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"SINGLE"]forState:UIControlStateNormal];
     txtExactDuties.text=@"test";
     /*end of added by faiz*/
+    
+    NSLog(@"btnSave - Validation -> %d, DATE_OK -> %hhd, OtherIDValidation -> %hhd", [self Validation], DATE_OK, [self OtherIDValidation]);
+    
         if ([self Validation] == TRUE && DATE_OK == YES && [self OtherIDValidation] == TRUE) {
 
             sqlite3_stmt *statement;
@@ -6321,10 +6324,16 @@ BOOL NavShowP;
     
     returnBool = [self validationCompulsoryValue];
     
-    if (returnBool) {
-        bool validDataDuplicate=[self validationDuplicate];
-        returnBool=validDataDuplicate;
-    }
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+//    if (returnBool) {
+//        bool validDataDuplicate=[self validationDuplicate];
+//        returnBool=validDataDuplicate;
+//    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
 //    bool validDateRef=[self  validationDataReferral];
 //    returnBool=validDateRef;
