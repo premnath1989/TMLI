@@ -685,7 +685,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             {                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
                 [formatter setDateFormat:@"dd/MM/yyyy"];
                 int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]]];
-                if(daysElapsed > 30 && ![self connected] && OFFLINE_PROCESS){
+                if(daysElapsed < -30){
+                    [spinnerLoading stopLoadingSpinner];
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                    validFlag = false;
+                }else if((daysElapsed > -30 && daysElapsed < 0) && ![self connected] && OFFLINE_PROCESS){
                     [spinnerLoading stopLoadingSpinner];
                     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
                     [alert show];
