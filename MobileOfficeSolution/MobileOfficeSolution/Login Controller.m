@@ -469,6 +469,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         if(dateDifference > 120)
         {
             [loginDB DeleteAgentProfile];
+            [loginDB DeleteProspect];
+            [loginDB DeleteSI];
             stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
         }
         else

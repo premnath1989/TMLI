@@ -15,6 +15,7 @@
 #import "ProgressBarDelegate.h"
 #import "TableManagement.h"
 #import "User Interface.h"
+#import "AgentWS.h"
 
 
 #define videoExt @"mp4"
@@ -23,7 +24,7 @@
 #define brochureLabel @"brosur"
 #define downloadMacro @"Unduh"
 
-@interface ProductInformation : UIViewController<ReaderViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, ProductInfoItemsDelegate, ProgressBarDelegate>{
+@interface ProductInformation : UIViewController<ReaderViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, ProductInfoItemsDelegate, ProgressBarDelegate,AgentWSSoapBindingResponseDelegate>{
     NSArray *columnHeadersContent;
     TableManagement *tableManagement;
     UIView *TableHeader;

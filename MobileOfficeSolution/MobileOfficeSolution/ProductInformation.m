@@ -16,6 +16,8 @@
 #import "ChangePassword.h"
 #import "UIView+viewRecursion.h"
 #import "User Interface.h"
+#import "WebServiceUtilities.h"
+#import "XMLParser.h"
 
 @implementation ProductInformation
 
@@ -35,7 +37,6 @@ BOOL NavShow2;
     filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Brochures"];
     
     [self createDirectory];
-    
     [self directoryFileListing];
     
     if([self connected]){
@@ -46,9 +47,9 @@ BOOL NavShow2;
         
         spinnerLoading = [[SpinnerUtilities alloc]init];
         [spinnerLoading startLoadingSpinner:spinnerHolder label:@"Loading Informasi Produk"];
-        [self FTPFileListing];
+        [self getDirectoryListingMode:kBRHTTPMode];
     }else{
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke FTP Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses FTP"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke Server Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses Server"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
@@ -61,6 +62,82 @@ BOOL NavShow2;
     [self setupTableColumn];
     
     [btnHome addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)getDirectoryListingMode:(int)mode{
+    if(mode == kBRHTTPMode){
+        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+        [webservice getProductInformation:self];
+    }else if(mode == kBRFTPMode){
+        [self FTPFileListing];
+    }
+}
+
+//here is our function for every response from webservice
+- (void) operation:(AgentWSSoapBindingOperation *)operation
+completedWithResponse:(AgentWSSoapBindingResponse *)response
+{
+    NSArray *responseBodyParts = response.bodyParts;
+    if([[response.error localizedDescription] caseInsensitiveCompare:@""] != NSOrderedSame){
+     
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Periksa lagi koneksi internet anda" message:@"" delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
+        [alert show];
+        [spinnerLoading stopLoadingSpinner];
+        
+    }
+    for(id bodyPart in responseBodyParts) {
+        
+        /****
+         * SOAP Fault Error
+         ****/
+        if ([bodyPart isKindOfClass:[SOAPFault class]]) {
+            
+            //You can get the error like this:
+            NSString* errorMesg = ((SOAPFault *)bodyPart).simpleFaultString;
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Periksa lagi koneksi internet anda" message:errorMesg delegate:self cancelButtonTitle:@"OK"otherButtonTitles: nil];
+            [alert show];
+            [spinnerLoading stopLoadingSpinner];
+        }
+        
+        else if([bodyPart isKindOfClass:[AgentWS_GetAllProductInfoResponse class]]) {
+            [spinnerLoading stopLoadingSpinner];
+            AgentWS_GetAllProductInfoResponse* rateResponse = bodyPart;
+            
+            int index = 1;
+            
+            // create XMLDocument object
+            DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
+                                  rateResponse.GetAllProductInfoResult.xmlDetails options:0 error:nil];
+            
+            // Get root element - DataSetMenu for your XMLfile
+            DDXMLElement *root = [xml rootElement];
+            WebResponObj *returnObj = [[WebResponObj alloc]init];
+            [[[XMLParser alloc]init] parseXML:root objBuff:returnObj index:0];
+
+            for(dataCollection *data in [returnObj getDataWrapper]){
+                
+                NSString* FilePath = [data.dataRows valueForKey:@"FilePath"];
+                NSString* FileSize = [data.dataRows valueForKey:@"FileSize"];
+                
+                if([FilePath compare:@""] != NSOrderedSame){
+                    NSArray*  FilePathParser= [FilePath componentsSeparatedByString: @"\\"];
+                    FilePath = [FilePathParser lastObject];
+                    if([FilePath containsString:@"."]){
+                        [self insertIntoTableData:FilePath size:FileSize index:index];
+                        index++;
+                    }
+                }
+                
+            }
+            
+            //we remove any files if local if not listed in FTP
+            //[self removeLocalFiles:ftpItems];
+            // [FTPItemsList removeAllObjects];
+            
+            [myTableView reloadData];
+
+        }
+    }
 }
 
 - (BOOL)connected
@@ -104,19 +181,6 @@ BOOL NavShow2;
                           includingPropertiesForKeys:@[NSURLFileSizeKey, NSURLIsDirectoryKey]
                                              options:0
                                                error:&contentsError];
-    
-    
-    // BHIMBIM'S QUICK FIX - Start, dummy for query test.
-    
-    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"1", @"HRD Training", @"PDF", @"10 Mb",@"true",nil]];
-    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"2", @"Developer Training", @"PDF", @"8 Mb",@"true",nil]];
-    [arrayListRAW addObject:[NSMutableArray arrayWithObjects:@"3", @"Underwriting Training", @"PDF", @"12 Mb",@"true",nil]];
-    
-    [FTPItemsList removeAllObjects];
-    FTPItemsList = [[NSMutableArray alloc] initWithObjects:arrayListRAW, nil];
-    NSLog(@"FTP items list -> count : %d", FTPItemsList.count);
-    
-    // BHIMBIM'S QUICK FIX - End
     
     int index = 1;
     for (NSURL *fileURL in contents) {
