@@ -358,6 +358,22 @@ BOOL NavShowP;
     isOffCountry = NO;
     companyCase = NO;
     
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    txtNamaDepan.delegate = self;
+    txtNamaBelakang.delegate = self;
+    _txtKelurahan.delegate = self;
+    _TxtKecamatan.delegate = self;
+    _txtKota.delegate = self;
+    _txtHPRumah.delegate = self;
+    _txtHPNo.delegate = self;
+    _txtRTRW.delegate = self;
+    _txtIdNumber.delegate = self;
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     txtEmail.delegate = self;
     txtAnnIncome.delegate = self;
     txtAnnIncome.keyboardType = UIKeyboardTypeNumberPad;
@@ -2263,6 +2279,45 @@ BOOL NavShowP;
         return ((newLength <= 40));
     }
     
+    
+    // BHIMBIM'S QUICK FIX - Start, the namin convention is inconsistent.
+    
+    
+    if (textField == txtNamaDepan) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == txtNamaBelakang) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtKelurahan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _TxtKecamatan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtKota) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtRTRW) {
+        return ((newLength <= 10));
+    }
+    
+    if (textField == _txtHPRumah) {
+        return ((newLength <= 16));
+    }
+    
+    if (textField == _txtIdNumber) {
+        return ((newLength <= 20));
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if (textField == _txtCountryOfBirth) {
         return ((newLength <= 40));
     }
@@ -3055,6 +3110,9 @@ BOOL NavShowP;
 //    [outletMaritalStatus setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"SINGLE"]forState:UIControlStateNormal];
     txtExactDuties.text=@"test";
     /*end of added by faiz*/
+    
+    NSLog(@"btnSave - Validation -> %d, DATE_OK -> %hhd, OtherIDValidation -> %hhd", [self Validation], DATE_OK, [self OtherIDValidation]);
+    
         if ([self Validation] == TRUE && DATE_OK == YES && [self OtherIDValidation] == TRUE) {
 
             sqlite3_stmt *statement;
@@ -6266,10 +6324,16 @@ BOOL NavShowP;
     
     returnBool = [self validationCompulsoryValue];
     
-    if (returnBool) {
-        bool validDataDuplicate=[self validationDuplicate];
-        returnBool=validDataDuplicate;
-    }
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+//    if (returnBool) {
+//        bool validDataDuplicate=[self validationDuplicate];
+//        returnBool=validDataDuplicate;
+//    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
 //    bool validDateRef=[self  validationDataReferral];
 //    returnBool=validDateRef;

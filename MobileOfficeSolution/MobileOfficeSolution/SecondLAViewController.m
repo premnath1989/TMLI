@@ -335,7 +335,7 @@ id dobtemp;
             [btnDOB setTitle:aDate forState:UIControlStateNormal];
             DOB = aDate;
             [_BtnTanggalLahir setTitle:aDate forState:UIControlStateNormal];
-            [self calculateAge];
+            //[self calculateAge];
             ageField.text = [[NSString alloc] initWithFormat:@"%d",bAge];
         }
         
@@ -1726,8 +1726,8 @@ id dobtemp;
     
     UIAlertController *alertvalidation;
     
-    int laAge = [formatter calculateAge:tanggalLahir];
-    int differenceDay = [formatter calculateDifferenceDay:tanggalLahir];
+    int laAge = [formatter calculateAge:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
+    int differenceDay = [formatter calculateDifferenceDay:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
     
     if ([namaTertanggung length]<=0){
         alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertNamaTertanggung];

@@ -207,8 +207,6 @@ BOOL NavShow3;
     [self setInitialPOLADictionary];
     [self setInitialULBasicPlanDictionary];
     [self setInitialRiderArray];
-    [self setInitialInvestmentArray];
-    [self setInitialTopUpWithdrawArray];
     
     if (![[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
         if ([eProposalStatus isEqualToString:@"Confirmed"] || [eProposalStatus isEqualToString:@"Submitted"] || [eProposalStatus isEqualToString:@"Received"] || [eProposalStatus isEqualToString:@"Failed"]  ) {
@@ -2965,7 +2963,6 @@ BOOL NavShow3;
     self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
     self.InvestmentController._delegate = self;
     [self.RightView addSubview:self.InvestmentController.view];
-    [self.InvestmentController loadDataFromList];
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
     
@@ -2976,7 +2973,6 @@ BOOL NavShow3;
     [self.RightView addSubview:topUpWithDrawVC.view];
     _SiScrollView.contentSize = CGSizeMake(topUpWithDrawVC.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
-    [topUpWithDrawVC loadDataFromList];
     
     [myTableView reloadData];
 }
@@ -3057,6 +3053,8 @@ BOOL NavShow3;
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
+   
+    
     if (isPOFilled){
         [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
@@ -3113,6 +3111,8 @@ BOOL NavShow3;
     [cell.btnPemegangPolis setEnabled:YES];
 //    [cell.BtnTertanggung setEnabled:YES];
     [cell.BtnAsuransiDasar setEnabled:YES];
+    
+    
     return cell;
 }
 
@@ -5993,7 +5993,7 @@ NSString *prevPlan;
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:[modelSIFundAllocation getFundAllocationDataFor:self.requestSINo]];
 }
 
--(void)setInvestmentListArray:(NSMutableArray *)arrayInvestmentListData{
+-(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData{
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:arrayInvestmentListData];
 }
 

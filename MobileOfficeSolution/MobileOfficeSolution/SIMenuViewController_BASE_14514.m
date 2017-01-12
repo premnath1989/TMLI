@@ -44,7 +44,6 @@
     NSMutableDictionary* dictionaryPOForInsert;
     NSMutableDictionary* dictionaryMasterForInsert;
     NSMutableDictionary* newDictionaryForBasicPlan;
-    NSMutableDictionary* dictPOLAData;
     bool selfRelation;
     int lastIndexSelected;
     
@@ -207,8 +206,6 @@ BOOL NavShow3;
     [self setInitialPOLADictionary];
     [self setInitialULBasicPlanDictionary];
     [self setInitialRiderArray];
-    [self setInitialInvestmentArray];
-    [self setInitialTopUpWithdrawArray];
     
     if (![[self.EAPPorSI description] isEqualToString:@"eAPP"]) {
         if ([eProposalStatus isEqualToString:@"Confirmed"] || [eProposalStatus isEqualToString:@"Submitted"] || [eProposalStatus isEqualToString:@"Received"] || [eProposalStatus isEqualToString:@"Failed"]  ) {
@@ -2877,45 +2874,33 @@ BOOL NavShow3;
         [self.RightView addSubview:self.LAController.view];
         [self.LAController loadDataFromList];
     }
-    [myTableView reloadData];
 }
 
 -(IBAction)actionShowLifeAssured:(id)sender{
-    
-     [myTableView reloadData];
-    NSLog(@"%@", [dictParentPOLAData valueForKey:@"RelWithLA"]);
-    if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
-         [self actionShowBasicPlan:nil];
-    }
-    else {
-        if (!_SecondLAController) {
-            
-            self.SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
-            _SecondLAController.delegate = self;
-            self.SecondLAController.requestLAIndexNo = getLAIndexNo;
-            self.SecondLAController.EAPPorSI = [self.EAPPorSI description];
-            self.SecondLAController.requestCommDate = getCommDate;
-            self.SecondLAController.requesteProposalStatus = eProposalStatus;
-            [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
-            self.SecondLAController.requestSINo = [self.requestSINo description];
-            _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
-            [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
-            
-            [self.RightView addSubview:self.SecondLAController.view];
-            [self.SecondLAController loadDataFromList];
-        } else {
-            [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
-            self.SecondLAController.requestSINo = [self.requestSINo description];
-            _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
-            [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
-            
-            [self.RightView addSubview:self.SecondLAController.view];
-            [self.SecondLAController loadDataFromList];
-        }
+    if (!_SecondLAController) {
+        self.SecondLAController = [self.storyboard instantiateViewControllerWithIdentifier:@"secondLAView"];
+        _SecondLAController.delegate = self;
+        self.SecondLAController.requestLAIndexNo = getLAIndexNo;
+        self.SecondLAController.EAPPorSI = [self.EAPPorSI description];
+        self.SecondLAController.requestCommDate = getCommDate;
+        self.SecondLAController.requesteProposalStatus = eProposalStatus;
+        [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
+        self.SecondLAController.requestSINo = [self.requestSINo description];
+        _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
 
+        [self.RightView addSubview:self.SecondLAController.view];
+        [self.SecondLAController loadDataFromList];
+    } else {
+        [self.SecondLAController setQuickQuoteEnabled:quickQuoteEnabled];
+        self.SecondLAController.requestSINo = [self.requestSINo description];
+        _SiScrollView.contentSize = CGSizeMake(1024, 455.0);
+        [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, 1024, 455.0)];
+
+        [self.RightView addSubview:self.SecondLAController.view];
+        [self.SecondLAController loadDataFromList];
     }
-   
-    }
+}
 
 -(IBAction)actionShowBasicPlan:(id)sender{
     if (!_BasicController) {
@@ -2937,7 +2922,6 @@ BOOL NavShow3;
         [self.RightView addSubview:self.BasicController.view];
         [self.BasicController loadDataFromList];
     }
-    [myTableView reloadData];
 }
 
 -(IBAction)actionShowRider:(id)sender{
@@ -2956,8 +2940,6 @@ BOOL NavShow3;
     }
     _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
-    
-    [myTableView reloadData];
 }
 
 -(IBAction)actionShowFundAllocation:(id)sender{
@@ -2965,24 +2947,18 @@ BOOL NavShow3;
     self.InvestmentController = [self.storyboard instantiateViewControllerWithIdentifier:@"InvestmentType"];
     self.InvestmentController._delegate = self;
     [self.RightView addSubview:self.InvestmentController.view];
-    [self.InvestmentController loadDataFromList];
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
-    
-    [myTableView reloadData];
 }
 
 -(IBAction)actionShowTopUpWithdraw:(id)sender{
     [self.RightView addSubview:topUpWithDrawVC.view];
     _SiScrollView.contentSize = CGSizeMake(topUpWithDrawVC.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
-    [topUpWithDrawVC loadDataFromList];
-    
-    [myTableView reloadData];
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
-    if (currentVC == _LAController ){
+    if (currentVC == _LAController){
         [self actionShowLifeAssured:nil];
     }
     else if (currentVC == _SecondLAController){
@@ -3088,30 +3064,14 @@ BOOL NavShow3;
         }
     }
     
-     [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    //[cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+    //[cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+    //[cell.BtnTertanggung setBackgroundColor:green];
     
-    if ((([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@""]) || ([dictParentPOLAData valueForKey:@"RelWithLA"] == nil))){
-        [cell.BtnTertanggung setEnabled:NO];
-        [cell.BtnTertanggung setBackgroundColor:gray];
-        [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-        
-    }
-    else if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
-        [cell.BtnTertanggung setEnabled:YES];
-        [cell.BtnTertanggung setBackgroundColor:gray];
-        [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-        
-    }
-    else {
-        [cell.BtnTertanggung setEnabled:YES];
-        [cell.BtnTertanggung setBackgroundColor:green];
-        [cell.BtnTertanggung setImage:ShapeGuide_Complete forState:UIControlStateNormal];
-    }
-
     [cell.view1 setBackgroundColor:green];
     
     [cell.btnPemegangPolis setEnabled:YES];
-//    [cell.BtnTertanggung setEnabled:YES];
+    [cell.BtnTertanggung setEnabled:YES];
     [cell.BtnAsuransiDasar setEnabled:YES];
     return cell;
 }
@@ -3349,7 +3309,7 @@ BOOL NavShow3;
                 [self.RightView bringSubviewToFront:self.LAController.view];
                 lastActiveController = self.LAController;
                 
-
+//                [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
             }
             break;
         case 2:
@@ -5993,7 +5953,7 @@ NSString *prevPlan;
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:[modelSIFundAllocation getFundAllocationDataFor:self.requestSINo]];
 }
 
--(void)setInvestmentListArray:(NSMutableArray *)arrayInvestmentListData{
+-(void)setInvestmentListDictionary:(NSMutableArray *)arrayInvestmentListData{
     arrayFundAllocationData = [[NSMutableArray alloc]initWithArray:arrayInvestmentListData];
 }
 

@@ -40,6 +40,28 @@
     [self loadFundData];
 }
 
+-(void)loadDataFromList{
+    NSMutableArray* arrayRawFundAllocation = [[NSMutableArray alloc]initWithArray:[_delegate getInvestmentArray]];
+    [self setInvestListFromDelegate:arrayRawFundAllocation];
+    
+    if ([arrayRawFundAllocation count]<=0){
+    }
+    else{
+        //[self refreshRiderData];
+        [UDInvest setObject:InvestList forKey:@"InvestArray"];
+        [self CalculateTotal];
+        [_InvestasiTableView reloadData];
+    }
+}
+
+-(void)setInvestListFromDelegate:(NSMutableArray *)arrayInvestment{
+    InvestList = [[NSMutableArray alloc]init];
+    for (int i=0;i<[arrayInvestment count];i++){
+        NSDictionary* dictInvestData = [[NSDictionary alloc]initWithObjectsAndKeys:[[arrayInvestment objectAtIndex:i] valueForKey:@"FundName"],@"FundName",[[arrayInvestment objectAtIndex:i] valueForKey:@"FundValue"],@"Komposisi", nil];
+        [InvestList addObject:dictInvestData];
+    }
+}
+
 -(void)loadFundData
 {
 
@@ -92,7 +114,7 @@
     
 }
 
--(void) CalculateTotal {
+-(int) CalculateTotal {
     int Total = 0;
     int komp =0;
     if (InvestList.count>0){
@@ -102,6 +124,7 @@
         }
     }
     lblTotal.text = [NSString stringWithFormat:@"Total: %d %%", Total];
+    return Total;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -270,6 +293,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)ValidateSave{
+    int percentage = [self CalculateTotal];
+    if (percentage != 100){
+        UIAlertController *alertPercentage = [UIAlertController alertControllerWithTitle:@"Peringatan" message:@"Jumlah Persentasi Alokasi Investasi Harus Sama Dengan 100" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction* alertButtonOK = [UIAlertAction
+                             actionWithTitle:@"OK"
+                             style:UIAlertActionStyleDefault
+                             handler:^(UIAlertAction * action)
+                             {
+                                 [alertPercentage dismissViewControllerAnimated:YES completion:nil];
+                                 
+                             }];
+        [alertPercentage addAction:alertButtonOK];
+        [self presentViewController:alertPercentage animated:YES completion:nil];
+        return FALSE;
+    }
+    return TRUE;
+}
+
 -(void)setInvestmentDictionary{
     NSMutableArray *arrayInvestList = [[NSMutableArray alloc]init];
     for (int i=0;i<[InvestList count];i++){
@@ -282,25 +324,27 @@
         
         [arrayInvestList addObject:dictInvestListData];
     }
-    [_delegate setInvestmentListDictionary:arrayInvestList];
+    [_delegate setInvestmentListArray:arrayInvestList];
 }
 
 - (IBAction)actionSaveData:(UIButton *)sender {
-    //set the updated data to parent
-    [self setInvestmentDictionary];
-    
-    //delete first
-    [modelSIFundAllocation deleteFundAllocationData:[_delegate getRunnigSINumber]];
-    
-    //get updated data from parent and save it.
-    NSMutableArray* arrayFundAllocationForInsert = [[NSMutableArray alloc]initWithArray:[_delegate getInvestmentArray]];
-    for (int i=0;i<[arrayFundAllocationForInsert count];i++){
-        NSMutableDictionary *dictForInsert = [[NSMutableDictionary alloc]initWithDictionary:[arrayFundAllocationForInsert objectAtIndex:i]];
-        [dictForInsert setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+    if ([self ValidateSave]){
+        //set the updated data to parent
+        [self setInvestmentDictionary];
         
-        [modelSIFundAllocation saveFundAllocationData:dictForInsert];
+        //delete first
+        [modelSIFundAllocation deleteFundAllocationData:[_delegate getRunnigSINumber]];
+        
+        //get updated data from parent and save it.
+        NSMutableArray* arrayFundAllocationForInsert = [[NSMutableArray alloc]initWithArray:[_delegate getInvestmentArray]];
+        for (int i=0;i<[arrayFundAllocationForInsert count];i++){
+            NSMutableDictionary *dictForInsert = [[NSMutableDictionary alloc]initWithDictionary:[arrayFundAllocationForInsert objectAtIndex:i]];
+            [dictForInsert setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
+            
+            [modelSIFundAllocation saveFundAllocationData:dictForInsert];
+        }
+        [_delegate showNextPageAfterSave:self];
     }
-    [_delegate showNextPageAfterSave:self];
-
+    
 }
 @end

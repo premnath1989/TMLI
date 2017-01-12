@@ -21,5 +21,6 @@
     IBOutlet UITableView* tableTopUpWithDraw;
     IBOutlet UITextView* textComment;
 }
+-(void)loadDataFromList;
 @property (strong, nonatomic) id <TopupWithdrawControllerDelegate> delegate;
 @end

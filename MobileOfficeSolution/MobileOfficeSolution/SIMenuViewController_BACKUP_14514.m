@@ -2976,9 +2976,12 @@ BOOL NavShow3;
     [self.RightView addSubview:topUpWithDrawVC.view];
     _SiScrollView.contentSize = CGSizeMake(topUpWithDrawVC.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
+<<<<<<< HEAD
     [topUpWithDrawVC loadDataFromList];
+=======
     
     [myTableView reloadData];
+>>>>>>> 29ecdd865eb2ff4be5f04a5ff4ee4432c247773b
 }
 
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
@@ -3057,6 +3060,8 @@ BOOL NavShow3;
     UIImage * ShapeGuide_Complete = [UIImage imageNamed:@"shape_guideright_complete"];
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
+   
+    
     if (isPOFilled){
         [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
@@ -3113,6 +3118,8 @@ BOOL NavShow3;
     [cell.btnPemegangPolis setEnabled:YES];
 //    [cell.BtnTertanggung setEnabled:YES];
     [cell.BtnAsuransiDasar setEnabled:YES];
+    
+    
     return cell;
 }
 

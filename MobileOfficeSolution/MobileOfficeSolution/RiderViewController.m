@@ -72,7 +72,7 @@ int maxGycc = 0;
     if ([arrayRiderData count]<=0){
     }
     else{
-        [self refreshRiderData];
+        //[self refreshRiderData];
         [tableRiderDetail reloadData];
     }
     //[self clearRiderDataDetail];
