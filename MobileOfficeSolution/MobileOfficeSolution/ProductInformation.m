@@ -54,12 +54,6 @@ BOOL NavShow2;
     
     NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
     [newAttributes setObject:[UIFont systemFontOfSize:18] forKey:UITextAttributeFont];
-//    [self.navigationBar setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-//                                                 [UIColor colorWithRed:88.0/255.0 green:89.0/255.0 blue:92.0/255.0 alpha:1.0], UITextAttributeTextColor,
-//                                                 [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor,
-//                                                 [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset,
-//                                                 [UIFont fontWithName:@"BPreplay" size:18.0], UITextAttributeFont,
-//                                                 nil] ];
     
     themeColour = [UIColor colorWithRed:0.0f/255.0f green:160.0f/255.0f blue:180.0f/255.0f alpha:1];
     fontType = [UIFont fontWithName:@"BPreplay" size:16.0f];
@@ -123,7 +117,6 @@ BOOL NavShow2;
     NSLog(@"FTP items list -> count : %d", FTPItemsList.count);
     
     // BHIMBIM'S QUICK FIX - End
-    
     
     int index = 1;
     for (NSURL *fileURL in contents) {
@@ -235,6 +228,23 @@ BOOL NavShow2;
     }
     
     [myTableView reloadData];
+    
+//    NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
+//                                                         URLForResource:@"xibLibrary" withExtension:@"bundle"]];
+//    
+//    ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
+//    progressBar.TitleFileName = @"test download";
+//    progressBar.TitleProgressBar=@"test download";
+//    
+//    progressBar.progressDelegate = self;
+//    progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
+//    progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+//    progressBar.preferredContentSize = CGSizeMake(600, 200);
+//    progressBar.TransferFunction = @"download";
+//    progressBar.TransferMode = kBRHTTPMode;
+//    progressBar.HTTPURLFilePath = @"https://tmconnect.tokiomarine-life.co.id/ProductRoot/ProductInformation/10067025.pdf";
+//    progressBar.HTTPLocalFilePath = @"10067025.pdf";
+//    [self presentViewController:progressBar animated:YES completion:nil];
 }
 
 // BHIMBIM'S QUICK FIX - End
@@ -267,7 +277,8 @@ BOOL NavShow2;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
-            progressBar.ftpFunction = @"download";
+            progressBar.TransferFunction = @"download";
+            progressBar.TransferMode = kBRHTTPMode;
             [self presentViewController:progressBar animated:YES completion:nil];
             
         }else{
@@ -283,7 +294,7 @@ BOOL NavShow2;
             progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
-            progressBar.ftpFunction = @"download";
+            progressBar.TransferFunction = @"download";
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
             [self seeVideo:[NSString stringWithFormat: @"%@.%@",fileName.text, videoExt]];
@@ -381,6 +392,8 @@ BOOL NavShow2;
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
+//delegate for list dir completion
 - (void)itemsList:(NSMutableArray *)ftpItems{
     NSLog(@"ftp itemlist");
     int index = 1;
@@ -486,7 +499,6 @@ BOOL NavShow2;
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke FTP Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses FTP"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];
 }
-
 
 
 @end

@@ -256,7 +256,7 @@
     progressBar.progressDelegate = self;
     progressBar.ftpfolderdestination = [NSString stringWithFormat:@"%@/%@",[infoDict objectForKey:@"FTPSPAJPath"],[dictTransaction valueForKey:@"SPAJNumber"]];
     progressBar.ftpfiletoUpload = fileName;
-    progressBar.ftpFunction = @"upload";
+    progressBar.TransferFunction = @"upload";
     progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
     progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     progressBar.preferredContentSize = CGSizeMake(600, 200);

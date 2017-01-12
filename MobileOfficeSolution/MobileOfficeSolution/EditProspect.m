@@ -234,6 +234,8 @@ bool PolicyOwnerSigned = TRUE;
     _tableCheckSameRecord = [_db  ExecuteQuery:sqlStmt2];
     //---------end
     
+    
+    
     [_txtNamaDepan addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	[_txtNamaBelakang addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
 	[segGender addTarget:self action:@selector(detectChanges:) forControlEvents:UIControlEventEditingChanged];
@@ -276,6 +278,22 @@ bool PolicyOwnerSigned = TRUE;
 	[txtIDType addTarget:self action:@selector(IDValidation) forControlEvents:UIControlEventEditingDidEnd];
     [txtOtherIDType addTarget:self action:@selector(OtheriDDidChange:) forControlEvents:UIControlEventEditingDidEnd];
 		
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    _txtNamaDepan.delegate = self;
+    _txtNamaBelakang.delegate = self;
+    _txtKelurahan.delegate = self;
+    _TxtKecamatan.delegate = self;
+    _txtKota.delegate = self;
+    _txtHPRumah.delegate = self;
+    txtHPNo.delegate = self;
+    _txtRTRW.delegate = self;
+    _txtIdNumber.delegate = self;
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     txtRemark.delegate = self;
     txtExactDuties.delegate = self;
     txtEmail.delegate = self;
@@ -293,6 +311,7 @@ bool PolicyOwnerSigned = TRUE;
     txtHomeAddr1.delegate = self;
     txtHomeAddr2.delegate = self;
     txtHomeAddr3.delegate = self;
+    _txtAddress4.delegate = self;
     
     txtOfficeAddr1.delegate = self;
     txtOfficeAddr2.delegate = self;
@@ -406,6 +425,7 @@ bool PolicyOwnerSigned = TRUE;
     [txtHomeAddr1 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr2 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [txtHomeAddr3 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
+    [_txtAddress4 addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeVillage addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeDistrict addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
     [_txtHomeProvince addTarget:self action:@selector(detectFilled:) forControlEvents:UIControlEventEditingDidEnd];
@@ -877,6 +897,8 @@ bool PolicyOwnerSigned = TRUE;
     NSString *texthomeaddress2=txtHomeAddr2.text;
     //texthomeaddress3
     NSString *texthomeaddress3=txtHomeAddr3.text;
+    //texthomeaddress3
+    NSString *texthomeaddress4=_txtAddress4.text;
     //textprefix1
     NSString *textprefix1=txtPrefix1.text;
     //txtcontact1
@@ -1173,7 +1195,7 @@ bool PolicyOwnerSigned = TRUE;
 		TitleCodeSelected = @"";
 	if (IDTypeCodeSelected == NULL || [IDTypeCodeSelected isEqualToString:@"(NULL)"] || [IDTypeCodeSelected isEqualToString:@"(null)"])
 		IDTypeCodeSelected = @"";
-	
+	NSLog(@"Save to User Default - ID type code selected -> %@", IDTypeCodeSelected);
 	
 	if (HomeCountry == NULL || [HomeCountry isEqualToString:@"(NULL)"] || [HomeCountry isEqualToString:@"(null)"])
 		HomeCountry = @"";
@@ -1198,6 +1220,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtIDType.text forKey:@"IC"];
 	
 	[ClientProfile setObject:IDTypeCodeSelected forKey:@"IDTypeCodeSelected"];
+    NSLog(@"Save to User Default - ID type code selected for client profile -> %@", IDTypeCodeSelected);
 	
 	if ([IDTypeCodeSelected isEqualToString:@""]) {
 		[ClientProfile setObject:@"" forKey:@"txtOtherIDType"];
@@ -1205,6 +1228,8 @@ bool PolicyOwnerSigned = TRUE;
 	else
 		[ClientProfile setObject:txtOtherIDType.text forKey:@"txtOtherIDType"];
 	
+    NSLog(@"Save to User Defauult - ID type code selected after validation -> %@", IDTypeCodeSelected);
+    
 	[ClientProfile setObject:strDOB forKey:@"strDOB"];
 	[ClientProfile setObject:gender forKey:@"gender"];
 	
@@ -1225,6 +1250,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtHomeAddr1.text forKey:@"txtHomeAddr1"];
 	[ClientProfile setObject:txtHomeAddr2.text forKey:@"txtHomeAddr2"];
 	[ClientProfile setObject:txtHomeAddr3.text forKey:@"txtHomeAddr3"];
+    [ClientProfile setObject:_txtAddress4.text forKey:@"_txtAddress4"];
 	[ClientProfile setObject:txtHomePostCode.text forKey:@"txtHomePostCode"];
 	[ClientProfile setObject:txtHomeTown.text forKey:@"txtHomeTown"];
 	[ClientProfile setObject:HomeCountry forKey:@"HomeCountry"];
@@ -1302,6 +1328,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSString *HomeAddr1 = [ClientProfile stringForKey:@"txtHomeAddr1"];
 	NSString *HomeAddr2 = [ClientProfile stringForKey:@"txtHomeAddr2"];
 	NSString *HomeAddr3 = [ClientProfile stringForKey:@"txtHomeAddr3"];
+    NSString *HomeAddr4 = [ClientProfile stringForKey:@"_txtAddress4"];
 	NSString *HomeTown = [ClientProfile stringForKey:@"txtHomeTown"];
 	SelectedStateCode = [ClientProfile stringForKey:@"SelectedStateCode"];
 	NSString *HomePostCode = [ClientProfile stringForKey:@"txtHomePostCode"];
@@ -1329,6 +1356,7 @@ bool PolicyOwnerSigned = TRUE;
 	
 	NSString *IDType = [ClientProfile stringForKey:@"IC"];
 	IDTypeCodeSelected = [ClientProfile stringForKey:@"IDTypeCodeSelected"];
+    NSLog(@"Save from User Default - ID type code selected -> %@", IDTypeCodeSelected);
 	NSString *OtherIDType2 = [ClientProfile stringForKey:@"txtOtherIDType"];
 	
 	ClientSmoker = [ClientProfile stringForKey:@"ClientSmoker"];
@@ -1373,9 +1401,10 @@ bool PolicyOwnerSigned = TRUE;
 		
         NSString *str_counter = [NSString stringWithFormat:@"%i",counter];
         NSString *insertSQL = [NSString stringWithFormat:
-                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\"   where indexNo = \"%@\" "
-                               "", FullName, strDOB, gender, HomeAddr1, HomeAddr2, HomeAddr3, HomeTown, SelectedStateCode, HomePostCode, HomeCountry, OfficeAddr1, OfficeAddr2, OfficeAddr3, OfficeTown, SelectedOfficeStateCode, OfficePostCode, OffCountry, Email, OccupCodeSelected, ExactDuties, Remark, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, IDType, IDTypeCodeSelected, OtherIDType2, ClientSmoker, AnnIncome, BussinessType,race, marital, nation, religion,str_counter,ProspectID];
+                               @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\"   where indexNo = \"%@\" "
+                               "", FullName, strDOB, gender, HomeAddr1, HomeAddr2, HomeAddr3, HomeAddr4, HomeTown, SelectedStateCode, HomePostCode, HomeCountry, OfficeAddr1, OfficeAddr2, OfficeAddr3, OfficeTown, SelectedOfficeStateCode, OfficePostCode, OffCountry, Email, OccupCodeSelected, ExactDuties, Remark, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, IDType, IDTypeCodeSelected, OtherIDType2, ClientSmoker, AnnIncome, BussinessType,race, marital, nation, religion,str_counter,ProspectID];
 		
+        NSLog(@"Save from user default - update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
 		bool success = [db executeUpdate:insertSQL];
 		if (success) {
 			[self GetLastID];
@@ -1851,6 +1880,9 @@ bool PolicyOwnerSigned = TRUE;
     NSString *home3 = [txtHomeAddr3.text stringByTrimmingCharactersInSet:
                        [NSCharacterSet whitespaceCharacterSet]];
     
+    NSString *home4 = [_txtAddress4.text stringByTrimmingCharactersInSet:
+                       [NSCharacterSet whitespaceCharacterSet]];
+    
     NSString *home_postcode = [txtHomePostCode.text stringByTrimmingCharactersInSet:
                                [NSCharacterSet whitespaceCharacterSet]];
     
@@ -1951,6 +1983,11 @@ bool PolicyOwnerSigned = TRUE;
     {
         edited = YES;
 		[ClientProfile setObject:@"YES" forKey:@"isEdited"];
+    }
+    else if(![home4 isEqualToString:pp.Address4])
+    {
+        edited = YES;
+        [ClientProfile setObject:@"YES" forKey:@"isEdited"];
     }
     else if(![home_postcode isEqualToString:pp.ResidenceAddressPostCode])
     {
@@ -2300,6 +2337,8 @@ bool PolicyOwnerSigned = TRUE;
         IDTypeCodeSelected = pp.OtherIDType;
     }
     
+    NSLog(@"View Will Appear - ID type code selected -> %@", IDTypeCodeSelected);
+    
     _txtTypeID.text = pp.OtherIDType;
     _txtIdNumber.text = pp.OtherIDTypeNo;
     
@@ -2342,9 +2381,18 @@ bool PolicyOwnerSigned = TRUE;
     txtRemark.text = pp.ProspectRemark;
     
     
+    // BHIMBIM'S QUICK FIX - Start
+
+    if ([pp.isForeignAdd isEqualToString:@"NO"] == true)
+    {
+        [_switchCountryHome setOn:false];
+    }
+    else
+    {
+        [_switchCountryHome setOn:true];
+    }
     
-    
-    
+    // BHIMBIM'S QUICK FIX - End
     
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
@@ -3002,6 +3050,44 @@ bool PolicyOwnerSigned = TRUE;
         return ((newLength <= 40));
     }
     
+    
+    // BHIMBIM'S QUICK FIX - Start, the namin convention is inconsistent.
+    
+    if (textField == _txtNamaDepan) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtNamaBelakang) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtKelurahan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _TxtKecamatan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtKota) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtRTRW) {
+        return ((newLength <= 10));
+    }
+    
+    if (textField == _txtHPRumah) {
+        return ((newLength <= 16));
+    }
+    
+    if (textField == _txtIdNumber) {
+        return ((newLength <= 20));
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if (textField == _txtCountryOfBirth) {
         return ((newLength <= 40));
     }
@@ -3071,7 +3157,7 @@ bool PolicyOwnerSigned = TRUE;
         return ((newLength <= CHARACTER_LIMIT_Bussiness));
     }
     
-    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || txtOfficeAddr1 ||txtOfficeAddr2 ||txtOfficeAddr3) {
+    if (textField == txtHomeAddr1 || textField == txtHomeAddr2 ||textField == txtHomeAddr3 || textField == _txtAddress4 || textField == txtOfficeAddr1 || textField == txtOfficeAddr2 || textField == txtOfficeAddr3) {
         return ((newLength <= CHARACTER_LIMIT_Address));
     }
     
@@ -3572,6 +3658,7 @@ bool PolicyOwnerSigned = TRUE;
             txtHomeAddr1.text = @"";
             txtHomeAddr2.text = @"";
             txtHomeAddr3.text = @"";
+            _txtAddress4.text = @"";
             _txtHomeVillage.text = @"";
             _txtHomeDistrict.text = @"";
             _txtHomeProvince.text = @"";
@@ -4203,9 +4290,26 @@ bool PolicyOwnerSigned = TRUE;
 }
 
 -(void)detectFilled:(UITextField *)sender{
-    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
+    // NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
     
-    NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,_txtOfficeVillage,_txtOfficeDistrict,txtOfficeTown,_txtOfficeProvince, nil];
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtAddress4,_txtHomeVillage,_txtHomeDistrict,txtHomeTown,_txtHomeProvince, nil];
+    
+    if ([_switchCountryHome isOn] == true)
+    {
+        [txtHomeCountry setText:@""];
+    }
+    else
+    {
+        [txtHomeCountry setText:@"INDONESIA"];
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    /* NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,_txtOfficeVillage,_txtOfficeDistrict,txtOfficeTown,_txtOfficeProvince, nil];
     
     if ([arrayTxtHome containsObject:sender]){
         if (!checked) {
@@ -4235,8 +4339,7 @@ bool PolicyOwnerSigned = TRUE;
                 }
             }
         }
-    }
-    
+    } */
 }
 
 
@@ -4259,6 +4362,7 @@ bool PolicyOwnerSigned = TRUE;
 	[ClientProfile setObject:txtHomeAddr1.text forKey:@"txtHomeAddr1"];
 	[ClientProfile setObject:txtHomeAddr2.text forKey:@"txtHomeAddr2"];
 	[ClientProfile setObject:txtHomeAddr3.text forKey:@"txtHomeAddr3"];
+    [ClientProfile setObject:_txtAddress4.text forKey:@"_txtAddress4"];
 	[ClientProfile setObject:txtHomePostCode.text forKey:@"txtHomePostCode"];
 	[ClientProfile setObject:txtHomeTown.text forKey:@"txtHomeTown"];
 	
@@ -5070,6 +5174,13 @@ bool PolicyOwnerSigned = TRUE;
         txtHomeAddr3.text = @"";
     }
     
+    if (![prospectprofile.Address4 isEqualToString:@"(null)"] || prospectprofile.Address4 != NULL) {
+        _txtAddress4.text = prospectprofile.Address4;
+    }
+    else {
+        _txtAddress4.text = @"";
+    }
+    
     if (![prospectprofile.ResidenceAddressCountry isEqualToString:@"(null)"] || prospectprofile.ResidenceAddressCountry != NULL) {
         txtHomeCountry.text = [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
 		prospectprofile.ResidenceAddressCountry =   [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
@@ -5564,6 +5675,9 @@ bool PolicyOwnerSigned = TRUE;
                 txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
                 txtHomeAddr3.enabled = NO;
                 
+                _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+                _txtAddress4.enabled = NO;
+                
                 txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
                 txtHomePostCode.enabled = NO;
                 
@@ -5725,6 +5839,7 @@ bool PolicyOwnerSigned = TRUE;
         txtHomeAddr1.text = @"";
         txtHomeAddr2.text = @"";
         txtHomeAddr3.text = @"";
+        _txtAddress4.text = @"";
         
         txtOfficeAddr1.text = @"";
         txtOfficeAddr2.text =@"";
@@ -5741,6 +5856,9 @@ bool PolicyOwnerSigned = TRUE;
         
         txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
         txtHomeAddr3.enabled = NO;
+        
+        _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
+        _txtAddress4.enabled = NO;
         
         txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"FFFFFF"];
         txtHomePostCode.enabled = NO;
@@ -6275,10 +6393,20 @@ bool PolicyOwnerSigned = TRUE;
         counter = counter+1;
 		
 		//eliminate empty or null value
+        
+        NSLog(@"Save to DB - ID type code selected before get id type code -> %@", IDTypeCodeSelected);
+        // [self getIDTypeDesc : IDTypeCodeSelected];
+        // IDTypeCodeSelected = _txtTypeID.text;
         [self getIDTypeCode:_txtTypeID.text];
+        NSLog(@"Save to DB - Get id type code -> %@", _txtTypeID.text);
+        NSLog(@"Save to DB - ID type code selected before validation -> %@", IDTypeCodeSelected);
+        
+        
         if (IDTypeCodeSelected == NULL || [IDTypeCodeSelected isEqualToString:@"(NULL)"] || [IDTypeCodeSelected isEqualToString:@"(null)"]) {
 			IDTypeCodeSelected = @"";
         }
+        
+        NSLog(@"Save to DB - ID type code selected -> %@", IDTypeCodeSelected);
         
         if (OffCountry == NULL || [OffCountry isEqualToString:@"(NULL)"] || [OffCountry isEqualToString:@"(null)"]) {
 			OffCountry = @"";
@@ -6356,7 +6484,24 @@ bool PolicyOwnerSigned = TRUE;
         }
         
         
-        NSString *isforeignAdd = @"NO";
+        // NSString *isforeignAdd = @"NO";
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        NSString *isForeignAdd = @"NO";
+        
+        if ([[self switchCountryHome] isOn] == true)
+        {
+            isForeignAdd = @"YES";
+        }
+        else
+        {
+            
+        }
+        
+        // BHIMBIM'S QUICK FIX - End
+        
         
 //        NSString *Fav;
 //        if (isFavorite) {
@@ -6378,8 +6523,9 @@ bool PolicyOwnerSigned = TRUE;
         NSString *insertSQL = [NSString stringWithFormat:
                                @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\",  \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\",\"NIP\"=\"%@\",\"BranchCode\"=\"%@\",\"BranchName\"=\"%@\",\"KCU\"=\"%@\",\"ReferralSource\"=\"%@\",\"ReferralName\"=\"%@\",\"Kanwil\"=\"%@\",\"ResidenceDistrict\"=\"%@\",\"ResidenceVillage\"=\"%@\",\"ResidenceProvince\"=\"%@\",\"OfficeDistrict\"=\"%@\",\"OfficeVillage\"=\"%@\",\"OfficeProvince\"=\"%@\",\"SourceIncome\"=\"%@\",\"NPWPNo\"=\"%@\",\"ClientSegmentation\"=\"%@\",\"IDExpiryDate\"=\"%@\", \"ProspectLastName\" =\"%@\", \"ResidenceAddress4\"=\"%@\", \"PhoneNoHome\"=\"%@\", \"PhoneNoHP\"=\"%@\", \"CallTimeStart\"=\"%@\", \"CallTimeEnd\"=\"%@\", \"ResidenceKelurahan\"=\"%@\", \"ResidenceKecamatan\"=\"%@\", \"isForeignAddress\"=\"%@\", \"ProspectStatus\"=\"%@\", \"Score\"=\"%d\", \"ProspectAge\"=\"%d\", \"isFavorite\"=\"%d\", \"RTRW\"=\"%@\" where indexNo = \"%@\" "
                                     , _txtNamaDepan.text, strDOB,GSTRigperson,txtRigNO.text,strGstdate, GSTRigExempted,genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtKota.text/*_outletKota.titleLabel.text*/, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text/*_outletKotaOffice.titleLabel.text*/, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text,race, marital, nation,
-                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isforeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
+                            /*religion*/ _txtReligion.text ,str_counter, IsGrrouping, CountryOfBirth, txtNip.text, _outletBranchCode.titleLabel.text, _outletBranchName.titleLabel.text, txtKcu.text, outletReferralSource.titleLabel.text, txtReferralName.text, txtKanwil.text, _txtHomeDistrict.text, _txtHomeVillage.text, _txtHomeProvince.text/*_outletProvinsi.titleLabel.text*/,_txtOfficeDistrict.text, _txtOfficeVillage.text, _txtOfficeProvince.text/*_outletProvinsiOffice.titleLabel.text*/, _txtSourceIncome.text, txtNPWPNo.text, _outletVIPClass.titleLabel.text,strExpiryDate, _txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text, isForeignAdd, PStatus, score, age ,isFavorite, _txtRTRW.text,pp.ProspectID];
 
+        NSLog(@"Save to DB - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
         const char *Update_stmt = [insertSQL UTF8String];
         if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
             if (sqlite3_step(statement) == SQLITE_DONE)
@@ -6433,7 +6579,7 @@ bool PolicyOwnerSigned = TRUE;
 				gender = @"F";
 			}
 			
-            NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+            NSString *update_query = [NSString stringWithFormat:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceAddress4\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidenceForeignAddressFlag\" = \"%@\", \"OfficeForeignAddressFlag\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"ResidencePhoneNoPrefix\" = \"%@\", \"MobilePhoneNoPrefix\" = \"%@\", \"OfficePhoneNoPrefix\" = \"%@\", \"FaxPhoneNoPrefix\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\", \"GST_registered\" = \"%@\", \"GST_registrationNo\" = \"%@\", \"GST_registrationDate\" = \"%@\", \"GST_exempted\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
                                       TABLE_LA_DETAILS,
 									  TitleCodeSelected,
                                       txtrFullName.text,
@@ -6454,6 +6600,7 @@ bool PolicyOwnerSigned = TRUE;
                                       txtHomeAddr1.text,
                                       txtHomeAddr2.text,
                                       txtHomeAddr3.text,
+                                      _txtAddress4.text,
                                       
                                       txtHomeTown.text,
                                       SelectedStateCode,
@@ -6490,7 +6637,7 @@ bool PolicyOwnerSigned = TRUE;
             
             [db executeUpdate:update_query];
             
-            
+            NSLog(@"Save to DB - Update SQL, query -> %@", update_query);
         }
     }
     [result close];
@@ -6703,7 +6850,7 @@ bool PolicyOwnerSigned = TRUE;
 			
 			if (count > 0) {
 				update_query = @"";
-				update_query = [NSString stringWithFormat:@"Update CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\";",
+				update_query = [NSString stringWithFormat:@"Update CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingAddress4\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\";",
 								
 								txtrFullName.text,
 								gender,
@@ -6721,6 +6868,7 @@ bool PolicyOwnerSigned = TRUE;
 								txtHomeAddr1.text,
 								txtHomeAddr2.text,
 								txtHomeAddr3.text,
+                                _txtAddress4.text,
 								
 								txtHomeTown.text,
 								SelectedStateCode,
@@ -6761,7 +6909,7 @@ bool PolicyOwnerSigned = TRUE;
 		ProposalToUpdate = [ProposalCount objectAtIndex: i];
 		
 		if (count > 0) {
-            update_query  = [NSString stringWithFormat:@"Update eProposal_CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\" AND eProposalNo = \"%@\" ;",
+            update_query  = [NSString stringWithFormat:@"Update eProposal_CFF_Personal_Details SET \"Name\" = \"%@\", \"Sex\" = \"%@\", \"DOB\" = \"%@\", \"NewICNO\" = \"%@\", \"OtherIDType\" = \"%@\", \"OtherID\" = \"%@\", \"MaritalStatus\" = \"%@\", \"Race\" = \"%@\", \"Religion\" = \"%@\", \"Nationality\" = \"%@\", \"OccupationCode\" = \"%@\", \"MailingAddress1\" = \"%@\", \"MailingAddress2\" = \"%@\", \"MailingAddress3\" = \"%@\", \"MailingAddress4\" = \"%@\", \"MailingTown\" = \"%@\", \"MailingState\" = \"%@\", \"MailingPostCode\" = \"%@\", \"MailingCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\",\"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\",  \"EmailAddress\" = \"%@\", \"Smoker\" = \"%@\", \"ResidencePhoneNoExt\" = \"%@\", \"MobilePhoneNoExt\" = \"%@\", \"OfficePhoneNoExt\" = \"%@\", \"FaxPhoneNoExt\" = \"%@\" WHERE  CFFID = \"%@\" AND eProposalNo = \"%@\" ;",
 									   
 									   txtrFullName.text,
 									   gender,
@@ -6779,6 +6927,7 @@ bool PolicyOwnerSigned = TRUE;
 									   txtHomeAddr1.text,
 									   txtHomeAddr2.text,
 									   txtHomeAddr3.text,
+                                    _txtAddress4.text,
 									   
 									   txtHomeTown.text,
 									   SelectedStateCode,
@@ -6805,11 +6954,12 @@ bool PolicyOwnerSigned = TRUE;
 		//Update address in nominee (If Nominee address set same as PO)
 		
 		if (proposalNoCount > 0) {
-			NSString *update_query  = [NSString stringWithFormat:@"Update eProposal_NM_Details SET \"NMCRAddress1\" = \"%@\", \"NMCRAddress2\" = \"%@\", \"NMCRAddress3\" = \"%@\", \"NMCRTown\" = \"%@\", \"NMCRState\" = \"%@\", \"NMCRPostCode\" = \"%@\", \"NMCRCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and NMSamePOAddress = 'same';",
+			NSString *update_query  = [NSString stringWithFormat:@"Update eProposal_NM_Details SET \"NMCRAddress1\" = \"%@\", \"NMCRAddress2\" = \"%@\", \"NMCRAddress3\" = \"%@\", \"NMCRAddress4\" = \"%@\", \"NMCRTown\" = \"%@\", \"NMCRState\" = \"%@\", \"NMCRPostCode\" = \"%@\", \"NMCRCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and NMSamePOAddress = 'same';",
 									   
 									   txtHomeAddr1.text,
 									   txtHomeAddr2.text,
 									   txtHomeAddr3.text,
+                                       _txtAddress4.text,
 									   
 									   txtHomeTown.text,
 									   SelectedStateCode,
@@ -6820,11 +6970,12 @@ bool PolicyOwnerSigned = TRUE;
 			
 			//Update trustee address if set as same as PO
 			update_query = @"";
-			update_query  = [NSString stringWithFormat:@"Update eProposal_Trustee_Details SET \"TrusteeAddress1\" = \"%@\", \"TrusteeAddress2\" = \"%@\", \"TrusteeAddress3\" = \"%@\", \"TrusteeTown\" = \"%@\", \"TrusteeState\" = \"%@\", \"TrusteePostcode\" = \"%@\", \"TrusteeCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and TrusteeSameAsPO = 'Y';",
+			update_query  = [NSString stringWithFormat:@"Update eProposal_Trustee_Details SET \"TrusteeAddress1\" = \"%@\", \"TrusteeAddress2\" = \"%@\", \"TrusteeAddress3\" = \"%@\", \"TrusteeAddress4\" = \"%@\", \"TrusteeTown\" = \"%@\", \"TrusteeState\" = \"%@\", \"TrusteePostcode\" = \"%@\", \"TrusteeCountry\" = \"%@\" WHERE  eProposalNo = \"%@\" and TrusteeSameAsPO = 'Y';",
 							 
 							 txtHomeAddr1.text,
 							 txtHomeAddr2.text,
 							 txtHomeAddr3.text,
+                             _txtAddress4.text,
 							 
 							 txtHomeTown.text,
 							 SelectedStateCode,
@@ -7670,8 +7821,17 @@ bool PolicyOwnerSigned = TRUE;
 				desc = @"";
 			}
 			else {
-				desc = IDtype;
-				[self getIDTypeCode:IDtype];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+				// desc = IDtype;
+				// [self getIDTypeCode:IDtype];
+                [self getIDTypeCode:desc];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
 			}
 		}
 	}
@@ -7683,7 +7843,8 @@ bool PolicyOwnerSigned = TRUE;
     NSString *code = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
-    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM %@ WHERE IdentityDesc = %@", TABLE_IDENTIFICATION,IDtype];
+    NSString *query = [NSString stringWithFormat:@"SELECT DataIdentifier FROM '%@' WHERE IdentityDesc = '%@'", TABLE_IDENTIFICATION,IDtype];
+    NSLog(@"Get ID Type Code - ID Type : O%@O", IDtype);
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     FMResultSet *result = [db executeQuery:query];
@@ -7930,6 +8091,9 @@ bool PolicyOwnerSigned = TRUE;
         [txtHomeAddr3 becomeFirstResponder];
     }
     else if (textField == txtHomeAddr3) {
+        [_txtAddress4 becomeFirstResponder];
+    }
+    else if (textField == _txtAddress4) {
         [txtHomePostCode becomeFirstResponder];
     }
     else if (textField == txtHomePostCode) {
@@ -8098,10 +8262,10 @@ bool PolicyOwnerSigned = TRUE;
             }
 						
             NSString *insertSQL = [NSString stringWithFormat:
-                                   @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\" , \"QQFlag\"=\"%@\", \"CountryOfBirth\"=\"%@\"  where indexNo = \"%@\" "
-                                   "", txtrFullName.text, strDOB, gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion,@"false" , CountryOfBirth ,pp.ProspectID];
+                                   @"update prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\" , \"QQFlag\"=\"%@\", \"CountryOfBirth\"=\"%@\"  where indexNo = \"%@\" "
+                                   "", txtrFullName.text, strDOB, gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtAddress4.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostCode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, IDTypeCodeSelected, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion,@"false" , CountryOfBirth ,pp.ProspectID];
             
-			
+			NSLog(@"Save changes 2 - Update SQL, query -> %@, id type -> %@", insertSQL, IDTypeCodeSelected);
             const char *Update_stmt = [insertSQL UTF8String];
             if(sqlite3_prepare_v2(contactDB, Update_stmt, -1, &statement, NULL) == SQLITE_OK) {
                 if (sqlite3_step(statement) == SQLITE_DONE)
@@ -8341,6 +8505,7 @@ bool PolicyOwnerSigned = TRUE;
 	TitleCodeSelected = [ClientProfile stringForKey:@"TitleCodeSelected"];
 	NSString *IDType = [ClientProfile stringForKey:@"IC"];
 	IDTypeCodeSelected = [ClientProfile stringForKey:@"IDTypeCodeSelected"];
+    NSLog(@"Validation 2 - ID type code selected -> %@", IDTypeCodeSelected);
 	NSString *OtherIDType2 = [ClientProfile stringForKey:@"txtOtherIDType"];
 	newDOB = [ClientProfile stringForKey:@"strDOB"];
 	gender = [ClientProfile stringForKey:@"gender"];
@@ -8405,7 +8570,7 @@ bool PolicyOwnerSigned = TRUE;
 	NSString *Email = [ClientProfile stringForKey:@"txtEmail"];
 	
 	int annual_income =  [AnnIncome integerValue];
-    
+    NSLog(@"Validation 2 - ID type code selected for trimmed -> %@", IDTypeCodeSelected);
 	NSString *otherIDType_trim = IDTypeCodeSelected;
 	NSString *home1_trim = HomeAddr1;
 	NSString *homePostcode_trim = HomePostCode;
@@ -8597,15 +8762,21 @@ bool PolicyOwnerSigned = TRUE;
             return ErrMsg;
             
         }
-        else if ( (home1_trim.length!=0 || ![txtHomeAddr2.text isEqualToString:@""] || ![txtHomeAddr3.text isEqualToString:@""])&& homePostcode_trim.length==0)
+        else if
+        (
+            (
+                home1_trim.length!=0 ||
+                ![txtHomeAddr2.text isEqualToString:@""] ||
+                ![txtHomeAddr3.text isEqualToString:@""] ||
+                ![_txtAddress4.text isEqualToString:@""]
+            ) && homePostcode_trim.length==0
+        )
         {
             if(checked == NO)
             {
 				ErrMsg = @"Postcode for residential address is required.";
                 return ErrMsg;
             }
-            
-            
         }
         else  if ( home1_trim.length==0 && ![txtHomePostCode.text isEqualToString:@""])
         {
@@ -9158,6 +9329,7 @@ bool PolicyOwnerSigned = TRUE;
         
         //Other ID Type as ‘SINGAPOREAN IDENTIFICATION NUMBER’, then the “Nationality” must be “Singaporean”.
 		NSString *otherIDtype = IDTypeCodeSelected;
+        NSLog(@"Validation 2 - ID type code selected for last -> %@", IDTypeCodeSelected);
         
         if ([otherIDtype isEqualToString:@"SID"] && ![nation isEqualToString:@"SINGAPOREAN"]  )
         {
@@ -10540,11 +10712,13 @@ bool PolicyOwnerSigned = TRUE;
 
 -(void)IDTypeCodeSelected:(NSString *)IDTypeCode {
     IDTypeCodeSelected = IDTypeCode;
+    NSLog(@"ID Type Code Selected - ID type code selected -> %@", IDTypeCodeSelected);
 }
 
 - (void)IDTypeCodeSelectedWithIdentifier:(NSString *) IDTypeCode Identifier:(NSString *)identifier{
     IDTypeCodeSelected = identifier;
     IDTypeIdentifierSelected = identifier;
+    NSLog(@"ID Type Code Selected With Identifier - ID type code selected -> %@", IDTypeCodeSelected);
 }
 
 -(void)IDTypeDescSelected:(NSString *)selectedIDType
@@ -11124,6 +11298,7 @@ bool PolicyOwnerSigned = TRUE;
     {
         /* INITIALIZATION */
         
+        intPoin = 0;
         stringInputValue = @"";
         completeStatus = completeStatus + 1;
         
@@ -11410,16 +11585,38 @@ bool PolicyOwnerSigned = TRUE;
 -(void)calculateAge:(NSString *)DOBdate
 {
     
-    NSDate *todayDate = [NSDate date];
+    /* NSDate *todayDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     int time = [todayDate timeIntervalSinceDate:[dateFormatter dateFromString:DOBdate]];
     int allDays = (((time/60)/60)/24);
     int days = allDays%365;
-    int years = (allDays-days)/365;
+    int years = (allDays-days)/365; */
     
     //    NSLog(@"You live since %i years and %i days",years,days);
-    age = years;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSDate* dateNow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
+    NSDateComponents* dateComponentsAge =
+    [
+     [NSCalendar currentCalendar]
+     components:NSCalendarUnitYear
+     fromDate:dateBirth
+     toDate:dateNow
+     options:0
+     ];
+    NSInteger intAge = [dateComponentsAge year];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    // age = years;
+    age = intAge;
     _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
 }
@@ -11534,6 +11731,7 @@ bool PolicyOwnerSigned = TRUE;
     [self setTxtHomeAddr1:nil];
     [self setTxtHomeAddr2:nil];
     [self setTxtHomeAddr3:nil];
+    [self setTxtAddress4:nil];
     [self setTxtHomePostCode:nil];
     [self setTxtHomeTown:nil];
     [self setTxtHomeState:nil];
@@ -11585,7 +11783,24 @@ bool PolicyOwnerSigned = TRUE;
     // Release any retained subviews of the main view.
 }
 
-- (IBAction)ActionGoBack:(id)sender {
+- (IBAction)ActionGoBack:(id)sender
+{
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSLog(@"Favorite - Input favorite -> %d, on load favorite -> %d", isFavorite, [pp.Favorite intValue]);
+    
+    if (isFavorite == [pp.Favorite intValue])
+    {
+        
+    }
+    else
+    {
+        [self detectChanges:self];
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if ([strChanges isEqualToString:@"Yes"] || edited) {
         UIAlertView *back_alert = [[UIAlertView alloc] initWithTitle:@" "
                                                              message:@"Save changes before continuing?" delegate:self cancelButtonTitle:@"Save" otherButtonTitles:@"Cancel", nil];

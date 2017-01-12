@@ -51,7 +51,7 @@ FORM_QUESTION_COMPANYNAME = "Company / school name";
 
 /* PLACEHOLDER */
 
-PLACEHOLDER_TEXTFIELD_USERCODE = "Usercode";
+PLACEHOLDER_TEXTFIELD_USERCODE = "Username";
 PLACEHOLDER_TEXTFIELD_PASSWORD = "Password";
 
 
@@ -69,6 +69,7 @@ BUTTON_EDIT = "Edit";
 BUTTON_DELETE = "Delete";
 BUTTON_RESET = "Reset";
 BUTTON_CANCEL = "Cancel";
+BUTTON_OK = "Ok";
 
 
 // DECORATOR
@@ -170,3 +171,23 @@ MODULE_HEADER1_SI = "S.I number";
 MODULE_DETAIL1_SI = "Policyholder name";
 MODULE_HEADER2_FNA = "F.N.A number";
 MODULE_DETAIL2_FNA = "Policyholder name";
+
+
+// MESSAGE
+
+/* ERROR */
+
+/* INFO */
+
+MESSAGE_INFO_OFFLINE120DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di nomor 021-xxxxxxxx pada jam kerja atau email ke helpdesk_tmconnect@tokiomarine-life.co.id";
+MESSAGE_INFO_OFFLINE30DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku lisensi Anda telah berakhir. \nMohon segera melakukan perpanjangan masa berlaku lisensi Anda.";
+MESSAGE_INFO_OFFLINE7DAYS = "Mohon maaf Anda tidak dapat mengakases aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 7 hari sudah berakhir. \nSilahkan melakukan koneksi internet untuk dapat mengakses TMConnect.";
+
+MESSAGE_INFO_ONLINE120DAYS = "";
+MESSAGE_INFO_ONLINE30DAYS = "Masa berlaku lisensi Anda telah berakhir. Mohon segera melakukan perpanjangan";
+MESSAGE_INFO_ONLINE7DAYS = "";
+MESSAGE_INFO_ONLINETERMINATE = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnet. \nStatus keagenan Anda terminate.";
+MESSAGE_INFO_ONLINERESIGN = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnet. \nStatus keagenan Anda resign.";
+MESSAGE_INFO_ONLINESUSPEND = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnet. \nStatus keagenan Anda suspend.";
+
+/* SUCCESS */

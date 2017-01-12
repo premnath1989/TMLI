@@ -79,7 +79,7 @@
     NSString *version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     NSString *build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
     
-    NSString *appInformation = [NSString stringWithFormat:@"Last Login Date : %@ \n Offline Expired Date : %@ hari \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
+    NSString *appInformation = [NSString stringWithFormat:@"Last Online Login Date : %@ \n Offline Expired Date : %@ \n TMConnect Version %@ %@ \n %@", [self ShowLoginDate], [self remainingDays], version, build, [self getUniqueDeviceIdentifierAsString]];
     _labelParagraphInformation.text = appInformation;
     
     [_buttonLogin setTitle:NSLocalizedString(@"BUTTON_FORM_LOGIN", nil) forState:UIControlStateNormal];
@@ -300,7 +300,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         days = [NSString stringWithFormat:@"%d", dayRem];
     }
     
-    return days;
+    NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
+    dayComponent.day = dayRem;
+    
+    NSCalendar *theCalendar = [NSCalendar currentCalendar];
+    NSDate *nextDate = [theCalendar dateByAddingComponents:dayComponent toDate:[NSDate date] options:0];
+    
+    return [[[DateFormatter alloc] init] DateMonthNoFormat:nextDate];
 }
 
 
@@ -455,20 +461,50 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if(dateDifference > 7)
     {
-        if(dateDifference > 120){
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        NSString *stringMessage = @"";
+        
+        if(dateDifference > 120)
+        {
             [loginDB DeleteAgentProfile];
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 120 hari, semua data nasabah telah terhapus."
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }else{
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Informasi"
-                                                            message:@"Anda tidak melakukan online login selama 7 hari, pastikan perangkat terhubung ke internet untuk login."
-                                                           delegate:Nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE120DAYS", nil);
         }
+        else
+        {
+            stringMessage = NSLocalizedString(@"MESSAGE_INFO_OFFLINE7DAYS", nil);
+        }
+        
+        UIAlertController *alertController =
+        [
+             UIAlertController
+             alertControllerWithTitle:@"Informasi"
+             message: stringMessage
+             preferredStyle:UIAlertControllerStyleAlert
+        ];
+        
+        UIAlertAction * actionPositive =
+        [
+             UIAlertAction
+             actionWithTitle:NSLocalizedString(@"BUTTON_OK", nil)
+             style:UIAlertActionStyleDefault
+             handler:^(UIAlertAction * action)
+             {
+                 [alertController dismissViewControllerAnimated:YES completion:nil];
+             }
+        ];
+        
+        [alertController addAction:actionPositive];
+        [self presentViewController:alertController animated:YES completion:nil];
+        
         [spinnerLoading stopLoadingSpinner];
-    }else
+        
+        // BHIMBIM'S QUICK FIX - End
+        
+        
+    }
+    else
     {
         
         if ([self OfflineLogin]) {
@@ -568,7 +604,16 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             case AGENT_IS_INACTIVE:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                // UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah inactive"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINERESIGN", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -581,10 +626,53 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 validFlag = false;
                 break;
             }
+            case AGENT_IS_SUSPEND :
+            {
+                [spinnerLoading stopLoadingSpinner];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINESUSPEND", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
+                [alert show];
+                validFlag = false;
+                break;
+                
+            }
+
+            case AGENT_IS_RESIGN :
+            {
+                [spinnerLoading stopLoadingSpinner];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINERESIGN", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
+                [alert show];
+                validFlag = false;
+                break;
+
+            }
             case AGENT_IS_TERMINATED:
             {
                 [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Status Agen adalah terminated"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_ONLINETERMINATE", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 [alert show];
                 validFlag = false;
                 break;
@@ -594,11 +682,20 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         switch ([[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]] compare:[NSDate date]]) {
             case NSOrderedAscending:
-            {
-                [spinnerLoading stopLoadingSpinner];
-                UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:[NSString stringWithFormat:@"Lisensi Agen telah expired"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
-                [alert show];
-                validFlag = false;
+            {                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+                [formatter setDateFormat:@"dd/MM/yyyy"];
+                int daysElapsed  = [SynchdaysCounter daysBetweenDate:[formatter dateFromString:[self getTodayDate]] andDate:[dateFormatter dateFromString:[loginDB expiryDate:textFieldUserCode.text]]];
+                if(daysElapsed < -30){
+                    [spinnerLoading stopLoadingSpinner];
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                    validFlag = false;
+                }else if((daysElapsed > -30 && daysElapsed < 0) && ![self connected] && OFFLINE_PROCESS){
+                    [spinnerLoading stopLoadingSpinner];
+                    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"" message:NSLocalizedString(@"MESSAGE_INFO_OFFLINE30DAYS", nil) delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                    [alert show];
+                    validFlag = false;
+                }
                 break;
             }
             default:

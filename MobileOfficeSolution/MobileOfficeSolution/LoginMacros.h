@@ -23,6 +23,8 @@ static const int AGENT_IS_TERMINATED = 102;
 
 static const int AGENT_IS_ACTIVE = 130;
 static const int AGENT_IS_INACTIVE = 131;
+static const int AGENT_IS_SUSPEND = 132;
+static const int AGENT_IS_RESIGN = 133;
 
 static const int LICENSE_IS_NOT_EXPIRED = 120;
 static const int LICENSE_IS_EXPIRED = 121;

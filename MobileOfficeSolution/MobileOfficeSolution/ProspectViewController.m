@@ -254,8 +254,8 @@ BOOL NavShowP;
     
 //    [_txtHPNo addTarget:self action:@selector(shouldChangeCharactersInRange:) forControlEvents:UIControlEventEditingDidEnd];
     ////[txtOfficePostcode addTarget:self action:@selector(OfficePostcodeDidChange:) forControlEvents:UIControlEventEditingDidEnd];
-    //[txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
-    //[txtOfficePostcode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+    [txtHomePostCode addTarget:self action:@selector(EditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
+    // [txtOfficePostcode addTarget:self action:@selector(OfficeEditTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [txtIDType addTarget:self action:@selector(NewICDidChange:) forControlEvents:UIControlEventEditingDidEnd];
     //  [txtIDType addTarget:self action:@selector(NewICTextFieldBegin:) forControlEvents:UIControlEventEditingDidBegin];
     [txtAnnIncome addTarget:self action:@selector(AnnualIncomeChange:) forControlEvents:UIControlEventEditingDidEnd];
@@ -358,6 +358,22 @@ BOOL NavShowP;
     isOffCountry = NO;
     companyCase = NO;
     
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    txtNamaDepan.delegate = self;
+    txtNamaBelakang.delegate = self;
+    _txtKelurahan.delegate = self;
+    _TxtKecamatan.delegate = self;
+    _txtKota.delegate = self;
+    _txtHPRumah.delegate = self;
+    _txtHPNo.delegate = self;
+    _txtRTRW.delegate = self;
+    _txtIdNumber.delegate = self;
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     txtEmail.delegate = self;
     txtAnnIncome.delegate = self;
     txtAnnIncome.keyboardType = UIKeyboardTypeNumberPad;
@@ -369,6 +385,7 @@ BOOL NavShowP;
     txtHomeAddr1.delegate = self;
     txtHomeAddr2.delegate = self;
     txtHomeAddr3.delegate = self;
+    _txtAddress4.delegate = self;
     
     txtOfficeAddr1.delegate = self;
     txtOfficeAddr2.delegate = self;
@@ -1422,7 +1439,8 @@ BOOL NavShowP;
            [temp_cont3 isEqualToString:cont3] &&
            [temp_cont4 isEqualToString:cont4] &&
            [txtEmail.text isEqualToString:prospectprofile.ProspectEmail] &&
-           [txtRemark.text isEqualToString:prospectprofile.ProspectRemark]) {
+           [txtRemark.text isEqualToString:prospectprofile.ProspectRemark] &&
+           [_txtAddress4.text isEqualToString:prospectprofile.Address4]) {
             [self resignFirstResponder];
             [self.view endEditing:YES];
             [self.navigationController popViewControllerAnimated:YES];
@@ -2261,6 +2279,45 @@ BOOL NavShowP;
         return ((newLength <= 40));
     }
     
+    
+    // BHIMBIM'S QUICK FIX - Start, the namin convention is inconsistent.
+    
+    
+    if (textField == txtNamaDepan) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == txtNamaBelakang) {
+        return ((newLength <= 40));
+    }
+    
+    if (textField == _txtKelurahan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _TxtKecamatan) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtKota) {
+        return ((newLength <= 50));
+    }
+    
+    if (textField == _txtRTRW) {
+        return ((newLength <= 10));
+    }
+    
+    if (textField == _txtHPRumah) {
+        return ((newLength <= 16));
+    }
+    
+    if (textField == _txtIdNumber) {
+        return ((newLength <= 20));
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     if (textField == _txtCountryOfBirth) {
         return ((newLength <= 40));
     }
@@ -2595,7 +2652,15 @@ BOOL NavShowP;
 }
 
 -(void)detectFilled:(UITextField *)sender{
-    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,txtHomeVillage,txtHomeDistrict,txtHomeTown,txtHomeProvince, nil];
+    // NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,txtHomeVillage,txtHomeDistrict,txtHomeTown,txtHomeProvince, nil];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSArray *arrayTxtHome=[[NSArray alloc]initWithObjects:txtHomeAddr1,txtHomeAddr2,txtHomeAddr3,_txtAddress4,txtHomeVillage,txtHomeDistrict,txtHomeTown,txtHomeProvince, nil];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     NSArray *arrayTxtOffice=[[NSArray alloc]initWithObjects:txtOfficeAddr1,txtOfficeAddr2,txtOfficeAddr3,txtOfficeVillage,txtOfficeDistrict,txtOfficeTown,txtOfficeProvince, nil];
     
@@ -3335,6 +3400,23 @@ BOOL NavShowP;
                 
                 /* CHECK - the query result and trigger alert controller */
                 
+                
+                // BHIMBIM'S QUICK FIX - Start
+                
+                NSString *isForeign = @"NO";
+                
+                if ([[self switchCountryHome] isOn] == true)
+                {
+                    isForeign = @"YES";
+                }
+                else
+                {
+                    
+                }
+                
+                // BHIMBIM'S QUICK FIX - End
+                
+                
                 if(intCount > 0)
                 {
                     NSLog(@"Count !, count -> %d and it's dupplicate !", intCount);
@@ -3407,17 +3489,18 @@ BOOL NavShowP;
                                  
                                  insertSQL =
                                     [NSString stringWithFormat:
-                                      @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
-                                      txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
+                                      @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
+                                      txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, _txtAddress4.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
                                  
-                                 NSLog(@"Update End  - dupplicate prospect!!");
+                                 NSLog(@"Update End  - dupplicate prospect !!, query -> %@", insertSQL);
                              }
                              else
                              {
                                  NSLog(@"Insert Start - dupplicate prospect !!");
                                  
-                                 NSString *isForeign = @"NO";
-                                 /* NSString *Fav;
+                                 /* NSString *isForeign = @"NO";
+                                 
+                                 NSString *Fav;
                                  if (isFavorite )
                                  {
                                    Fav = @"TRUE";
@@ -3448,7 +3531,7 @@ BOOL NavShowP;
                                       txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
                                       @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
                                  
-                                 NSLog(@"Insert End !! - dupplicate prospect");
+                                 NSLog(@"Insert End - dupplicate prospect !!, query -> %@", insertSQL);
                              }
                              
                              const char *insert_stmt = [insertSQL UTF8String];
@@ -3568,17 +3651,17 @@ BOOL NavShowP;
                         
                         insertSQL =
                             [NSString stringWithFormat:
-                                 @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
-                                 txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
+                                 @"UPDATE prospect_profile set \"ProspectName\"=\'%@\', \"ProspectDOB\"=\"%@\",\"GST_registered\"=\"%@\",\"GST_registrationNo\"=\"%@\",\"GST_registrationDate\"=\"%@\",\"GST_exempted\"=\"%@\", \"ProspectGender\"=\"%@\", \"ResidenceAddress1\"=\"%@\", \"ResidenceAddress2\"=\"%@\", \"ResidenceAddress3\"=\"%@\", \"ResidenceAddress4\"=\"%@\", \"ResidenceAddressTown\"=\"%@\", \"ResidenceAddressState\"=\"%@\", \"ResidenceAddressPostCode\"=\"%@\", \"ResidenceAddressCountry\"=\"%@\", \"OfficeAddress1\"=\"%@\", \"OfficeAddress2\"=\"%@\", \"OfficeAddress3\"=\"%@\", \"OfficeAddressTown\"=\"%@\",\"OfficeAddressState\"=\"%@\", \"OfficeAddressPostCode\"=\"%@\", \"OfficeAddressCountry\"=\"%@\", \"ProspectEmail\"= \"%@\", \"ProspectOccupationCode\"=\"%@\", \"ExactDuties\"=\"%@\", \"ProspectRemark\"=\"%@\", \"DateModified\"=%@,\"ModifiedBy\"=\"%@\", \"ProspectGroup\"=\"%@\", \"ProspectTitle\"=\"%@\", \"IDTypeNo\"=\"%@\", \"OtherIDType\"=\"%@\", \"OtherIDTypeNo\"=\"%@\", \"Smoker\"=\"%@\", \"AnnualIncome\"=\"%@\", \"BussinessType\"=\"%@\", \"Race\"=\"%@\", \"MaritalStatus\"=\"%@\", \"Nationality\"=\"%@\", \"Religion\"=\"%@\",\"ProspectProfileChangesCounter\"=\"%@\", \"Prospect_IsGrouping\"=\"%@\", \"CountryOfBirth\"=\"%@\" where IndexNo = \"%@\" " ,
+                                 txtFullName.text, strDOB, GSTRigperson, txtRigNO.text, Rigdateoutlet,GSTRigExempted,gender, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtAddress4.text, txtHomeTown.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtOfficeAddr1.text, txtOfficeAddr2.text, txtOfficeAddr3.text, txtOfficeTown.text, SelectedOfficeStateCode, txtOfficePostcode.text, OffCountry, txtEmail.text, OccupCodeSelected, txtExactDuties.text, txtRemark.text, @"datetime(\"now\", \"+8 hour\")", @"1", group, TitleCodeSelected, txtIDType.text, othertype, txtOtherIDType.text, ClientSmoker, txtAnnIncome.text, txtBussinessType.text, race, marital, nation, religion, str_counter,isGrouping, CountryOfBirth, prosID];
                         
-                        NSLog(@"Update End - unique prospect !!");
+                        NSLog(@"Update End - unique prospect !!, query -> %@", insertSQL);
                     }
                     else
                     {
                         NSLog(@"Insert Start - unique prospect !!");
                         
-                        NSString *isForeign = @"NO";
-                        /* NSString *Fav;
+                        /* NSString *isForeign = @"NO";
+                        NSString *Fav;
                         if (isFavorite )
                         {
                           Fav = @"TRUE";
@@ -3608,7 +3691,7 @@ BOOL NavShowP;
                                  "VALUES (\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", %@, \"%@\", %@, \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\",\"%@\",\"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%s\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\" , \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%d\", \"%@\")",
                                  txtNamaDepan.text, strDOB, genderSeg, txtHomeAddr1.text, txtHomeAddr2.text, txtHomeAddr3.text,_txtKota.text, SelectedStateCode, txtHomePostCode.text, HomeCountry, txtHomeProvince.text, txtEmail.text, OccupCodeSelected, txtRemark.text,
                                  @"datetime(\"now\", \"+7 hour\")", @"1", @"datetime(\"now\", \"+7 hour\")", @"1", group, TitleCodeSelected , txtIDType.text, othertype, _txtIdNumber.text, ClientSmoker, txtAnnIncome.text, _txtSourceIncome.text, txtBussinessType.text,race,marital,religion,nation,"false",@"1", isGrouping, CountryOfBirth, txtNip.text, outletBranchCode.titleLabel.text, outletBranchName.titleLabel.text, txtKcu.text, txtKanwil.text, outletReferralSource.titleLabel.text, txtReferralName.text, strExpiryDate, txtNPWPNo.text, txtNamaBelakang.text, _txtAddress4.text, _txtHPRumah.text, _txtHPNo.text, _txtCallStart.text, _txtCallEnd.text, _txtKelurahan.text, _TxtKecamatan.text,  isForeign, PStatus, score, age, isFavorite, _txtRTRW.text];
-                        NSLog(@"Insert End - unique prospect !!");
+                        NSLog(@"Insert End - unique prospect !!, query -> %@", insertSQL);
                     }
                     
                     const char *insert_stmt = [insertSQL UTF8String];
@@ -3675,7 +3758,7 @@ BOOL NavShowP;
             contact4 =  [NSString stringWithFormat:@"%@",txtContact4.text];//[NSString stringWithFormat:@"%@%@",txtPrefix4.text, txtContact4.text];
             /*end of edit by faiz*/
             
-            [db executeUpdate:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
+            [db executeUpdate:@"Update %@ SET \"LATitle\" = \"%@\", \"LAName\" = \"%@\", \"LASex\" = \"%@\", \"LADOB\" = \"%@\", \"LANewICNO\" = \"%@\", \"LAOtherIDType\" = \"%@\", \"LAOtherID\" = \"%@\", \"LAMaritalStatus\" = \"%@\", \"LARace\" = \"%@\", \"LAReligion\" = \"%@\", \"LANationality\" = \"%@\", \"LAOccupationCode\" = \"%@\", \"LAExactDuties\" = \"%@\", \"LATypeOfBusiness\" = \"%@\", \"ResidenceAddress1\" = \"%@\", \"ResidenceAddress2\" = \"%@\", \"ResidenceAddress3\" = \"%@\", \"ResidenceAddress4\" = \"%@\", \"ResidenceTown\" = \"%@\", \"ResidenceState\" = \"%@\", \"ResidencePostcode\" = \"%@\", \"ResidenceCountry\" = \"%@\", \"OfficeAddress1\" = \"%@\", \"OfficeAddress2\" = \"%@\", \"OfficeAddress3\" = \"%@\", \"OfficeTown\" = \"%@\", \"OfficeState\" = \"%@\", \"OfficePostcode\" = \"%@\", \"OfficeCountry\" = \"%@\", \"ResidencePhoneNo\" = \"%@\", \"OfficePhoneNo\" = \"%@\", \"FaxPhoneNo\" = \"%@\", \"MobilePhoneNo\" = \"%@\", \"EmailAddress\" = \"%@\", \"LASmoker\" = \"%@\", \"ProspectProfileChangesCounter\" = \"%@\" WHERE  ProspectProfileID = \"%@\";",
              TABLE_LA_DETAILS,
 			 TitleCodeSelected,
              txtFullName.text,
@@ -3696,6 +3779,7 @@ BOOL NavShowP;
              txtHomeAddr1.text,
              txtHomeAddr2.text,
              txtHomeAddr3.text,
+             _txtAddress4.text,
              
              txtHomeTown.text,
              SelectedStateCode,
@@ -3770,6 +3854,7 @@ BOOL NavShowP;
     {
         /* INITIALIZATION */
         
+        intPoin = 0;
         stringInputValue = @"";
         completeStatus = completeStatus + 1;
         
@@ -4055,20 +4140,40 @@ BOOL NavShowP;
 -(void)calculateAge:(NSString *)DOBdate
 {
 
-    NSDate *todayDate = [NSDate date];
+    /* NSDate *todayDate = [NSDate date];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSDate *DOB2 = [dateFormatter dateFromString:DOBdate];
     int time = [todayDate timeIntervalSinceDate:DOB2];
     int allDays = (((time/60)/60)/24);
     int days = allDays%365;
-    int years = (allDays-days)/365;
+    int years = (allDays-days)/365; */
     
 //    NSLog(@"You live since %i years and %i days",years,days);
-    age = years;
-    _txtAge.text = [NSString stringWithFormat:@"%d", age];
     
-   
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    NSDate* dateNow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
+    NSDateComponents* dateComponentsAge =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitYear
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    NSInteger intAge = [dateComponentsAge year];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    // age = years;
+    age = intAge;
+    _txtAge.text = [NSString stringWithFormat:@"%d", age];
 }
 
 
@@ -5011,6 +5116,12 @@ BOOL NavShowP;
         txtHomeAddr3.text = @"";
     }
     
+    if (![prospectprofile.Address4 isEqualToString:@"(null)"] || prospectprofile.Address4 != NULL) {
+        _txtAddress4.text = prospectprofile.Address4;
+    } else {
+        _txtAddress4.text = @"";
+    }
+
     if (![prospectprofile.ResidenceAddressCountry isEqualToString:@"(null)"] || prospectprofile.ResidenceAddressCountry != NULL) {
         txtHomeCountry.text = [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
         prospectprofile.ResidenceAddressCountry =   [self getCountryDesc:prospectprofile.ResidenceAddressCountry];
@@ -5465,6 +5576,9 @@ BOOL NavShowP;
                 txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
                 txtHomeAddr3.enabled = NO;
                 
+                _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
+                _txtAddress4.enabled = NO;
+                
                 txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
                 txtHomePostCode.enabled = NO;
                 
@@ -5616,6 +5730,7 @@ BOOL NavShowP;
         txtHomeAddr1.text = @"";
         txtHomeAddr2.text = @"";
         txtHomeAddr3.text = @"";
+        _txtAddress4.text = @"";
         
         txtOfficeAddr1.text = @"";
         txtOfficeAddr2.text = @"";
@@ -5632,6 +5747,9 @@ BOOL NavShowP;
         
         txtHomeAddr3.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
         txtHomeAddr3.enabled = NO;
+        
+        _txtAddress4.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
+        _txtAddress4.enabled = NO;
         
         txtHomePostCode.backgroundColor  = [CustomColor colorWithHexString:@"EEEEEE"];
         txtHomePostCode.enabled = NO;
@@ -6275,7 +6393,9 @@ BOOL NavShowP;
 			[ClientProfile setObject:@"YES" forKey:@"isNew"];
 		} else if (![[textFields trimWhiteSpaces:txtHomeAddr3.text] isEqualToString:@""]) {
 			[ClientProfile setObject:@"YES" forKey:@"isNew"];
-		} else if (![[textFields trimWhiteSpaces:txtHomeCountry.text] isEqualToString:@""]) {
+        } else if (![[textFields trimWhiteSpaces:_txtAddress4.text] isEqualToString:@""]) {
+            [ClientProfile setObject:@"YES" forKey:@"isNew"];
+        }else if (![[textFields trimWhiteSpaces:txtHomeCountry.text] isEqualToString:@""]) {
 			[ClientProfile setObject:@"YES" forKey:@"isNew"];
 		} else if (![[textFields trimWhiteSpaces:txtHomePostCode.text] isEqualToString:@""]) {
 			[ClientProfile setObject:@"YES" forKey:@"isNew"];
@@ -6384,6 +6504,7 @@ BOOL NavShowP;
 	txtHomeAddr1.text = @"";
 	txtHomeAddr2.text = @"";
 	txtHomeAddr3.text = @"";
+    _txtAddress4.text = @"";
 	//txtHomeCountry.text = @"";
 	txtHomePostCode.text  = @"";
 	txtHomeState.text = @"";
@@ -7187,6 +7308,7 @@ BOOL NavShowP;
     [self setTxtHomeAddr1:nil];
     [self setTxtHomeAddr2:nil];
     [self setTxtHomeAddr3:nil];
+    [self setTxtAddress4:nil];
     [self setTxtHomePostCode:nil];
     [self setTxtHomeTown:nil];
     [self setTxtHomeState:nil];

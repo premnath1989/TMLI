@@ -128,7 +128,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
     txtBOD.text = [[[DateFormatter alloc]init]
-                   DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
+                   DateMonthName:[loginDB getAgentProperty:@"CLTDOB"] prevFormat:dateFormatter];
     
     txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
     txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
@@ -156,6 +156,8 @@
     txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
     txtNamaKantor.text = @"";
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
+    
+    if([[loginDB getAgentProperty:@"TLICEXPDT"] compare:@""] != NSOrderedSame)
     txtAAJIDate.text = [[[DateFormatter alloc]init]
                         DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
     
