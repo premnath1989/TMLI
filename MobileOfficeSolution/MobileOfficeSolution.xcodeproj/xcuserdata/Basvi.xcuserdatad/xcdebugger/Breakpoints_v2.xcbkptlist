@@ -79,7 +79,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3304"
             endingLineNumber = "3304"
-            landmarkName = " d)showviewControllerFromMen"
+            landmarkName = "-showviewControllerFromMenu:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
