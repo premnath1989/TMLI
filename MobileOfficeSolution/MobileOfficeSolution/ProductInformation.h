@@ -34,7 +34,8 @@
     ProductInfoItems *FTPitems;
     NSString *filePath;
     SpinnerUtilities *spinnerLoading;
-    
+    int serverTransferMode;
+    NSMutableIndexSet *expandedSections;
     
     // BHIMBIM'S QUICK FIX - Start
     

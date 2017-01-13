@@ -33,11 +33,13 @@ BOOL NavShow2;
     [super viewDidLoad];
     
     NavShow2 = NO;
+    serverTransferMode = kBRHTTPMode;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Brochures"];
     
-    [self createDirectory];
+    [self createDirectory:filePath];
     [self directoryFileListing];
+    [self listDirFile];
     
     if([self connected]){
         
@@ -47,7 +49,7 @@ BOOL NavShow2;
         
         spinnerLoading = [[SpinnerUtilities alloc]init];
         [spinnerLoading startLoadingSpinner:spinnerHolder label:@"Loading Informasi Produk"];
-        [self getDirectoryListingMode:kBRHTTPMode];
+        [self getDirectoryListing];
     }else{
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke Server Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses Server"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
@@ -64,11 +66,11 @@ BOOL NavShow2;
     [btnHome addTarget:self action:@selector(goHome:) forControlEvents:UIControlEventTouchUpInside];
 }
 
-- (void)getDirectoryListingMode:(int)mode{
-    if(mode == kBRHTTPMode){
+- (void)getDirectoryListing{
+    if(serverTransferMode == kBRHTTPMode){
         WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
         [webservice getProductInformation:self];
-    }else if(mode == kBRFTPMode){
+    }else if(serverTransferMode == kBRFTPMode){
         [self FTPFileListing];
     }
 }
@@ -103,8 +105,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [spinnerLoading stopLoadingSpinner];
             AgentWS_GetAllProductInfoResponse* rateResponse = bodyPart;
             
-            int index = 1;
-            
             // create XMLDocument object
             DDXMLDocument *xml = [[DDXMLDocument alloc] initWithXMLString:
                                   rateResponse.GetAllProductInfoResult.xmlDetails options:0 error:nil];
@@ -113,27 +113,54 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             DDXMLElement *root = [xml rootElement];
             WebResponObj *returnObj = [[WebResponObj alloc]init];
             [[[XMLParser alloc]init] parseXML:root objBuff:returnObj index:0];
+            NSMutableArray *fileCompilation = [[NSMutableArray alloc]init];
+            NSMutableArray *fileURL = [[NSMutableArray alloc]init];
 
             for(dataCollection *data in [returnObj getDataWrapper]){
                 
                 NSString* FilePath = [data.dataRows valueForKey:@"FilePath"];
                 NSString* FileSize = [data.dataRows valueForKey:@"FileSize"];
+                [fileURL addObject:[[[FilePath componentsSeparatedByString: @"../"] lastObject] stringByReplacingOccurrencesOfString:@"\\" withString:@"/"]];
                 
                 if([FilePath compare:@""] != NSOrderedSame){
-                    NSArray*  FilePathParser= [FilePath componentsSeparatedByString: @"\\"];
+                    NSArray*  FilePathParser= [[[FilePath componentsSeparatedByString: @"../"] lastObject] componentsSeparatedByString: @"\\"];
                     FilePath = [FilePathParser lastObject];
+                    
+                    NSString *appendedPath = @"";
+                    for(NSString *localPathCreation in FilePathParser){
+                        if(![localPathCreation containsString:@"."]){
+                            if([[FilePathParser firstObject] compare:localPathCreation] != NSOrderedSame){
+                                for(int i = 0; i<= [FilePathParser indexOfObject:localPathCreation]; i++ ){
+                                    appendedPath = [appendedPath stringByAppendingPathComponent:[FilePathParser objectAtIndex:i]];
+                                }
+                            }else{
+                                appendedPath = localPathCreation;
+                            }
+                            NSLog(@"appendedPath = %@",appendedPath);
+                            [self createDirectory:[filePath stringByAppendingPathComponent:appendedPath]];
+                            appendedPath = @"";
+                        }
+                    }
+                    
                     if([FilePath containsString:@"."]){
-                        [self insertIntoTableData:FilePath size:FileSize index:index];
-                        index++;
+                        
+                        NSMutableDictionary *itemInfo = [[NSMutableDictionary alloc]init];
+                        [itemInfo setValue:FileSize forKey:FilePath];
+                        [fileCompilation addObject:itemInfo];
                     }
                 }
-                
             }
             
-            //we remove any files if local if not listed in FTP
-            //[self removeLocalFiles:ftpItems];
-            // [FTPItemsList removeAllObjects];
+            [self removeLocalFiles:fileCompilation];
+            [FTPItemsList removeAllObjects];
             
+            int index = 1;
+            for(NSMutableDictionary *itemInfo in fileCompilation){
+                for(NSString *key in [itemInfo allKeys]){
+                    [self insertIntoTableData:key size:[itemInfo objectForKey:key] index:index fileURL:[fileURL objectAtIndex:index]];
+                    index++;
+                }
+            }
             [myTableView reloadData];
 
         }
@@ -154,12 +181,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     FTPitems.ftpDelegate = self;
 }
 
-- (void)createDirectory{
+- (void)createDirectory:(NSString *)localDir{
     //create Directory
     NSError *error;
-    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath])	//Does directory already exist?
+    if (![[NSFileManager defaultManager] fileExistsAtPath:localDir])	//Does directory already exist?
     {
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:filePath
+        if (![[NSFileManager defaultManager] createDirectoryAtPath:localDir
                                        withIntermediateDirectories:NO
                                                         attributes:nil
                                                              error:&error])
@@ -191,7 +218,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                               forKey:NSURLFileSizeKey
                                error:&sizeError];
         
-        [self insertIntoTableData:[fileURL lastPathComponent] size:[fileSizeNumber stringValue] index:index];
+        if([fileURL.absoluteString containsString:@"."]){
+            [self insertIntoTableData:[fileURL lastPathComponent] size:[fileSizeNumber stringValue] index:index fileURL:@""];
+        }
         
         
         
@@ -244,9 +273,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
     NSLog(@"insert : %d",indexPath.row);
     
-    
-    
-    
     if([FTPItemsList count] != 0){
 
         NSMutableArray *itemCell =  [FTPItemsList objectAtIndex:indexPath.row];
@@ -258,10 +284,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
         }
-        
+        NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
-        if ([[NSFileManager defaultManager] fileExistsAtPath:
-              [NSString stringWithFormat:@"%@/%@",filePath,FileName]]){
+        if ([self searchFile:FileName]){
             [[FTPItemsList objectAtIndex:indexPath.row] replaceObjectAtIndex:4 withObject:[NSString stringWithFormat:@""]];
         }
     }
@@ -292,23 +317,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
     
     [myTableView reloadData];
-    
-//    NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
-//                                                         URLForResource:@"xibLibrary" withExtension:@"bundle"]];
-//    
-//    ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
-//    progressBar.TitleFileName = @"test download";
-//    progressBar.TitleProgressBar=@"test download";
-//    
-//    progressBar.progressDelegate = self;
-//    progressBar.modalPresentationStyle = UIModalPresentationFormSheet;
-//    progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-//    progressBar.preferredContentSize = CGSizeMake(600, 200);
-//    progressBar.TransferFunction = @"download";
-//    progressBar.TransferMode = kBRHTTPMode;
-//    progressBar.HTTPURLFilePath = @"https://tmconnect.tokiomarine-life.co.id/ProductRoot/ProductInformation/10067025.pdf";
-//    progressBar.HTTPLocalFilePath = @"10067025.pdf";
-//    [self presentViewController:progressBar animated:YES completion:nil];
 }
 
 // BHIMBIM'S QUICK FIX - End
@@ -328,13 +336,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     UILabel *unduhLabel = (UILabel *)[cell viewWithTag:(indexPath.row*1000)+4];
     NSLog(@"file : %@.%@", fileName.text,fileType.text);
     
+    
     NSBundle *myLibraryBundle = [NSBundle bundleWithURL:[[NSBundle mainBundle]
                                                          URLForResource:@"xibLibrary" withExtension:@"bundle"]];
     
     if([fileType.text caseInsensitiveCompare:brochureLabel] == NSOrderedSame){
         if([unduhLabel.text caseInsensitiveCompare:downloadMacro] == NSOrderedSame){
-            
-            ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
+              ProgressBar *progressBar = [[ProgressBar alloc]initWithNibName:@"ProgressBar" bundle:myLibraryBundle];
             progressBar.TitleFileName = [NSString stringWithFormat: @"%@.%@",fileName.text, brochureExt];
             progressBar.TitleProgressBar=[NSString stringWithFormat: @"%@.%@",fileName.text, brochureExt];
             progressBar.progressDelegate = self;
@@ -342,11 +350,19 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
             progressBar.TransferFunction = @"download";
-            progressBar.TransferMode = kBRHTTPMode;
-            [self presentViewController:progressBar animated:YES completion:nil];
             
+            if(serverTransferMode == kBRFTPMode){
+                progressBar.TransferMode = kBRFTPMode;
+            }else if(serverTransferMode == kBRHTTPMode){
+                progressBar.TransferMode = kBRHTTPMode;
+                progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
+                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+            }
+            
+            [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seePDF:[NSString stringWithFormat: @"%@.%@",fileName.text, brochureExt]];
+            [self seePDF:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
         }
     }else if([fileType.text caseInsensitiveCompare:videoLabel] == NSOrderedSame){
         if([unduhLabel.text caseInsensitiveCompare:downloadMacro] == NSOrderedSame){
@@ -359,12 +375,87 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             progressBar.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             progressBar.preferredContentSize = CGSizeMake(600, 200);
             progressBar.TransferFunction = @"download";
+            
+            if(serverTransferMode == kBRFTPMode){
+                progressBar.TransferMode = kBRFTPMode;
+            }else if(serverTransferMode == kBRHTTPMode){
+                progressBar.TransferMode = kBRHTTPMode;
+                progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
+                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+            }
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seeVideo:[NSString stringWithFormat: @"%@.%@",fileName.text, videoExt]];
+            [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
         }
     }
 }
+
+- (BOOL)searchFile:(NSString *)fileName{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *directoryURL = [NSURL fileURLWithPath:filePath isDirectory:YES];
+    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    NSDirectoryEnumerator *enumerator = [fileManager
+                                         enumeratorAtURL:directoryURL
+                                         includingPropertiesForKeys:keys
+                                         options:0
+                                         errorHandler:^(NSURL *url, NSError *error) {
+                                             // Handle the error.
+                                             // Return YES if the enumeration should continue after the error.
+                                             return YES;
+                                         }];
+    
+    for (NSURL *url in enumerator) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+            NSLog(@"Directory Recursive : %@", url.absoluteString);
+        }
+        else if (![isDirectory boolValue]) {
+            // No error and it’s not a directory; do something with the file
+            NSLog(@"Directory Recursive : %@", url.absoluteString);
+            if([url.absoluteString containsString:fileName])
+                return true;
+        }else if ([isDirectory boolValue]) {
+            NSLog(@"Directory Recursive : %@", url.absoluteString);
+        }
+        
+    }
+    return false;
+}
+
+- (BOOL)listDirFile{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSURL *directoryURL = [NSURL fileURLWithPath:filePath isDirectory:YES];
+    NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    NSDirectoryEnumerator *enumerator = [fileManager
+                                         enumeratorAtURL:directoryURL
+                                         includingPropertiesForKeys:keys
+                                         options:0
+                                         errorHandler:^(NSURL *url, NSError *error) {
+                                             // Handle the error.
+                                             // Return YES if the enumeration should continue after the error.
+                                             return YES;
+                                         }];
+    
+    for (NSURL *url in enumerator) {
+        NSError *error;
+        NSNumber *isDirectory = nil;
+        if (! [url getResourceValue:&isDirectory forKey:NSURLIsDirectoryKey error:&error]) {
+            // handle error
+            NSLog(@"All Directory Recursive : %@", [[url.absoluteString componentsSeparatedByString: @"Brochures/"] lastObject]);
+        }
+        else if (![isDirectory boolValue]) {
+            // No error and it’s not a directory; do something with the file
+            NSLog(@"All Directory Recursive : %@", [[url.absoluteString componentsSeparatedByString: @"Brochures/"] lastObject]);
+        }else if ([isDirectory boolValue]) {
+            NSLog(@"All Directory Recursive : %@", [[url.absoluteString componentsSeparatedByString: @"Brochures/"] lastObject]);
+        } 
+    }
+    return false;
+}
+
 
 - (IBAction)seePDF:(NSString *)fileName{
     NSString *file = [NSString stringWithFormat: @"%@/%@",filePath, fileName];
@@ -468,7 +559,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     [FTPItemsList removeAllObjects];
     for(NSMutableDictionary *itemInfo in ftpItems){
         for(NSString *key in [itemInfo allKeys]){
-            [self insertIntoTableData:key size:[itemInfo objectForKey:key] index:index];
+            [self insertIntoTableData:key size:[itemInfo objectForKey:key] index:index fileURL:@""];
             index++;
         }
     }
@@ -505,7 +596,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
 }
 
-- (void)insertIntoTableData:(NSString *)fileNameParam size:(NSString *)fileSizeParam index:(int)fileIndex{
+- (void)insertIntoTableData:(NSString *)fileNameParam size:(NSString *)fileSizeParam index:(int)fileIndex
+              fileURL:(NSString *)fileURL{
     
     NSArray* fullFileNameTemp = [fileNameParam componentsSeparatedByString: @"."];
     NSString *fileName = [fullFileNameTemp objectAtIndex:0];
@@ -521,10 +613,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     
     NSLog(@"index: %d, file %@", fileIndex, fileFormat);
-    if ((_SegProductType.selectedSegmentIndex == 0 && [fileFormat isEqualToString:@"brosur"]) || (_SegProductType.selectedSegmentIndex == 1 && [fileFormat isEqualToString:@"video"]) || (_SegProductType.selectedSegmentIndex == 2 && [fileFormat isEqualToString:@"video"])){
-        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,nil]];
-    }
-    
+    [FTPItemsList addObject:[NSMutableArray arrayWithObjects:[NSString stringWithFormat:@"%d",fileIndex],fileName, fileFormat,fileSize,fileExist,fileURL,nil]];
     
     
     
