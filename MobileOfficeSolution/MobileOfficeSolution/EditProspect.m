@@ -22,7 +22,7 @@
 #define NUMBERS_ONLY @"0123456789"
 #define NUMBERS_MONEY @"0123456789."
 #define CHARACTER_LIMIT_PC_F 12
-#define CHARACTER_LIMIT_FULLNAME 81
+#define CHARACTER_LIMIT_FULLNAME 121
 #define CHARACTER_LIMIT_OtherID 20
 #define CHARACTER_LIMIT_Bussiness 60
 #define CHARACTER_LIMIT_ExactDuties 40
@@ -944,7 +944,7 @@ bool PolicyOwnerSigned = TRUE;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }
@@ -2339,8 +2339,9 @@ bool PolicyOwnerSigned = TRUE;
     
     NSLog(@"View Will Appear - ID type code selected -> %@", IDTypeCodeSelected);
     
-    _txtTypeID.text = pp.OtherIDType;
+    _txtTypeID.text = [self getIDTypeDesc: pp.OtherIDType];
     _txtIdNumber.text = pp.OtherIDTypeNo;
+    NSLog(@"View Will Appear - ID type code -> %@, ID type text -> %@, ID number -> %@", pp.OtherIDType, [self getIDTypeDesc: pp.OtherIDType], pp.OtherIDTypeNo);
     
     _txtReligion.text = pp.Religion;
     
@@ -3054,11 +3055,11 @@ bool PolicyOwnerSigned = TRUE;
     // BHIMBIM'S QUICK FIX - Start, the namin convention is inconsistent.
     
     if (textField == _txtNamaDepan) {
-        return ((newLength <= 40));
+        return ((newLength <= 60));
     }
     
     if (textField == _txtNamaBelakang) {
-        return ((newLength <= 40));
+        return ((newLength <= 60));
     }
     
     if (textField == _txtKelurahan) {
@@ -3077,12 +3078,9 @@ bool PolicyOwnerSigned = TRUE;
         return ((newLength <= 10));
     }
     
-    if (textField == _txtHPRumah) {
-        return ((newLength <= 16));
-    }
     
     if (textField == _txtIdNumber) {
-        return ((newLength <= 20));
+        return ((newLength <= 24));
     }
     
     // BHIMBIM'S QUICK FIX - End
@@ -7801,7 +7799,16 @@ bool PolicyOwnerSigned = TRUE;
     NSString *desc = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
-    NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@",TABLE_IDENTIFICATION, IDtype,IDtype];
+    // NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@",TABLE_IDENTIFICATION, IDtype,IDtype];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+     NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM '%@' WHERE DataIdentifier = '%@'",TABLE_IDENTIFICATION, IDtype];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     FMResultSet *result = [db executeQuery:query];
@@ -8460,7 +8467,7 @@ bool PolicyOwnerSigned = TRUE;
             return false;
         }
         
-        if (txtEmail.text.length > 40) {
+        if (txtEmail.text.length > 50) {
             [self createAlertViewAndShow:validationEmailCharacter tag:0];
             return false;
         }
@@ -11602,15 +11609,36 @@ bool PolicyOwnerSigned = TRUE;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"dd/MM/yyyy"];
     NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
-    NSDateComponents* dateComponentsAge =
+    
+    NSDateComponents* dateComponentsYear =
     [
-     [NSCalendar currentCalendar]
-     components:NSCalendarUnitYear
-     fromDate:dateBirth
-     toDate:dateNow
-     options:0
-     ];
-    NSInteger intAge = [dateComponentsAge year];
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitYear
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    
+    NSDateComponents* dateComponentsMonth =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitMonth
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    
+    NSInteger intAge = [dateComponentsYear year];
+    NSInteger intMonth = [dateComponentsMonth month];
+    
+    if(intMonth%12 > 5)
+    {
+        intAge += 1;
+    }
+    else
+    {
+        
+    }
     
     // BHIMBIM'S QUICK FIX - End
     

@@ -864,11 +864,13 @@ MBProgressHUD *HUD;
         [indexPaths addObject:indexPath];
     }
     else {
-        NSUInteger row = [indexPath row];
-        NSUInteger count = [ProspectTableData count];
-        if (row != count) {
-            [self showDetailsForIndexPath:indexPath];
-        }
+//        NSUInteger row = [indexPath row];
+//        NSUInteger count = [ProspectTableData count];
+        
+        [self showDetailsForIndexPath:indexPath];
+//        if (row != count) {
+//            [self showDetailsForIndexPath:indexPath];
+//        }
     }
 }
 
@@ -1195,7 +1197,7 @@ MBProgressHUD *HUD;
     {
         pp = [ProspectTableData objectAtIndex:indexPath.row];
     }
-    NSLog(@"Did select row - other id type : %@, other id type no %@", pp.OtherIDType, pp.OtherIDTypeNo);
+    NSLog(@"Did select row - row : %ld, other id type : %@, other id type no %@", (long)indexPath.row, pp.OtherIDType, pp.OtherIDTypeNo);
     zzz.pp = pp;
     
     UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"ProspectProfileStoryboard" bundle:Nil];

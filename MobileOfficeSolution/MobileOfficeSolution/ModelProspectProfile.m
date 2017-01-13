@@ -118,6 +118,11 @@ int newAge;
     
     NSString *query = [NSString stringWithFormat:@"SELECT pp.*,ep.* FROM prospect_profile pp left join %@ ep on pp.OtherIDType=ep.DataIdentifier  WHERE QQFlag = 'false' order by isFavorite DESC, Score DESC,  DateModified DESC ",TABLE_IDENTIFICATION];
     
+    Boolean booleanColumnEmpty = false;
+    NSString *stringIDType = @"";
+    NSString *stringIDText = @"";
+    NSString *stringQuery = @"";
+    
     // BHIMBIM'S QUICK FIX - End
     
     
@@ -158,7 +163,56 @@ int newAge;
         ProspectTitle = [s stringForColumn:@"ProspectTitle"];;
         IDTypeNo = [s stringForColumn:@"IDTypeNo"];;
         //OtherIDType = [s stringForColumn:@"OtherIDType"];;
-        OtherIDType = [s stringForColumn:@"IdentityDesc"];
+        //OtherIDType = [s stringForColumn:@"IdentityDesc"];
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = [s columnIsNull:@"OtherIDType"];
+        stringIDType = @"";
+        stringIDText = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Search Prospect Profile By Name - Other id type | code -> null");
+        }
+        else
+        {
+            /* GET ID TYPE */
+            
+            stringIDType = [s stringForColumn:@"OtherIDType"];
+            NSLog(@"Search Prospect Profile By Name - Other id type | code -> %@", stringIDType);
+            
+            /* QUERY TO TABLE IDENTIFICATION - not used */
+            
+            //            stringQuery = [NSString stringWithFormat:@"SELECT IdentityDesc FROM '%@' WHERE DataIdentifier = '%@'", TABLE_IDENTIFICATION, stringIDType];
+            //            resultQuery = [database executeQuery:stringQuery];
+            //
+            //            while ([resultQuery next])
+            //            {
+            //                booleanColumnEmpty = [resultQuery columnIsNull:@"IdentityDesc"];
+            //
+            //                if (booleanColumnEmpty == true)
+            //                {
+            //                    NSLog(@"Search Prospect Profile By Name - Other id type | text -> null");
+            //                }
+            //                else
+            //                {
+            //                    /* GET ID TEXT */
+            //
+            //                    stringIDText = [resultQuery stringForColumn:@"IdentityDesc"];
+            //                    NSLog(@"Search Prospect Profile By Name - Other id type | text -> %@", stringIDText);
+            //                }
+            //            }
+        }
+        
+        /* RESULT */
+        
+        OtherIDType = stringIDType;
+        
+        
         OtherIDTypeNo = [s stringForColumn:@"OtherIDTypeNo"];;
         Smoker = [s stringForColumn:@"Smoker"];;
         
@@ -395,7 +449,7 @@ int newAge;
     [database open];
     NSMutableArray* ProspectTableData=[[NSMutableArray alloc]init];
     //results = [database executeQuery:@"SELECT * FROM prospect_profile WHERE QQFlag = 'false'  order by LOWER(ProspectName) ASC LIMIT 20)", Nil];
-    FMResultSet *s;
+    FMResultSet *s, *resultQuery;
 
     NSString *strQuery;
     NSString *addWhere;
@@ -472,6 +526,17 @@ int newAge;
 
     NSLog(@"%@",strQuery);
     
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    Boolean booleanColumnEmpty = false;
+    NSString *stringIDType = @"";
+    NSString *stringIDText = @"";
+    NSString *stringQuery = @"";
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     s = [database executeQuery:[NSString stringWithFormat:@"%@",strQuery]];
     
     while ([s next]) {
@@ -510,8 +575,59 @@ int newAge;
         ProspectTitle = [s stringForColumn:@"ProspectTitle"];;
         IDTypeNo = [s stringForColumn:@"IDTypeNo"];;
         //OtherIDType = [s stringForColumn:@"OtherIDType"];;
-        OtherIDType = [s stringForColumn:@"IdentityDesc"];
+        //OtherIDType = [s stringForColumn:@"IdentityDesc"];
         OtherIDTypeNo = [s stringForColumn:@"OtherIDTypeNo"];;
+        
+        
+        // BHIMBIM'S QUICK FIX - Start
+        
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = [s columnIsNull:@"OtherIDType"];
+        stringIDType = @"";
+        stringIDText = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Search Prospect Profile By Name - Other id type | code -> null");
+        }
+        else
+        {
+            /* GET ID TYPE */
+            
+            stringIDType = [s stringForColumn:@"OtherIDType"];
+            NSLog(@"Search Prospect Profile By Name - Other id type | code -> %@", stringIDType);
+            
+            /* QUERY TO TABLE IDENTIFICATION - not used */
+            
+//            stringQuery = [NSString stringWithFormat:@"SELECT IdentityDesc FROM '%@' WHERE DataIdentifier = '%@'", TABLE_IDENTIFICATION, stringIDType];
+//            resultQuery = [database executeQuery:stringQuery];
+//            
+//            while ([resultQuery next])
+//            {
+//                booleanColumnEmpty = [resultQuery columnIsNull:@"IdentityDesc"];
+//                
+//                if (booleanColumnEmpty == true)
+//                {
+//                    NSLog(@"Search Prospect Profile By Name - Other id type | text -> null");
+//                }
+//                else
+//                {
+//                    /* GET ID TEXT */
+//                    
+//                    stringIDText = [resultQuery stringForColumn:@"IdentityDesc"];
+//                    NSLog(@"Search Prospect Profile By Name - Other id type | text -> %@", stringIDText);
+//                }
+//            }
+        }
+        
+        /* RESULT */
+        
+        OtherIDType = stringIDType;
+        
+        // BHIMBIM'S QUICK FIX - End
+        
+        
         Smoker = [s stringForColumn:@"Smoker"];;
         
         Race = [s stringForColumn:@"Race"];;
