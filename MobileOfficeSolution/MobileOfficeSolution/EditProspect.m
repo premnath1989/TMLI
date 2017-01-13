@@ -2339,8 +2339,9 @@ bool PolicyOwnerSigned = TRUE;
     
     NSLog(@"View Will Appear - ID type code selected -> %@", IDTypeCodeSelected);
     
-    _txtTypeID.text = pp.OtherIDType;
+    _txtTypeID.text = [self getIDTypeDesc: pp.OtherIDType];
     _txtIdNumber.text = pp.OtherIDTypeNo;
+    NSLog(@"View Will Appear - ID type code -> %@, ID type text -> %@, ID number -> %@", pp.OtherIDType, [self getIDTypeDesc: pp.OtherIDType], pp.OtherIDTypeNo);
     
     _txtReligion.text = pp.Religion;
     
@@ -7798,7 +7799,16 @@ bool PolicyOwnerSigned = TRUE;
     NSString *desc = @"";
 	IDtype = [IDtype stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	
-    NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@",TABLE_IDENTIFICATION, IDtype,IDtype];
+    // NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM %@ WHERE IdentityCode = %@ or DataIdentifier = %@",TABLE_IDENTIFICATION, IDtype,IDtype];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+     NSString *query = [NSString stringWithFormat:@"SELECT IdentityDesc FROM '%@' WHERE DataIdentifier = '%@'",TABLE_IDENTIFICATION, IDtype];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
     FMDatabase *db = [FMDatabase databaseWithPath:databasePath];
     [db open];
     FMResultSet *result = [db executeQuery:query];
