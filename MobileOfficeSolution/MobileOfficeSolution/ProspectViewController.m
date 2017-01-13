@@ -3528,7 +3528,7 @@ BOOL NavShowP;
                                  [prospectProfile setMaritalStatus:_txtMarital.text];
                                  [prospectProfile setSourceIncome:_txtSourceIncome.text];
                                  [prospectProfile setAnnualIncome:txtAnnIncome.text];
-                                 [prospectProfile setProspectOccupationCode:_txtOccupation.text];
+                                 [prospectProfile setProspectOccupationCode:OccupCodeSelected];
                                  [prospectProfile setReferralName:txtReferralName.text];
                                  
                                  NSArray *arrayScore = [modelProspectProfile calculateScore:prospectProfile];
@@ -3716,7 +3716,7 @@ BOOL NavShowP;
                         [prospectProfile setMaritalStatus:_txtMarital.text];
                         [prospectProfile setSourceIncome:_txtSourceIncome.text];
                         [prospectProfile setAnnualIncome:txtAnnIncome.text];
-                        [prospectProfile setProspectOccupationCode:_txtOccupation.text];
+                        [prospectProfile setProspectOccupationCode:OccupCodeSelected];
                         [prospectProfile setReferralName:txtReferralName.text];
                         
                         NSArray *arrayScore = [modelProspectProfile calculateScore:prospectProfile];

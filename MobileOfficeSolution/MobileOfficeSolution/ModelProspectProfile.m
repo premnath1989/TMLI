@@ -1429,7 +1429,7 @@ int newAge;
         
         /* QUERY */
         
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE OccpDesc = '%@'", TABLE_OCCP, prospectProfile.ProspectOccupationCode];
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE Occp_Code = '%@'", TABLE_OCCP, prospectProfile.ProspectOccupationCode];
         result = [database executeQuery: stringQuery];
         intPoin = 0;
         
