@@ -1136,4 +1136,588 @@ int newAge;
 }
 
 
+// BHIMBIM'S QUICK FIX - Start
+
+-(int) calculateAge:(NSString *)DOBdate
+{
+    /* NSDate *todayDate = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *DOB2 = [dateFormatter dateFromString:DOBdate];
+    int time = [todayDate timeIntervalSinceDate:DOB2];
+    int allDays = (((time/60)/60)/24);
+    int days = allDays%365;
+    int years = (allDays-days)/365; */
+    
+    // NSLog(@"You live since %i years and %i days",years,days);
+    
+    
+    // BHIMBIM'S QUICK FIX - Start, i don't know whose code before, but it detect via second, which is theres a limit fonr integer.
+    
+    NSDate* dateNow = [NSDate date];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
+    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
+    
+    NSDateComponents* dateComponentsYear =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitYear
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    
+    NSDateComponents* dateComponentsMonth =
+    [
+        [NSCalendar currentCalendar]
+        components:NSCalendarUnitMonth
+        fromDate:dateBirth
+        toDate:dateNow
+        options:0
+    ];
+    
+    int intAge = [dateComponentsYear year];
+    int intMonth = [dateComponentsMonth month];
+    
+    if(intMonth%12 > 5)
+    {
+        intAge += 1;
+    }
+    else
+    {
+        
+    }
+    
+    // BHIMBIM'S QUICK FIX - End
+    
+    
+    // age = years;
+    return intAge;
+}
+
+-(NSArray *) calculateScore:(ProspectProfile *)prospectProfile
+{
+    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated value and i didn't change your current variable name, i also add some log to easily detect the scoring mistake.
+    // UPDATE -> i rewrite the function.
+    
+    /* INITIALIZATION */
+    
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *stringDirectoryPath = [arrayPaths objectAtIndex:0];
+    NSString *stringDatabasePath = [stringDirectoryPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
+    FMDatabase *database = [FMDatabase databaseWithPath:stringDatabasePath];
+    [database open];
+    FMResultSet *result;
+    
+    Boolean booleanColumnEmpty = false;
+    NSString *stringInputValue = @"";
+    NSString *stringQuery = @"";
+    NSString *stringStatus = @"";
+    int intAccumulatePoin = 0;
+    int intPoin = 0;
+    int intAge = 0;
+    int intComplete = 0;
+    
+    
+    /* AGE */
+    
+    if (![prospectProfile.ProspectDOB isEqualToString:@""] || prospectProfile.ProspectDOB != NULL || prospectProfile.ProspectDOB != nil)
+    {
+        /* INITIALIZATION */
+        
+        intAge = [self calculateAge:prospectProfile.ProspectDOB];
+        intPoin = 0;
+        stringInputValue = @"";
+        
+        /* CONDITION */
+        
+        if (intAge > 35 && intAge < 46)
+        {
+            intPoin = 5;
+            stringInputValue = @"35 < age < 45";
+        }
+        else if (intAge >45 && intAge < 56)
+        {
+            intPoin = 4;
+            stringInputValue = @"45 < age < 56";
+        }
+        else if (intAge > 55)
+        {
+            intPoin =  3;
+            stringInputValue = @"35 < age < 45";
+        }
+        else if (intAge > 25 && intAge < 36)
+        {
+            intPoin = 2;
+            stringInputValue = @"25 < age < 36";
+        }
+        else if (intAge > 16 && intAge < 26)
+        {
+            intPoin = 1;
+            stringInputValue = @"17 < age < 26";
+        }
+        else
+        {
+            
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, intAccumulatePoin);
+    }
+    
+    
+    /* GENDER */
+    
+    stringInputValue = @"";
+    intPoin = 0;
+    
+    /* CONDITION */
+    
+    if (![prospectProfile.ProspectGender isEqualToString:@""] || prospectProfile.ProspectGender != NULL || prospectProfile.ProspectGender != nil)
+    {
+        if ([prospectProfile.ProspectGender isEqualToString:@"FEMALE"] == true)
+        {
+            intPoin = 1;
+            stringInputValue = prospectProfile.ProspectGender;
+        }
+        else
+        {
+            intPoin = 2;
+            stringInputValue = prospectProfile.ProspectGender;
+        }
+    }
+    else
+    {
+        
+    }
+    
+    /* RESULT */
+    
+    intAccumulatePoin += intPoin;
+    intComplete += 1;
+    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, intAccumulatePoin);
+    
+    
+    /* MARITAL STATUS */
+    
+    if (![prospectProfile.MaritalStatus isEqualToString:@""] || prospectProfile.MaritalStatus != NULL || prospectProfile.MaritalStatus != nil)
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, prospectProfile.MaritalStatus];
+        result = [database executeQuery:stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Marital status | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.MaritalStatus, intPoin, intAccumulatePoin);
+    }
+    
+    
+    /* ANNUAL INCOME */
+    
+    if (![prospectProfile.AnnualIncome isEqualToString:@""] || prospectProfile.AnnualIncome != NULL || prospectProfile.AnnualIncome != nil)
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE AnnDesc = '%@'",  TABLE_EPROPOSAL_ANNUALINCOME,prospectProfile.AnnualIncome];
+        result = [database executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Annual income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Annual income | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.AnnualIncome, intPoin, intAccumulatePoin);
+    }
+    
+    
+    /* SOURCE INCOME */
+    
+    if (![prospectProfile.SourceIncome isEqualToString:@""] || prospectProfile.SourceIncome != NULL || prospectProfile.SourceIncome != nil)
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME, prospectProfile.SourceIncome];
+        result = [database executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Source income | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Source income | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.SourceIncome, intPoin, intAccumulatePoin);
+    }
+    
+    /* OCUUPATION */
+    
+    if (![prospectProfile.ProspectOccupationCode isEqualToString:@""] || prospectProfile.ProspectOccupationCode != NULL || prospectProfile.ProspectOccupationCode != nil)
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE OccpDesc = '%@'", TABLE_OCCP, prospectProfile.ProspectOccupationCode];
+        result = [database executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Occupation | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Occupation | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.ProspectOccupationCode, intPoin, intAccumulatePoin);
+    }
+    
+    /* REFERENCE */
+    
+    if (![prospectProfile.ReferralName isEqualToString:@""] || prospectProfile.ReferralName != NULL || prospectProfile.ReferralName != nil)
+    {
+        /* INITIALIZATION */
+        
+        booleanColumnEmpty = false;
+        result = nil;
+        
+        /* QUERY */
+        
+        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, prospectProfile.ReferralName];
+        result = [database executeQuery: stringQuery];
+        intPoin = 0;
+        
+        while ([result next])
+        {
+            booleanColumnEmpty = [result columnIsNull:@"Poin"];
+            
+            if (booleanColumnEmpty == true)
+            {
+                NSLog(@"Calculate Score - Referral name | poin -> null");
+            }
+            else
+            {
+                intPoin = [[result objectForColumnName:@"Poin"] intValue];
+                NSLog(@"Calculate Score - Referral name | poin -> %d", intPoin);
+                break;
+            }
+        }
+        
+        /* RESULT */
+        
+        intAccumulatePoin += intPoin;
+        intComplete += 1;
+        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.ReferralName, intPoin, intAccumulatePoin);
+    }
+    else
+    {
+        
+    }
+    
+    
+    /* NEW PROSPECT */
+    
+    intAccumulatePoin += 1;
+    intComplete += 1;
+    
+    
+    /* COMPLETE CHECK */
+    
+    if (intComplete == 8)
+    {
+        stringStatus = @"Complete";
+    }
+    else
+    {
+        stringStatus = @"Incomplete";
+    }
+    
+    
+    /* RESULT */
+    
+    [result close];
+    [database close];
+    NSArray *arrayResult = @[[NSString stringWithFormat:@"%i", intAccumulatePoin], stringStatus];
+    
+    // BHIMBIMS'S QUICK FIX - End
+    
+    
+    return arrayResult;
+}
+
+// BHIMBIM'S QUICK FIX - End
+
+
+- (void) recalculateScore
+{
+    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated value and i didn't change your current variable name, i also add some log to easily detect the scoring mistake.
+    // UPDATE -> i rewrite the function.
+    
+    /* INITIALIZATION */
+    
+    NSArray *arrayPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *stringDirectoryPath = [arrayPaths objectAtIndex:0];
+    NSString *stringDatabasePath = [stringDirectoryPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
+    FMDatabase *database = [FMDatabase databaseWithPath:stringDatabasePath];
+    [database open];
+    FMResultSet *result;
+    
+    Boolean booleanColumnEmpty = false;
+    NSString *stringQuerySelect = @"";
+    NSString *stringValue = @"";
+    NSString *stringQueryUpdate = @"";
+    
+    
+    /* QUERY */
+    
+    stringQuerySelect = [NSString stringWithFormat:@"SELECT * FROM '%@'", TABLE_PROSPECT];
+    result = [database executeQuery: stringQuerySelect];
+
+    while ([result next])
+    {
+        ProspectProfile *prospectProfile = [[ProspectProfile alloc] init];
+        
+        /* ID */
+        
+        booleanColumnEmpty = [result columnIsNull:@"IndexNo"];
+        [prospectProfile setProspectID: @""];
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | id -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"IndexNo"];
+            NSLog(@"Recalculate Score - Prospect profile | id -> %@", stringValue);
+        }
+        
+        [prospectProfile setProspectID:stringValue];
+        
+        /* DATE OF BIRTH */
+        
+        booleanColumnEmpty = [result columnIsNull:@"ProspectDOB"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | date of birth -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"ProspectDOB"];
+            NSLog(@"Recalculate Score - Prospect profile | date of birth -> %@", stringValue);
+        }
+        
+        [prospectProfile setProspectDOB:stringValue];
+        
+        /* GENDER */
+        
+        booleanColumnEmpty = [result columnIsNull:@"ProspectGender"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | gender -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"ProspectGender"];
+            NSLog(@"Recalculate Score - Prospect profile | gender -> %@", stringValue);
+        }
+        
+        [prospectProfile setProspectGender:stringValue];
+        
+        /* MARITAL STATUS */
+        
+        booleanColumnEmpty = [result columnIsNull:@"MaritalStatus"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | marital status -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"MaritalStatus"];
+            NSLog(@"Recalculate Score - Prospect profile | marital status -> %@", stringValue);
+        }
+        
+        [prospectProfile setMaritalStatus:stringValue];
+        
+        /* ANNUAL INCOME */
+        
+        booleanColumnEmpty = [result columnIsNull:@"AnnualIncome"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | annual income -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"AnnualIncome"];
+            NSLog(@"Recalculate Score - Prospect profile | annual income -> %@", stringValue);
+        }
+        
+        [prospectProfile setAnnualIncome:stringValue];
+        
+        /* SOURCE INCOME */
+        
+        booleanColumnEmpty = [result columnIsNull:@"SourceIncome"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | source income -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"SourceIncome"];
+            NSLog(@"Recalculate Score - Prospect profile | source income -> %@", stringValue);
+        }
+        
+        [prospectProfile setSourceIncome:stringValue];
+        
+        /* OCCUPATION */
+        
+        booleanColumnEmpty = [result columnIsNull:@"ProspectOccupationCode"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | occupation -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"ProspectOccupationCode"];
+            NSLog(@"Recalculate Score - Prospect profile | occupation -> %@", stringValue);
+        }
+        
+        [prospectProfile setProspectOccupationCode:stringValue];
+        
+        /* REFERRAL */
+        
+        booleanColumnEmpty = [result columnIsNull:@"ReferralName"];
+        stringValue = @"";
+        
+        if (booleanColumnEmpty == true)
+        {
+            NSLog(@"Recalculate Score - Prospect profile | referral name -> null");
+        }
+        else
+        {
+            stringValue = [result stringForColumn:@"ReferralName"];
+            NSLog(@"Recalculate Score - Prospect profile | referral name -> %@", stringValue);
+        }
+        
+        [prospectProfile setReferralName:stringValue];
+        
+        /* RESULT */
+        
+        [prospectProfile setTScore: [[self calculateScore:prospectProfile] objectAtIndex:0]];
+        [prospectProfile setProspectAge: [NSString stringWithFormat:@"%i", [self calculateAge:prospectProfile.ProspectDOB]]];
+        
+        stringQueryUpdate =
+        [NSString stringWithFormat:
+         @"UPDATE '%@' set \"ProspectAge\"=\'%@\', \"Score\"=\"%@\" where IndexNo = \"%@\"", TABLE_PROSPECT, prospectProfile.ProspectAge, prospectProfile.tScore, prospectProfile.ProspectID];
+        NSLog(@"Recalculate Score - Update SQL | query -> %@", stringQueryUpdate);
+        
+        [database executeUpdate:stringQueryUpdate];
+    }
+    
+    
+    /* CLOSING */
+
+    [result close];
+    [database close];
+    
+    // BHIMBIMS'S QUICK FIX - End
+}
+
+
 @end

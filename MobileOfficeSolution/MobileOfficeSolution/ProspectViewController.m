@@ -3509,8 +3509,35 @@ BOOL NavShowP;
                                      Fav = @"FALSE";
                                  } */
                                  
-                                 [self CalculateScore];
-                                 [self calculateAge:txtDOB.text];
+                                 // [self CalculateScore];
+                                 // [self calculateAge:txtDOB.text];
+                                 
+                                 
+                                 // BHIMBIM'S QUICK FIX - Start
+                                 
+                                 ProspectProfile *prospectProfile = [[ProspectProfile alloc] init];
+                                 [prospectProfile setProspectDOB:txtDOB.text];
+                                 if (segGender.selectedSegmentIndex == 0)
+                                 {
+                                     [prospectProfile setProspectGender:@"MALE"];
+                                 }
+                                 else
+                                 {
+                                     [prospectProfile setProspectGender:@"FEMALE"];
+                                 }
+                                 [prospectProfile setMaritalStatus:_txtMarital.text];
+                                 [prospectProfile setSourceIncome:_txtSourceIncome.text];
+                                 [prospectProfile setAnnualIncome:txtAnnIncome.text];
+                                 [prospectProfile setProspectOccupationCode:_txtOccupation.text];
+                                 [prospectProfile setReferralName:txtReferralName.text];
+                                 
+                                 NSArray *arrayScore = [modelProspectProfile calculateScore:prospectProfile];
+                                 score = [[arrayScore objectAtIndex:0] intValue];
+                                 PStatus = [arrayScore objectAtIndex:1];
+                                 _txtAge.text = [NSString stringWithFormat:@"%i", [modelProspectProfile calculateAge:txtDOB.text]];
+                                 
+                                 // BHIMBIM'S QUICK FIX - End
+                                 
                                  
                                  if (strDOB == nil)
                                  {
@@ -3670,8 +3697,35 @@ BOOL NavShowP;
                             Fav = @"FALSE";
                         } */
                         
-                        [self CalculateScore];
-                        [self calculateAge:txtDOB.text];
+                        // [self CalculateScore];
+                        // [self calculateAge:txtDOB.text];
+                        
+                        
+                        // BHIMBIM'S QUICK FIX - Start
+                        
+                        ProspectProfile *prospectProfile = [[ProspectProfile alloc] init];
+                        [prospectProfile setProspectDOB:txtDOB.text];
+                        if (segGender.selectedSegmentIndex == 0)
+                        {
+                            [prospectProfile setProspectGender:@"MALE"];
+                        }
+                        else
+                        {
+                            [prospectProfile setProspectGender:@"FEMALE"];
+                        }
+                        [prospectProfile setMaritalStatus:_txtMarital.text];
+                        [prospectProfile setSourceIncome:_txtSourceIncome.text];
+                        [prospectProfile setAnnualIncome:txtAnnIncome.text];
+                        [prospectProfile setProspectOccupationCode:_txtOccupation.text];
+                        [prospectProfile setReferralName:txtReferralName.text];
+                        
+                        NSArray *arrayScore = [modelProspectProfile calculateScore:prospectProfile];
+                        score = [[arrayScore objectAtIndex:0] intValue];
+                        PStatus = [arrayScore objectAtIndex:1];
+                        _txtAge.text = [NSString stringWithFormat:@"%i", [modelProspectProfile calculateAge:txtDOB.text]];
+                        
+                        // BHIMBIM'S QUICK FIX - End
+                        
                         
                         if (strDOB == nil)
                         {
@@ -3824,384 +3878,16 @@ BOOL NavShowP;
     [self presentViewController:AlertPage animated:YES completion:nil];
 }
 
--(void) CalculateScore
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *docsPath = [paths objectAtIndex:0];
-    NSString *path = [docsPath stringByAppendingPathComponent:DATABASE_MAIN_NAME];
-    FMDatabase *db = [FMDatabase databaseWithPath:path];
-    [db open];
-    FMResultSet *result;
-    score = 0;
-    completeStatus = 0;
-    
-    
-    
-    
-    // BHIMBIM'S QUICK FIX - Start, I don't know whose code is this, but i add some protection regarding dupplicate data and missformated value and i didn't change your current variable name, i also add some log to easily detect the scoring mistake.
-    
-    /* INITIALIZATION */
-    
-    Boolean booleanColumnEmpty = false;
-    NSString *stringInputValue = @"";
-    NSString *stringQuery = @"";
-    int intPoin;
-    
-    /* AGE */
-    
-    if (![txtDOB.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        intPoin = 0;
-        stringInputValue = @"";
-        completeStatus = completeStatus + 1;
-        
-        /* CONDITION */
-        
-        if (age > 35 && age < 46)
-        {
-            intPoin = 5;
-            stringInputValue = @"35 < age < 45";
-        }
-        else if (age >45 && age < 56)
-        {
-            intPoin = 4;
-            stringInputValue = @"45 < age < 56";
-        }
-        else if (age > 55)
-        {
-            intPoin =  3;
-            stringInputValue = @"35 < age < 45";
-        }
-        else if (age > 25 && age < 36)
-        {
-            intPoin = 2;
-            stringInputValue = @"25 < age < 36";
-        }
-        else if (age > 16 && age < 26)
-        {
-            intPoin = 1;
-            stringInputValue = @"17 < age < 26";
-        }
-        else
-        {
-            
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
-    }
-    
-    
-    /* GENDER */
-    
-    stringInputValue = @"";
-    intPoin = 0;
-    
-    /* CONDITION */
-    
-    if (segGender.selectedSegmentIndex == 0)
-    {
-        intPoin = 2;
-        completeStatus = completeStatus + 1;
-        stringInputValue = @"MALE";
-    }
-    else
-    {
-        intPoin = 1;
-        completeStatus = completeStatus + 1;
-        stringInputValue = @"FEMALE";
-    }
-    
-    /* RESULT */
-    
-    score += intPoin;
-    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
 
-    
-    /* MARITAL STATUS */
-    
-    if (![_txtMarital.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        booleanColumnEmpty = false;
-        completeStatus = completeStatus + 1;
-        result = nil;
-        
-        /* QUERY */
-        
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE MSDesc = '%@'", TABLE_MARITAL_STATUS, _txtMarital.text];
-        result = [db executeQuery:stringQuery];
-        intPoin = 0;
-        
-        while ([result next])
-        {
-            booleanColumnEmpty = [result columnIsNull:@"Poin"];
-            
-            if (booleanColumnEmpty == true)
-            {
-                NSLog(@"Calculate Score - Marital status | poin -> null");
-            }
-            else
-            {
-                intPoin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
-                break;
-            }
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", _txtMarital.text, intPoin, score);
-    }
-    
-    /* ANNUAL INCOME */
-    
-    if (![txtAnnIncome.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        booleanColumnEmpty = false;
-        completeStatus = completeStatus + 1;
-        result = nil;
-        
-        /* QUERY */
-        
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE AnnDesc = '%@'",  TABLE_EPROPOSAL_ANNUALINCOME,txtAnnIncome.text];
-        result = [db executeQuery: stringQuery];
-        intPoin = 0;
-        
-        while ([result next])
-        {
-            booleanColumnEmpty = [result columnIsNull:@"Poin"];
-            
-            if (booleanColumnEmpty == true)
-            {
-                NSLog(@"Calculate Score - Annual income | poin -> null");
-            }
-            else
-            {
-                intPoin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Annual income | poin -> %d", intPoin);
-                break;
-            }
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", txtAnnIncome.text, intPoin, score);
-    }
-    
-    /* SOURCE INCOME */
-    
-    if (![_txtSourceIncome.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        booleanColumnEmpty = false;
-        completeStatus = completeStatus + 1;
-        result = nil;
-        
-        /* QUERY */
-        
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE SourceDesc = '%@'",  TABLE_SOURCEINCOME,_txtSourceIncome.text];
-        result = [db executeQuery: stringQuery];
-        intPoin = 0;
-        
-        while ([result next])
-        {
-            booleanColumnEmpty = [result columnIsNull:@"Poin"];
-            
-            if (booleanColumnEmpty == true)
-            {
-                NSLog(@"Calculate Score - Source income | poin -> null");
-            }
-            else
-            {
-                intPoin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Source income | poin -> %d", intPoin);
-                break;
-            }
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", _txtSourceIncome.text, intPoin, score);
-    }
-    
-    /* OCUUPATION */
-    
-    if (![_txtOccupation.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        booleanColumnEmpty = false;
-        completeStatus = completeStatus + 1;
-        result = nil;
-        
-        /* QUERY */
-        
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE OccpDesc = '%@'", TABLE_OCCP, _txtOccupation.text];
-        result = [db executeQuery: stringQuery];
-        intPoin = 0;
-        
-        while ([result next])
-        {
-            booleanColumnEmpty = [result columnIsNull:@"Poin"];
-            
-            if (booleanColumnEmpty == true)
-            {
-                NSLog(@"Calculate Score - Occupation | poin -> null");
-            }
-            else
-            {
-                intPoin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Occupation | poin -> %d", intPoin);
-                break;
-            }
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", _txtOccupation.text, intPoin, score);
-    }
-    
-    /* REFERENCE */
-    
-    if (![txtReferralName.text isEqualToString:@""])
-    {
-        /* INITIALIZATION */
-        
-        booleanColumnEmpty = false;
-        completeStatus = completeStatus + 1;
-        result = nil;
-        
-        /* QUERY */
-        
-        stringQuery = [NSString stringWithFormat:@"SELECT Poin FROM '%@' WHERE ReferDesc = '%@'", TABLE_REFERRALSOURCE, txtReferralName.text];
-        result = [db executeQuery: stringQuery];
-        intPoin = 0;
-        
-        while ([result next])
-        {
-            booleanColumnEmpty = [result columnIsNull:@"Poin"];
-            
-            if (booleanColumnEmpty == true)
-            {
-                NSLog(@"Calculate Score - Referral name | poin -> null");
-            }
-            else
-            {
-                intPoin = [[result objectForColumnName:@"Poin"] intValue];
-                NSLog(@"Calculate Score - Referral name | poin -> %d", intPoin);
-                break;
-            }
-        }
-        
-        /* RESULT */
-        
-        score += intPoin;
-        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", txtReferralName.text, intPoin, score);
-    }
-    else
-    {
-        
-    }
-    
-    // BHIMBIMS'S QUICK FIX - End
-    
-    
-    
-    
-    //status
-    score = score + 1; //new additional
-    completeStatus = completeStatus + 1;
 
-    if (completeStatus == 8) {
-        PStatus = @"Complete";
-    }
-    else {
-        PStatus = @"Incomplete";
-    }
-    
-    [result close];
-    [db close];
-}
 
--(void)calculateAge:(NSString *)DOBdate
-{
-
-    /* NSDate *todayDate = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
-    NSDate *DOB2 = [dateFormatter dateFromString:DOBdate];
-    int time = [todayDate timeIntervalSinceDate:DOB2];
-    int allDays = (((time/60)/60)/24);
-    int days = allDays%365;
-    int years = (allDays-days)/365; */
-    
-//    NSLog(@"You live since %i years and %i days",years,days);
-    
-    
-    // BHIMBIM'S QUICK FIX - Start
-    
-    NSDate* dateNow = [NSDate date];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd/MM/yyyy"];
-    NSDate *dateBirth = [dateFormatter dateFromString:DOBdate];
-    
-    NSDateComponents* dateComponentsYear =
-    [
-        [NSCalendar currentCalendar]
-        components:NSCalendarUnitYear
-        fromDate:dateBirth
-        toDate:dateNow
-        options:0
-    ];
-    
-    NSDateComponents* dateComponentsMonth =
-    [
-        [NSCalendar currentCalendar]
-        components:NSCalendarUnitMonth
-        fromDate:dateBirth
-        toDate:dateNow
-        options:0
-    ];
-    
-    NSInteger intAge = [dateComponentsYear year];
-    NSInteger intMonth = [dateComponentsMonth month];
-    
-    if(intMonth%12 > 5)
-    {
-        intAge += 1;
-    }
-    else
-    {
-        
-    }
-    
-    // BHIMBIM'S QUICK FIX - End
-    
-    
-    // age = years;
-    age = intAge;
-    _txtAge.text = [NSString stringWithFormat:@"%d", age];
-}
 
 
 - (IBAction)addNewGroup:(id)sender
 {
 //	UIStoryboard *secondStoryBoard = [UIStoryboard storyboardWithName:@"ClientProfileStoryboard" bundle:nil];
 //	ProspectViewController *groupPage = [secondStoryBoard instantiateViewControllerWithIdentifier:@"ClientGroup"];
-//	
+//
 //	[UDGroup setObject:pp.ProspectGroup forKey:@"Group"];
 //	[UDGroup setObject:@"00" forKey:@"ProspectID"];
 //	[UDGroup setObject:txtFullName.text forKey:@"ProspectName"];
@@ -6935,7 +6621,16 @@ BOOL NavShowP;
             //[outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
             [outletDOB setTitle:[[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate] forState:UIControlStateNormal];
             txtDOB.text = [[NSString stringWithFormat:@""] stringByAppendingFormat:@"%@", strDate];
-            [self calculateAge:txtDOB.text];
+            // [self calculateAge:txtDOB.text];
+            
+            
+            // BHIMBIM'S QUICK FIX - Start
+            
+            _txtAge.text = [NSString stringWithFormat:@"%i", [modelProspectProfile calculateAge:txtDOB.text]];
+            
+            // BHIMBIM'S QUICK FIX - End
+            
+            
             [outletDOB setBackgroundColor:[UIColor clearColor]];
         }
 	}

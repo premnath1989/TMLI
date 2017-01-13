@@ -36,6 +36,7 @@
 #import "NIPInfo.h"
 #import "AnnualIncomeTableViewController.h"
 #import "TimePicker.h"
+#import "ModelProspectProfile.h"
 
 
 @class DataTable,DBController;
@@ -107,6 +108,13 @@
     NSMutableArray *DelGroupArr;
     bool HomePostcodeContinue;
     bool OfficePostcodeContinue;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    ModelProspectProfile *modelProspectProfile;
+    
+    // BHIMBIM'S QUICK Fix - End
 }
 
 
@@ -436,7 +444,7 @@
 - (IBAction)btnOccup:(id)sender;
 
 
-
+// @property (nonatomic, copy, readwrite)
 
 
 @end
