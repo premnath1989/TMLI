@@ -1785,12 +1785,21 @@ MBProgressHUD *HUD;
 
 - (IBAction)ActionRecalculating:(id)sender {
     
-    NSString *test;
-    test = [modelProspectProfile RecalculateScore];
+    // NSString *test;
+    // test = [modelProspectProfile RecalculateScore];
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    [modelProspectProfile recalculateScore];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
 
-//    [ProspectTableData removeAllObjects];
-//    ProspectTableData=[modelProspectProfile getProspectProfile];
+    [ProspectTableData removeAllObjects];
+    ProspectTableData=[modelProspectProfile getProspectProfile];
   
-    [self.myTableView reloadData];
+    // [self.myTableView reloadData];
+    [self ReloadTableData];
 }
 @end
