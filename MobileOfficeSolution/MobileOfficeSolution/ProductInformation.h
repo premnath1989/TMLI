@@ -22,7 +22,9 @@
 #define brochureExt @"pdf"
 #define videoLabel @"video"
 #define brochureLabel @"brosur"
+#define folderLabel @"folder"
 #define downloadMacro @"Unduh"
+
 
 @interface ProductInformation : UIViewController<ReaderViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, ProductInfoItemsDelegate, ProgressBarDelegate,AgentWSSoapBindingResponseDelegate>{
     NSArray *columnHeadersContent;
@@ -36,6 +38,8 @@
     SpinnerUtilities *spinnerLoading;
     int serverTransferMode;
     NSMutableIndexSet *expandedSections;
+    NSMutableArray *arrayContainer;
+    NSMutableArray *collapsedRow;
     
     // BHIMBIM'S QUICK FIX - Start
     

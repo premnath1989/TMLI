@@ -74,7 +74,7 @@
     }
 }
 
-- (void)TableRowInsert:(NSMutableArray *)dataArray index:(NSInteger)index table:(UITableViewCell*)cell color:(UIColor *)textColor{
+- (void)TableRowInsert:(NSMutableArray *)dataArray index:(int)index table:(UITableViewCell*)cell color:(UIColor *)textColor{
     int i = 0;
     for(UIView *view in [TableHeader subviews]){
         if([view isKindOfClass:[UILabel class]]){
