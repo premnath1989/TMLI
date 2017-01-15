@@ -18,6 +18,7 @@
 #import "User Interface.h"
 #import "WebServiceUtilities.h"
 #import "XMLParser.h"
+#import "DTCustomColoredAccessory.h"
 
 @implementation ProductInformation
 
@@ -32,17 +33,18 @@ BOOL NavShow2;
 - (void)viewDidLoad{
     [super viewDidLoad];
     
+    segment = @"ProductInformation";
+    
     NavShow2 = NO;
     arrayContainer = [[NSMutableArray alloc] init];
     collapsedRow = [[NSMutableArray alloc] init];
+    recordedCollapsedRow = [[NSMutableArray alloc] init];
     serverTransferMode = kBRHTTPMode;
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"Brochures"];
     FTPItemsList = [[NSMutableArray alloc]init];
     
     [self createDirectory:filePath];
-//    [self directoryFileListing];
-    [self listDirFile];
     
     if([self connected]){
         
@@ -54,6 +56,8 @@ BOOL NavShow2;
         [spinnerLoading startLoadingSpinner:spinnerHolder label:@"Loading Informasi Produk"];
         [self getDirectoryListing];
     }else{
+        [self listDirFile];
+        [self changeSegment:arrayContainerSegment1];
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke Server Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses Server"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
@@ -76,6 +80,30 @@ BOOL NavShow2;
     }else if(serverTransferMode == kBRFTPMode){
         [self FTPFileListing];
     }
+}
+
+- (void)changeSegment:(NSMutableArray *)arraySegment{
+    
+    NSMutableArray *dictSectionToDeleted = [[NSMutableArray alloc] init];
+    
+    
+    [FTPItemsList removeAllObjects];
+    for(NSMutableDictionary *dict in arraySegment){
+        if([[[dict allKeys] firstObject] compare:segment] != NSOrderedSame){
+            [dictSectionToDeleted addObject: dict];
+        }
+    }
+    
+    NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
+    for(NSMutableDictionary *tempDict in arraySegment){
+        NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
+        if(![stringKeys containsObject:keyTempDict]){
+            [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
+            [stringKeys addObject:keyTempDict];
+        }
+    }
+    
+    [myTableView reloadData];
 }
 
 //here is our function for every response from webservice
@@ -160,16 +188,74 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }
             
             //we sync folder and files structure on below function
-            [self removeLocalFiles:fileCompilation];
+            [self removeLocalFiles:fileURL];
             [FTPItemsList removeAllObjects];
+            
+            fileURL = [self constructPreTreeDictForm:fileURL];
             
             //we convert the paths received from the returns to folder
             //and show it to table
             [self convertFullPathToFolder:fileURL];
             [myTableView reloadData];
-
+            
+            [self changeSegment:arrayContainerSegment1];
         }
     }
+}
+
+- (NSMutableArray *)constructPreTreeDictForm:(NSMutableArray *)urlsFromServer{
+    NSMutableArray *TreeFormArray = [[NSMutableArray alloc]init];
+    for(NSDictionary *mainDict in urlsFromServer){
+        NSString *fileURLCombined = [mainDict valueForKey:@"fileURL"];
+        fileURLCombined = [[fileURLCombined componentsSeparatedByString:@"ProductRoot/"] lastObject];
+        if([fileURLCombined compare:@""] != NSOrderedSame){
+            NSMutableArray *separatedStrings = [fileURLCombined componentsSeparatedByString:@"/"];
+            NSString *tempPathString = @"ProductRoot/";
+            for(NSString *eachPath in separatedStrings){
+                if([eachPath compare:@""] != NSOrderedSame){
+                    if([TreeFormArray count] == 0){
+                        NSMutableDictionary *eachPathDict = [[NSMutableDictionary alloc]init];
+                        NSString *eachPathWithSeparator = [NSString stringWithFormat:@"%@%@/",tempPathString, eachPath];
+                        [eachPathDict setValue:eachPathWithSeparator forKey:@"fileURL"];
+                        if([eachPath containsString:@"."]){
+                            [eachPathDict setValue:[mainDict valueForKey:@"fileSize"]  forKey:@"fileSize"];
+                        }else{
+                            [eachPathDict setValue:@"0"  forKey:@"fileSize"];
+                        }
+                        [TreeFormArray addObject:eachPathDict];
+                        tempPathString = eachPathWithSeparator;
+                    }else{
+                        BOOL exist = FALSE;
+                        NSString *eachPathWithSeparator = @"";
+                        if([eachPath containsString:@"."]){
+                            eachPathWithSeparator = [NSString stringWithFormat:@"%@%@"
+                                                           ,tempPathString, eachPath];
+                        }else{
+                            eachPathWithSeparator = [NSString stringWithFormat:@"%@%@/"
+                                                     ,tempPathString, eachPath];
+                        }
+                        tempPathString = eachPathWithSeparator;
+                        for(NSMutableDictionary *tempDictOnTreeFormArray in TreeFormArray){
+                            if([[tempDictOnTreeFormArray valueForKey:@"fileURL"] compare:eachPathWithSeparator] == NSOrderedSame)
+                                exist = TRUE;
+                        }
+                        
+                        if(!exist){
+                            NSMutableDictionary *eachPathDict = [[NSMutableDictionary alloc]init];
+                            [eachPathDict setValue:eachPathWithSeparator forKey:@"fileURL"];
+                            if([eachPath containsString:@"."]){
+                                [eachPathDict setValue:[mainDict valueForKey:@"fileSize"]  forKey:@"fileSize"];
+                            }else{
+                                [eachPathDict setValue:@"0"  forKey:@"fileSize"];
+                            }
+                            [TreeFormArray addObject:eachPathDict];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return TreeFormArray;
 }
 
 //foldering function
@@ -180,6 +266,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self foldedFolder:tempDict];
         }
     }
+    
+    arrayContainerSegment1 = [[NSMutableArray alloc]init];
+    [arrayContainerSegment1 addObject:[arrayContainer objectAtIndex:1]];
+    arrayContainerSegment2 = [[NSMutableArray alloc]init];
+    [arrayContainerSegment2 addObject:[arrayContainer objectAtIndex:0]];
+    arrayContainerSegment3 = [[NSMutableArray alloc]init];
+    [arrayContainerSegment3 addObject:[arrayContainer objectAtIndex:2]];
     
     NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
     for(NSMutableDictionary *tempDict in arrayContainer){
@@ -221,9 +314,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
 }
 
-
-
-- (BOOL)listDirFile{
+- (NSMutableArray *)getLocalPaths{
     NSFileManager *fileManager = [NSFileManager defaultManager];
     NSURL *directoryURL = [NSURL fileURLWithPath:filePath isDirectory:YES];
     NSArray *keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
@@ -238,7 +329,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                                          }];
     NSMutableArray *fileURL = [[NSMutableArray alloc]init];
     for (NSURL *url in enumerator) {
-
+        
         //we create the dictionary to store our data of the file
         NSMutableDictionary *fileData = [[NSMutableDictionary alloc]init];
         [fileData setValue:[[url.absoluteString componentsSeparatedByString:@"Brochures/"] lastObject] forKey:@"fileURL"];
@@ -253,12 +344,16 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         
         //we append the info inside an array
         [fileURL addObject:fileData];
-
+        
     }
+    return fileURL;
+}
+
+- (BOOL)listDirFile{
     
     //we convert the paths from local to folder
     //and show it to the table
-    [self convertFullPathToFolder:fileURL];
+    [self convertFullPathToFolder:[self getLocalPaths]];
     
     return false;
 }
@@ -352,6 +447,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, brochureExt];
         }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
+        }else{
+            cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
@@ -367,9 +464,29 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 
 - (IBAction)ActionSegChange:(id)sender{
 
-    [self FTPFileListing];
-    NSLog(@"test");
-    
+    UISegmentedControl * segmentedControl = (UISegmentedControl *)sender;
+    switch (segmentedControl.selectedSegmentIndex) {
+        case 0:
+        {
+            segment = @"ProductInformation";
+            [self changeSegment:arrayContainerSegment1];
+            break;
+        }
+            
+        case 1:
+        {
+            segment = @"TrainingInformation";
+            [self changeSegment:arrayContainerSegment2];
+            break;
+        }
+            
+        case 2:
+        {
+            segment = @"CompanyInformation";
+            [self changeSegment:arrayContainerSegment3];
+            break;
+        }
+    }
 }
 
 
@@ -457,6 +574,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
         }
     }else if([[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:1] caseInsensitiveCompare:folderLabel] == NSOrderedSame){
+        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self modifyTableList:fileName row:indexPath.row];
         [myTableView reloadData];
     }
@@ -472,11 +590,18 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             break;
         }
     }
+    
+    //this is for recorded collapsed rows
+    NSMutableDictionary *preRecordedCollapsedRowDict = [[NSMutableDictionary alloc]init];
+    NSMutableArray *preRecordedCollapsedRowArr = [[NSMutableArray alloc]init];
+    
     if([modifyTempArray count] > 0){
         for(NSMutableDictionary *modifyTempDict in modifyTempArray){
             if(![collapsedRow containsObject:folderName]){
                 if([[[modifyTempDict allKeys] firstObject] compare:@""] != NSOrderedSame){
                     
+                    [preRecordedCollapsedRowArr addObject:[[modifyTempDict allKeys] lastObject]];
+
                     if([[modifyTempDict allKeys] containsObject:@"fileName"]){
                         [self insertIntoTableData:[modifyTempDict valueForKey:@"fileName"] size:[modifyTempDict valueForKey:@"fileSize"] index:1 fileURL:[modifyTempDict valueForKey:@"fileURL"] objectIndex:row+i];
                     }else{
@@ -486,17 +611,54 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                     i++;
                 }
             }else{
-                [FTPItemsList removeObjectAtIndex:row+1];
                 expandBool = FALSE;
             }
         }
         if(expandBool){
+            [preRecordedCollapsedRowDict setValue:preRecordedCollapsedRowArr forKey:folderName];
+            [recordedCollapsedRow addObject:preRecordedCollapsedRowDict];
             [collapsedRow addObject:folderName];
         }else{
-            [collapsedRow removeObject:folderName];
+            int rows = [self collapsedRows:folderName collapsedRows:recordedCollapsedRow];
+            
+            for(int i = 0; i < rows; i++){
+                [FTPItemsList removeObjectAtIndex:row+1];
+            }
+            NSMutableArray *rowsToBeDeleted = [[NSMutableArray alloc]init];
+            [self removeCollapsedRows:folderName collapsedRows:recordedCollapsedRow
+                            tempArray:rowsToBeDeleted];
+            [recordedCollapsedRow removeObjectsInArray:rowsToBeDeleted];
         }
         
     }
+}
+
+- (void)removeCollapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows
+                  tempArray:(NSMutableArray *)tempArray
+{
+    for(NSMutableDictionary *tempDict in collapsedRows){
+        if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
+            for(NSString *childName in [tempDict valueForKey:folderName]){
+                [self collapsedRows:childName collapsedRows:collapsedRows];
+            }
+            [tempArray addObject:tempDict];
+            [collapsedRow removeObject:folderName];
+        }
+    }
+
+}
+
+- (int)collapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows{
+    int child = 0;
+    for(NSMutableDictionary *tempDict in collapsedRows){
+        if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
+            child = [[tempDict valueForKey:folderName] count];
+            for(NSString *childName in [tempDict valueForKey:folderName]){
+                child = child + [self collapsedRows:childName collapsedRows:collapsedRows];
+            }
+        }
+    }
+    return child;
 }
 
 //we search through all the array to get list of the parent's child/ren
@@ -509,7 +671,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 if([[dict valueForKey:key] count] > 0){
                     for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
                         if([[wrapperDict allKeys] count] == 1){
-                            [self searchDict:fileName dict:wrapperDict];
+                            return [self searchDict:fileName dict:wrapperDict];
                         }
                     }
                 }
@@ -707,7 +869,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 }
 
 
-//delegate for list dir completion
+//delegate for list dir completion of FTP mode
 - (void)itemsList:(NSMutableArray *)ftpItems{
     NSLog(@"ftp itemlist");
     int index = 1;
@@ -726,33 +888,54 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 }
 
 - (void)removeLocalFiles:(NSMutableArray *)ftpItems{
-    for(NSMutableArray *itemCell in FTPItemsList){
-        NSString *FileName = [itemCell objectAtIndex:1];
-        NSString *FileType = [itemCell objectAtIndex:2];
-        
-        if([FileType caseInsensitiveCompare:brochureLabel] == NSOrderedSame){
-            FileName = [NSString stringWithFormat: @"%@.%@",FileName, brochureExt];
-        }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
-            FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
-        }
-        
+    
+    NSMutableArray *localPathsArray = [self getLocalPaths];
+    
+    for(NSDictionary *tempLocalDict in localPathsArray){
         BOOL exist = FALSE;
-        for(NSMutableDictionary *itemInfo in ftpItems){
-            for(NSString *key in [itemInfo allKeys]){
-                if([key caseInsensitiveCompare:FileName] == NSOrderedSame){
-                    exist = TRUE;
-                }
+        for(NSDictionary *tempServerDict in ftpItems){
+            NSString *serverFileURL = [tempServerDict valueForKey:@"fileURL"];
+            NSString *localFileURL = [tempLocalDict valueForKey:@"fileURL"];
+            serverFileURL = [serverFileURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+            if([serverFileURL containsString:localFileURL]){
+                exist = TRUE;
+                break;
             }
         }
-        
-        //after checking, if the files not listed in FTP. we delete the file in local.
         if(!exist){
             NSError *error = nil;
             if ([[NSFileManager defaultManager] removeItemAtPath:
-                 [NSString stringWithFormat:@"%@/%@",filePath,FileName] error:&error]){
+                 [filePath stringByAppendingPathComponent:[tempLocalDict valueForKey:@"fileURL"]] error:&error]){
             }
         }
     }
+//    for(NSMutableArray *itemCell in FTPItemsList){
+//        NSString *FileName = [itemCell objectAtIndex:1];
+//        NSString *FileType = [itemCell objectAtIndex:2];
+//        
+//        if([FileType caseInsensitiveCompare:brochureLabel] == NSOrderedSame){
+//            FileName = [NSString stringWithFormat: @"%@.%@",FileName, brochureExt];
+//        }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
+//            FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
+//        }
+//        
+//        BOOL exist = FALSE;
+//        for(NSMutableDictionary *itemInfo in ftpItems){
+//            for(NSString *key in [itemInfo allKeys]){
+//                if([key caseInsensitiveCompare:FileName] == NSOrderedSame){
+//                    exist = TRUE;
+//                }
+//            }
+//        }
+//        
+//        //after checking, if the files not listed in FTP. we delete the file in local.
+//        if(!exist){
+//            NSError *error = nil;
+//            if ([[NSFileManager defaultManager] removeItemAtPath:
+//                 [NSString stringWithFormat:@"%@/%@",filePath,FileName] error:&error]){
+//            }
+//        }
+//    }
 }
 
 - (void)insertIntoTableData:(NSString *)fileNameParam size:(NSString *)fileSizeParam index:(int)fileIndex

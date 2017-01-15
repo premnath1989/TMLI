@@ -40,6 +40,13 @@
     NSMutableIndexSet *expandedSections;
     NSMutableArray *arrayContainer;
     NSMutableArray *collapsedRow;
+    NSMutableArray *recordedCollapsedRow;
+    
+    //for segment function
+    NSString *segment;
+    NSMutableArray *arrayContainerSegment1;
+    NSMutableArray *arrayContainerSegment2;
+    NSMutableArray *arrayContainerSegment3;
     
     // BHIMBIM'S QUICK FIX - Start
     
