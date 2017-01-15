@@ -468,6 +468,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     switch (segmentedControl.selectedSegmentIndex) {
         case 0:
         {
+            [recordedCollapsedRow removeAllObjects];
+            [collapsedRow removeAllObjects];
             segment = @"ProductInformation";
             [self changeSegment:arrayContainerSegment1];
             break;
@@ -475,15 +477,19 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             
         case 1:
         {
+            [recordedCollapsedRow removeAllObjects];
+            [collapsedRow removeAllObjects];
             segment = @"TrainingInformation";
-            [self changeSegment:arrayContainerSegment2];
+            [self changeSegment:arrayContainerSegment3];
             break;
         }
             
         case 2:
         {
+            [recordedCollapsedRow removeAllObjects];
+            [collapsedRow removeAllObjects];
             segment = @"CompanyInformation";
-            [self changeSegment:arrayContainerSegment3];
+            [self changeSegment:arrayContainerSegment2];
             break;
         }
     }
@@ -584,6 +590,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     NSMutableArray *modifyTempArray = [[NSMutableArray alloc] init];
     BOOL expandBool = TRUE;
     int i = 1;
+    
     for(NSMutableDictionary *dict in arrayContainer){
         modifyTempArray = [self searchDict:folderName dict:dict];
         if([modifyTempArray count] > 0){
