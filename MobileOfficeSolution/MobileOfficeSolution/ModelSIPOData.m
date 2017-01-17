@@ -18,7 +18,7 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA,LA_ClientID,LA_Name,LA_DOB,LA_Age,LA_Gender,LA_OccpCode,LA_Occp,CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
+    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA, RelWithLAOthers,LA_ClientID,LA_Name,LA_DOB,LA_Age,LA_Gender,LA_OccpCode,LA_Occp,CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
                     [dataPO valueForKey:@"SINO"],
                     [dataPO valueForKey:@"ProductCode"],
                     [dataPO valueForKey:@"ProductName"],
@@ -32,6 +32,7 @@
                     [dataPO valueForKey:@"PO_Occp"],
                     [dataPO valueForKey:@"PO_ClientID"],
                     [dataPO valueForKey:@"RelWithLA"],
+                    [dataPO valueForKey:@"RelWithLAOthers"],
                     [dataPO valueForKey:@"LA_ClientID"],
                     [dataPO valueForKey:@"LA_Name"],
                     [dataPO valueForKey:@"LA_DOB"],
@@ -57,7 +58,7 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path] ;
     [database open];
-    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,LA_ClientID=?,LA_Name=?,LA_DOB=?,LA_Age=?,LA_Gender=?,LA_OccpCode=?,LA_Occp=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
+    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?, RelWithLAOthers = ?, LA_ClientID=?,LA_Name=?,LA_DOB=?,LA_Age=?,LA_Gender=?,LA_OccpCode=?,LA_Occp=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
                     [dataPO valueForKey:@"ProductCode"],
                     [dataPO valueForKey:@"ProductName"],
                     [dataPO valueForKey:@"QuickQuote"],
@@ -70,6 +71,7 @@
                     [dataPO valueForKey:@"PO_Occp"],
                     [dataPO valueForKey:@"PO_ClientID"],
                     [dataPO valueForKey:@"RelWithLA"],
+                    [dataPO valueForKey:@"RelWithLAOthers"],
                     [dataPO valueForKey:@"LA_ClientID"],
                     [dataPO valueForKey:@"LA_Name"],
                     [dataPO valueForKey:@"LA_DOB"],
@@ -112,7 +114,7 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA,CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
+    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA, RelWithLAOthers, CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
                     [dataPO valueForKey:@"SINO"],
                     [dataPO valueForKey:@"ProductCode"],
                     [dataPO valueForKey:@"ProductName"],
@@ -126,6 +128,7 @@
                     [dataPO valueForKey:@"PO_Occp"],
                     [dataPO valueForKey:@"PO_ClientID"],
                     [dataPO valueForKey:@"RelWithLA"],
+                    [dataPO valueForKey:@"RelWithLAOthers"],
                     [dataPO valueForKey:@"IsInternalStaff"]
 /*,
                                                     [dataPO valueForKey:@"CreatedDate"],
@@ -145,7 +148,7 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
+    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,RelWithLAOthers = ?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
                     [dataPO valueForKey:@"ProductCode"],
                     [dataPO valueForKey:@"ProductName"],
                     [dataPO valueForKey:@"QuickQuote"],
@@ -158,6 +161,7 @@
                     [dataPO valueForKey:@"PO_Occp"],
                     [dataPO valueForKey:@"PO_ClientID"],
                     [dataPO valueForKey:@"RelWithLA"],
+                    [dataPO valueForKey:@"RelWithLAOthers"],
                     [dataPO valueForKey:@"IsInternalStaff"],
                     [dataPO valueForKey:@"SINO"]];
     
@@ -357,7 +361,7 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
     //BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA,LA_ClientID,LA_Name,LA_DOB,LA_Age,LA_Gender,LA_OccpCode,LA_Occp,CreatedDate,UpdatedDate,IsInternalStaff,PO_Smoker,PO_CommencementDate,PO_MonthlyIncome,LA_Smoker,LA_CommencementDate,LA_MonthlyIncome) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?,?,?,?,?,?,?)" ,
-    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA,LA_ClientID,LA_Name,LA_DOB,LA_Age,LA_Gender,LA_OccpCode,LA_Occp,CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
+    BOOL success = [database executeUpdate:@"insert into SI_PO_Data (SINO, ProductCode, ProductName, QuickQuote,SIDate,PO_Name,PO_DOB,PO_Gender,PO_Age,PO_OccpCode,PO_Occp,PO_ClientID,RelWithLA,RelWithLAOthers,LA_ClientID,LA_Name,LA_DOB,LA_Age,LA_Gender,LA_OccpCode,LA_Occp,CreatedDate,UpdatedDate,IsInternalStaff) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"",?)" ,
                     [dictPOLAData valueForKey:@"SINO"],
                     [dictPOLAData valueForKey:@"ProductCode"],
                     [dictPOLAData valueForKey:@"ProductName"],
@@ -371,6 +375,7 @@
                     [dictPOLAData valueForKey:@"PO_Occp"],
                     [dictPOLAData valueForKey:@"PO_ClientID"],
                     [dictPOLAData valueForKey:@"RelWithLA"],
+                    [dictPOLAData valueForKey:@"RelWithLAOthers"],
                     [dictPOLAData valueForKey:@"LA_ClientID"],
                     [dictPOLAData valueForKey:@"LA_Name"],
                     [dictPOLAData valueForKey:@"LA_DOB"],
@@ -395,7 +400,7 @@
     FMDatabase *database = [FMDatabase databaseWithPath:path] ;
     [database open];
     //BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,LA_ClientID=?,LA_Name=?,LA_DOB=?,LA_Age=?,LA_Gender=?,LA_OccpCode=?,LA_Occp=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=?,PO_Smoker=?,PO_CommencementDate=?,PO_MonthlyIncome=?,LA_Smoker=?,LA_CommencementDate=?,LA_MonthlyIncome=? where SINO=?" ,
-    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,LA_ClientID=?,LA_Name=?,LA_DOB=?,LA_Age=?,LA_Gender=?,LA_OccpCode=?,LA_Occp=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
+    BOOL success = [database executeUpdate:@"update SI_PO_Data set ProductCode=?, ProductName=?, QuickQuote=?,SIDate=?,PO_Name=?,PO_DOB=?,PO_Gender=?,PO_Age=?,PO_OccpCode=?,PO_Occp=?,PO_ClientID=?,RelWithLA=?,RelWithLAOthers = ?, LA_ClientID=?,LA_Name=?,LA_DOB=?,LA_Age=?,LA_Gender=?,LA_OccpCode=?,LA_Occp=?,UpdatedDate=""datetime(\"now\", \"+7 hour\")"",IsInternalStaff=? where SINO=?" ,
                     [dictPOLAData valueForKey:@"ProductCode"],
                     [dictPOLAData valueForKey:@"ProductName"],
                     [dictPOLAData valueForKey:@"QuickQuote"],
@@ -408,6 +413,7 @@
                     [dictPOLAData valueForKey:@"PO_Occp"],
                     [dictPOLAData valueForKey:@"PO_ClientID"],
                     [dictPOLAData valueForKey:@"RelWithLA"],
+                    [dictPOLAData valueForKey:@"RelWithLAOthers"],
                     [dictPOLAData valueForKey:@"LA_ClientID"],
                     [dictPOLAData valueForKey:@"LA_Name"],
                     [dictPOLAData valueForKey:@"LA_DOB"],
@@ -442,6 +448,7 @@
     NSString* PO_Occp;
     NSString* PO_ClientID;
     NSString* RelWithLA;
+    NSString* RelWithLAOthers;
     NSString* LA_ClientID;
     NSString* LA_Name;
     NSString* LA_DOB;
@@ -481,6 +488,7 @@
         PO_Occp = [s stringForColumn:@"PO_Occp"];
         PO_ClientID = [s stringForColumn:@"PO_ClientID"];
         RelWithLA = [s stringForColumn:@"RelWithLA"];
+        RelWithLAOthers = [s stringForColumn:@"RelWithLAOthers"];
         LA_ClientID = [s stringForColumn:@"LA_ClientID"];
         LA_Name = [s stringForColumn:@"LA_Name"];
         LA_DOB = [s stringForColumn:@"LA_DOB"];
@@ -513,6 +521,7 @@
           PO_Occp,@"PO_Occp",
           PO_ClientID,@"PO_ClientID",
           RelWithLA,@"RelWithLA",
+          RelWithLAOthers,@"RelWithLAOthers",
           LA_ClientID,@"LA_ClientID",
           LA_Name,@"LA_Name",
           LA_DOB,@"LA_DOB",

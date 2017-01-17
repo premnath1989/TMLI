@@ -898,6 +898,15 @@
         //[_BtnHubungan setTitle:[dictPOLAData valueForKey:@"RelWithLA"] forState:UIControlStateNormal];
         [_txtHubungan setText:[dictPOLAData valueForKey:@"RelWithLA"]];
         
+        if ([_txtHubungan.text isEqualToString:@"Lain-lain"] || [_txtHubungan.text isEqualToString:@"LAIN-LAIN"]) {
+            _txtHubungaLain2.hidden = NO;
+            [_txtHubungaLain2 setText:[dictPOLAData valueForKey:@"RelWithLAOthers"]];
+        }
+        else {
+            _txtHubungaLain2.hidden = YES;
+            _txtHubungaLain2.text = @"";
+        }
+        
         sex = [dictPOLAData valueForKey:@"PO_Gender"];
         smoker = [dictPOLAData valueForKey:@"PO_Smoker"];
         
@@ -1234,6 +1243,7 @@
         [dictionaryNewLA setObject:LAAgeField.text forKey:@"LA_Age"];
         [dictionaryNewLA setObject:sex forKey:@"LA_Gender"];
         [dictionaryNewLA setObject:relationDesc forKey:@"RelWithLA"];
+        
    //     [dictionaryNewLA setObject:occuCode forKey:@"LA_OccpCode"];
    //     [dictionaryNewLA setObject:occupationDesc forKey:@"LA_Occp"];
     }
@@ -2760,45 +2770,21 @@
         return NO;
     }
     
-//    else if ([btnOccp.titleLabel.text isEqualToString:@"(null)"]||[btnOccp.titleLabel.text isEqualToString:@" - SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"- SELECT -"]||[btnOccp.titleLabel.text isEqualToString:@"--Please Select--"] || btnOccp.titleLabel.text.length == 0)
-//    {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Pekerjaan Pemegang Polis harus diisi."
-//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-//        [alert show];
-//        return NO;
-//    }
-//    
     else if ([_txtHubungan.text isEqualToString:@"(null)"] ||[_txtHubungan.text isEqualToString:@"--Please Select--"] ||[_txtHubungan.text isEqualToString:@"- SELECT -"] || _txtHubungan.text.length == 0)
     {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Hubungan Dengan Tertannggung harus diisi"
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Hubungan harus diisi"
                                                        delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
         [alert show];
         return NO;
     }
-    
-    /*else if (([_BtnHubungan.titleLabel.text isEqualToString:@"DIRI SENDIRI"])||([_BtnHubungan.titleLabel.text isEqualToString:@"SELF"]))
+    else if (([_txtHubungan.text isEqualToString:@"LAIN-LAIN"] ||[_txtHubungan.text isEqualToString:@"Lain-lain"]) && _txtHubungaLain2.text.length == 0)
     {
-        //if hubungan dengan tertanggung is not equal to self",tertanggung screen...
-    }*/
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Hubungan Lain-ain harus diisi"
+                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
+        [alert show];
+        return NO;
+    }
 
-
-
-
-
-    //        else if (AgeExceed189Days) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Expected date of delivery cannot be more than 189 days."
-//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-//        [alert setTag:1005];
-//        [alert show];
-//    } else if ( (occuCode.length == 0 || btnOccp.titleLabel.text.length == 0) && [sex length]>0 ) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"Please select an Occupation Description."
-//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-//        [alert show];
-//    } else if ([occuCode isEqualToString:@"OCC01975"]) {
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@" " message:@"There is no existing plan which can be offered to this occupation."
-//                                                       delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil,nil];
-//        [alert show];
-//    }
     else {
         return YES;
     }
@@ -2892,6 +2878,7 @@
     [dictPOLAData setObject:@"" forKey:@"PO_Occp"];
     [dictPOLAData setObject:[NSNumber numberWithInt:clientProfileID] forKey:@"PO_ClientID"];
     [dictPOLAData setObject:_txtHubungan.text forKey:@"RelWithLA"];
+    [dictPOLAData setObject:_txtHubungaLain2.text forKey:@"RelWithLAOthers"];
     [dictPOLAData setObject:numberIntInternalStaff forKey:@"IsInternalStaff"];
     [dictPOLAData setObject:@"" forKey:@"PO_Smoker"];
     
@@ -2903,7 +2890,7 @@
         [dictPOLAData setObject:sex forKey:@"LA_Gender"];
         [dictPOLAData setObject:@"" forKey:@"LA_OccpCode"];
         [dictPOLAData setObject:LAAgeField forKey:@"LA_Occp"];
-        
+        [dictPOLAData setObject:@"" forKey:@"RelWithLAOthers"];
         [dictPOLAData setObject:@"" forKey:@"LA_Smoker"];
         [dictPOLAData setObject:@"" forKey:@"LA_CommencementDate"];
         [dictPOLAData setObject:@"" forKey:@"LA_MonthlyIncome"];
@@ -3220,6 +3207,12 @@
 //     [_BtnHubungan setTitle:Relationship forState:UIControlStateNormal];
     _txtHubungan.text = Relationship;
     
+    if ([Relationship isEqualToString:@"Lain-lain"] || [Relationship isEqualToString:@"LAIN-LAIN"]) {
+        _txtHubungaLain2.hidden = NO;
+    }
+    else {
+        _txtHubungaLain2.hidden = YES;
+    }
     
       Relationship = [self.requestSmoker description];
     
