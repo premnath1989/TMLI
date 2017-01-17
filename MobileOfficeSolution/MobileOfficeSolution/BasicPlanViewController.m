@@ -5957,8 +5957,8 @@ bool WPTPD30RisDeleted = FALSE;
       {
           [_frekuensiPembayaranButton setTitle:@"Single Premium" forState:UIControlStateNormal];
           _frekuensiPembayaranButton.enabled = false;
-          _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : IDR 12,000,000)"];
-          _PremiTopUp.text = [NSString stringWithFormat:@"(Min : IDR 1,000,000)"];
+          _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : Rp 12,000,000)"];
+          _PremiTopUp.text = [NSString stringWithFormat:@"(Min : Rp 1,000,000)"];
           
           MinBasicPremiValue = @"12,000,000";
           MinTopUpRegularValue = @"1,000,000";
@@ -6038,8 +6038,8 @@ bool WPTPD30RisDeleted = FALSE;
     
     if([_MataUangPembayaran.titleLabel.text isEqualToString:@"Rupiah"])
     {
-        _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : IDR%@)",aaMinAmount];
-        _PremiTopUp.text = [NSString stringWithFormat:@"(Min : IDR%@)",aaMaxAmount];
+        _MInBasicPremi.text =  [NSString stringWithFormat:@"(Min : Rp%@)",aaMinAmount];
+        _PremiTopUp.text = [NSString stringWithFormat:@"(Min : Rp%@)",aaMaxAmount];
     }
    else
    {
