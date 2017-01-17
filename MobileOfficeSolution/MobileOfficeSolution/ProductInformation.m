@@ -27,6 +27,7 @@
 @synthesize myTableView;
 @synthesize navigationBar;
 @synthesize moviePlayer;
+@synthesize segmentScrollView;
 
 BOOL NavShow2;
 
@@ -279,9 +280,22 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
         if(![stringKeys containsObject:keyTempDict]){
             [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
+            
+            //we create segment button of the scrollview here
+            [self createSegmentedButtons:keyTempDict];
+            
             [stringKeys addObject:keyTempDict];
         }
     }
+}
+
+- (void) createSegmentedButtons:(NSString *)segmentName{
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [button addTarget:self action:@selector(aMethod:)forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:segmentName forState:UIControlStateNormal];
+    button.frame = CGRectMake(0.0, 300.0, 160.0, 40.0);
+    
+    [segmentScrollView addSubview:button];
 }
 
 - (BOOL)connected
@@ -409,7 +423,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     columnHeadersContent = [NSArray arrayWithObjects:nama, type, size, download, nil];
     tableManagement = [[TableManagement alloc]init:self.view themeColour:themeColour themeFont:fontType];
     TableHeader =[tableManagement TableHeaderSetupXY:columnHeadersContent
-                                         positionY:252.0f positionX:0.0f];
+                                         positionY:252.0f positionX:177.0f];
     
     [self.view addSubview:TableHeader];
     

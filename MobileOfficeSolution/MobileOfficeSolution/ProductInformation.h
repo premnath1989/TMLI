@@ -66,6 +66,8 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegProductType;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *segmentScrollView;
+
 - (IBAction)ActionSegChange:(id)sender;
 
 - (IBAction)goHome:(id)sender;

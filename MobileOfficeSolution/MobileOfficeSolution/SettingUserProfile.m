@@ -154,7 +154,9 @@
     txtDM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
     txtRM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
     txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
-    txtNamaKantor.text = @"";
+    
+    NSString *alamatKantor = [NSString stringWithFormat:@"%@ %@",[loginDB getAgentProperty:@"TSALESUNT_FIRST"], [loginDB getAgentProperty:@"TSALESUNT_LAST"]];
+    txtNamaKantor.text = alamatKantor;
     txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
     
     if([[loginDB getAgentProperty:@"TLICEXPDT"] compare:@""] != NSOrderedSame)
