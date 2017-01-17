@@ -275,6 +275,9 @@
 -(void)calculatedPrem;
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 -(void)dismissEApp;
+
+- (IBAction)ActionBack:(id)sender;
+
 @property (nonatomic, strong) NSMutableDictionary *riderCode;
 - (IBAction)brochureTapped:(UIButton *)sender;
 - (IBAction)SaveTapped:(UIButton *)sender;

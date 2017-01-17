@@ -192,16 +192,8 @@
     }
 
     - (IBAction)goToSalesIllustration:(id)sender {
-        // Override option, open the Traditional SI
         UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-        AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-        MainScreen *mainScreen= [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
-        //mainScreen.tradOrEver = @"TRAD";
-        mainScreen.modalPresentationStyle = UIModalPresentationFullScreen;
-        //mainScreen.IndexTab = appdlg.SIListingIndex;
-        [self presentViewController:mainScreen animated:NO completion:Nil];
-        mainScreen= Nil;
-        appdlg = nil;
+        [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"] animated:YES completion: nil];
     }
 
     - (IBAction)goToELibrary:(id)sender {

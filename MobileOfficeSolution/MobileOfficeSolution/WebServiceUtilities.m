@@ -195,4 +195,12 @@
     return 1;
 }
 
+- (int)getProductInformation:(id)delegate{
+    AgentWSSoapBinding *binding = [AgentWS AgentWSSoapBinding];
+    binding.logXMLInOut = YES;
+    AgentWS_GetAllProductInfo *agentCodea = [[AgentWS_GetAllProductInfo alloc]init];
+    [binding GetAllProductInfoAsyncUsingParameters:agentCodea delegate:delegate];
+    return 1;
+}
+
 @end

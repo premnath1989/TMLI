@@ -50,6 +50,9 @@
 @class AgentWS_SyncdatareferralResult;
 @class AgentWS_SyncDataVersion;
 @class AgentWS_SyncDataVersionResponse;
+@class AgentWS_GetAllProductInfo;
+@class AgentWS_GetAllProductInfoResponse;
+@class AgentWS_GetAllProductInfoImageResult;
 @interface AgentWS_ValidateAgentAndDevice : NSObject {
     
     /* elements */
@@ -415,8 +418,6 @@
 /* attributes */
 - (NSDictionary *)attributes;
 @end
-
-
 @interface AgentWS_GetAgentHierarcyResponse : NSObject {
     
     /* elements */
@@ -435,6 +436,60 @@
 /* attributes */
 - (NSDictionary *)attributes;
 @end
+@interface AgentWS_GetAllProductInfo : NSObject {
+    
+    /* elements */
+    /* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAllProductInfo *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+@interface AgentWS_GetAllProductInfoResult : NSObject {
+    /* elements */
+    NSString * xmlDetails;
+    /* attributes */
+}
+@property (retain) NSString * xmlDetails;
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAllProductInfoResult *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+
+
+@interface AgentWS_GetAllProductInfoResponse : NSObject {
+    
+    /* elements */
+    AgentWS_GetAllProductInfoResult * GetAllProductInfoResult;
+    /* attributes */
+}
+- (NSString *)nsPrefix;
+- (xmlNodePtr)xmlNodeForDoc:(xmlDocPtr)doc elementName:(NSString *)elName elementNSPrefix:(NSString *)elNSPrefix;
+- (void)addAttributesToNode:(xmlNodePtr)node;
+- (void)addElementsToNode:(xmlNodePtr)node;
++ (AgentWS_GetAllProductInfoResponse *)deserializeNode:(xmlNodePtr)cur;
+- (void)deserializeAttributesFromNode:(xmlNodePtr)cur;
+- (void)deserializeElementsFromNode:(xmlNodePtr)cur;
+/* elements */
+@property (retain) AgentWS_GetAllProductInfoResult * GetAllProductInfoResult;
+/* attributes */
+- (NSDictionary *)attributes;
+@end
+
 @interface AgentWS_ChangePassword : NSObject {
     
     /* elements */
@@ -1075,6 +1130,8 @@
 - (void)GetAllBackgroundImageAsyncUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
 - (AgentWSSoapBindingResponse *)GetAgentHierarcyUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters ;
 - (void)GetAgentHierarcyAsyncUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
+- (AgentWSSoapBindingResponse *)GetAllProductInfoUsingParameters:(AgentWS_GetAllProductInfo *)aParameters ;
+- (void)GetAllProductInfoAsyncUsingParameters:(AgentWS_GetAllProductInfo *)aParameters  delegate:(id<AgentWSSoapBindingResponseDelegate>)responseDelegate;
 
 @end
 @interface AgentWSSoapBindingOperation : NSOperation {
@@ -1243,6 +1300,14 @@
            parameters:(AgentWS_GetAgentHierarcy *)aParameters
 ;
 @end
+@interface AgentWSSoapBinding_GetAllProductInfo : AgentWSSoapBindingOperation {
+    AgentWS_GetAllProductInfo * parameters;
+}
+@property (retain) AgentWS_GetAllProductInfo * parameters;
+- (id)initWithBinding:(AgentWSSoapBinding *)aBinding delegate:(id<AgentWSSoapBindingResponseDelegate>)aDelegate
+           parameters:(AgentWS_GetAllProductInfo *)aParameters
+;
+@end
 @interface AgentWSSoapBinding_envelope : NSObject {
 }
 + (AgentWSSoapBinding_envelope *)sharedInstance;
@@ -1318,6 +1383,8 @@
 - (void)GetAllBackgroundImageAsyncUsingParameters:(AgentWS_GetAllBackgroundImage *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
 - (AgentWSSoap12BindingResponse *)GetAgentHierarcyUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters ;
 - (void)GetAgentHierarcyAsyncUsingParameters:(AgentWS_GetAgentHierarcy *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
+- (AgentWSSoap12BindingResponse *)GetAllProductInfoUsingParameters:(AgentWS_GetAllProductInfo *)aParameters ;
+- (void)GetAllProductInfoAsyncUsingParameters:(AgentWS_GetAllProductInfo *)aParameters  delegate:(id<AgentWSSoap12BindingResponseDelegate>)responseDelegate;
 
 @end
 @interface AgentWSSoap12BindingOperation : NSOperation {
@@ -1484,6 +1551,14 @@
 @property (retain) AgentWS_GetAgentHierarcy * parameters;
 - (id)initWithBinding:(AgentWSSoap12Binding *)aBinding delegate:(id<AgentWSSoap12BindingResponseDelegate>)aDelegate
            parameters:(AgentWS_GetAgentHierarcy *)aParameters
+;
+@end
+@interface AgentWSSoap12Binding_GetAllProductInfo : AgentWSSoap12BindingOperation {
+    AgentWS_GetAllProductInfo * parameters;
+}
+@property (retain) AgentWS_GetAllProductInfo * parameters;
+- (id)initWithBinding:(AgentWSSoap12Binding *)aBinding delegate:(id<AgentWSSoap12BindingResponseDelegate>)aDelegate
+           parameters:(AgentWS_GetAllProductInfo *)aParameters
 ;
 @end
 @interface AgentWSSoap12Binding_envelope : NSObject {

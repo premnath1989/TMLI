@@ -47,6 +47,8 @@
 		C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3CFB39A1DE42AE50067A160 /* SuccessAlertVC.m */; };
 		C3DB75A91DCAE491001D532F /* AnnualIncomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */; };
 		C3E969741DDAE9FA002C26BD /* ProspectLandingController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E969731DDAE9FA002C26BD /* ProspectLandingController.m */; };
+		DE019B441E2757B000B0EEAC /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = DE019B431E2757B000B0EEAC /* XMLParser.m */; };
+		DE019B481E28894800B0EEAC /* DTCustomColoredAccessory.m in Sources */ = {isa = PBXBuildFile; fileRef = DE019B471E28894800B0EEAC /* DTCustomColoredAccessory.m */; };
 		DE1168481DD03555007DDA9B /* NewJune_Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */; };
 		DE1168491DD03558007DDA9B /* NewJune_Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168461DD03551007DDA9B /* NewJune_Light.ttf */; };
 		DE11684A1DD0355A007DDA9B /* NewJune_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */; };
@@ -647,6 +649,10 @@
 		C3DB75A81DCAE491001D532F /* AnnualIncomeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnnualIncomeTableViewController.m; sourceTree = "<group>"; };
 		C3E969721DDAE9FA002C26BD /* ProspectLandingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProspectLandingController.h; sourceTree = "<group>"; };
 		C3E969731DDAE9FA002C26BD /* ProspectLandingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProspectLandingController.m; sourceTree = "<group>"; };
+		DE019B421E27579E00B0EEAC /* XMLParser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XMLParser.h; sourceTree = "<group>"; };
+		DE019B431E2757B000B0EEAC /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLParser.m; sourceTree = "<group>"; };
+		DE019B461E28893700B0EEAC /* DTCustomColoredAccessory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DTCustomColoredAccessory.h; sourceTree = "<group>"; };
+		DE019B471E28894800B0EEAC /* DTCustomColoredAccessory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCustomColoredAccessory.m; sourceTree = "<group>"; };
 		DE1168451DD03551007DDA9B /* NewJune_Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Bold.ttf; sourceTree = "<group>"; };
 		DE1168461DD03551007DDA9B /* NewJune_Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Light.ttf; sourceTree = "<group>"; };
 		DE1168471DD03551007DDA9B /* NewJune_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NewJune_Regular.ttf; sourceTree = "<group>"; };
@@ -1561,6 +1567,15 @@
 			name = InvestmentType;
 			sourceTree = "<group>";
 		};
+		DE019B451E2888D900B0EEAC /* CollapseTable */ = {
+			isa = PBXGroup;
+			children = (
+				DE019B461E28893700B0EEAC /* DTCustomColoredAccessory.h */,
+				DE019B471E28894800B0EEAC /* DTCustomColoredAccessory.m */,
+			);
+			name = CollapseTable;
+			sourceTree = "<group>";
+		};
 		DE1168431DD0350F007DDA9B /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1856,6 +1871,7 @@
 		DEDC5C901DAE34FC0033FE37 /* ProductInformation */ = {
 			isa = PBXGroup;
 			children = (
+				DE019B451E2888D900B0EEAC /* CollapseTable */,
 				DEDC5FE81DAE53D90033FE37 /* ProductInformation.xib */,
 				DEDC5FE91DAE53D90033FE37 /* ProductInformation.h */,
 				DEDC5FEA1DAE53D90033FE37 /* ProductInformation.m */,
@@ -1968,6 +1984,8 @@
 				DEDC5D951DAE3FBB0033FE37 /* DBMigration.m */,
 				DE2B23F11E2495050060941B /* DateFormatter.h */,
 				DE2B23F21E2495130060941B /* DateFormatter.m */,
+				DE019B421E27579E00B0EEAC /* XMLParser.h */,
+				DE019B431E2757B000B0EEAC /* XMLParser.m */,
 			);
 			name = LoginUtilities;
 			sourceTree = "<group>";
@@ -3801,6 +3819,7 @@
 				DEDC5D301DAE39420033FE37 /* ModelSPAJSignature.m in Sources */,
 				DEDC5DA31DAE402B0033FE37 /* NSData+Base64.m in Sources */,
 				DEDC5D241DAE39420033FE37 /* ModelAgentProfile.m in Sources */,
+				DE019B441E2757B000B0EEAC /* XMLParser.m in Sources */,
 				DEDC5D201DAE39420033FE37 /* ModelReligion.m in Sources */,
 				DEDC5D361DAE39420033FE37 /* ModelSPAJSubmitTracker.m in Sources */,
 				DEDC5D1E1DAE39420033FE37 /* ModelNationality.m in Sources */,
@@ -3948,6 +3967,7 @@
 				DEDC5DF61DAE41B30033FE37 /* MasaPembayaran.m in Sources */,
 				DEDC61071DAF79350033FE37 /* SPAJFilesViewController.m in Sources */,
 				DEDC5DD31DAE41880033FE37 /* IlustrationSignatureViewController.m in Sources */,
+				DE019B481E28894800B0EEAC /* DTCustomColoredAccessory.m in Sources */,
 				DEDC600E1DAE5D4F0033FE37 /* SPAJDisNumber.m in Sources */,
 				DEDC5FCF1DAE52BF0033FE37 /* RiderPTypeTbViewController.m in Sources */,
 				DEDC5EA81DAE47200033FE37 /* Country2.m in Sources */,

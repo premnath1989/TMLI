@@ -87,3 +87,4 @@
     NSString* const TABLE_RATES_CASH_PLAN = @"CashPlan_Rate";
     NSString* const TABLE_RATES_HSR_FACTOR = @"HSR_Factor";
     NSString* const TABLE_RATES_HSR_COR = @"HSR_COR";
+    NSString* const TABLE_PROSPECT = @"prospect_profile";

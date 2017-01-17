@@ -290,6 +290,52 @@
     return nsdate;
 }
 
+- (int)DeleteProspect{
+    sqlite3_stmt *statement;
+    int DeleteAgent = DATABASE_ERROR;
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"DELETE FROM %@",TABLE_PROSPECT];
+        
+        if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
+            if (sqlite3_step(statement) == SQLITE_DONE)
+            {
+                NSLog(@"date update!");
+                DeleteAgent = TABLE_INSERTION_SUCCESS;
+                
+            } else {
+                NSLog(@"date update Failed!");
+            }
+            sqlite3_finalize(statement);
+        }
+        sqlite3_close(contactDB);
+    }
+    return DeleteAgent;
+}
+
+- (int)DeleteSI{
+    
+    sqlite3_stmt *statement;
+    int DeleteAgent = DATABASE_ERROR;
+    if (sqlite3_open([databasePath UTF8String ], &contactDB) == SQLITE_OK)
+    {
+        NSString *querySQL = [NSString stringWithFormat: @"DELETE FROM SI_Master"];
+        
+        if (sqlite3_prepare_v2(contactDB, [querySQL UTF8String], -1, &statement, NULL) == SQLITE_OK){
+            if (sqlite3_step(statement) == SQLITE_DONE)
+            {
+                NSLog(@"date update!");
+                DeleteAgent = TABLE_INSERTION_SUCCESS;
+                
+            } else {
+                NSLog(@"date update Failed!");
+            }
+            sqlite3_finalize(statement);
+        }
+        sqlite3_close(contactDB);
+    }
+    return DeleteAgent;
+}
 
 
 - (int) DeleteAgentProfile{

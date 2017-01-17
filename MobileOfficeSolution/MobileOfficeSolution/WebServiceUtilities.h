@@ -34,4 +34,5 @@
 - (int)dataReferralSync:(NSString *)lastUpdateDate delegate:(id)delegate;
 - (int)getBGImages:(id)delegate;
 - (int)getAgentHierarchy:(NSString *)AgentCode delegate:(id)delegate;
+- (int)getProductInformation:(id)delegate;
 @end

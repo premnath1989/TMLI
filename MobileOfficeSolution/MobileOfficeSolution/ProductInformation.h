@@ -15,15 +15,18 @@
 #import "ProgressBarDelegate.h"
 #import "TableManagement.h"
 #import "User Interface.h"
+#import "AgentWS.h"
 
 
 #define videoExt @"mp4"
 #define brochureExt @"pdf"
 #define videoLabel @"video"
 #define brochureLabel @"brosur"
+#define folderLabel @"folder"
 #define downloadMacro @"Unduh"
 
-@interface ProductInformation : UIViewController<ReaderViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, ProductInfoItemsDelegate, ProgressBarDelegate>{
+
+@interface ProductInformation : UIViewController<ReaderViewControllerDelegate, UITableViewDelegate, UITableViewDataSource, ProductInfoItemsDelegate, ProgressBarDelegate,AgentWSSoapBindingResponseDelegate>{
     NSArray *columnHeadersContent;
     TableManagement *tableManagement;
     UIView *TableHeader;
@@ -33,7 +36,17 @@
     ProductInfoItems *FTPitems;
     NSString *filePath;
     SpinnerUtilities *spinnerLoading;
+    int serverTransferMode;
+    NSMutableIndexSet *expandedSections;
+    NSMutableArray *arrayContainer;
+    NSMutableArray *collapsedRow;
+    NSMutableArray *recordedCollapsedRow;
     
+    //for segment function
+    NSString *segment;
+    NSMutableArray *arrayContainerSegment1;
+    NSMutableArray *arrayContainerSegment2;
+    NSMutableArray *arrayContainerSegment3;
     
     // BHIMBIM'S QUICK FIX - Start
     
@@ -52,6 +65,8 @@
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *SegProductType;
+
+@property (weak, nonatomic) IBOutlet UIScrollView *segmentScrollView;
 
 - (IBAction)ActionSegChange:(id)sender;
 

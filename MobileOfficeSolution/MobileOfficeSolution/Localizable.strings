@@ -179,9 +179,9 @@ MODULE_DETAIL2_FNA = "Policyholder name";
 
 /* INFO */
 
-MESSAGE_INFO_OFFLINE120DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di nomor 021-xxxxxxxx pada jam kerja atau email ke helpdesk_tmconnect@tokiomarine-life.co.id";
+MESSAGE_INFO_OFFLINE120DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 120 hari sudah berakhir. \nSilahkan hubungi helpdesk TMConnect di helpdesk_tmconnect@tokiomarine-life.co.id";
 MESSAGE_INFO_OFFLINE30DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku lisensi Anda telah berakhir. \nMohon segera melakukan perpanjangan masa berlaku lisensi Anda.";
-MESSAGE_INFO_OFFLINE7DAYS = "Mohon maaf Anda tidak dapat mengakases aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 7 hari sudah berakhir. \nSilahkan melakukan koneksi internet untuk dapat mengakses TMConnect.";
+MESSAGE_INFO_OFFLINE7DAYS = "Mohon maaf Anda tidak dapat mengakses aplikasi TMConnect. \nMasa berlaku tidak menggunakan aplikasi TMConnect selama 7 hari sudah berakhir. \nSilahkan melakukan koneksi internet untuk dapat mengakses TMConnect.";
 
 MESSAGE_INFO_ONLINE120DAYS = "";
 MESSAGE_INFO_ONLINE30DAYS = "Masa berlaku lisensi Anda telah berakhir. Mohon segera melakukan perpanjangan";

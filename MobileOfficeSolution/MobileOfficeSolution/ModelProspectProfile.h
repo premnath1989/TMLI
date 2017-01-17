@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDatabase.h"
 #import "FMResultSet.h"
+#import "ProspectProfile.h"
 
 @interface ModelProspectProfile : NSObject {
     FMResultSet *results;
@@ -25,5 +26,16 @@
 -(NSString *)getDataMobileAndPrefix:(NSString *)ContactCode IndexNo:(NSString *)IndexNo;
 
 -(NSString *)selectProspectData:(NSString *)stringColumnName ProspectIndex:(int)intIndexNo;
--(NSString *)RecalculateScore;
+// -(NSString *)RecalculateScore;
+
+
+// BHIMBIM'S QUICK FIX - Start
+
+- (int) calculateAge : (NSString *) stringDateOfBirth;
+- (NSArray *) calculateScore : (ProspectProfile *) prospectProfile;
+- (void) recalculateScore;
+
+// BHIMBIM'S QUICK FIX - End
+
+
 @end

@@ -11,7 +11,7 @@
         <array key="BPreplay_Bold.ttf">
             <string>BPreplay-Bold</string>
         </array>
-        <array key="BPreplay_Italics.otf">
+        <array key="BPreplay_Italics.ttf">
             <string>BPreplay-Italic</string>
         </array>
         <array key="BPreplay_Regular.otf">
@@ -38,32 +38,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="zdP-SC-WiA" userLabel="View Thin Header">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="102"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IlB-Ig-h0q" customClass="ImageViewLogoHorizontal">
-                                        <rect key="frame" x="815" y="21" width="170" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aaG-6h-8mi" customClass="ButtonNavigation">
-                                        <rect key="frame" x="8" y="21" width="46" height="43"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="1hz-8B-6LG"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daftar Illustrasi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ExT-h0-NRw" customClass="LabelHeaderTitle">
-                                        <rect key="frame" x="88" y="23" width="395" height="39"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wvR-XM-0Hy" customClass="ButtonHeader">
                                 <rect key="frame" x="-2" y="259" width="1025" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -82,12 +56,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="1024" height="240"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oIc-e6-g5n" customClass="ButtonNavigation">
-                                        <rect key="frame" x="8" y="20" width="46" height="43"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5I2-Yu-sQk" customClass="ButtonNavigation">
+                                        <rect key="frame" x="10" y="10" width="46" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="3Vt-s3-3Bw"/>
+                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ihJ-Qx-X07"/>
                                         </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="hnU-gR-h9k" customClass="ImageViewArcHeaderPrimary">
@@ -105,6 +79,48 @@
                                         <rect key="frame" x="845" y="20" width="120" height="105"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oIc-e6-g5n" customClass="ButtonBackPrimary">
+                                        <rect key="frame" x="16" y="61" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="FEJ-GX-lF8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="zdP-SC-WiA" userLabel="View Thin Header">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="102"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IlB-Ig-h0q" customClass="ImageViewLogoHorizontal">
+                                        <rect key="frame" x="815" y="21" width="170" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aaG-6h-8mi" customClass="ButtonNavigation">
+                                        <rect key="frame" x="8" y="21" width="46" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="1hz-8B-6LG"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Daftar Illustrasi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ExT-h0-NRw" customClass="LabelHeaderTitle">
+                                        <rect key="frame" x="179" y="23" width="395" height="39"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0za-Lk-8PL" customClass="ButtonBackPrimary">
+                                        <rect key="frame" x="68" y="24" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ubQ-VT-2Dm"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -277,16 +293,8 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KuT-SC-Q8z" customClass="ButtonBack">
-                                        <rect key="frame" x="27" y="8" width="45" height="45"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <action selector="ActionBackTo:" destination="l1n-wK-wLB" eventType="touchUpInside" id="1bf-r8-F3t"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1Oj-wS-Saq" customClass="ButtonNavigation2">
-                                        <rect key="frame" x="27" y="65" width="45" height="45"/>
+                                        <rect key="frame" x="27" y="8" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Show"/>
                                         <connections>
@@ -304,6 +312,14 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KuT-SC-Q8z" customClass="ButtonBack">
+                                        <rect key="frame" x="27" y="61" width="36" height="36"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBackTo:" destination="l1n-wK-wLB" eventType="touchUpInside" id="1bf-r8-F3t"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.25101745130000003" green="0.5907619596" blue="0.67238336799999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -398,18 +414,18 @@
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" id="qBv-7T-QcU">
-                                        <rect key="frame" x="51" y="0.0" width="190" height="50"/>
+                                        <rect key="frame" x="51" y="0.0" width="196" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oz1-91-nHx">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="btnSortBy:" destination="l1n-wK-wLB" eventType="touchUpInside" id="UUQ-Gp-5Vk"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="No Ilustrasi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="t7r-2N-itX">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -419,18 +435,18 @@
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" id="eGE-Hp-uKa">
-                                        <rect key="frame" x="242" y="0.0" width="190" height="50"/>
+                                        <rect key="frame" x="248" y="0.0" width="184" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4oV-gg-QGT">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ADq-k6-LR5">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <connections>
@@ -3138,7 +3154,7 @@
                                 <color key="textColor" red="0.1058823529" green="0.45882352939999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="DATA PESERTA" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="UG0-EY-rxE">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="DATA PRIBADI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="UG0-EY-rxE">
                                 <rect key="frame" x="0.0" y="33" width="1024" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1058823529" green="0.45882352939999999" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -5021,7 +5037,7 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
-        <image name="photo_spaj_primary" width="48" height="48"/>
+        <image name="photo_spaj_primary" width="72" height="72"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>

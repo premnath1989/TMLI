@@ -35,6 +35,7 @@
 - (NSMutableDictionary *)getAgentCodeLevel;
 - (NSString *) getAgentProperty:(NSString *)property;
 - (void)setAgentHierarchy:(WebResponObj *)hierarchySet;
+- (int)DeleteProspect;
 
 
 //general functions
@@ -43,6 +44,7 @@
 - (BOOL) fullSyncTable:(WebResponObj *)obj;
 - (NSString *) dataVersion;
 - (NSString *) getTableProperty:(NSString *)property tableName:(NSString *)tableName condition:(NSString *)condition;
+
 
 //SPAJ Functions
 - (long long)SPAJAllocated;
@@ -63,5 +65,6 @@
 - (NSString *)getUniqueDeviceIdentifierAsString;
 - (NSString *) getLastUpdateReferral;
 - (NSMutableDictionary *)premiKeluargaku:(NSString *)SINo;
+- (int)DeleteSI;
 
 @end

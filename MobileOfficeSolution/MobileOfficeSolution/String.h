@@ -86,3 +86,4 @@
     extern NSString* const TABLE_RATES_CASH_PLAN;
     extern NSString* const TABLE_RATES_HSR_FACTOR;
     extern NSString* const TABLE_RATES_HSR_COR;
+    extern NSString* const TABLE_PROSPECT;
