@@ -32,7 +32,7 @@
 - (UIView *) TableHeaderSetupXY:(NSArray *)columnHeaders positionY:(float)originY positionX:(float)originX{
     TableHeader = [[UIView alloc]initWithFrame:
                    CGRectMake(originX,
-                              originY, ParentView.frame.size.width+258.0f, 41.0f)];
+                              originY, ParentView.frame.size.width+80.0f, 41.0f)];
     [TableHeader setBackgroundColor:themeColour];
     [self TableHeaderColumn:columnHeaders];
     return TableHeader;
@@ -78,7 +78,17 @@
     int i = 0;
     for(UIView *view in [TableHeader subviews]){
         if([view isKindOfClass:[UILabel class]]){
-            CGRect frame=CGRectMake(view.frame.origin.x + 15.0f,0, view.frame.size.width, 50);
+            
+            CGRect frame;
+            NSTextAlignment aligment;
+            if(i > 0){
+                frame=CGRectMake(view.frame.origin.x, 0, view.frame.size.width, 50);
+                aligment = NSTextAlignmentCenter;
+            }else{
+                frame=CGRectMake(view.frame.origin.x + 15.0f, 0, view.frame.size.width, 50);
+                aligment = NSTextAlignmentJustified;
+            }
+            
             UILabel *label1=[[UILabel alloc]init];
             label1.frame=frame;
             if ([dataArray count]>0){
@@ -90,7 +100,7 @@
             
             label1.tag = (index*1000)+i;
             label1.textColor = textColor;
-            label1.textAlignment = NSTextAlignmentJustified;
+            label1.textAlignment = aligment;
             label1.font = [UIFont fontWithName:@"BPreplay" size:16];
             [cell.contentView addSubview:label1];
             
