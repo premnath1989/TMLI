@@ -1229,6 +1229,7 @@ int newAge;
         intAge = [self calculateAge:prospectProfile.ProspectDOB];
         intPoin = 0;
         stringInputValue = @"";
+        intComplete += 1;
         
         /* CONDITION */
         
@@ -1259,14 +1260,13 @@ int newAge;
         }
         else
         {
-            
+            intComplete -= 1;
         }
         
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", stringInputValue, intPoin, intAccumulatePoin, intComplete);
     }
     
     
@@ -1289,6 +1289,8 @@ int newAge;
             intPoin = 2;
             stringInputValue = prospectProfile.ProspectGender;
         }
+        
+        intComplete += 1;
     }
     else
     {
@@ -1298,8 +1300,7 @@ int newAge;
     /* RESULT */
     
     intAccumulatePoin += intPoin;
-    intComplete += 1;
-    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, intAccumulatePoin);
+    NSLog(@"Calculate Score - Gender | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", stringInputValue, intPoin, intAccumulatePoin, intComplete);
     
     
     /* MARITAL STATUS */
@@ -1329,6 +1330,7 @@ int newAge;
             {
                 intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Marital status | poin -> %d", intPoin);
+                intComplete += 1;
                 break;
             }
         }
@@ -1336,8 +1338,7 @@ int newAge;
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.MaritalStatus, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Marital status | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", prospectProfile.MaritalStatus, intPoin, intAccumulatePoin, intComplete);
     }
     
     
@@ -1368,6 +1369,7 @@ int newAge;
             {
                 intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Annual income | poin -> %d", intPoin);
+                intComplete += 1;
                 break;
             }
         }
@@ -1375,8 +1377,7 @@ int newAge;
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.AnnualIncome, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Annual income | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", prospectProfile.AnnualIncome, intPoin, intAccumulatePoin, intComplete);
     }
     
     
@@ -1407,6 +1408,7 @@ int newAge;
             {
                 intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Source income | poin -> %d", intPoin);
+                intComplete += 1;
                 break;
             }
         }
@@ -1414,9 +1416,9 @@ int newAge;
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.SourceIncome, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Source income | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", prospectProfile.SourceIncome, intPoin, intAccumulatePoin, intComplete);
     }
+    
     
     /* OCUUPATION */
     
@@ -1445,6 +1447,7 @@ int newAge;
             {
                 intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Occupation | poin -> %d", intPoin);
+                intComplete += 1;
                 break;
             }
         }
@@ -1452,9 +1455,9 @@ int newAge;
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.ProspectOccupationCode, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Occupation | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", prospectProfile.ProspectOccupationCode, intPoin, intAccumulatePoin, intComplete);
     }
+    
     
     /* REFERENCE */
     
@@ -1483,6 +1486,7 @@ int newAge;
             {
                 intPoin = [[result objectForColumnName:@"Poin"] intValue];
                 NSLog(@"Calculate Score - Referral name | poin -> %d", intPoin);
+                intComplete += 1;
                 break;
             }
         }
@@ -1490,8 +1494,7 @@ int newAge;
         /* RESULT */
         
         intAccumulatePoin += intPoin;
-        intComplete += 1;
-        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d", prospectProfile.ReferralName, intPoin, intAccumulatePoin);
+        NSLog(@"Calculate Score - Referral name | name -> %@, point -> %d, accumulate point -> %d, complete -> %d", prospectProfile.ReferralName, intPoin, intAccumulatePoin, intComplete);
     }
     else
     {
@@ -1504,6 +1507,8 @@ int newAge;
     intAccumulatePoin += 1;
     intComplete += 1;
     
+    NSLog(@"Calculate Score - New prospect | accumulate point -> %d, complete -> %d", intAccumulatePoin, intComplete);
+    
     
     /* COMPLETE CHECK */
     
@@ -1515,6 +1520,8 @@ int newAge;
     {
         stringStatus = @"Incomplete";
     }
+    
+    NSLog(@"Calculate Score - Status | complete status -> %@", stringStatus);
     
     
     /* RESULT */

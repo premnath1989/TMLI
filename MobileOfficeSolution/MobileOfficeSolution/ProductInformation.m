@@ -275,6 +275,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     arrayContainerSegment3 = [[NSMutableArray alloc]init];
     [arrayContainerSegment3 addObject:[arrayContainer objectAtIndex:2]];
     
+    float yPosition = 20.0;
     NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
     for(NSMutableDictionary *tempDict in arrayContainer){
         NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
@@ -282,20 +283,37 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
             
             //we create segment button of the scrollview here
-            [self createSegmentedButtons:keyTempDict];
-            
+            [self createSegmentedButtons:keyTempDict yPosition:yPosition];
+            yPosition = yPosition + 60.0;
             [stringKeys addObject:keyTempDict];
         }
     }
 }
 
-- (void) createSegmentedButtons:(NSString *)segmentName{
+- (void) createSegmentedButtons:(NSString *)segmentName yPosition:(float)yPosition{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [button addTarget:self action:@selector(aMethod:)forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:segmentName forState:UIControlStateNormal];
-    button.frame = CGRectMake(0.0, 300.0, 160.0, 40.0);
+     [button addTarget:self action:@selector(changeSegmentButtonAction:)forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(10.0, yPosition, 160.0, 40.0);
+    button.backgroundColor = [UIColor yellowColor];
     
     [segmentScrollView addSubview:button];
+}
+
+- (void)changeSegmentButtonAction:(UIButton*)sender{
+    [recordedCollapsedRow removeAllObjects];
+    [collapsedRow removeAllObjects];
+    segment = sender.currentTitle;
+    
+    for(NSMutableDictionary *tempDict in arrayContainer){
+        NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
+        if([segment compare:keyTempDict] == NSOrderedSame){
+            NSMutableArray *segmentArray = [[NSMutableArray alloc]init];
+            [segmentArray addObject:tempDict];
+            [self changeSegment:segmentArray];
+            return;
+        }
+    }
 }
 
 - (BOOL)connected
