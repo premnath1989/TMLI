@@ -5906,18 +5906,18 @@ NSString *prevPlan;
         _ViewThinHeader.hidden = NO;
         _ViewThickHeader.hidden = YES;
         //isThin = NO;
-        _btnChangeHeader.frame = CGRectMake(0, 105.0, 1024.0, 20.0);
-        ScrollMenu.frame = CGRectMake(0, 125.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 197.0, 1024.0, 600.0);
+        _btnChangeHeader.frame = CGRectMake(_btnChangeHeader.frame.origin.x, 105.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(ScrollMenu.frame.origin.x, 125.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(_SiScrollView.frame.origin.x, 197.0, 1024.0, 600.0);
         
     }
     else {
         _ViewThinHeader.hidden = YES;
         _ViewThickHeader.hidden = NO;
         //isThin = YES;
-        _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
-        ScrollMenu.frame = CGRectMake(0, 280.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 428.0);
+        _btnChangeHeader.frame = CGRectMake(_btnChangeHeader.frame.origin.x, 260.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(ScrollMenu.frame.origin.x, 280.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(_SiScrollView.frame.origin.x, 340.0, 1024.0, 428.0);
     }
     
 }

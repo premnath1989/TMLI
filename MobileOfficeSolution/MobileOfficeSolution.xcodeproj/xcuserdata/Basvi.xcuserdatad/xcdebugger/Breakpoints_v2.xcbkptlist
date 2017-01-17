@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "3778"
             endingLineNumber = "3778"
-            landmarkName = "-saveRider:MDKK:BP:"
+            landmarkName = "-saveBasicPlan:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/BasicPlanViewController.m"
-            timestampString = "505284438.985972"
+            timestampString = "506380525.419202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2019"
-            endingLineNumber = "2019"
+            startingLineNumber = "2022"
+            endingLineNumber = "2022"
             landmarkName = "-loadDataFromList"
             landmarkType = "7">
          </BreakpointContent>

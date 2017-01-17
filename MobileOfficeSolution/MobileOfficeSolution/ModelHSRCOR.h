@@ -12,6 +12,6 @@
 @interface ModelHSRCOR : NSObject{
     FMResultSet *results;
 }
--(double)getHSRCOR:(int)LAAge StringPlanCode:(NSString *)stringPlanCode
+-(double)getHSRCOR:(int)LAAge StringPlanCode:(NSString *)stringPlanCode;
 
 @end
