@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--<link href="SI/css/style.css" rel="stylesheet" type="text/css" />-->
+        <script type="text/javascript" charset="utf-8" src="SI/js/jquery-1.8.2.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="SI/js/hla.js"></script>
+        <style>
+            #maincontainer
+            {
+                top:0px;
+                padding-top:0;
+                margin:auto;
+                width:100%;
+                height:460px;
+            }
+            thead,table-Summary1 {
+                border: 1px solid black;
+            }
+        thead,table-Summary2 {
+            border: 1px solid black;
+        }
+        /*td {
+            border-style: solid;
+            border-color: black;
+            border-width: 0px;
+            padding: 0px 0px 0px 0px;
+            text-align: justify;
+            font-size:10px;
+            font-family: "Helvetica"
+        }*/
+        p {
+            font-size:10px;
+            padding: 0px 0px 0px 0px;
+        }
+        z {
+            font-size:10px;
+            padding: 0px 0px 0px 0px;
+        }
+        header1 {
+            font-size:18px;
+            padding: 0px 0px 0px 0px;
+        }
+        footer1 {
+            width:100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+        tr.rowStyle {
+            border-style: solid;
+            border-color: black;
+            border-width: 1px;
+            font-size:10px;
+            
+        }
+        </style>
+        
+        
+			<script>
+				
+			</script>
+            <!--<body onload="onBodyLoad()">-->
+            <body>
+				
+				<div id="maincontainer">
+				<div class="main-content">
+					
+					<table width="100%">
+						<tr>
+							<td>A. Data Calon Tertanggung</td>
+							<td></td>
+							<td>B. Data Calon Pemegang Polis</td>
+						</tr>
+						<tr>
+							<td>
+								<table width="100%" style=border-style:solid;border-width:1px>
+									<tr>
+										<td width="30%">Calon Tertanggung</td>
+										<td width="1%">:</td>
+										<td align="left">Faiz Omar Baraja</td>
+									</tr>
+									<tr>
+										<td>Jenis Kelamin</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Tanggal Lahir</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Usia</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+								</table>
+							</td>
+							<td></td>
+							<td>
+								<table width="100%" style=border-style:solid;border-width:1px>
+									<tr>
+										<td width="30%">Calon Pemegang Polis</td>
+										<td width="1%">:</td>
+										<td align="left">Faiz Omar Baraja</td>
+									</tr>
+									<tr>
+										<td>Jenis Kelamin</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Tanggal Lahir</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Usia</td>
+										<td>:</td>
+										<td></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="3">C. Data Produk Asuransi</td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td colspan="3">
+								<table width="100%" style=border-style:solid;border-width:1px >
+									<tr>
+										<td valign="top" width="48%">
+											<table width="100%">
+												<tr>
+													<td valign="top" width="30%">
+														Mata Uang
+													</td>
+													<td width="1%">
+														:
+													</td>
+													<td>
+														Rupiah
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Premi Reguler
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Premi Top Up Reguler
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Premi Total
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Rencana Masa Pembayaran Premi
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Masa Pembayaran Premi
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+												<tr>
+													<td>
+														Frekuensi Pembayaran Premi
+													</td>
+													<td>
+														:
+													</td>
+													<td>
+														
+													</td>
+												</tr>
+											</table>
+										</td>
+										<td width="2%">
+											&nbsp
+										</td>
+										<td valign="top" width="48%">
+											Pilihan Jenis Investasi (%) <br/>
+											<table id="TableFund" width="100%">
+												<tr>
+													<td>
+														Fund Name
+													</td>
+													<td>
+														Fund Percent
+													</td>
+												</tr>
+												
+												
+											</table>
+										</td>
+									</tr>
+									<tr>
+							<td>&nbsp</td>
+							<td></td>
+							<td></td>
+						</tr>
+									<tr>
+										<td colspan="3">
+								<table id="TableRider" width="100%" style=border-style:solid;border-width:0px>
+									<tr>
+										<td></td>
+										<td align="center">Uang Pertanggungan</td>
+										<td align="center">Biaya Asuransi* <br/> (per tahun)</td>
+										<td align="center">Masa Pertanggungan* <br/> (tahun)</td>
+									</tr>
+									<tr>
+										<td>Asuransi Dasar</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>TM Maximum Investment Plus</td>
+										<td align="center">200.000.000.000</td>
+										<td align="center">298.000.000</td>
+										<td align="center">71</td>
+									</tr>
+									<tr>
+										<td>Asuransi Tambahan</td>
+										<td></td>
+										<td></td>
+										<td></td>
+									</tr>
+								</table>
+							</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td colspan="3"> *) Biaya Asuransi akan berubah setiap tahun sesuai peningkatan usia Tertanggung.</td>
+									</tr>
+								</table>
+							</td>
+							<td></td>
+							<td></td>
+						</tr>
+						
+					</table>
+				</div>
+				</div>
+				
+                
+            </body>
+    </head>        
+</html>

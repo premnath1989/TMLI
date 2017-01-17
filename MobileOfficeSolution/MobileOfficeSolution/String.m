@@ -54,6 +54,7 @@
 
     // Database Name
     NSString* const DATABASE_MAIN_NAME = @"MOSDB.sqlite";
+    NSString* const DATABASE_RATES_MAIN_NAME = @"TMLI_Rates.sqlite";
 
     // Tables Name
     NSString* const TABLE_AGENT_PROFILE = @"TMLI_Agent_profile";
@@ -76,3 +77,13 @@
     NSString* const TABLE_MASTER_INFO = @"TMLI_Master_Info";
     NSString* const TABLE_ERRORCODE = @"TMLI_Ref_ErrorCode";
     NSString* const TABLE_EPROPOSAL_ANNUALINCOME = @"eProposal_AnnualIncome";
+    NSString* const TABLE_SI_RIDER_TYPE = @"SI_RiderType";
+    NSString* const TABLE_SI_RIDER_PLAN = @"SI_RiderPlan";
+    NSString* const TABLE_SI_RIDER_SELECTED = @"SI_RiderSelected";
+
+    NSString* const TABLE_RATES_CI55 = @"CI55_Rate";
+    NSString* const TABLE_RATES_CIEE = @"CI_Early_Rate";
+    NSString* const TABLE_RATES_ADVANCE_MEDICARE = @"Adv_MediCare";
+    NSString* const TABLE_RATES_CASH_PLAN = @"CashPlan_Rate";
+    NSString* const TABLE_RATES_HSR_FACTOR = @"HSR_Factor";
+    NSString* const TABLE_RATES_HSR_COR = @"HSR_COR";

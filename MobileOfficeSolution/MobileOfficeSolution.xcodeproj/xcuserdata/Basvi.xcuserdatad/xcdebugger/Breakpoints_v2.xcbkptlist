@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/SIMenuViewController.m"
-            timestampString = "505714323.256125"
+            timestampString = "505997270.959692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3777"
-            endingLineNumber = "3777"
+            startingLineNumber = "3778"
+            endingLineNumber = "3778"
             landmarkName = "-saveRider:MDKK:BP:"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/SIMenuViewController.m"
-            timestampString = "505714261.866763"
+            timestampString = "505997270.959692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1414"
-            endingLineNumber = "1414"
+            startingLineNumber = "1415"
+            endingLineNumber = "1415"
             landmarkName = "-validateSaveAllWithoutPrompt"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/SIMenuViewController.m"
-            timestampString = "505714261.866763"
+            timestampString = "505997270.959692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1595"
-            endingLineNumber = "1595"
-            landmarkName = "-savePage:"
+            startingLineNumber = "1596"
+            endingLineNumber = "1596"
+            landmarkName = "-validateSaveAllWithoutPrompt"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/SIMenuViewController.m"
-            timestampString = "505714261.866763"
+            timestampString = "505997270.959692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1668"
-            endingLineNumber = "1668"
+            startingLineNumber = "1669"
+            endingLineNumber = "1669"
             landmarkName = "-validateSaveAll"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MobileOfficeSolution/SIMenuViewController.m"
-            timestampString = "505714323.256125"
+            timestampString = "505997270.959692"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "3304"
-            endingLineNumber = "3304"
+            startingLineNumber = "3305"
+            endingLineNumber = "3305"
             landmarkName = "-showviewControllerFromMenu:"
             landmarkType = "7">
          </BreakpointContent>

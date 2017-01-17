@@ -6322,7 +6322,7 @@ bool WPTPD30RisDeleted = FALSE;
     NSMutableDictionary* originalDictPOLAData = [[NSMutableDictionary alloc]init];
     originalDictPOLAData = [_delegate getPOLADictionary];
    
-    [originalDictPOLAData setObject:@"" forKey:@"ProductCode"];
+    [originalDictPOLAData setObject:getPlanCode forKey:@"ProductCode"];
     [originalDictPOLAData setObject:_masaPembayaranButton.currentTitle forKey:@"ProductName"];
     
     

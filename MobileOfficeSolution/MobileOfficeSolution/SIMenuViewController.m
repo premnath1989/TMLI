@@ -107,6 +107,7 @@ BOOL NavShow3;
 
     formatter = [[Formatter alloc] init];
     riderCalculation = [[RiderCalculation alloc]init];
+    modelSIRiderSelected = [[ModelSIRiderSelected alloc]init];
     _modelSIPremium = [[Model_SI_Premium alloc]init];
     _modelSIPOData = [[ModelSIPOData alloc]init];
     _modelSIMaster = [[Model_SI_Master alloc]init];
@@ -6004,7 +6005,7 @@ NSString *prevPlan;
 
 #pragma mark save method Rider
 -(void)setInitialRiderArray{
-    arrayRiderData = [[NSMutableArray alloc]initWithArray:[model_SI_Rider getRiderDataFor:self.requestSINo]];
+    arrayRiderData = [[NSMutableArray alloc]initWithArray:[modelSIRiderSelected getRiderSelectedDataFor:self.requestSINo]];
 }
 
 -(void)setRiderDictionary:(NSMutableArray *)arrayULRiderData{
