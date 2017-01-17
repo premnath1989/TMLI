@@ -83,6 +83,9 @@
                                         <rect key="frame" x="16" y="61" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="FEJ-GX-lF8"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -114,6 +117,9 @@
                                         <rect key="frame" x="68" y="24" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ubQ-VT-2Dm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
