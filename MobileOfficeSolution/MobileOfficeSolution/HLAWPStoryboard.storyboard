@@ -84,7 +84,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="sA4-T7-kCm"/>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="FEJ-GX-lF8"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -107,7 +107,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Daftar Illustrasi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ExT-h0-NRw" customClass="LabelHeaderTitle">
-                                        <rect key="frame" x="145" y="23" width="395" height="39"/>
+                                        <rect key="frame" x="179" y="23" width="395" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -118,7 +118,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ZMC-9P-7jR"/>
+                                            <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ubQ-VT-2Dm"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -414,18 +414,18 @@
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" id="qBv-7T-QcU">
-                                        <rect key="frame" x="51" y="0.0" width="190" height="50"/>
+                                        <rect key="frame" x="51" y="0.0" width="196" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oz1-91-nHx">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <connections>
                                                     <action selector="btnSortBy:" destination="l1n-wK-wLB" eventType="touchUpInside" id="UUQ-Gp-5Vk"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="No Ilustrasi" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="t7r-2N-itX">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -435,18 +435,18 @@
                                         <color key="backgroundColor" red="0.28235294119999998" green="0.38431372549999998" blue="0.42352941179999998" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" misplaced="YES" id="eGE-Hp-uKa">
-                                        <rect key="frame" x="242" y="0.0" width="190" height="50"/>
+                                        <rect key="frame" x="248" y="0.0" width="184" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Nama" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" id="4oV-gg-QGT">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="NewJune-Regular" family="NewJuneRegular" pointSize="16"/>
                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ADq-k6-LR5">
-                                                <rect key="frame" x="0.0" y="0.0" width="190" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="184" height="50"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                 <connections>
@@ -3129,7 +3129,7 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PW5-uL-WsP" customClass="TextFieldFormGeneralPrimary">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PW5-uL-WsP" customClass="TextFieldFormGeneralPrimary">
                                         <rect key="frame" x="537" y="404" width="395" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
@@ -3188,7 +3188,6 @@
                         <outlet property="searchDisplayController" destination="T41-4c-XeM" id="6Qm-I6-mS7"/>
                         <outlet property="sexSegment" destination="afS-7k-o9O" id="iVL-lH-Qhb"/>
                         <outlet property="txtDob" destination="8Sz-Oy-oKe" id="mHQ-SI-i89"/>
-                        <outlet property="txtHubungaLain2" destination="PW5-uL-WsP" id="4mD-Yk-xhQ"/>
                         <outlet property="txtHubungan" destination="2MR-KK-yda" id="yh9-tn-FdB"/>
                     </connections>
                 </viewController>
@@ -5038,7 +5037,7 @@
         <image name="check_icon.png" width="36" height="33"/>
         <image name="disclosure_indicator.png" width="8" height="13"/>
         <image name="emptyCheckBox.png" width="44" height="43"/>
-        <image name="photo_spaj_primary" width="2048" height="1536"/>
+        <image name="photo_spaj_primary" width="72" height="72"/>
         <image name="prospect_100_2.png" width="100" height="100"/>
         <image name="prospect_100_3.png" width="100" height="100"/>
         <image name="undo.png" width="32" height="32"/>
