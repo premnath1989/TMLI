@@ -1576,14 +1576,8 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
 
 - (IBAction)ActionBackTo:(id)sender {
     
-//    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
-//    AppDelegate *appdlg = (AppDelegate*)[[UIApplication sharedApplication] delegate ];
-//    MainClient *mainClient = [cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"];
-//    mainClient.modalPresentationStyle = UIModalPresentationFullScreen;
-//    //        mainClient.IndexTab = appdlg.ProspectListingIndex;
-//    [self presentViewController:mainClient animated:NO completion:Nil];
-//    appdlg = Nil;
-//    mainClient= Nil;
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"] animated:YES completion: nil];
     
 }
 

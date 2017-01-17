@@ -171,6 +171,8 @@
 @property (strong, nonatomic) IBOutlet UIButton *NamaProduk;
 @property (strong, nonatomic) IBOutlet UIButton *BtnHubungan;
 @property (strong, nonatomic) IBOutlet UITextField *txtHubungan;
+@property (strong, nonatomic) IBOutlet UITextField *txtHubungaLain2;
+
 
 @property (nonatomic, assign)BOOL QuickQuoteBool;
 
