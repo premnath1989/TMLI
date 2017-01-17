@@ -48,6 +48,8 @@
     bool selfRelation;
     int lastIndexSelected;
     
+    UIViewController *CurrentVC;
+    
     //added by Faiz for New Machanasime in save data
     NSMutableDictionary* dictParentPOLAData;
     NSMutableDictionary* dictParentULBasicPlanData;
@@ -2857,6 +2859,8 @@ BOOL NavShow3;
 
 #pragma mark changeSection
 -(IBAction)actionShowPolicyHolder:(id)sender{
+    
+    CurrentVC = _LAController;
     if (_LAController == nil) {
         self.LAController = [self.storyboard instantiateViewControllerWithIdentifier:@"LAView"];
         _LAController.delegate = self;
@@ -2877,6 +2881,7 @@ BOOL NavShow3;
         [self.RightView addSubview:self.LAController.view];
         [self.LAController loadDataFromList];
     }
+     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
 
@@ -2886,6 +2891,7 @@ BOOL NavShow3;
     NSLog(@"%@", [dictParentPOLAData valueForKey:@"RelWithLA"]);
     if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
          [self actionShowBasicPlan:nil];
+        CurrentVC = _BasicController;
     }
     else {
         if (!_SecondLAController) {
@@ -2911,10 +2917,14 @@ BOOL NavShow3;
             
             [self.RightView addSubview:self.SecondLAController.view];
             [self.SecondLAController loadDataFromList];
+            CurrentVC = _SecondLAController;
+          
         }
 
     }
    
+    [self setBOOLSectionFilled];
+    [myTableView reloadData];
     }
 
 -(IBAction)actionShowBasicPlan:(id)sender{
@@ -2937,7 +2947,10 @@ BOOL NavShow3;
         [self.RightView addSubview:self.BasicController.view];
         [self.BasicController loadDataFromList];
     }
+    CurrentVC = _BasicController;
+    [self setBOOLSectionFilled];
     [myTableView reloadData];
+    
 }
 
 -(IBAction)actionShowRider:(id)sender{
@@ -2957,6 +2970,7 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
     
+    [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
 
@@ -2969,6 +2983,8 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
     
+    
+    [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
 
@@ -2978,6 +2994,8 @@ BOOL NavShow3;
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
     [topUpWithDrawVC loadDataFromList];
     
+    CurrentVC = _InvestmentController;
+    [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
 
@@ -2997,9 +3015,7 @@ BOOL NavShow3;
     else if (currentVC == _InvestmentController) {
         [self actionShowTopUpWithdraw:nil];
     }
-    /*else if (currentVC == _FundPercentController) {
-        [self actionShowTopUpWithdraw:nil];
-    }*/
+
 }
 #pragma mark - table view
 
@@ -3058,55 +3074,55 @@ BOOL NavShow3;
     UIImage * ShapeGuide_disable = [UIImage imageNamed:@"shape_guideright_disable"];
     
     if (isPOFilled){
-        [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
-    }
-    else{
         [cell.btnPemegangPolis setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        [cell.btnPemegangPolis setBackgroundColor:gray];
     }
-    
+
     if (isLAFilled){
-        [cell.BtnTertanggung setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+        [cell.BtnTertanggung setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        [cell.BtnTertanggung setBackgroundColor:gray];
     }
     else{
         if (isPOFilled){
             [cell.BtnTertanggung setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+            [cell.BtnTertanggung setBackgroundColor:gray];
         }
         else{
             [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
+            [cell.BtnTertanggung setBackgroundColor:gray];
         }
     }
     
     if (isBasicPlanFilled){
-        [cell.BtnAsuransiDasar setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+        [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        [cell.BtnAsuransiDasar setBackgroundColor:gray];
     }
     else{
         if (isLAFilled){
             [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+            [cell.BtnAsuransiDasar setBackgroundColor:gray];
         }
         else{
             [cell.BtnAsuransiDasar setImage:ShapeGuide_disable forState:UIControlStateNormal];
+            [cell.BtnAsuransiDasar setBackgroundColor:gray];
         }
     }
     
-     [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    //Set as Current, change button UI
     
-    if ((([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@""]) || ([dictParentPOLAData valueForKey:@"RelWithLA"] == nil))){
-        [cell.BtnTertanggung setEnabled:NO];
-        [cell.BtnTertanggung setBackgroundColor:gray];
-        [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-        
+    if (CurrentVC == _LAController) {
+        [cell.btnPemegangPolis setBackgroundColor:green];
+        [cell.btnPemegangPolis setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
-    else if (([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"DIRI SENDIRI"])||([[dictParentPOLAData valueForKey:@"RelWithLA"] isEqualToString:@"SELF"])){
-        [cell.BtnTertanggung setEnabled:YES];
-        [cell.BtnTertanggung setBackgroundColor:gray];
-        [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
-        
-    }
-    else {
-        [cell.BtnTertanggung setEnabled:YES];
+    else if (CurrentVC == _SecondLAController) {
         [cell.BtnTertanggung setBackgroundColor:green];
         [cell.BtnTertanggung setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
+    else if (CurrentVC == _BasicController) {
+        [cell.BtnAsuransiDasar setBackgroundColor:green];
+        [cell.BtnAsuransiDasar setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+
 
     [cell.view1 setBackgroundColor:green];
     
@@ -3569,6 +3585,7 @@ BOOL NavShow3;
 }
 
 -(void)saveNewLA:(NSDictionary *)dataPO{
+    isPOFilled = YES;
     dictionaryPOForInsert = [NSMutableDictionary dictionaryWithDictionary:dataPO];
     [arrayIntValidate replaceObjectAtIndex:0 withObject:@"1"];
     [self.myTableView reloadData];
@@ -3641,6 +3658,7 @@ BOOL NavShow3;
         //[self.SecondLAController resetField];
         [self.myTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:SIMENU_SECOND_LIFE_ASSURED inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
+    
     
 
 }
@@ -5925,6 +5943,13 @@ NSString *prevPlan;
 {
     self.modalTransitionStyle = UIModalPresentationFormSheet;
     [self dismissViewControllerAnimated:TRUE completion:Nil];
+}
+
+- (IBAction)ActionBack:(id)sender {
+    
+    UIStoryboard *cpStoryboard = [UIStoryboard storyboardWithName:@"HLAWPStoryboard" bundle:Nil];
+    [self presentViewController:[cpStoryboard instantiateViewControllerWithIdentifier:@"SILandingPage"] animated:YES completion: nil];
+    
 }
 
 - (void)heritageSimpan{
