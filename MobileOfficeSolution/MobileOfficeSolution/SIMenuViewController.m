@@ -31,6 +31,7 @@
 #import "User Interface.h"
 
 
+
 #define TRAD_PAYOR_FIRSTLA  @"0"
 #define TRAD_PAYOR_SECONDLA  @"1"
 #define TRAD_PAYOR_PAYOR  @"2"
@@ -137,6 +138,10 @@ BOOL NavShow3;
 
     topUpWithDrawVC = [[TopupWithdrawViewController alloc]initWithNibName:@"TopupWithdrawViewController" bundle:nil];
     [topUpWithDrawVC setDelegate:self];
+
+    illustrationVC = [[IllustrationViewController alloc]initWithNibName:@"IllustrationViewController" bundle:nil];
+    [illustrationVC setDelegate:self];
+
     
     dictionaryPOForInsert = [[NSMutableDictionary alloc]init];
     
@@ -3000,6 +3005,15 @@ BOOL NavShow3;
     [myTableView reloadData];
 }
 
+-(IBAction)actionShowIllustration:(id)sender{
+    illustrationVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    illustrationVC.modalPresentationStyle = UIModalPresentationFormSheet;
+    illustrationVC.preferredContentSize = CGSizeMake(595, 748);
+    [self presentViewController:illustrationVC animated:YES completion:Nil];
+    [self setBOOLSectionFilled];
+    [myTableView reloadData];
+}
+
 -(void)showNextPageAfterSave:(UIViewController *)currentVC{
     if (currentVC == _LAController ){
         [self actionShowLifeAssured:nil];
@@ -3015,6 +3029,9 @@ BOOL NavShow3;
     }
     else if (currentVC == _InvestmentController) {
         [self actionShowTopUpWithdraw:nil];
+    }
+    else if (currentVC == topUpWithDrawVC) {
+        [self actionShowIllustration:nil];
     }
 
 }
@@ -5986,7 +6003,7 @@ NSString *prevPlan;
     if ([dictParentULBasicPlanData count]>0){
         isBasicPlanFilled = true;
     }
-    /*if ([dictParentULFundAllocationData count]>0){
+    if ([arrayFundAllocationData count]>0){
         isFundAllocationFilled = true;
     }
     
@@ -5994,9 +6011,9 @@ NSString *prevPlan;
         isRiderFilled = true;
     }
     
-    if ([arraySpecialOptionData count]>0){
+    if ([arrayTopUpWithDrawData count]>0){
         isSpecialOptionFilled = true;
-    }*/
+    }
     
     [myTableView reloadData];
 }

@@ -38,6 +38,8 @@
 		439C750B1E2C8ADA00E570D8 /* ModelCIEERates.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C750A1E2C8ADA00E570D8 /* ModelCIEERates.m */; };
 		439C750E1E2CA0C700E570D8 /* ModelAdvanceMedicare.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C750D1E2CA0C700E570D8 /* ModelAdvanceMedicare.m */; };
 		439C75111E2CA77B00E570D8 /* ModelCashPlanRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C75101E2CA77B00E570D8 /* ModelCashPlanRate.m */; };
+		43CA2F5B1E2F069D0039910A /* IllustrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43CA2F591E2F069D0039910A /* IllustrationViewController.m */; };
+		43CA2F5C1E2F069D0039910A /* IllustrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 43CA2F5A1E2F069D0039910A /* IllustrationViewController.xib */; };
 		43D6EEA31E288985005955BC /* ModelSIRiderType.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA21E288985005955BC /* ModelSIRiderType.m */; };
 		43D6EEA61E28CFDA005955BC /* ModelSIRiderPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA51E28CFDA005955BC /* ModelSIRiderPlan.m */; };
 		43D6EEA91E28D886005955BC /* ModelSIRiderSelected.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA81E28D886005955BC /* ModelSIRiderSelected.m */; };
@@ -631,6 +633,9 @@
 		439C750D1E2CA0C700E570D8 /* ModelAdvanceMedicare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvanceMedicare.m; sourceTree = "<group>"; };
 		439C750F1E2CA77B00E570D8 /* ModelCashPlanRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCashPlanRate.h; sourceTree = "<group>"; };
 		439C75101E2CA77B00E570D8 /* ModelCashPlanRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCashPlanRate.m; sourceTree = "<group>"; };
+		43CA2F581E2F069D0039910A /* IllustrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IllustrationViewController.h; sourceTree = "<group>"; };
+		43CA2F591E2F069D0039910A /* IllustrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IllustrationViewController.m; sourceTree = "<group>"; };
+		43CA2F5A1E2F069D0039910A /* IllustrationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IllustrationViewController.xib; sourceTree = "<group>"; };
 		43D6EEA11E288985005955BC /* ModelSIRiderType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIRiderType.h; sourceTree = "<group>"; };
 		43D6EEA21E288985005955BC /* ModelSIRiderType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIRiderType.m; sourceTree = "<group>"; };
 		43D6EEA41E28CFDA005955BC /* ModelSIRiderPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIRiderPlan.h; sourceTree = "<group>"; };
@@ -1556,6 +1561,16 @@
 			name = "TMLIRates Model";
 			sourceTree = "<group>";
 		};
+		43CA2F571E2F06800039910A /* Illustration */ = {
+			isa = PBXGroup;
+			children = (
+				43CA2F581E2F069D0039910A /* IllustrationViewController.h */,
+				43CA2F591E2F069D0039910A /* IllustrationViewController.m */,
+				43CA2F5A1E2F069D0039910A /* IllustrationViewController.xib */,
+			);
+			name = Illustration;
+			sourceTree = "<group>";
+		};
 		C33D9FDD1E13AE37005C98C5 /* InvestmentType */ = {
 			isa = PBXGroup;
 			children = (
@@ -1720,7 +1735,6 @@
 		DEDC5C581DAE347E0033FE37 /* MobileOfficeSolution */ = {
 			isa = PBXGroup;
 			children = (
-				4386EB431E2E09D200624115 /* SI HTML */,
 				4386EB371E2DF26600624115 /* Library */,
 				DE5F7AE31DB08ED2006DC32F /* database */,
 				DEDC5C951DAE35380033FE37 /* WebServices */,
@@ -1845,8 +1859,10 @@
 		DEDC5C8F1DAE34F40033FE37 /* SalesIllustration */ = {
 			isa = PBXGroup;
 			children = (
+				43CA2F571E2F06800039910A /* Illustration */,
 				436B50041E235E8D00217D66 /* TopUpWithDraw */,
 				C33D9FDD1E13AE37005C98C5 /* InvestmentType */,
+				4386EB431E2E09D200624115 /* SI HTML */,
 				DE5F7AFB1DB0EC00006DC32F /* IllustrationHTML */,
 				DEDC5F041DAE48130033FE37 /* TableViewCell */,
 				DEDC5E471DAE44B40033FE37 /* RATESDBModel */,
@@ -3537,6 +3553,7 @@
 				DEDC5C661DAE347E0033FE37 /* Assets.xcassets in Resources */,
 				DEDC61B11DAF7D9D0033FE37 /* CardSnap.xib in Resources */,
 				DEDC60A41DAF69100033FE37 /* White-Header@2x.png in Resources */,
+				43CA2F5C1E2F069D0039910A /* IllustrationViewController.xib in Resources */,
 				DEDC61BB1DAF7DA80033FE37 /* tick-snapshot.png in Resources */,
 				DEDC614B1DAF79A40033FE37 /* Image.xcassets in Resources */,
 				DEDC60921DAF69100033FE37 /* sales_illustration@2x_20141118.png in Resources */,
@@ -3730,6 +3747,7 @@
 				DEDC5D981DAE3FBB0033FE37 /* SpinnerUtilities.m in Sources */,
 				DEDC5F6B1DAE49AE0033FE37 /* ReaderThumbQueue.m in Sources */,
 				DEDC5DF81DAE41B30033FE37 /* Pembelianke.m in Sources */,
+				43CA2F5B1E2F069D0039910A /* IllustrationViewController.m in Sources */,
 				433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */,
 				17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */,
 				DEDC5E4A1DAE44C60033FE37 /* RateModel.m in Sources */,
