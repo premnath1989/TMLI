@@ -293,10 +293,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 - (void) createSegmentedButtons:(NSString *)segmentName yPosition:(float)yPosition{
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:segmentName forState:UIControlStateNormal];
-     [button addTarget:self action:@selector(changeSegmentButtonAction:)forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(10.0, yPosition, 160.0, 40.0);
-    button.backgroundColor = [UIColor yellowColor];
-    
+    [button addTarget:self action:@selector(changeSegmentButtonAction:)forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(10.0, yPosition, 150, 50.0);
+    button.titleLabel.textColor = [UIColor clearColor];
+    button.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    button.layer.cornerRadius = 10.0f;
+    button.clipsToBounds = YES;
+    button.backgroundColor = [UIColor colorWithRed:(201/255.0) green:(212/255.0) blue:(0/255.0) alpha:1];
     [segmentScrollView addSubview:button];
 }
 

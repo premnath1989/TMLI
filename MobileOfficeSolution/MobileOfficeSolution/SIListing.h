@@ -114,6 +114,10 @@
 @property (weak, nonatomic) IBOutlet UISegmentedControl *outletGender;
 @property (weak, nonatomic) IBOutlet UIButton *outletEdit;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnNavigation;
+@property (strong, nonatomic) IBOutlet UIButton *btnCancelNavigation;
+
+
 
 //@property (weak, nonatomic) IBOutlet UIView *TableHeader;
 
