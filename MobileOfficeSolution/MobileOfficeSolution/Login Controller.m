@@ -250,6 +250,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 if([loginDB fullSyncTable:returnObj]){
                     [spinnerLoading stopLoadingSpinner];
                     if([self validToLogin] && [self CredentialChecking:FALSE])
+                        [loginDB updateLoginDate];
                         [self openHome];
                 }
             }else if([rateResponse.strStatus caseInsensitiveCompare:@"False"] == NSOrderedSame){
