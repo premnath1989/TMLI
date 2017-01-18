@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol RiderValueInputViewControllerDelegate
-    -(void)saveRiderInput:(NSString *)stringRiderName RiderValue:(NSString *)stringRiderValue;
+    -(void)saveRiderInput:(NSDictionary *)dictRiderData RiderValue:(NSString *)stringRiderValue;
 @end
 
 
@@ -17,6 +17,6 @@
     IBOutlet UILabel* labelRiderName;
     IBOutlet UITextField* textRiderValue;
 }
--(void)setRiderDetailInformation:(NSString *)stringRiderName StringRiderValue:(NSString *)stringRiderValue;
+-(void)setRiderDetailInformation:(NSDictionary *)dictRiderData StringRiderValue:(NSString *)stringRiderValue;
 @property (nonatomic,strong) id <RiderValueInputViewControllerDelegate> delegate;
 @end

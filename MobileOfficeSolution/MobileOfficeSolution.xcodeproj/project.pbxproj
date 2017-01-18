@@ -28,6 +28,19 @@
 		436B500D1E236D2800217D66 /* TopUpWithDrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 436B500B1E236D2800217D66 /* TopUpWithDrawTableViewCell.m */; };
 		436B500E1E236D2800217D66 /* TopUpWithDrawTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 436B500C1E236D2800217D66 /* TopUpWithDrawTableViewCell.xib */; };
 		4381D5411E23001D00AA1DE6 /* Model_SI_Rider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */; };
+		4386EB391E2DF29800624115 /* libPDF Printer for TMLI SPAJ.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4386EB381E2DF29800624115 /* libPDF Printer for TMLI SPAJ.a */; };
+		4386EB3F1E2DFBFB00624115 /* ModelHSRFactor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4386EB3E1E2DFBFB00624115 /* ModelHSRFactor.m */; };
+		4386EB421E2DFC1000624115 /* ModelHSRCOR.m in Sources */ = {isa = PBXBuildFile; fileRef = 4386EB411E2DFC1000624115 /* ModelHSRCOR.m */; };
+		4386EB471E2E0AE300624115 /* SI_UL_Page1.html in Resources */ = {isa = PBXBuildFile; fileRef = 4386EB461E2E0AE300624115 /* SI_UL_Page1.html */; };
+		4386EB491E2E1F5300624115 /* SI_UL_Page2.html in Resources */ = {isa = PBXBuildFile; fileRef = 4386EB481E2E1F5300624115 /* SI_UL_Page2.html */; };
+		439C75041E2C63A900E570D8 /* SIRiderCalculation.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C75031E2C63A900E570D8 /* SIRiderCalculation.m */; };
+		439C75081E2C862700E570D8 /* ModelCI55Rates.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C75071E2C862700E570D8 /* ModelCI55Rates.m */; };
+		439C750B1E2C8ADA00E570D8 /* ModelCIEERates.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C750A1E2C8ADA00E570D8 /* ModelCIEERates.m */; };
+		439C750E1E2CA0C700E570D8 /* ModelAdvanceMedicare.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C750D1E2CA0C700E570D8 /* ModelAdvanceMedicare.m */; };
+		439C75111E2CA77B00E570D8 /* ModelCashPlanRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 439C75101E2CA77B00E570D8 /* ModelCashPlanRate.m */; };
+		43D6EEA31E288985005955BC /* ModelSIRiderType.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA21E288985005955BC /* ModelSIRiderType.m */; };
+		43D6EEA61E28CFDA005955BC /* ModelSIRiderPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA51E28CFDA005955BC /* ModelSIRiderPlan.m */; };
+		43D6EEA91E28D886005955BC /* ModelSIRiderSelected.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6EEA81E28D886005955BC /* ModelSIRiderSelected.m */; };
 		C31AF5081E1F2C5600A037EF /* FundPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C31AF5071E1F2C5600A037EF /* FundPercentViewController.m */; };
 		C32E03FB1DD41DFD00A76D6F /* TimePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = C32E03FA1DD41DFD00A76D6F /* TimePicker.m */; };
 		C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C33D9FDF1E13AE86005C98C5 /* InvestmentTypeViewController.m */; };
@@ -601,6 +614,29 @@
 		436B500C1E236D2800217D66 /* TopUpWithDrawTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TopUpWithDrawTableViewCell.xib; sourceTree = "<group>"; };
 		4381D53F1E23001D00AA1DE6 /* Model_SI_Rider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model_SI_Rider.h; sourceTree = "<group>"; };
 		4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Model_SI_Rider.m; sourceTree = "<group>"; };
+		4386EB381E2DF29800624115 /* libPDF Printer for TMLI SPAJ.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPDF Printer for TMLI SPAJ.a"; sourceTree = "<group>"; };
+		4386EB3D1E2DFBFB00624115 /* ModelHSRFactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelHSRFactor.h; sourceTree = "<group>"; };
+		4386EB3E1E2DFBFB00624115 /* ModelHSRFactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelHSRFactor.m; sourceTree = "<group>"; };
+		4386EB401E2DFC1000624115 /* ModelHSRCOR.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelHSRCOR.h; sourceTree = "<group>"; };
+		4386EB411E2DFC1000624115 /* ModelHSRCOR.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelHSRCOR.m; sourceTree = "<group>"; };
+		4386EB461E2E0AE300624115 /* SI_UL_Page1.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SI_UL_Page1.html; sourceTree = "<group>"; };
+		4386EB481E2E1F5300624115 /* SI_UL_Page2.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SI_UL_Page2.html; sourceTree = "<group>"; };
+		439C75021E2C63A900E570D8 /* SIRiderCalculation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIRiderCalculation.h; sourceTree = "<group>"; };
+		439C75031E2C63A900E570D8 /* SIRiderCalculation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRiderCalculation.m; sourceTree = "<group>"; };
+		439C75061E2C862700E570D8 /* ModelCI55Rates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCI55Rates.h; sourceTree = "<group>"; };
+		439C75071E2C862700E570D8 /* ModelCI55Rates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCI55Rates.m; sourceTree = "<group>"; };
+		439C75091E2C8ADA00E570D8 /* ModelCIEERates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCIEERates.h; sourceTree = "<group>"; };
+		439C750A1E2C8ADA00E570D8 /* ModelCIEERates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCIEERates.m; sourceTree = "<group>"; };
+		439C750C1E2CA0C700E570D8 /* ModelAdvanceMedicare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelAdvanceMedicare.h; sourceTree = "<group>"; };
+		439C750D1E2CA0C700E570D8 /* ModelAdvanceMedicare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelAdvanceMedicare.m; sourceTree = "<group>"; };
+		439C750F1E2CA77B00E570D8 /* ModelCashPlanRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelCashPlanRate.h; sourceTree = "<group>"; };
+		439C75101E2CA77B00E570D8 /* ModelCashPlanRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelCashPlanRate.m; sourceTree = "<group>"; };
+		43D6EEA11E288985005955BC /* ModelSIRiderType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIRiderType.h; sourceTree = "<group>"; };
+		43D6EEA21E288985005955BC /* ModelSIRiderType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIRiderType.m; sourceTree = "<group>"; };
+		43D6EEA41E28CFDA005955BC /* ModelSIRiderPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIRiderPlan.h; sourceTree = "<group>"; };
+		43D6EEA51E28CFDA005955BC /* ModelSIRiderPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIRiderPlan.m; sourceTree = "<group>"; };
+		43D6EEA71E28D886005955BC /* ModelSIRiderSelected.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIRiderSelected.h; sourceTree = "<group>"; };
+		43D6EEA81E28D886005955BC /* ModelSIRiderSelected.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIRiderSelected.m; sourceTree = "<group>"; };
 		C31AF5061E1F2C5600A037EF /* FundPercentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FundPercentViewController.h; sourceTree = "<group>"; };
 		C31AF5071E1F2C5600A037EF /* FundPercentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FundPercentViewController.m; sourceTree = "<group>"; };
 		C32E03F91DD41DFD00A76D6F /* TimePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimePicker.h; sourceTree = "<group>"; };
@@ -1440,6 +1476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE5F7AF51DB0E3EF006DC32F /* CoreText.framework in Frameworks */,
+				4386EB391E2DF29800624115 /* libPDF Printer for TMLI SPAJ.a in Frameworks */,
 				DE5F7AE81DB0A04F006DC32F /* libstdc++.tbd in Frameworks */,
 				DEDC621E1DAF86600033FE37 /* CoreData.framework in Frameworks */,
 				DEDC5E4C1DAE44F40033FE37 /* CoreGraphics.framework in Frameworks */,
@@ -1481,6 +1518,42 @@
 				436B500C1E236D2800217D66 /* TopUpWithDrawTableViewCell.xib */,
 			);
 			name = TopUpWithDraw;
+			sourceTree = "<group>";
+		};
+		4386EB371E2DF26600624115 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4386EB381E2DF29800624115 /* libPDF Printer for TMLI SPAJ.a */,
+			);
+			name = Library;
+			sourceTree = "<group>";
+		};
+		4386EB431E2E09D200624115 /* SI HTML */ = {
+			isa = PBXGroup;
+			children = (
+				4386EB481E2E1F5300624115 /* SI_UL_Page2.html */,
+				4386EB461E2E0AE300624115 /* SI_UL_Page1.html */,
+			);
+			name = "SI HTML";
+			sourceTree = "<group>";
+		};
+		439C75051E2C85CB00E570D8 /* TMLIRates Model */ = {
+			isa = PBXGroup;
+			children = (
+				439C75061E2C862700E570D8 /* ModelCI55Rates.h */,
+				439C75071E2C862700E570D8 /* ModelCI55Rates.m */,
+				439C75091E2C8ADA00E570D8 /* ModelCIEERates.h */,
+				439C750A1E2C8ADA00E570D8 /* ModelCIEERates.m */,
+				439C750C1E2CA0C700E570D8 /* ModelAdvanceMedicare.h */,
+				439C750D1E2CA0C700E570D8 /* ModelAdvanceMedicare.m */,
+				439C750F1E2CA77B00E570D8 /* ModelCashPlanRate.h */,
+				439C75101E2CA77B00E570D8 /* ModelCashPlanRate.m */,
+				4386EB3D1E2DFBFB00624115 /* ModelHSRFactor.h */,
+				4386EB3E1E2DFBFB00624115 /* ModelHSRFactor.m */,
+				4386EB401E2DFC1000624115 /* ModelHSRCOR.h */,
+				4386EB411E2DFC1000624115 /* ModelHSRCOR.m */,
+			);
+			name = "TMLIRates Model";
 			sourceTree = "<group>";
 		};
 		C33D9FDD1E13AE37005C98C5 /* InvestmentType */ = {
@@ -1647,6 +1720,8 @@
 		DEDC5C581DAE347E0033FE37 /* MobileOfficeSolution */ = {
 			isa = PBXGroup;
 			children = (
+				4386EB431E2E09D200624115 /* SI HTML */,
+				4386EB371E2DF26600624115 /* Library */,
 				DE5F7AE31DB08ED2006DC32F /* database */,
 				DEDC5C951DAE35380033FE37 /* WebServices */,
 				DEDC5E161DAE42720033FE37 /* SPAJ */,
@@ -1690,6 +1765,7 @@
 				DEDC5DA81DAE405A0033FE37 /* FSVerticalTabBarController */,
 				DEDC5D491DAE3C6C0033FE37 /* Reachability */,
 				DEDC5CE01DAE39270033FE37 /* MOSDB Model */,
+				439C75051E2C85CB00E570D8 /* TMLIRates Model */,
 				DEDC5CD01DAE38A40033FE37 /* Functions */,
 				DEDC5CC91DAE386E0033FE37 /* easySqlite */,
 				DEDC5CB81DAE38200033FE37 /* FMDB */,
@@ -2279,6 +2355,12 @@
 				DEDC5D1A1DAE39420033FE37 /* ModelOccupation.m */,
 				4381D53F1E23001D00AA1DE6 /* Model_SI_Rider.h */,
 				4381D5401E23001D00AA1DE6 /* Model_SI_Rider.m */,
+				43D6EEA11E288985005955BC /* ModelSIRiderType.h */,
+				43D6EEA21E288985005955BC /* ModelSIRiderType.m */,
+				43D6EEA41E28CFDA005955BC /* ModelSIRiderPlan.h */,
+				43D6EEA51E28CFDA005955BC /* ModelSIRiderPlan.m */,
+				43D6EEA71E28D886005955BC /* ModelSIRiderSelected.h */,
+				43D6EEA81E28D886005955BC /* ModelSIRiderSelected.m */,
 			);
 			name = "MOSDB Model";
 			sourceTree = "<group>";
@@ -2808,6 +2890,8 @@
 			children = (
 				DEDC5FD31DAE52C90033FE37 /* RiderCalculation.h */,
 				DEDC5FD41DAE52C90033FE37 /* RiderCalculation.m */,
+				439C75021E2C63A900E570D8 /* SIRiderCalculation.h */,
+				439C75031E2C63A900E570D8 /* SIRiderCalculation.m */,
 			);
 			name = RiderCalculation;
 			sourceTree = "<group>";
@@ -3460,6 +3544,7 @@
 				DEDC61401DAF797E0033FE37 /* FormTenagaPenjualViewController.xib in Resources */,
 				DEDC5F9B1DAE49BD0033FE37 /* AppIcon-114.png in Resources */,
 				DEDC60221DAF5F900033FE37 /* CarouselStoryboard.storyboard in Resources */,
+				4386EB471E2E0AE300624115 /* SI_UL_Page1.html in Resources */,
 				DEDC608C1DAF69100033FE37 /* menu_datanasabah.png in Resources */,
 				DEDC60811DAF69100033FE37 /* Icon_Brochure_Gray_BG.png in Resources */,
 				DEDC60A91DAF69100033FE37 /* e-Application@2x.png in Resources */,
@@ -3480,6 +3565,7 @@
 				DEDC613D1DAF797E0033FE37 /* SPAJPDFWebViewController.xib in Resources */,
 				DEDC5FAA1DAE49BD0033FE37 /* Reader-Email.png in Resources */,
 				DEDC60981DAF69100033FE37 /* sales_illustrationv3.png in Resources */,
+				4386EB491E2E1F5300624115 /* SI_UL_Page2.html in Resources */,
 				DE5F7AE61DB090B1006DC32F /* MOSDB.sqlite.sql in Resources */,
 				DEDC60B71DAF69100033FE37 /* disclosure_indicator.png in Resources */,
 				DEDC5FB31DAE49BD0033FE37 /* Reader-Mark-Y.png in Resources */,
@@ -3648,6 +3734,7 @@
 				17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */,
 				DEDC5E4A1DAE44C60033FE37 /* RateModel.m in Sources */,
 				DEDC5DB21DAE40880033FE37 /* FSVerticalTabBarButton.m in Sources */,
+				439C75111E2CA77B00E570D8 /* ModelCashPlanRate.m in Sources */,
 				DEDC5E991DAE46F30033FE37 /* Nationality.m in Sources */,
 				DEDC610A1DAF79350033FE37 /* SPAJ Calon Tertanggung.m in Sources */,
 				DEDC615D1DAF7BD00033FE37 /* Rule.m in Sources */,
@@ -3687,6 +3774,7 @@
 				DEDC5E381DAE43590033FE37 /* AFXMLRequestOperation.m in Sources */,
 				DEDC5F6C1DAE49AE0033FE37 /* ReaderThumbRender.m in Sources */,
 				DEDC5D1B1DAE39420033FE37 /* ModelCFFAnswers.m in Sources */,
+				439C75041E2C63A900E570D8 /* SIRiderCalculation.m in Sources */,
 				DEDC61B21DAF7D9D0033FE37 /* IDTypePicker.m in Sources */,
 				DEDC61651DAF7BDC0033FE37 /* SPAJPDFAutopopulateData.m in Sources */,
 				DEDC615B1DAF7BD00033FE37 /* Dimension.m in Sources */,
@@ -3723,6 +3811,7 @@
 				DEDC5D211DAE39420033FE37 /* ModelIdentificationType.m in Sources */,
 				DEDC61741DAF7BF30033FE37 /* Layout.m in Sources */,
 				DEDC5F011DAE47C80033FE37 /* SPAJ E Application List Cell.m in Sources */,
+				43D6EEA91E28D886005955BC /* ModelSIRiderSelected.m in Sources */,
 				DEDC61CA1DAF7E300033FE37 /* ButtonSPAJ.m in Sources */,
 				DEDC62011DAF81B20033FE37 /* PDFUtility.m in Sources */,
 				C3CFB39B1DE42AE50067A160 /* SuccessAlertVC.m in Sources */,
@@ -3802,6 +3891,7 @@
 				DEDC5EB41DAE47570033FE37 /* KodePosInfo.m in Sources */,
 				DEDC5F211DAE486A0033FE37 /* DDXMLElement.m in Sources */,
 				DEDC61051DAF79350033FE37 /* SPAJ Main.m in Sources */,
+				4386EB421E2DFC1000624115 /* ModelHSRCOR.m in Sources */,
 				DE5F7AFA1DB0E942006DC32F /* RelationshipPopoverViewController.m in Sources */,
 				DEDC62111DAF81BC0033FE37 /* PDFFormTextField.m in Sources */,
 				DEDC5DFB1DAE41B30033FE37 /* TabValidation.m in Sources */,
@@ -3833,6 +3923,7 @@
 				DEDC5FDB1DAE537F0033FE37 /* SPAJSubmissionFiles.m in Sources */,
 				DEDC5D961DAE3FBB0033FE37 /* LoginDBManagement.m in Sources */,
 				DE1168F11DD17494007DDA9B /* Module Controller.m in Sources */,
+				43D6EEA31E288985005955BC /* ModelSIRiderType.m in Sources */,
 				DEDC5CC81DAE382F0033FE37 /* FMResultSet.m in Sources */,
 				DEDC61821DAF7C270033FE37 /* AllAboutPDFGeneration.m in Sources */,
 				DEDC5D971DAE3FBB0033FE37 /* SynchDaysCounter.m in Sources */,
@@ -3841,6 +3932,7 @@
 				DEDC5D2C1DAE39420033FE37 /* ModelProspectSpouse.m in Sources */,
 				DEDC5CB71DAE37C90033FE37 /* SIMenuViewController.m in Sources */,
 				DEDC5CC61DAE382F0033FE37 /* FMDatabasePool.m in Sources */,
+				439C75081E2C862700E570D8 /* ModelCI55Rates.m in Sources */,
 				DEDC5CC71DAE382F0033FE37 /* FMDatabaseQueue.m in Sources */,
 				DEDC5D421DAE39DB0033FE37 /* Login.m in Sources */,
 				DEDC5D1C1DAE39420033FE37 /* Model_SI_Premium.m in Sources */,
@@ -3854,6 +3946,7 @@
 				DEDC5E641DAE45860033FE37 /* EditProspect.m in Sources */,
 				DEDC61F71DAF81860033FE37 /* PDFObject.m in Sources */,
 				DEDC61F41DAF81860033FE37 /* PDFForm.m in Sources */,
+				439C750B1E2C8ADA00E570D8 /* ModelCIEERates.m in Sources */,
 				DEDC610C1DAF79350033FE37 /* SPAJ Calon Penerima Manfaat.m in Sources */,
 				DEDC61D51DAF80B40033FE37 /* MyDocumentType.m in Sources */,
 				DEDC5F611DAE49AE0033FE37 /* ReaderConstants.m in Sources */,
@@ -3884,6 +3977,7 @@
 				DEDC5FD81DAE53740033FE37 /* SettingUserProfile.m in Sources */,
 				DEDC620E1DAF81BC0033FE37 /* PDFFormButtonField.m in Sources */,
 				DEDC5F2B1DAE48980033FE37 /* NSString+DDXML.m in Sources */,
+				43D6EEA61E28CFDA005955BC /* ModelSIRiderPlan.m in Sources */,
 				DEDC5E121DAE41FC0033FE37 /* NewGroupListing.m in Sources */,
 				DE1169131DD179B2007DDA9B /* SPAJ Add New Controller.m in Sources */,
 				C33D9FE01E13AE86005C98C5 /* InvestmentTypeViewController.m in Sources */,
@@ -3917,6 +4011,7 @@
 				DEDC5F281DAE488D0033FE37 /* DDXMLElementAdditions.m in Sources */,
 				DEDC61AF1DAF7D9D0033FE37 /* CardSnap.m in Sources */,
 				DEDC5CDF1DAE38B60033FE37 /* DataManager.m in Sources */,
+				4386EB3F1E2DFBFB00624115 /* ModelHSRFactor.m in Sources */,
 				DEDC61F51DAF81860033FE37 /* PDFFormAction.m in Sources */,
 				DE1514DE1DB4AAEF00C429A2 /* AppDisclaimer.m in Sources */,
 				DE1168FA1DD17528007DDA9B /* Guide Header Controller.m in Sources */,
@@ -3928,6 +4023,7 @@
 				DE1169001DD178DE007DDA9B /* Home Controller.m in Sources */,
 				DEDC5F721DAE49AE0033FE37 /* ThumbsViewController.m in Sources */,
 				DEDC5D321DAE39420033FE37 /* ModelSPAJHtml.m in Sources */,
+				439C750E1E2CA0C700E570D8 /* ModelAdvanceMedicare.m in Sources */,
 				436B500D1E236D2800217D66 /* TopUpWithDrawTableViewCell.m in Sources */,
 				DE1514DA1DB4A80800C429A2 /* Reachability.m in Sources */,
 				DEDC5D7A1DAE3CDD0033FE37 /* NSDate+ISO8601Unparsing.m in Sources */,
@@ -4098,6 +4194,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MobileOfficeSolution/FTPSync",
 					"$(PROJECT_DIR)/MobileOfficeSolution/Iconic",
+					"$(PROJECT_DIR)/MobileOfficeSolution",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -4131,6 +4228,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/MobileOfficeSolution/FTPSync",
 					"$(PROJECT_DIR)/MobileOfficeSolution/Iconic",
+					"$(PROJECT_DIR)/MobileOfficeSolution",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",

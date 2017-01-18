@@ -45,6 +45,7 @@
 #import "InvestmentTypeViewController.h"
 #import "FundPercentController.h"
 #import "TopupWithdrawViewController.h"
+#import "ModelSIRiderSelected.h"
 
 @class SIMenuViewController;
 @protocol SIMenuDelegate
@@ -68,6 +69,7 @@
     RiderCalculation* riderCalculation;
     IlustrationViewController *_salesIlustrationViewController;
     
+    ModelSIRiderSelected *modelSIRiderSelected;
     ModelSIRider *_modelSIRider;
     Model_SI_Premium *_modelSIPremium;
     ModelSIBasicPlan *modelSIBasicPlan;
@@ -233,6 +235,9 @@
 - (IBAction)ActionChangeHeader:(id)sender;
 - (IBAction)ActionNavigationShow:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnNavi1;
+@property (strong, nonatomic) IBOutlet UIButton *btnNaviCancel1;
+@property (strong, nonatomic) IBOutlet UIButton *btnNaviCancel2;
 
 //-----
 

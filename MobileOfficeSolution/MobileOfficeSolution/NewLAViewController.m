@@ -2878,7 +2878,7 @@
     [dictPOLAData setObject:@"" forKey:@"PO_Occp"];
     [dictPOLAData setObject:[NSNumber numberWithInt:clientProfileID] forKey:@"PO_ClientID"];
     [dictPOLAData setObject:_txtHubungan.text forKey:@"RelWithLA"];
-    [dictPOLAData setObject:_txtHubungaLain2.text forKey:@"RelWithLAOthers"];
+    [dictPOLAData setObject:_txtHubungaLain2.text?:@"" forKey:@"RelWithLAOthers"];
     [dictPOLAData setObject:numberIntInternalStaff forKey:@"IsInternalStaff"];
     [dictPOLAData setObject:@"" forKey:@"PO_Smoker"];
     

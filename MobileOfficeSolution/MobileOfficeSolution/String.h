@@ -54,6 +54,7 @@
 
     // Databases Name
     extern NSString* const DATABASE_MAIN_NAME;
+    extern NSString* const DATABASE_RATES_MAIN_NAME;
 
     // Tables Name
     extern NSString* const TABLE_AGENT_PROFILE;
@@ -76,4 +77,13 @@
     extern NSString* const TABLE_MASTER_INFO;
     extern NSString* const TABLE_ERRORCODE;
     extern NSString* const TABLE_EPROPOSAL_ANNUALINCOME;
+    extern NSString* const TABLE_SI_RIDER_TYPE;
+    extern NSString* const TABLE_SI_RIDER_PLAN;
+    extern NSString* const TABLE_SI_RIDER_SELECTED;
+    extern NSString* const TABLE_RATES_CI55;
+    extern NSString* const TABLE_RATES_CIEE;
+    extern NSString* const TABLE_RATES_ADVANCE_MEDICARE;
+    extern NSString* const TABLE_RATES_CASH_PLAN;
+    extern NSString* const TABLE_RATES_HSR_FACTOR;
+    extern NSString* const TABLE_RATES_HSR_COR;
     extern NSString* const TABLE_PROSPECT;

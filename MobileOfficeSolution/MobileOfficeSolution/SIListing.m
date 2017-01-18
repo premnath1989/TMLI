@@ -78,7 +78,7 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
     
     sortedBy = @"sim.CreatedDate";
     sortMethod=@"DESC";
-    
+    NavIsShow1 = NO;
 //    [NoIlustrasi setFont:[UIFont fontWithName:@"HelveticaLTStd-UltraComp" size:25]];
 //    themeColour = [UIColor colorWithRed:218.0f/255.0f green:49.0f/255.0f blue:85.0f/255.0f alpha:1];
     fontType = [UIFont fontWithName:@"TreBuchet MS" size:16.0f];
@@ -1588,12 +1588,16 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavIsShow1 = YES;
+        _btnNavigation.hidden = YES;
+        _btnCancelNavigation.hidden = NO;
     }
     else
     {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavIsShow1 = NO;
+        _btnNavigation.hidden = NO;
+        _btnCancelNavigation.hidden = YES;
     }
 }
 

@@ -87,11 +87,19 @@
                                             <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="FEJ-GX-lF8"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9jc-ib-pQc" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="10" y="10" width="46" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="4hK-JC-obZ"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" misplaced="YES" id="zdP-SC-WiA" userLabel="View Thin Header">
-                                <rect key="frame" x="0.0" y="20" width="1024" height="102"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="IlB-Ig-h0q" customClass="ImageViewLogoHorizontal">
@@ -116,9 +124,17 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="0za-Lk-8PL" customClass="ButtonBackPrimary">
                                         <rect key="frame" x="68" y="24" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Back"/>
                                         <connections>
                                             <action selector="ActionBack:" destination="geq-zo-2Ih" eventType="touchUpInside" id="ubQ-VT-2Dm"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="czc-lm-7DW" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="8" y="21" width="46" height="43"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="ActionNavigationShow:" destination="geq-zo-2Ih" eventType="touchUpInside" id="rzn-SJ-82G"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -171,6 +187,9 @@
                         <outlet property="ViewThickHeader" destination="vd7-oD-fVo" id="klF-hw-Y5m"/>
                         <outlet property="ViewThinHeader" destination="zdP-SC-WiA" id="gwa-Te-982"/>
                         <outlet property="btnChangeHeader" destination="wvR-XM-0Hy" id="xSP-0g-qVQ"/>
+                        <outlet property="btnNavi1" destination="5I2-Yu-sQk" id="v2f-DT-oD7"/>
+                        <outlet property="btnNaviCancel1" destination="9jc-ib-pQc" id="zA0-cf-ccx"/>
+                        <outlet property="btnNaviCancel2" destination="czc-lm-7DW" id="gFC-IG-4vk"/>
                         <outlet property="btnNavigation" destination="aaG-6h-8mi" id="umP-GU-Wfe"/>
                         <outlet property="imgHeader" destination="FK4-r7-jFi" id="BeD-aW-p4t"/>
                         <outlet property="mainView" destination="LwU-rL-ZUw" id="jEU-NK-evM"/>
@@ -301,6 +320,14 @@
                                             <action selector="navigationShow:" destination="l1n-wK-wLB" eventType="touchUpInside" id="vCa-Pr-ICJ"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PGh-R9-OZ1" customClass="ButtonCancelNavigationSecondary">
+                                        <rect key="frame" x="27" y="8" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="l1n-wK-wLB" eventType="touchUpInside" id="eXa-oR-Vga"/>
+                                        </connections>
+                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="AppIcon-057.png" id="2AR-v0-wf8">
                                         <rect key="frame" x="893" y="204" width="21" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -315,7 +342,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="KuT-SC-Q8z" customClass="ButtonBack">
                                         <rect key="frame" x="27" y="61" width="36" height="36"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Back"/>
                                         <connections>
                                             <action selector="ActionBackTo:" destination="l1n-wK-wLB" eventType="touchUpInside" id="1bf-r8-F3t"/>
                                         </connections>
@@ -591,6 +618,8 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1024" height="748"/>
                     <connections>
+                        <outlet property="btnCancelNavigation" destination="PGh-R9-OZ1" id="soc-0a-5xI"/>
+                        <outlet property="btnNavigation" destination="1Oj-wS-Saq" id="hVx-5V-gWx"/>
                         <outlet property="btnSortCreatedDate" destination="hd3-1d-1CL" id="8gd-Ca-vTO"/>
                         <outlet property="btnSortFullName" destination="ADq-k6-LR5" id="ZsM-BF-vkh"/>
                         <outlet property="btnSortProduct" destination="CGe-YO-C5q" id="xOk-ng-x5v"/>
@@ -4899,6 +4928,14 @@
                                             <action selector="navigationShow:" destination="rwS-ir-vd0" eventType="touchUpInside" id="ay8-2c-Har"/>
                                         </connections>
                                     </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cTF-SH-sb8" customClass="ButtonCancelNavigationPrimary">
+                                        <rect key="frame" x="340" y="25" width="46" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="navigationShow:" destination="rwS-ir-vd0" eventType="touchUpInside" id="MBU-e6-MA9"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YgB-ac-B6S" customClass="LabelPhotoDetail">
                                         <rect key="frame" x="599" y="294" width="447" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -4938,6 +4975,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="btnCancelNavi" destination="cTF-SH-sb8" id="Ndc-ql-jTf"/>
                         <outlet property="buttonAddNew" destination="hIg-xh-hIk" id="F4Z-pN-gqt"/>
                         <outlet property="buttonExistingList" destination="QKW-8U-qPK" id="JTC-ZI-Syq"/>
                         <outlet property="buttonNavigation" destination="eOo-0m-dhG" id="XVf-DL-Cuk"/>

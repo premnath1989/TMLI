@@ -162,4 +162,5 @@
     [database close];
     return arrayRiderData;
 }
+
 @end

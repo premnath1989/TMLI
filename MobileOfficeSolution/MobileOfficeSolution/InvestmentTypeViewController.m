@@ -66,7 +66,8 @@
 {
 
     //temp set product type:
-    NSString *productType = @"TM Link (Wealth Enhancement)";
+    //NSString *productType = @"TM Link (Wealth Enhancement)";
+    NSString *productType = [[_delegate getPOLADictionary] valueForKey:@"ProductName"];
     
     if ([productType isEqualToString:@""]) {
         FundList = [NSMutableArray arrayWithObjects:@"TMBalanceFund",@"TMEquityFund",@"TMCashFund",@"TMEquityAggressiveFund", nil];

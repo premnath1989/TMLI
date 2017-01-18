@@ -109,6 +109,7 @@ BOOL NavShow3;
 
     formatter = [[Formatter alloc] init];
     riderCalculation = [[RiderCalculation alloc]init];
+    modelSIRiderSelected = [[ModelSIRiderSelected alloc]init];
     _modelSIPremium = [[Model_SI_Premium alloc]init];
     _modelSIPOData = [[ModelSIPOData alloc]init];
     _modelSIMaster = [[Model_SI_Master alloc]init];
@@ -2970,6 +2971,7 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
     
+    CurrentVC = _RiderController;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -2983,7 +2985,7 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
     
-    
+    CurrentVC = _InvestmentController;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -2994,7 +2996,7 @@ BOOL NavShow3;
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
     [topUpWithDrawVC loadDataFromList];
     
-    CurrentVC = _InvestmentController;
+    CurrentVC = topUpWithDrawVC;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -3050,8 +3052,7 @@ BOOL NavShow3;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell last index %i",lastIndexSelected);
-	
+
     static NSString *CellIdentifier = @"Cell";
     SIMenuTableViewCell *cell = (SIMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -3086,25 +3087,46 @@ BOOL NavShow3;
         if (isPOFilled){
             [cell.BtnTertanggung setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
             [cell.BtnTertanggung setBackgroundColor:gray];
+            [cell.BtnTertanggung setEnabled:YES];
         }
         else{
             [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
             [cell.BtnTertanggung setBackgroundColor:gray];
+            [cell.BtnTertanggung setEnabled:NO];
         }
     }
     
     if (isBasicPlanFilled){
         [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
         [cell.BtnAsuransiDasar setBackgroundColor:gray];
+        [cell.BtnAsuransiDasar setEnabled:YES];
     }
     else{
         if (isLAFilled){
             [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
             [cell.BtnAsuransiDasar setBackgroundColor:gray];
+            [cell.BtnAsuransiDasar setEnabled:YES];
         }
         else{
             [cell.BtnAsuransiDasar setImage:ShapeGuide_disable forState:UIControlStateNormal];
             [cell.BtnAsuransiDasar setBackgroundColor:gray];
+            [cell.BtnAsuransiDasar setEnabled:NO];
+        }
+    }
+    
+    if (isRiderFilled){
+        [cell.BtnAsuransiTamb setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        [cell.BtnAsuransiTamb setBackgroundColor:gray];
+    }
+    else{
+        if (isLAFilled){
+            [cell.BtnAsuransiTamb setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+            [cell.BtnAsuransiTamb setBackgroundColor:gray];
+        }
+        else{
+            [cell.BtnAsuransiTamb setImage:ShapeGuide_disable forState:UIControlStateNormal];
+            [cell.BtnAsuransiTamb setBackgroundColor:gray];
+//            [cell.BtnAsuransiTamb setEnabled:NO];
         }
     }
     
@@ -3121,6 +3143,18 @@ BOOL NavShow3;
     else if (CurrentVC == _BasicController) {
         [cell.BtnAsuransiDasar setBackgroundColor:green];
         [cell.BtnAsuransiDasar setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == _RiderController) {
+        [cell.BtnAsuransiTamb setBackgroundColor:green];
+        [cell.BtnAsuransiTamb setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == _InvestmentController) {
+        [cell.BtnInvestasi setBackgroundColor:green];
+        [cell.BtnInvestasi setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == topUpWithDrawVC) {
+        [cell.BtnPenambahan setBackgroundColor:green];
+        [cell.BtnPenambahan setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
 
 
@@ -5905,18 +5939,18 @@ NSString *prevPlan;
         _ViewThinHeader.hidden = NO;
         _ViewThickHeader.hidden = YES;
         //isThin = NO;
-        _btnChangeHeader.frame = CGRectMake(0, 105.0, 1024.0, 20.0);
-        ScrollMenu.frame = CGRectMake(0, 125.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 197.0, 1024.0, 600.0);
+        _btnChangeHeader.frame = CGRectMake(_btnChangeHeader.frame.origin.x, 105.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(ScrollMenu.frame.origin.x, 125.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(_SiScrollView.frame.origin.x, 197.0, 1024.0, 600.0);
         
     }
     else {
         _ViewThinHeader.hidden = YES;
         _ViewThickHeader.hidden = NO;
         //isThin = YES;
-        _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
-        ScrollMenu.frame = CGRectMake(0, 280.0, 1024.0, 72.0);
-        _SiScrollView.frame = CGRectMake(0, 340.0, 1024.0, 428.0);
+        _btnChangeHeader.frame = CGRectMake(_btnChangeHeader.frame.origin.x, 260.0, 1024.0, 20.0);
+        ScrollMenu.frame = CGRectMake(ScrollMenu.frame.origin.x, 280.0, 1024.0, 72.0);
+        _SiScrollView.frame = CGRectMake(_SiScrollView.frame.origin.x, 340.0, 1024.0, 428.0);
     }
     
 }
@@ -5926,11 +5960,19 @@ NSString *prevPlan;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavShow3 = YES;
+        _btnNavi1.hidden = YES;
+        _btnNavigation.hidden = YES;
+        _btnNaviCancel1.hidden = NO;
+        _btnNaviCancel2.hidden = NO;
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavShow3 = NO;
+        _btnNavi1.hidden = NO;
+        _btnNavigation.hidden = NO;
+        _btnNaviCancel1.hidden = YES;
+        _btnNaviCancel2.hidden = YES;
     }
     
 }
@@ -6029,7 +6071,7 @@ NSString *prevPlan;
 
 #pragma mark save method Rider
 -(void)setInitialRiderArray{
-    arrayRiderData = [[NSMutableArray alloc]initWithArray:[model_SI_Rider getRiderDataFor:self.requestSINo]];
+    arrayRiderData = [[NSMutableArray alloc]initWithArray:[modelSIRiderSelected getRiderSelectedDataFor:self.requestSINo]];
 }
 
 -(void)setRiderDictionary:(NSMutableArray *)arrayULRiderData{

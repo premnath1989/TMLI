@@ -235,6 +235,9 @@ bool WPTPD30RisDeleted = FALSE;
     
     
     [yearlyIncomeField addTarget:self action:@selector(RealTimeFormat:) forControlEvents:UIControlEventEditingChanged];
+    [_BasicPremiiField addTarget:self action:@selector(RealTimeFormat:) forControlEvents:UIControlEventEditingChanged];
+    [_PremiTopUpRegularField addTarget:self action:@selector(RealTimeFormat:) forControlEvents:UIControlEventEditingChanged];
+    
     [yearlyIncomeField addTarget:self action:@selector(AnnualIncomeChange:) forControlEvents:UIControlEventEditingDidEnd];
     [self setTextfieldBorder];
     
@@ -2020,6 +2023,7 @@ bool WPTPD30RisDeleted = FALSE;
         [_BasicPremiiField setText:[dictPremiData valueForKey:@"Premium"]];
         [yearlyIncomeField setText:[dictPremiData valueForKey:@"SumAssured"]];
         [_TotalPremiField setText:[dictPremiData valueForKey:@"TotalPremium"]];
+        [_PremiTopUpRegularField setText:[dictPremiData valueForKey:@"RegularTopUp"]];
         [_RencanaButton setTitle:[dictPremiData valueForKey:@"Payment_Term"] forState:UIControlStateNormal];
         [_frekuensiPembayaranButton setTitle:[dictPremiData valueForKey:@"Payment_Frequency"] forState:UIControlStateNormal];
         
@@ -5905,6 +5909,15 @@ bool WPTPD30RisDeleted = FALSE;
     basicPlanSIObj.siNO = SINo;
     
 }
+
+-(void)ChangeLabelBasicPremi:(NSString *)stringButtonFrekuensi{
+    if ([stringButtonFrekuensi isEqualToString:@"Sekaligus"]||[stringButtonFrekuensi isEqualToString:@"Single Premium"]){
+        [labelbasicPremi setText:@"Premi Tunggal*"];
+    }
+    else{
+        [labelbasicPremi setText:@"Premi Reguler*"];
+    }
+}
 #pragma mark - delegate
 
 -(void)PlanPembelianKe:(PembeliaKe *)inController didSelectCode:(NSString *)aaCode andDesc:(NSString *)aaDesc;
@@ -5989,7 +6002,7 @@ bool WPTPD30RisDeleted = FALSE;
     }
     
     [_basicPremiField setText:[NSString stringWithFormat:@"%@",@"0"]];
-    
+    [self ChangeLabelBasicPremi:_frekuensiPembayaranButton.currentTitle];
     //[self PremiDasarAct];
     
 }
@@ -6031,7 +6044,7 @@ bool WPTPD30RisDeleted = FALSE;
 {
     
     [_frekuensiPembayaranButton setTitle:aaDesc forState:UIControlStateNormal];
-   
+    [self ChangeLabelBasicPremi:aaDesc];
     
     MinBasicPremiValue = aaMinAmount;
     MinTopUpRegularValue = aaMaxAmount;
@@ -6111,7 +6124,7 @@ bool WPTPD30RisDeleted = FALSE;
     }
     else
     {
-         _TotalPremiField.text = [NSString stringWithFormat:@" %lld", SumToltal2];
+        _TotalPremiField.text = [classFormatter numberToCurrencyDecimalFormatted:[NSNumber numberWithLongLong:SumToltal2]];;
         long long Sumtotal3 = sumBasicPremiValue * 5;
         _SumAssLbl.text = [NSString stringWithFormat:@"(Min :%lld)", Sumtotal3];
         
@@ -6322,7 +6335,7 @@ bool WPTPD30RisDeleted = FALSE;
     NSMutableDictionary* originalDictPOLAData = [[NSMutableDictionary alloc]init];
     originalDictPOLAData = [_delegate getPOLADictionary];
    
-    [originalDictPOLAData setObject:@"" forKey:@"ProductCode"];
+    [originalDictPOLAData setObject:getPlanCode forKey:@"ProductCode"];
     [originalDictPOLAData setObject:_masaPembayaranButton.currentTitle forKey:@"ProductName"];
     
     

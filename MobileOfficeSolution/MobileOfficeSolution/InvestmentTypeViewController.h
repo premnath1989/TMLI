@@ -15,6 +15,7 @@
 
 @protocol InvestmentTypeControllerDelegate
 -(NSString *)getRunnigSINumber;
+-(NSMutableDictionary *)getPOLADictionary;
 -(NSMutableDictionary *)getBasicPlanDictionary;
 -(void)setInvestmentListArray:(NSMutableArray *)arrayInvestmentListData;
 -(NSMutableArray *)getInvestmentArray;

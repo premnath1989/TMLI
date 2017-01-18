@@ -30,6 +30,7 @@
 @class RiderViewController;
 @protocol RiderViewControllerDelegate
 -(NSString *)getRunnigSINumber;
+-(NSMutableDictionary *)getPOLADictionary;
 -(NSMutableDictionary *)getBasicPlanDictionary;
 -(void)setRiderDictionary:(NSMutableArray *)arrayRiderData;
 -(NSMutableArray *)getRiderArray;
