@@ -1588,12 +1588,16 @@ int deleteOption; // 101 = SI and eApps, 102 = delete Si only, 103 = combination
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavIsShow1 = YES;
+        _btnNavigation.hidden = YES;
+        _btnCancelNavigation.hidden = NO;
     }
     else
     {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavIsShow1 = NO;
+        _btnNavigation.hidden = NO;
+        _btnCancelNavigation.hidden = YES;
     }
 }
 

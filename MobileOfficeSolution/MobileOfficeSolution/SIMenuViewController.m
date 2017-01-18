@@ -5927,11 +5927,19 @@ NSString *prevPlan;
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationShow:self];
         NavShow3 = YES;
+        _btnNavi1.hidden = YES;
+        _btnNavigation.hidden = YES;
+        _btnNaviCancel1.hidden = NO;
+        _btnNaviCancel2.hidden = NO;
     }
     else {
         UserInterface *_objectUserInterface = [[UserInterface alloc] init];
         [_objectUserInterface navigationHide:self];
         NavShow3 = NO;
+        _btnNavi1.hidden = NO;
+        _btnNavigation.hidden = NO;
+        _btnNaviCancel1.hidden = YES;
+        _btnNaviCancel2.hidden = YES;
     }
     
 }

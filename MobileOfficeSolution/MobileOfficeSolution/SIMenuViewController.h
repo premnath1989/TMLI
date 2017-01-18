@@ -235,6 +235,9 @@
 - (IBAction)ActionChangeHeader:(id)sender;
 - (IBAction)ActionNavigationShow:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UIButton *btnNavi1;
+@property (strong, nonatomic) IBOutlet UIButton *btnNaviCancel1;
+@property (strong, nonatomic) IBOutlet UIButton *btnNaviCancel2;
 
 //-----
 

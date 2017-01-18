@@ -75,11 +75,15 @@ BOOL NavShowOne;
     if (!NavShowOne) {
         [_objectUserInterface navigationShow:self];
         NavShowOne = YES;
+        _btnCancelNavi.hidden = NO;
+        _buttonNavigation.hidden = YES;
         [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : true];
     }else{
         [_objectUserInterface navigationHide:self];
         [self headerShow:_viewTest2 viewHeaderThin : _viewTest1 booleanShow : false];
         NavShowOne = NO;
+        _btnCancelNavi.hidden = YES;
+        _buttonNavigation.hidden = NO;
     }
     
 }
