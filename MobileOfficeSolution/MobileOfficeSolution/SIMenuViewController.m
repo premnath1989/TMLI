@@ -2971,6 +2971,7 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.RiderController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.RiderController.view.frame.size.width, 412.0)];
     
+    CurrentVC = _RiderController;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -2984,7 +2985,7 @@ BOOL NavShow3;
     _SiScrollView.contentSize = CGSizeMake(self.InvestmentController.view.frame.size.width, 412.0);
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, self.InvestmentController.view.frame.size.width, 412.0)];
     
-    
+    CurrentVC = _InvestmentController;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -2995,7 +2996,7 @@ BOOL NavShow3;
     [RightView setFrame:CGRectMake(RightView.frame.origin.x, RightView.frame.origin.y, topUpWithDrawVC.view.frame.size.width, 412.0)];
     [topUpWithDrawVC loadDataFromList];
     
-    CurrentVC = _InvestmentController;
+    CurrentVC = topUpWithDrawVC;
     [self setBOOLSectionFilled];
     [myTableView reloadData];
 }
@@ -3051,8 +3052,7 @@ BOOL NavShow3;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"cell last index %i",lastIndexSelected);
-	
+
     static NSString *CellIdentifier = @"Cell";
     SIMenuTableViewCell *cell = (SIMenuTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
@@ -3087,25 +3087,46 @@ BOOL NavShow3;
         if (isPOFilled){
             [cell.BtnTertanggung setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
             [cell.BtnTertanggung setBackgroundColor:gray];
+            [cell.BtnTertanggung setEnabled:YES];
         }
         else{
             [cell.BtnTertanggung setImage:ShapeGuide_disable forState:UIControlStateNormal];
             [cell.BtnTertanggung setBackgroundColor:gray];
+            [cell.BtnTertanggung setEnabled:NO];
         }
     }
     
     if (isBasicPlanFilled){
         [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
         [cell.BtnAsuransiDasar setBackgroundColor:gray];
+        [cell.BtnAsuransiDasar setEnabled:YES];
     }
     else{
         if (isLAFilled){
             [cell.BtnAsuransiDasar setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
             [cell.BtnAsuransiDasar setBackgroundColor:gray];
+            [cell.BtnAsuransiDasar setEnabled:YES];
         }
         else{
             [cell.BtnAsuransiDasar setImage:ShapeGuide_disable forState:UIControlStateNormal];
             [cell.BtnAsuransiDasar setBackgroundColor:gray];
+            [cell.BtnAsuransiDasar setEnabled:NO];
+        }
+    }
+    
+    if (isRiderFilled){
+        [cell.BtnAsuransiTamb setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+        [cell.BtnAsuransiTamb setBackgroundColor:gray];
+    }
+    else{
+        if (isLAFilled){
+            [cell.BtnAsuransiTamb setImage:ShapeGuide_onprogress forState:UIControlStateNormal];
+            [cell.BtnAsuransiTamb setBackgroundColor:gray];
+        }
+        else{
+            [cell.BtnAsuransiTamb setImage:ShapeGuide_disable forState:UIControlStateNormal];
+            [cell.BtnAsuransiTamb setBackgroundColor:gray];
+//            [cell.BtnAsuransiTamb setEnabled:NO];
         }
     }
     
@@ -3122,6 +3143,18 @@ BOOL NavShow3;
     else if (CurrentVC == _BasicController) {
         [cell.BtnAsuransiDasar setBackgroundColor:green];
         [cell.BtnAsuransiDasar setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == _RiderController) {
+        [cell.BtnAsuransiTamb setBackgroundColor:green];
+        [cell.BtnAsuransiTamb setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == _InvestmentController) {
+        [cell.BtnInvestasi setBackgroundColor:green];
+        [cell.BtnInvestasi setImage:ShapeGuide_Complete forState:UIControlStateNormal];
+    }
+    else if (CurrentVC == topUpWithDrawVC) {
+        [cell.BtnPenambahan setBackgroundColor:green];
+        [cell.BtnPenambahan setImage:ShapeGuide_Complete forState:UIControlStateNormal];
     }
 
 
