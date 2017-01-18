@@ -44,9 +44,7 @@
     
     //for segment function
     NSString *segment;
-    NSMutableArray *arrayContainerSegment1;
-    NSMutableArray *arrayContainerSegment2;
-    NSMutableArray *arrayContainerSegment3;
+    NSMutableArray *arrayContainerSegmentDefault;
     
     // BHIMBIM'S QUICK FIX - Start
     

@@ -58,7 +58,7 @@ BOOL NavShow2;
         [self getDirectoryListing];
     }else{
         [self listDirFile];
-        [self changeSegment:arrayContainerSegment1];
+        [self changeSegment:arrayContainerSegmentDefault];
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke Server Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses Server"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
@@ -66,7 +66,7 @@ BOOL NavShow2;
     NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
     [newAttributes setObject:[UIFont systemFontOfSize:18] forKey:UITextAttributeFont];
     
-    themeColour = [UIColor colorWithRed:0.0f/255.0f green:160.0f/255.0f blue:180.0f/255.0f alpha:1];
+    themeColour = [UIColor colorWithRed:72.0f/255.0f green:98.0f/255.0f blue:108.0f/255.0f alpha:1];
     fontType = [UIFont fontWithName:@"BPreplay" size:16.0f];
     
     [self setupTableColumn];
@@ -199,7 +199,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self convertFullPathToFolder:fileURL];
             [myTableView reloadData];
             
-            [self changeSegment:arrayContainerSegment1];
+            [self changeSegment:arrayContainerSegmentDefault];
         }
     }
 }
@@ -268,24 +268,22 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
     }
     
-    arrayContainerSegment1 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment1 addObject:[arrayContainer objectAtIndex:1]];
-    arrayContainerSegment2 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment2 addObject:[arrayContainer objectAtIndex:0]];
-    arrayContainerSegment3 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment3 addObject:[arrayContainer objectAtIndex:2]];
-    
-    float yPosition = 20.0;
-    NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
-    for(NSMutableDictionary *tempDict in arrayContainer){
-        NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
-        if(![stringKeys containsObject:keyTempDict]){
-            [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
-            
-            //we create segment button of the scrollview here
-            [self createSegmentedButtons:keyTempDict yPosition:yPosition];
-            yPosition = yPosition + 60.0;
-            [stringKeys addObject:keyTempDict];
+    if([arrayContainer count ] > 0){
+        arrayContainerSegmentDefault = [[NSMutableArray alloc]init];
+        [arrayContainerSegmentDefault addObject:[arrayContainer objectAtIndex:1]];
+        
+        float yPosition = 20.0;
+        NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
+        for(NSMutableDictionary *tempDict in arrayContainer){
+            NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
+            if(![stringKeys containsObject:keyTempDict]){
+                [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
+                
+                //we create segment button of the scrollview here
+                [self createSegmentedButtons:keyTempDict yPosition:yPosition];
+                yPosition = yPosition + 60.0;
+                [stringKeys addObject:keyTempDict];
+            }
         }
     }
 }
@@ -495,39 +493,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     [tableManagement TableRowInsert:[FTPItemsList objectAtIndex:indexPath.row] index:indexPath.row table:cell color:[UIColor colorWithRed:128.0f/255.0f green:130.0f/255.0f blue:133.0f/255.0f alpha:1]];
     
     return cell;
-}
-
-- (IBAction)ActionSegChange:(id)sender{
-
-    UISegmentedControl * segmentedControl = (UISegmentedControl *)sender;
-    switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"ProductInformation";
-            [self changeSegment:arrayContainerSegment1];
-            break;
-        }
-            
-        case 1:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"TrainingInformation";
-            [self changeSegment:arrayContainerSegment3];
-            break;
-        }
-            
-        case 2:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"CompanyInformation";
-            [self changeSegment:arrayContainerSegment2];
-            break;
-        }
-    }
 }
 
 
