@@ -28,6 +28,7 @@
 @synthesize navigationBar;
 @synthesize moviePlayer;
 @synthesize segmentScrollView;
+@synthesize txtFind;
 
 BOOL NavShow2;
 
@@ -500,13 +501,11 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 {
     [FTPItemsList removeAllObjects];
     
-    for (int i = 0; i < arrayListRAW.count; i++)
-    {
-        [[arrayListRAW objectAtIndex:i] objectAtIndex:1];
-        NSLog(@"actionFind -> name = %@, at index -> %d", [[arrayListRAW objectAtIndex:i] objectAtIndex:1], i);
+    NSMutableArray *containerArrayFind = [[NSMutableArray alloc]init];
+    for(NSMutableDictionary *dict in arrayContainerSegmentActive){
+        [self FindDict:[txtFind text] dict:dict arrayContainer:containerArrayFind];
     }
-    
-    [myTableView reloadData];
+    [self changeSegment:containerArrayFind];
 }
 
 // BHIMBIM'S QUICK FIX - End
@@ -578,7 +577,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
         }
     }else if([[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:1] caseInsensitiveCompare:folderLabel] == NSOrderedSame){
-        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self modifyTableList:fileName row:indexPath.row];
         [myTableView reloadData];
     }
@@ -692,14 +691,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     for(NSString *key in [dict allKeys]){
         if([key containsString:searchName]){
             [arrayCointainer addObject:dict];
-        }else{
-            if(![key containsString:@"."]){
-                if([[dict valueForKey:key] count] > 0){
-                    for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
-                        if([[wrapperDict allKeys] count] == 1){
-                            [self FindDict:searchName dict:wrapperDict
-                                   arrayContainer:arrayCointainer];
-                        }
+        }
+        if(![key containsString:@"."]){
+            if([[dict valueForKey:key] count] > 0){
+                for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
+                    if([[wrapperDict allKeys] count] == 1){
+                        [self FindDict:searchName dict:wrapperDict
+                               arrayContainer:arrayCointainer];
                     }
                 }
             }
@@ -923,7 +921,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         for(NSDictionary *tempServerDict in ftpItems){
             NSString *serverFileURL = [tempServerDict valueForKey:@"fileURL"];
             NSString *localFileURL = [tempLocalDict valueForKey:@"fileURL"];
-            serverFileURL = [serverFileURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//            serverFileURL = [serverFileURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             if([serverFileURL containsString:localFileURL]){
                 exist = TRUE;
                 break;
