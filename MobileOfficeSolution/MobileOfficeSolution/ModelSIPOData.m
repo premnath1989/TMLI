@@ -50,7 +50,12 @@
     }
     [results close];
     [database close];
+    
+
 }
+
+
+
 
 -(void)updatePOData:(NSDictionary *)dataPO{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -391,6 +396,47 @@
     }
     [results close];
     [database close];
+    
+    NSNumber *tt = [dictPOLAData valueForKey:@"QuickQuote"];
+    if ([tt intValue] == 0) {
+        [self savePOToProspect:dictPOLAData];
+    }
+
+}
+
+-(void)savePOToProspect:(NSDictionary *)dictPOLAData{
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
+    
+    NSString *score;
+    if ([[dictPOLAData valueForKey:@"PO_Gender"] isEqualToString:@"MALE"]) {
+        score = @"2";
+    }
+    else {
+        score = @"1";
+    }
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:path];
+    [database open];
+    BOOL success = [database executeUpdate:@"insert into prospect_profile (\'ProspectName\', \'ProspectLastName\', \"ProspectDOB\",\"ProspectGender\",  \"ProspectStatus\", \"Score\", \"ProspectAge\", \"QQFlag\", \"DateCreated\", \"DateModified\") values (?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"")",
+                    [dictPOLAData valueForKey:@"PO_Name"],
+                    @"",
+                    [dictPOLAData valueForKey:@"PO_DOB"],
+                    [dictPOLAData valueForKey:@"PO_Gender"],
+                    @"Incomplete",
+                    score,
+                    [dictPOLAData valueForKey:@"PO_Age"],
+                    @"false"
+                    ];
+    
+    if (!success) {
+        NSLog(@"%s: insert error: %@", __FUNCTION__, [database lastErrorMessage]);
+        // do whatever you need to upon error
+    }
+    [results close];
+    [database close];
+    
+    
 }
 
 -(void)updatePOLAData:(NSMutableDictionary *)dictPOLAData{

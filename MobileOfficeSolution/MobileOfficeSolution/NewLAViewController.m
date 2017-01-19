@@ -2847,7 +2847,7 @@
 
 -(NSNumber *)getQuickQuoteState{
     NSNumber *numberBoolQuickQuote;
-    if ([quickQuoteFlag isOn]){
+    if (QuickQuoteBool){
         numberBoolQuickQuote = [NSNumber numberWithInt:1];
     }
     else{
