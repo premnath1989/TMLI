@@ -28,6 +28,7 @@
 @synthesize navigationBar;
 @synthesize moviePlayer;
 @synthesize segmentScrollView;
+@synthesize txtFind;
 
 BOOL NavShow2;
 
@@ -58,16 +59,13 @@ BOOL NavShow2;
         [self getDirectoryListing];
     }else{
         [self listDirFile];
-        [self changeSegment:arrayContainerSegment1];
+        [self changeSegment:arrayContainerSegmentDefault];
         UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"Koneksi ke Server Gagal" message:[NSString stringWithFormat:@"Pastikan perangkat terhubung ke internet yang stabil untuk mengakses Server"] delegate:self cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
     
-    NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
-    [newAttributes setObject:[UIFont systemFontOfSize:18] forKey:UITextAttributeFont];
-    
-    themeColour = [UIColor colorWithRed:0.0f/255.0f green:160.0f/255.0f blue:180.0f/255.0f alpha:1];
-    fontType = [UIFont fontWithName:@"BPreplay" size:16.0f];
+    themeColour = [UIColor colorWithRed:72.0f/255.0f green:98.0f/255.0f blue:108.0f/255.0f alpha:1];
+    fontType = [UIFont fontWithName:@"NewJuneRegular" size:16.0f];
     
     [self setupTableColumn];
     
@@ -86,7 +84,8 @@ BOOL NavShow2;
 - (void)changeSegment:(NSMutableArray *)arraySegment{
     
     NSMutableArray *dictSectionToDeleted = [[NSMutableArray alloc] init];
-    
+    arrayContainerSegmentActive = [[NSMutableArray alloc]init];
+    arrayContainerSegmentActive = arraySegment;
     
     [FTPItemsList removeAllObjects];
     for(NSMutableDictionary *dict in arraySegment){
@@ -199,7 +198,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [self convertFullPathToFolder:fileURL];
             [myTableView reloadData];
             
-            [self changeSegment:arrayContainerSegment1];
+            [self changeSegment:arrayContainerSegmentDefault];
         }
     }
 }
@@ -268,24 +267,22 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
     }
     
-    arrayContainerSegment1 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment1 addObject:[arrayContainer objectAtIndex:1]];
-    arrayContainerSegment2 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment2 addObject:[arrayContainer objectAtIndex:0]];
-    arrayContainerSegment3 = [[NSMutableArray alloc]init];
-    [arrayContainerSegment3 addObject:[arrayContainer objectAtIndex:2]];
-    
-    float yPosition = 20.0;
-    NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
-    for(NSMutableDictionary *tempDict in arrayContainer){
-        NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
-        if(![stringKeys containsObject:keyTempDict]){
-            [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
-            
-            //we create segment button of the scrollview here
-            [self createSegmentedButtons:keyTempDict yPosition:yPosition];
-            yPosition = yPosition + 60.0;
-            [stringKeys addObject:keyTempDict];
+    if([arrayContainer count ] > 0){
+        arrayContainerSegmentDefault = [[NSMutableArray alloc]init];
+        [arrayContainerSegmentDefault addObject:[arrayContainer objectAtIndex:0]];
+        
+        float yPosition = 20.0;
+        NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
+        for(NSMutableDictionary *tempDict in arrayContainer){
+            NSString *keyTempDict = [[tempDict allKeys] objectAtIndex:0];
+            if(![stringKeys containsObject:keyTempDict]){
+                [self insertIntoTableData:keyTempDict size:@"" index:1 fileURL:@"" objectIndex:111111];
+                
+                //we create segment button of the scrollview here
+                [self createSegmentedButtons:keyTempDict yPosition:yPosition];
+                yPosition = yPosition + 60.0;
+                [stringKeys addObject:keyTempDict];
+            }
         }
     }
 }
@@ -444,7 +441,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     columnHeadersContent = [NSArray arrayWithObjects:nama, type, size, download, nil];
     tableManagement = [[TableManagement alloc]init:self.view themeColour:themeColour themeFont:fontType];
     TableHeader =[tableManagement TableHeaderSetupXY:columnHeadersContent
-                                         positionY:252.0f positionX:177.0f];
+                                         positionY:170.0f positionX:176.0f];
     
     [self.view addSubview:TableHeader];
     
@@ -483,7 +480,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
         }else{
-            cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//            if([recordedCollapsedRow count] > 0){
+//                if(indexPath.row == [self collapsedRows:FileName collapsedRows:recordedCollapsedRow]){
+                    cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                }else{
+//                    cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                }
+//            }
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
@@ -497,39 +500,6 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     return cell;
 }
 
-- (IBAction)ActionSegChange:(id)sender{
-
-    UISegmentedControl * segmentedControl = (UISegmentedControl *)sender;
-    switch (segmentedControl.selectedSegmentIndex) {
-        case 0:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"ProductInformation";
-            [self changeSegment:arrayContainerSegment1];
-            break;
-        }
-            
-        case 1:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"TrainingInformation";
-            [self changeSegment:arrayContainerSegment3];
-            break;
-        }
-            
-        case 2:
-        {
-            [recordedCollapsedRow removeAllObjects];
-            [collapsedRow removeAllObjects];
-            segment = @"CompanyInformation";
-            [self changeSegment:arrayContainerSegment2];
-            break;
-        }
-    }
-}
-
 
 // BHIMBIM'S QUICK FIX - Start
 
@@ -537,13 +507,11 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 {
     [FTPItemsList removeAllObjects];
     
-    for (int i = 0; i < arrayListRAW.count; i++)
-    {
-        [[arrayListRAW objectAtIndex:i] objectAtIndex:1];
-        NSLog(@"actionFind -> name = %@, at index -> %d", [[arrayListRAW objectAtIndex:i] objectAtIndex:1], i);
+    NSMutableArray *containerArrayFind = [[NSMutableArray alloc]init];
+    for(NSMutableDictionary *dict in arrayContainerSegmentActive){
+        [self FindDict:[txtFind text] dict:dict arrayContainer:containerArrayFind];
     }
-    
-    [myTableView reloadData];
+    [self changeSegment:containerArrayFind];
 }
 
 // BHIMBIM'S QUICK FIX - End
@@ -582,13 +550,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }else if(serverTransferMode == kBRHTTPMode){
                 progressBar.TransferMode = kBRHTTPMode;
                 progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
-                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
-                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+                                               [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4];
             }
             
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seePDF:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+            [self seePDF:[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
         }
     }else if([fileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
         if([unduhLabel caseInsensitiveCompare:downloadMacro] == NSOrderedSame){
@@ -607,15 +575,15 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }else if(serverTransferMode == kBRHTTPMode){
                 progressBar.TransferMode = kBRHTTPMode;
                 progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
-                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
-                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+                                               [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4];
             }
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+            [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
         }
     }else if([[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:1] caseInsensitiveCompare:folderLabel] == NSOrderedSame){
-        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         [self modifyTableList:fileName row:indexPath.row];
         [myTableView reloadData];
     }
@@ -626,8 +594,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     BOOL expandBool = TRUE;
     int i = 1;
     
-    for(NSMutableDictionary *dict in arrayContainer){
-        modifyTempArray = [self searchDict:folderName dict:dict];
+    int currentLevel = 0;
+    int level = (int)[[[FTPItemsList objectAtIndex:row] objectAtIndex:5]floatValue];
+    for(NSMutableDictionary *dict in arrayContainerSegmentActive){
+        modifyTempArray = [self searchDict:folderName dict:dict level:level currentLevel:currentLevel];
         if([modifyTempArray count] > 0){
             break;
         }
@@ -696,7 +666,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
             child = [[tempDict valueForKey:folderName] count];
             for(NSString *childName in [tempDict valueForKey:folderName]){
-                child = child + [self collapsedRows:childName collapsedRows:collapsedRows];
+                NSMutableArray *tempArray = collapsedRows;
+                if([collapsedRows count]>0){
+                    [tempArray removeObjectAtIndex:0];
+                    [collapsedRow removeObject:folderName];
+                }
+                child = child + [self collapsedRows:childName collapsedRows:tempArray];
             }
         }
     }
@@ -704,16 +679,18 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 }
 
 //we search through all the array to get list of the parent's child/ren
-- (NSMutableArray *)searchDict:(NSString *)fileName dict:(NSMutableDictionary *)dict{
+- (NSMutableArray *)searchDict:(NSString *)fileName dict:(NSMutableDictionary *)dict
+                         level:(int)level currentLevel:(int)CurrentLevel{
     for(NSString *key in [dict allKeys]){
-        if([key compare:fileName] == NSOrderedSame){
+        if([key compare:fileName] == NSOrderedSame && CurrentLevel == level){
             return [dict valueForKey:key];
         }else{
             if(![key containsString:@"."]){
                 if([[dict valueForKey:key] count] > 0){
                     for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
                         if([[wrapperDict allKeys] count] == 1){
-                            return [self searchDict:fileName dict:wrapperDict];
+                            return [self searchDict:fileName dict:wrapperDict
+                                              level:level currentLevel:CurrentLevel+1];
                         }
                     }
                 }
@@ -722,6 +699,27 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
     return nil;
 }
+
+//we search through all the array to get list of the name contained with the text
+- (void)FindDict:(NSString *)searchName dict:(NSMutableDictionary *)dict
+                    arrayContainer:(NSMutableArray *)arrayCointainer{
+    for(NSString *key in [dict allKeys]){
+        if([key containsString:searchName]){
+            [arrayCointainer addObject:dict];
+        }
+        if(![key containsString:@"."]){
+            if([[dict valueForKey:key] count] > 0){
+                for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
+                    if([[wrapperDict allKeys] count] == 1){
+                        [self FindDict:searchName dict:wrapperDict
+                               arrayContainer:arrayCointainer];
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 - (BOOL)searchFile:(NSString *)fileName{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -938,7 +936,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         for(NSDictionary *tempServerDict in ftpItems){
             NSString *serverFileURL = [tempServerDict valueForKey:@"fileURL"];
             NSString *localFileURL = [tempLocalDict valueForKey:@"fileURL"];
-            serverFileURL = [serverFileURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+//            serverFileURL = [serverFileURL stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
             if([serverFileURL containsString:localFileURL]){
                 exist = TRUE;
                 break;
@@ -1002,9 +1000,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     NSLog(@"index: %d, file %@", fileIndex, fileFormat);
     if(objectIndex == 111111){
-        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,nil]];
+        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,@"0",nil]];
     }else{
-        [FTPItemsList insertObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,nil] atIndex:objectIndex];
+        [FTPItemsList insertObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,@"1", nil] atIndex:objectIndex];
     }
     
     [spinnerLoading stopLoadingSpinner];

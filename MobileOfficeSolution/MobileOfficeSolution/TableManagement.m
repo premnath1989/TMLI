@@ -25,7 +25,7 @@
                                CGRectMake(ParentView.frame.origin.x + 15.0f,
                                           originY, ParentView.frame.size.width - 90.0f, 41.0f)];
     [TableHeader setBackgroundColor:themeColour];
-    [self TableHeaderColumn:columnHeaders];
+    [self TableHeaderColumn:columnHeaders verticalBar:TRUE];
     return TableHeader;
 }
 
@@ -34,11 +34,11 @@
                    CGRectMake(originX,
                               originY, ParentView.frame.size.width+80.0f, 41.0f)];
     [TableHeader setBackgroundColor:themeColour];
-    [self TableHeaderColumn:columnHeaders];
+    [self TableHeaderColumn:columnHeaders verticalBar:FALSE];
     return TableHeader;
 }
 
-- (void)TableHeaderColumn:(NSArray *)columnHeaders{
+- (void)TableHeaderColumn:(NSArray *)columnHeaders verticalBar:(BOOL)verticalBar{
     CGFloat headerOriginX = 0.0f;
     CGFloat headerTable = TableHeader.frame.size.width - (10.0f * (columnHeaders.count-1));
     for(ColumnHeaderStyle *styleHeader in columnHeaders){
@@ -63,12 +63,14 @@
                                              lblHeaderColumn.frame.size.height + 1.0f)];
         }
         
-        if(![styleHeader isEqual: (ColumnHeaderStyle *)[columnHeaders lastObject]]){
-            UIView *verticalLineView=[[UIView alloc] initWithFrame:
-                                      CGRectMake(lblHeaderColumn.frame.origin.x+lblHeaderColumn.frame.size.width+5, 0, 1, TableHeader.frame.size.height+3.0f)];
-            [verticalLineView setTag:[columnHeaders indexOfObject:styleHeader]];
-            [verticalLineView setBackgroundColor:[UIColor whiteColor]];
-            [TableHeader addSubview:verticalLineView];
+        if(verticalBar){
+            if(![styleHeader isEqual: (ColumnHeaderStyle *)[columnHeaders lastObject]]){
+                UIView *verticalLineView=[[UIView alloc] initWithFrame:
+                                          CGRectMake(lblHeaderColumn.frame.origin.x+lblHeaderColumn.frame.size.width+5, 0, 1, TableHeader.frame.size.height+3.0f)];
+                [verticalLineView setTag:[columnHeaders indexOfObject:styleHeader]];
+                [verticalLineView setBackgroundColor:[UIColor whiteColor]];
+                [TableHeader addSubview:verticalLineView];
+            }
         }
         headerOriginX = headerOriginX + lblHeaderColumn.frame.size.width + 10.0f;
     }
@@ -96,6 +98,13 @@
             }
             else{
                 label1.text= @"";
+            }
+            
+            if(i == 0){
+                CGRect btFrame = label1.frame;
+                float margin = 20.0f * [[dataArray objectAtIndex:5] floatValue];
+                btFrame.origin.x = btFrame.origin.x + margin;
+                label1.layer.frame = btFrame;
             }
             
             label1.tag = (index*1000)+i;

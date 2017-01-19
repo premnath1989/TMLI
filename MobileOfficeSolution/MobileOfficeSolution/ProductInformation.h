@@ -44,9 +44,8 @@
     
     //for segment function
     NSString *segment;
-    NSMutableArray *arrayContainerSegment1;
-    NSMutableArray *arrayContainerSegment2;
-    NSMutableArray *arrayContainerSegment3;
+    NSMutableArray *arrayContainerSegmentDefault;
+    NSMutableArray *arrayContainerSegmentActive;
     
     // BHIMBIM'S QUICK FIX - Start
     
@@ -60,6 +59,7 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *btnHome;
 @property (weak, nonatomic) IBOutlet UIButton *btnPDF;
+@property (weak, nonatomic) IBOutlet UITextField *txtFind;
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) MPMoviePlayerController *moviePlayer;
