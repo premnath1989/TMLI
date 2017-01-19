@@ -31,6 +31,7 @@ extern CGFloat const FONTSIZE_FORM_PARAGRAPH;
 extern CGFloat const FONTSIZE_FORM_NOTE;
 extern CGFloat const FONTSIZE_FORM_QUESTION;
 extern CGFloat const FONTSIZE_FORM_NUMBER;
+extern CGFloat const FONTSIZE_FORMSLIM_QUESTION;
 
 
 // PHOTO
@@ -52,6 +53,7 @@ extern CGFloat const FONTSIZE_PHOTO_DETAIL;
 // INPUT
 
 extern CGFloat const FONTSIZE_TEXTFIELD_FORM;
+extern CGFloat const FONTSIZE_TEXTFIELD_FORMSLIM;
 extern CGFloat const FONTSIZE_SEGMENTEDCONTROL_FORM;
 
 

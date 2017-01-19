@@ -23,10 +23,16 @@
     - (UIColor*) generateUIColor : (UInt32) intHex floatOpacity : (CGFloat) floatOpacity;
 
 
+    // PROFILE
+
+    - (NSString *) generateProfileInitial : (NSString *) stringName;
+
+
     // NAVIGATION
 
-    - (void) navigationExpand : (UIStackView*) stackViewDetail;
+    - (void) navigationExpand : (UIStackView *) stackViewNavigationDetail imageViewNavigationExpand : (UIView *) imageViewNavigationExpand;
 
+    - (void) navigationToggle : (UIView* ) viewMain;
     - (void) navigationShow : (UIViewController*) viewMain;
     - (void) navigationHide : (UIViewController*) viewMain;
 

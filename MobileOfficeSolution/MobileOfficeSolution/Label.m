@@ -145,6 +145,55 @@
 
 @end
 
+@implementation LabelFormSlimSection
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_FORM_SECTION]];
+        self.numberOfLines = 1;
+        self.textAlignment = NSTextAlignmentLeft;
+    }
+
+@end
+
+@implementation LabelFormSlimQuestion
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+    - (void)drawTextInRect:(CGRect)rect
+    {
+        UIEdgeInsets insets = {GENERAL_SPACE_TINY, 0, GENERAL_SPACE_TINY, 0};
+        [super drawTextInRect:UIEdgeInsetsInsetRect(rect, insets)];
+    }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_FORMSLIM_QUESTION]];
+        self.numberOfLines = 4;
+        self.textAlignment = NSTextAlignmentLeft;
+    }
+
+@end
+
+
 // PHOTO
 
 @implementation LabelPhotoSection
@@ -495,6 +544,31 @@
         [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_PROFILE_DETAIL]];
         self.numberOfLines = 1;
         self.textAlignment = NSTextAlignmentLeft;
+    }
+
+@end
+
+@implementation LabelProfileInitial
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.widthAnchor constraintEqualToConstant:180].active = true;
+        [self.heightAnchor constraintEqualToConstant:80].active = true;
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:48]];
+        self.numberOfLines = 1;
+        self.textAlignment = NSTextAlignmentCenter;
+        [self setBackgroundColor : [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0]];
     }
 
 @end

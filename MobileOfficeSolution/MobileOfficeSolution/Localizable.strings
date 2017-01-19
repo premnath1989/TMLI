@@ -17,6 +17,9 @@ FORM_SECTION_PERSONALINFORMATION = "Personal Information";
 FORM_SECTION_PERSONALADDRESS = "Personal Address";
 FORM_SECTION_OTHERADDRESS = "Other Address";
 FORM_SECTION_CORRESPONDANCEADDRESS = "Correspondance Address";
+FORM_SECTION_CONTACT = "Contact";
+FORM_SECTION_STRUCTURE = "Structure";
+FORM_SECTION_AGENT = "Agent";
 
 /* PHARAGRAPH */
 
@@ -35,7 +38,24 @@ FORM_QUESTION_MARITALSTATUS = "Marital status";
 FORM_QUESTION_RELIGION = "Religion";
 FORM_QUESTION_HANDPHONE1 = "Handphone 1";
 FORM_QUESTION_HANDPHONE2 = "Handphone 2";
+FORM_QUESTION_HANDPHONEHOME = "Handphone home";
+FORM_QUESTION_HANDPHONEBUSINESS = "Handphone business";
 FORM_QUESTION_EMAIL = "Email";
+FORM_QUESTION_PTKPSTATUS = "PTKP status";
+FORM_QUESTION_BANKNAME = "Bank name";
+FORM_QUESTION_ACCOUNTNUMBER = "Account number";
+FORM_QUESTION_ACCOUNTHOLDER = "Account holder";
+FORM_QUESTION_NPWP = "NPWP";
+FORM_QUESTION_ADDRESS = "Address";
+FORM_QUESTION_EMAIL = "Email";
+
+FORM_QUESTION_DISTRICTMANAGER = "District manager";
+FORM_QUESTION_REGIONALMANAGER = "Regional manager";
+FORM_QUESTION_REGIONALDIRECTOR = "Regional director";
+
+FORM_QUESTION_OFFICENAME = "Office name";
+FORM_QUESTION_AAJILICENSE = "AAJI license";
+FORM_QUESTION_AAJIEXPIREDDATE = "AAJI expired date";
 
 FORM_QUESTION_PERSONALADDRESS = "Personal Address";
 FORM_QUESTION_CITY = "City";
@@ -70,6 +90,10 @@ BUTTON_DELETE = "Delete";
 BUTTON_RESET = "Reset";
 BUTTON_CANCEL = "Cancel";
 BUTTON_OK = "Ok";
+BUTTON_FIND = "Find";
+BUTTON_PICK = "Pick";
+BUTTON_CHANGEPASSWORD = "Change Password";
+BUTTON_SYNC = "Sync";
 
 
 // DECORATOR
@@ -110,20 +134,17 @@ HEADER_SPAJ_ADDNEW = "S.P.A.J Add New";
 HEADER_SPAJ_EXISTINGLIST = "S.P.A.J Existing List";
 HEADER_SPAJ_MODULE = "S.P.A.J Module";
 
-/* Prospect */
-
 HEADER_PROSPECT_LANDING = "Prospect Module";
 HEADER_PROSPECT_ADDNEW = "Prospect Add New";
 HEADER_PROSPECT_EXISTINGLIST = "Prospect Existing List";
 HEADER_PROSPECT_MODULE = "Prospect Module";
-
-/* SalesIllustration */
 
 HEADER_SI_LANDING = "Sales Illustration Module";
 HEADER_SI_ADDNEW = "Sales Illustration Add New";
 HEADER_SI_EXISTINGLIST = "Sales Illustration Existing List";
 HEADER_SI_MODULE = "Sales Illustration Module";
 
+HEADER_AGENT_PROFILE = "Agent Profile";
 
 /* DETAIL */
 
@@ -131,6 +152,7 @@ DETAIL_SPAJ_LANDING = "";
 DETAIL_SPAJ_ADDNEW = "";
 DETAIL_SPAJ_EXISTINGLIST = "";
 DETAIL_SPAJ_MODULE = "";
+DETAIL_AGENT_PROFILE = "loren ipsum dolores o riordan the caranberries\nsimple dummy text standard simple";
 
 
 // GUIDE

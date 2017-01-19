@@ -163,6 +163,18 @@
 
 @end
 
+@interface StackViewFormSlimVerticalContainer : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
+@interface StackViewFormSlimVerticalData : UIStackView
+
+    - (void)setupStyle;
+
+@end
+
 
 // MAIN
 
@@ -189,5 +201,26 @@
     - (void)styleOnProgress;
     - (void)styleComplete;
     - (void)styleDisable;
+
+@end
+
+
+// LIST
+
+@interface ViewTableHeader : UIView
+
+- (void)setupStyle;
+
+@end
+
+@interface StackViewTableHeader : UIStackView
+
+- (void)setupStyle;
+
+@end
+
+@interface StackViewTableColumn : UIStackView
+
+- (void)setupStyle;
 
 @end

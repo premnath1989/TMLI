@@ -44,32 +44,43 @@
 @synthesize outletChgPassword;
 @synthesize outletSave;
 @synthesize outletSyncSPAJNumber;
-@synthesize txtAgentCode;
-@synthesize txtAgentName;
-@synthesize txtAgentLvl;
-@synthesize txtAgentStatus;
-@synthesize txtJenisKelamin;
-@synthesize txtBOD;
-@synthesize txtReligion;
-@synthesize txtMaritalStatus;
-@synthesize txtIDCard;
-@synthesize txtLicense;
-@synthesize txtMobileNumber;
-@synthesize txtBusinessNumber;
-@synthesize txtEmail;
-@synthesize txtAddress;
 
-@synthesize txtPTKP;
-@synthesize txtNoRek;
-@synthesize txtBankName;
-@synthesize txtRekName;
-@synthesize txtDM;
-@synthesize txtRM;
-@synthesize txtRD;
-@synthesize txtNamaKantor;
-@synthesize txtAAJINo;
-@synthesize txtAAJIDate;
-@synthesize txtICNo;
+
+// BHIMBIM'S QUICK FIX - Start
+
+@synthesize labelProfileInitial;
+@synthesize labelProfileName;
+
+@synthesize textFieldProfileID;
+@synthesize textFieldProfileLevel;
+@synthesize textFieldProfileStatus;
+
+@synthesize textFieldFormSex;
+@synthesize textFieldFormBirthDate;
+@synthesize textFieldFormReligion;
+@synthesize textFieldFormMaritalStatus;
+@synthesize textFieldFormIDNumber;
+@synthesize textFieldFormPTKPStatus;
+@synthesize textFieldFormAccountNumber;
+@synthesize textFieldFormBankName;
+@synthesize textFieldFormAccountHolder;
+@synthesize textFieldFormNPWP;
+
+@synthesize textFieldFormAddress;
+@synthesize textFieldFormHandphoneHome;
+@synthesize textFieldFormHandphoneBusiness;
+@synthesize textFieldFormEmail;
+
+@synthesize textFieldFormDistrictManager;
+@synthesize textFieldFormRegionalManager;
+@synthesize textFieldFormRegionalDirector;
+@synthesize textFieldFormOfficeName;
+@synthesize textFieldFormAAJILicense;
+@synthesize textFieldFormAAJIExpiredDate;
+
+
+// BHIMBIM'S QUICK FIX - End
+
 
 - (void)viewDidLoad
 {
@@ -87,22 +98,93 @@
     databasePath = [[NSString alloc] initWithString: [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME]];
     
     spinnerLoading = [[SpinnerUtilities alloc]init];
+    
+    
+//    outletSave.layer.cornerRadius = 10.0f;
+//    outletSave.clipsToBounds = YES;
+//    
+//    outletChgPassword.layer.cornerRadius = 10.0f;
+//    outletChgPassword.clipsToBounds = YES;
+//    
+//    textFieldProfileID.enabled = FALSE;
+//    labelProfileName.enabled = FALSE;
+//    btnContractDate.enabled = FALSE;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    // DECLARATION
+    
+    _objectUserInterface = [[UserInterface alloc] init];
+    
+    
+    // LAYOUT
+    
+        /* INCLUDE */
+        NavigationController *viewNavigationController = [[NavigationController alloc] initWithNibName:@"Navigation View" bundle:nil];
+        viewNavigationController.view.frame = _viewNavigation.bounds;
+        [self addChildViewController:viewNavigationController];
+        [self.viewNavigation addSubview:viewNavigationController.view];
+    
+    
+    // LOCALIZABLE
+    
+    _labelFormHeader.text = NSLocalizedString(@"HEADER_AGENT_PROFILE", nil);
+    _labelFormDetail.text = NSLocalizedString(@"DETAIL_AGENT_PROFILE", nil);
+    
+    _labelSectionPersonalInformation.text = NSLocalizedString(@"FORM_SECTION_PERSONALINFORMATION", nil);
+    _labelFormSex.text = NSLocalizedString(@"FORM_QUESTION_SEX", nil);
+    _labelFormBirthDate.text = NSLocalizedString(@"FORM_QUESTION_BIRTHDATE", nil);
+    _labelFormReligion.text = NSLocalizedString(@"FORM_QUESTION_RELIGION", nil);
+    _labelFormMaritalStatus.text = NSLocalizedString(@"FORM_QUESTION_MARITALSTATUS", nil);
+    _labelFormIDNumber.text = NSLocalizedString(@"FORM_QUESTION_IDNUMBER", nil);
+    _labelFormPTKPStatus.text = NSLocalizedString(@"FORM_QUESTION_PTKPSTATUS", nil);
+    _labelFormBankName.text = NSLocalizedString(@"FORM_QUESTION_BANKNAME", nil);
+    _labelFormAccountNumber.text = NSLocalizedString(@"FORM_QUESTION_ACCOUNTNUMBER", nil);
+    _labelFormAccountHolder.text = NSLocalizedString(@"FORM_QUESTION_ACCOUNTHOLDER", nil);
+    _labelFormNPWP.text = NSLocalizedString(@"FORM_QUESTION_NPWP", nil);
+    
+    _labelSectionContact.text = NSLocalizedString(@"FORM_SECTION_CONTACT", nil);
+    _labelFormAddress.text = NSLocalizedString(@"FORM_QUESTION_ADDRESS", nil);
+    _labelFormHandphoneHome.text = NSLocalizedString(@"FORM_QUESTION_HANDPHONEHOME", nil);
+    _labelFormHandphoneBusiness.text = NSLocalizedString(@"FORM_QUESTION_HANDPHONEBUSINESS", nil);
+    _labelFormEmail.text = NSLocalizedString(@"FORM_QUESTION_EMAIL", nil);
+    
+    _labelSectionStructure.text = NSLocalizedString(@"FORM_SECTION_STRUCTURE", nil);
+    _labelFormDistrictManager.text = NSLocalizedString(@"FORM_QUESTION_DISTRICTMANAGER", nil);
+    _labelFormRegionalManager.text = NSLocalizedString(@"FORM_QUESTION_REGIONALMANAGER", nil);
+    _labelFormRegionalDirector.text = NSLocalizedString(@"FORM_QUESTION_REGIONALDIRECTOR", nil);
+    
+    _labelSectionAgent.text = NSLocalizedString(@"FORM_SECTION_AGENT", nil);
+    _labelFormOfficeName.text = NSLocalizedString(@"FORM_QUESTION_OFFICENAME", nil);
+    _labelFormAAJILicense.text = NSLocalizedString(@"FORM_QUESTION_AAJILICENSE", nil);
+    _labelFormAAJIExpiredDate.text = NSLocalizedString(@"FORM_QUESTION_AAJIEXPIREDDATE", nil);
+    
+    [_buttonSync setTitle:NSLocalizedString(@"BUTTON_SYNC", nil) forState:UIControlStateNormal];
+    [_buttonChangePassword setTitle:NSLocalizedString(@"BUTTON_CHANGEPASSWORD", nil) forState:UIControlStateNormal];
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     [self setValueProperty];
-    
-    outletSave.layer.cornerRadius = 10.0f;
-    outletSave.clipsToBounds = YES;
-    
-    outletChgPassword.layer.cornerRadius = 10.0f;
-    outletChgPassword.clipsToBounds = YES;
-    
-    txtAgentCode.enabled = FALSE;
-    txtAgentName.enabled = FALSE;
-    btnContractDate.enabled = FALSE;
 }
 
+
+/* IBACTION */
+
+- (IBAction)navigationShow:(id)sender
+{
+    [_objectUserInterface navigationToggle:self.viewMain];
+}
+
+- (IBAction)goToBack:(id)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
 - (void) setValueProperty{
-    txtAgentCode.text = [agentDetails valueForKey:@"AgentCode"];
-    txtAgentCode.enabled = NO;
+    textFieldProfileID.text = [agentDetails valueForKey:@"AgentCode"];
+    textFieldProfileID.enabled = NO;
     
     NSString *fullName;
     if([agentDetails valueForKey:@"LGIVNAME"] == nil){
@@ -110,37 +192,46 @@
     }else{
         fullName = [NSString stringWithFormat:@"%@ %@", [agentDetails valueForKey:@"LGIVNAME"],[agentDetails valueForKey:@"AgentName"]];
     }
-    txtAgentName.text = fullName;
-    txtAgentName.enabled = NO;
-    txtAgentStatus.text = [agentDetails valueForKey:@"AgentStatus"];
-    txtAgentStatus.enabled = NO;
+    labelProfileName.text = fullName;
+    labelProfileName.enabled = NO;
+    textFieldProfileStatus.text = [agentDetails valueForKey:@"AgentStatus"];
+    textFieldProfileStatus.enabled = NO;
+    
+    
+    // BHIMBIM'S QUICK FIX - Start
+    
+    labelProfileInitial.text = [_objectUserInterface generateProfileInitial:fullName];
+    NSLog(@"profile initial -> %@", [_objectUserInterface generateProfileInitial:fullName]);
+    
+    // BHIMBIM'S QUICK FIX - End
+    
     
     NSString *address = [NSString stringWithFormat:@"%@ %@ %@", [agentDetails valueForKey:@"AgentAddr1"],[agentDetails valueForKey:@"AgentAddr2"],[agentDetails valueForKey:@"AgentAddr3"]];
-    txtAddress.text = address;
-    txtAddress.layer.borderWidth = 1.0f;
-    txtAddress.layer.borderColor = [[UIColor lightGrayColor] CGColor];
+    textFieldFormAddress.text = address;
+    // textFieldFormAddress.layer.borderWidth = 1.0f;
+    // textFieldFormAddress.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     
-    txtICNo.text = [loginDB getAgentProperty:@"XREFNO"];
+    textFieldFormNPWP.text = [loginDB getAgentProperty:@"XREFNO"];
     
-    txtAgentLvl.text = [loginDB getAgentProperty:@"Level"];
-    txtJenisKelamin.text = [loginDB getAgentProperty:@"CLTSEX"];
+    textFieldProfileLevel.text = [loginDB getAgentProperty:@"Level"];
+    textFieldFormSex.text = [loginDB getAgentProperty:@"CLTSEX"];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
-    txtBOD.text = [[[DateFormatter alloc]init]
+    textFieldFormBirthDate.text = [[[DateFormatter alloc]init]
                    DateMonthName:[loginDB getAgentProperty:@"CLTDOB"] prevFormat:dateFormatter];
     
-    txtReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
-    txtMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
-    txtIDCard.text = [loginDB getAgentProperty:@"SECUITYNO"];
-    txtLicense.text = [loginDB getAgentProperty:@"Level"];
-    txtMobileNumber.text = [loginDB getAgentProperty:@"AgentContactNumber"];
-    txtBusinessNumber.text = [loginDB getAgentProperty:@"CLTPHONE01"];
-    txtEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
-    [txtEmail sizeToFit];
+    textFieldFormReligion.text = [loginDB getAgentProperty:@"ZRELIGN"];
+    textFieldFormMaritalStatus.text = [loginDB getAgentProperty:@"MARRYD"];
+    textFieldFormIDNumber.text = [loginDB getAgentProperty:@"SECUITYNO"];
+    // txtLicense.text = [loginDB getAgentProperty:@"Level"];
+    textFieldFormHandphoneHome.text = [loginDB getAgentProperty:@"AgentContactNumber"];
+    textFieldFormHandphoneBusiness.text = [loginDB getAgentProperty:@"CLTPHONE01"];
+    textFieldFormEmail.text = [loginDB getAgentProperty:@"AgentEmail"];
+    [textFieldFormEmail sizeToFit];
     
-    txtPTKP.text = [loginDB getAgentProperty:@"TAXMETH"];
-    txtNoRek.text = [loginDB getAgentProperty:@"BANKACOUNT"];
+    textFieldFormPTKPStatus.text = [loginDB getAgentProperty:@"TAXMETH"];
+    textFieldFormAccountNumber.text = [loginDB getAgentProperty:@"BANKACOUNT"];
     
     NSString *bankcodeCondition = @"";
     if([[loginDB getAgentProperty:@"BANKKEY"] compare:@""] != NSOrderedSame ||
@@ -149,23 +240,23 @@
     }
     
     NSString *bankDesc = [loginDB getTableProperty:@"Bank_Desc" tableName:@"TMLI_Bank" condition:bankcodeCondition];
-    txtBankName.text = [self stringByTrimmingLeadingWhitespace:bankDesc];
-    txtRekName.text = [loginDB getAgentProperty:@"BANKACCDSC"];
-    txtDM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
-    txtRM.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
-    txtRD.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
+    textFieldFormBankName.text = [self stringByTrimmingLeadingWhitespace:bankDesc];
+    textFieldFormAccountHolder.text = [loginDB getAgentProperty:@"BANKACCDSC"];
+    textFieldFormDistrictManager.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'DM'"];
+    textFieldFormRegionalManager.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RM'"];
+    textFieldFormRegionalDirector.text = [loginDB getTableProperty:@"name" tableName:@"TMLI_Agent_Hierarchy" condition:@"level = 'RD'"];
     
     NSString *alamatKantor = [NSString stringWithFormat:@"%@ %@",[loginDB getAgentProperty:@"TSALESUNT_FIRST"], [loginDB getAgentProperty:@"TSALESUNT_LAST"]];
-    txtNamaKantor.text = alamatKantor;
-    txtAAJINo.text = [loginDB getAgentProperty:@"TLAGLICNO"];
+    textFieldFormOfficeName.text = alamatKantor;
+    textFieldFormAAJILicense.text = [loginDB getAgentProperty:@"TLAGLICNO"];
     
     if([[loginDB getAgentProperty:@"TLICEXPDT"] compare:@""] != NSOrderedSame)
-    txtAAJIDate.text = [[[DateFormatter alloc]init]
+    textFieldFormAAJIExpiredDate.text = [[[DateFormatter alloc]init]
                         DateMonthName:[loginDB getAgentProperty:@"TLICEXPDT"] prevFormat:dateFormatter];
     
-    txtMobileNumber.text = [agentDetails valueForKey:@"AgentContactNumber"];
-    txtMobileNumber.enabled = NO;
-    txtEmail.enabled = NO;
+    textFieldFormHandphoneHome.text = [agentDetails valueForKey:@"AgentContactNumber"];
+    textFieldFormHandphoneHome.enabled = NO;
+    textFieldFormEmail.enabled = NO;
 }
 
 -(NSString*)stringByTrimmingLeadingWhitespace:(NSString*)unTrimmedString {
@@ -343,7 +434,7 @@
     [self resignFirstResponder];
     [spinnerLoading startLoadingSpinner:self.view label:@"Sync sedang berjalan 1/3"];
     WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
-    [webservice fullSync:txtAgentCode.text delegate:self];}
+    [webservice fullSync:textFieldProfileID.text delegate:self];}
 
 //here is our function for every response from webservice
 - (void) operation:(AgentWSSoapBindingOperation *)operation
@@ -833,9 +924,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 AgentPortalPassword = temp2 == NULL ? @"" : [[NSString alloc] initWithUTF8String:temp2];
                 
                 
-                txtAgentCode.text = code;
-                txtAgentName.text = name;
-                txtEmail.text = email;
+                textFieldProfileID.text = code;
+                labelProfileName.text = name;
+                textFieldFormEmail.text = email;
                 
                 [btnContractDate setTitle:contDate forState:UIControlStateNormal];
                 
@@ -859,12 +950,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     [self setAddr3:nil];
     [self setContDate:nil];
     [self setICNo:nil];
-    [self setTxtICNo:nil];
+    [self setTextFieldFormNPWP:nil];
     [self setBtnContractDate:nil];
     [self setMyScrollView:nil];
-    [self setTxtAgentCode:nil];
-    [self setTxtAgentName:nil];
-    [self setTxtEmail:nil];
+    [self setTextFieldProfileID:nil];
+    [self setLabelProfileName:nil];
+    [self setTextFieldFormEmail:nil];
     [self setOutletSave:nil];
     [super viewDidUnload];
 }
@@ -884,8 +975,8 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 //								  "BusinessRegNumber = \"%@\", AgentEmail= \"%@\", AgentICNo=\"%@\", AgentContractDate=\"%@\", "
 //								  "AgentAddr1=\"%@\", AgentAddr2=\"%@\", AgentAddr3=\"%@\", AgentPortalLoginID = \"%@\", "
 //								  "AgentPortalPassword = \"%@\" WHERE IndexNo=\"%d\"",
-//								  txtAgentCode.text, txtAgentName.text, txtAgentContactNo.text, txtLeaderCode.text,
-//								  txtLeaderName.text,txtBixRegNo.text,txtEmail.text,txtICNo.text, contDate, txtAddr1.text,
+//								  textFieldProfileID.text, labelProfileName.text, txtAgentContactNo.text, txtLeaderCode.text,
+//								  txtLeaderName.text,txtBixRegNo.text,textFieldFormEmail.text,textFieldFormNPWP.text, contDate, txtAddr1.text,
 //								  txtAddr2.text, txtAddr3.text, txtAgencyPortalLogin.text, txtAgencyPortalPwd.text, self.indexNo];
 //
 //
@@ -922,7 +1013,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 //-(void)CheckAgentPortal{
 //	NSString *strURL = [NSString stringWithFormat:@"%@eSubmissionWS/eSubmissionXMLService.asmx/"
 //									"ValidateLogin?strid=%@&strpwd=%@&strIPAddres=123&iBadAttempts=0&strFirstAgentCode=%@",
-//						[SIUtilities WSLogin], txtAgencyPortalLogin.text, txtAgencyPortalPwd.text, txtAgentCode.text];
+//						[SIUtilities WSLogin], txtAgencyPortalLogin.text, txtAgencyPortalPwd.text, textFieldProfileID.text];
 //
 //		NSLog(@"%@", strURL);
 //		NSURL *url = [NSURL URLWithString:strURL];

@@ -115,6 +115,62 @@
 
     @end
 
+    @implementation TextFieldFormSlimPrimary
+
+        /* INITIALIZE */
+
+        - (void)awakeFromNib { [self styleDisable]; }
+
+
+        /* FUNCTION */
+
+        - (void)setupStyle
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            [self.heightAnchor constraintEqualToConstant:GENERAL_HEIGHT_SINGLE].active = true;
+            
+            [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
+            [self setTextAlignment : NSTextAlignmentLeft];
+            self.textColor = [_objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+            [self setFont:[UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_TEXTFIELD_FORM]];
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:0.0];
+            self.borderStyle = UITextBorderStyleNone;
+            self.autocorrectionType = UITextAutocorrectionTypeNo;
+            
+            CGRect rectWithPadding = CGRectMake
+            (
+             self.bounds.origin.x + GENERAL_SPACE_SMALL,
+             self.bounds.origin.y + GENERAL_SPACE_TINY,
+             self.bounds.size.width + (GENERAL_SPACE_SMALL * 2),
+             self.bounds.size.height - (GENERAL_SPACE_TINY * 2)
+             );
+            
+            [self textRectForBounds:rectWithPadding];
+            [self editingRectForBounds: [self textRectForBounds:rectWithPadding]];
+        }
+
+        - (void) styleEnable {}
+        - (void) styleValid {}
+        - (void) styleInvalid {}
+
+        - (void) styleDisable
+        {
+            _objectUserInterface = [[UserInterface alloc] init];
+            
+            [self setContentVerticalAlignment : UIControlContentVerticalAlignmentCenter];
+            [self setTextAlignment : NSTextAlignmentLeft];
+            self.textColor = [_objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+            [self setFont:[UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_TEXTFIELD_FORMSLIM]];
+            self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:0.0];
+            self.borderStyle = UITextBorderStyleNone;
+            self.autocorrectionType = UITextAutocorrectionTypeNo;
+            
+            [self setEnabled:false];
+        }
+
+    @end
+
     /* PHOTO */
 
     @implementation TextFieldPhotoGeneralPrimary

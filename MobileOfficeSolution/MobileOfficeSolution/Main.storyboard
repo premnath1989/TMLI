@@ -134,8 +134,8 @@
                                     <constraint firstItem="rq0-eg-eGJ" firstAttribute="height" secondItem="iEg-k0-s86" secondAttribute="height" id="UEj-aR-oRm"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4v-BJ-thc">
-                                <rect key="frame" x="402" y="369" width="220" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a4v-BJ-thc">
+                                <rect key="frame" x="60" y="688" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="PUt-gP-3pa"/>
                                     <constraint firstAttribute="height" constant="40" id="x12-nO-UL9"/>
@@ -230,7 +230,6 @@
                                                 </constraints>
                                                 <state key="normal" title="Button" image="icon_agent_navigation"/>
                                                 <connections>
-                                                    <action selector="goToAgentProfile:" destination="yHH-pR-s2J" eventType="touchUpInside" id="BYN-Z4-rLF"/>
                                                     <segue destination="SQB-N7-2Cv" kind="show" id="Ebv-FC-JsR"/>
                                                 </connections>
                                             </button>
@@ -609,10 +608,10 @@
             </objects>
             <point key="canvasLocation" x="2354" y="-86"/>
         </scene>
-        <!--Agent Profile Controller-->
+        <!--Setting User Profile-->
         <scene sceneID="FIn-kB-TLI">
             <objects>
-                <viewController restorationIdentifier="AgentProfilePage" storyboardIdentifier="AgentProfilePage" id="SQB-N7-2Cv" customClass="AgentProfileController" sceneMemberID="viewController">
+                <viewController restorationIdentifier="AgentProfilePage" storyboardIdentifier="AgentProfilePage" id="SQB-N7-2Cv" customClass="SettingUserProfile" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mMP-1O-VNA"/>
                         <viewControllerLayoutGuide type="bottom" id="Qum-Kl-uAq"/>
@@ -631,11 +630,11 @@
                                             <constraint firstAttribute="width" constant="310" id="UK7-0M-2zO"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9V-YM-7Tb" customClass="ButtonNavigationPrimary">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9V-YM-7Tb" customClass="ButtonNavigation">
                                         <rect key="frame" x="340" y="25" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
-                                            <action selector="navigationShow:" destination="SQB-N7-2Cv" eventType="touchUpInside" id="7BO-cm-Lec"/>
+                                            <action selector="navigationShow:" destination="SQB-N7-2Cv" eventType="touchUpInside" id="Qy8-Sk-YwJ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CCo-g5-70n" customClass="ButtonBackPrimary">
@@ -665,6 +664,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mZf-Ie-9Gj" customClass="ButtonFormPrimary">
                                         <rect key="frame" x="1258" y="30" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="ChangePassword:" destination="SQB-N7-2Cv" eventType="touchUpInside" id="Dyt-Od-oQJ"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4dL-fa-Rg1" customClass="ButtonFormPrimary">
                                         <rect key="frame" x="1148" y="30" width="80" height="30"/>
@@ -672,6 +674,9 @@
                                             <constraint firstAttribute="width" constant="80" id="v3Y-tE-Lhe"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="btnSync:" destination="SQB-N7-2Cv" eventType="touchUpInside" id="Y8T-Rf-VLX"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snJ-1s-Tie" customClass="LabelProfileInitial">
                                         <rect key="frame" x="416" y="100.5" width="180" height="80"/>
@@ -1179,61 +1184,61 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonChangePassword" destination="mZf-Ie-9Gj" id="rRu-j8-fsQ"/>
-                        <outlet property="buttonSync" destination="4dL-fa-Rg1" id="bVL-hz-Z7p"/>
-                        <outlet property="labelFormAAJIExpiredDate" destination="PhC-BE-8Al" id="A9D-6S-B0F"/>
-                        <outlet property="labelFormAAJILicense" destination="Un8-cs-1yp" id="XIF-ji-yLS"/>
-                        <outlet property="labelFormAccountHolder" destination="Eba-hb-ssM" id="VO8-Yr-8ew"/>
-                        <outlet property="labelFormAccountNumber" destination="zFT-cm-7W2" id="3UY-JS-H7S"/>
-                        <outlet property="labelFormAddress" destination="Dpg-GK-xFd" id="hlS-HJ-KIc"/>
-                        <outlet property="labelFormBankName" destination="1wn-qJ-quK" id="wHe-p6-EBj"/>
-                        <outlet property="labelFormBirthDate" destination="w4H-dl-okk" id="hT8-wL-9eC"/>
-                        <outlet property="labelFormDetail" destination="WoK-wG-URc" id="xeX-8x-3Vs"/>
-                        <outlet property="labelFormDistrictManager" destination="yvu-3o-pPd" id="8az-V8-H1X"/>
-                        <outlet property="labelFormEmail" destination="a9n-MU-PcO" id="V6l-SK-aDP"/>
-                        <outlet property="labelFormHandphoneBusiness" destination="6mS-gb-fNf" id="jpc-fp-9v1"/>
-                        <outlet property="labelFormHandphoneHome" destination="4Rh-ac-9my" id="lrv-Sg-yIj"/>
-                        <outlet property="labelFormHeader" destination="Oe8-yS-cPj" id="dcu-3j-mnU"/>
-                        <outlet property="labelFormIDNumber" destination="jux-Tu-U09" id="mxt-sS-54r"/>
-                        <outlet property="labelFormMaritalStatus" destination="IpJ-BK-A50" id="8Fq-yE-hPy"/>
-                        <outlet property="labelFormNPWP" destination="PFC-Z4-Woe" id="VIC-NM-rt0"/>
-                        <outlet property="labelFormOfficeName" destination="k3S-Xf-GpS" id="3BD-fv-GZr"/>
-                        <outlet property="labelFormPTKPStatus" destination="PB1-mh-vYS" id="gcM-5S-oZo"/>
-                        <outlet property="labelFormRegionalDirector" destination="bFG-Lv-arb" id="FaM-7S-WRF"/>
-                        <outlet property="labelFormRegionalManager" destination="Gv5-yl-DsT" id="9FA-ar-Owt"/>
-                        <outlet property="labelFormReligion" destination="UVp-6K-uGz" id="qLo-Tl-KBC"/>
-                        <outlet property="labelFormSex" destination="ZZ9-bZ-jQW" id="AiV-Av-YIw"/>
-                        <outlet property="labelProfileInitial" destination="snJ-1s-Tie" id="iEh-5G-oaS"/>
-                        <outlet property="labelProfileName" destination="Uqx-Wv-fHI" id="0hi-k7-GlL"/>
-                        <outlet property="labelSectionAgent" destination="Cjn-RZ-ajl" id="ydy-VI-1uz"/>
-                        <outlet property="labelSectionContact" destination="uFQ-Bn-Sbg" id="Odg-Gk-ObB"/>
-                        <outlet property="labelSectionPersonalInformation" destination="tPZ-2B-btK" id="SK6-fE-D9a"/>
-                        <outlet property="labelSectionStructure" destination="AgZ-RZ-t3o" id="iym-7d-1Vg"/>
-                        <outlet property="textFieldFormAAJIExpiredDate" destination="0Do-ne-z5n" id="gFj-aH-HoM"/>
-                        <outlet property="textFieldFormAAJILicense" destination="swQ-qZ-uXo" id="0IT-kv-1VA"/>
-                        <outlet property="textFieldFormAccountHolder" destination="ZKf-PD-F1L" id="hef-vs-DKX"/>
-                        <outlet property="textFieldFormAccountNumber" destination="zwN-4u-9DH" id="ncM-mn-XQF"/>
-                        <outlet property="textFieldFormAddress" destination="qnP-lL-utW" id="E2C-gh-cmN"/>
-                        <outlet property="textFieldFormBankName" destination="t82-mA-eYE" id="bpl-Xy-eIy"/>
-                        <outlet property="textFieldFormBirthDate" destination="BT4-h3-kY5" id="vO7-kf-OUN"/>
-                        <outlet property="textFieldFormDistrictManager" destination="9i6-EB-0tN" id="yMz-a6-9l9"/>
-                        <outlet property="textFieldFormEmail" destination="wNp-OW-TTv" id="dn0-Om-22g"/>
-                        <outlet property="textFieldFormHandphoneBusiness" destination="nwP-mk-NLg" id="tVZ-JM-cqk"/>
-                        <outlet property="textFieldFormHandphoneHome" destination="qnP-lL-utW" id="ZR3-3q-Sdv"/>
-                        <outlet property="textFieldFormIDNumber" destination="VG2-8K-7B2" id="4vy-05-lfu"/>
-                        <outlet property="textFieldFormMaritalStatus" destination="CzK-hV-Lk0" id="c57-dy-K6H"/>
-                        <outlet property="textFieldFormNPWP" destination="4sd-2j-1Gu" id="CWS-tM-fHl"/>
-                        <outlet property="textFieldFormOfficeName" destination="qrb-4K-j6D" id="bFU-ec-mk4"/>
-                        <outlet property="textFieldFormPTKPStatus" destination="4ce-T9-wxm" id="NRP-sv-UUc"/>
-                        <outlet property="textFieldFormRegionalDirector" destination="5GQ-kd-MIs" id="hs6-rb-Tax"/>
-                        <outlet property="textFieldFormRegionalManager" destination="bmr-VT-0vN" id="3dK-bH-Pc2"/>
-                        <outlet property="textFieldFormReligion" destination="fyc-qO-QQH" id="VO1-0T-Gwm"/>
-                        <outlet property="textFieldFormSex" destination="WH7-bC-ebR" id="2w8-Zl-uSd"/>
-                        <outlet property="textFieldProfileID" destination="yZu-Q9-Mxn" id="sDF-Gp-Axv"/>
-                        <outlet property="textFieldProfileLevel" destination="T9n-TA-aGs" id="16k-Ax-1BA"/>
-                        <outlet property="textFieldProfileStatus" destination="NyV-5D-vGE" id="WTF-C9-cpS"/>
-                        <outlet property="viewMain" destination="LcK-vB-nci" id="qmM-nV-Yv2"/>
-                        <outlet property="viewNavigation" destination="2Td-jf-Lo6" id="nYe-y5-sWD"/>
+                        <outlet property="buttonChangePassword" destination="mZf-Ie-9Gj" id="qcA-Ot-hzt"/>
+                        <outlet property="buttonSync" destination="4dL-fa-Rg1" id="OA4-ar-LBm"/>
+                        <outlet property="labelFormAAJIExpiredDate" destination="PhC-BE-8Al" id="rsx-DF-7R1"/>
+                        <outlet property="labelFormAAJILicense" destination="Un8-cs-1yp" id="1jW-Di-7zl"/>
+                        <outlet property="labelFormAccountHolder" destination="Eba-hb-ssM" id="Dov-db-Fj1"/>
+                        <outlet property="labelFormAccountNumber" destination="zFT-cm-7W2" id="hI6-NV-UNb"/>
+                        <outlet property="labelFormAddress" destination="Dpg-GK-xFd" id="qCj-aU-wfV"/>
+                        <outlet property="labelFormBankName" destination="1wn-qJ-quK" id="Th2-Up-4gF"/>
+                        <outlet property="labelFormBirthDate" destination="w4H-dl-okk" id="5Jb-2Y-jWd"/>
+                        <outlet property="labelFormDetail" destination="WoK-wG-URc" id="pFL-N2-xUQ"/>
+                        <outlet property="labelFormDistrictManager" destination="yvu-3o-pPd" id="3DH-Hm-xE2"/>
+                        <outlet property="labelFormEmail" destination="6mS-gb-fNf" id="9Pb-tH-WOX"/>
+                        <outlet property="labelFormHandphoneBusiness" destination="6mS-gb-fNf" id="oPS-7d-RCl"/>
+                        <outlet property="labelFormHandphoneHome" destination="4Rh-ac-9my" id="HMT-8z-jyA"/>
+                        <outlet property="labelFormHeader" destination="Oe8-yS-cPj" id="jNU-VR-Sh9"/>
+                        <outlet property="labelFormIDNumber" destination="jux-Tu-U09" id="QIR-1m-gUn"/>
+                        <outlet property="labelFormMaritalStatus" destination="IpJ-BK-A50" id="yNq-Cr-d61"/>
+                        <outlet property="labelFormNPWP" destination="PFC-Z4-Woe" id="f4c-gv-BEx"/>
+                        <outlet property="labelFormOfficeName" destination="yvu-3o-pPd" id="Hpb-SI-wjr"/>
+                        <outlet property="labelFormPTKPStatus" destination="PB1-mh-vYS" id="np1-iL-oKH"/>
+                        <outlet property="labelFormRegionalDirector" destination="bFG-Lv-arb" id="ifd-5a-Ubq"/>
+                        <outlet property="labelFormRegionalManager" destination="Gv5-yl-DsT" id="9Qo-4R-OlF"/>
+                        <outlet property="labelFormReligion" destination="UVp-6K-uGz" id="n9F-TF-kRw"/>
+                        <outlet property="labelFormSex" destination="ZZ9-bZ-jQW" id="Ds9-6Z-nl7"/>
+                        <outlet property="labelProfileInitial" destination="snJ-1s-Tie" id="bHW-Ca-rc6"/>
+                        <outlet property="labelProfileName" destination="Uqx-Wv-fHI" id="Vn1-eM-yrC"/>
+                        <outlet property="labelSectionAgent" destination="Cjn-RZ-ajl" id="9mD-de-8bu"/>
+                        <outlet property="labelSectionContact" destination="uFQ-Bn-Sbg" id="Lwb-pO-WKD"/>
+                        <outlet property="labelSectionPersonalInformation" destination="tPZ-2B-btK" id="zJM-rf-ALg"/>
+                        <outlet property="labelSectionStructure" destination="AgZ-RZ-t3o" id="GZ2-VQ-YPp"/>
+                        <outlet property="textFieldFormAAJIExpiredDate" destination="0Do-ne-z5n" id="YKH-35-Yfs"/>
+                        <outlet property="textFieldFormAAJILicense" destination="swQ-qZ-uXo" id="3dp-bD-Fpd"/>
+                        <outlet property="textFieldFormAccountHolder" destination="ZKf-PD-F1L" id="m4l-3U-ug4"/>
+                        <outlet property="textFieldFormAccountNumber" destination="zwN-4u-9DH" id="Vt3-d9-Mp6"/>
+                        <outlet property="textFieldFormAddress" destination="qnP-lL-utW" id="Vo0-g0-sY7"/>
+                        <outlet property="textFieldFormBankName" destination="t82-mA-eYE" id="iLE-eA-iZi"/>
+                        <outlet property="textFieldFormBirthDate" destination="BT4-h3-kY5" id="t3L-LN-1eB"/>
+                        <outlet property="textFieldFormDistrictManager" destination="9i6-EB-0tN" id="Zqk-Fz-qF7"/>
+                        <outlet property="textFieldFormEmail" destination="wNp-OW-TTv" id="f8n-Go-DUW"/>
+                        <outlet property="textFieldFormHandphoneBusiness" destination="nwP-mk-NLg" id="kzb-Hs-M70"/>
+                        <outlet property="textFieldFormHandphoneHome" destination="PH4-1S-rrF" id="mLv-HH-1tS"/>
+                        <outlet property="textFieldFormIDNumber" destination="VG2-8K-7B2" id="4GV-cZ-kKz"/>
+                        <outlet property="textFieldFormMaritalStatus" destination="CzK-hV-Lk0" id="l9s-re-81W"/>
+                        <outlet property="textFieldFormNPWP" destination="4sd-2j-1Gu" id="q04-Tu-a3d"/>
+                        <outlet property="textFieldFormOfficeName" destination="qrb-4K-j6D" id="avu-Rw-adA"/>
+                        <outlet property="textFieldFormPTKPStatus" destination="4ce-T9-wxm" id="J87-Zj-awg"/>
+                        <outlet property="textFieldFormRegionalDirector" destination="5GQ-kd-MIs" id="RZj-tg-ImE"/>
+                        <outlet property="textFieldFormRegionalManager" destination="bmr-VT-0vN" id="V7h-n6-hNp"/>
+                        <outlet property="textFieldFormReligion" destination="fyc-qO-QQH" id="hwH-1Y-Xe9"/>
+                        <outlet property="textFieldFormSex" destination="WH7-bC-ebR" id="1y0-Sa-D56"/>
+                        <outlet property="textFieldProfileID" destination="yZu-Q9-Mxn" id="feT-gv-f4V"/>
+                        <outlet property="textFieldProfileLevel" destination="T9n-TA-aGs" id="0QH-tl-76O"/>
+                        <outlet property="textFieldProfileStatus" destination="NyV-5D-vGE" id="AT3-aX-cvr"/>
+                        <outlet property="viewMain" destination="LcK-vB-nci" id="RwG-CR-4tV"/>
+                        <outlet property="viewNavigation" destination="2Td-jf-Lo6" id="EDg-AL-3B6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tg2-lq-wzv" userLabel="First Responder" sceneMemberID="firstResponder"/>
