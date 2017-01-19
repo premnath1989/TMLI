@@ -480,11 +480,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
         }else{
-            if(indexPath.row == [self collapsedRows:FileName collapsedRows:recordedCollapsedRow]){
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
-            }else{
-                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
-            }
+//            if([recordedCollapsedRow count] > 0){
+//                if(indexPath.row == [self collapsedRows:FileName collapsedRows:recordedCollapsedRow]){
+                    cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                }else{
+//                    cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+//                }
+//            }
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
@@ -592,8 +594,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     BOOL expandBool = TRUE;
     int i = 1;
     
-    for(NSMutableDictionary *dict in arrayContainer){
-        modifyTempArray = [self searchDict:folderName dict:dict];
+    int currentLevel = 0;
+    int level = (int)[[[FTPItemsList objectAtIndex:row] objectAtIndex:5]floatValue];
+    for(NSMutableDictionary *dict in arrayContainerSegmentActive){
+        modifyTempArray = [self searchDict:folderName dict:dict level:level currentLevel:currentLevel];
         if([modifyTempArray count] > 0){
             break;
         }
@@ -662,7 +666,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
             child = [[tempDict valueForKey:folderName] count];
             for(NSString *childName in [tempDict valueForKey:folderName]){
-                child = child + [self collapsedRows:childName collapsedRows:collapsedRows];
+                NSMutableArray *tempArray = collapsedRows;
+                if([collapsedRows count]>0){
+                    [tempArray removeObjectAtIndex:0];
+                    [collapsedRow removeObject:folderName];
+                }
+                child = child + [self collapsedRows:childName collapsedRows:tempArray];
             }
         }
     }
@@ -670,16 +679,18 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
 }
 
 //we search through all the array to get list of the parent's child/ren
-- (NSMutableArray *)searchDict:(NSString *)fileName dict:(NSMutableDictionary *)dict{
+- (NSMutableArray *)searchDict:(NSString *)fileName dict:(NSMutableDictionary *)dict
+                         level:(int)level currentLevel:(int)CurrentLevel{
     for(NSString *key in [dict allKeys]){
-        if([key compare:fileName] == NSOrderedSame){
+        if([key compare:fileName] == NSOrderedSame && CurrentLevel == level){
             return [dict valueForKey:key];
         }else{
             if(![key containsString:@"."]){
                 if([[dict valueForKey:key] count] > 0){
                     for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
                         if([[wrapperDict allKeys] count] == 1){
-                            return [self searchDict:fileName dict:wrapperDict];
+                            return [self searchDict:fileName dict:wrapperDict
+                                              level:level currentLevel:CurrentLevel+1];
                         }
                     }
                 }
