@@ -63,11 +63,8 @@ BOOL NavShow2;
         [alert show];
     }
     
-    NSMutableDictionary *newAttributes = [[NSMutableDictionary alloc] init];
-    [newAttributes setObject:[UIFont systemFontOfSize:18] forKey:UITextAttributeFont];
-    
     themeColour = [UIColor colorWithRed:72.0f/255.0f green:98.0f/255.0f blue:108.0f/255.0f alpha:1];
-    fontType = [UIFont fontWithName:@"BPreplay" size:16.0f];
+    fontType = [UIFont fontWithName:@"NewJuneRegular" size:16.0f];
     
     [self setupTableColumn];
     
@@ -86,7 +83,8 @@ BOOL NavShow2;
 - (void)changeSegment:(NSMutableArray *)arraySegment{
     
     NSMutableArray *dictSectionToDeleted = [[NSMutableArray alloc] init];
-    
+    arrayContainerSegmentActive = [[NSMutableArray alloc]init];
+    arrayContainerSegmentActive = arraySegment;
     
     [FTPItemsList removeAllObjects];
     for(NSMutableDictionary *dict in arraySegment){
@@ -270,7 +268,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     if([arrayContainer count ] > 0){
         arrayContainerSegmentDefault = [[NSMutableArray alloc]init];
-        [arrayContainerSegmentDefault addObject:[arrayContainer objectAtIndex:1]];
+        [arrayContainerSegmentDefault addObject:[arrayContainer objectAtIndex:0]];
         
         float yPosition = 20.0;
         NSMutableArray *stringKeys = [[NSMutableArray alloc] init];
@@ -687,6 +685,28 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     }
     return nil;
 }
+
+//we search through all the array to get list of the name contained with the text
+- (void)FindDict:(NSString *)searchName dict:(NSMutableDictionary *)dict
+                    arrayContainer:(NSMutableArray *)arrayCointainer{
+    for(NSString *key in [dict allKeys]){
+        if([key containsString:searchName]){
+            [arrayCointainer addObject:dict];
+        }else{
+            if(![key containsString:@"."]){
+                if([[dict valueForKey:key] count] > 0){
+                    for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
+                        if([[wrapperDict allKeys] count] == 1){
+                            [self FindDict:searchName dict:wrapperDict
+                                   arrayContainer:arrayCointainer];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 - (BOOL)searchFile:(NSString *)fileName{
     NSFileManager *fileManager = [NSFileManager defaultManager];
