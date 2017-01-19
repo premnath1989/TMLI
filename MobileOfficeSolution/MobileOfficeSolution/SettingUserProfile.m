@@ -528,14 +528,49 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [self parseXML:root objBuff:returnObj index:0];
                 int result = [loginDB ReferralSyncTable:returnObj];
                 
+                
+                NSMutableArray *bgImagesName = [[NSMutableArray alloc]init];
+                [bgImagesName addObject:@"FirstLandingPage.png"];
+                [bgImagesName addObject:@"LoginPage.png"];
+                [bgImagesName addObject:@"ProspectFormHeader.png"];
+                [bgImagesName addObject:@"ProspectModulePage.png"];
+                [bgImagesName addObject:@"SecondLandingPage.png"];
+                [bgImagesName addObject:@"SIFormHeader.png"];
+                [bgImagesName addObject:@"SIModulePage.png"];
+                [bgImagesName addObject:@"SPAJFormHeader.png"];
+                [bgImagesName addObject:@"SPAJModulePage.png"];
+                [bgImagesName addObject:@"ThirdLandingPage.png"];
+                
+                
+                for(NSString *bgName in bgImagesName){
+                    
+                    NSString *stringURL = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/TMLI_MPOS/backgroundImageFile/%@",bgName];
+
+                    NSURL  *url = [NSURL URLWithString:stringURL];
+                    NSData *urlData = [NSData dataWithContentsOfURL:url];
+                    NSError *error =  nil;
+                    if ( urlData != nil)
+                    {
+                        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+                        NSString *filePathApp = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"backgroundImages"];
+                        
+                        NSString  *filePath = [NSString stringWithFormat:@"%@/%@", filePathApp,bgName];
+                        
+                        [urlData writeToFile:filePath                                                 options:NSDataWritingAtomic error:&error];
+                    }
+                }
                 dispatch_async(dispatch_get_global_queue(
                                                          DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
-                        [webservice getBGImages:self];
+                        [webservice getAgentHierarchy:[agentDetails valueForKey:@"AgentCode"] delegate:self];
                     });
                 });
+                
+//                        WebServiceUtilities *webservice = [[WebServiceUtilities alloc]init];
+//                        [webservice getBGImages:self];
+                
             }else{
                 
             }

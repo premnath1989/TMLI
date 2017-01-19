@@ -637,27 +637,10 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 [FTPItemsList removeObjectAtIndex:row+1];
             }
             NSMutableArray *rowsToBeDeleted = [[NSMutableArray alloc]init];
-            [self removeCollapsedRows:folderName collapsedRows:recordedCollapsedRow
-                            tempArray:rowsToBeDeleted];
             [recordedCollapsedRow removeObjectsInArray:rowsToBeDeleted];
         }
         
     }
-}
-
-- (void)removeCollapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows
-                  tempArray:(NSMutableArray *)tempArray
-{
-    for(NSMutableDictionary *tempDict in collapsedRows){
-        if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
-            for(NSString *childName in [tempDict valueForKey:folderName]){
-                [self collapsedRows:childName collapsedRows:collapsedRows];
-            }
-            [tempArray addObject:tempDict];
-            [collapsedRow removeObject:folderName];
-        }
-    }
-
 }
 
 - (int)collapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows{
@@ -689,8 +672,11 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 if([[dict valueForKey:key] count] > 0){
                     for(NSMutableDictionary *wrapperDict in [dict valueForKey:key]){
                         if([[wrapperDict allKeys] count] == 1){
-                            return [self searchDict:fileName dict:wrapperDict
+                            NSMutableArray *tempDict =  [self searchDict:fileName dict:wrapperDict
                                               level:level currentLevel:CurrentLevel+1];
+                            if(tempDict != nil){
+                                return tempDict;
+                            }
                         }
                     }
                 }
