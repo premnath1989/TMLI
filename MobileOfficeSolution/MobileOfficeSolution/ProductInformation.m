@@ -441,7 +441,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     columnHeadersContent = [NSArray arrayWithObjects:nama, type, size, download, nil];
     tableManagement = [[TableManagement alloc]init:self.view themeColour:themeColour themeFont:fontType];
     TableHeader =[tableManagement TableHeaderSetupXY:columnHeadersContent
-                                         positionY:252.0f positionX:177.0f];
+                                         positionY:170.0f positionX:176.0f];
     
     [self.view addSubview:TableHeader];
     
@@ -480,7 +480,11 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }else if([FileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
             FileName = [NSString stringWithFormat: @"%@.%@",FileName, videoExt];
         }else{
-            cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+            if(indexPath.row == [self collapsedRows:FileName collapsedRows:recordedCollapsedRow]){
+                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeUp];
+            }else{
+                cell.accessoryView = [DTCustomColoredAccessory accessoryWithColor:[UIColor grayColor] type:DTCustomColoredAccessoryTypeDown];
+            }
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
@@ -544,13 +548,13 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }else if(serverTransferMode == kBRHTTPMode){
                 progressBar.TransferMode = kBRHTTPMode;
                 progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
-                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
-                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+                                               [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4];
             }
             
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seePDF:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+            [self seePDF:[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
         }
     }else if([fileType caseInsensitiveCompare:videoLabel] == NSOrderedSame){
         if([unduhLabel caseInsensitiveCompare:downloadMacro] == NSOrderedSame){
@@ -569,12 +573,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             }else if(serverTransferMode == kBRHTTPMode){
                 progressBar.TransferMode = kBRHTTPMode;
                 progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
-                                               [[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
-                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] lastObject];
+                                               [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4];
             }
             [self presentViewController:progressBar animated:YES completion:nil];
         }else{
-            [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] lastObject]];
+            [self seeVideo:[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
         }
     }else if([[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:1] caseInsensitiveCompare:folderLabel] == NSOrderedSame){
 //        fileName = [fileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
@@ -985,9 +989,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     NSLog(@"index: %d, file %@", fileIndex, fileFormat);
     if(objectIndex == 111111){
-        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,nil]];
+        [FTPItemsList addObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,@"0",nil]];
     }else{
-        [FTPItemsList insertObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,nil] atIndex:objectIndex];
+        [FTPItemsList insertObject:[NSMutableArray arrayWithObjects:fileName, fileFormat,fileSize,fileExist,fileURL,@"1", nil] atIndex:objectIndex];
     }
     
     [spinnerLoading stopLoadingSpinner];

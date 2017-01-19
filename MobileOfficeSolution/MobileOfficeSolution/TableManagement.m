@@ -100,6 +100,13 @@
                 label1.text= @"";
             }
             
+            if(i == 0){
+                CGRect btFrame = label1.frame;
+                float margin = 20.0f * [[dataArray objectAtIndex:5] floatValue];
+                btFrame.origin.x = btFrame.origin.x + margin;
+                label1.layer.frame = btFrame;
+            }
+            
             label1.tag = (index*1000)+i;
             label1.textColor = textColor;
             label1.textAlignment = aligment;

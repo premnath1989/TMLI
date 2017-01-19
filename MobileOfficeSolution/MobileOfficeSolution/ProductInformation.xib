@@ -36,7 +36,7 @@
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1uw-8g-iyc">
-                    <rect key="frame" x="177" y="304" width="847" height="417"/>
+                    <rect key="frame" x="177" y="215" width="847" height="500"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <color key="sectionIndexColor" red="0.50196078430000002" green="0.50980392159999999" blue="0.52156862749999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,7 +46,7 @@
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cHj-EM-fUu">
-                    <rect key="frame" x="0.0" y="20" width="1024" height="233"/>
+                    <rect key="frame" x="0.0" y="20" width="1024" height="150"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqR-Hq-DMj" customClass="ButtonNavigation2">
@@ -65,7 +65,7 @@
                                 <action selector="GoBack:" destination="-1" eventType="touchUpInside" id="Lz0-sx-d2I"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Informasi Product" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euT-w5-rWU" customClass="LabelProfileHeader">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="E Library" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euT-w5-rWU" customClass="LabelProfileHeader">
                             <rect key="frame" x="98" y="19" width="545" height="48"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" name="BPreplay-Bold" family="BPreplay" pointSize="24"/>
@@ -116,7 +116,7 @@
                     <color key="backgroundColor" red="0.1176470588" green="0.51764705879999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nB5-Tv-E6u">
-                    <rect key="frame" x="0.0" y="252" width="176" height="763"/>
+                    <rect key="frame" x="0.0" y="170" width="176" height="763"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.1176470588" green="0.51764705879999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
