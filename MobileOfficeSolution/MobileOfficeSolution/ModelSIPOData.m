@@ -398,7 +398,7 @@
     [database close];
     
     NSNumber *tt = [dictPOLAData valueForKey:@"QuickQuote"];
-    if ([tt intValue] == 0) {
+    if ([tt intValue] == 1) {
         [self savePOToProspect:dictPOLAData];
     }
 
