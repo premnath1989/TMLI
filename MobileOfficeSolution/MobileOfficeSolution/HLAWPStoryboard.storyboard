@@ -144,8 +144,8 @@
                                 <rect key="frame" x="0.0" y="284" width="1024" height="72"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" misplaced="YES" id="UpK-dC-Kaw">
-                                        <rect key="frame" x="0.0" y="0.0" width="2000" height="72"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" id="UpK-dC-Kaw">
+                                        <rect key="frame" x="0.0" y="0.0" width="2855" height="72"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Dmj-H4-hpd">
@@ -3158,7 +3158,7 @@
                                         <fontDescription key="fontDescription" name="BPreplay" family="BPreplay" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PW5-uL-WsP" customClass="TextFieldFormGeneralPrimary">
+                                    <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="PW5-uL-WsP" customClass="TextFieldFormGeneralPrimary">
                                         <rect key="frame" x="537" y="404" width="395" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <nil key="textColor"/>
@@ -3217,6 +3217,7 @@
                         <outlet property="searchDisplayController" destination="T41-4c-XeM" id="6Qm-I6-mS7"/>
                         <outlet property="sexSegment" destination="afS-7k-o9O" id="iVL-lH-Qhb"/>
                         <outlet property="txtDob" destination="8Sz-Oy-oKe" id="mHQ-SI-i89"/>
+                        <outlet property="txtHubungaLain2" destination="PW5-uL-WsP" id="r0E-L8-EO8"/>
                         <outlet property="txtHubungan" destination="2MR-KK-yda" id="yh9-tn-FdB"/>
                     </connections>
                 </viewController>

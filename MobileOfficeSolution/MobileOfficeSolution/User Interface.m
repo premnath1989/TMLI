@@ -30,27 +30,59 @@
     };
 
 
+    // PROFILE
+
+    - (NSString*) generateProfileInitial:(NSString *)stringName
+    {
+        NSArray *arrayName = [stringName componentsSeparatedByString:@" "];
+        NSString *stringInitial;
+        
+        if (arrayName.count > 1)
+        {
+            stringInitial = [NSString stringWithFormat:@"%@%@", [[arrayName objectAtIndex:0] substringToIndex:1], [[arrayName objectAtIndex:1] substringToIndex:1]];
+        }
+        else
+        {
+            stringInitial = [[arrayName objectAtIndex:0] substringToIndex:1];
+        }
+        
+        return [stringInitial uppercaseString];
+    }
+
+
     // NAVIGATION
 
-    -(void) navigationExpand:(UIStackView *) stackViewNavigationDetail
+    -(void) navigationExpand:(UIStackView *) stackViewNavigationDetail imageViewNavigationExpand:(UIImageView *)imageViewNavigationExpand
     {
         stackViewNavigationDetail.clipsToBounds = true;
         
         if (stackViewNavigationDetail.hidden == false)
         {
             [UIStackView
-                animateWithDuration: 0.25
-                animations:^
-                {
-                stackViewNavigationDetail.alpha = 0;
-                stackViewNavigationDetail.hidden = true;
-
-                }
-                completion:^(BOOL finished)
-                {
-                stackViewNavigationDetail.hidden = true;
-                }
-            ];
+             animateWithDuration: 0.25
+             animations:^
+             {
+                 stackViewNavigationDetail.alpha = 0;
+                 stackViewNavigationDetail.hidden = true;
+                 
+             }
+             completion:^(BOOL finished)
+             {
+                 stackViewNavigationDetail.hidden = true;
+             }
+             ];
+            
+            if (imageViewNavigationExpand == NULL)
+            {
+                
+            }
+            else
+            {
+                [UIView animateWithDuration:0.25f animations:^
+                 {
+                     [imageViewNavigationExpand setTransform:CGAffineTransformMakeRotation(M_PI * 2)];
+                 }];
+            }
         }
         else
         {
@@ -61,7 +93,38 @@
             stackViewNavigationDetail.hidden = false;
             stackViewNavigationDetail.alpha = 1;
             [UIStackView commitAnimations];
+            
+            if (imageViewNavigationExpand == NULL)
+            {
+                
+            }
+            else
+            {
+                [UIView animateWithDuration:0.25f animations:^
+                 {
+                     [imageViewNavigationExpand setTransform:CGAffineTransformMakeRotation(M_PI * 0.75)];
+                 }];
+            }
         }
+    }
+
+    -(void) navigationToggle:(UIView *) viewMain
+    {
+        [UIStackView beginAnimations:nil context:nil];
+        [UIStackView setAnimationDuration:0.25];
+        [UIStackView setAnimationDelay:0.0];
+        [UIStackView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        
+        if (viewMain.frame.origin.x != 0)
+        {
+            viewMain.frame = CGRectMake(viewMain.frame.origin.x + NAVIGATION_WIDTH_CONTAINER, viewMain.frame.origin.y, viewMain.frame.size.width, viewMain.frame.size.height);
+        }
+        else
+        {
+            viewMain.frame = CGRectMake(viewMain.frame.origin.x - NAVIGATION_WIDTH_CONTAINER, viewMain.frame.origin.y, viewMain.frame.size.width, viewMain.frame.size.height);
+        }
+        
+        [UIStackView commitAnimations];
     }
 
     -(void) navigationShow:(UIViewController *) viewMain

@@ -12,6 +12,8 @@
 #import "AgentWS.h"
 #import "LoginDBManagement.h"
 #import "SpinnerUtilities.h"
+#import "User Interface.h"
+#import "Navigation Controller.h"
 
 @interface SettingUserProfile : UIViewController <DateViewControllerDelegate, UITextFieldDelegate, NSXMLParserDelegate, AgentWSSoapBindingResponseDelegate>{
     NSString *databasePath;
@@ -28,30 +30,7 @@
 @property (nonatomic,strong) id idRequest;
 @property (nonatomic, assign) int indexNo;
 
-@property (weak, nonatomic) IBOutlet UITextField *txtAgentCode;
-@property (weak, nonatomic) IBOutlet UITextField *txtAgentName;
-@property (weak, nonatomic) IBOutlet UITextField *txtAgentLvl;
-@property (weak, nonatomic) IBOutlet UITextField *txtAgentStatus;
-@property (weak, nonatomic) IBOutlet UITextField *txtJenisKelamin;
-@property (weak, nonatomic) IBOutlet UITextField *txtBOD;
-@property (weak, nonatomic) IBOutlet UITextField *txtReligion;
-@property (weak, nonatomic) IBOutlet UITextField *txtMaritalStatus;
-@property (weak, nonatomic) IBOutlet UITextField *txtIDCard;
 @property (weak, nonatomic) IBOutlet UITextField *txtLicense;
-@property (weak, nonatomic) IBOutlet UITextField *txtMobileNumber;
-@property (weak, nonatomic) IBOutlet UITextField *txtBusinessNumber;
-@property (weak, nonatomic) IBOutlet UITextField *txtEmail;
-@property (weak, nonatomic) IBOutlet UITextView *txtAddress;
-@property (weak, nonatomic) IBOutlet UITextField *txtPTKP;
-@property (weak, nonatomic) IBOutlet UITextField *txtNoRek;
-@property (weak, nonatomic) IBOutlet UITextField *txtBankName;
-@property (weak, nonatomic) IBOutlet UITextField *txtRekName;
-@property (weak, nonatomic) IBOutlet UITextField *txtDM;
-@property (weak, nonatomic) IBOutlet UITextField *txtRM;
-@property (weak, nonatomic) IBOutlet UITextField *txtRD;
-@property (weak, nonatomic) IBOutlet UITextField *txtNamaKantor;
-@property (weak, nonatomic) IBOutlet UITextField *txtAAJINo;
-@property (weak, nonatomic) IBOutlet UITextField *txtAAJIDate;
 
 @property (nonatomic, copy) NSString *username;
 @property (nonatomic, copy) NSString *code;
@@ -76,7 +55,6 @@
 
 //--bob
 @property (strong, nonatomic) IBOutlet UIScrollView *myScrollView;
-@property (strong, nonatomic) IBOutlet UITextField *txtICNo;
 @property (strong, nonatomic) IBOutlet UIButton *btnContractDate;
 - (IBAction)btnContractDatePressed:(id)sender;
 
@@ -91,6 +69,92 @@
 @property (nonatomic, copy) NSString *AgentPortalPassword;
 @property (nonatomic, copy) NSString *getLatest;
 //--end
+
+
+// BHIMBIM'S QUICK FIX - Start
+
+/* VIEW */
+
+@property (nonatomic, weak) IBOutlet UIView *viewNavigation;
+@property (nonatomic, weak) IBOutlet UIView *viewMain;
+
+/* LABEL */
+
+@property (nonatomic, weak) IBOutlet UILabel *labelFormHeader;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormDetail;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelProfileInitial;
+@property (nonatomic, weak) IBOutlet UILabel *labelProfileName;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelSectionPersonalInformation;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormSex;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormBirthDate;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormReligion;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormMaritalStatus;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormIDNumber;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormPTKPStatus;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormBankName;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormAccountNumber;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormAccountHolder;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormNPWP;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelSectionContact;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormAddress;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormHandphoneHome;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormHandphoneBusiness;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormEmail;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelSectionStructure;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormDistrictManager;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormRegionalManager;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormRegionalDirector;
+
+@property (nonatomic, weak) IBOutlet UILabel *labelSectionAgent;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormOfficeName;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormAAJILicense;
+@property (nonatomic, weak) IBOutlet UILabel *labelFormAAJIExpiredDate;
+
+/* TEXTFIELD */
+
+@property (nonatomic, weak) IBOutlet UITextField *textFieldProfileID;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldProfileLevel;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldProfileStatus;
+
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormSex;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormBirthDate;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormReligion;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormMaritalStatus;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormIDNumber;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormPTKPStatus;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormBankName;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormAccountNumber;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormAccountHolder;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormNPWP;
+
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormAddress;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormHandphoneHome;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormHandphoneBusiness;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormEmail;
+
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormDistrictManager;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormRegionalManager;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormRegionalDirector;
+
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormOfficeName;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormAAJILicense;
+@property (nonatomic, weak) IBOutlet UITextField *textFieldFormAAJIExpiredDate;
+
+/* BUTTON */
+
+@property (nonatomic, weak) IBOutlet UIButton *buttonChangePassword;
+@property (nonatomic, weak) IBOutlet UIButton *buttonSync;
+
+/* OBJECT */
+
+@property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
+
+// BHIMBIM'S QUICK FIX - End
+
 
 
 @end

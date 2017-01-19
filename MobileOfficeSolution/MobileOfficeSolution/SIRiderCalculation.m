@@ -80,6 +80,18 @@
     return mopVal;
 }
 
+-(NSString *)ConvertGenderString:(NSString *)stringGender{
+    NSString *strGender;
+    if ([stringGender isEqualToString:@"MALE"]){
+        strGender = @"Male";
+    }
+    else if ([stringGender isEqualToString:@"FEMALE"]){
+        strGender = @"Female";
+    }
+    return strGender;
+}
+
+
 -(long long)CalculateCashOfRider:(NSDictionary *)dictRiderInformation{
     long long riderCOR = 0;
     
@@ -147,7 +159,7 @@
     modelHSRCor = [[ModelHSRCOR alloc]init];
     modelHSRFactor = [[ModelHSRFactor alloc]init];
     int LAAge = [[dictRiderInformation valueForKey:@"LA_Age"] intValue];
-//    NSString *stringGender = [dictRiderInformation valueForKey:@"LA_Gender"];
+//    NSString *stringGender = [self ConvertGenderString:[dictRiderInformation valueForKey:@"LA_Gender"]];
     NSString *stringPlan = [dictRiderInformation valueForKey:@"SI_RiderPlan_Code"];
     
     int extraPremiPercent = [[dictRiderInformation valueForKey:@"SI_RiderSelected_ExtraPremi_Percent"] intValue];
@@ -164,7 +176,7 @@
     long long riderCOR = 0;
     modelCIEE = [[ModelCIEERates alloc]init];
     int LAAge = [[dictRiderInformation valueForKey:@"LA_Age"] intValue];
-    NSString *stringGender = [dictRiderInformation valueForKey:@"LA_Gender"];
+    NSString *stringGender = [self ConvertGenderString:[dictRiderInformation valueForKey:@"LA_Gender"]];
     double rateCIEE = [modelCIEE getRateCIEE:LAAge StringGender:stringGender];
     
     formatter  = [[Formatter alloc]init];
@@ -181,7 +193,7 @@
     long long riderCOR = 0;
     modelCI55 = [[ModelCI55Rates alloc]init];
     int LAAge = [[dictRiderInformation valueForKey:@"LA_Age"] intValue];
-    NSString *stringGender = [dictRiderInformation valueForKey:@"LA_Gender"];
+    NSString *stringGender = [self ConvertGenderString:[dictRiderInformation valueForKey:@"LA_Gender"]];
     double rateCI55 = [modelCI55 getRateCI55:LAAge StringGender:stringGender];
     
     formatter  = [[Formatter alloc]init];
@@ -198,7 +210,7 @@
     long long riderCOR = 0;
     modelCashPlanRate = [[ModelCashPlanRate alloc]init];
     int LAAge = [[dictRiderInformation valueForKey:@"LA_Age"] intValue];
-    NSString *stringGender = [dictRiderInformation valueForKey:@"LA_Gender"];
+    NSString *stringGender = [self ConvertGenderString:[dictRiderInformation valueForKey:@"LA_Gender"]];
     double rateCashPlan = [modelCashPlanRate getRateCashPlan:LAAge StringGender:stringGender];
     
     formatter  = [[Formatter alloc]init];

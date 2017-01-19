@@ -398,7 +398,7 @@
     [database close];
     
     NSNumber *tt = [dictPOLAData valueForKey:@"QuickQuote"];
-    if ([tt intValue] == 0) {
+    if ([tt intValue] == 1) {
         [self savePOToProspect:dictPOLAData];
     }
 
@@ -521,36 +521,36 @@
     FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select * from SI_PO_Data where SINO = \"%@\"",SINo]];
     NSLog(@"query %@",[NSString stringWithFormat:@"select * from SI_PO_Data where SINO = \"%@\"",SINo]);
     while ([s next]) {
-        SINO = [s stringForColumn:@"SINO"];
-        ProductCode = [s stringForColumn:@"ProductCode"];
-        ProductName = [s stringForColumn:@"ProductName"];
-        QuickQuote = [s stringForColumn:@"QuickQuote"];
-        SIDate = [s stringForColumn:@"SIDate"];
-        PO_Name = [s stringForColumn:@"PO_Name"];
-        PO_DOB = [s stringForColumn:@"PO_DOB"];
-        PO_Gender = [s stringForColumn:@"PO_Gender"];
-        PO_Age = [s stringForColumn:@"PO_Age"];
-        PO_OccpCode = [s stringForColumn:@"PO_OccpCode"];
-        PO_Occp = [s stringForColumn:@"PO_Occp"];
-        PO_ClientID = [s stringForColumn:@"PO_ClientID"];
-        RelWithLA = [s stringForColumn:@"RelWithLA"];
-        RelWithLAOthers = [s stringForColumn:@"RelWithLAOthers"];
-        LA_ClientID = [s stringForColumn:@"LA_ClientID"];
-        LA_Name = [s stringForColumn:@"LA_Name"];
-        LA_DOB = [s stringForColumn:@"LA_DOB"];
-        LA_Age = [s stringForColumn:@"LA_Age"];
-        LA_Gender = [s stringForColumn:@"LA_Gender"];
-        LA_OccpCode = [s stringForColumn:@"LA_OccpCode"];
-        LA_Occp = [s stringForColumn:@"LA_Occp"];
-        CreatedDate = [s stringForColumn:@"CreatedDate"];
-        UpdatedDate = [s stringForColumn:@"UpdatedDate"];
-        IsInternalStaff = [s stringForColumn:@"IsInternalStaff"];
-        PO_Smoker = [s stringForColumn:@"PO_Smoker"];
-        PO_CommencementDate = [s stringForColumn:@"PO_CommencementDate"];
-        PO_MonthlyIncome = [s stringForColumn:@"PO_MonthlyIncome"];
-        LA_Smoker = [s stringForColumn:@"LA_Smoker"];
-        LA_CommencementDate = [s stringForColumn:@"LA_CommencementDate"];
-        LA_MonthlyIncome = [s stringForColumn:@"LA_MonthlyIncome"];
+        SINO = [s stringForColumn:@"SINO"]?:@"";
+        ProductCode = [s stringForColumn:@"ProductCode"]?:@"";
+        ProductName = [s stringForColumn:@"ProductName"]?:@"";
+        QuickQuote = [s stringForColumn:@"QuickQuote"]?:@"";
+        SIDate = [s stringForColumn:@"SIDate"]?:@"";
+        PO_Name = [s stringForColumn:@"PO_Name"]?:@"";
+        PO_DOB = [s stringForColumn:@"PO_DOB"]?:@"";
+        PO_Gender = [s stringForColumn:@"PO_Gender"]?:@"";
+        PO_Age = [s stringForColumn:@"PO_Age"]?:@"";
+        PO_OccpCode = [s stringForColumn:@"PO_OccpCode"]?:@"";
+        PO_Occp = [s stringForColumn:@"PO_Occp"]?:@"";
+        PO_ClientID = [s stringForColumn:@"PO_ClientID"]?:@"";
+        RelWithLA = [s stringForColumn:@"RelWithLA"]?:@"";
+        RelWithLAOthers = [s stringForColumn:@"RelWithLAOthers"]?:@"";
+        LA_ClientID = [s stringForColumn:@"LA_ClientID"]?:@"";
+        LA_Name = [s stringForColumn:@"LA_Name"]?:@"";
+        LA_DOB = [s stringForColumn:@"LA_DOB"]?:@"";
+        LA_Age = [s stringForColumn:@"LA_Age"]?:@"";
+        LA_Gender = [s stringForColumn:@"LA_Gender"]?:@"";
+        LA_OccpCode = [s stringForColumn:@"LA_OccpCode"]?:@"";
+        LA_Occp = [s stringForColumn:@"LA_Occp"]?:@"";
+        CreatedDate = [s stringForColumn:@"CreatedDate"]?:@"";
+        UpdatedDate = [s stringForColumn:@"UpdatedDate"]?:@"";
+        IsInternalStaff = [s stringForColumn:@"IsInternalStaff"]?:@"";
+        PO_Smoker = [s stringForColumn:@"PO_Smoker"]?:@"";
+        PO_CommencementDate = [s stringForColumn:@"PO_CommencementDate"]?:@"";
+        PO_MonthlyIncome = [s stringForColumn:@"PO_MonthlyIncome"]?:@"";
+        LA_Smoker = [s stringForColumn:@"LA_Smoker"]?:@"";
+        LA_CommencementDate = [s stringForColumn:@"LA_CommencementDate"]?:@"";
+        LA_MonthlyIncome = [s stringForColumn:@"LA_MonthlyIncome"]?:@"";
     }
     
     dict=[[NSDictionary alloc]initWithObjectsAndKeys:

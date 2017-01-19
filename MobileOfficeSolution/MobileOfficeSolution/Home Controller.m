@@ -138,7 +138,7 @@
 
     - (IBAction)navigationExpandSales:(id)sender
     {
-        [_objectUserInterface navigationExpand:_stackViewSales];
+        [_objectUserInterface navigationExpand:_stackViewSales imageViewNavigationExpand:NULL];
     }
 
     - (void) scrollViewDidScroll: (UIScrollView *) scrollView

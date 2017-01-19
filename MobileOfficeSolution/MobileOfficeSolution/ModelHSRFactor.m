@@ -13,16 +13,16 @@
     double rate = 0;
     
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_RATES_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
+    NSString* stringAge = [NSString stringWithFormat:@"%i",LAAge];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select HSR_Factor from %@ where PY = \"%@\"",TABLE_RATES_HSR_FACTOR,stringAge]];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select PY from %@ where Age = %i",TABLE_RATES_HSR_FACTOR,LAAge]];
-    
-    rate = [s doubleForColumn:@"PY"];
+    rate = [[s stringForColumn:@"HSR_Factor"] doubleValue];
     while ([s next]) {
-        rate = [s doubleForColumn:@"PY"];
+        rate = [[s stringForColumn:@"HSR_Factor"] doubleValue];
     }
     
     [results close];

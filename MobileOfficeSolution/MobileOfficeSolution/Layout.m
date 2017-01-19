@@ -90,6 +90,8 @@
         UserInterface *objectUserInterface = [[UserInterface alloc] init];
         
         self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0];
+        self.layer.borderWidth = GENERAL_WIDTH_THIN;
+        self.layer.borderColor = [objectUserInterface generateUIColor:THEME_COLOR_NONARY floatOpacity:1.0].CGColor;
     }
 
 @end
@@ -446,6 +448,44 @@
 
 @end
 
+@implementation StackViewFormSlimVerticalContainer
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.spacing = GENERAL_SPACE_MEDIUM;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentTop;
+    }
+
+@end
+
+@implementation StackViewFormSlimVerticalData
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.spacing = GENERAL_SPACE_LITTLE;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentTop;
+    }
+
+@end
+
 
 // MAIN
 
@@ -525,6 +565,64 @@
         _objectUserInterface = [[UserInterface alloc] init];
         
         self.backgroundColor = [_objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
+
+@end
+
+
+// TABLE
+
+@implementation ViewTableHeader
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0];
+    }
+
+@end
+
+@implementation StackViewTableHeader
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisVertical;
+        self.spacing = GENERAL_SPACE_LITTLE;
+        self.distribution = UIStackViewDistributionFill;
+        self.alignment = UIStackViewAlignmentFill;
+    }
+
+@end
+
+@implementation StackViewTableColumn
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        self.axis = UILayoutConstraintAxisHorizontal;
+        self.spacing = 0;
+        self.distribution = UIStackViewDistributionFillEqually;
+        self.alignment = UIStackViewAlignmentCenter;
     }
 
 @end

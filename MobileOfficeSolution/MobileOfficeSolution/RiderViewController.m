@@ -36,6 +36,8 @@
     NSMutableArray* arrayRiderIDDetail;
     NSMutableArray* arrayRiderNameDetail;
     NSMutableArray* arrayRiderValueDetail;
+    NSMutableArray* arrayRiderTermDetail;
+    NSMutableArray* arrayRiderCORDetail;
     
     NSMutableDictionary* dictRiderName;
 }
@@ -72,6 +74,8 @@ int maxGycc = 0;
     arrayRiderIDDetail = [[NSMutableArray alloc]init];
     arrayRiderNameDetail = [[NSMutableArray alloc]init];
     arrayRiderValueDetail = [[NSMutableArray alloc]init];
+    arrayRiderTermDetail = [[NSMutableArray alloc]init];
+    arrayRiderCORDetail = [[NSMutableArray alloc]init];
 
     [self setDictionaryRiderName];
     [super viewDidLoad];
@@ -147,10 +151,14 @@ int maxGycc = 0;
     arrayRiderIDDetail = [[NSMutableArray alloc]init];
     arrayRiderNameDetail = [[NSMutableArray alloc]init];
     arrayRiderValueDetail = [[NSMutableArray alloc]init];
+    arrayRiderTermDetail = [[NSMutableArray alloc]init];
+    arrayRiderCORDetail = [[NSMutableArray alloc]init];
     for (int i=0;i<[arrayRider count];i++){
         [arrayRiderIDDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SI_RiderPlan_ID"]];
         [arrayRiderNameDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SI_RiderPlan_Desc"]];
         [arrayRiderValueDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SI_RiderSelected_Benefit"]];
+        [arrayRiderTermDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SI_RiderSelected_Term"]];
+        [arrayRiderCORDetail addObject:[[arrayRider objectAtIndex:i]valueForKey:@"SI_RiderSelected_COR"]];
     }
 }
 
@@ -240,13 +248,20 @@ int maxGycc = 0;
 -(void)actionRiderValueInput:(NSDictionary *)stringRiderPlanDictionary StringRiderValue:(NSString *)stringRiderValue{
     NSString *stringBenefitValue = [stringRiderPlanDictionary valueForKey:@"SI_RiderPlan_Benefit"];
     if ([stringBenefitValue length]>0){
+        NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]initWithDictionary:[_delegate getPOLADictionary]];
+        
+        
+        int riderTerm = [siRiderCalculation CalculateRiderTerm:[stringRiderPlanDictionary valueForKey:@"SI_RiderType_Code"] StringPlanTyCode:[stringRiderPlanDictionary valueForKey:@"SI_RiderPlan_Code"] StringProductCode:[dictPOLAData valueForKey:@"ProductCode"] IntEntryAge:[[dictPOLAData valueForKey:@"LA_Age"] intValue]];
+        
+        
         [arrayRiderIDDetail addObject:[stringRiderPlanDictionary valueForKey:@"ID"]];
         [arrayRiderNameDetail addObject:[stringRiderPlanDictionary valueForKey:@"SI_RiderPlan_Desc"]];
         [arrayRiderValueDetail addObject:[formatter stringToCurrencyDecimalFormatted:stringBenefitValue]];
+        [arrayRiderTermDetail addObject:[NSNumber numberWithInt:riderTerm]];
         
         NSMutableDictionary* dictRiderBaseInfo = [[NSMutableDictionary alloc]initWithDictionary:[self getDictForBaseDataCORCalculation:[stringRiderPlanDictionary valueForKey:@"SI_RiderType_Code"] StringRiderPlanCode:[stringRiderPlanDictionary valueForKey:@"SI_RiderPlan_Code"] RoderSA:[formatter stringToCurrencyDecimalFormatted:stringBenefitValue]]];
-        [siRiderCalculation CalculateCashOfRider:dictRiderBaseInfo];
         
+        [arrayRiderCORDetail addObject:[formatter numberToCurrencyDecimalFormatted:[NSNumber numberWithLongLong:[siRiderCalculation CalculateCashOfRider:dictRiderBaseInfo]]]];
         [tableRiderDetail reloadData];
     }
     else{
@@ -260,9 +275,17 @@ int maxGycc = 0;
 
 #pragma mark delegate rider input value
 -(void)saveRiderInput:(NSDictionary *)dictRiderData RiderValue:(NSString *)stringRiderValue{
+    NSMutableDictionary* dictPOLAData = [[NSMutableDictionary alloc]initWithDictionary:[_delegate getPOLADictionary]];
+    
+    int riderTerm = [siRiderCalculation CalculateRiderTerm:[dictRiderData valueForKey:@"SI_RiderType_Code"] StringPlanTyCode:[dictRiderData valueForKey:@"SI_RiderPlan_Code"] StringProductCode:[dictPOLAData valueForKey:@"ProductCode"] IntEntryAge:[[dictPOLAData valueForKey:@"LA_Age"] intValue]];
     [arrayRiderIDDetail addObject:[dictRiderData valueForKey:@"ID"]];
     [arrayRiderNameDetail addObject:[dictRiderData valueForKey:@"SI_RiderPlan_Desc"]];
     [arrayRiderValueDetail addObject:stringRiderValue];
+    [arrayRiderTermDetail addObject:[NSNumber numberWithInt:riderTerm]];
+    NSMutableDictionary* dictRiderBaseInfo = [[NSMutableDictionary alloc]initWithDictionary:[self getDictForBaseDataCORCalculation:[dictRiderData valueForKey:@"SI_RiderType_Code"] StringRiderPlanCode:[dictRiderData valueForKey:@"SI_RiderPlan_Code"] RoderSA:[formatter stringToCurrencyDecimalFormatted:stringRiderValue]]];
+    
+    [arrayRiderCORDetail addObject:[formatter numberToCurrencyDecimalFormatted:[NSNumber numberWithLongLong:[siRiderCalculation CalculateCashOfRider:dictRiderBaseInfo]]]];
+
     
     [tableRiderDetail reloadData];
 }
@@ -276,8 +299,8 @@ int maxGycc = 0;
         [dictRiderData setObject:[arrayRiderIDDetail objectAtIndex:i] forKey:@"SI_RiderPlan_ID"];
         [dictRiderData setObject:[arrayRiderNameDetail objectAtIndex:i] forKey:@"SI_RiderPlan_Desc"];
         [dictRiderData setObject:[arrayRiderValueDetail objectAtIndex:i] forKey:@"SI_RiderSelected_Benefit"];
-        [dictRiderData setObject:@"0" forKey:@"SI_RiderSelected_COR"];
-        [dictRiderData setObject:@"0" forKey:@"SI_RiderSelected_Term"];
+        [dictRiderData setObject:[arrayRiderCORDetail objectAtIndex:i] forKey:@"SI_RiderSelected_COR"];
+        [dictRiderData setObject:[arrayRiderTermDetail objectAtIndex:i] forKey:@"SI_RiderSelected_Term"];
         [dictRiderData setObject:@"0" forKey:@"SI_RiderSelected_ExtraPremi_Percent"];
         [dictRiderData setObject:@"0" forKey:@"SI_RiderSelected_ExtraPremi_Mil"];
         [dictRiderData setObject:@"0" forKey:@"SI_RiderSelected_ExtraPremi_Term"];
@@ -450,6 +473,8 @@ int maxGycc = 0;
             [arrayRiderIDDetail removeObjectAtIndex:indexPath.row];
             [arrayRiderNameDetail removeObjectAtIndex:indexPath.row];
             [arrayRiderValueDetail removeObjectAtIndex:indexPath.row];
+            [arrayRiderTermDetail removeObjectAtIndex:indexPath.row];
+            [arrayRiderCORDetail removeObjectAtIndex:indexPath.row];
             
             [tableRiderDetail beginUpdates];
             [tableRiderDetail deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]

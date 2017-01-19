@@ -24,4 +24,5 @@
     ModelHSRFactor* modelHSRFactor;
 }
 -(long long)CalculateCashOfRider:(NSDictionary *)dictRiderInformation;
+-(int)CalculateRiderTerm:(NSString *)stringRiderTypeCode StringPlanTyCode:(NSString *)stringPlanTypeCode StringProductCode:(NSString *)stringProductCode IntEntryAge:(int)intEntryAge;
 @end

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,6 +25,7 @@
                 <outlet property="buttonHeaderSales" destination="foO-Sx-6Mc" id="E9H-6o-DfQ"/>
                 <outlet property="buttonHome" destination="o52-xU-bL1" id="ewi-qf-Ovf"/>
                 <outlet property="buttonLogout" destination="qdB-wK-CtB" id="LdU-Pq-cKv"/>
+                <outlet property="imageViewExpandSales" destination="Pz9-KV-WEE" id="qMi-10-tge"/>
                 <outlet property="labelName" destination="W7M-q2-J60" id="nbb-gg-SVp"/>
                 <outlet property="labelPosition" destination="KbQ-rb-cCN" id="por-ef-lca"/>
                 <outlet property="stackViewSales" destination="bdP-wY-twZ" id="XFg-kb-9ba"/>
@@ -37,19 +38,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="W7M-q2-J60" customClass="LabelProfileHeader">
-                    <rect key="frame" x="20" y="30" width="335" height="20.5"/>
+                    <rect key="frame" x="20" y="94" width="335" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-rb-cCN" customClass="LabelProfileDetail">
-                    <rect key="frame" x="20" y="60.5" width="335" height="20.5"/>
+                    <rect key="frame" x="20" y="124.5" width="335" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyM-2w-uwk">
-                    <rect key="frame" x="20" y="101" width="144" height="48"/>
+                    <rect key="frame" x="20" y="165" width="144" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o52-xU-bL1" customClass="ButtonProfile">
                             <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
@@ -87,10 +88,10 @@
                     </subviews>
                 </stackView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOH-uI-h7J">
-                    <rect key="frame" x="0.0" y="169" width="375" height="498"/>
+                    <rect key="frame" x="0.0" y="233" width="375" height="434"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1Ch-Ac-Ewu">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="788"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vuz-NZ-C3s" customClass="ButtonNavigationVerticalHeader">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -109,18 +110,40 @@
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_calendar_primary"/>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foO-Sx-6Mc" customClass="ButtonNavigationVerticalHeader">
-                                    <rect key="frame" x="0.0" y="140" width="375" height="70"/>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dmM-xU-FaA">
+                                    <rect key="frame" x="0.0" y="140" width="375" height="128"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="foO-Sx-6Mc" customClass="ButtonNavigationVerticalHeader">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="128"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="DKR-hn-Yjp"/>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="icon_sale_primary"/>
+                                            <connections>
+                                                <action selector="navigationExpandSales:" destination="-1" eventType="touchUpInside" id="cav-oj-To7"/>
+                                            </connections>
+                                        </button>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_expand_primary" translatesAutoresizingMaskIntoConstraints="NO" id="Pz9-KV-WEE">
+                                            <rect key="frame" x="319" y="46" width="36" height="36"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="Cpr-qt-LD6"/>
+                                                <constraint firstAttribute="height" constant="36" id="reg-Ua-RRx"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="DKR-hn-Yjp"/>
+                                        <constraint firstItem="foO-Sx-6Mc" firstAttribute="top" secondItem="dmM-xU-FaA" secondAttribute="top" id="4mw-Xv-EmM"/>
+                                        <constraint firstItem="foO-Sx-6Mc" firstAttribute="leading" secondItem="dmM-xU-FaA" secondAttribute="leading" id="EJK-Y7-uAw"/>
+                                        <constraint firstItem="Pz9-KV-WEE" firstAttribute="centerY" secondItem="dmM-xU-FaA" secondAttribute="centerY" id="Kr9-B5-Cq5"/>
+                                        <constraint firstAttribute="bottom" secondItem="foO-Sx-6Mc" secondAttribute="bottom" id="Ug0-bx-Xzo"/>
+                                        <constraint firstAttribute="trailing" secondItem="Pz9-KV-WEE" secondAttribute="trailing" constant="20" id="anK-YR-emN"/>
+                                        <constraint firstAttribute="trailing" secondItem="foO-Sx-6Mc" secondAttribute="trailing" id="bh7-aA-zcI"/>
+                                        <constraint firstItem="foO-Sx-6Mc" firstAttribute="centerY" secondItem="dmM-xU-FaA" secondAttribute="centerY" id="zdj-me-DeZ"/>
                                     </constraints>
-                                    <state key="normal" title="Button" image="icon_sale_primary"/>
-                                    <connections>
-                                        <action selector="navigationExpandSales:" destination="-1" eventType="touchUpInside" id="cav-oj-To7"/>
-                                    </connections>
-                                </button>
+                                </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bdP-wY-twZ" customClass="StackViewNavigationDetail">
-                                    <rect key="frame" x="0.0" y="210" width="375" height="240"/>
+                                    <rect key="frame" x="0.0" y="268" width="375" height="240"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MVl-uq-iMi" customClass="ButtonNavigationVerticalDetail">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
@@ -154,21 +177,21 @@
                                     </subviews>
                                 </stackView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4f1-K2-fm4" customClass="ButtonNavigationVerticalHeader">
-                                    <rect key="frame" x="0.0" y="450" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="508" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="ZSD-jj-FuI"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_activitymanagement_primary"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRu-t9-NoO" customClass="ButtonNavigationVerticalHeader">
-                                    <rect key="frame" x="0.0" y="520" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="578" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="eyG-oQ-r9l"/>
                                     </constraints>
                                     <state key="normal" title="Button" image="icon_epayment_primary"/>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="94p-lL-A1F" customClass="ButtonNavigationVerticalHeader">
-                                    <rect key="frame" x="0.0" y="590" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="648" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="fmr-e6-KXW"/>
                                     </constraints>
@@ -178,7 +201,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dZz-JR-REE" customClass="ButtonNavigationVerticalHeader">
-                                    <rect key="frame" x="0.0" y="660" width="375" height="70"/>
+                                    <rect key="frame" x="0.0" y="718" width="375" height="70"/>
                                     <constraints>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="qWS-t5-5dp"/>
                                     </constraints>
@@ -195,6 +218,13 @@
                         <constraint firstAttribute="trailing" secondItem="1Ch-Ac-Ewu" secondAttribute="trailing" id="nyo-i0-FJf"/>
                     </constraints>
                 </scrollView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_tmconnect_primary" translatesAutoresizingMaskIntoConstraints="NO" id="STy-Ic-pDT">
+                    <rect key="frame" x="20" y="30" width="140" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="IHd-6e-SKr"/>
+                        <constraint firstAttribute="width" constant="140" id="qt2-gt-U5I"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -202,15 +232,18 @@
                 <constraint firstAttribute="trailing" secondItem="W7M-q2-J60" secondAttribute="trailing" constant="20" id="A8k-11-hn5"/>
                 <constraint firstItem="KbQ-rb-cCN" firstAttribute="top" secondItem="W7M-q2-J60" secondAttribute="bottom" constant="10" id="F1b-0Q-0su"/>
                 <constraint firstItem="lyM-2w-uwk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="K2U-jk-P3D"/>
-                <constraint firstItem="W7M-q2-J60" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="Mdp-DX-T2y"/>
                 <constraint firstAttribute="trailing" secondItem="KbQ-rb-cCN" secondAttribute="trailing" constant="20" id="Wmo-DM-EDY"/>
                 <constraint firstItem="dOH-uI-h7J" firstAttribute="top" secondItem="lyM-2w-uwk" secondAttribute="bottom" constant="20" id="ZZ5-fc-LHw"/>
                 <constraint firstItem="W7M-q2-J60" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="aTv-lj-ybT"/>
+                <constraint firstItem="STy-Ic-pDT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="g3l-ET-GRG"/>
                 <constraint firstItem="KbQ-rb-cCN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gfN-sR-Dux"/>
                 <constraint firstAttribute="bottom" secondItem="dOH-uI-h7J" secondAttribute="bottom" id="hIF-ZT-uXZ"/>
                 <constraint firstAttribute="trailing" secondItem="dOH-uI-h7J" secondAttribute="trailing" id="maB-xB-Luy"/>
                 <constraint firstItem="lyM-2w-uwk" firstAttribute="top" secondItem="KbQ-rb-cCN" secondAttribute="bottom" constant="20" id="qXk-Z7-8B8"/>
+                <constraint firstItem="STy-Ic-pDT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="tm1-h4-8NI"/>
+                <constraint firstItem="W7M-q2-J60" firstAttribute="top" secondItem="STy-Ic-pDT" secondAttribute="bottom" constant="40" id="yft-r5-ltS"/>
             </constraints>
+            <point key="canvasLocation" x="72" y="89"/>
         </view>
     </objects>
     <resources>
@@ -219,6 +252,7 @@
         <image name="icon_calendar_primary" width="48" height="48"/>
         <image name="icon_elibrary_primary" width="48" height="48"/>
         <image name="icon_epayment_primary" width="48" height="48"/>
+        <image name="icon_expand_primary" width="36" height="36"/>
         <image name="icon_financialneedsanalysis_primary" width="48" height="48"/>
         <image name="icon_home_primary" width="48" height="48"/>
         <image name="icon_logout_primary" width="48" height="48"/>
@@ -228,5 +262,6 @@
         <image name="icon_sale_primary" width="48" height="48"/>
         <image name="icon_salesillustration_primary" width="48" height="48"/>
         <image name="icon_spaj_primary" width="48" height="48"/>
+        <image name="logo_tmconnect_primary" width="210" height="36"/>
     </resources>
 </document>

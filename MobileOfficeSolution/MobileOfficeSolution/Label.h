@@ -46,6 +46,18 @@
 
 @end
 
+@interface LabelFormSlimSection : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+@interface LabelFormSlimQuestion : UILabel
+
+    - (void)setupStyle;
+
+@end
+
 
 // PHOTO
 
@@ -151,6 +163,12 @@
     @end
 
     @interface LabelProfileDetail : UILabel
+
+        - (void)setupStyle;
+
+    @end
+
+    @interface LabelProfileInitial : UILabel
 
         - (void)setupStyle;
 

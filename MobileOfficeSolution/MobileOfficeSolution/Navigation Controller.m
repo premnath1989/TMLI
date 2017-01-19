@@ -92,7 +92,7 @@
 
     - (IBAction)navigationExpandSales:(id)sender
     {
-        [_objectUserInterface navigationExpand:_stackViewSales];
+        [_objectUserInterface navigationExpand:_stackViewSales imageViewNavigationExpand:_imageViewExpandSales];
     }
 
         /* PROFILE */
@@ -116,8 +116,8 @@
 
         - (IBAction)goToAgentProfile:(id)sender
         {
-            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"MainStoryboard" bundle:Nil];
-            SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"SettingUserProfile"];
+            UIStoryboard *mainStoryBoard = [UIStoryboard storyboardWithName:@"Main" bundle:Nil];
+            SettingUserProfile * UserProfileView = [mainStoryBoard instantiateViewControllerWithIdentifier:@"AgentProfilePage"];
             UserProfileView.modalPresentationStyle = UIModalPresentationFullScreen;
             UserProfileView.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             UserProfileView.getLatest = @"Yes";

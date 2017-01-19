@@ -46,13 +46,13 @@
 #import "FundPercentController.h"
 #import "TopupWithdrawViewController.h"
 #import "ModelSIRiderSelected.h"
-
+#import "IllustrationViewController.h"
 @class SIMenuViewController;
 @protocol SIMenuDelegate
 -(void)showReportCantDisplay:(NSString*)type;
 @end
 
-@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeControllerDelegate, FundPercentControllerDelegate,TopupWithdrawControllerDelegate> {
+@interface SIMenuViewController : UIViewController <FSTabBarControllerDelegate,NewLAViewControllerDelegate,PayorViewControllerDelegate,SecondLAViewControllerDelegate,BasicPlanViewControllerDelegate,RiderViewControllerDelegate,HLViewControllerDelegate, NDHTMLtoPDFDelegate, ReaderViewControllerDelegate,PremiumKeluargaKuProtocol, PremiumViewControllerDelegate, UIScrollViewDelegate, InvestmentTypeControllerDelegate, FundPercentControllerDelegate,TopupWithdrawControllerDelegate,IllustrationViewControllerDelegate> {
     UIViewController* lastActiveController;
     
     int getTerm;
@@ -63,7 +63,8 @@
     BOOL PlanEmpty;
     
 
-    
+    IllustrationViewController* illustrationVC;
+
     
     Formatter* formatter;
     RiderCalculation* riderCalculation;

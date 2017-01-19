@@ -249,8 +249,8 @@
     
     self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:0.0];
     [self setTitle:@"" forState:UIControlStateNormal];
-    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
-    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_MEDIUM].active = true;
+    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_SMALL].active = true;
+    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_SMALL].active = true;
     [self setBackgroundImage:[UIImage imageNamed:@"icon_back_primary"] forState:UIControlStateNormal];
 }
 

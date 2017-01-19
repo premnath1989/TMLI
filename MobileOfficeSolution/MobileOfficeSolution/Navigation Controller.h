@@ -24,6 +24,7 @@
     @property (nonatomic, weak) IBOutlet UILabel *labelName;
     @property (nonatomic, weak) IBOutlet UILabel *labelPosition;
 
+
     /* BUTTON */
 
     @property (nonatomic, weak) IBOutlet UIButton *buttonHome;
@@ -44,18 +45,25 @@
     @property (nonatomic, weak) IBOutlet UIButton *buttonDetailSPAJ;
     @property (nonatomic, weak) IBOutlet UIButton *buttonDetailPolicyReceipt;
 
+
     /* STACKVIEW */
 
     @property (nonatomic, weak) IBOutlet UIStackView *stackViewSales;
+
+
+    /* IMAGE */
+
+    @property (nonatomic, weak) IBOutlet UIImageView *imageViewExpandSales;
+
 
     /* OBJECT */
 
     @property (nonatomic, copy, readwrite) UserInterface *objectUserInterface;
 
+
     /* STORYBOARD */
 
     @property (nonatomic, copy, readwrite) IBOutlet UIStoryboard *storyboardMain;
     @property (nonatomic, copy, readwrite) IBOutlet UIStoryboard *storyboardSPAJ;
-
 
 @end

@@ -13,24 +13,18 @@
 -(double)getRateCashPlan:(int)LAAge StringGender:(NSString *)stringGender{
     double rate = 0;
     
-    NSString* stringTableGender;
-    if([stringGender caseInsensitiveCompare:@"male"] == NSOrderedSame) {
-        stringTableGender = @"Male";
-    }
-    else if([stringGender caseInsensitiveCompare:@"female"] == NSOrderedSame) {
-        stringTableGender = @"Female";
-    }
+    
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_RATES_MAIN_NAME];
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
+    NSString* stringAge = [NSString stringWithFormat:@"%i",LAAge];
+    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select %@ from %@ where Age = \"%@\"",stringGender,TABLE_RATES_CASH_PLAN,stringAge]];
     
-    FMResultSet *s = [database executeQuery:[NSString stringWithFormat:@"select %@ from %@ where Age = %i",stringTableGender,TABLE_RATES_CASH_PLAN,LAAge]];
-    
-    rate = [s doubleForColumn:stringTableGender];
+    rate = [[s stringForColumn:stringGender] doubleValue];
     while ([s next]) {
-        rate = [s doubleForColumn:stringTableGender];
+        rate = [[s stringForColumn:stringGender] doubleValue];
     }
     
     [results close];
