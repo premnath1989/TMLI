@@ -3009,7 +3009,7 @@ BOOL NavShow3;
 -(IBAction)actionShowIllustration:(id)sender{
     illustrationVC.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     illustrationVC.modalPresentationStyle = UIModalPresentationFormSheet;
-    illustrationVC.preferredContentSize = CGSizeMake(595, 748);
+    illustrationVC.preferredContentSize = CGSizeMake(1000, 748);
     [self presentViewController:illustrationVC animated:YES completion:Nil];
     [self setBOOLSectionFilled];
     [myTableView reloadData];
@@ -3083,7 +3083,9 @@ BOOL NavShow3;
     [cell.BtnAsuransiTamb addTarget:self action:@selector(actionShowRider:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnInvestasi addTarget:self action:@selector(actionShowFundAllocation:) forControlEvents:UIControlEventTouchUpInside];
     [cell.BtnPenambahan addTarget:self action:@selector(actionShowTopUpWithdraw:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.BtnIllustrasi addTarget:self action:@selector(actionShowIllustration:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.BtnIllustrasi setEnabled:YES];
     
     UIColor *green = [UIColor colorWithRed:0.12 green:0.52 blue:0.60 alpha:1.0];
     UIColor *gray = [UIColor colorWithRed:0.88 green:0.90 blue:0.90 alpha:1.0];

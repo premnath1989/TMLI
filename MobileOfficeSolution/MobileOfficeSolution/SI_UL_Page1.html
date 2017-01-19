@@ -28,6 +28,9 @@
             font-size:10px;
             font-family: "Helvetica"
         }*/
+        td.one {
+            text-align: center;
+        }
         p {
             font-size:10px;
             padding: 0px 0px 0px 0px;
@@ -57,7 +60,107 @@
         
         
 			<script>
-				
+                
+                function GetGenderText(Gender){
+                    var strGender;
+                    if (Gender == "MALE"){
+                        strGender = "Pria";
+                    }
+                    else if (Gender == "FEMALE"){
+                        strGender = "Wanita";
+                    }
+                    return strGender;
+                }
+            
+            
+                function SetCalonPemegangPolisData(JSONCalonPemegangPolisTertanggung){
+                    document.getElementById("PO_Name").innerHTML = JSONCalonPemegangPolisTertanggung.PO_Name;
+                    document.getElementById("PO_Gender").innerHTML = GetGenderText(JSONCalonPemegangPolisTertanggung.PO_Gender);
+                    document.getElementById("PO_DOB").innerHTML = JSONCalonPemegangPolisTertanggung.PO_DOB;
+                    document.getElementById("PO_Age").innerHTML = JSONCalonPemegangPolisTertanggung.PO_Age + " tahun";
+                    
+                    document.getElementById("ProdukAsuransi").innerHTML = JSONCalonPemegangPolisTertanggung.ProductName;
+                }
+            
+                function SetCalonTertanggungData(JSONCalonPemegangPolisTertanggung){
+                    var MasaPembayaranPremi=0;
+                    
+                    document.getElementById("LA_Name").innerHTML = JSONCalonPemegangPolisTertanggung.LA_Name;
+                    document.getElementById("LA_Gender").innerHTML = GetGenderText(JSONCalonPemegangPolisTertanggung.LA_Gender);
+                    document.getElementById("LA_DOB").innerHTML = JSONCalonPemegangPolisTertanggung.LA_DOB;
+                    document.getElementById("LA_Age").innerHTML = JSONCalonPemegangPolisTertanggung.LA_Age + " tahun";
+                    var age = JSONCalonPemegangPolisTertanggung.LA_Age;
+                    MasaPembayaranPremi = 99 - age;
+                    
+                    document.getElementById("MasaPembayaranPremi").innerHTML = MasaPembayaranPremi + " tahun";
+                    document.getElementById("MasaPertanggunganAsuransi").innerHTML = MasaPembayaranPremi;
+                }
+            
+                function SetAsuransiDasarData(JSONBasicPlan){
+                    document.getElementById("PaymentCurrency").innerHTML = JSONBasicPlan.PaymentCurrency;
+                    document.getElementById("Premium").innerHTML = JSONBasicPlan.Premium;
+                    document.getElementById("RegularTopUp").innerHTML = JSONBasicPlan.RegularTopUp;
+                    document.getElementById("TotalPremium").innerHTML = JSONBasicPlan.TotalPremium;
+                    document.getElementById("Payment_Term").innerHTML = JSONBasicPlan.Payment_Term + " tahun";
+                    document.getElementById("Payment_Frequency").innerHTML = JSONBasicPlan.Payment_Frequency;
+                    
+                    document.getElementById("UangPertanggunganAsuransi").innerHTML = JSONBasicPlan.SumAssured;
+                    document.getElementById("BiayaAsuransi").innerHTML = "0";
+                }
+            
+                function SetFundAllocationInformation(JSONFundAllocation){
+                    var arrayFundAlloc = JSONFundAllocation.FundAlloc;
+                    var table = document.getElementById("TableFund");
+                    for (var i=0;i<arrayFundAlloc.length;i++){
+                        var row = table.insertRow(i);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        cell1.innerHTML = arrayFundAlloc[i].FundName;
+                        cell2.innerHTML = ": " + arrayFundAlloc[i].FundValue + " %";
+                    }
+                    
+                    var lastRow = table.insertRow(arrayFundAlloc.length);
+                    var lastCell1 = lastRow.insertCell(0);
+                    var lastCell2 = lastRow.insertCell(1);
+                    lastCell1.innerHTML = "Total";
+                    lastCell2.innerHTML = ": 100 %";
+                }
+            
+                function SetRiderInformation(JSONRider){
+                    var arrayRider = JSONRider.Rider;
+                    var table = document.getElementById("TableRider");
+                    for (var i=0;i<arrayRider.length;i++){
+                        var row = table.insertRow(i+4);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        var cell4 = row.insertCell(3);
+                        
+                        cell2.className = 'one';
+                        cell3.className = 'one';
+                        cell4.className = 'one';
+                        
+                        cell1.innerHTML = arrayRider[i].SI_RiderPlan_Desc;
+                        cell2.innerHTML = arrayRider[i].SI_RiderSelected_Benefit;
+                        cell3.innerHTML = arrayRider[i].SI_RiderSelected_COR;
+                        cell4.innerHTML = arrayRider[i].SI_RiderSelected_Term;
+                    }
+                    
+                    var lastRow = table.insertRow(arrayRider.length+4);
+                    var lastCell1 = lastRow.insertCell(0);
+                    var lastCell2 = lastRow.insertCell(1);
+                    var lastCell3 = lastRow.insertCell(2);
+                    var lastCell4 = lastRow.insertCell(3);
+
+                    lastCell2.className = 'one';
+                    lastCell3.className = 'one';
+                    lastCell4.className = 'one';
+
+                    lastCell1.innerHTML = "Total Biaya Asuransi";
+                    lastCell2.innerHTML = "";
+                    lastCell3.innerHTML = "-";
+                    lastCell4.innerHTML = "";
+                }
 			</script>
             <!--<body onload="onBodyLoad()">-->
             <body>
@@ -77,22 +180,22 @@
 									<tr>
 										<td width="30%">Calon Tertanggung</td>
 										<td width="1%">:</td>
-										<td align="left">Faiz Omar Baraja</td>
+										<td align="left"><label id="LA_Name"></label></td>
 									</tr>
 									<tr>
 										<td>Jenis Kelamin</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="LA_Gender"></label></td>
 									</tr>
 									<tr>
 										<td>Tanggal Lahir</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="LA_DOB"></label></td>
 									</tr>
 									<tr>
 										<td>Usia</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="LA_Age"></label></td>
 									</tr>
 								</table>
 							</td>
@@ -100,24 +203,24 @@
 							<td>
 								<table width="100%" style=border-style:solid;border-width:1px>
 									<tr>
-										<td width="30%">Calon Pemegang Polis</td>
+										<td width="40%">Calon Pemegang Polis</td>
 										<td width="1%">:</td>
-										<td align="left">Faiz Omar Baraja</td>
+										<td align="left"><label id="PO_Name"></label></td>
 									</tr>
 									<tr>
 										<td>Jenis Kelamin</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="PO_Gender"></label></td>
 									</tr>
 									<tr>
 										<td>Tanggal Lahir</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="PO_DOB"></label></td>
 									</tr>
 									<tr>
 										<td>Usia</td>
 										<td>:</td>
-										<td></td>
+										<td><label id="PO_Age"></label></td>
 									</tr>
 								</table>
 							</td>
@@ -139,14 +242,14 @@
 										<td valign="top" width="48%">
 											<table width="100%">
 												<tr>
-													<td valign="top" width="30%">
+													<td valign="top" width="50%">
 														Mata Uang
 													</td>
 													<td width="1%">
 														:
 													</td>
 													<td>
-														Rupiah
+														<label id="PaymentCurrency"></label>
 													</td>
 												</tr>
 												<tr>
@@ -157,7 +260,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="Premium"></label>
 													</td>
 												</tr>
 												<tr>
@@ -168,7 +271,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="RegularTopUp"></label>
 													</td>
 												</tr>
 												<tr>
@@ -179,7 +282,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="TotalPremium"></label>
 													</td>
 												</tr>
 												<tr>
@@ -190,7 +293,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="Payment_Term"></label>
 													</td>
 												</tr>
 												<tr>
@@ -201,7 +304,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="MasaPembayaranPremi"></label>
 													</td>
 												</tr>
 												<tr>
@@ -212,7 +315,7 @@
 														:
 													</td>
 													<td>
-														
+														<label id="Payment_Frequency"></label>
 													</td>
 												</tr>
 											</table>
@@ -223,16 +326,6 @@
 										<td valign="top" width="48%">
 											Pilihan Jenis Investasi (%) <br/>
 											<table id="TableFund" width="100%">
-												<tr>
-													<td>
-														Fund Name
-													</td>
-													<td>
-														Fund Percent
-													</td>
-												</tr>
-												
-												
 											</table>
 										</td>
 									</tr>
@@ -246,9 +339,9 @@
 								<table id="TableRider" width="100%" style=border-style:solid;border-width:0px>
 									<tr>
 										<td></td>
-										<td align="center">Uang Pertanggungan</td>
-										<td align="center">Biaya Asuransi* <br/> (per tahun)</td>
-										<td align="center">Masa Pertanggungan* <br/> (tahun)</td>
+										<td align="center" valign="top">Uang Pertanggungan</td>
+										<td align="center" valign="top">Biaya Asuransi* <br/> (per tahun)</td>
+										<td align="center" valign="top">Masa Pertanggungan* <br/> (tahun)</td>
 									</tr>
 									<tr>
 										<td>Asuransi Dasar</td>
@@ -257,10 +350,10 @@
 										<td></td>
 									</tr>
 									<tr>
-										<td>TM Maximum Investment Plus</td>
-										<td align="center">200.000.000.000</td>
-										<td align="center">298.000.000</td>
-										<td align="center">71</td>
+										<td><label id="ProdukAsuransi"></label></td>
+										<td align="center"><label id="UangPertanggunganAsuransi"></label></td>
+										<td align="center"><label id="BiayaAsuransi"></label></td>
+										<td align="center"><label id="MasaPertanggunganAsuransi"></label></td>
 									</tr>
 									<tr>
 										<td>Asuransi Tambahan</td>
@@ -283,10 +376,33 @@
 						</tr>
 						
 					</table>
+                    
 				</div>
 				</div>
-				
-                
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
             </body>
     </head>        
 </html>

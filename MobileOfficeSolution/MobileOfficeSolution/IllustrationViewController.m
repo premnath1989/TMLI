@@ -13,7 +13,7 @@
 @end
 
 @implementation IllustrationViewController
-
+@synthesize delegate;
 -(void)viewDidAppear:(BOOL)animated{
     [self joinHTML];
 }
@@ -59,9 +59,84 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(NSString *)StringJSONArrayFundAllocation{
+    NSString *jsonFundAllocationString;
+    NSError *error;
+    NSDictionary* dictFundAlloc = [[NSDictionary alloc]initWithObjectsAndKeys:[delegate getInvestmentArray],@"FundAlloc", nil];
+    NSData *jsonFundAllocationData = [NSJSONSerialization dataWithJSONObject:dictFundAlloc
+                                                                options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                                  error:&error];
+    
+    if (! jsonFundAllocationData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonFundAllocationString = [[NSString alloc] initWithData:jsonFundAllocationData encoding:NSUTF8StringEncoding];
+    }
+    return jsonFundAllocationString;
+}
+
+-(NSString *)StringJSONArrayRider{
+    NSString *jsonRiderString;
+    NSError *error;
+    NSDictionary* dictRider = [[NSDictionary alloc]initWithObjectsAndKeys:[delegate getRiderArray],@"Rider", nil];
+    NSData *jsonRiderData = [NSJSONSerialization dataWithJSONObject:dictRider
+                                                                     options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                                       error:&error];
+    
+    if (! jsonRiderData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonRiderString = [[NSString alloc] initWithData:jsonRiderData encoding:NSUTF8StringEncoding];
+    }
+    return jsonRiderString;
+}
+
+-(NSString *)StringJSONTopUpWithDraw{
+    NSString *jsonTopUpWithDrawString;
+    NSError *error;
+    NSDictionary* dictTopUpWithDraw = [[NSDictionary alloc]initWithObjectsAndKeys:[delegate getTopUpWithDrawArray],@"TopUpWithDraw", nil];
+    NSData *jsonTopUpWithDrawData = [NSJSONSerialization dataWithJSONObject:dictTopUpWithDraw
+                                                            options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                              error:&error];
+    
+    if (! jsonTopUpWithDrawData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonTopUpWithDrawString = [[NSString alloc] initWithData:jsonTopUpWithDrawData encoding:NSUTF8StringEncoding];
+    }
+    return jsonTopUpWithDrawString;
+}
+
 - (void)webViewDidFinishLoad:(UIWebView *)webView
 {
+    NSString *jsonPOLAString;
+    NSError *error;
+    NSData *jsonPOLAData = [NSJSONSerialization dataWithJSONObject:[delegate getPOLADictionary]
+                                                                      options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                                        error:&error];                                                             
     
+    if (! jsonPOLAData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonPOLAString = [[NSString alloc] initWithData:jsonPOLAData encoding:NSUTF8StringEncoding];
+    }
+    
+    NSString *jsonBasicPlanString;
+    NSData *jsonBasicPlanData = [NSJSONSerialization dataWithJSONObject:[delegate getBasicPlanDictionary]
+                                                           options:0 // Pass 0 if you don't care about the readability of the generated string
+                                                             error:&error];
+    
+    if (! jsonBasicPlanData) {
+        NSLog(@"Got an error: %@", error);
+    } else {
+        jsonBasicPlanString = [[NSString alloc] initWithData:jsonBasicPlanData encoding:NSUTF8StringEncoding];
+    }
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetCalonPemegangPolisData(%@);",jsonPOLAString]];
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetCalonTertanggungData(%@);",jsonPOLAString]];
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetAsuransiDasarData(%@);",jsonBasicPlanString]];
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetFundAllocationInformation(%@);",[self StringJSONArrayFundAllocation]]];
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetRiderInformation(%@);",[self StringJSONArrayRider]]];
+    [webIllustration stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"SetTopUpWithDrawInformation(%@,%@,%@);",jsonPOLAString,[self StringJSONTopUpWithDraw],jsonBasicPlanString]];
 }
 /*
 #pragma mark - Navigation

@@ -1726,8 +1726,11 @@ id dobtemp;
     
     UIAlertController *alertvalidation;
     
-    int laAge = [formatter calculateAge:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
-    int differenceDay = [formatter calculateDifferenceDay:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
+    //int laAge = [formatter calculateAge:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
+    //int differenceDay = [formatter calculateDifferenceDay:[formatter convertDateFrom:@"dd MMM yyyy" TargetDateFormat:@"dd/MM/yyyy" DateValue:tanggalLahir]];
+    
+    int laAge = [formatter calculateAge:tanggalLahir];
+    int differenceDay = [formatter calculateDifferenceDay:tanggalLahir];
     
     if ([namaTertanggung length]<=0){
         alertvalidation = [alert alertInformation:@"Peringatan" stringMessage:alertNamaTertanggung];
