@@ -10,7 +10,7 @@
 #import "String.h"
 
 @implementation ModelSIPOData
-
+bool isPO;
 
 -(void)savePODate:(NSDictionary *)dataPO{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -360,6 +360,15 @@
 }
 
 -(void)insertToDBPOLAData:(NSMutableDictionary *)dictPOLAData{
+    
+    int clientID;
+    NSNumber *tt = [dictPOLAData valueForKey:@"QuickQuote"];
+    if ([tt intValue] == 1) {
+        isPO = YES;
+        clientID = [self savePOToProspect:dictPOLAData];
+        [dictPOLAData setObject:[NSNumber numberWithInt:clientID] forKey:@"PO_ClientID"];
+    }
+    
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
@@ -397,24 +406,15 @@
     [results close];
     [database close];
     
-    NSNumber *tt = [dictPOLAData valueForKey:@"QuickQuote"];
-    if ([tt intValue] == 1) {
-        [self savePOToProspect:dictPOLAData];
-    }
 
 }
 
--(void)savePOToProspect:(NSDictionary *)dictPOLAData{
+-(int)savePOToProspect:(NSDictionary *)dictPOLAData{
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
-    NSString *score;
-    if ([[dictPOLAData valueForKey:@"PO_Gender"] isEqualToString:@"MALE"]) {
-        score = @"2";
-    }
-    else {
-        score = @"1";
-    }
+    NSString *score = [self calculateScore:dictPOLAData];
+    int LastID = 0;
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
@@ -433,13 +433,140 @@
         NSLog(@"%s: insert error: %@", __FUNCTION__, [database lastErrorMessage]);
         // do whatever you need to upon error
     }
+    else {
+         NSString *GetLastIdSQL = [NSString stringWithFormat:@"Select indexno  from prospect_profile order by \"indexNo\" desc limit 1"];
+        FMResultSet *s = [database executeQuery:GetLastIdSQL];
+
+        while ([s next]) {
+            LastID = [[s stringForColumn:@"indexno"] intValue];
+        }
+        
+    }
     [results close];
     [database close];
     
+    return LastID;
+}
+
+-(int)saveLAToProspect:(NSDictionary *)dictPOLAData{
+    NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+    NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
+    NSString *score = [self calculateScore:dictPOLAData];
+    int LastID = 0;
+    
+    FMDatabase *database = [FMDatabase databaseWithPath:path];
+    [database open];
+    BOOL success = [database executeUpdate:@"insert into prospect_profile (\'ProspectName\', \'ProspectLastName\', \"ProspectDOB\",\"ProspectGender\",  \"ProspectStatus\", \"Score\", \"ProspectAge\", \"QQFlag\", \"DateCreated\", \"DateModified\") values (?,?,?,?,?,?,?,?,""datetime(\"now\", \"+7 hour\")"",""datetime(\"now\", \"+7 hour\")"")",
+                    [dictPOLAData valueForKey:@"LA_Name"],
+                    @"",
+                    [dictPOLAData valueForKey:@"LA_DOB"],
+                    [dictPOLAData valueForKey:@"LA_Gender"],
+                    @"Incomplete",
+                    score,
+                    [dictPOLAData valueForKey:@"LA_Age"],
+                    @"false"
+                    ];
+    
+    if (!success) {
+        NSLog(@"%s: insert error: %@", __FUNCTION__, [database lastErrorMessage]);
+        // do whatever you need to upon error
+    }
+    else {
+        NSString *GetLastIdSQL = [NSString stringWithFormat:@"Select indexno  from prospect_profile order by \"indexNo\" desc limit 1"];
+        FMResultSet *s = [database executeQuery:GetLastIdSQL];
+        
+        while ([s next]) {
+            LastID = [[s stringForColumn:@"indexno"] intValue];
+        }
+        
+    }
+    [results close];
+    [database close];
+    
+    return LastID;
+}
+
+
+-(NSString*) calculateScore :(NSDictionary *)dictPOLAData{
+    
+    int intPoin = 0;
+    int intAge = 0;
+    NSString *stringInputValue;
+    NSString *gender;
+    
+    if (isPO) {
+        gender = [dictPOLAData valueForKey:@"PO_Gender"];
+        intAge = [[dictPOLAData valueForKey:@"PO_Age"] intValue];
+    }
+    else {
+        gender = [dictPOLAData valueForKey:@"LA_Gender"];
+        intAge = [[dictPOLAData valueForKey:@"LA_Age"] intValue];
+    }
+    
+    int score;
+    
+    //status: prospect lama, automatic got 2
+    score = 2;
+    
+    
+    //Gender Point
+    if ([gender isEqualToString:@"MALE"]) {
+        score += 2;
+    }
+    else {
+        score += 1;
+    }
+    
+    //Age
+    
+    
+    if (intAge > 35 && intAge < 46)
+    {
+        intPoin = 5;
+        stringInputValue = @"35 < age < 45";
+    }
+    else if (intAge >45 && intAge < 56)
+    {
+        intPoin = 4;
+        stringInputValue = @"45 < age < 56";
+    }
+    else if (intAge > 55)
+    {
+        intPoin =  3;
+        stringInputValue = @"35 < age < 45";
+    }
+    else if (intAge > 25 && intAge < 36)
+    {
+        intPoin = 2;
+        stringInputValue = @"25 < age < 36";
+    }
+    else if (intAge > 16 && intAge < 26)
+    {
+        intPoin = 1;
+        stringInputValue = @"17 < age < 26";
+    }
+    
+    
+    /* RESULT */
+    
+    score += intPoin;
+    NSLog(@"Calculate Score - Age | name -> %@, point -> %d, accumulate point -> %d", stringInputValue, intPoin, score);
+    
+    NSString *rScore = [NSString stringWithFormat:@"%d", score];
+    
+    return rScore;
 }
 
 -(void)updatePOLAData:(NSMutableDictionary *)dictPOLAData{
+    
+    int clientID;
+    if ([[dictPOLAData valueForKey:@"LA_ClientID"] intValue] == 0) {
+        isPO = NO;
+        clientID = [self saveLAToProspect:dictPOLAData];
+        [dictPOLAData setObject:[NSNumber numberWithInt:clientID] forKey:@"LA_ClientID"];
+    }
+    
     NSString *docsDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [docsDir stringByAppendingPathComponent: DATABASE_MAIN_NAME];
     
