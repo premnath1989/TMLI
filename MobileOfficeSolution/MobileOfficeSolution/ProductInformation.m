@@ -490,6 +490,7 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
+        FileName = [FileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
         if ([self searchFile:FileName]){
             [[FTPItemsList objectAtIndex:indexPath.row] replaceObjectAtIndex:3 withObject:[NSString stringWithFormat:@""]];
         }
@@ -549,9 +550,11 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
                 progressBar.TransferMode = kBRFTPMode;
             }else if(serverTransferMode == kBRHTTPMode){
                 progressBar.TransferMode = kBRHTTPMode;
-                progressBar.HTTPURLFilePath = [NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",
-                                               [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
-                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4];
+                NSString *httpURLFilePath =[NSString stringWithFormat:@"https://tmconnect.tokiomarine-life.co.id/%@",[[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+                progressBar.HTTPURLFilePath = [httpURLFilePath stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+                progressBar.HTTPLocalFilePath = [[FTPItemsList objectAtIndex:indexPath.row]
+                                                 objectAtIndex:4];
+
             }
             
             [self presentViewController:progressBar animated:YES completion:nil];
