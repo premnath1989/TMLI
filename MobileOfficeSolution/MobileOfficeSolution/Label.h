@@ -242,6 +242,48 @@
     @end
 
 
+// INFORMATION
+
+@interface LabelScore : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+@interface LabelInformationHeader : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+@interface LabelInformationDetail : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+
+// ALERT
+
+@interface LabelAlertTitle : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+@interface LabelAlertDescription : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+@interface LabelAlertHighlight : UILabel
+
+    - (void)setupStyle;
+
+@end
+
+
 // HEADER
 
 @interface LabelHeaderTitle : UILabel

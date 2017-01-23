@@ -766,6 +766,145 @@
     @end
 
 
+// INFORMATION
+
+@implementation LabelScore
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.widthAnchor constraintEqualToConstant:60].active = true;
+        [self.heightAnchor constraintEqualToConstant:60].active = true;
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_INFORMATION_SCORE]];
+        self.numberOfLines = 1;
+        self.textAlignment = NSTextAlignmentCenter;
+        self.layer.cornerRadius = 30;
+        self.layer.masksToBounds = YES;
+        self.layer.borderColor = [[objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0] CGColor];
+        self.layer.borderWidth = GENERAL_WIDTH_THICK;
+    }
+
+@end
+
+@implementation LabelInformationHeader
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_INFORMATION_HEADER]];
+        self.numberOfLines = 2;
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+
+@end
+
+@implementation LabelInformationDetail
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_QUINARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_INFORMATION_DETAIL]];
+        self.numberOfLines = 4;
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+
+@end
+
+
+// ALERT
+
+@implementation LabelAlertTitle
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_ALERT_TITLE]];
+        self.numberOfLines = 2;
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+
+@end
+
+@implementation LabelAlertDescription
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_OCTONARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_ALERT_DESCRIPTION]];
+        self.numberOfLines = 4;
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+
+@end
+
+@implementation LabelAlertHighlight
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self setTextColor : [objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0]];
+        [self setFont : [UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_ALERT_HIGHLIGHT]];
+        self.numberOfLines = 2;
+        self.textAlignment = NSTextAlignmentCenter;
+    }
+
+@end
+
+
 // HEADER
 
 @implementation LabelHeaderTitle

@@ -144,39 +144,39 @@
 
 @implementation ViewLineHorizontal
 
-/* INITIALIZE */
+    /* INITIALIZE */
 
-- (void)awakeFromNib { [self setupStyle]; }
+    - (void)awakeFromNib { [self setupStyle]; }
 
 
-/* FUNCTION */
+    /* FUNCTION */
 
-- (void)setupStyle
-{
-    UserInterface *objectUserInterface = [[UserInterface alloc] init];
-    
-    [self.heightAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
-    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
-}
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+    }
 
 @end
 
 @implementation ViewLineVertical
 
-/* INITIALIZE */
+    /* INITIALIZE */
 
-- (void)awakeFromNib { [self setupStyle]; }
+    - (void)awakeFromNib { [self setupStyle]; }
 
 
-/* FUNCTION */
+    /* FUNCTION */
 
-- (void)setupStyle
-{
-    UserInterface *objectUserInterface = [[UserInterface alloc] init];
-    
-    [self.widthAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
-    self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
-}
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.widthAnchor constraintEqualToConstant:GENERAL_WIDTH_THIN].active = true;
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SEPTENARY floatOpacity:1.0];
+    }
 
 @end
 
@@ -364,6 +364,28 @@
     {
         UserInterface *objectUserInterface = [[UserInterface alloc] init];
         
+        self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
+    }
+
+@end
+
+
+// INFORMATION
+
+@implementation ViewInformation
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:INFORMATION_HEIGHT_VIEW].active = true;
         self.backgroundColor = [objectUserInterface generateUIColor:THEME_COLOR_SENARY floatOpacity:1.0];
     }
 

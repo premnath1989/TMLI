@@ -137,6 +137,15 @@
 @end
 
 
+// INFORMATION
+
+@interface ViewInformation : UIView
+
+    - (void)setupStyle;
+
+@end
+
+
 // FORM
 
 @interface StackViewFormVerticalContainer : UIStackView

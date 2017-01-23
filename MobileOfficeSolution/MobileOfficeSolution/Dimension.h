@@ -46,6 +46,7 @@
 
     /* ICON */
 
+    extern int const ICON_SIZE_TINY;
     extern int const ICON_SIZE_SMALL;
     extern int const ICON_SIZE_MEDIUM;
     extern int const ICON_SIZE_LARGE;
@@ -127,6 +128,7 @@
 extern int const BUTTON_RADIUS_BORDER;
 extern int const BUTTON_SIZE_SMALL;
 extern int const BUTTON_SIZE_MEDIUM;
+extern int const BUTTON_HEIGHT_ALERT;
 
 
 // GUIDE
@@ -140,6 +142,11 @@ extern int const BUTTON_SIZE_MEDIUM;
 
     extern int const GUIDEDETAIL_SIZE_BUTTON;
     extern int const GUIDEDETAIL_WIDTH_VIEW;
+
+
+// INFORMATION
+
+extern int const INFORMATION_HEIGHT_VIEW;
 
 
 // FORM

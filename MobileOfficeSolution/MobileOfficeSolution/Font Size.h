@@ -89,6 +89,7 @@ extern CGFloat const FONTSIZE_LISTITEM_DETAIL;
 
 extern CGFloat const FONTSIZE_BUTTON_FORM;
 extern CGFloat const FONTSIZE_BUTTON_PHOTO;
+extern CGFloat const FONTSIZE_BUTTON_ALERT;
 
 
 // GUIDE
@@ -102,6 +103,20 @@ extern CGFloat const FONTSIZE_BUTTON_PHOTO;
     /* DETAIL */
 
     extern CGFloat const FONTSIZE_GUIDEDETAIL_STEP;
+
+
+// INFORMATION
+
+extern CGFloat const FONTSIZE_INFORMATION_SCORE;
+extern CGFloat const FONTSIZE_INFORMATION_HEADER;
+extern CGFloat const FONTSIZE_INFORMATION_DETAIL;
+
+
+// ALERT
+
+extern CGFloat const FONTSIZE_ALERT_TITLE;
+extern CGFloat const FONTSIZE_ALERT_DESCRIPTION;
+extern CGFloat const FONTSIZE_ALERT_HIGHLIGHT;
 
 
 // HEADER
