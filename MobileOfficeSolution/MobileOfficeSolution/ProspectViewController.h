@@ -455,6 +455,8 @@
 
 // BHIMBIM'S QUICK FIX - START
 
+@property (strong, nonatomic) IBOutlet UIView *viewInformation;
+
 @property (assign, nonatomic, readwrite) Boolean booleanAddAnyway;
 
 // BHIMBIM'S QUICK FIX - END

@@ -7276,7 +7276,8 @@ BOOL NavShowP;
              
              _btnChangeHeader.frame = CGRectMake(0, 110, 1024.0, 20.0);
              _ViewMenu1.frame = CGRectMake(0, 130, 1024.0, 60.0);
-             _ScrollViewProspect.frame = CGRectMake(0, 202, 1024.0, 800.0);
+             _viewInformation.frame = CGRectMake(0, 202, 1024.0, 100.0);
+             _ScrollViewProspect.frame = CGRectMake(0, 302, 1024.0, 700.0);
              
              // BHIMBIM'S QUICK FIX - End
              
@@ -7291,7 +7292,8 @@ BOOL NavShowP;
          }
          ];
     }
-    else {
+    else
+    {
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         [UIView
          animateWithDuration: 0.25
@@ -7307,7 +7309,8 @@ BOOL NavShowP;
              
              _btnChangeHeader.frame = CGRectMake(0, 260.0, 1024.0, 20.0);
              _ViewMenu1.frame = CGRectMake(0, 280, 1024.0, 60.0);
-             _ScrollViewProspect.frame = CGRectMake(0, 352.0, 1024.0, 800.0);
+             _viewInformation.frame = CGRectMake(0, 352, 1024.0, 100.0);
+             _ScrollViewProspect.frame = CGRectMake(0, 452.0, 1024.0, 700.0);
              
              // BHIMBIM'S QUICK FIX - End
              
@@ -7318,7 +7321,6 @@ BOOL NavShowP;
          {
              _ViewThinHeader.hidden = YES;
              _ViewThickHeader.hidden = NO;
-             
          }
          ];        
     }
