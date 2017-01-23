@@ -490,8 +490,9 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         }
         NSLog(@"filename : %@", FileName);
         //simply we check whether the file exist in brochure folder or not.
-        FileName = [FileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
-        if ([self searchFile:FileName]){
+        FileName = [NSString stringWithFormat: @"%@/%@",filePath, [[FTPItemsList objectAtIndex:indexPath.row] objectAtIndex:4]];
+//        FileName = [FileName stringByReplacingOccurrencesOfString:@" " withString:@"%20"];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:FileName]){
             [[FTPItemsList objectAtIndex:indexPath.row] replaceObjectAtIndex:3 withObject:[NSString stringWithFormat:@""]];
         }
     }
@@ -614,12 +615,12 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
         for(NSMutableDictionary *modifyTempDict in modifyTempArray){
             if(![collapsedRow containsObject:folderName]){
                 if([[[modifyTempDict allKeys] firstObject] compare:@""] != NSOrderedSame){
-                    
-                    [preRecordedCollapsedRowArr addObject:[[modifyTempDict allKeys] lastObject]];
 
                     if([[modifyTempDict allKeys] containsObject:@"fileName"]){
+                        [preRecordedCollapsedRowArr addObject:[modifyTempDict valueForKey:@"fileName"]];
                         [self insertIntoTableData:[modifyTempDict valueForKey:@"fileName"] size:[modifyTempDict valueForKey:@"fileSize"] index:1 fileURL:[modifyTempDict valueForKey:@"fileURL"] objectIndex:row+i];
                     }else{
+                        [preRecordedCollapsedRowArr addObject:[[modifyTempDict allKeys] lastObject]];
                         [self insertIntoTableData:[[modifyTempDict allKeys] lastObject] size:@"0" index:1                         fileURL:@"" objectIndex:row+i];
                     }
                     expandBool = TRUE;
@@ -634,30 +635,43 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
             [recordedCollapsedRow addObject:preRecordedCollapsedRowDict];
             [collapsedRow addObject:folderName];
         }else{
-            int rows = [self collapsedRows:folderName collapsedRows:recordedCollapsedRow];
+            NSMutableArray *ChildDirectory = [[NSMutableArray alloc]init];
+            NSMutableArray *rowsToBeDeleted = [[NSMutableArray alloc]init];
+            int rows = [self collapsedRows:folderName collapsedRows:recordedCollapsedRow childFolderName:ChildDirectory childFolderRow:rowsToBeDeleted];
+            
+            [recordedCollapsedRow removeObjectsInArray:rowsToBeDeleted];
+            
+            NSMutableArray *unusedChildDirectory = [[NSMutableArray alloc]init];
+            if([ChildDirectory count] > 0){
+                for(NSString *childDirectoryName in ChildDirectory){
+                    rows = rows + [self collapsedRows:childDirectoryName collapsedRows:recordedCollapsedRow childFolderName:unusedChildDirectory childFolderRow:rowsToBeDeleted];
+                }
+            }
             
             for(int i = 0; i < rows; i++){
                 [FTPItemsList removeObjectAtIndex:row+1];
             }
-            NSMutableArray *rowsToBeDeleted = [[NSMutableArray alloc]init];
             [recordedCollapsedRow removeObjectsInArray:rowsToBeDeleted];
         }
-        
     }
 }
 
-- (int)collapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows{
+- (int)collapsedRows:(NSString *)folderName collapsedRows:(NSMutableArray *)collapsedRows
+    childFolderName:(NSMutableArray *)childFolderName
+    childFolderRow:(NSMutableArray *)childFolderRow{
     int child = 0;
     for(NSMutableDictionary *tempDict in collapsedRows){
-        if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
-            child = [[tempDict valueForKey:folderName] count];
-            for(NSString *childName in [tempDict valueForKey:folderName]){
-                NSMutableArray *tempArray = collapsedRows;
-                if([collapsedRows count]>0){
-                    [tempArray removeObjectAtIndex:0];
+        if(![folderName containsString:@"."]){
+            if([folderName compare:[[tempDict allKeys]lastObject]]== NSOrderedSame){
+                child = [[tempDict valueForKey:folderName] count];
+                if([collapsedRow count] > 0){
                     [collapsedRow removeObject:folderName];
                 }
-                child = child + [self collapsedRows:childName collapsedRows:tempArray];
+                [childFolderRow addObject:tempDict];
+
+                for(NSString *childName in [tempDict valueForKey:folderName]){
+                    [childFolderName addObject:childName];
+                }
             }
         }
     }
@@ -812,17 +826,19 @@ completedWithResponse:(AgentWSSoapBindingResponse *)response
     
     ReaderDocument *document = [ReaderDocument withDocumentFilePath:file password:nil];
     
-    if (document != nil)
-    {
-        ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
-        readerViewController.delegate = self;
-        BOOL illustrationSigned = 1;
-        readerViewController.illustrationSignature = illustrationSigned;
-        readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
-        
-        [self presentViewController:readerViewController animated:YES completion:Nil];
-    }
+    if ([[NSFileManager defaultManager] fileExistsAtPath:file]){
+        if (document != nil)
+        {
+            ReaderViewController *readerViewController = [[ReaderViewController alloc] initWithReaderDocument:document];
+            readerViewController.delegate = self;
+            BOOL illustrationSigned = 1;
+            readerViewController.illustrationSignature = illustrationSigned;
+            readerViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            readerViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+            
+            [self presentViewController:readerViewController animated:YES completion:Nil];
+        }
+}
 }
 
 - (IBAction)ShowNavigation:(id)sender {
