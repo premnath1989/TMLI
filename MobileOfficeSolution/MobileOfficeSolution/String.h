@@ -86,4 +86,16 @@
     extern NSString* const TABLE_RATES_CASH_PLAN;
     extern NSString* const TABLE_RATES_HSR_FACTOR;
     extern NSString* const TABLE_RATES_HSR_COR;
+    extern NSString* const TABLE_RATES_FUND_GROWTH;
+    extern NSString* const TABLE_RATES_LOYALTY_BONUS;
+    extern NSString* const TABLE_RATES_REG_PREM_ALLO;
+    extern NSString* const TABLE_RATES_PREM_TOPUP_ALL;
+    extern NSString* const TABLE_RATES_COI;
+    extern NSString* const TABLE_RATES_POLICY_ADMIN;
+    extern NSString* const TABLE_RATES_SERVICE_CHARGE;
+    extern NSString* const TABLE_RATES_PREMIUM_HOLIDAY_CHARGE;
+    extern NSString* const TABLE_RATES_WITHDRAWAL_CHARGE_RATE;
+    extern NSString* const TABLE_RATES_SCHEDULE_WITHDRAWAL_RATE;
+    extern NSString* const TABLE_RATES_SURRENDER_CHARGE_RATE;
+    extern NSString* const TABLE_RATES_JUVENILE;
     extern NSString* const TABLE_PROSPECT;

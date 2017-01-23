@@ -9,9 +9,10 @@
 #import "InvestmentTypeViewController.h"
 #import "FundPercentViewController.h"
 #import "ModelSIFundAllocation.h"
-
+#import "ModelFundGrowthRate.h"
 @interface InvestmentTypeViewController ()<FundPercentViewControllerDelegate>{
     ModelSIFundAllocation *modelSIFundAllocation;
+    ModelFundGrowthRate *modelFundGrowthRate;
 }
 
 @end
@@ -27,11 +28,11 @@
     // Do any additional setup after loading the view.
     UDInvest = [[NSMutableDictionary alloc]init];
     
-    
-    
     //not sure this needed or not, but need to clear if new, call back from DB if edit
     InvestList = [[NSMutableArray alloc]init];
     modelSIFundAllocation = [[ModelSIFundAllocation alloc]init];
+    modelFundGrowthRate = [[ModelFundGrowthRate alloc]init];
+    
     //[InvestList removeAllObjects];
      [UDInvest setObject:InvestList forKey:@"InvestArray"];
     
@@ -72,21 +73,24 @@
     if ([productType isEqualToString:@""]) {
         FundList = [NSMutableArray arrayWithObjects:@"TMBalanceFund",@"TMEquityFund",@"TMCashFund",@"TMEquityAggressiveFund", nil];
     }
-    else if ([productType isEqualToString:@"ProteksiKu"]) {
+    else if ([productType rangeOfString:@"ProteksiKu" options:NSCaseInsensitiveSearch].location != NSNotFound) {
+    //else if ([productType isEqualToString:@"ProteksiKu"]) {
         FundList = [NSMutableArray arrayWithObjects:@"TM Bond Fund",
                     @"TM Equity Fund",
                     @"TM Equity Aggressive Fund",
                     @"TM Balanced Fund",
                     @"TM Cash Fund", nil];
     }
-    else if ([productType isEqualToString:@"InvestasiKu"]) {
+    //else if ([productType isEqualToString:@"InvestasiKu"]) {
+    else if ([productType rangeOfString:@"InvestasiKu" options:NSCaseInsensitiveSearch].location != NSNotFound) {
         FundList = [NSMutableArray arrayWithObjects:@"TM Bond Fund",
                     @"TM Equity Fund",
                     @"TM Equity Aggressive Fund",
                     @"TM Balanced Fund",
                     @"TM Cash Fund", nil];
     }
-    else if ([productType isEqualToString:@"TM Link (Wealth Enhancement)"]) {
+    //else if ([productType isEqualToString:@"TM Link (Wealth Enhancement)"]) {
+    else if ([productType rangeOfString:@"TM Link (Wealth Enhancement)" options:NSCaseInsensitiveSearch].location != NSNotFound) {
         FundList = [NSMutableArray arrayWithObjects:@"TM syCash Fund",
                     @"TM syEquity Fund",
                     @"TM syBond Fund",
@@ -104,7 +108,8 @@
 
 -(void)LoadInvestTable:(NSMutableDictionary *)dictUDInvest{
  
-    UDInvest = dictUDInvest;[NSUserDefaults standardUserDefaults];
+    UDInvest = dictUDInvest;
+    [NSUserDefaults standardUserDefaults];
     //InvestList = [[NSMutableArray alloc]init];
     //[InvestList removeAllObjects];
     InvestList = [[NSMutableArray alloc]initWithArray:[UDInvest valueForKey:@"InvestArray"]];
@@ -313,15 +318,29 @@
     return TRUE;
 }
 
+-(NSNumber *)GetFundProjectionValue:(NSString *)stringFundProjection FundName:(NSString *)stringFundName FundPercentage:(int)intFundPercentage{
+    NSNumber* numberValueFundProjection = 0;
+    double valueFundProjection;
+    double fundRate = [modelFundGrowthRate getRateFundGrowth:stringFundName StringFundProjection:stringFundProjection];
+    valueFundProjection = ((fundRate/100)/12) * intFundPercentage;
+    numberValueFundProjection = [NSNumber numberWithDouble:valueFundProjection];
+    return numberValueFundProjection;
+}
+
 -(void)setInvestmentDictionary{
     NSMutableArray *arrayInvestList = [[NSMutableArray alloc]init];
     for (int i=0;i<[InvestList count];i++){
         NSMutableDictionary* dictInvestListData = [[NSMutableDictionary alloc]init];
         [dictInvestListData setObject:[_delegate getRunnigSINumber] forKey:@"SINO"];
         [dictInvestListData setObject:@"" forKey:@"FundID"];
+        NSNumber* numberFundGrowthLow = [self GetFundProjectionValue:@"Low" FundName:[[InvestList objectAtIndex:i] valueForKey:@"FundName"] FundPercentage:[[[InvestList objectAtIndex:i] valueForKey:@"Komposisi"] intValue]];
+        NSNumber* numberFundGrowthMiddle = [self GetFundProjectionValue:@"Middle" FundName:[[InvestList objectAtIndex:i] valueForKey:@"FundName"] FundPercentage:[[[InvestList objectAtIndex:i] valueForKey:@"Komposisi"] intValue]];
+        NSNumber* numberFundGrowthHigh = [self GetFundProjectionValue:@"High" FundName:[[InvestList objectAtIndex:i] valueForKey:@"FundName"] FundPercentage:[[[InvestList objectAtIndex:i] valueForKey:@"Komposisi"] intValue]];
         [dictInvestListData setObject:[[InvestList objectAtIndex:i] valueForKey:@"FundName"] forKey:@"FundName"];
         [dictInvestListData setObject:[[InvestList objectAtIndex:i] valueForKey:@"Komposisi"] forKey:@"FundValue"];
-        
+        [dictInvestListData setObject:numberFundGrowthLow forKey:@"FundGrowthLow"];
+        [dictInvestListData setObject:numberFundGrowthMiddle forKey:@"FundGrowthMiddle"];
+        [dictInvestListData setObject:numberFundGrowthHigh forKey:@"FundGrowthHigh"];
         
         [arrayInvestList addObject:dictInvestListData];
     }

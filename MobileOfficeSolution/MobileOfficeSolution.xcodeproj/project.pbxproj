@@ -16,6 +16,9 @@
 		17A4F20A1DD9A30E00097E90 /* RencanaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 17A4F2091DD9A30E00097E90 /* RencanaViewController.m */; };
 		17F7585E1DBDDD6E0003DFCA /* Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F7585D1DBDDD6E0003DFCA /* Currency.m */; };
 		17F758641DC99E140003DFCA /* FrekuensiTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = 17F758631DC99E140003DFCA /* FrekuensiTwo.m */; };
+		432417D51E31F84900D6C6A7 /* ModelFundGrowthRate.m in Sources */ = {isa = PBXBuildFile; fileRef = 432417D41E31F84900D6C6A7 /* ModelFundGrowthRate.m */; };
+		432417D71E321B1D00D6C6A7 /* SI_UL_Page3.html in Resources */ = {isa = PBXBuildFile; fileRef = 432417D61E321B1D00D6C6A7 /* SI_UL_Page3.html */; };
+		432417DA1E32216000D6C6A7 /* ModelGeneralQueryRates.m in Sources */ = {isa = PBXBuildFile; fileRef = 432417D91E32216000D6C6A7 /* ModelGeneralQueryRates.m */; };
 		433CB4141E1B8F1400D6D4E9 /* ModelSIBasicPlan.m in Sources */ = {isa = PBXBuildFile; fileRef = 433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */; };
 		434DA94E1E1FA68800120131 /* RiderValueInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 434DA94C1E1FA68800120131 /* RiderValueInputViewController.m */; };
 		434DA94F1E1FA68800120131 /* RiderValueInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 434DA94D1E1FA68800120131 /* RiderValueInputViewController.xib */; };
@@ -596,6 +599,11 @@
 		17F7585D1DBDDD6E0003DFCA /* Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Currency.m; sourceTree = "<group>"; };
 		17F758621DC99E140003DFCA /* FrekuensiTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrekuensiTwo.h; sourceTree = "<group>"; };
 		17F758631DC99E140003DFCA /* FrekuensiTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrekuensiTwo.m; sourceTree = "<group>"; };
+		432417D31E31F84900D6C6A7 /* ModelFundGrowthRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelFundGrowthRate.h; sourceTree = "<group>"; };
+		432417D41E31F84900D6C6A7 /* ModelFundGrowthRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelFundGrowthRate.m; sourceTree = "<group>"; };
+		432417D61E321B1D00D6C6A7 /* SI_UL_Page3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SI_UL_Page3.html; sourceTree = "<group>"; };
+		432417D81E32216000D6C6A7 /* ModelGeneralQueryRates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelGeneralQueryRates.h; sourceTree = "<group>"; };
+		432417D91E32216000D6C6A7 /* ModelGeneralQueryRates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelGeneralQueryRates.m; sourceTree = "<group>"; };
 		433CB4121E1B8F1400D6D4E9 /* ModelSIBasicPlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSIBasicPlan.h; sourceTree = "<group>"; };
 		433CB4131E1B8F1400D6D4E9 /* ModelSIBasicPlan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelSIBasicPlan.m; sourceTree = "<group>"; };
 		434DA94B1E1FA68800120131 /* RiderValueInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RiderValueInputViewController.h; sourceTree = "<group>"; };
@@ -1536,6 +1544,7 @@
 		4386EB431E2E09D200624115 /* SI HTML */ = {
 			isa = PBXGroup;
 			children = (
+				432417D61E321B1D00D6C6A7 /* SI_UL_Page3.html */,
 				4386EB481E2E1F5300624115 /* SI_UL_Page2.html */,
 				4386EB461E2E0AE300624115 /* SI_UL_Page1.html */,
 			);
@@ -1557,6 +1566,10 @@
 				4386EB3E1E2DFBFB00624115 /* ModelHSRFactor.m */,
 				4386EB401E2DFC1000624115 /* ModelHSRCOR.h */,
 				4386EB411E2DFC1000624115 /* ModelHSRCOR.m */,
+				432417D31E31F84900D6C6A7 /* ModelFundGrowthRate.h */,
+				432417D41E31F84900D6C6A7 /* ModelFundGrowthRate.m */,
+				432417D81E32216000D6C6A7 /* ModelGeneralQueryRates.h */,
+				432417D91E32216000D6C6A7 /* ModelGeneralQueryRates.m */,
 			);
 			name = "TMLIRates Model";
 			sourceTree = "<group>";
@@ -3564,6 +3577,7 @@
 				4386EB471E2E0AE300624115 /* SI_UL_Page1.html in Resources */,
 				DEDC608C1DAF69100033FE37 /* menu_datanasabah.png in Resources */,
 				DEDC60811DAF69100033FE37 /* Icon_Brochure_Gray_BG.png in Resources */,
+				432417D71E321B1D00D6C6A7 /* SI_UL_Page3.html in Resources */,
 				DEDC60A91DAF69100033FE37 /* e-Application@2x.png in Resources */,
 				DEDC612F1DAF797E0033FE37 /* SPAJ Add Detail.xib in Resources */,
 				DEDC60971DAF69100033FE37 /* transparent_boxv3.png in Resources */,
@@ -3944,6 +3958,7 @@
 				43D6EEA31E288985005955BC /* ModelSIRiderType.m in Sources */,
 				DEDC5CC81DAE382F0033FE37 /* FMResultSet.m in Sources */,
 				DEDC61821DAF7C270033FE37 /* AllAboutPDFGeneration.m in Sources */,
+				432417DA1E32216000D6C6A7 /* ModelGeneralQueryRates.m in Sources */,
 				DEDC5D971DAE3FBB0033FE37 /* SynchDaysCounter.m in Sources */,
 				DEDC5DF21DAE41B30033FE37 /* ExtraPremi.m in Sources */,
 				DEDC5DCC1DAE417A0033FE37 /* PremiumKeluargaku.m in Sources */,
@@ -4027,6 +4042,7 @@
 				436B50021E234A7100217D66 /* ModelSIFundAllocation.m in Sources */,
 				DEDC5CC41DAE382F0033FE37 /* FMDatabase.m in Sources */,
 				DEDC5F281DAE488D0033FE37 /* DDXMLElementAdditions.m in Sources */,
+				432417D51E31F84900D6C6A7 /* ModelFundGrowthRate.m in Sources */,
 				DEDC61AF1DAF7D9D0033FE37 /* CardSnap.m in Sources */,
 				DEDC5CDF1DAE38B60033FE37 /* DataManager.m in Sources */,
 				4386EB3F1E2DFBFB00624115 /* ModelHSRFactor.m in Sources */,
