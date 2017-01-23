@@ -19,21 +19,19 @@
 
 @implementation ImageViewBackground
 
-    /* INITIALIZE */
+/* INITIALIZE */
 
-    - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-    /* FUNCTION */
+/* FUNCTION */
 
-    - (void)setupStyle
-    {
-        UserInterface *objectUserInterface = [[UserInterface alloc] init];
-        
-        [self setContentMode:UIViewContentModeScaleAspectFill];
-        self.clipsToBounds = true;
-        self.layer.masksToBounds = true;
-    }
+- (void)setupStyle
+{
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+    self.clipsToBounds = true;
+    self.layer.masksToBounds = true;
+}
 
 @end
 
@@ -42,219 +40,236 @@
 
 @implementation ImageViewLogoHat
 
-    /* INITIALIZE */
+/* INITIALIZE */
 
-    - (void)awakeFromNib { [self setupStyle]; }
-
-
-    /* FUNCTION */
-
-    - (void)setupStyle
-    {
-        UserInterface *objectUserInterface = [[UserInterface alloc] init];
-        
-        [self.heightAnchor constraintEqualToConstant:LOGO_HEIGHT_HAT].active = true;
-        [self.widthAnchor constraintEqualToConstant:LOGO_WIDTH_HAT].active = true;
-        [self setImage:[UIImage imageNamed:@"logo_tmlihat_primary"]];
-        [self setContentMode:UIViewContentModeScaleAspectFill];
-    }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:LOGO_HEIGHT_HAT].active = true;
+    [self.widthAnchor constraintEqualToConstant:LOGO_WIDTH_HAT].active = true;
+    [self setImage:[UIImage imageNamed:@"logo_tmlihat_primary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
 @end
 
 @implementation ImageViewLogoHorizontal
 
-    /* INITIALIZE */
+/* INITIALIZE */
 
-    - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-    /* FUNCTION */
+/* FUNCTION */
 
-    - (void)setupStyle
-    {
-        UserInterface *objectUserInterface = [[UserInterface alloc] init];
-        
-        [self.heightAnchor constraintEqualToConstant:LOGO_HEIGHT_HORIZONTAL].active = true;
-        [self.widthAnchor constraintEqualToConstant:LOGO_WIDTH_HORIZONTAL].active = true;
-        [self setImage:[UIImage imageNamed:@"logo_tmlihorizontal_primary"]];
-        [self setContentMode:UIViewContentModeScaleAspectFill];
-    }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:LOGO_HEIGHT_HORIZONTAL].active = true;
+    [self.widthAnchor constraintEqualToConstant:LOGO_WIDTH_HORIZONTAL].active = true;
+    [self setImage:[UIImage imageNamed:@"logo_tmlihorizontal_primary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
 @end
 
 
 // ARC
 
-    /* FULL SCREEN */
+/* FULL SCREEN */
 
-    @implementation ImageViewArcFullScreenPrimary
+@implementation ImageViewArcFullScreenPrimary
 
-        /* INITIALIZE */
+/* INITIALIZE */
 
-        - (void)awakeFromNib { [self setupStyle]; }
-
-
-        /* FUNCTION */
-
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_arcfullscreen_primary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
-
-    @end
-
-    @implementation ImageViewArcFullScreenSecondary
-
-        /* INITIALIZE */
-
-        - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-        /* FUNCTION */
+/* FUNCTION */
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_arcfullscreen_secondary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_arcfullscreen_primary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
-    @end
+@end
 
-    /* HEADER */
+@implementation ImageViewArcFullScreenSecondary
 
-    @implementation ImageViewArcHeaderPrimary
+/* INITIALIZE */
 
-        /* INITIALIZE */
-
-        - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-        /* FUNCTION */
+/* FUNCTION */
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_archeader_primary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_FULLSCREEN].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_arcfullscreen_secondary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
-    @end
+@end
 
-    @implementation ImageViewArcHeaderSecondary
+/* HEADER */
 
-        /* INITIALIZE */
+@implementation ImageViewArcHeaderPrimary
 
-        - (void)awakeFromNib { [self setupStyle]; }
+/* INITIALIZE */
 
-
-        /* FUNCTION */
-
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_archeader_secondary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
-
-    @end
-
-    /* HOME */
-
-    @implementation ImageViewArcHomePrimary
-
-        /* INITIALIZE */
-
-        - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-        /* FUNCTION */
+/* FUNCTION */
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_archome_primary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_archeader_primary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
-    @end
+@end
 
-    @implementation ImageViewArcHomeSecondary
+@implementation ImageViewArcHeaderSecondary
 
-        /* INITIALIZE */
+/* INITIALIZE */
 
-        - (void)awakeFromNib { [self setupStyle]; }
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
 
 
-        /* FUNCTION */
+/* FUNCTION */
 
-        - (void)setupStyle
-        {
-            UserInterface *objectUserInterface = [[UserInterface alloc] init];
-            
-            [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
-            [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
-            [self setImage:[UIImage imageNamed:@"shape_archome_secondary"]];
-            [self setContentMode:UIViewContentModeScaleAspectFill];
-        }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HEADER].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_archeader_secondary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
-    @end
+@end
+
+/* HOME */
+
+@implementation ImageViewArcHomePrimary
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_archome_primary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
+
+@end
+
+@implementation ImageViewArcHomeSecondary
+
+/* INITIALIZE */
+
+- (void)awakeFromNib { [super awakeFromNib]; [self setupStyle]; }
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
+    [self.widthAnchor constraintEqualToConstant:ARC_SIZE_HOME].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_archome_secondary"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
+
+@end
 
 
 // GUIDE
 
 @implementation ImageViewGuideHeaderStep
 
-    /* INITIALIZE */
+/* INITIALIZE */
 
-    - (void)awakeFromNib
-    {
-        [self setupStyle];
-    }
+- (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
 
 
-    /* FUNCTION */
+/* FUNCTION */
 
-    - (void)setupStyle
-    {
-        [self.heightAnchor constraintEqualToConstant:ICON_SIZE_LARGE].active = true;
-        [self.widthAnchor constraintEqualToConstant:ICON_SIZE_LARGE].active = true;
-        [self setImage:[UIImage imageNamed:@"shape_guideright_disable"]];
-        [self setContentMode:UIViewContentModeScaleAspectFill];
-    }
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_LARGE].active = true;
+    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_LARGE].active = true;
+    [self setImage:[UIImage imageNamed:@"shape_guideright_disable"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
 
-    - (void)styleOnProgress
-    {
-        [self setImage:[UIImage imageNamed:@"shape_guideright_onprogress"]];
-    }
+- (void)styleOnProgress
+{
+    [self setImage:[UIImage imageNamed:@"shape_guideright_onprogress"]];
+}
 
-    - (void)styleComplete
-    {
-        [self setImage:[UIImage imageNamed:@"shape_guideright_complete"]];
-    }
+- (void)styleComplete
+{
+    [self setImage:[UIImage imageNamed:@"shape_guideright_complete"]];
+}
 
-    - (void)styleDisable
-    {
-        [self setImage:[UIImage imageNamed:@"shape_guideright_disable"]];
-    }
+- (void)styleDisable
+{
+    [self setImage:[UIImage imageNamed:@"shape_guideright_disable"]];
+}
 
 @end
+
+
+// INFORMATION
+
+@implementation ImageViewScoreSmiley
+
+/* INITIALIZE */
+
+- (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
+
+
+/* FUNCTION */
+
+- (void)setupStyle
+{
+    [self.heightAnchor constraintEqualToConstant:ICON_SIZE_TINY].active = true;
+    [self.widthAnchor constraintEqualToConstant:ICON_SIZE_TINY].active = true;
+    [self setImage:[UIImage imageNamed:@"icon_smiley_cold"]];
+    [self setContentMode:UIViewContentModeScaleAspectFill];
+}
+
+- (void)styleCold
+{
+    [self setImage:[UIImage imageNamed:@"icon_smiley_cold"]];
+}
+
+- (void)styleWarm
+{
+    [self setImage:[UIImage imageNamed:@"icon_smiley_warm"]];
+}
+
+- (void)styleHot
+{
+    [self setImage:[UIImage imageNamed:@"icon_smiley_hot"]];
+}
+
+@end
+

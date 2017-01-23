@@ -596,7 +596,7 @@
 @end
 
 
-// MASKING
+// GUIDE
 
 @implementation ButtonGuideDetail
 
@@ -647,7 +647,109 @@
 @end
 
 
-// MASKING
+// INFORMATION
+
+@implementation ButtonFavouriteStar
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        [self.heightAnchor constraintEqualToConstant:ICON_SIZE_TINY].active = true;
+        [self.widthAnchor constraintEqualToConstant:ICON_SIZE_TINY].active = true;
+        
+        [self setImage:[UIImage imageNamed:@"icon_star1_secondary"] forState:UIControlStateNormal];
+        [self setContentMode:UIViewContentModeScaleAspectFill];
+        [self setBackgroundColor:[UIColor clearColor]];
+        [self setTitle:@"" forState:UIControlStateNormal];
+    }
+
+    - (void)styleSelected
+    {
+        [self setImage:[UIImage imageNamed:@"icon_star1_primary"] forState:UIControlStateNormal];
+    }
+
+    - (void)styleNotSelected
+    {
+        [self setImage:[UIImage imageNamed:@"icon_star1_secondary"] forState:UIControlStateNormal];
+    }
+
+@end
+
+
+// ALERT
+
+@implementation ButtonAlertPositive
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:BUTTON_HEIGHT_ALERT].active = true;
+        [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_BUTTON_ALERT]];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0] forState:UIControlStateNormal];
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+@end
+
+@implementation ButtonAlertNegative
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        [self.heightAnchor constraintEqualToConstant:BUTTON_HEIGHT_ALERT].active = true;
+        [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_SECONDARY size:FONTSIZE_BUTTON_ALERT]];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+@end
+
+@implementation ButtonAlertNeutral
+
+    /* INITIALIZE */
+
+    - (void)awakeFromNib{ [super awakeFromNib]; [self setupStyle];}
+
+
+    /* FUNCTION */
+
+    - (void)setupStyle
+    {
+        UserInterface *objectUserInterface = [[UserInterface alloc] init];
+        
+        [self.heightAnchor constraintEqualToConstant:BUTTON_HEIGHT_ALERT].active = true;
+        [self.titleLabel setFont:[UIFont fontWithName:THEME_FONT_TERTIARY size:FONTSIZE_BUTTON_ALERT]];
+        self.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [self setTitleColor:[objectUserInterface generateUIColor:THEME_COLOR_PRIMARY floatOpacity:1.0] forState:UIControlStateNormal];
+        [self setBackgroundColor:[UIColor clearColor]];
+    }
+
+@end
+
+
+// TABLE
 
 @implementation ButtonTableHeader
 

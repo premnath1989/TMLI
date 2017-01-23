@@ -177,6 +177,38 @@
 @end
 
 
+// INFORMATION
+
+@interface ButtonFavouriteStar : UIButton
+
+    - (void)setupStyle;
+    - (void)styleSelected;
+    - (void)styleNotSelected;
+
+@end
+
+
+// ALERT
+
+@interface ButtonAlertPositive : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonAlertNegative : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+@interface ButtonAlertNeutral : UIButton
+
+    - (void)setupStyle;
+
+@end
+
+
 // TABLE
 
 @interface ButtonTableHeader : UIButton

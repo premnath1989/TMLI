@@ -68,11 +68,14 @@
     
     FMDatabase *database = [FMDatabase databaseWithPath:path];
     [database open];
-    BOOL success = [database executeUpdate:@"insert into SI_FundAllocation (SINO, FundID, FundName, FundValue) values (?,?,?,?)",
+    BOOL success = [database executeUpdate:@"insert into SI_FundAllocation (SINO, FundID, FundName, FundValue,FundGrowthLow,FundGrowthMiddle,FundGrowthHigh) values (?,?,?,?,?,?,?)",
                     [dictFundAllocationData valueForKey:@"SINO"],
                     [dictFundAllocationData valueForKey:@"FundID"],
                     [dictFundAllocationData valueForKey:@"FundName"],
-                    [dictFundAllocationData valueForKey:@"FundValue"]];
+                    [dictFundAllocationData valueForKey:@"FundValue"],
+                    [dictFundAllocationData valueForKey:@"FundGrowthLow"],
+                    [dictFundAllocationData valueForKey:@"FundGrowthMiddle"],
+                    [dictFundAllocationData valueForKey:@"FundGrowthHigh"]];
     
     if (!success) {
         NSLog(@"%s: insert error: %@", __FUNCTION__, [database lastErrorMessage]);

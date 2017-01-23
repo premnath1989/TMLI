@@ -87,4 +87,16 @@
     NSString* const TABLE_RATES_CASH_PLAN = @"CashPlan_Rate";
     NSString* const TABLE_RATES_HSR_FACTOR = @"HSR_Factor";
     NSString* const TABLE_RATES_HSR_COR = @"HSR_COR";
+    NSString* const TABLE_RATES_FUND_GROWTH = @"Fund_GrowthRate";
+    NSString* const TABLE_RATES_LOYALTY_BONUS = @"Loyalty_Bonus";
+    NSString* const TABLE_RATES_REG_PREM_ALLO = @"RegPremAllo";
+    NSString* const TABLE_RATES_PREM_TOPUP_ALL = @"PremTopUpAll";
+    NSString* const TABLE_RATES_COI = @"COI";
+    NSString* const TABLE_RATES_POLICY_ADMIN = @"PolicyAdmin";
+    NSString* const TABLE_RATES_SERVICE_CHARGE = @"ServiceCharge";
+    NSString* const TABLE_RATES_PREMIUM_HOLIDAY_CHARGE = @"Premium_Holiday_Charge";
+    NSString* const TABLE_RATES_WITHDRAWAL_CHARGE_RATE = @"Withdrawal_Charge_rate";
+    NSString* const TABLE_RATES_SCHEDULE_WITHDRAWAL_RATE = @"Schedule_Withdrawal_Rate";
+    NSString* const TABLE_RATES_SURRENDER_CHARGE_RATE = @"Surrender_Charge_Rate";
+    NSString* const TABLE_RATES_JUVENILE = @"Juvenile_Rate";
     NSString* const TABLE_PROSPECT = @"prospect_profile";

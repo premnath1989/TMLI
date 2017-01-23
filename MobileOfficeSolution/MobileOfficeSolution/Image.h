@@ -92,3 +92,15 @@
     - (void)styleDisable;
 
 @end
+
+
+// INFORMATION
+
+@interface ImageViewScoreSmiley : UIImageView
+
+    - (void)setupStyle;
+    - (void)styleCold;
+    - (void)styleWarm;
+    - (void)styleHot;
+
+@end
